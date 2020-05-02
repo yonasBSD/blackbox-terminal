@@ -1,0 +1,7 @@
+data/com.raggesilver.Terminal.desktop.in
+data/com.raggesilver.Terminal.appdata.xml.in
+data/com.raggesilver.Terminal.gschema.xml
+src/window.ui
+src/main.vala
+src/window.vala
+

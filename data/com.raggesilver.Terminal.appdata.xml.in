@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.raggesilver.Terminal</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Terminal</name>
+  <summary>A pretty terminal for Linux</summary>
+  <developer_name>Paulo Queiroz</developer_name>
+
+  <description>
+    <p>A prettier terminal for Linux.</p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Quickly open or create new projects</caption>
+      <image>https://imgur.com/62uOokF.png</image>
+    </screenshot>
+  </screenshots>
+
+  <launchable type="desktop-id">com.raggesilver.Terminal.desktop</launchable>
+  <url type="homepage">https://gitlab.com/raggesilver/terminal</url>
+  <url type="bugtracker">https://gitlab.com/raggesilver/terminal/issues</url>
+
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="sex-homosexuality">none</content_attribute>
+    <content_attribute id="sex-prostitution">none</content_attribute>
+    <content_attribute id="sex-adultery">none</content_attribute>
+    <content_attribute id="sex-appearance">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+
+  <kudos>
+    <kudo>ModernToolkit</kudo>
+    <kudo>HiDpiIcon</kudo>
+  </kudos>
+
+  <releases>
+    <release date="2020-03-10" version="0.2.0">
+      <description>
+        <p>Proton release 0.2.0: new dev cycle.</p>
+      </description>
+    </release>
+  </releases>
+
+  <!--FIXME: where to donate to the application-->
+  <url type="donation">https://www.patreon.com/raggesilver</url>
+
+  <!--FIXME: where on the internet users can find help-->
+  <url type="help">https://gitlab.com/raggesilver-proton/proton/issues</url>
+
+  <!--FIXME: where to submit translations-->
+  <url type="translate">https://gitlab.com/raggesilver-proton/proton/issues</url>
+
+  <!--FIXME: this is optional, but recommended-->
+  <update_contact>pvaqueiroz@gmail.com</update_contact>
+</component>
+

@@ -1,0 +1,65 @@
+{
+    "app-id" : "com.raggesilver.Terminal",
+    "runtime" : "org.gnome.Sdk",
+    "runtime-version" : "3.36",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "terminal",
+    "finish-args" : [
+        "--allow=devel",
+        "--filesystem=home",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--talk-name=org.freedesktop.Flatpak"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "/share/vala",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "vte",
+            "buildsystem" : "meson",
+            "build-options" : {
+                "env" : {
+                    "CXXFLAGS" : "-fno-exceptions"
+                }
+            },
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/vte"
+                }
+            ]
+        },
+        {
+            "name" : "marble",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.com/raggesilver/marble"
+                }
+            ]
+        },
+        {
+            "name" : "terminal",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.com/raggesilver/terminal"
+                }
+            ]
+        }
+    ]
+}

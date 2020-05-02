@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="terminal">
+	<schema id="com.raggesilver.Terminal" path="/com/raggesilver/Terminal/">
+    <key name="font" type="s">
+      <default>'Monospace 12'</default>
+      <summary>Font family and size</summary>
+    </key>
+    <key name="pretty" type="b">
+      <default>true</default>
+      <summary>Whether the window should inherit terminal theme's colors</summary>
+    </key>
+	</schema>
+</schemalist>

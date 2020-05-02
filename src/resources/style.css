@@ -1,0 +1,5 @@
+window.preferences .titlebar {
+    background: @theme_bg_color;
+    /* background: red; */
+    border-bottom: none;
+}
