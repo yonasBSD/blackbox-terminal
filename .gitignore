@@ -1,22 +1,21 @@
+# Trash
+*.*~
+\#*#
+*.swp
+
+# Test files
+test*
+mocks/
+
+# Build dirs/files
 app/
 app_build/
 _build/
-_native/
-_native_build/
-_proton_build/
-*.*~
-*test*
-\#*#
-
-Makefile
-
-.vscode
-.idea
-
-data/icons/hicolor/icons.gresource.xml
-
-.proton/
 .flatpak-builder/
-!test.sh
 repo/
 *.flatpak
+.buildconfig
+
+# IDE dirs
+.vscode/
+.idea/
