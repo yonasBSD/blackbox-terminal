@@ -23,7 +23,7 @@
 > 1.0.0 IS RELEASED -- Tho you can use it as a simple terminal
 
 <div align="center">
-    <img src="https://imgur.com/2vStnlw.png" alt="Preview"/>
+    <img src="https://imgur.com/BbKtt2L.png" alt="Preview"/>
 </div>
 
 The only reason this project exists is to create a user-themeable terminal app
@@ -37,6 +37,7 @@ Atm, the solarized theme is hard-coded.
 hard-coded)
 - Ctrl+Shift+C/Ctrl+Shift+V for copy/paste
 - Ctrl+Shift+N to open a new window
+- Tilix-compatible color scheme support
 
 ## Install
 
@@ -49,7 +50,7 @@ hard-coded)
 **Flathub**
 
 <div align="center">
-Wow, such empty!
+    <small>Wow, such empty!</small>
 </div>
 
 ## Compile
@@ -80,11 +81,10 @@ make run
 ## UI Mocks
 
 <div align="center">
-Wow, such empty!
+    <small>Wow, such empty!</small>
 </div>
 
 ## Credits
 
-<div align="center">
-Wow, such empty!
-</div>
+- Most of Terminal's themes come (straight out copied) from [Tilix](https://github.com/gnunn1/tilix)
+- Most non-Tilix-default themes come (straight out copied) from [Tilix-Themes](https://github.com/storm119/Tilix-Themes)

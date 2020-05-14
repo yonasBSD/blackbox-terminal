@@ -21,7 +21,7 @@ int main(string[] args) {
                                   ApplicationFlags.FLAGS_NONE);
 
 	app.activate.connect(() => {
-		var win = new Terminal.Window(app);
+        var win = app.active_window ?? new Terminal.Window(app);
 		win.present();
 	});
 

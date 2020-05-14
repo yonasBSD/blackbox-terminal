@@ -1,3 +1,8 @@
+subdir('icons')
+
+install_subdir('schemes',
+    install_dir: join_paths(get_option('datadir'), 'terminal'))
+
 desktop_file = i18n.merge_file(
   input: 'com.raggesilver.Terminal.desktop.in',
   output: 'com.raggesilver.Terminal.desktop',

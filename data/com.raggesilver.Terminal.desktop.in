@@ -6,3 +6,4 @@ Type=Application
 Categories=GTK;
 StartupNotify=true
 Keywords=Terminal;
+Icon=com.raggesilver.Terminal

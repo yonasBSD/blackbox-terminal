@@ -23,19 +23,31 @@ public class Terminal.PreferencesWindow : Gtk.ApplicationWindow
 {
     [GtkChild] Gtk.Switch pretty_switch;
     [GtkChild] Gtk.FontButton font_button;
+    [GtkChild] Gtk.ComboBoxText theme_combo;
 
     weak Settings settings;
+    weak Window window;
 
-    public PreferencesWindow(Gtk.Application app, Settings settings)
+    public PreferencesWindow(Gtk.Application app, Window window)
     {
         Object(application: app);
 
-        this.settings = settings;
+        this.window = window;
+        this.settings = window.settings;
 
         this.settings.schema.bind("pretty", this.pretty_switch,
             "active", SettingsBindFlags.DEFAULT);
 
         this.settings.schema.bind("font", this.font_button,
             "font", SettingsBindFlags.DEFAULT);
+
+        this.window.theme_provicer.themes.foreach((key, val) => {
+            this.theme_combo.insert(-1, key, key);
+        });
+
+        this.theme_combo.set_active_id(this.settings.theme);
+
+        this.settings.schema.bind("theme", this.theme_combo,
+            "active-id", SettingsBindFlags.DEFAULT);
     }
 }

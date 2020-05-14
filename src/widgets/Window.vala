@@ -1,4 +1,4 @@
-/* window.vala
+/* Window.vala
  *
  * Copyright 2020 Paulo Queiroz
  *
@@ -20,6 +20,7 @@ public class Terminal.Settings : Marble.Settings
 {
     public string font { get; set; }
     public bool pretty { get; set; }
+    public string theme { get; set; }
 
     public Settings()
     {
@@ -35,7 +36,8 @@ public class Terminal.Window : Gtk.ApplicationWindow
     private Gtk.Popover? pop = null;
     private PreferencesWindow? pref_window = null;
 
-    private Settings settings;
+    public Settings settings { get; private set; }
+    public ThemeProvider theme_provicer { get; private set; }
 
     public Window(Gtk.Application app)
     {
@@ -48,7 +50,9 @@ public class Terminal.Window : Gtk.ApplicationWindow
         this.settings = new Settings();
         this.get_style_context().add_class("ragged-terminal");
 
-        t = new Terminal();
+        this.theme_provicer = new ThemeProvider(this.settings);
+
+        t = new Terminal(this);
 
         t.destroy.connect(() => {
             this.destroy();
@@ -78,7 +82,7 @@ public class Terminal.Window : Gtk.ApplicationWindow
             if (this.pref_window == null)
             {
                 this.pref_window = new PreferencesWindow(this.application,
-                                                         this.settings);
+                                                         this);
                 this.pref_window.destroy.connect(() => {
                     this.pref_window = null;
                 });

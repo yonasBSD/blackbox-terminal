@@ -9,5 +9,9 @@
       <default>true</default>
       <summary>Whether the window should inherit terminal theme's colors</summary>
     </key>
+    <key name="theme" type="s">
+      <default>'Material'</default>
+      <summary>The color scheme for the terminal</summary>
+    </key>
 	</schema>
 </schemalist>

@@ -13,11 +13,11 @@ INSTALL_COMMAND := ninja -C $(BUILD_DIR) install
 
 all: $(MODULE)
 
-$(MODULE): $(BUILD_DIR) Makefile
+$(MODULE): $(BUILD_DIR) Makefile $(MANIFEST)
 	flatpak-builder --run $(APP_DIR) $(MANIFEST) $(INSTALL_COMMAND)
 
 # app_build/
-$(BUILD_DIR): $(APP_DIR) Makefile
+$(BUILD_DIR): $(APP_DIR) Makefile $(MANIFEST)
 	flatpak-builder --run $(APP_DIR) $(MANIFEST) $(BUILD_COMMAND)
 
 # app/

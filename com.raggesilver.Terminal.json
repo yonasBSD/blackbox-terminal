@@ -41,6 +41,16 @@
             ]
         },
         {
+            "name" : "json-glib",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/json-glib"
+                }
+            ]
+        },
+        {
             "name" : "marble",
             "buildsystem" : "meson",
             "sources" : [

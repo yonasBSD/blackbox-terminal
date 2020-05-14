@@ -1,0 +1,4 @@
+namespace Terminal
+{
+    public const string DATADIR = @DATADIR@;
+}

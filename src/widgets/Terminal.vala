@@ -97,76 +97,24 @@ namespace Terminal
     }
 }
 
-public struct Terminal.Scheme
-{
-    public Gdk.RGBA scheme[16];
-    public Gdk.RGBA colors[2];
-}
-
-const Terminal.Scheme dracula_scheme = {
-    {
-        { 0,        0,        0,        1 },
-        { 1,        0.333333, 0.333333, 1 },
-        { 0.313725, 0.980392, 0.482352, 1 },
-        { 0.945098, 0.980392, 0.549019, 1 },
-        { 0.741176, 0.576470, 0.976470, 1 },
-        { 1,        0.474509, 0.776470, 1 },
-        { 0.545098, 0.913725, 0.992156, 1 },
-        { 0.733333, 0.733333, 0.733333, 1 },
-        { 0.333333, 0.333333, 0.333333, 1 },
-        { 1,        0.333333, 0.333333, 1 },
-        { 0.313725, 0.980392, 0.482352, 1 },
-        { 0.945098, 0.980392, 0.549019, 1 },
-        { 0.741176, 0.576470, 0.976470, 1 },
-        { 1,        0.474509, 0.776470, 1 },
-        { 0.545098, 0.913725, 0.992156, 1 },
-        { 1,        1,        1,        1 }
-    },
-    {
-        { 0.972549, 0.972549, 0.949019, 1 }, // FG
-        { 0.117647, 0.121568, 0.160784, 1 }, // BG
-    }
-};
-
-const Terminal.Scheme solarized_scheme = {
-    {
-        { 0.02745,  0.211764, 0.258823, 1 },
-        { 0.862745, 0.196078, 0.184313, 1 },
-        { 0.521568, 0.6,      0,        1 },
-        { 0.709803, 0.537254, 0,        1 },
-        { 0.149019, 0.545098, 0.823529, 1 },
-        { 0.82745,  0.211764, 0.509803, 1 },
-        { 0.164705, 0.631372, 0.596078, 1 },
-        { 0.933333, 0.909803, 0.835294, 1 },
-        { 0,        0.168627, 0.211764, 1 },
-        { 0.796078, 0.294117, 0.086274, 1 },
-        { 0.345098, 0.431372, 0.458823, 1 },
-        { 0.396078, 0.482352, 0.513725, 1 },
-        { 0.513725, 0.580392, 0.588235, 1 },
-        { 0.423529, 0.443137, 0.768627, 1 },
-        { 0.57647,  0.631372, 0.631372, 1 },
-        { 0.992156, 0.964705, 0.890196, 1 },
-    },
-    {
-        { 0.513725, 0.580392, 0.588235, 1 }, // FG
-        { 0,        0.168627, 0.211765, 1 }, // BG
-    }
-};
-
 public class Terminal.Terminal : Vte.Terminal
 {
     public signal void ui_updated();
     public signal void new_window();
 
     public Pid pid;
-    public Gdk.RGBA fg;
-    public Gdk.RGBA bg;
+    public Gdk.RGBA? fg;
+    public Gdk.RGBA? bg;
 
-    public Scheme scheme { get; set; default = solarized_scheme; }
+    public Scheme scheme { get; set; }
 
-    public Terminal(string? command = null)
+    private weak Window window;
+
+    public Terminal(Window window, string? command = null)
     {
         Object();
+
+        this.window = window;
 
         this.child_exited.connect((s) => {
             debug("Child exited with code %d", s);
@@ -174,6 +122,7 @@ public class Terminal.Terminal : Vte.Terminal
         });
 
         this.style_updated.connect(this.update_ui);
+        this.window.settings.notify["theme"].connect(this.update_ui);
 
         this.spawn(command);
 
@@ -184,15 +133,31 @@ public class Terminal.Terminal : Vte.Terminal
     private void update_ui()
     {
         var ctx = this.get_style_context();
+        var theme = this.window.theme_provicer.themes.get(this.window.settings.theme);
 
-        if (!ctx.lookup_color("theme_base_color", out this.bg) ||
-            !ctx.lookup_color("theme_fg_color", out this.fg))
+        if (theme == null)
+        {
+            warning("INVALID THEME '%s'", this.window.settings.theme);
             return;
+        }
 
-        this.fg = this.scheme.colors[0];
-        this.bg = this.scheme.colors[1];
+        this.bg = theme.background;
+        this.fg = theme.foreground;
 
-        this.set_colors(this.fg, this.bg, this.scheme.scheme);
+        if (this.bg == null &&
+            !ctx.lookup_color("theme_base_color", out this.bg))
+        {
+            warning("Theme '%s' has no background, using fallback", theme.name);
+            this.bg = { 0, 0, 0, 1 };
+        }
+
+        if (this.fg == null &&
+            !ctx.lookup_color("theme_fg_color", out this.fg))
+        {
+            this.fg = { 1, 1, 1, 1 };
+        }
+
+        this.set_colors(this.fg, this.bg, theme.colors);
 
         this.ui_updated();
     }
