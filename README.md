@@ -33,8 +33,8 @@ Atm, the solarized theme is hard-coded.
 
 ## Features
 
-- Pretty integration with the selected theme (however the theme is still
-hard-coded)
+- Theme selection
+- Pretty integration with the selected theme
 - Ctrl+Shift+C/Ctrl+Shift+V for copy/paste
 - Ctrl+Shift+N to open a new window
 - Tilix-compatible color scheme support
