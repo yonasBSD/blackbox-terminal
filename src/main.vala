@@ -20,10 +20,10 @@ int main(string[] args) {
     var app = new Gtk.Application("com.raggesilver.Terminal",
                                   ApplicationFlags.FLAGS_NONE);
 
-	app.activate.connect(() => {
-        var win = app.active_window ?? new Terminal.Window(app);
-		win.present();
-	});
+    app.activate.connect(() => {
+        var win = new Terminal.Window(app);
+        win.present();
+    });
 
-	return app.run(args);
+    return app.run(args);
 }

@@ -3,9 +3,9 @@
     "comment": "Monokai Dark Scheme",
     "use-theme-colors": false,
     "foreground-color": "#F8F8F2",
-    "background-color": "#272822",
+    "background-color": "#232323",
     "palette": [
-        "#272822",
+        "#232323",
         "#f92672",
         "#a6e22e",
         "#f4bf75",

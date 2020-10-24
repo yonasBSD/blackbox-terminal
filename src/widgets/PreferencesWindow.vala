@@ -41,7 +41,7 @@ public class Terminal.PreferencesWindow : Gtk.ApplicationWindow
         this.settings.schema.bind("font", this.font_button,
             "font", SettingsBindFlags.DEFAULT);
 
-        this.window.theme_provicer.themes.foreach((key, val) => {
+        this.window.theme_provicer.themes.foreach((key) => {
             this.theme_combo.insert(-1, key, key);
         });
 

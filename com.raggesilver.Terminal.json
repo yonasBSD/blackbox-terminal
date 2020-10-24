@@ -8,8 +8,9 @@
         "--allow=devel",
         "--filesystem=home",
         "--share=ipc",
-        "--socket=fallback-x11",
+        "--socket=x11",
         "--socket=wayland",
+        "--device=dri",
         "--talk-name=org.freedesktop.Flatpak"
     ],
     "cleanup" : [
@@ -28,11 +29,6 @@
         {
             "name" : "vte",
             "buildsystem" : "meson",
-            "build-options" : {
-                "env" : {
-                    "CXXFLAGS" : "-fno-exceptions"
-                }
-            },
             "sources" : [
                 {
                     "type" : "git",

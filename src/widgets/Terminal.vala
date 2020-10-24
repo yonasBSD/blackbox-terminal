@@ -212,12 +212,12 @@ public class Terminal.Terminal : Vte.Terminal
                     "--watch-bus"
                 };
 
-		        var env = fp_get_env() ?? Environ.get();
+                var env = fp_get_env() ?? Environ.get();
 
-		        env += "G_MESSAGES_DEBUG=false";
-		        env += "TERM=xterm-256color";
+                env += "G_MESSAGES_DEBUG=false";
+                env += "TERM=xterm-256color";
 
-		        for (uint i = 0; i < env.length; i++)
+                for (uint i = 0; i < env.length; i++)
                     real_argv += @"--env=$(env[i])";
 
                 real_argv += shell;
@@ -234,30 +234,30 @@ public class Terminal.Terminal : Vte.Terminal
                     null,
                     real_argv,
                     env,
-                    SpawnFlags.DO_NOT_REAP_CHILD,
+                    0,
                     null, out pid, null);
             }
             else
             {
                 var env = Environ.get();
-		        env += "G_MESSAGES_DEBUG=false";
-		        env += "TERM=xterm-256color";
+                env += "G_MESSAGES_DEBUG=false";
+                env += "TERM=xterm-256color";
 
-		        string[] argv = {
-		            Environ.get_variable(Environ.get(), "SHELL")
-		        };
+                string[] argv = {
+                    Environ.get_variable(Environ.get(), "SHELL")
+                };
 
-		        if (command != null)
-		        {
-		            argv += "-c";
-		            argv += command;
-		        }
+                if (command != null)
+                {
+                    argv += "-c";
+                    argv += command;
+                }
 
                 spawn_sync(Vte.PtyFlags.DEFAULT,
                     null,
                     argv,
                     env,
-                    SpawnFlags.DO_NOT_REAP_CHILD,
+                    0,
                     null, out pid, null);
             }
         }

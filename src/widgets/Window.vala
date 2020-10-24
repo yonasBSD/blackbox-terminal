@@ -43,9 +43,9 @@ public class Terminal.Window : Gtk.ApplicationWindow
     {
         Object(application: app);
 
+        Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
         Marble.add_css_provider_from_resource(
             "/com/raggesilver/Terminal/resources/style.css");
-        Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
 
         this.settings = new Settings();
         this.get_style_context().add_class("ragged-terminal");
@@ -126,19 +126,12 @@ public class Terminal.Window : Gtk.ApplicationWindow
             Pango.FontDescription.from_string(this.settings.font);
     }
 
+    private double get_brightness(Gdk.RGBA c) {
+        return ((c.red * 299) + (c.green * 587) + (c.blue * 114)) / 1000;
+    }
+
     private void on_ui_updated()
     {
-        if (!this.settings.pretty)
-        {
-            if (this.provider != null)
-            {
-                Gtk.StyleContext.remove_provider_for_screen(
-                    Gdk.Screen.get_default(), this.provider);
-                this.provider = null;
-            }
-            return;
-        }
-
         if (this.provider != null)
         {
             Gtk.StyleContext.remove_provider_for_screen(
@@ -146,18 +139,23 @@ public class Terminal.Window : Gtk.ApplicationWindow
             this.provider = null;
         }
 
-        this.provider = Marble.get_css_provider_for_data("""
-            window.ragged-terminal .titlebar {
-                background: %1$s;
-                color: %2$s;
-                border-bottom: none;
-                box-shadow: none;
-            }
+        if (!this.settings.pretty) return;
 
-            window.ragged-terminal .background {
-                background: lighter(%1$s);
-            }
-        """.printf(t.bg.to_string(), t.fg.to_string()));
+        //  message("Bg brightness: %lf", get_brightness(t.bg));
+        //  message("Fg brightness: %lf", get_brightness(t.fg));
+
+        bool is_dark_theme = get_brightness(t.fg) > 0.5;
+        string inv_mode = is_dark_theme ? "lighter" : "darker";
+
+        Gtk.Settings.get_default().gtk_application_prefer_dark_theme = is_dark_theme;
+
+        message("This theme is %s", is_dark_theme ? "dark" : "light");
+
+        this.provider = Marble.get_css_provider_for_data("""
+            @define-color theme_fg_color %2$s;
+            @define-color theme_bg_color %3$s(%1$s);
+            @define-color theme_base_color %1$s;
+        """.printf(t.bg.to_string(), t.fg.to_string(), inv_mode));
 
         if (this.provider == null)
             return;
