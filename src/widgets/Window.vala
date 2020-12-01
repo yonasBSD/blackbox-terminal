@@ -39,7 +39,7 @@ public class Terminal.Window : Gtk.ApplicationWindow
     public Settings settings { get; private set; }
     public ThemeProvider theme_provicer { get; private set; }
 
-    public Window(Gtk.Application app)
+    public Window(Gtk.Application app, string? cwd = null)
     {
         Object(application: app);
 
@@ -52,7 +52,7 @@ public class Terminal.Window : Gtk.ApplicationWindow
 
         this.theme_provicer = new ThemeProvider(this.settings);
 
-        t = new Terminal(this);
+        t = new Terminal(this, null, cwd);
 
         t.destroy.connect(() => {
             this.destroy();
@@ -61,7 +61,9 @@ public class Terminal.Window : Gtk.ApplicationWindow
         t.ui_updated.connect(this.on_ui_updated);
 
         t.new_window.connect(() => {
-            var w = new Window(this.application);
+            message("CWD %s", this.t.get_current_directory_uri());
+            message("CWD %s", this.t.get_current_file_uri());
+            var w = new Window(this.application, this.t.get_current_directory_uri());
             w.show();
         });
 

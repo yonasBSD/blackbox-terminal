@@ -18,6 +18,12 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+private enum EChildType {
+    NONE = 0,
+    TERMINAL = 1,
+    PANE = 2,
+}
+
 public class Terminal.Pane {
 
     Terminal  term1;
@@ -30,20 +36,36 @@ public class Terminal.Pane {
         this.win = win;
         this.paned = new Gtk.Paned(Gtk.Orientation.VERTICAL);
 
-        if (term == null) {
-            term = new Terminal(win, null);
-        }
-
-        this.paned.add1(term);
+        this.paned.add1(term ?? new Terminal(win, null));
         this.paned.show_all();
         this.term1 = term;
     }
 
     // Add a new terminal to the bottom
-    public void split_vertical() {
-        this.paned.remove(this.term1);
+    public void split_horizontal() {
+        this.paned.set_orientation(Gtk.Orientation.VERTICAL);
+        if (this.term2 == null) {
+            this.term2 = new Terminal(this.win, null);
+            this.paned.add2(this.term2);
+        }
     }
 
     // Add a new terminal to the right
-    public void split_vertical() {}
+    public void split_vertical() {
+        this.paned.set_orientation(Gtk.Orientation.HORIZONTAL);
+        if (this.term2 == null) {
+            this.term2 = new Terminal(this.win, null);
+            this.paned.add2(this.term2);
+        }
+    }
+
+    private EChildType get_child_type (uint child_no = 1) requires (child_no == 1 || child_no == 2) {
+        var w = (child_no == 1) ? this.paned.get_child1() : this.paned.get_child2();
+
+        if (w == null) return EChildType.NONE;
+        if (w is Pane) return EChildType.PANE;
+        if (w is Terminal) return EChildType.TERMINAL;
+
+        error("Unknown child type <%p>", w);
+    }
 }
