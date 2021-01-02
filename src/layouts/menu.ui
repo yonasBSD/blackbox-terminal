@@ -16,7 +16,6 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
               <object class="GtkButton">
@@ -56,7 +55,6 @@
         </child>
         <child>
           <object class="GtkSeparator">
-            <property name="visible">True</property>
             <property name="can-focus">False</property>
           </object>
           <packing>

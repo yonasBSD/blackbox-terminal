@@ -15,7 +15,7 @@
         <a href="#install">Install</a> •
         <a href="#features">Features</a> •
         <!-- <a href="#features">Features</a> • -->
-        <a href="https://gitlab.com/raggesilver/terminal/blob/master/LICENSE">License</a>
+        <a href="https://gitlab.com/raggesilver/terminal/blob/master/COPYING">License</a>
     </p>
 </div>
 
@@ -23,13 +23,15 @@
 > 1.0.0 IS RELEASED -- Tho you can use it as a simple terminal
 
 <div align="center">
-    <img src="https://imgur.com/BbKtt2L.png" alt="Preview"/>
+    <img src="https://imgur.com/Nzx1PMg.png" alt="Preview"/><br/>
+    <small><i>
+        For privacy reasons the terminal title was redacted from the image
+    </i></small>
+    <br/><br/>
 </div>
 
 The only reason this project exists is to create a user-themeable terminal app
 that integrates the theme into the rest of the window.
-
-Atm, the solarized theme is hard-coded.
 
 ## Features
 
@@ -38,6 +40,7 @@ Atm, the solarized theme is hard-coded.
 - Ctrl+Shift+C/Ctrl+Shift+V for copy/paste
 - Ctrl+Shift+N to open a new window
 - Tilix-compatible color scheme support
+- Toggleable headerbar
 
 ## Install
 
@@ -78,10 +81,14 @@ make run
 #   ffclean     - cleans build files, dependencies and .flatpak-builder
 ```
 
-## UI Mocks
+## Some other screenshots
 
 <div align="center">
-    <small>Wow, such empty!</small>
+    <img src="https://imgur.com/75C25vk.png" alt="Headerbar-less terminal"/><br/>
+    <small><i>
+        Terminal with "show headerbar" off.
+    </i></small>
+    <br/><br/>
 </div>
 
 ## Credits
