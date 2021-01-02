@@ -1,7 +1,7 @@
 {
     "app-id" : "com.raggesilver.Terminal",
     "runtime" : "org.gnome.Sdk",
-    "runtime-version" : "3.36",
+    "runtime-version" : "3.38",
     "sdk" : "org.gnome.Sdk",
     "command" : "terminal",
     "finish-args" : [
@@ -53,6 +53,21 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.com/raggesilver/marble"
+                }
+            ]
+        },
+        {
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dtests=false",
+                "-Dexamples=false",
+                "-Dglade_catalog=disabled"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git"
                 }
             ]
         },

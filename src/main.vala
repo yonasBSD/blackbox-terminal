@@ -25,5 +25,9 @@ int main(string[] args) {
         win.present();
     });
 
+    app.startup.connect(() => {
+        Hdy.init();
+    });
+
     return app.run(args);
 }

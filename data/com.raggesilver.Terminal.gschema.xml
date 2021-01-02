@@ -9,6 +9,10 @@
       <default>true</default>
       <summary>Whether the window should inherit terminal theme's colors</summary>
     </key>
+    <key name="show-headerbar" type="b">
+      <default>true</default>
+      <summary>Whether the headerbar should be shown or not</summary>
+    </key>
     <key name="theme" type="s">
       <default>'Material'</default>
       <summary>The color scheme for the terminal</summary>

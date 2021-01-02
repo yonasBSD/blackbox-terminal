@@ -22,6 +22,7 @@
 public class Terminal.PreferencesWindow : Gtk.ApplicationWindow
 {
     [GtkChild] Gtk.Switch pretty_switch;
+    [GtkChild] Gtk.Switch show_headerbar_switch;
     [GtkChild] Gtk.FontButton font_button;
     [GtkChild] Gtk.ComboBoxText theme_combo;
 
@@ -36,6 +37,9 @@ public class Terminal.PreferencesWindow : Gtk.ApplicationWindow
         this.settings = window.settings;
 
         this.settings.schema.bind("pretty", this.pretty_switch,
+            "active", SettingsBindFlags.DEFAULT);
+
+        this.settings.schema.bind("show-headerbar", this.show_headerbar_switch,
             "active", SettingsBindFlags.DEFAULT);
 
         this.settings.schema.bind("font", this.font_button,

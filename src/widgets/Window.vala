@@ -20,6 +20,7 @@ public class Terminal.Settings : Marble.Settings
 {
     public string font { get; set; }
     public bool pretty { get; set; }
+    public bool show_headerbar { get; set; }
     public string theme { get; set; }
 
     public Settings()
@@ -28,13 +29,18 @@ public class Terminal.Settings : Marble.Settings
     }
 }
 
-public class Terminal.Window : Gtk.ApplicationWindow
+[GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
+public class Terminal.Window : Hdy.ApplicationWindow
 {
     private Gtk.CssProvider? provider = null;
     private Terminal t;
     private Gtk.EventBox eb;
     private Gtk.Popover? pop = null;
     private PreferencesWindow? pref_window = null;
+
+    [GtkChild] Gtk.Box content_box;
+    [GtkChild] Gtk.Revealer revealer;
+    [GtkChild] Hdy.HeaderBar header_bar;
 
     public Settings settings { get; private set; }
     public ThemeProvider theme_provicer { get; private set; }
@@ -50,9 +56,16 @@ public class Terminal.Window : Gtk.ApplicationWindow
         this.settings = new Settings();
         this.get_style_context().add_class("ragged-terminal");
 
+        this.settings.schema.bind("show-headerbar", this.revealer,
+            "reveal-child", SettingsBindFlags.GET);
+
         this.theme_provicer = new ThemeProvider(this.settings);
 
         t = new Terminal(this, null, cwd);
+
+        t.notify["window-title"].connect(() => {
+            this.header_bar.title = t.window_title;
+        });
 
         t.destroy.connect(() => {
             this.destroy();
@@ -96,7 +109,7 @@ public class Terminal.Window : Gtk.ApplicationWindow
         this.settings.notify.connect(this.apply_settings);
         this.apply_settings();
 
-        add(eb);
+        this.content_box.pack_start(eb, true, true, 0);
         show_all();
     }
 

@@ -25,6 +25,7 @@ terminal_deps = [
   dependency('vte-2.91', version: '>= 0.57.0'),
   dependency('marble', version: '>= 1.2.2'),
   dependency('json-glib-1.0', version: '>= 1.4.4'),
+  dependency('libhandy-1', version: '>= 1.0.3'),
 ]
 
 gnome = import('gnome')
