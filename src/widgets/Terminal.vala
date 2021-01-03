@@ -44,7 +44,7 @@ public class Terminal.Terminal : Vte.Terminal
 
         Marble.set_theming_for_data(this, "vte-terminal { padding: 10px; }");
 
-        this.style_updated.connect(this.update_ui);
+        //  this.style_updated.connect(this.update_ui);
         this.window.settings.notify["theme"].connect(this.update_ui);
 
         this.spawn(command, cwd);

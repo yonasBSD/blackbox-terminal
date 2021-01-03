@@ -1,5 +1,27 @@
+@define-color rg_theme_fg_color @theme_fg_color;
+@define-color rg_theme_bg_color @theme_bg_color;
+@define-color rg_theme_base_color @theme_base_color;
+
 window.ragged-terminal headerbar.titlebar {
-    background: @theme_base_color;
-    color: @theme_fg_color;
+    background: @rg_theme_base_color;
+    color: @rg_theme_fg_color;
     border-bottom: none;
+}
+
+list { border: 1px solid darker(@theme_base_color); border-radius: 8px; }
+
+list > row {
+    outline: 0;
+}
+
+list > row:first-child {
+    border-top-left-radius: 8px; border-top-right-radius: 8px;
+}
+
+list > row:last-child {
+    border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+}
+
+headerbar.slim, .titlebar.slim {
+    min-height: 36px;
 }

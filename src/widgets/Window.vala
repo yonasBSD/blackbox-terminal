@@ -59,6 +59,10 @@ public class Terminal.Window : Hdy.ApplicationWindow
         this.settings.schema.bind("show-headerbar", this.revealer,
             "reveal-child", SettingsBindFlags.GET);
 
+        this.settings.notify["pretty"].connect(() => {
+            this.on_ui_updated();
+        });
+
         this.theme_provicer = new ThemeProvider(this.settings);
 
         t = new Terminal(this, null, cwd);
@@ -110,6 +114,8 @@ public class Terminal.Window : Hdy.ApplicationWindow
         this.apply_settings();
 
         this.content_box.pack_start(eb, true, true, 0);
+
+        this.on_ui_updated();
         show_all();
     }
 
@@ -167,9 +173,9 @@ public class Terminal.Window : Hdy.ApplicationWindow
         message("This theme is %s", is_dark_theme ? "dark" : "light");
 
         this.provider = Marble.get_css_provider_for_data("""
-            @define-color theme_fg_color %2$s;
-            @define-color theme_bg_color %3$s(%1$s);
-            @define-color theme_base_color %1$s;
+            @define-color rg_theme_fg_color %2$s;
+            @define-color rg_theme_bg_color %3$s(%1$s);
+            @define-color rg_theme_base_color %1$s;
         """.printf(t.bg.to_string(), t.fg.to_string(), inv_mode));
 
         if (this.provider == null)

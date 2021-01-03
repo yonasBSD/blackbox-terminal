@@ -19,7 +19,7 @@
  */
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
-public class Terminal.PreferencesWindow : Gtk.ApplicationWindow
+public class Terminal.PreferencesWindow : Hdy.ApplicationWindow
 {
     [GtkChild] Gtk.Switch pretty_switch;
     [GtkChild] Gtk.Switch show_headerbar_switch;
