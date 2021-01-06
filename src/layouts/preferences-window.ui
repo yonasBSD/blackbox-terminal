@@ -172,7 +172,6 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="tooltip-text" translatable="yes">Whether or not to show a headerbar</property>
                             <property name="label" translatable="yes">Font</property>
                             <property name="xalign">0</property>
                           </object>
@@ -187,7 +186,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
-                            <property name="font">Monospace 10</property>
+                            <property name="font">Sans 12</property>
                             <property name="language">en-us</property>
                             <property name="level">GTK_FONT_CHOOSER_LEVEL_SIZE | GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
                             <property name="preview-text"/>
@@ -225,7 +224,6 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="tooltip-text" translatable="yes">Whether or not to show a headerbar</property>
                             <property name="label" translatable="yes">Color scheme</property>
                             <property name="xalign">0</property>
                           </object>
