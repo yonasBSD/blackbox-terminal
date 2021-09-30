@@ -26,7 +26,13 @@ terminal_deps = [
   dependency('marble', version: '>= 1.2.2'),
   dependency('json-glib-1.0', version: '>= 1.4.4'),
   dependency('libhandy-1', version: '>= 1.0.3'),
+  dependency('libpcre2-8'),
 ]
+
+# https://github.com/elementary/terminal/blob/d9620eb12331a28c658f97ac9a1bdb809aa90089/meson.build
+vapi_dir = meson.current_source_dir() / 'vapi'
+add_project_arguments('--vapidir=' + vapi_dir, language: 'vala')
+add_project_arguments('-DPCRE2_CODE_UNIT_WIDTH=0', language: 'c')
 
 gnome = import('gnome')
 

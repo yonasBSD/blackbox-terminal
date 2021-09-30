@@ -33,24 +33,60 @@ public class Terminal.Terminal : Vte.Terminal
 
     public Terminal(Window window, string? command = null, string? cwd = null)
     {
-        Object();
-
+        Object(allow_hyperlink: true);
         this.window = window;
-
-        this.child_exited.connect((s) => {
-            debug("Child exited with code %d", s);
-            this.destroy();
-        });
 
         Marble.set_theming_for_data(this, "vte-terminal { padding: 10px; }");
 
-        //  this.style_updated.connect(this.update_ui);
+        this.child_exited.connect(this.on_child_exited);
+        this.button_press_event.connect(this.on_button_press);
         this.window.settings.notify["theme"].connect(this.update_ui);
 
-        this.spawn(command, cwd);
-
+        this.setup_regexes();
         this.connect_accels();
         this.update_ui();
+
+        this.spawn(command, cwd);
+    }
+
+    private void on_child_exited() {
+        this.destroy();
+    }
+
+    private bool on_button_press(Gdk.EventButton e) {
+        string? url = this.match_check_event(e, null);
+
+        if (
+            url != null
+            && e.button == Gdk.BUTTON_PRIMARY
+            && (e.state & Gdk.ModifierType.CONTROL_MASK) != 0
+        ) {
+            try {
+                Gtk.show_uri_on_window(this.window, url, e.time);
+                return true;
+            }
+            catch (Error e) {
+                warning(e.message);
+            }
+        }
+
+        return false;
+    }
+
+    private void setup_regexes()
+    {
+        foreach (unowned string str in Constants.URL_REGEX_STRINGS) {
+            try {
+                var reg = new Vte.Regex.for_match(
+                    str, -1, PCRE2.Flags.MULTILINE
+                );
+                int id = this.match_add_regex(reg, 0);
+                this.match_set_cursor_name(id, "pointer");
+            }
+            catch (Error e) {
+                warning(e.message);
+            }
+        }
     }
 
     private void update_ui()

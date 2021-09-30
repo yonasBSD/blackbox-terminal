@@ -23,5 +23,6 @@ list > row:last-child {
 }
 
 headerbar.slim, .titlebar.slim {
-    min-height: 36px;
+    min-height: 0;
+    padding: 8px 2px;
 }
