@@ -1,6 +1,7 @@
 terminal_sources += files(
-  'Terminal.vala',
-  'PreferencesWindow.vala',
-  'Window.vala',
+  'AboutDialog.vala',
   'Pane/Pane.vala',
+  'PreferencesWindow.vala',
+  'Terminal.vala',
+  'Window.vala',
 )

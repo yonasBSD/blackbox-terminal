@@ -110,6 +110,14 @@ public class Terminal.Window : Hdy.ApplicationWindow
         });
         this.add_action(sa);
 
+        sa = new SimpleAction("about", null);
+        sa.activate.connect(() => {
+            var win = new AboutDialog();
+            win.set_transient_for(this);
+            win.present();
+        });
+        this.add_action(sa);
+
         this.settings.notify.connect(this.apply_settings);
         this.apply_settings();
 
@@ -121,7 +129,7 @@ public class Terminal.Window : Hdy.ApplicationWindow
 
     private bool show_menu(Gdk.Event e)
     {
-        if (e.button.button != 3)
+        if (e.button.button != Gdk.BUTTON_SECONDARY)
             return (false);
 
         if (this.pop == null)
