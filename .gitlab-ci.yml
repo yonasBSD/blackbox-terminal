@@ -1,25 +1,25 @@
 stages:
-    - build
-    - deploy
+  - build
+  - deploy
 
 cache:
-    # Cache per branch
-    key: "$CI_COMMIT_REF_SLUG"
-    paths:
-        - .flatpak-builder/downloads/
-        - .flatpak-builder/git/
+  # Cache per branch
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .flatpak-builder/downloads/
+    - .flatpak-builder/git/
 
 build:
-    stage: build
-    image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:40'
-    script:
-        # This is the output of `make update export --just-print`
-        - flatpak-builder --ccache --force-clean --stop-at=terminal app com.raggesilver.Terminal.json
-        - flatpak-builder --run app com.raggesilver.Terminal.json meson --prefix=/app app_build
-        - flatpak-builder --run app com.raggesilver.Terminal.json ninja -C app_build install
-        - flatpak-builder --finish-only app com.raggesilver.Terminal.json
-        - flatpak-builder --export-only --repo=repo app com.raggesilver.Terminal.json
-        - flatpak build-bundle repo "terminal.flatpak" com.raggesilver.Terminal
-    artifacts:
-        paths:
-            - "terminal.flatpak"
+  stage: build
+  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:40'
+  script:
+    # This is the output of `make update export --just-print`
+    - flatpak-builder --ccache --force-clean --stop-at=terminal app com.raggesilver.Terminal.json
+    - flatpak-builder --run app com.raggesilver.Terminal.json meson --prefix=/app app_build
+    - flatpak-builder --run app com.raggesilver.Terminal.json ninja -C app_build install
+    - flatpak-builder --finish-only app com.raggesilver.Terminal.json
+    - flatpak-builder --export-only --repo=repo app com.raggesilver.Terminal.json
+    - flatpak build-bundle repo "terminal.flatpak" com.raggesilver.Terminal
+  artifacts:
+    paths:
+      - "terminal.flatpak"

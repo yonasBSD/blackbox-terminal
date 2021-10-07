@@ -20,9 +20,9 @@
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/about-dialog.ui")]
 public class Terminal.AboutDialog : Gtk.AboutDialog {
-    public AboutDialog() {
-        Object();
+  public AboutDialog() {
+    Object();
 
-        this.version = VERSION;
-    }
+    this.version = VERSION;
+  }
 }

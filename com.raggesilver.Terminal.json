@@ -1,86 +1,86 @@
 {
-    "app-id" : "com.raggesilver.Terminal",
-    "runtime" : "org.gnome.Sdk",
-    "runtime-version" : "40",
-    "sdk" : "org.gnome.Sdk",
-    "command" : "terminal",
-    "finish-args" : [
-        "--allow=devel",
-        "--filesystem=home",
-        "--share=ipc",
-        "--socket=x11",
-        "--socket=wayland",
-        "--device=dri",
-        "--talk-name=org.freedesktop.Flatpak"
-    ],
-    "cleanup" : [
-        "/include",
-        "/lib/pkgconfig",
-        "/man",
-        "/share/doc",
-        "/share/gtk-doc",
-        "/share/man",
-        "/share/pkgconfig",
-        "/share/vala",
-        "*.la",
-        "*.a"
-    ],
-    "modules" : [
+  "app-id" : "com.raggesilver.Terminal",
+  "runtime" : "org.gnome.Sdk",
+  "runtime-version" : "40",
+  "sdk" : "org.gnome.Sdk",
+  "command" : "terminal",
+  "finish-args" : [
+    "--allow=devel",
+    "--filesystem=home",
+    "--share=ipc",
+    "--socket=x11",
+    "--socket=wayland",
+    "--device=dri",
+    "--talk-name=org.freedesktop.Flatpak"
+  ],
+  "cleanup" : [
+    "/include",
+    "/lib/pkgconfig",
+    "/man",
+    "/share/doc",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/pkgconfig",
+    "/share/vala",
+    "*.la",
+    "*.a"
+  ],
+  "modules" : [
+    {
+      "name" : "vte",
+      "buildsystem" : "meson",
+      "sources" : [
         {
-            "name" : "vte",
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/vte"
-                }
-            ]
-        },
-        {
-            "name" : "json-glib",
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/json-glib"
-                }
-            ]
-        },
-        {
-            "name" : "marble",
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.com/raggesilver/marble"
-                }
-            ]
-        },
-        {
-            "name": "libhandy",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Dtests=false",
-                "-Dexamples=false",
-                "-Dglade_catalog=disabled"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git"
-                }
-            ]
-        },
-        {
-            "name" : "terminal",
-            "builddir" : true,
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.com/raggesilver/terminal"
-                }
-            ]
+          "type" : "git",
+          "url" : "https://gitlab.gnome.org/GNOME/vte"
         }
-    ]
+      ]
+    },
+    {
+      "name" : "json-glib",
+      "buildsystem" : "meson",
+      "sources" : [
+        {
+          "type" : "git",
+          "url" : "https://gitlab.gnome.org/GNOME/json-glib"
+        }
+      ]
+    },
+    {
+      "name" : "marble",
+      "buildsystem" : "meson",
+      "sources" : [
+        {
+          "type" : "git",
+          "url" : "https://gitlab.com/raggesilver/marble"
+        }
+      ]
+    },
+    {
+      "name": "libhandy",
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Dtests=false",
+        "-Dexamples=false",
+        "-Dglade_catalog=disabled"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/GNOME/libhandy.git"
+        }
+      ]
+    },
+    {
+      "name" : "terminal",
+      "builddir" : true,
+      "buildsystem" : "meson",
+      "sources" : [
+        {
+          "type" : "git",
+          "url" : "https://gitlab.com/raggesilver/terminal"
+        }
+      ]
+    }
+  ]
 }

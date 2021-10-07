@@ -17,37 +17,37 @@
  */
 
 public class Terminal.TerminalTab : Gtk.EventBox {
-    public signal void close();
+  public signal void close();
 
-    public string title { get; protected set; }
+  public string title { get; protected set; }
 
-    private weak Window window;
-    private Terminal terminal;
+  private weak Window window;
+  private Terminal terminal;
 
-    public TerminalTab(Window window, string? cwd) {
-        Object();
+  public TerminalTab(Window window, string? cwd) {
+    Object();
 
-        this.window = window;
-        this.terminal = new Terminal(window, null, cwd);
+    this.window = window;
+    this.terminal = new Terminal(window, null, cwd);
 
-        this.add(this.terminal);
-        this.show_all();
+    this.add(this.terminal);
+    this.show_all();
 
-        this.window.settings.notify.connect(this.apply_settings);
-        this.button_press_event.connect(window.show_menu);
+    this.window.settings.notify.connect(this.apply_settings);
+    this.button_press_event.connect(window.show_menu);
 
-        this.terminal.notify["window-title"].connect(() => {
-            this.title = this.terminal.window_title;
-        });
+    this.terminal.notify["window-title"].connect(() => {
+      this.title = this.terminal.window_title;
+    });
 
-        this.terminal.destroy.connect(() => {
-            this.close();
-        });
-    }
+    this.terminal.destroy.connect(() => {
+      this.close();
+    });
+  }
 
-    void apply_settings() {
-        this.terminal.font_desc = Pango.FontDescription.from_string(
-            this.window.settings.font
-        );
-    }
+  void apply_settings() {
+    this.terminal.font_desc = Pango.FontDescription.from_string(
+      this.window.settings.font
+    );
+  }
 }

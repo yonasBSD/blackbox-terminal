@@ -17,17 +17,19 @@
  */
 
 int main(string[] args) {
-    var app = new Gtk.Application("com.raggesilver.Terminal",
-                                  ApplicationFlags.FLAGS_NONE);
+  var app = new Gtk.Application(
+    "com.raggesilver.Terminal",
+    ApplicationFlags.FLAGS_NONE
+  );
 
-    app.activate.connect(() => {
-        var win = new Terminal.Window(app);
-        win.present();
-    });
+  app.activate.connect(() => {
+    var win = new Terminal.Window(app);
+    win.present();
+  });
 
-    app.startup.connect(() => {
-        Hdy.init();
-    });
+  app.startup.connect(() => {
+    Hdy.init();
+  });
 
-    return app.run(args);
+  return app.run(args);
 }
