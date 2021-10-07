@@ -105,10 +105,23 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     );
     b.clicked.connect(this.new_tab);
     this.tab_bar.end_action_widget = b;
+    this.tab_view.notify["n-pages"].connect(this.on_n_pages_changed);
+    this.on_n_pages_changed();
 
     this.new_tab();
 
     show_all();
+  }
+
+  public void on_n_pages_changed() {
+    int count = this.tab_view.n_pages;
+    var context = this.get_style_context();
+    if (count == 1) {
+      context.add_class("single-tab");
+    }
+    else {
+      context.remove_class("single-tab");
+    }
   }
 
   public void new_tab() {

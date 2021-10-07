@@ -8,25 +8,6 @@ window.ragged-terminal headerbar.titlebar {
   border-bottom: none;
 }
 
-list {
-  border: 1px solid darker(@theme_base_color);
-  border-radius: 8px;
-}
-
-list > row {
-  outline: 0;
-}
-
-list > row:first-child {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-list > row:last-child {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
 headerbar.slim,
 .titlebar.slim {
   min-height: 0;
@@ -37,9 +18,18 @@ button {
   -gtk-icon-shadow: none;
 }
 
+tabbar,
+tabbox,
+tab,
+tabbar box {
+  border: none;
+  background: transparent;
+}
+
 tab {
   background: transparent;
 }
+
 tab:checked {
   background: @rg_theme_base_color;
 }
@@ -49,12 +39,9 @@ tabbar * {
   color: @rg_theme_fg_color;
 }
 
-tabbar,
-tabbox,
-tab,
-tabbar box {
-  border: none;
-  background: transparent;
+window.single-tab tab,
+window.single-tab headerbar.titlebar {
+  background: @rg_theme_base_color;
 }
 
 .end-action,
