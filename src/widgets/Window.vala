@@ -32,15 +32,13 @@ public class Terminal.Settings : Marble.Settings
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
 public class Terminal.Window : Hdy.ApplicationWindow
 {
-    private Gtk.CssProvider? provider = null;
-    private Terminal t;
-    private Gtk.EventBox eb;
     private Gtk.Popover? pop = null;
     private PreferencesWindow? pref_window = null;
+    private Hdy.TabView tab_view;
 
     [GtkChild] Gtk.Box content_box;
     [GtkChild] Gtk.Revealer revealer;
-    [GtkChild] Hdy.HeaderBar header_bar;
+    [GtkChild] Hdy.TabBar tab_bar;
 
     public Settings settings { get; private set; }
     public ThemeProvider theme_provicer { get; private set; }
@@ -59,35 +57,7 @@ public class Terminal.Window : Hdy.ApplicationWindow
         this.settings.schema.bind("show-headerbar", this.revealer,
             "reveal-child", SettingsBindFlags.GET);
 
-        this.settings.notify["pretty"].connect(() => {
-            this.on_ui_updated();
-        });
-
         this.theme_provicer = new ThemeProvider(this.settings);
-
-        t = new Terminal(this, null, cwd);
-
-        t.notify["window-title"].connect(() => {
-            this.header_bar.title = t.window_title;
-        });
-
-        t.destroy.connect(() => {
-            this.destroy();
-        });
-
-        t.ui_updated.connect(this.on_ui_updated);
-
-        t.new_window.connect(() => {
-            message("CWD %s", this.t.get_current_directory_uri());
-            message("CWD %s", this.t.get_current_file_uri());
-            var w = new Window(this.application, this.t.get_current_directory_uri());
-            w.show();
-        });
-
-        eb = new Gtk.EventBox();
-        eb.add(t);
-
-        eb.button_press_event.connect(this.show_menu);
 
         var sa = new SimpleAction("new_window", null);
         sa.activate.connect(() => {
@@ -121,14 +91,33 @@ public class Terminal.Window : Hdy.ApplicationWindow
         this.settings.notify.connect(this.apply_settings);
         this.apply_settings();
 
-        this.content_box.pack_start(eb, true, true, 0);
+        this.tab_view = new Hdy.TabView();
+        this.content_box.pack_start(this.tab_view, true, true, 0);
+        this.tab_bar.set_view(this.tab_view);
 
-        this.on_ui_updated();
+        var b = new Gtk.Button.from_icon_name("list-add-symbolic", Gtk.IconSize.BUTTON);
+        b.clicked.connect(this.new_tab);
+        this.tab_bar.end_action_widget = b;
+
+        this.new_tab();
+        this.new_tab();
+
         show_all();
     }
 
-    private bool show_menu(Gdk.Event e)
+    public void new_tab() {
+        var tab = new TerminalTab(this, null);
+        var page = this.tab_view.add_page(tab, null);
+        page.title = @"tab $(this.tab_view.n_pages)";
+        tab.notify["title"].connect(() => {
+            page.title = tab.title;
+        });
+    }
+
+    public bool show_menu(Gdk.Event e)
     {
+        message("Called");
+
         if (e.button.button != Gdk.BUTTON_SECONDARY)
             return (false);
 
@@ -136,7 +125,7 @@ public class Terminal.Window : Hdy.ApplicationWindow
         {
             var b = new Gtk.Builder.from_resource("/com/raggesilver/Terminal/layouts/menu.ui");
             this.pop = b.get_object("popover") as Gtk.Popover;
-            this.pop.set_relative_to(eb);
+            this.pop.set_relative_to(this.content_box);
         }
 
         Gdk.Rectangle r = {0};
@@ -151,47 +140,7 @@ public class Terminal.Window : Hdy.ApplicationWindow
 
     private void apply_settings()
     {
-        this.t.font_desc =
-            Pango.FontDescription.from_string(this.settings.font);
-    }
-
-    private double get_brightness(Gdk.RGBA c) {
-        return ((c.red * 299) + (c.green * 587) + (c.blue * 114)) / 1000;
-    }
-
-    private void on_ui_updated()
-    {
-        if (this.provider != null)
-        {
-            Gtk.StyleContext.remove_provider_for_screen(
-                Gdk.Screen.get_default(), this.provider);
-            this.provider = null;
-        }
-
-        if (!this.settings.pretty) return;
-
-        //  message("Bg brightness: %lf", get_brightness(t.bg));
-        //  message("Fg brightness: %lf", get_brightness(t.fg));
-
-        bool is_dark_theme = get_brightness(t.fg) > 0.5;
-        string inv_mode = is_dark_theme ? "lighter" : "darker";
-
-        Gtk.Settings.get_default().gtk_application_prefer_dark_theme = is_dark_theme;
-
-        message("This theme is %s", is_dark_theme ? "dark" : "light");
-
-        this.provider = Marble.get_css_provider_for_data("""
-            @define-color rg_theme_fg_color %2$s;
-            @define-color rg_theme_bg_color %3$s(%1$s);
-            @define-color rg_theme_base_color %1$s;
-        """.printf(t.bg.to_string(), t.fg.to_string(), inv_mode));
-
-        if (this.provider == null)
-            return;
-
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(),
-            this.provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        //  this.t.font_desc =
+        //      Pango.FontDescription.from_string(this.settings.font);
     }
 }

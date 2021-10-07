@@ -3,26 +3,63 @@
 @define-color rg_theme_base_color @theme_base_color;
 
 window.ragged-terminal headerbar.titlebar {
-    background: @rg_theme_base_color;
+    background: @rg_theme_bg_color;
     color: @rg_theme_fg_color;
     border-bottom: none;
 }
 
-list { border: 1px solid darker(@theme_base_color); border-radius: 8px; }
+list {
+    border: 1px solid darker(@theme_base_color);
+    border-radius: 8px;
+}
 
 list > row {
     outline: 0;
 }
 
 list > row:first-child {
-    border-top-left-radius: 8px; border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 list > row:last-child {
-    border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
-headerbar.slim, .titlebar.slim {
+headerbar.slim,
+.titlebar.slim {
     min-height: 0;
     padding: 8px 2px;
+}
+
+button {
+    -gtk-icon-shadow: none;
+}
+
+tab {
+    background: transparent;
+}
+tab:checked {
+    background: @rg_theme_base_color;
+}
+
+tab,
+tabbar * {
+    color: @rg_theme_fg_color;
+}
+
+tabbar,
+tabbox,
+tab,
+tabbar box {
+    border: none;
+    background: transparent;
+}
+
+.end-action,
+.end-action * {
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
