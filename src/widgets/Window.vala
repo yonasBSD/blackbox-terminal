@@ -30,7 +30,6 @@ public class Terminal.Settings : Marble.Settings {
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
 public class Terminal.Window : Hdy.ApplicationWindow {
-  private Gtk.Popover? pop = null;
   private PreferencesWindow? pref_window = null;
   private Hdy.TabView tab_view;
 
@@ -39,9 +38,13 @@ public class Terminal.Window : Hdy.ApplicationWindow {
   [GtkChild] unowned Hdy.TabBar tab_bar;
 
   public Settings settings { get; private set; }
-  public ThemeProvider theme_provicer { get; private set; }
+  public ThemeProvider theme_provider { get; private set; }
 
-  public Window(Gtk.Application app, string? cwd = null) {
+  public Window(
+    Gtk.Application app,
+    string? cwd = null,
+    bool skip_initial_tab = false
+  ) {
     Object(application: app);
 
     Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
@@ -58,7 +61,7 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     this.settings.schema.bind("fill-tabs", this.tab_bar,
       "expand-tabs", SettingsBindFlags.DEFAULT);
 
-    this.theme_provicer = new ThemeProvider(this.settings);
+    this.theme_provider = new ThemeProvider(this.settings);
 
     var sa = new SimpleAction("new_window", null);
     sa.activate.connect(() => {
@@ -106,10 +109,24 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     b.clicked.connect(this.new_tab);
     this.tab_bar.end_action_widget = b;
     this.tab_view.notify["n-pages"].connect(this.on_n_pages_changed);
+    this.tab_view.create_window.connect(this.on_new_window_requested);
 
-    this.new_tab();
+    if (!skip_initial_tab) {
+      this.new_tab();
+    }
 
     show_all();
+  }
+
+  public void on_page_attached(Hdy.TabPage page) {
+    var tab = page.get_child() as TerminalTab;
+    tab.window = tab.terminal.window = this;
+  }
+
+  public unowned Hdy.TabView? on_new_window_requested() {
+    var win = new Window(this.application, null, true);
+    win.present();
+    return win.tab_view;
   }
 
   public void on_n_pages_changed() {
@@ -137,27 +154,5 @@ public class Terminal.Window : Hdy.ApplicationWindow {
       page.title = tab.title;
     });
     this.tab_view.set_selected_page(page);
-  }
-
-  public bool show_menu(Gdk.Event e) {
-    if (e.button.button != Gdk.BUTTON_SECONDARY)
-      return false;
-
-    if (this.pop == null) {
-      var b = new Gtk.Builder.from_resource(
-        "/com/raggesilver/Terminal/layouts/menu.ui"
-      );
-      this.pop = b.get_object("popover") as Gtk.Popover;
-      this.pop.set_relative_to(this.content_box);
-    }
-
-    Gdk.Rectangle r = {0};
-    r.x = (int)e.button.x;
-    r.y = (int)e.button.y;
-
-    this.pop.set_pointing_to(r);
-    this.pop.popup();
-
-    return true;
   }
 }

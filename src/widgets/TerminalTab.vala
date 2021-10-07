@@ -21,20 +21,20 @@ public class Terminal.TerminalTab : Gtk.EventBox {
 
   public string title { get; protected set; }
 
-  private weak Window window;
-  private Terminal terminal;
+  public weak Window window;
+  public Terminal terminal;
 
   public TerminalTab(Window window, string? cwd) {
     Object();
 
     this.window = window;
-    this.terminal = new Terminal(window, null, cwd);
+    this.terminal = new Terminal(this.window, null, cwd);
 
     this.add(this.terminal);
     this.show_all();
 
     this.window.settings.notify.connect(this.apply_settings);
-    this.button_press_event.connect(window.show_menu);
+    this.button_press_event.connect(this.show_menu);
 
     this.terminal.notify["window-title"].connect(() => {
       this.title = this.terminal.window_title;
@@ -49,5 +49,25 @@ public class Terminal.TerminalTab : Gtk.EventBox {
     this.terminal.font_desc = Pango.FontDescription.from_string(
       this.window.settings.font
     );
+  }
+
+  public bool show_menu(Gdk.Event e) {
+    if (e.button.button != Gdk.BUTTON_SECONDARY)
+      return false;
+
+    var b = new Gtk.Builder.from_resource(
+      "/com/raggesilver/Terminal/layouts/menu.ui"
+    );
+    var pop = b.get_object("popover") as Gtk.Popover;
+    pop.set_relative_to(this);
+
+    Gdk.Rectangle r = {0};
+    r.x = (int)e.button.x;
+    r.y = (int)e.button.y;
+
+    pop.set_pointing_to(r);
+    pop.popup();
+
+    return true;
   }
 }

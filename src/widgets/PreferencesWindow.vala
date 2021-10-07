@@ -47,7 +47,7 @@ public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
     this.settings.schema.bind("font", this.font_button,
       "font", SettingsBindFlags.DEFAULT);
 
-    this.window.theme_provicer.themes.foreach((key) => {
+    this.window.theme_provider.themes.foreach((key) => {
       this.theme_combo.insert(-1, key, key);
     });
 

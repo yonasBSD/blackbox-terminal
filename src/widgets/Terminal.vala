@@ -19,16 +19,12 @@
  */
 
 public class Terminal.Terminal : Vte.Terminal {
-  public signal void ui_updated();
-  public signal void new_window();
+  public Scheme scheme { get; set; }
 
   public Pid pid;
   public Gdk.RGBA? fg;
   public Gdk.RGBA? bg;
-
-  public Scheme scheme { get; set; }
-
-  private weak Window window;
+  public weak Window window;
 
   public Terminal(Window window, string? command = null, string? cwd = null) {
     Object(allow_hyperlink: true);
@@ -88,10 +84,11 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void update_ui() {
     var ctx = this.get_style_context();
-    var theme = this.window.theme_provicer.themes.get(this.window.settings.theme);
+    var theme = this.window.theme_provider.themes.get(
+      this.window.settings.theme
+  );
 
-    if (theme == null)
-    {
+    if (theme == null) {
       warning("INVALID THEME '%s'", this.window.settings.theme);
       return;
     }
@@ -99,22 +96,22 @@ public class Terminal.Terminal : Vte.Terminal {
     this.bg = theme.background;
     this.fg = theme.foreground;
 
-    if (this.bg == null &&
-      !ctx.lookup_color("theme_base_color", out this.bg))
-    {
+    if (
+      this.bg == null &&
+      !ctx.lookup_color("theme_base_color", out this.bg)
+    ) {
       warning("Theme '%s' has no background, using fallback", theme.name);
       this.bg = { 0, 0, 0, 1 };
     }
 
-    if (this.fg == null &&
-      !ctx.lookup_color("theme_fg_color", out this.fg))
-    {
+    if (
+      this.fg == null &&
+      !ctx.lookup_color("theme_fg_color", out this.fg)
+    ) {
       this.fg = { 1, 1, 1, 1 };
     }
 
     this.set_colors(this.fg, this.bg, theme.colors);
-
-    this.ui_updated();
   }
 
   private void connect_accels() {
@@ -144,7 +141,11 @@ public class Terminal.Terminal : Vte.Terminal {
         return true;
       }
       case "N": {
-        this.new_window();
+        this.window.activate_action("new_window", null);
+        return true;
+      }
+      case "T": {
+        this.window.activate_action("new_tab", null);
         return true;
       }
     }
