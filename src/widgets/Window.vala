@@ -19,6 +19,7 @@
 public class Terminal.Settings : Marble.Settings {
   public string font { get; set; }
   public bool pretty { get; set; }
+  public bool fill_tabs { get; set; }
   public bool show_headerbar { get; set; }
   public string theme { get; set; }
 
@@ -54,12 +55,21 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     this.settings.schema.bind("show-headerbar", this.revealer,
       "reveal-child", SettingsBindFlags.GET);
 
+    this.settings.schema.bind("fill-tabs", this.tab_bar,
+      "expand-tabs", SettingsBindFlags.DEFAULT);
+
     this.theme_provicer = new ThemeProvider(this.settings);
 
     var sa = new SimpleAction("new_window", null);
     sa.activate.connect(() => {
       var w = new Window(this.application);
       w.show();
+    });
+    this.add_action(sa);
+
+    sa = new SimpleAction("new_tab", null);
+    sa.activate.connect(() => {
+      this.new_tab();
     });
     this.add_action(sa);
 
@@ -97,7 +107,6 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     this.tab_bar.end_action_widget = b;
 
     this.new_tab();
-    this.new_tab();
 
     show_all();
   }
@@ -109,6 +118,7 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     tab.notify["title"].connect(() => {
       page.title = tab.title;
     });
+    this.tab_view.set_selected_page(page);
   }
 
   public bool show_menu(Gdk.Event e) {

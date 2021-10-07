@@ -9,6 +9,10 @@
       <default>true</default>
       <summary>Whether the window should inherit terminal theme's colors</summary>
     </key>
+    <key name="fill-tabs" type="b">
+      <default>true</default>
+      <summary>Whether or not tabs should expand to fill tab bar</summary>
+    </key>
     <key name="show-headerbar" type="b">
       <default>true</default>
       <summary>Whether the headerbar should be shown or not</summary>

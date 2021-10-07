@@ -21,6 +21,7 @@
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Hdy.ApplicationWindow {
   [GtkChild] Gtk.Switch pretty_switch;
+  [GtkChild] Gtk.Switch fill_tabs_switch;
   [GtkChild] Gtk.Switch show_headerbar_switch;
   [GtkChild] Gtk.FontButton font_button;
   [GtkChild] Gtk.ComboBoxText theme_combo;
@@ -35,6 +36,9 @@ public class Terminal.PreferencesWindow : Hdy.ApplicationWindow {
     this.settings = window.settings;
 
     this.settings.schema.bind("pretty", this.pretty_switch,
+      "active", SettingsBindFlags.DEFAULT);
+
+    this.settings.schema.bind("fill-tabs", this.fill_tabs_switch,
       "active", SettingsBindFlags.DEFAULT);
 
     this.settings.schema.bind("show-headerbar", this.show_headerbar_switch,
