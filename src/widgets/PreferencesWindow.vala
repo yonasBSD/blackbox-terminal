@@ -20,11 +20,11 @@
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
-  [GtkChild] Gtk.Switch pretty_switch;
-  [GtkChild] Gtk.Switch fill_tabs_switch;
-  [GtkChild] Gtk.Switch show_headerbar_switch;
-  [GtkChild] Gtk.FontButton font_button;
-  [GtkChild] Gtk.ComboBoxText theme_combo;
+  [GtkChild] unowned Gtk.Switch pretty_switch;
+  [GtkChild] unowned Gtk.Switch fill_tabs_switch;
+  [GtkChild] unowned Gtk.Switch show_headerbar_switch;
+  [GtkChild] unowned Gtk.FontButton font_button;
+  [GtkChild] unowned Gtk.ComboBoxText theme_combo;
 
   weak Settings settings;
   weak Window window;

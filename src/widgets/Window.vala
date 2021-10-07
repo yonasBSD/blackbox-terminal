@@ -34,9 +34,9 @@ public class Terminal.Window : Hdy.ApplicationWindow {
   private PreferencesWindow? pref_window = null;
   private Hdy.TabView tab_view;
 
-  [GtkChild] Gtk.Box content_box;
-  [GtkChild] Gtk.Revealer revealer;
-  [GtkChild] Hdy.TabBar tab_bar;
+  [GtkChild] unowned Gtk.Box content_box;
+  [GtkChild] unowned Gtk.Revealer revealer;
+  [GtkChild] unowned Hdy.TabBar tab_bar;
 
   public Settings settings { get; private set; }
   public ThemeProvider theme_provicer { get; private set; }
@@ -106,7 +106,6 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     b.clicked.connect(this.new_tab);
     this.tab_bar.end_action_widget = b;
     this.tab_view.notify["n-pages"].connect(this.on_n_pages_changed);
-    this.on_n_pages_changed();
 
     this.new_tab();
 
@@ -116,11 +115,17 @@ public class Terminal.Window : Hdy.ApplicationWindow {
   public void on_n_pages_changed() {
     int count = this.tab_view.n_pages;
     var context = this.get_style_context();
-    if (count == 1) {
-      context.add_class("single-tab");
-    }
-    else {
-      context.remove_class("single-tab");
+
+    switch (count) {
+      case 0:
+        this.close();
+        break;
+      case 1:
+        context.add_class("single-tab");
+        break;
+      default:
+        context.remove_class("single-tab");
+        break;
     }
   }
 
