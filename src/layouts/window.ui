@@ -25,6 +25,8 @@
                     <property name="visible">True</property>
                     <property name="autohide">False</property>
                     <property name="expand-tabs">False</property>
+                    <property name="margin-start">8</property>
+                    <property name="margin-end">8</property>
                   </object>
                 </child>
               </object>

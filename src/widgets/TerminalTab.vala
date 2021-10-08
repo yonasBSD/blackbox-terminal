@@ -17,7 +17,7 @@
  */
 
 public class Terminal.TerminalTab : Gtk.EventBox {
-  public signal void close();
+  public signal void exit();
 
   public string title { get; protected set; }
 
@@ -40,8 +40,8 @@ public class Terminal.TerminalTab : Gtk.EventBox {
       this.title = this.terminal.window_title;
     });
 
-    this.terminal.destroy.connect(() => {
-      this.close();
+    this.terminal.exit.connect(() => {
+      this.exit();
     });
   }
 

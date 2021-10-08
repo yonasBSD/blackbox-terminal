@@ -149,9 +149,13 @@ public class Terminal.Window : Hdy.ApplicationWindow {
   public void new_tab() {
     var tab = new TerminalTab(this, null);
     var page = this.tab_view.add_page(tab, null);
+
     page.title = @"tab $(this.tab_view.n_pages)";
     tab.notify["title"].connect(() => {
       page.title = tab.title;
+    });
+    tab.exit.connect(() => {
+      this.tab_view.close_page(page);
     });
     this.tab_view.set_selected_page(page);
   }

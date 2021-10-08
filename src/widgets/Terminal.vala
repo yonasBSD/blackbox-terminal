@@ -19,6 +19,8 @@
  */
 
 public class Terminal.Terminal : Vte.Terminal {
+  public signal void exit();
+
   public Scheme scheme { get; set; }
 
   public Pid pid;
@@ -44,7 +46,7 @@ public class Terminal.Terminal : Vte.Terminal {
   }
 
   private void on_child_exited() {
-    this.destroy();
+    this.exit();
   }
 
   private bool on_button_press(Gdk.EventButton e) {
