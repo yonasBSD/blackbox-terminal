@@ -26,7 +26,7 @@ $(APP_DIR):
 
 # build (if necessary) and run $(MODULE)
 run: $(MODULE)
-	# flatpak-builder --run --filesystem=/usr/share/fonts $(APP_DIR) $(MANIFEST) $(MODULE)
+	# flatpak-builder --run $(APP_DIR) $(MANIFEST) $(MODULE)
 	flatpak-builder --run --filesystem=/usr/share/fonts $(APP_DIR) $(MANIFEST) sh -c 'ln -s /run/host/usr/share/fonts /run/host/fonts; $(MODULE)'
 
 # build (if necessary) and run $(MODULE)

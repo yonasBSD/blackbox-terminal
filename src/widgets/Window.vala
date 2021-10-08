@@ -16,182 +16,147 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Terminal.Settings : Marble.Settings
-{
-    public string font { get; set; }
-    public bool pretty { get; set; }
-    public bool show_headerbar { get; set; }
-    public string theme { get; set; }
+public class Terminal.Settings : Marble.Settings {
+  public string font { get; set; }
+  public bool pretty { get; set; }
+  public bool fill_tabs { get; set; }
+  public bool show_headerbar { get; set; }
+  public string theme { get; set; }
 
-    public Settings()
-    {
-        base("com.raggesilver.Terminal");
-    }
+  public Settings() {
+    base("com.raggesilver.Terminal");
+  }
 }
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
-public class Terminal.Window : Hdy.ApplicationWindow
-{
-    private Gtk.CssProvider? provider = null;
-    private Terminal t;
-    private Gtk.EventBox eb;
-    private Gtk.Popover? pop = null;
-    private PreferencesWindow? pref_window = null;
+public class Terminal.Window : Hdy.ApplicationWindow {
+  private PreferencesWindow? pref_window = null;
+  private Hdy.TabView tab_view;
 
-    [GtkChild] Gtk.Box content_box;
-    [GtkChild] Gtk.Revealer revealer;
-    [GtkChild] Hdy.HeaderBar header_bar;
+  [GtkChild] unowned Gtk.Box content_box;
+  [GtkChild] unowned Gtk.Revealer revealer;
+  [GtkChild] unowned Hdy.TabBar tab_bar;
 
-    public Settings settings { get; private set; }
-    public ThemeProvider theme_provicer { get; private set; }
+  public Settings settings { get; private set; }
+  public ThemeProvider theme_provider { get; private set; }
 
-    public Window(Gtk.Application app, string? cwd = null)
-    {
-        Object(application: app);
+  public Window(
+    Gtk.Application app,
+    string? cwd = null,
+    bool skip_initial_tab = false
+  ) {
+    Object(application: app);
 
-        Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
-        Marble.add_css_provider_from_resource(
-            "/com/raggesilver/Terminal/resources/style.css");
+    Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
+    Marble.add_css_provider_from_resource(
+      "/com/raggesilver/Terminal/resources/style.css"
+    );
 
-        this.settings = new Settings();
-        this.get_style_context().add_class("ragged-terminal");
+    this.settings = new Settings();
+    this.get_style_context().add_class("ragged-terminal");
 
-        this.settings.schema.bind("show-headerbar", this.revealer,
-            "reveal-child", SettingsBindFlags.GET);
+    this.settings.schema.bind("show-headerbar", this.revealer,
+      "reveal-child", SettingsBindFlags.GET);
 
-        this.settings.notify["pretty"].connect(() => {
-            this.on_ui_updated();
+    this.settings.schema.bind("fill-tabs", this.tab_bar,
+      "expand-tabs", SettingsBindFlags.DEFAULT);
+
+    this.theme_provider = new ThemeProvider(this.settings);
+
+    var sa = new SimpleAction("new_window", null);
+    sa.activate.connect(() => {
+      var w = new Window(this.application);
+      w.show();
+    });
+    this.add_action(sa);
+
+    sa = new SimpleAction("new_tab", null);
+    sa.activate.connect(() => {
+      this.new_tab();
+    });
+    this.add_action(sa);
+
+    sa = new SimpleAction("edit_preferences", null);
+    sa.activate.connect(() => {
+      if (this.pref_window == null)
+      {
+        this.pref_window = new PreferencesWindow(this.application,
+                             this);
+        this.pref_window.destroy.connect(() => {
+          this.pref_window = null;
         });
+      }
+      this.pref_window.show();
+    });
+    this.add_action(sa);
 
-        this.theme_provicer = new ThemeProvider(this.settings);
+    sa = new SimpleAction("about", null);
+    sa.activate.connect(() => {
+      var win = new AboutDialog();
+      win.set_transient_for(this);
+      win.present();
+    });
+    this.add_action(sa);
 
-        t = new Terminal(this, null, cwd);
+    this.tab_view = new Hdy.TabView();
+    this.content_box.pack_start(this.tab_view, true, true, 0);
+    this.tab_bar.set_view(this.tab_view);
 
-        t.notify["window-title"].connect(() => {
-            this.header_bar.title = t.window_title;
-        });
+    var b = new Gtk.Button.from_icon_name(
+      "list-add-symbolic",
+      Gtk.IconSize.BUTTON
+    );
+    b.clicked.connect(this.new_tab);
+    this.tab_bar.end_action_widget = b;
+    this.tab_view.notify["n-pages"].connect(this.on_n_pages_changed);
+    this.tab_view.create_window.connect(this.on_new_window_requested);
 
-        t.destroy.connect(() => {
-            this.destroy();
-        });
-
-        t.ui_updated.connect(this.on_ui_updated);
-
-        t.new_window.connect(() => {
-            message("CWD %s", this.t.get_current_directory_uri());
-            message("CWD %s", this.t.get_current_file_uri());
-            var w = new Window(this.application, this.t.get_current_directory_uri());
-            w.show();
-        });
-
-        eb = new Gtk.EventBox();
-        eb.add(t);
-
-        eb.button_press_event.connect(this.show_menu);
-
-        var sa = new SimpleAction("new_window", null);
-        sa.activate.connect(() => {
-            var w = new Window(this.application);
-            w.show();
-        });
-        this.add_action(sa);
-
-        sa = new SimpleAction("edit_preferences", null);
-        sa.activate.connect(() => {
-            if (this.pref_window == null)
-            {
-                this.pref_window = new PreferencesWindow(this.application,
-                                                         this);
-                this.pref_window.destroy.connect(() => {
-                    this.pref_window = null;
-                });
-            }
-            this.pref_window.show();
-        });
-        this.add_action(sa);
-
-        sa = new SimpleAction("about", null);
-        sa.activate.connect(() => {
-            var win = new AboutDialog();
-            win.set_transient_for(this);
-            win.present();
-        });
-        this.add_action(sa);
-
-        this.settings.notify.connect(this.apply_settings);
-        this.apply_settings();
-
-        this.content_box.pack_start(eb, true, true, 0);
-
-        this.on_ui_updated();
-        show_all();
+    if (!skip_initial_tab) {
+      this.new_tab();
     }
 
-    private bool show_menu(Gdk.Event e)
-    {
-        if (e.button.button != Gdk.BUTTON_SECONDARY)
-            return (false);
+    show_all();
+  }
 
-        if (this.pop == null)
-        {
-            var b = new Gtk.Builder.from_resource("/com/raggesilver/Terminal/layouts/menu.ui");
-            this.pop = b.get_object("popover") as Gtk.Popover;
-            this.pop.set_relative_to(eb);
-        }
+  public void on_page_attached(Hdy.TabPage page) {
+    var tab = page.get_child() as TerminalTab;
+    tab.window = tab.terminal.window = this;
+  }
 
-        Gdk.Rectangle r = {0};
-        r.x = (int)e.button.x;
-        r.y = (int)e.button.y;
+  public unowned Hdy.TabView? on_new_window_requested() {
+    var win = new Window(this.application, null, true);
+    win.present();
+    return win.tab_view;
+  }
 
-        this.pop.set_pointing_to(r);
-        this.pop.popup();
+  public void on_n_pages_changed() {
+    int count = this.tab_view.n_pages;
+    var context = this.get_style_context();
 
-        return (true);
+    switch (count) {
+      case 0:
+        this.close();
+        break;
+      case 1:
+        context.add_class("single-tab");
+        break;
+      default:
+        context.remove_class("single-tab");
+        break;
     }
+  }
 
-    private void apply_settings()
-    {
-        this.t.font_desc =
-            Pango.FontDescription.from_string(this.settings.font);
-    }
+  public void new_tab() {
+    var tab = new TerminalTab(this, null);
+    var page = this.tab_view.add_page(tab, null);
 
-    private double get_brightness(Gdk.RGBA c) {
-        return ((c.red * 299) + (c.green * 587) + (c.blue * 114)) / 1000;
-    }
-
-    private void on_ui_updated()
-    {
-        if (this.provider != null)
-        {
-            Gtk.StyleContext.remove_provider_for_screen(
-                Gdk.Screen.get_default(), this.provider);
-            this.provider = null;
-        }
-
-        if (!this.settings.pretty) return;
-
-        //  message("Bg brightness: %lf", get_brightness(t.bg));
-        //  message("Fg brightness: %lf", get_brightness(t.fg));
-
-        bool is_dark_theme = get_brightness(t.fg) > 0.5;
-        string inv_mode = is_dark_theme ? "lighter" : "darker";
-
-        Gtk.Settings.get_default().gtk_application_prefer_dark_theme = is_dark_theme;
-
-        message("This theme is %s", is_dark_theme ? "dark" : "light");
-
-        this.provider = Marble.get_css_provider_for_data("""
-            @define-color rg_theme_fg_color %2$s;
-            @define-color rg_theme_bg_color %3$s(%1$s);
-            @define-color rg_theme_base_color %1$s;
-        """.printf(t.bg.to_string(), t.fg.to_string(), inv_mode));
-
-        if (this.provider == null)
-            return;
-
-        Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(),
-            this.provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-    }
+    page.title = @"tab $(this.tab_view.n_pages)";
+    tab.notify["title"].connect(() => {
+      page.title = tab.title;
+    });
+    tab.exit.connect(() => {
+      this.tab_view.close_page(page);
+    });
+    this.tab_view.set_selected_page(page);
+  }
 }

@@ -69,8 +69,8 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="action-name">win.new_window</property>
-            <property name="text" translatable="yes">New window</property>
+            <property name="action-name">win.new_tab</property>
+            <property name="text" translatable="yes">New Tab</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -83,13 +83,27 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="action-name">win.edit_preferences</property>
-            <property name="text" translatable="yes">Edit preferences</property>
+            <property name="action-name">win.new_window</property>
+            <property name="text" translatable="yes">New Window</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="action-name">win.edit_preferences</property>
+            <property name="text" translatable="yes">Preferences</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -103,7 +117,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
       </object>

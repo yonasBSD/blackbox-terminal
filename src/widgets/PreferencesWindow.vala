@@ -19,39 +19,45 @@
  */
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
-public class Terminal.PreferencesWindow : Hdy.ApplicationWindow
-{
-    [GtkChild] Gtk.Switch pretty_switch;
-    [GtkChild] Gtk.Switch show_headerbar_switch;
-    [GtkChild] Gtk.FontButton font_button;
-    [GtkChild] Gtk.ComboBoxText theme_combo;
+public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
+  [GtkChild] unowned Gtk.Switch pretty_switch;
+  [GtkChild] unowned Gtk.Switch fill_tabs_switch;
+  [GtkChild] unowned Gtk.Switch show_headerbar_switch;
+  [GtkChild] unowned Gtk.FontButton font_button;
+  [GtkChild] unowned Gtk.ComboBoxText theme_combo;
 
-    weak Settings settings;
-    weak Window window;
+  weak Settings settings;
+  weak Window window;
 
-    public PreferencesWindow(Gtk.Application app, Window window)
-    {
-        Object(application: app);
+  public PreferencesWindow(Gtk.Application app, Window window) {
+    Object(
+      application: app,
+      modal: false,
+      type_hint: Gdk.WindowTypeHint.NORMAL
+    );
 
-        this.window = window;
-        this.settings = window.settings;
+    this.window = window;
+    this.settings = window.settings;
 
-        this.settings.schema.bind("pretty", this.pretty_switch,
-            "active", SettingsBindFlags.DEFAULT);
+    this.settings.schema.bind("pretty", this.pretty_switch,
+      "active", SettingsBindFlags.DEFAULT);
 
-        this.settings.schema.bind("show-headerbar", this.show_headerbar_switch,
-            "active", SettingsBindFlags.DEFAULT);
+    this.settings.schema.bind("fill-tabs", this.fill_tabs_switch,
+      "active", SettingsBindFlags.DEFAULT);
 
-        this.settings.schema.bind("font", this.font_button,
-            "font", SettingsBindFlags.DEFAULT);
+    this.settings.schema.bind("show-headerbar", this.show_headerbar_switch,
+      "active", SettingsBindFlags.DEFAULT);
 
-        this.window.theme_provicer.themes.foreach((key) => {
-            this.theme_combo.insert(-1, key, key);
-        });
+    this.settings.schema.bind("font", this.font_button,
+      "font", SettingsBindFlags.DEFAULT);
 
-        this.theme_combo.set_active_id(this.settings.theme);
+    this.window.theme_provider.themes.foreach((key) => {
+      this.theme_combo.insert(-1, key, key);
+    });
 
-        this.settings.schema.bind("theme", this.theme_combo,
-            "active-id", SettingsBindFlags.DEFAULT);
-    }
+    this.theme_combo.set_active_id(this.settings.theme);
+
+    this.settings.schema.bind("theme", this.theme_combo,
+      "active-id", SettingsBindFlags.DEFAULT);
+  }
 }

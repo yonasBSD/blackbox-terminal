@@ -1,46 +1,43 @@
 <div align="center">
-    <h1>
-        <!--<img src="https://gitlab.com/raggesilver/terminal/raw/master/data/icons/hicolor/scalable/apps/com.raggesilver.Proton.svg" />--> Terminal
-    </h1>
-    <h4>A pretty and Flatpak'ed Terminal for Linux</h4>
-    <p>
-        <a href="https://gitlab.com/raggesilver/terminal/pipelines">
-            <img src="https://gitlab.com/raggesilver/terminal/badges/master/pipeline.svg" alt="Build Status" />
-        </a>
-        <a href="https://www.patreon.com/raggesilver">
-            <img src="https://img.shields.io/badge/patreon-donate-orange.svg?logo=patreon" alt="Proton on Patreon" />
-        </a>
-    </p>
-    <p>
-        <a href="#install">Install</a> •
-        <a href="#features">Features</a> •
-        <!-- <a href="#features">Features</a> • -->
-        <a href="https://gitlab.com/raggesilver/terminal/blob/master/COPYING">License</a>
-    </p>
+  <h1>Terminal</h1>
+  <h4>A pretty and Flatpak'ed terminal for Linux</h4>
+  <p>
+    <a href="https://gitlab.com/raggesilver/terminal/pipelines">
+      <img src="https://gitlab.com/raggesilver/terminal/badges/master/pipeline.svg" alt="Build Status" />
+    </a>
+    <a href="https://www.patreon.com/raggesilver">
+      <img src="https://img.shields.io/badge/patreon-donate-orange.svg?logo=patreon" alt="Proton on Patreon" />
+    </a>
+  </p>
+  <p>
+    <a href="#install">Install</a> •
+    <a href="#features">Features</a> •
+    <!-- <a href="#features">Features</a> • -->
+    <a href="https://gitlab.com/raggesilver/terminal/blob/master/COPYING">License</a>
+  </p>
 </div>
-
-> THIS IS WORK IN PROGRESS, NOTHING HERE IS EXPECTED TO WORK UNTIL VERSION
-> 1.0.0 IS RELEASED -- Tho you can use it as a simple terminal
 
 <div align="center">
-    <img src="https://imgur.com/Nzx1PMg.png" alt="Preview"/><br/>
-    <small><i>
-        For privacy reasons the terminal title was redacted from the image
-    </i></small>
-    <br/><br/>
+  <img src="https://imgur.com/CHrYtRs.png" alt="Preview"/><br/>
+  <small><i>
+    Terminal 0.5.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>)
+  </i></small>
+  <br/><br/>
 </div>
 
-The only reason this project exists is to create a user-themeable terminal app
-that integrates the theme into the rest of the window.
+> This is work in progress. Feel free to use Terminal and report any bugs you
+> find.
+
+I created this project so that I could use a decent looking terminal app on
+Linux. There are better alternatives out there.
 
 ## Features
 
-- Theme selection
-- Pretty integration with the selected theme
-- Ctrl+Shift+C/Ctrl+Shift+V for copy/paste
-- Ctrl+Shift+N to open a new window
-- Tilix-compatible color scheme support
-- Toggleable headerbar
+- Theming ([Tilix](https://github.com/gnunn1/tilix) compatible color scheme support)
+- Theme integration with the window decorations
+- Custom fonts
+- Tabs
+- Headerbarless mode
 
 ## Install
 
@@ -53,7 +50,7 @@ that integrates the theme into the rest of the window.
 **Flathub**
 
 <div align="center">
-    <small>Wow, such empty!</small>
+  <small>Will try to publish this once 1.0.0 is out.</small>
 </div>
 
 ## Compile
@@ -84,11 +81,11 @@ make run
 ## Some other screenshots
 
 <div align="center">
-    <img src="https://imgur.com/75C25vk.png" alt="Headerbar-less terminal"/><br/>
-    <small><i>
-        Terminal with "show headerbar" off.
-    </i></small>
-    <br/><br/>
+  <img src="https://imgur.com/75C25vk.png" alt="Headerbar-less terminal"/><br/>
+  <small><i>
+    Terminal with "show headerbar" off.
+  </i></small>
+  <br/><br/>
 </div>
 
 ## Credits
