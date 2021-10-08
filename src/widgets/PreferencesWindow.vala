@@ -30,7 +30,11 @@ public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
   weak Window window;
 
   public PreferencesWindow(Gtk.Application app, Window window) {
-    Object(application: app);
+    Object(
+      application: app,
+      modal: false,
+      type_hint: Gdk.WindowTypeHint.NORMAL
+    );
 
     this.window = window;
     this.settings = window.settings;

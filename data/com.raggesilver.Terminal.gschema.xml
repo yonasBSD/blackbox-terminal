@@ -18,7 +18,7 @@
       <summary>Whether the headerbar should be shown or not</summary>
     </key>
     <key name="theme" type="s">
-      <default>'Material'</default>
+      <default>'Japanesque'</default>
       <summary>The color scheme for the terminal</summary>
     </key>
     </schema>

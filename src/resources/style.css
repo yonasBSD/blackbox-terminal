@@ -44,9 +44,20 @@ window.single-tab headerbar.titlebar {
   background: @rg_theme_base_color;
 }
 
+.end-action {
+  background: transparent;
+}
+
 .end-action,
 .end-action * {
-  background: transparent;
   border: none;
   box-shadow: none;
+}
+
+.end-action button {
+  margin-left: 6px;
+}
+
+.end-action button:not(:hover):not(:active) {
+  background: transparent;
 }
