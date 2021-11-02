@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Terminal</h1>
-  <h4>A pretty and Flatpak'ed terminal for Linux</h4>
+  <h4>A pretty and Flatpak'ed terminal for GNOME</h4>
   <p>
     <a href="https://gitlab.com/raggesilver/terminal/pipelines">
       <img src="https://gitlab.com/raggesilver/terminal/badges/master/pipeline.svg" alt="Build Status" />
@@ -18,9 +18,9 @@
 </div>
 
 <div align="center">
-  <img src="https://imgur.com/CHrYtRs.png" alt="Preview"/><br/>
+  <img src="https://imgur.com/nItIAPf.png" alt="Preview"/><br/>
   <small><i>
-    Terminal 0.5.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Terminal 0.6.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>

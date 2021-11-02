@@ -3,24 +3,47 @@
   <id>com.raggesilver.Terminal</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
+
   <name>Terminal</name>
-  <summary>A pretty terminal for Linux</summary>
+  <summary>A pretty terminal for GNOME</summary>
+
   <developer_name>Paulo Queiroz</developer_name>
 
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+
   <description>
-    <p>A prettier terminal for Linux.</p>
+    <p>
+      Terminal is a native terminal emulator for GNOME that offers superb
+      theming options.
+    </p>
+    <p>With Terminal you can:</p>
+    <ul>
+      <li>Set colors schemes and integrate them with the rest of the window</li>
+      <li>Customize font and size</li>
+      <li>Fully hide the window headerbar</li>
+      <li>Quickly open links and files by ctrl+clicking file paths and URLs</li>
+      <li>Easily paste file paths by dragging them into the window</li>
+    </ul>
+    <p>
+      This app is written in Vala and uses GTK 3, libhandy, and VTE. An effort will be made to port to GTK 4 once VTE is ported too.
+    </p>
   </description>
 
   <screenshots>
     <screenshot type="default">
-      <caption>Quickly open or create new projects</caption>
-      <image>https://imgur.com/62uOokF.png</image>
+      <caption>Terminal screenshot</caption>
+      <image>https://imgur.com/nItIAPf.png</image>
     </screenshot>
   </screenshots>
 
   <launchable type="desktop-id">com.raggesilver.Terminal.desktop</launchable>
-  <url type="homepage">https://gitlab.com/raggesilver/terminal</url>
-  <url type="bugtracker">https://gitlab.com/raggesilver/terminal/issues</url>
+
+  <categories>
+    <category>Utility</category>
+  </categories>
 
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
@@ -58,23 +81,19 @@
   </kudos>
 
   <releases>
-    <release date="2020-03-10" version="0.2.0">
+    <release date="2021-11-02" version="0.6.0">
       <description>
-        <p>Proton release 0.2.0: new dev cycle.</p>
+        <p>First public release.</p>
       </description>
     </release>
   </releases>
 
-  <!--FIXME: where to donate to the application-->
+  <url type="homepage">https://gitlab.com/raggesilver/terminal</url>
+  <url type="bugtracker">https://gitlab.com/raggesilver/terminal/issues</url>
   <url type="donation">https://www.patreon.com/raggesilver</url>
+  <url type="help">https://gitlab.com/raggesilver/terminal/issues</url>
+  <url type="translate">https://gitlab.com/raggesilver/terminal/issues</url>
 
-  <!--FIXME: where on the internet users can find help-->
-  <url type="help">https://gitlab.com/raggesilver-proton/proton/issues</url>
-
-  <!--FIXME: where to submit translations-->
-  <url type="translate">https://gitlab.com/raggesilver-proton/proton/issues</url>
-
-  <!--FIXME: this is optional, but recommended-->
   <update_contact>pvaqueiroz@gmail.com</update_contact>
 </component>
 
