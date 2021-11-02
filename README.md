@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Terminal</h1>
+  <h1><img src="./data/icons/hicolor/scalable/apps/com.raggesilver.Terminal.svg" height="64"/>Terminal</h1>
   <h4>A pretty and Flatpak'ed terminal for GNOME</h4>
   <p>
     <a href="https://gitlab.com/raggesilver/terminal/pipelines">
@@ -94,3 +94,5 @@ make run
 
 - Most of Terminal's themes come (straight out copied) from [Tilix](https://github.com/gnunn1/tilix)
 - Most non-Tilix-default themes come (straight out copied) from [Tilix-Themes](https://github.com/storm119/Tilix-Themes)
+- Terminal's icon is a (very) slightly modified version of [GNOME Terminal's icon](https://gitlab.gnome.org/GNOME/gnome-terminal/-/blob/af6fa5af6ba69e3cd392de20e9c2954c6405a2dc/data/icons/hicolor_apps_scalable_org.gnome.Terminal.svg)
+- Source code that derives from other projects is properly attributed in the code itself

@@ -107,6 +107,7 @@ public class Terminal.Window : Hdy.ApplicationWindow {
     b.clicked.connect(this.new_tab);
     this.tab_bar.end_action_widget = b;
     this.tab_view.notify["n-pages"].connect(this.on_n_pages_changed);
+    this.tab_view.notify["selected-page"].connect(this.on_page_selected);
     this.tab_view.create_window.connect(this.on_new_window_requested);
 
     if (!skip_initial_tab) {
@@ -141,6 +142,17 @@ public class Terminal.Window : Hdy.ApplicationWindow {
       default:
         context.remove_class("single-tab");
         break;
+    }
+  }
+
+  private void on_page_selected() {
+    if (this.tab_view.n_pages < 1) {
+      return;
+    }
+
+    var tab = this.tab_view.selected_page.get_child() as TerminalTab;
+    if (tab.terminal != null) {
+      tab.terminal.grab_focus();
     }
   }
 

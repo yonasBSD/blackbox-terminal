@@ -81,6 +81,17 @@
   </kudos>
 
   <releases>
+    <release date="2021-11-02" version="0.6.1">
+      <description>
+        <p>
+          Updated icon, better Software app description, improved GitLab README,
+          and bug fixes.
+        </p>
+        <ul>
+          <li>New terminal tabs and windows are now correctly focussed</li>
+        </ul>
+      </description>
+    </release>
     <release date="2021-11-02" version="0.6.0">
       <description>
         <p>First public release.</p>
