@@ -78,15 +78,13 @@ public class Terminal.Window : Hdy.ApplicationWindow {
 
     sa = new SimpleAction("edit_preferences", null);
     sa.activate.connect(() => {
-      if (this.pref_window == null)
-      {
-        this.pref_window = new PreferencesWindow(this.application,
-                             this);
+      if (this.pref_window == null) {
+        this.pref_window = new PreferencesWindow(this.application, this);
         this.pref_window.destroy.connect(() => {
           this.pref_window = null;
         });
       }
-      this.pref_window.show();
+      this.pref_window.present();
     });
     this.add_action(sa);
 

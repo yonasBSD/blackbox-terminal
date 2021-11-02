@@ -2,8 +2,12 @@
 @define-color rg_theme_bg_color @theme_bg_color;
 @define-color rg_theme_base_color @theme_base_color;
 
+* {
+  transition: background 0;
+}
+
 window.ragged-terminal headerbar.titlebar {
-  background: @rg_theme_bg_color;
+  background: darker(@rg_theme_base_color);
   color: @rg_theme_fg_color;
   border-bottom: none;
 }

@@ -6,7 +6,7 @@
       <img src="https://gitlab.com/raggesilver/terminal/badges/master/pipeline.svg" alt="Build Status" />
     </a>
     <a href="https://www.patreon.com/raggesilver">
-      <img src="https://img.shields.io/badge/patreon-donate-orange.svg?logo=patreon" alt="Proton on Patreon" />
+      <img src="https://img.shields.io/badge/patreon-donate-orange.svg?logo=patreon" alt="Sponsor on Patreon" />
     </a>
   </p>
   <p>
@@ -20,7 +20,7 @@
 <div align="center">
   <img src="https://imgur.com/CHrYtRs.png" alt="Preview"/><br/>
   <small><i>
-    Terminal 0.5.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>)
+    Terminal 0.5.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
@@ -38,6 +38,8 @@ Linux. There are better alternatives out there.
 - Custom fonts
 - Tabs
 - Headerbarless mode
+- `Ctrl` + `click` to open links & files
+- Drag files to paste their path
 
 ## Install
 
