@@ -1,6 +1,6 @@
 /* PreferencesWindow.vala
  *
- * Copyright 2020 Paulo Queiroz <pvaqueiroz@gmail.com>
+ * Copyright 2020-2022 Paulo Queiroz <pvaqueiroz@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
  */
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
-public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
+public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;
   [GtkChild] unowned Gtk.Switch show_headerbar_switch;
@@ -32,8 +32,8 @@ public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
   public PreferencesWindow(Gtk.Application app, Window window) {
     Object(
       application: app,
-      modal: false,
-      type_hint: Gdk.WindowTypeHint.NORMAL
+      modal: false
+      //  type_hint: Gdk.WindowTypeHint.NORMAL
     );
 
     this.window = window;

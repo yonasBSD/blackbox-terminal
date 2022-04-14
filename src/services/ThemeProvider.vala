@@ -1,6 +1,6 @@
 /* ThemeProvider.vala
  *
- * Copyright 2020 Paulo Queiroz
+ * Copyright 2020-2022 Paulo Queiroz
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,8 +133,8 @@ public class Terminal.ThemeProvider : Object {
 
   public void apply_theming() {
     if (this.provider != null) {
-      Gtk.StyleContext.remove_provider_for_screen(
-        Gdk.Screen.get_default(),
+      Gtk.StyleContext.remove_provider_for_display(
+        Gdk.Display.get_default(),
         this.provider
       );
       this.provider = null;
@@ -170,8 +170,8 @@ public class Terminal.ThemeProvider : Object {
 
     if (this.provider == null) return;
 
-    Gtk.StyleContext.add_provider_for_screen(
-      Gdk.Screen.get_default(),
+    Gtk.StyleContext.add_provider_for_display(
+      Gdk.Display.get_default(),
       this.provider,
       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     );

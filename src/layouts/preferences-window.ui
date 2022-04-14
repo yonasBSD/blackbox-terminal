@@ -2,20 +2,20 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="1.4"/>
-  <template class="TerminalPreferencesWindow" parent="HdyPreferencesWindow">
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="TerminalPreferencesWindow" parent="AdwPreferencesWindow">
     <child>
-      <object class="HdyPreferencesPage">
+      <object class="AdwPreferencesPage">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="title" translatable="yes">General</property>
         <child>
-          <object class="HdyPreferencesGroup">
+          <object class="AdwPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="title" translatable="yes">Window</property>
             <child>
-              <object class="HdyActionRow">
+              <object class="AdwActionRow">
                 <property name="activatable-widget">fill_tabs_switch</property>
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Expand tabs</property>
@@ -29,7 +29,7 @@
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
+              <object class="AdwActionRow">
                 <property name="activatable-widget">show_headerbar_switch</property>
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Show headerbar</property>
@@ -43,7 +43,7 @@
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
+              <object class="AdwActionRow">
                 <property name="activatable-widget">pretty_switch</property>
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Theme integration</property>
@@ -59,12 +59,12 @@
           </object>
         </child>
         <child>
-          <object class="HdyPreferencesGroup">
+          <object class="AdwPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="title" translatable="yes">Terminal</property>
             <child>
-              <object class="HdyActionRow">
+              <object class="AdwActionRow">
                 <property name="activatable-widget">font_button</property>
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Font</property>
@@ -86,7 +86,7 @@
               </object>
             </child>
             <child>
-              <object class="HdyActionRow">
+              <object class="AdwActionRow">
                 <!-- <property name="activatable-widget">theme_combo</property> -->
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Theme</property>
@@ -104,12 +104,12 @@
       </object>
     </child>
     <child>
-      <object class="HdyPreferencesPage">
+      <object class="AdwPreferencesPage">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="title" translatable="yes">Profiles</property>
         <child>
-          <object class="HdyPreferencesGroup">
+          <object class="AdwPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="description" translatable="yes">Coming soon</property>

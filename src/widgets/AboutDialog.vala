@@ -1,6 +1,6 @@
 /* AboutDialog.vala
  *
- * Copyright 2021 Paulo Queiroz <pvaqueiroz@gmail.com>
+ * Copyright 2021-2022 Paulo Queiroz <pvaqueiroz@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-[GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/about-dialog.ui")]
+//  [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/about-dialog.ui")]
 public class Terminal.AboutDialog : Gtk.AboutDialog {
   public AboutDialog() {
-    Object();
+    Object(
+      version: VERSION
+    );
 
-    this.version = VERSION;
+    //  this.version = VERSION;
   }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk4" version="4.6"/>
   <template class="TerminalAboutDialog" parent="GtkAboutDialog">
     <property name="can-focus">False</property>
     <property name="destroy-with-parent">True</property>
-    <property name="type-hint">dialog</property>
+    <!-- <property name="type-hint">dialog</property> -->
     <property name="program-name">Terminal</property>
     <property name="website">https://gitlab.com/raggesilver/terminal</property>
     <property name="website-label" translatable="yes">Repo</property>

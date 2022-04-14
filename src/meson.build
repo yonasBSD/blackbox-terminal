@@ -21,11 +21,11 @@ config_header = configure_file(
 
 terminal_deps = [
   dependency('gio-2.0', version: '>= 2.50'),
-  dependency('gtk+-3.0', version: '>= 3.22'),
-  dependency('vte-2.91', version: '>= 0.57.0'),
-  dependency('marble', version: '>= 1.2.2'),
+  dependency('gtk4', version: '>= 4.6.2'),
+  dependency('libadwaita-1'),
+  dependency('marble', version: '>= 42'),
+  dependency('vte-2.91-gtk4', version: '>= 0.68.0'),
   dependency('json-glib-1.0', version: '>= 1.4.4'),
-  dependency('libhandy-1', version: '>= 1.0.3'),
   dependency('libpcre2-8'),
 ]
 

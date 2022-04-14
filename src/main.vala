@@ -1,6 +1,6 @@
 /* main.vala
  *
- * Copyright 2020 Paulo Queiroz
+ * Copyright 2020-2022 Paulo Queiroz
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ int main(string[] args) {
   });
 
   app.startup.connect(() => {
-    Hdy.init();
+    Adw.init();
   });
 
   return app.run(args);
