@@ -1,5 +1,17 @@
 /* This is temporary */
-@define-color window_bg_color @red_1;
+@define-color headerbar_bg_color @accent_bg_color;
+
+headerbar {
+  background: @headerbar_bg_color;
+}
+
+tab {
+  background: transparent;
+}
+
+tab:checked {
+  background: @window_bg_color;
+}
 
 /* @define-color rg_theme_fg_color @theme_fg_color;
 @define-color rg_theme_bg_color @theme_bg_color;

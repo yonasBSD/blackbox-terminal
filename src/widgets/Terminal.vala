@@ -59,7 +59,7 @@ public class Terminal.Terminal : Vte.Terminal {
 
     this.child_exited.connect(this.on_child_exited);
     //  this.button_press_event.connect(this.on_button_press);
-    //  this.window.settings.notify["theme"].connect(this.update_ui);
+    this.window.settings.notify["theme"].connect(this.update_ui);
 
     this.setup_drag_drop();
     this.setup_regexes();

@@ -158,9 +158,9 @@ public class Terminal.ThemeProvider : Object {
     debug("This theme is %s", is_dark_theme ? "dark" : "light");
 
     this.provider = Marble.get_css_provider_for_data("""
-      @define-color rg_theme_fg_color %2$s;
-      @define-color rg_theme_bg_color %3$s(%1$s);
-      @define-color rg_theme_base_color %1$s;
+      @define-color window_bg_color %1$s;
+      @define-color window_fg_color %2$s;
+      @define-color accent_bg_color %3$s(%1$s);
     """.printf(
         background.to_string(),
         foreground.to_string(),
