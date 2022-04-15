@@ -20,8 +20,6 @@
 
 public class Terminal.Terminal : Vte.Terminal {
 
-  // Private types
-
   /**
    * List of available drop targets for Terminal
    */
@@ -33,21 +31,26 @@ public class Terminal.Terminal : Vte.Terminal {
 
   // Signals
 
-  public signal void exit();
+  /**
+   * This signal is emitted when the terminal process exits. Something should
+   * listen for this signal and close the tab that contains this terminal.
+   */
+  public signal void exit ();
 
   // Properties
 
-  public Scheme scheme { get; set; }
+  public Scheme scheme  { get; set; }
+  public Pid    pid     { get; protected set; }
 
   // Fields
 
-  public Pid pid;
   public Gdk.RGBA? fg;
   public Gdk.RGBA? bg;
-  public weak Window window;
+  public Window window;
 
-  public Terminal(Window window, string? command = null, string? cwd = null) {
-    Object(allow_hyperlink: true);
+  public Terminal (Window window, string? command = null, string? cwd = null) {
+    Object (allow_hyperlink: true);
+
     this.window = window;
 
     this.hexpand = true;
@@ -57,16 +60,18 @@ public class Terminal.Terminal : Vte.Terminal {
 
     //  Marble.set_theming_for_data(this, "vte-terminal { padding: 10px; }");
 
-    this.child_exited.connect(this.on_child_exited);
+    this.child_exited.connect (this.on_child_exited);
     //  this.button_press_event.connect(this.on_button_press);
-    this.window.settings.notify["theme"].connect(this.update_ui);
 
-    this.setup_drag_drop();
-    this.setup_regexes();
-    this.connect_accels();
-    this.update_ui();
+    // FIXME: we should save settings in the Terminal namespace, not in a Window
+    this.window.settings.notify["theme"].connect (this.update_ui);
 
-    this.spawn(command, cwd);
+    this.setup_drag_drop ();
+    this.setup_regexes ();
+    this.connect_accels ();
+    this.update_ui ();
+
+    this.spawn (command, cwd);
   }
 
   // Methods ===================================================================
@@ -140,75 +145,84 @@ public class Terminal.Terminal : Vte.Terminal {
     //  this.key_press_event.connect(this.on_key_press);
   }
 
-  private void spawn(string? command, string? cwd) {
-    try {
-      if (is_flatpak()) {
-        string shell = fp_guess_shell() ?? "/usr/bin/bash";
+  private void spawn (string? command, string? cwd) {
+    string[] argv;
+    string[] envv;
+    Vte.PtyFlags flags = Vte.PtyFlags.DEFAULT;
 
-        string[] real_argv = {
-          "/usr/bin/flatpak-spawn",
-          "--host",
-          "--watch-bus"
-        };
+    // Spawning works differently on host vs flatpak
+    if (is_flatpak ()) {
+      string shell = fp_guess_shell () ?? "/usr/bin/bash";
 
-        var env = fp_get_env() ?? Environ.get();
+      argv = {
+        "/usr/bin/flatpak-spawn",
+        "--host",
+        "--watch-bus"
+      };
 
-        env += "G_MESSAGES_DEBUG=false";
-        env += "TERM=xterm-256color";
+      envv = fp_get_env () ?? Environ.get ();
 
-        for (uint i = 0; i < env.length; i++)
-          real_argv += @"--env=$(env[i])";
+      envv += "G_MESSAGES_DEBUG=false";
+      envv += "TERM=xterm-256color";
 
-        real_argv += shell;
-        if (command != null) {
-          real_argv += "-c";
-          real_argv += command;
-        }
-        else {
-          real_argv += "--login";
-        }
+      foreach (string env in envv) {
+        argv += @"--env=$(env)";
+      }
 
-        spawn_sync(
-          Vte.PtyFlags.NO_CTTY,
-          cwd,
-          real_argv,
-          env,
-          0,
-          null, out pid, null);
+      argv += shell;
+
+      // TODO: I believe if this worked correctly, when the command finished
+      // our terminal would be killed. It would be nice to check other
+      // terminal apps and see if they kill the terminal once the command
+      // exits or if they go back to the shell.
+      if (command != null) {
+        argv += "-c";
+        argv += command;
       }
       else {
-        var env = Environ.get();
-        env += "G_MESSAGES_DEBUG=false";
-        env += "TERM=xterm-256color";
-
-        string[] argv = {
-          Environ.get_variable(Environ.get(), "SHELL")
-        };
-
-        if (command != null)
-        {
-          argv += "-c";
-          argv += command;
-        }
-
-        spawn_sync(
-          Vte.PtyFlags.DEFAULT,
-          cwd,
-          argv,
-          env,
-          0,
-          null, out pid, null);
+        argv += "--login";
       }
+
+      flags = Vte.PtyFlags.NO_CTTY;
     }
-    catch (Error e) {
-      warning(e.message);
+    else {
+      envv = Environ.get ();
+      envv += "G_MESSAGES_DEBUG=false";
+      envv += "TERM=xterm-256color";
+
+      argv = { Environ.get_variable (envv, "SHELL") };
+
+      if (command != null) {
+        argv += "-c";
+        argv += command;
+      }
+
+      flags = Vte.PtyFlags.DEFAULT;
     }
+
+    this.spawn_async (
+      Vte.PtyFlags.NO_CTTY,
+      cwd,
+      argv,
+      envv,
+      0,
+      null,
+      -1,
+      null,
+      (_, _pid, err) => {
+        if (err != null) {
+          this.feed (err.message.data);
+        }
+        this.pid = _pid;
+      }
+    );
   }
 
   // Signal callbacks ==========================================================
 
-  private void on_child_exited() {
-    this.exit();
+  private void on_child_exited () {
+    this.pid = -1;
+    this.exit ();
   }
 
   //  private void on_drag_data_received(
