@@ -1,19 +1,10 @@
 <div align="center">
   <h1><img src="./data/icons/hicolor/scalable/apps/com.raggesilver.Terminal.svg" height="64"/>Terminal</h1>
-  <h4>A pretty and Flatpak'ed terminal for GNOME</h4>
-  <p>
-    <a href="https://gitlab.com/raggesilver/terminal/pipelines">
-      <img src="https://gitlab.com/raggesilver/terminal/badges/master/pipeline.svg" alt="Build Status" />
-    </a>
-    <a href="https://www.patreon.com/raggesilver">
-      <img src="https://img.shields.io/badge/patreon-donate-orange.svg?logo=patreon" alt="Sponsor on Patreon" />
-    </a>
-  </p>
+  <h4>A beautiful and simple GTK 4 terminal.</h4>
   <p>
     <a href="#install">Install</a> •
     <a href="#features">Features</a> •
-    <!-- <a href="#features">Features</a> • -->
-    <a href="https://gitlab.com/raggesilver/terminal/blob/master/COPYING">License</a>
+    <a href="./COPYING">License</a>
   </p>
 </div>
 
@@ -45,40 +36,22 @@ Linux. There are better alternatives out there.
 
 **Download**
 
-[Flatpak](https://gitlab.com/raggesilver/terminal/-/jobs/artifacts/master/raw/terminal.flatpak?job=build) • [Zip](https://gitlab.com/raggesilver/terminal/-/jobs/artifacts/master/download?job=build)
+- [Flatpak](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/master/raw/terminal.flatpak?job=build)
+- [Zip](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/master/download?job=build)
 
 *Note: these two links will not work if the latest pipeline failed/was skipped/is still running*
 
 **Flathub**
 
-<div align="center">
-  <small>Will try to publish this once 1.0.0 is out.</small>
-</div>
+Terminal will be available on Flathub when 42 is out.
 
 ## Compile
 
 **Flatpak**
 
-```bash
-# Clone the repo
-git clone --recursive https://gitlab.com/raggesilver/terminal
-# cd into the repo
-cd terminal
-# Assuming you have make, flatpak and flatpak-builder installed
-# Makefile has a few useful rules that will build and install Terminal as a
-# flatpak locally on ./app_build and ./app
-make run
-# You can also
-# make [command]
-#
-#   update      - update outdated dependencies
-#   hard-update - remove and update all dependencies
-#   export      - export terminal as a flatpak. Generates ./terminal.flatpak
-#   install     - runs `export` then `flatpak install --user terminal.flatpak`
-#   clean       - cleans build files
-#   fclean      - cleans build files and dependencies
-#   ffclean     - cleans build files, dependencies and .flatpak-builder
-```
+To build and run Terminal, use GNOME Builder, or VS Code along with [Vala](https://marketplace.visualstudio.com/items?itemName=prince781.vala) and [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) extensions.
+
+If you want to manually build Terminal take a look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
 
 ## Some other screenshots
 

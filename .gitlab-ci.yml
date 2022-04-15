@@ -11,7 +11,7 @@ cache:
 
 build:
   stage: build
-  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:40'
+  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:42'
   script:
     # This is the output of `make update export --just-print`
     - flatpak-builder --ccache --force-clean --stop-at=terminal app com.raggesilver.Terminal.json

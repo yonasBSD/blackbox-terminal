@@ -1,5 +1,5 @@
-namespace Terminal
-{
-    public const string DATADIR = @DATADIR@;
-    public const string VERSION = @VERSION@;
+namespace Terminal {
+  public const string DATADIR = @DATADIR@;
+  public const string VERSION = @VERSION@;
+  public const bool DEVEL = true;
 }

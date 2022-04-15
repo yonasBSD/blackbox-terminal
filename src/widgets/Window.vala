@@ -24,67 +24,101 @@ public class Terminal.Settings : Marble.Settings {
   public string theme           { get; set; }
 
   public Settings () {
-    base("com.raggesilver.Terminal");
+    base ("com.raggesilver.Terminal");
   }
 }
 
 public class Terminal.Window : Adw.ApplicationWindow {
 
-  public Settings settings { get; private set; }
-  public ThemeProvider theme_provider { get; private set; }
+  public Settings       settings        { get; private set; }
+  public ThemeProvider  theme_provider  { get; private set; }
 
-  public Window(
+  Adw.TabView   tab_view;
+  Adw.TabBar    tab_bar;
+  Adw.HeaderBar header_bar;
+
+  Gtk.Button    new_tab_button;
+
+  construct {
+    if (DEVEL) {
+      this.add_css_class ("devel");
+    }
+
+    var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+
+    this.header_bar = new Adw.HeaderBar () {
+      show_start_title_buttons = true,
+      show_end_title_buttons = true,
+
+      css_classes = { "flat" },
+    };
+
+    this.tab_view = new Adw.TabView ();
+
+    this.tab_bar = new Adw.TabBar () {
+      autohide = false,
+      view = this.tab_view,
+
+      hexpand = true,
+      halign = Gtk.Align.FILL,
+
+      css_classes = { "inline" },
+    };
+
+    this.new_tab_button = new Gtk.Button.from_icon_name ("list-add-symbolic");
+
+    var title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
+      hexpand = true,
+      halign = Gtk.Align.FILL,
+    };
+
+    title_box.append (this.tab_bar);
+    title_box.append (this.new_tab_button);
+
+    this.header_bar.title_widget = title_box;
+
+    layout_box.append (this.header_bar);
+    layout_box.append (this.tab_view);
+
+    this.content = layout_box;
+
+  }
+
+  public Window (
     Gtk.Application app,
     string? cwd = null,
     bool skip_initial_tab = false
   ) {
-    Object(application: app);
+    Object (application: app);
 
-    this.settings = new Settings();
-    this.theme_provider = new ThemeProvider(this.settings);
+    Marble.add_css_provider_from_resource (
+      "/com/raggesilver/Terminal/resources/style.css"
+    );
 
-    var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-    var box2 = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.settings = new Settings ();
+    this.theme_provider = new ThemeProvider (this.settings);
 
-    var hb = new Adw.HeaderBar() {
-      show_start_title_buttons = true,
-      show_end_title_buttons = true,
-    };
-
-    var terminal = new Terminal (this, null, null);
-
-    var controller = new Gtk.GestureClick () {
-      button = Gdk.BUTTON_SECONDARY
-    };
-
-    controller.pressed.connect((_, x, y) => {
-      message("Right clicked at %lf %lf", x, y);
+    this.new_tab_button.clicked.connect (() => {
+      this.new_tab ();
     });
 
-    terminal.add_controller(controller);
-
-    box.append(hb);
-    box2.append(terminal);
-    box.append(box2);
-
-    this.set_content(box);
-
-    this.title = "Terminal";
+    this.new_tab ();
   }
 
-  //  public void new_tab () {
-  //    var tab = new TerminalTab(this, null);
-  //    var page = this.tab_view.add_page(tab, null);
+  public void new_tab () {
+    var tab = new TerminalTab (this, null);
+    var page = this.tab_view.add_page (tab, null);
 
-  //    page.title = @"tab $(this.tab_view.n_pages)";
-  //    tab.notify["title"].connect(() => {
-  //      page.title = tab.title;
-  //    });
-  //    tab.exit.connect(() => {
-  //      this.tab_view.close_page(page);
-  //    });
-  //    this.tab_view.set_selected_page(page);
-  //  }
+    //  page.title = @"tab $(this.tab_view.n_pages)";
+    page.title = @"tab 1";
+    tab.notify["title"].connect (() => {
+      page.title = tab.title;
+    });
+    tab.close_request.connect (() => {
+      this.tab_view.close_page (page);
+    });
+    this.tab_view.set_selected_page (page);
+  }
 }
 
 //  [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
