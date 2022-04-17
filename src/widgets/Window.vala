@@ -36,6 +36,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   Adw.TabView   tab_view;
   Adw.TabBar    tab_bar;
   Adw.HeaderBar header_bar;
+  Gtk.Revealer  header_bar_revealer;
 
   Gtk.Button    new_tab_button;
 
@@ -52,6 +53,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
       css_classes = { "flat" },
     };
+
+    this.header_bar_revealer = new Gtk.Revealer ();
+    this.header_bar_revealer.child = this.header_bar;
 
     this.tab_view = new Adw.TabView ();
 
@@ -77,7 +81,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.header_bar.title_widget = title_box;
 
-    layout_box.append (this.header_bar);
+    layout_box.append (this.header_bar_revealer);
     layout_box.append (this.tab_view);
 
     this.content = layout_box;
@@ -112,6 +116,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "fill-tabs",
       this.tab_bar,
       "expand-tabs",
+      SettingsBindFlags.DEFAULT
+    );
+
+    this.settings.schema.bind (
+      "show-headerbar",
+      this.header_bar_revealer,
+      "reveal-child",
       SettingsBindFlags.DEFAULT
     );
   }
