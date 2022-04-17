@@ -44,19 +44,19 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     //  this.window.settings.notify.connect(this.apply_settings);
 
-    //  var click = new Gtk.GestureClick() {
-    //    button = Gdk.BUTTON_SECONDARY,
-    //  };
+    var click = new Gtk.GestureClick() {
+      button = Gdk.BUTTON_SECONDARY,
+    };
 
-    //  click.released.connect(this.show_menu);
+    click.pressed.connect(this.show_menu);
 
-    //  this.add_controller(click);
+    this.terminal.add_controller(click);
 
     //  this.button_press_event.connect(this.show_menu);
 
-    //  this.terminal.notify["window-title"].connect(() => {
-    //    this.title = this.terminal.window_title;
-    //  });
+    this.terminal.notify["window-title"].connect(() => {
+      this.title = this.terminal.window_title;
+    });
 
     this.terminal.exit.connect(() => {
       this.close_request();
@@ -70,20 +70,25 @@ public class Terminal.TerminalTab : Gtk.Box {
   }
 
   public void show_menu(int n_pressed, double x, double y) {
-    //  warning("I was called %d", n_pressed);
+    var model = new Menu ();
 
-    var b = new Gtk.Builder.from_resource(
-      "/com/raggesilver/Terminal/layouts/menu.ui"
-    );
-    var pop = b.get_object("popover") as Gtk.Popover;
-    //  pop.set_relative_to(this);
+    model.append ("New Tab", "win.new_tab");
+    model.append ("New Window", "win.new_window");
+    model.append ("Preferences", "win.edit_preferences");
+    model.append ("About", "win.about");
+
+    var pop = new Gtk.PopoverMenu.from_model(model);
 
     Gdk.Rectangle r = {0};
     r.x = (int) x;
     r.y = (int) y;
 
-    pop.set_parent(this);
-    pop.set_pointing_to(r);
-    pop.present();
+    pop.closed.connect_after (() => {
+      pop.destroy ();
+    });
+
+    pop.set_parent (this);
+    pop.set_pointing_to (r);
+    pop.popup ();
   }
 }

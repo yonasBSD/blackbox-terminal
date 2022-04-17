@@ -80,7 +80,6 @@
                     <property name="level">GTK_FONT_CHOOSER_LEVEL_SIZE | GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
                     <property name="preview-text" />
                     <property name="title" translatable="yes">Terminal Font</property>
-                    <property name="show-style">False</property>
                   </object>
                 </child>
               </object>

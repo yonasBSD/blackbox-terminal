@@ -102,15 +102,40 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.new_tab ();
     });
 
+    this.add_actions ();
+    this.connect_signals ();
     this.new_tab ();
+  }
+
+  private void connect_signals () {
+    this.settings.schema.bind (
+      "fill-tabs",
+      this.tab_bar,
+      "expand-tabs",
+      SettingsBindFlags.DEFAULT
+    );
+  }
+
+  private void add_actions () {
+    var sa = new SimpleAction ("new_tab", null);
+    sa.activate.connect (() => {
+      this.new_tab ();
+    });
+    this.add_action (sa);
+
+    sa = new SimpleAction("edit_preferences", null);
+    sa.activate.connect(() => {
+      var w = new PreferencesWindow (this.application, this);
+      w.present ();
+    });
+    this.add_action(sa);
   }
 
   public void new_tab () {
     var tab = new TerminalTab (this, null);
     var page = this.tab_view.add_page (tab, null);
 
-    //  page.title = @"tab $(this.tab_view.n_pages)";
-    page.title = @"tab 1";
+    page.title = @"tab $(this.tab_view.n_pages)";
     tab.notify["title"].connect (() => {
       page.title = tab.title;
     });
