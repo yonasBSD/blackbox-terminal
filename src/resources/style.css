@@ -1,7 +1,4 @@
-/* This is temporary */
-@define-color headerbar_bg_color @accent_bg_color;
-
-headerbar {
+headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
 

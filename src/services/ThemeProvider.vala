@@ -163,7 +163,7 @@ public class Terminal.ThemeProvider : Object {
     this.provider = Marble.get_css_provider_for_data("""
       @define-color window_bg_color %1$s;
       @define-color window_fg_color %2$s;
-      @define-color accent_bg_color %3$s(%1$s);
+      @define-color headerbar_bg_color %3$s(%1$s);
     """.printf(
         background.to_string(),
         foreground.to_string(),

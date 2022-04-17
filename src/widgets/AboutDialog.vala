@@ -33,6 +33,7 @@ namespace Terminal {
     };
 
     dialog.titlebar.add_css_class ("flat");
+    dialog.titlebar.add_css_class ("background");
 
     return dialog;
   }
