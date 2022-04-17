@@ -40,8 +40,6 @@ public class Terminal.TerminalTab : Gtk.Box {
     this.append(twig);
     twig.grab_focus();
 
-    //  this.window.settings.notify.connect(this.apply_settings);
-
     var click = new Gtk.GestureClick() {
       button = Gdk.BUTTON_SECONDARY,
     };
@@ -50,8 +48,6 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     this.terminal.add_controller(click);
 
-    //  this.button_press_event.connect(this.show_menu);
-
     this.terminal.notify["window-title"].connect(() => {
       this.title = this.terminal.window_title;
     });
@@ -59,12 +55,6 @@ public class Terminal.TerminalTab : Gtk.Box {
     this.terminal.exit.connect(() => {
       this.close_request();
     });
-  }
-
-  void apply_settings() {
-    //  this.terminal.font_desc = Pango.FontDescription.from_string(
-    //    this.window.settings.font
-    //  );
   }
 
   public void show_menu(int n_pressed, double x, double y) {

@@ -58,18 +58,17 @@ public class Terminal.Terminal : Vte.Terminal {
     this.halign = Gtk.Align.FILL;
     this.valign = Gtk.Align.FILL;
 
-    //  Marble.set_theming_for_data(this, "vte-terminal { padding: 10px; }");
-
     this.child_exited.connect (this.on_child_exited);
-    //  this.button_press_event.connect(this.on_button_press);
 
     // FIXME: we should save settings in the Terminal namespace, not in a Window
-    this.window.settings.notify["theme"].connect (this.update_ui);
+    this.window.settings.notify["theme"].connect (this.on_theme_changed);
+    this.window.settings.notify["font"].connect (this.on_font_changed);
 
     this.setup_drag_drop ();
     this.setup_regexes ();
     this.connect_accels ();
-    this.update_ui ();
+    this.on_theme_changed ();
+    this.on_font_changed ();
 
     this.spawn (command, cwd);
   }
@@ -137,7 +136,13 @@ public class Terminal.Terminal : Vte.Terminal {
     }
   }
 
-  private void update_ui () {
+  private void on_font_changed () {
+    this.font_desc = Pango.FontDescription.from_string (
+      this.window.settings.font
+    );
+  }
+
+  private void on_theme_changed () {
     var ctx = this.get_style_context ();
     var theme = this.window.theme_provider.themes.get (
       this.window.settings.theme
