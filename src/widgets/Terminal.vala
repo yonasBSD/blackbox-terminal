@@ -76,7 +76,7 @@ public class Terminal.Terminal : Vte.Terminal {
 
   // Methods ===================================================================
 
-  private void setup_drag_drop() {
+  private void setup_drag_drop () {
     var target = new Gtk.DropTarget (Type.INVALID, Gdk.DragAction.COPY);
 
     //  target.
@@ -94,55 +94,61 @@ public class Terminal.Terminal : Vte.Terminal {
     //  this.drag_data_received.connect(this.on_drag_data_received);
   }
 
-  private void setup_regexes() {
+  private void setup_regexes () {
     foreach (unowned string str in Constants.URL_REGEX_STRINGS) {
       try {
-        var reg = new Vte.Regex.for_match(
+        var reg = new Vte.Regex.for_match (
           str, -1, PCRE2.Flags.MULTILINE
         );
-        int id = this.match_add_regex(reg, 0);
-        this.match_set_cursor_name(id, "pointer");
+        int id = this.match_add_regex (reg, 0);
+        this.match_set_cursor_name (id, "pointer");
       }
       catch (Error e) {
-        warning(e.message);
+        warning (e.message);
       }
     }
   }
 
-  private void update_ui() {
-    var ctx = this.get_style_context();
-    var theme = this.window.theme_provider.themes.get(
+  private void update_ui () {
+    var ctx = this.get_style_context ();
+    var theme = this.window.theme_provider.themes.get (
       this.window.settings.theme
   );
 
     if (theme == null) {
-      warning("INVALID THEME '%s'", this.window.settings.theme);
+      warning ("INVALID THEME '%s'", this.window.settings.theme);
       return;
     }
 
     this.bg = theme.background;
     this.fg = theme.foreground;
 
+    // TODO: check if something changed with ctx.lookup_color in
+    // Gtk 4/libadwaita, and if named colors in libadwaita work as intended here
     if (
       this.bg == null &&
-      !ctx.lookup_color("theme_base_color", out this.bg)
+      !ctx.lookup_color ("theme_base_color", out this.bg)
     ) {
-      warning("Theme '%s' has no background, using fallback", theme.name);
+      warning ("Theme '%s' has no background, using fallback", theme.name);
       this.bg = { 0, 0, 0, 1 };
     }
 
     if (
       this.fg == null &&
-      !ctx.lookup_color("theme_fg_color", out this.fg)
+      !ctx.lookup_color ("theme_fg_color", out this.fg)
     ) {
       this.fg = { 1, 1, 1, 1 };
     }
 
-    this.set_colors(this.fg, this.bg, theme.colors);
+    this.set_colors (this.fg, this.bg, theme.colors);
   }
 
-  private void connect_accels() {
-    //  this.key_press_event.connect(this.on_key_press);
+  private void connect_accels () {
+    var kpcontroller = new Gtk.EventControllerKey ();
+
+    kpcontroller.key_pressed.connect (this.on_key_pressed);
+
+    this.add_controller (kpcontroller);
   }
 
   private void spawn (string? command, string? cwd) {
@@ -165,7 +171,7 @@ public class Terminal.Terminal : Vte.Terminal {
       envv += "G_MESSAGES_DEBUG=false";
       envv += "TERM=xterm-256color";
 
-      foreach (string env in envv) {
+      foreach (unowned string env in envv) {
         argv += @"--env=$(env)";
       }
 
@@ -201,7 +207,7 @@ public class Terminal.Terminal : Vte.Terminal {
     }
 
     this.spawn_async (
-      Vte.PtyFlags.NO_CTTY,
+      flags,
       cwd,
       argv,
       envv,
@@ -209,10 +215,14 @@ public class Terminal.Terminal : Vte.Terminal {
       null,
       -1,
       null,
-      (_, _pid, err) => {
-        if (err != null) {
-          this.feed (err.message.data);
-        }
+      // For some reason, if I try using `err` here vala will generate the
+      // following line at the top of this lambda function:
+      //
+      // g_return_if_fail (err != NULL);
+      //
+      // Which is insane, and does not work, since we expect error to be null
+      // almost always.
+      (_, _pid /*, err */) => {
         this.pid = _pid;
       }
     );
@@ -223,6 +233,41 @@ public class Terminal.Terminal : Vte.Terminal {
   private void on_child_exited () {
     this.pid = -1;
     this.exit ();
+  }
+
+  private bool on_key_pressed (
+    uint keyval,
+    uint keycode,
+    Gdk.ModifierType state
+  ) {
+
+    if ((state & Gdk.ModifierType.CONTROL_MASK) == 0) {
+      return false;
+    }
+
+    switch (Gdk.keyval_name (keyval)) {
+      case "C": {
+        if (this.get_has_selection ()) {
+          warning ("Copying hasn't been implemented yet.");
+          this.copy_clipboard_format (Vte.Format.TEXT);
+        }
+        return true;
+      }
+      case "V": {
+        // FIXME: https://gitlab.gnome.org/GNOME/vte/-/issues/2557
+        // this.paste_clipboard ();
+        var cb = Gdk.Display.get_default ().get_clipboard ();
+        cb.read_text_async.begin (null, (_, res) => {
+          var text = cb.read_text_async.end (res);
+          if (text != null) {
+            this.paste_text (text);
+          }
+        });
+        return true;
+      }
+    }
+
+    return false;
   }
 
   //  private void on_drag_data_received(
