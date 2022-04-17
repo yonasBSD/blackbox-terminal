@@ -152,8 +152,11 @@ public class Terminal.ThemeProvider : Object {
     bool is_dark_theme = this.get_brightness(foreground) > 0.5;
     string inv_mode = is_dark_theme ? "lighter" : "darker";
 
-    Gtk.Settings.get_default()
-      .gtk_application_prefer_dark_theme = is_dark_theme;
+    // TODO: we could find a better way to integrate with dark/light preferences
+
+    Adw.StyleManager.get_default ().set_color_scheme (
+      is_dark_theme ? Adw.ColorScheme.FORCE_DARK : Adw.ColorScheme.FORCE_LIGHT
+    );
 
     debug("This theme is %s", is_dark_theme ? "dark" : "light");
 

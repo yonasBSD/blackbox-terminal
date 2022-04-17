@@ -9,9 +9,9 @@
 </div>
 
 <div align="center">
-  <img src="https://imgur.com/nItIAPf.png" alt="Preview"/><br/>
+  <img src="https://i.imgur.com/kCQDGcb.png" alt="Preview"/><br/>
   <small><i>
-    Terminal 0.6.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Terminal 42.alpha0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
@@ -20,7 +20,7 @@
 > find.
 
 I created this project so that I could use a decent looking terminal app on
-Linux. There are better alternatives out there.
+Linux. There are more featureful alternatives out there.
 
 ## Features
 

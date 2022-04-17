@@ -123,10 +123,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
     this.add_action (sa);
 
-    sa = new SimpleAction("edit_preferences", null);
-    sa.activate.connect(() => {
+    sa = new SimpleAction ("edit_preferences", null);
+    sa.activate.connect (() => {
       var w = new PreferencesWindow (this.application, this);
       w.present ();
+    });
+    this.add_action (sa);
+
+    sa = new SimpleAction ("about", null);
+    sa.activate.connect (() => {
+      var win = create_about_dialog ();
+      win.set_transient_for (this);
+      win.present ();
     });
     this.add_action(sa);
   }

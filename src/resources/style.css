@@ -13,6 +13,10 @@ tab:checked {
   background: @window_bg_color;
 }
 
+tabbox background {
+  background: transparent;
+}
+
 /* @define-color rg_theme_fg_color @theme_fg_color;
 @define-color rg_theme_bg_color @theme_bg_color;
 @define-color rg_theme_base_color @theme_base_color;

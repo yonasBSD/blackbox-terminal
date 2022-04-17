@@ -70,14 +70,22 @@ public class Terminal.TerminalTab : Gtk.Box {
   }
 
   public void show_menu(int n_pressed, double x, double y) {
-    var model = new Menu ();
+    var menu = new Menu ();
+    var edit_section = new Menu ();
+    var preferences_section = new Menu ();
 
-    model.append ("New Tab", "win.new_tab");
-    model.append ("New Window", "win.new_window");
-    model.append ("Preferences", "win.edit_preferences");
-    model.append ("About", "win.about");
+    edit_section.append ("Copy", "win.copy");
+    edit_section.append ("Paste", "win.paste");
 
-    var pop = new Gtk.PopoverMenu.from_model(model);
+    menu.append ("New Tab", "win.new_tab");
+    menu.append ("New Window", "win.new_window");
+    menu.append_section(null, edit_section);
+
+    preferences_section.append ("Preferences", "win.edit_preferences");
+    preferences_section.append ("About", "win.about");
+    menu.append_section(null, preferences_section);
+
+    var pop = new Gtk.PopoverMenu.from_model(menu);
 
     Gdk.Rectangle r = {0};
     r.x = (int) x;
