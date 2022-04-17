@@ -28,9 +28,7 @@ public class Terminal.TerminalTab : Gtk.Box {
   public TerminalTab(Window window, string? cwd) {
     Object(
       orientation: Gtk.Orientation.VERTICAL,
-      spacing: 0,
-      width_request: 300,
-      height_request: 300
+      spacing: 0
     );
 
     this.window = window;
@@ -77,8 +75,8 @@ public class Terminal.TerminalTab : Gtk.Box {
     edit_section.append ("Copy", "win.copy");
     edit_section.append ("Paste", "win.paste");
 
-    menu.append ("New Tab", "win.new_tab");
-    menu.append ("New Window", "win.new_window");
+    menu.append ("New tab", "win.new_tab");
+    menu.append ("New window", "win.new_window");
     menu.append_section(null, edit_section);
 
     preferences_section.append ("Preferences", "win.edit_preferences");

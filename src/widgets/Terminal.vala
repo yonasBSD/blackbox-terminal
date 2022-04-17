@@ -79,19 +79,47 @@ public class Terminal.Terminal : Vte.Terminal {
   private void setup_drag_drop () {
     var target = new Gtk.DropTarget (Type.INVALID, Gdk.DragAction.COPY);
 
-    //  target.
-    //  Gtk.TargetEntry[] drag_targets = {
-    //    { "text/uri-list", Gtk.TargetFlags.OTHER_APP, DropTargets.URILIST },
-    //    { "STRING", Gtk.TargetFlags.OTHER_APP, DropTargets.STRING },
-    //    { "text/plain", Gtk.TargetFlags.OTHER_APP, DropTargets.TEXT },
-    //  };
+    target.set_gtypes ({
+      typeof (File),
+      typeof (string),
+    });
 
+    target.on_drop.connect (this.on_drag_data_received);
 
+    this.add_controller (target);
+  }
 
-    //  Gtk.drag_dest_set(
-    //    this, Gtk.DestDefaults.ALL, drag_targets, Gdk.DragAction.COPY
-    //  );
-    //  this.drag_data_received.connect(this.on_drag_data_received);
+  private bool on_drag_data_received (
+    Gtk.DropTarget target,
+    Value value,
+    double x,
+    double y
+  ) {
+    var vtype = value.type ();
+
+    if (vtype == typeof (File)) {
+      var file = (File) value.get_object ();
+      var path = file?.get_path ();
+
+      if (path != null) {
+        this.feed_child (Shell.quote (path).data);
+        this.feed_child (" ".data);
+      }
+
+      return true;
+    }
+    else if (vtype == typeof (string)) {
+      var text = value.get_string ();
+
+      if (text != null) {
+        this.feed_child (text.data);
+      }
+
+      return true;
+    }
+
+    warning ("You dropped something Terminal can't handle yet :(");
+    return false;
   }
 
   private void setup_regexes () {
@@ -263,6 +291,26 @@ public class Terminal.Terminal : Vte.Terminal {
             this.paste_text (text);
           }
         });
+        return true;
+      }
+      case "plus": {
+        this.font_scale = double.min (10, this.font_scale + 0.1);
+        return true;
+      }
+      case "underscore": {
+        this.font_scale = double.max (0.1, this.font_scale - 0.1);
+        return true;
+      }
+      case "N": {
+        this.window.activate_action ("new_window", null);
+        return true;
+      }
+      case "T": {
+        this.window.activate_action ("new_tab", null);
+        return true;
+      }
+      case "W": {
+        this.exit ();
         return true;
       }
     }
