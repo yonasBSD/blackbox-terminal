@@ -1,25 +1,17 @@
-stages:
-  - build
-  - deploy
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
-cache:
-  # Cache per branch
-  key: "$CI_COMMIT_REF_SLUG"
-  paths:
-    - .flatpak-builder/downloads/
-    - .flatpak-builder/git/
+flatpak:
+  extends: .flatpak
+  timeout: 90m
+  variables:
+    GIT_SUBMODULE_STRATEGY: normal
 
-build:
-  stage: build
-  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:42'
-  script:
-    # This is the output of `make update export --just-print`
-    - flatpak-builder --ccache --force-clean --stop-at=terminal app com.raggesilver.Terminal.json
-    - flatpak-builder --run app com.raggesilver.Terminal.json meson --prefix=/app app_build
-    - flatpak-builder --run app com.raggesilver.Terminal.json ninja -C app_build install
-    - flatpak-builder --finish-only app com.raggesilver.Terminal.json
-    - flatpak-builder --export-only --repo=repo app com.raggesilver.Terminal.json
-    - flatpak build-bundle repo "terminal.flatpak" com.raggesilver.Terminal
-  artifacts:
-    paths:
-      - "terminal.flatpak"
+    # Replace with your manifest path
+    MANIFEST_PATH: "com.raggesilver.Terminal.json"
+    RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
+    # Replace with your application name, as written in the manifest
+    FLATPAK_MODULE: "terminal"
+    APP_ID: "com.raggesilver.Terminal"
+    BUNDLE: "terminal.flatpak"
+  before_script:
+    - flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
