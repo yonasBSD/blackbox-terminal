@@ -1,6 +1,6 @@
 /* PreferencesWindow.vala
  *
- * Copyright 2020 Paulo Queiroz <pvaqueiroz@gmail.com>
+ * Copyright 2020-2022 Paulo Queiroz <pvaqueiroz@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,45 +19,44 @@
  */
 
 [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
-public class Terminal.PreferencesWindow : Hdy.PreferencesWindow {
+public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;
   [GtkChild] unowned Gtk.Switch show_headerbar_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.ComboBoxText theme_combo;
 
-  weak Settings settings;
   weak Window window;
 
   public PreferencesWindow(Gtk.Application app, Window window) {
     Object(
       application: app,
-      modal: false,
-      type_hint: Gdk.WindowTypeHint.NORMAL
+      modal: false
+      //  type_hint: Gdk.WindowTypeHint.NORMAL
     );
 
     this.window = window;
-    this.settings = window.settings;
+    var settings = Settings.get_default ();
 
-    this.settings.schema.bind("pretty", this.pretty_switch,
+    settings.schema.bind("pretty", this.pretty_switch,
       "active", SettingsBindFlags.DEFAULT);
 
-    this.settings.schema.bind("fill-tabs", this.fill_tabs_switch,
+    settings.schema.bind("fill-tabs", this.fill_tabs_switch,
       "active", SettingsBindFlags.DEFAULT);
 
-    this.settings.schema.bind("show-headerbar", this.show_headerbar_switch,
+    settings.schema.bind("show-headerbar", this.show_headerbar_switch,
       "active", SettingsBindFlags.DEFAULT);
 
-    this.settings.schema.bind("font", this.font_button,
+    settings.schema.bind("font", this.font_button,
       "font", SettingsBindFlags.DEFAULT);
 
     this.window.theme_provider.themes.foreach((key) => {
       this.theme_combo.insert(-1, key, key);
     });
 
-    this.theme_combo.set_active_id(this.settings.theme);
+    this.theme_combo.set_active_id(settings.theme);
 
-    this.settings.schema.bind("theme", this.theme_combo,
+    settings.schema.bind("theme", this.theme_combo,
       "active-id", SettingsBindFlags.DEFAULT);
   }
 }

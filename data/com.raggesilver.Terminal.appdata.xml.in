@@ -5,7 +5,7 @@
   <project_license>GPL-3.0-or-later</project_license>
 
   <name>Terminal</name>
-  <summary>A pretty terminal for GNOME</summary>
+  <summary>A beautiful and simple GTK 4 terminal.</summary>
 
   <developer_name>Paulo Queiroz</developer_name>
 
@@ -27,15 +27,13 @@
       <li>Quickly open links and files by ctrl+clicking file paths and URLs</li>
       <li>Easily paste file paths by dragging them into the window</li>
     </ul>
-    <p>
-      This app is written in Vala and uses GTK 3, libhandy, and VTE. An effort will be made to port to GTK 4 once VTE is ported too.
-    </p>
+    <p>This app is written in Vala and uses GTK 4, libadwaita, and VTE.</p>
   </description>
 
   <screenshots>
     <screenshot type="default">
       <caption>Terminal screenshot</caption>
-      <image>https://imgur.com/nItIAPf.png</image>
+      <image>https://i.imgur.com/8S04oVv.png</image>
     </screenshot>
   </screenshots>
 
@@ -81,6 +79,14 @@
   </kudos>
 
   <releases>
+    <release date="2022-04-18" version="42.alpha0">
+      <description>
+        <p>
+          Initial port to Gtk 4. This is an alpha release that has known bugs
+          and lacks support for copying text from the terminal.
+        </p>
+      </description>
+    </release>
     <release date="2021-11-02" version="0.6.1">
       <description>
         <p>
@@ -99,12 +105,11 @@
     </release>
   </releases>
 
-  <url type="homepage">https://gitlab.com/raggesilver/terminal</url>
-  <url type="bugtracker">https://gitlab.com/raggesilver/terminal/issues</url>
+  <url type="homepage">https://gitlab.gnome.org/raggesilver/terminal</url>
+  <url type="bugtracker">https://gitlab.gnome.org/raggesilver/terminal/issues</url>
   <url type="donation">https://www.patreon.com/raggesilver</url>
-  <url type="help">https://gitlab.com/raggesilver/terminal/issues</url>
-  <url type="translate">https://gitlab.com/raggesilver/terminal/issues</url>
+  <url type="help">https://gitlab.gnome.org/raggesilver/terminal/issues</url>
+  <url type="translate">https://gitlab.gnome.org/raggesilver/terminal/issues</url>
 
   <update_contact>pvaqueiroz@gmail.com</update_contact>
 </component>
-

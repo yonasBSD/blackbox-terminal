@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/raggesilver/Terminal">
-    <file>layouts/about-dialog.ui</file>
-    <file>layouts/menu.ui</file>
     <file>layouts/preferences-window.ui</file>
     <file>layouts/window.ui</file>
     <file>resources/style.css</file>

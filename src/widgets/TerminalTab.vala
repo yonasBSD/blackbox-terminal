@@ -1,6 +1,6 @@
 /* TerminalTab.vala
  *
- * Copyright 2021 Paulo Queiroz
+ * Copyright 2021-2022 Paulo Queiroz
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Terminal.TerminalTab : Gtk.EventBox {
-  public signal void exit();
+public class Terminal.TerminalTab : Gtk.Box {
+
+  public signal void close_request();
 
   public string title { get; protected set; }
 
@@ -25,49 +26,65 @@ public class Terminal.TerminalTab : Gtk.EventBox {
   public Terminal terminal;
 
   public TerminalTab(Window window, string? cwd) {
-    Object();
+    Object(
+      orientation: Gtk.Orientation.VERTICAL,
+      spacing: 0
+    );
 
     this.window = window;
     this.terminal = new Terminal(this.window, null, cwd);
 
-    this.add(this.terminal);
-    this.show_all();
+    // Hack to stop vala-language-server from complaining
+    var twig = this.terminal as Gtk.Widget;
+    //  this.set_child(twig);
+    this.append(twig);
+    twig.grab_focus();
 
-    this.window.settings.notify.connect(this.apply_settings);
-    this.button_press_event.connect(this.show_menu);
+    var click = new Gtk.GestureClick() {
+      button = Gdk.BUTTON_SECONDARY,
+    };
+
+    click.pressed.connect(this.show_menu);
+
+    this.terminal.add_controller(click);
 
     this.terminal.notify["window-title"].connect(() => {
       this.title = this.terminal.window_title;
     });
 
     this.terminal.exit.connect(() => {
-      this.exit();
+      this.close_request();
     });
   }
 
-  void apply_settings() {
-    this.terminal.font_desc = Pango.FontDescription.from_string(
-      this.window.settings.font
-    );
-  }
+  public void show_menu(int n_pressed, double x, double y) {
+    var menu = new Menu ();
+    var edit_section = new Menu ();
+    var preferences_section = new Menu ();
 
-  public bool show_menu(Gdk.Event e) {
-    if (e.button.button != Gdk.BUTTON_SECONDARY)
-      return false;
+    edit_section.append ("Copy", "win.copy");
+    edit_section.append ("Paste", "win.paste");
 
-    var b = new Gtk.Builder.from_resource(
-      "/com/raggesilver/Terminal/layouts/menu.ui"
-    );
-    var pop = b.get_object("popover") as Gtk.Popover;
-    pop.set_relative_to(this);
+    menu.append ("New tab", "win.new_tab");
+    menu.append ("New window", "win.new_window");
+    menu.append_section(null, edit_section);
+
+    preferences_section.append ("Preferences", "win.edit_preferences");
+    preferences_section.append ("About", "win.about");
+    menu.append_section(null, preferences_section);
+
+    var pop = new Gtk.PopoverMenu.from_model(menu);
 
     Gdk.Rectangle r = {0};
-    r.x = (int)e.button.x;
-    r.y = (int)e.button.y;
+    r.x = (int) x;
+    r.y = (int) y;
 
-    pop.set_pointing_to(r);
-    pop.popup();
+    pop.closed.connect_after (() => {
+      pop.destroy ();
+    });
 
-    return true;
+    pop.set_parent (this);
+    pop.set_pointing_to (r);
+    pop.popup ();
   }
 }

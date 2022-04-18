@@ -1,4 +1,20 @@
-@define-color rg_theme_fg_color @theme_fg_color;
+headerbar:not(.background) {
+  background: @headerbar_bg_color;
+}
+
+tab {
+  background: transparent;
+}
+
+tab:checked {
+  background: @window_bg_color;
+}
+
+tabbox background {
+  background: transparent;
+}
+
+/* @define-color rg_theme_fg_color @theme_fg_color;
 @define-color rg_theme_bg_color @theme_bg_color;
 @define-color rg_theme_base_color @theme_base_color;
 
@@ -64,4 +80,4 @@ window.single-tab headerbar.titlebar {
 
 .end-action button:not(:hover):not(:active) {
   background: transparent;
-}
+} */

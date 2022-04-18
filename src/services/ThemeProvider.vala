@@ -1,6 +1,6 @@
 /* ThemeProvider.vala
  *
- * Copyright 2020 Paulo Queiroz
+ * Copyright 2020-2022 Paulo Queiroz
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,8 +133,8 @@ public class Terminal.ThemeProvider : Object {
 
   public void apply_theming() {
     if (this.provider != null) {
-      Gtk.StyleContext.remove_provider_for_screen(
-        Gdk.Screen.get_default(),
+      Gtk.StyleContext.remove_provider_for_display(
+        Gdk.Display.get_default(),
         this.provider
       );
       this.provider = null;
@@ -152,15 +152,18 @@ public class Terminal.ThemeProvider : Object {
     bool is_dark_theme = this.get_brightness(foreground) > 0.5;
     string inv_mode = is_dark_theme ? "lighter" : "darker";
 
-    Gtk.Settings.get_default()
-      .gtk_application_prefer_dark_theme = is_dark_theme;
+    // TODO: we could find a better way to integrate with dark/light preferences
+
+    Adw.StyleManager.get_default ().set_color_scheme (
+      is_dark_theme ? Adw.ColorScheme.FORCE_DARK : Adw.ColorScheme.FORCE_LIGHT
+    );
 
     debug("This theme is %s", is_dark_theme ? "dark" : "light");
 
     this.provider = Marble.get_css_provider_for_data("""
-      @define-color rg_theme_fg_color %2$s;
-      @define-color rg_theme_bg_color %3$s(%1$s);
-      @define-color rg_theme_base_color %1$s;
+      @define-color window_bg_color %1$s;
+      @define-color window_fg_color %2$s;
+      @define-color headerbar_bg_color %3$s(%1$s);
     """.printf(
         background.to_string(),
         foreground.to_string(),
@@ -170,8 +173,8 @@ public class Terminal.ThemeProvider : Object {
 
     if (this.provider == null) return;
 
-    Gtk.StyleContext.add_provider_for_screen(
-      Gdk.Screen.get_default(),
+    Gtk.StyleContext.add_provider_for_display(
+      Gdk.Display.get_default(),
       this.provider,
       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     );
