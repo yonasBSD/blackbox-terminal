@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=terminal
+Name=Terminal
 Exec=terminal
 Terminal=false
 Type=Application
