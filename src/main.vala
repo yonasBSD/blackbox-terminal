@@ -24,7 +24,7 @@ int main(string[] args) {
 
   app.activate.connect(() => {
     var win = new Terminal.Window(app);
-    win.present();
+    win.show ();
   });
 
   app.startup.connect(() => {

@@ -48,6 +48,8 @@ public class Terminal.Terminal : Vte.Terminal {
   public Gdk.RGBA? bg;
   public Window window;
 
+  Settings settings;
+
   public Terminal (Window window, string? command = null, string? cwd = null) {
     Object (allow_hyperlink: true);
 
@@ -60,9 +62,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
     this.child_exited.connect (this.on_child_exited);
 
-    // FIXME: we should save settings in the Terminal namespace, not in a Window
-    this.window.settings.notify["theme"].connect (this.on_theme_changed);
-    this.window.settings.notify["font"].connect (this.on_font_changed);
+    this.settings = Settings.get_default ();
+    this.settings.notify["theme"].connect (this.on_theme_changed);
+    this.settings.notify["font"].connect (this.on_font_changed);
 
     this.setup_drag_drop ();
     this.setup_regexes ();
@@ -138,18 +140,17 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void on_font_changed () {
     this.font_desc = Pango.FontDescription.from_string (
-      this.window.settings.font
+      this.settings.font
     );
   }
 
   private void on_theme_changed () {
     var ctx = this.get_style_context ();
-    var theme = this.window.theme_provider.themes.get (
-      this.window.settings.theme
-  );
+    var theme_name = this.settings.theme;
+    var theme = this.window.theme_provider.themes.get (theme_name);
 
     if (theme == null) {
-      warning ("INVALID THEME '%s'", this.window.settings.theme);
+      warning ("INVALID THEME '%s'", theme_name);
       return;
     }
 

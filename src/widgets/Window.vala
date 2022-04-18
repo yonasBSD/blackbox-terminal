@@ -23,22 +23,30 @@ public class Terminal.Settings : Marble.Settings {
   public bool   show_headerbar  { get; set; }
   public string theme           { get; set; }
 
-  public Settings () {
+  private static Settings instance = null;
+
+  private Settings () {
     base ("com.raggesilver.Terminal");
+  }
+
+  public static Settings get_default () {
+    if (Settings.instance == null) {
+      Settings.instance = new Settings ();
+    }
+    return Settings.instance;
   }
 }
 
 public class Terminal.Window : Adw.ApplicationWindow {
 
-  public Settings       settings        { get; private set; }
   public ThemeProvider  theme_provider  { get; private set; }
+  public Adw.TabView    tab_view        { get; private set; }
 
-  Adw.TabView   tab_view;
-  Adw.TabBar    tab_bar;
   Adw.HeaderBar header_bar;
-  Gtk.Revealer  header_bar_revealer;
-
+  Adw.TabBar    tab_bar;
   Gtk.Button    new_tab_button;
+  Gtk.Revealer  header_bar_revealer;
+  Settings      settings;
 
   construct {
     if (DEVEL) {
@@ -99,7 +107,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "/com/raggesilver/Terminal/resources/style.css"
     );
 
-    this.settings = new Settings ();
+    this.settings = Settings.get_default ();
     this.theme_provider = new ThemeProvider (this.settings);
 
     this.new_tab_button.clicked.connect (() => {
@@ -108,7 +116,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.add_actions ();
     this.connect_signals ();
-    this.new_tab ();
+
+    if (!skip_initial_tab) {
+      this.new_tab ();
+    }
   }
 
   private void connect_signals () {
@@ -116,15 +127,27 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "fill-tabs",
       this.tab_bar,
       "expand-tabs",
-      SettingsBindFlags.DEFAULT
+      SettingsBindFlags.GET
     );
 
     this.settings.schema.bind (
       "show-headerbar",
       this.header_bar_revealer,
       "reveal-child",
-      SettingsBindFlags.DEFAULT
+      SettingsBindFlags.GET
     );
+
+    this.tab_view.create_window.connect (() => {
+      var w = this.new_window (null, true);
+      return w.tab_view;
+    });
+
+    // Close the window if all tabs were closed
+    this.tab_view.notify["n-pages"].connect (() => {
+      if (this.tab_view.n_pages < 1) {
+        this.close ();
+      }
+    });
   }
 
   private void add_actions () {
@@ -134,10 +157,16 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
     this.add_action (sa);
 
+    sa = new SimpleAction ("new_window", null);
+    sa.activate.connect (() => {
+      this.new_window (null, false);
+    });
+    this.add_action (sa);
+
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
       var w = new PreferencesWindow (this.application, this);
-      w.present ();
+      w.show ();
     });
     this.add_action (sa);
 
@@ -145,7 +174,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     sa.activate.connect (() => {
       var win = create_about_dialog ();
       win.set_transient_for (this);
-      win.present ();
+      win.show ();
     });
     this.add_action(sa);
   }
@@ -162,6 +191,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.tab_view.close_page (page);
     });
     this.tab_view.set_selected_page (page);
+  }
+
+  public Window new_window (
+    string? cwd = null,
+    bool skip_initial_tab = false
+  ) {
+    var w = new Window (this.application, cwd, skip_initial_tab);
+    w.show ();
+    w.close_request.connect (() => {
+      return false;
+    });
+    return w;
   }
 }
 
