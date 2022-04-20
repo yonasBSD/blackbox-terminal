@@ -32,7 +32,7 @@ public struct Terminal.Scheme {
 
 public class Terminal.ThemeProvider : Object {
   private weak Settings settings;
-  private Gtk.CssProvider? provider = null;
+  private Gtk.CssProvider? theme_provider = null;
 
   public HashTable<string, Scheme?> themes;
 
@@ -132,12 +132,12 @@ public class Terminal.ThemeProvider : Object {
   }
 
   public void apply_theming() {
-    if (this.provider != null) {
+    if (this.theme_provider != null) {
       Gtk.StyleContext.remove_provider_for_display(
         Gdk.Display.get_default(),
-        this.provider
+        this.theme_provider
       );
-      this.provider = null;
+      this.theme_provider = null;
     }
 
     var theme = this.themes[this.settings.theme];
@@ -160,7 +160,7 @@ public class Terminal.ThemeProvider : Object {
 
     debug("This theme is %s", is_dark_theme ? "dark" : "light");
 
-    this.provider = Marble.get_css_provider_for_data("""
+    this.theme_provider = Marble.get_css_provider_for_data("""
       @define-color window_bg_color %1$s;
       @define-color window_fg_color %2$s;
       @define-color headerbar_bg_color %3$s(%1$s);
@@ -171,11 +171,11 @@ public class Terminal.ThemeProvider : Object {
       )
     );
 
-    if (this.provider == null) return;
+    if (this.theme_provider == null) return;
 
     Gtk.StyleContext.add_provider_for_display(
       Gdk.Display.get_default(),
-      this.provider,
+      this.theme_provider,
       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     );
   }

@@ -25,6 +25,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch show_headerbar_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.ComboBoxText theme_combo;
+  [GtkChild] unowned Gtk.SpinButton padding_spin_button;
 
   weak Window window;
 
@@ -58,5 +59,33 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind("theme", this.theme_combo,
       "active-id", SettingsBindFlags.DEFAULT);
+
+    settings.schema.bind_with_mapping (
+      "terminal-padding",
+      this.padding_spin_button,
+      "value",
+      SettingsBindFlags.DEFAULT,
+      // From settings to spin button
+      (to_val, settings_vari) => {
+        var pad = Padding.from_variant (settings_vari);
+
+        to_val = pad.top;
+        return true;
+      },
+      // From spin button to settings
+      (spin_val, _) => {
+        var pad = (uint) spin_val.get_double ();
+        var _pad = Padding () {
+          top = pad,
+          right = pad,
+          bottom = pad,
+          left = pad
+        };
+
+        return _pad.to_variant ();
+      },
+      null,
+      null
+    );
   }
 }

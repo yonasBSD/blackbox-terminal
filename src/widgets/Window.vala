@@ -16,12 +16,76 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public struct Terminal.Padding {
+  uint top;
+  uint right;
+  uint bottom;
+  uint left;
+
+  public Variant to_variant () {
+    return new Variant (
+      "(uuuu)",
+      this.top,
+      this.right,
+      this.bottom,
+      this.left
+    );
+  }
+
+  public static Padding zero () {
+    return { 0 };
+  }
+
+  public static Padding from_variant (Variant vari) {
+    return_val_if_fail (
+      vari.check_format_string ("(uuuu)", false),
+      Padding.zero ()
+    );
+
+    var iter = vari.iterator ();
+    uint top = 0, right = 0, bottom = 0, left = 0;
+
+    iter.next ("u", &top);
+    iter.next ("u", &right);
+    iter.next ("u", &bottom);
+    iter.next ("u", &left);
+
+    return Padding () {
+      top = top,
+      right = right,
+      bottom = bottom,
+      left = left,
+    };
+  }
+
+  public string to_string () {
+    return "Padding { %u, %u, %u, %u }".printf (
+      this.top,
+      this.right,
+      this.bottom,
+      this.left
+    );
+  }
+
+  /**
+   * Whether padding on all sides is the same.
+   */
+  public bool is_equilateral () {
+    return (
+      this.top == this.right &&
+      this.right == this.bottom &&
+      this.bottom == this.left
+    );
+  }
+}
+
 public class Terminal.Settings : Marble.Settings {
-  public string font            { get; set; }
-  public bool   pretty          { get; set; }
-  public bool   fill_tabs       { get; set; }
-  public bool   show_headerbar  { get; set; }
-  public string theme           { get; set; }
+  public string  font             { get; set; }
+  public bool    pretty           { get; set; }
+  public bool    fill_tabs        { get; set; }
+  public bool    show_headerbar   { get; set; }
+  public string  theme            { get; set; }
+  public Variant terminal_padding { get; set; }
 
   private static Settings instance = null;
 
@@ -34,6 +98,14 @@ public class Terminal.Settings : Marble.Settings {
       Settings.instance = new Settings ();
     }
     return Settings.instance;
+  }
+
+  public Padding get_padding () {
+    return Padding.from_variant (this.terminal_padding);
+  }
+
+  public void set_padding (Padding padding) {
+    this.terminal_padding = padding.to_variant ();
   }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="terminal">
-    <schema id="com.raggesilver.Terminal" path="/com/raggesilver/Terminal/">
+  <schema id="com.raggesilver.Terminal" path="/com/raggesilver/Terminal/">
     <key name="font" type="s">
       <default>'Monospace 12'</default>
       <summary>Font family and size</summary>
@@ -21,5 +21,9 @@
       <default>'Material'</default>
       <summary>The color scheme for the terminal</summary>
     </key>
-    </schema>
+    <key name="terminal-padding" type="(uuuu)">
+      <default>(0,0,0,0)</default>
+      <summary>Amount of padding around terminal widgets (top, right, bottom, left)</summary>
+    </key>
+  </schema>
 </schemalist>
