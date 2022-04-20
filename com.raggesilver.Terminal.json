@@ -37,7 +37,7 @@
         {
           "type" : "git",
           "url" : "https://gitlab.gnome.org/GNOME/vte",
-          "commit": "17024047b06f72ad6cd431b200bd710d11ffd268"
+          "commit": "1398ac862fb10b3cb7cdfc8267be2df5d5f39eb5"
         }
       ]
     },
