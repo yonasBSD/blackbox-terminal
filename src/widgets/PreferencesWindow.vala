@@ -23,9 +23,16 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;
   [GtkChild] unowned Gtk.Switch show_headerbar_switch;
+  [GtkChild] unowned Gtk.Switch use_overlay_scrolling_switch;
+  [GtkChild] unowned Gtk.Switch show_scrollbars_switch;
+  [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.ComboBoxText theme_combo;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
+
+  [GtkChild] unowned Adw.ExpanderRow scrollbars_expander_row;
+  [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
+  [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
 
   weak Window window;
 
@@ -47,6 +54,39 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind("show-headerbar", this.show_headerbar_switch,
       "active", SettingsBindFlags.DEFAULT);
+
+    // Scrolling ====
+
+    settings.schema.bind (
+      "show-scrollbars",
+      this.show_scrollbars_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "use-overlay-scrolling",
+      this.use_overlay_scrolling_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "pixel-scrolling",
+      this.pixel_scrolling_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    // If "Show scrollbars" is off, we want to disable every other setting
+    // related to scrolling
+    settings.notify["show-scrollbars"].connect (() => {
+      this.use_overlay_scrolling_action_row.sensitive = settings.show_scrollbars;
+      this.pixel_scrolling_action_row.sensitive = settings.show_scrollbars;
+    });
+    settings.notify_property ("show-scrollbars");
+
+    // Fonts ====
 
     settings.schema.bind("font", this.font_button,
       "font", SettingsBindFlags.DEFAULT);

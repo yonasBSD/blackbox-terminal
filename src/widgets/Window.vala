@@ -80,12 +80,15 @@ public struct Terminal.Padding {
 }
 
 public class Terminal.Settings : Marble.Settings {
-  public string  font             { get; set; }
-  public bool    pretty           { get; set; }
-  public bool    fill_tabs        { get; set; }
-  public bool    show_headerbar   { get; set; }
-  public string  theme            { get; set; }
-  public Variant terminal_padding { get; set; }
+  public bool    fill_tabs              { get; set; }
+  public bool    pixel_scrolling        { get; set; }
+  public bool    pretty                 { get; set; }
+  public bool    show_headerbar         { get; set; }
+  public bool    show_scrollbars        { get; set; }
+  public bool    use_overlay_scrolling  { get; set; }
+  public string  font                   { get; set; }
+  public string  theme                  { get; set; }
+  public Variant terminal_padding       { get; set; }
 
   private static Settings instance = null;
 

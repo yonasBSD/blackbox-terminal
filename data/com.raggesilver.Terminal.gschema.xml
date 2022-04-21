@@ -17,6 +17,18 @@
       <default>true</default>
       <summary>Whether the headerbar should be shown or not</summary>
     </key>
+    <key name="show-scrollbars" type="b">
+      <default>true</default>
+      <summary>Whether or not to show scrollbars</summary>
+    </key>
+    <key name="use-overlay-scrolling" type="b">
+      <default>true</default>
+      <summary>Whether overlay scrolling should be enabled</summary>
+    </key>
+    <key name="pixel-scrolling" type="b">
+      <default>false</default>
+      <summary>If enabled, terminals will scroll by pixels instead of rows</summary>
+    </key>
     <key name="theme" type="s">
       <default>'Material'</default>
       <summary>The color scheme for the terminal</summary>
