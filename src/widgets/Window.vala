@@ -79,39 +79,6 @@ public struct Terminal.Padding {
   }
 }
 
-public class Terminal.Settings : Marble.Settings {
-  public bool    fill_tabs              { get; set; }
-  public bool    pixel_scrolling        { get; set; }
-  public bool    pretty                 { get; set; }
-  public bool    show_headerbar         { get; set; }
-  public bool    show_scrollbars        { get; set; }
-  public bool    use_overlay_scrolling  { get; set; }
-  public string  font                   { get; set; }
-  public string  theme                  { get; set; }
-  public Variant terminal_padding       { get; set; }
-
-  private static Settings instance = null;
-
-  private Settings () {
-    base ("com.raggesilver.Terminal");
-  }
-
-  public static Settings get_default () {
-    if (Settings.instance == null) {
-      Settings.instance = new Settings ();
-    }
-    return Settings.instance;
-  }
-
-  public Padding get_padding () {
-    return Padding.from_variant (this.terminal_padding);
-  }
-
-  public void set_padding (Padding padding) {
-    this.terminal_padding = padding.to_variant ();
-  }
-}
-
 public class Terminal.Window : Adw.ApplicationWindow {
 
   public ThemeProvider  theme_provider  { get; private set; }
@@ -176,7 +143,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
     string? cwd = null,
     bool skip_initial_tab = false
   ) {
-    Object (application: app);
+    Object (
+      application: app,
+      width_request: 600,
+      height_request: 400
+    );
 
     Marble.add_css_provider_from_resource (
       "/com/raggesilver/Terminal/resources/style.css"
