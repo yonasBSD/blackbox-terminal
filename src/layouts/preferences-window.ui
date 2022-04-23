@@ -100,7 +100,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwActionRow" id="remember_window_size_row">
                 <property name="activatable-widget">remember_window_size_switch</property>
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Remember window size</property>

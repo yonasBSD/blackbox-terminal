@@ -34,6 +34,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ExpanderRow scrollbars_expander_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
+  [GtkChild] unowned Adw.ActionRow remember_window_size_row;
 
   weak Window window;
 
@@ -46,6 +47,10 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     this.window = window;
     var settings = Settings.get_default ();
+
+    if (IS_X11 ()) {
+      remember_window_size_row.subtitle = Constants.X11_WINDOW_SIZE_WARNING;
+    }
 
     settings.schema.bind("pretty", this.pretty_switch,
       "active", SettingsBindFlags.DEFAULT);
@@ -85,6 +90,10 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "active",
       SettingsBindFlags.DEFAULT
     );
+
+    settings.notify["remember-window-size"].connect (() => {
+      this.on_remember_window_size_changed ();
+    });
 
     // If "Show scrollbars" is off, we want to disable every other setting
     // related to scrolling
@@ -135,5 +144,15 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       null,
       null
     );
+  }
+
+  private void on_remember_window_size_changed () {
+    var settings = Settings.get_default ();
+
+    if (IS_X11 ()) {
+      remember_window_size_row.icon_name = settings.remember_window_size
+        ? "dialog-warning-symbolic"
+        : null;
+    }
   }
 }

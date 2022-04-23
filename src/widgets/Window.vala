@@ -95,13 +95,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.add_css_class ("devel");
     }
 
-    if (settings.remember_window_size) {
-      this.set_default_size (
-        (int) settings.window_width,
-        (int) settings.window_height
-      );
-    }
-
     var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
     this.header_bar = new Adw.HeaderBar () {
@@ -149,13 +142,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
     string? cwd = null,
     bool skip_initial_tab = false
   ) {
-    // Setting window size does not work properly if `default_width` &
-    // `default_height` aren't set in the `Object(...)` call, so we have to do
-    // that here. Before callign `Object` we don't have access to `this`, so we
-    // have to create a local instance of Settings.
     var sett = Settings.get_default ();
-    var wwidth = (int) (sett.remember_window_size ? sett.window_width : -1);
-    var wheight = (int) (sett.remember_window_size ? sett.window_height : -1);
+    var wwidth = (int) (sett.remember_window_size ? sett.window_width : 700);
+    var wheight = (int) (sett.remember_window_size ? sett.window_height : 450);
 
     Object (
       application: app,
@@ -208,11 +197,16 @@ public class Terminal.Window : Adw.ApplicationWindow {
       }
     });
 
-    this.close_request.connect_after (() => {
-      this.settings.window_width = this.get_width ();
-      this.settings.window_height = this.get_height ();
+    this.tab_view.notify["selected-page"].connect (() => {
+      this.on_tab_selected ();
+    });
 
-      return false;
+    this.notify["default-width"].connect (() => {
+      this.settings.window_width = this.default_width;
+    });
+
+    this.notify["default-height"].connect (() => {
+      this.settings.window_height = this.default_height;
     });
   }
 
@@ -257,6 +251,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.tab_view.close_page (page);
     });
     this.tab_view.set_selected_page (page);
+  }
+
+  private void on_tab_selected () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.terminal.grab_focus ();
   }
 
   public Window new_window (

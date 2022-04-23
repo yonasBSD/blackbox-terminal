@@ -10,7 +10,7 @@
       <summary>Window height</summary>
     </key>
     <key name="remember-window-size" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Whether or not to remember window size</summary>
     </key>
     <key name="font" type="s">

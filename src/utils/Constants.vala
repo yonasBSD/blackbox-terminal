@@ -30,4 +30,6 @@ namespace Terminal.Constants {
     + HOSTCHARS_CLASS + "+\\." + HOST,
     "(?:news:|man:|info:)[[:alnum:]\\Q^_{|}~!\"#$%&'()*+,./;:=?`\\E]+"
   };
+
+  const string X11_WINDOW_SIZE_WARNING = "Warning: restoring window size under X11 does not work properly. See <a href=\"https://gitlab.gnome.org/GNOME/gtk/-/issues/4136\">this bug</a>.";
 }
