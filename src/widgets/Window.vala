@@ -268,6 +268,22 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
     return w;
   }
+
+  public Terminal? get_active_terminal () {
+    return (this.tab_view.selected_page?.child as TerminalTab)?.terminal;
+  }
+
+  public void focus_next_tab () {
+    if (!this.tab_view.select_next_page ()) {
+      this.tab_view.set_selected_page (this.tab_view.get_nth_page (0));
+    }
+  }
+
+  public void focus_previous_tab () {
+    if (!this.tab_view.select_previous_page ()) {
+      this.tab_view.set_selected_page (this.tab_view.get_nth_page (this.tab_view.n_pages - 1));
+    }
+  }
 }
 
 //  [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
