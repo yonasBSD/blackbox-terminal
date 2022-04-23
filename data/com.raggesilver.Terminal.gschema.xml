@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="terminal">
   <schema id="com.raggesilver.Terminal" path="/com/raggesilver/Terminal/">
+    <key name="window-width" type="u">
+      <default>600</default>
+      <summary>Window width</summary>
+    </key>
+    <key name="window-height" type="u">
+      <default>350</default>
+      <summary>Window height</summary>
+    </key>
+    <key name="remember-window-size" type="b">
+      <default>true</default>
+      <summary>Whether or not to remember window size</summary>
+    </key>
     <key name="font" type="s">
       <default>'Monospace 12'</default>
       <summary>Font family and size</summary>

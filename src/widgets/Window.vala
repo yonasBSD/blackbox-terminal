@@ -88,11 +88,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
   Adw.TabBar    tab_bar;
   Gtk.Button    new_tab_button;
   Gtk.Revealer  header_bar_revealer;
-  Settings      settings;
+  Settings      settings = Settings.get_default ();
 
   construct {
     if (DEVEL) {
       this.add_css_class ("devel");
+    }
+
+    if (settings.remember_window_size) {
+      this.set_default_size (
+        (int) settings.window_width,
+        (int) settings.window_height
+      );
     }
 
     var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -135,7 +142,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
     layout_box.append (this.tab_view);
 
     this.content = layout_box;
-
   }
 
   public Window (
@@ -143,17 +149,24 @@ public class Terminal.Window : Adw.ApplicationWindow {
     string? cwd = null,
     bool skip_initial_tab = false
   ) {
+    // Setting window size does not work properly if `default_width` &
+    // `default_height` aren't set in the `Object(...)` call, so we have to do
+    // that here. Before callign `Object` we don't have access to `this`, so we
+    // have to create a local instance of Settings.
+    var sett = Settings.get_default ();
+    var wwidth = (int) (sett.remember_window_size ? sett.window_width : -1);
+    var wheight = (int) (sett.remember_window_size ? sett.window_height : -1);
+
     Object (
       application: app,
-      width_request: 600,
-      height_request: 400
+      default_width: wwidth,
+      default_height: wheight
     );
 
     Marble.add_css_provider_from_resource (
       "/com/raggesilver/Terminal/resources/style.css"
     );
 
-    this.settings = Settings.get_default ();
     this.theme_provider = new ThemeProvider (this.settings);
 
     this.new_tab_button.clicked.connect (() => {
@@ -193,6 +206,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
       if (this.tab_view.n_pages < 1) {
         this.close ();
       }
+    });
+
+    this.close_request.connect_after (() => {
+      this.settings.window_width = this.get_width ();
+      this.settings.window_height = this.get_height ();
+
+      return false;
     });
   }
 

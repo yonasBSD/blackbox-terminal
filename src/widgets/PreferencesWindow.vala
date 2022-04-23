@@ -26,6 +26,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
+  [GtkChild] unowned Gtk.Switch remember_window_size_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.ComboBoxText theme_combo;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
@@ -74,6 +75,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind (
       "pixel-scrolling",
       this.pixel_scrolling_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "remember-window-size",
+      this.remember_window_size_switch,
       "active",
       SettingsBindFlags.DEFAULT
     );
