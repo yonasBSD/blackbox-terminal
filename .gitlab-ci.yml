@@ -1,5 +1,8 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
+variables:
+  BUNDLE_NAME: "terminal.flatpak"
+
 flatpak:
   extends: .flatpak
   image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:42'
@@ -13,6 +16,44 @@ flatpak:
     # Replace with your application name, as written in the manifest
     FLATPAK_MODULE: "terminal"
     APP_ID: "com.raggesilver.Terminal"
-    BUNDLE: "terminal.flatpak"
+    BUNDLE: ${BUNDLE_NAME}
   before_script:
     - flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+persist_artifacts:
+  needs:
+    - job: flatpak
+      artifacts: true
+  script:
+    - echo PA_JOB_ID=$CI_JOB_ID >> persist_artifacts.env
+  artifacts:
+    name: ${BUNDLE_NAME}
+    paths:
+      - ${BUNDLE_NAME}
+    reports:
+      # To ensure we've access to this file in the next stage
+      dotenv: persist_artifacts.env
+    expire_in: never
+  # Only run this for tag pipelines (releases)
+  rules:
+    - if: $CI_COMMIT_TAG
+
+# https://crypt.codemancers.com/posts/2021-08-31-release-artifacts-using-gitlab-cicd/
+release:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "Releasing ${CI_COMMIT_TAG}"
+  needs:
+    - job: persist_artifacts
+      artifacts: true
+  release:
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'Created using the release-cli'
+    tag_name: '$CI_COMMIT_TAG'
+    assets:
+      links:
+        - name: 'Flatpak bundle'
+          url: 'https://gitlab.gnome.org/raggesilver/terminal/-/jobs/${PA_JOB_ID}/artifacts/file/${BUNDLE_NAME}'
+  # Only run this for tag pipelines (releases)
+  rules:
+    - if: $CI_COMMIT_TAG
