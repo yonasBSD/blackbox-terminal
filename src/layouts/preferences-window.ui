@@ -142,8 +142,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
-                <!-- <property name="activatable-widget">theme_combo</property> -->
+              <object class="AdwActionRow" id="theme_action_row">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Theme</property>
                 <child>
@@ -163,7 +162,6 @@
                   <object class="GtkSpinButton" id="padding_spin_button">
                     <property name="adjustment">spin_button_adjustment</property>
                     <property name="climb-rate">1</property>
-                    <property name="digits">0</property>
                     <property name="digits">0</property>
                     <property name="numeric">True</property>
                     <property name="snap-to-ticks">True</property>

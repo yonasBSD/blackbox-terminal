@@ -31,6 +31,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.ComboBoxText theme_combo;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
 
+  [GtkChild] unowned Adw.ActionRow theme_action_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow remember_window_size_row;
@@ -50,6 +51,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     if (IS_X11 ()) {
       remember_window_size_row.subtitle = Constants.X11_WINDOW_SIZE_WARNING;
     }
+
+    this.theme_action_row.subtitle =
+      "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>."
+        .printf (
+          Path.build_filename (DATADIR, "terminal", "schemes", null),
+          "https://github.com/storm119/Tilix-Themes"
+        );
 
     settings.schema.bind("pretty", this.pretty_switch,
       "active", SettingsBindFlags.DEFAULT);
