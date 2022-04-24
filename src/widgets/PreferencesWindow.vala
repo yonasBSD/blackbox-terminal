@@ -35,7 +35,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow remember_window_size_row;
 
-  weak Window window;
+  Window window;
 
   public PreferencesWindow(Gtk.Application app, Window window) {
     Object(

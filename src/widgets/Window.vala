@@ -117,9 +117,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
       halign = Gtk.Align.FILL,
 
       css_classes = { "inline" },
+
+      can_focus = false,
     };
 
-    this.new_tab_button = new Gtk.Button.from_icon_name ("list-add-symbolic");
+    this.new_tab_button = new Gtk.Button.from_icon_name ("list-add-symbolic") {
+      can_focus = false,
+    };
 
     var title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
       hexpand = true,
@@ -217,26 +221,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
     this.add_action (sa);
 
-    sa = new SimpleAction ("new_window", null);
-    sa.activate.connect (() => {
-      this.new_window (null, false);
-    });
-    this.add_action (sa);
-
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
       var w = new PreferencesWindow (this.application, this);
       w.show ();
     });
     this.add_action (sa);
-
-    sa = new SimpleAction ("about", null);
-    sa.activate.connect (() => {
-      var win = create_about_dialog ();
-      win.set_transient_for (this);
-      win.show ();
-    });
-    this.add_action(sa);
   }
 
   public void new_tab () {

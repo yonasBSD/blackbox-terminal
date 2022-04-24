@@ -22,6 +22,9 @@ public class Terminal.Application : Adw.Application {
   private ActionEntry[] ACTIONS = {
     { "focus-next-tab", on_focus_next_tab },
     { "focus-previous-tab", on_focus_previous_tab },
+    { "new-window", on_new_window },
+    { "about", on_about },
+    { "quit", on_app_quit },
   };
 
   public Application (ApplicationFlags flags) {
@@ -31,10 +34,32 @@ public class Terminal.Application : Adw.Application {
 
     this.set_accels_for_action ("app.focus-next-tab", { "<primary>Tab" });
     this.set_accels_for_action ("app.focus-previous-tab", { "<primary><shift>Tab" });
+    this.set_accels_for_action ("app.new-window", { "<primary><shift>n" });
+    this.set_accels_for_action ("app.quit", { "<primary>q" });
+
+    this.set_accels_for_action ("win.new_tab", { "<primary><shift>t" });
+    this.set_accels_for_action ("win.edit_preferences", { "<primary>comma" });
+    this.set_accels_for_action ("win.copy", { "<primary><shift>c" });
+    this.set_accels_for_action ("win.paste", { "<primary><shift>p" });
   }
 
   public override void activate () {
     new Window (this).show ();
+  }
+
+  private void on_app_quit () {
+    // This involves confirming before closing tabs/windows
+    warning ("App quit is not implemented yet.");
+  }
+
+  private void on_about () {
+    var win = create_about_dialog ();
+    win.set_transient_for (this.get_active_window ());
+    win.show ();
+  }
+
+  private void on_new_window () {
+    new Window (this, null, false).show ();
   }
 
   private void on_focus_next_tab () {

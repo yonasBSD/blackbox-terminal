@@ -31,7 +31,7 @@ public struct Terminal.Scheme {
 }
 
 public class Terminal.ThemeProvider : Object {
-  private weak Settings settings;
+  private Settings settings;
   private Gtk.CssProvider? theme_provider = null;
 
   public HashTable<string, Scheme?> themes;
