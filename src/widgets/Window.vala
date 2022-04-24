@@ -227,6 +227,20 @@ public class Terminal.Window : Adw.ApplicationWindow {
       w.show ();
     });
     this.add_action (sa);
+
+    sa = new SimpleAction ("paste", null);
+    sa.activate.connect (() => {
+      this.on_paste_activated ();
+    });
+    this.add_action (sa);
+
+    sa = new SimpleAction ("copy", null);
+    sa.activate.connect (() => {
+      this.on_copy_activated ();
+    });
+    // TODO: this will stay disabled until copying actually works in Vte-Gtk4
+    sa.set_enabled (false);
+    this.add_action (sa);
   }
 
   public void new_tab () {
@@ -241,6 +255,16 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.tab_view.close_page (page);
     });
     this.tab_view.set_selected_page (page);
+  }
+
+  private void on_paste_activated () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
+      .do_paste_clipboard ();
+  }
+
+  private void on_copy_activated () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
+      .do_copy_clipboard ();
   }
 
   private void on_tab_selected () {

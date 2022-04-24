@@ -307,22 +307,11 @@ public class Terminal.Terminal : Vte.Terminal {
 
     switch (Gdk.keyval_name (keyval)) {
       case "C": {
-        if (this.get_has_selection ()) {
-          warning ("Copying hasn't been implemented yet.");
-          this.copy_clipboard_format (Vte.Format.TEXT);
-        }
+        this.do_copy_clipboard ();
         return true;
       }
       case "V": {
-        // FIXME: https://gitlab.gnome.org/GNOME/vte/-/issues/2557
-        // this.paste_clipboard ();
-        var cb = Gdk.Display.get_default ().get_clipboard ();
-        cb.read_text_async.begin (null, (_, res) => {
-          var text = cb.read_text_async.end (res);
-          if (text != null) {
-            this.paste_text (text);
-          }
-        });
+        this.do_paste_clipboard ();
         return true;
       }
       case "plus": {
@@ -348,6 +337,25 @@ public class Terminal.Terminal : Vte.Terminal {
     }
 
     return false;
+  }
+
+  public void do_paste_clipboard () {
+    // FIXME: https://gitlab.gnome.org/GNOME/vte/-/issues/2557
+    // this.paste_clipboard ();
+    var cb = Gdk.Display.get_default ().get_clipboard ();
+    cb.read_text_async.begin (null, (_, res) => {
+      var text = cb.read_text_async.end (res);
+      if (text != null) {
+        this.paste_text (text);
+      }
+    });
+  }
+
+  public void do_copy_clipboard () {
+    if (this.get_has_selection ()) {
+      warning ("Copying hasn't been implemented yet.");
+      this.copy_clipboard_format (Vte.Format.TEXT);
+    }
   }
 
   //  private void on_drag_data_received(
