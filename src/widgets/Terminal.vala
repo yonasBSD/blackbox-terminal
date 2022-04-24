@@ -51,7 +51,7 @@ public class Terminal.Terminal : Vte.Terminal {
   Settings settings;
 
   public Terminal (Window window, string? command = null, string? cwd = null) {
-    Object (allow_hyperlink: true);
+    Object (allow_hyperlink: true, receives_default: true);
 
     this.window = window;
 

@@ -31,12 +31,11 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.ComboBoxText theme_combo;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
 
-  [GtkChild] unowned Adw.ExpanderRow scrollbars_expander_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow remember_window_size_row;
 
-  weak Window window;
+  Window window;
 
   public PreferencesWindow(Gtk.Application app, Window window) {
     Object(

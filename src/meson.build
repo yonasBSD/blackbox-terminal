@@ -1,6 +1,7 @@
-terminal_sources = [
+terminal_sources = files(
+  'Application.vala',
   'main.vala',
-]
+)
 
 subdir('widgets')
 subdir('services')

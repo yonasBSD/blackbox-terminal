@@ -16,20 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-int main(string[] args) {
-  var app = new Gtk.Application(
-    "com.raggesilver.Terminal",
-    ApplicationFlags.FLAGS_NONE
-  );
-
-  app.activate.connect(() => {
-    var win = new Terminal.Window(app);
-    win.show ();
-  });
-
-  app.startup.connect(() => {
-    Adw.init();
-  });
-
-  return app.run(args);
+int main (string[] args) {
+  return new Terminal.Application (ApplicationFlags.FLAGS_NONE).run (args);
 }

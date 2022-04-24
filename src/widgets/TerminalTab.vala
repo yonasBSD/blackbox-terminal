@@ -24,7 +24,7 @@ public class Terminal.TerminalTab : Gtk.Box {
   public Terminal           terminal  { get; protected set; }
   public Gtk.ScrolledWindow scrolled  { get; protected set; }
 
-  public weak Window window;
+  public Window window;
 
   public TerminalTab (Window window, string? cwd) {
     Object (
@@ -111,17 +111,22 @@ public class Terminal.TerminalTab : Gtk.Box {
     var menu = new Menu ();
     var edit_section = new Menu ();
     var preferences_section = new Menu ();
+    var bottom_section = new Menu ();
+
+    menu.append ("New tab", "win.new_tab");
+    menu.append ("New window", "app.new-window");
 
     edit_section.append ("Copy", "win.copy");
     edit_section.append ("Paste", "win.paste");
 
-    menu.append ("New tab", "win.new_tab");
-    menu.append ("New window", "win.new_window");
     menu.append_section (null, edit_section);
 
     preferences_section.append ("Preferences", "win.edit_preferences");
-    preferences_section.append ("About", "win.about");
     menu.append_section (null, preferences_section);
+
+    bottom_section.append ("Help", "win.show-help-overlay");
+    bottom_section.append ("About", "app.about");
+    menu.append_section (null, bottom_section);
 
     var pop = new Gtk.PopoverMenu.from_model (menu);
 
