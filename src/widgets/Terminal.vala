@@ -301,6 +301,23 @@ public class Terminal.Terminal : Vte.Terminal {
     Gdk.ModifierType state
   ) {
 
+    if ((state & Gdk.ModifierType.ALT_MASK) > 0) {
+      switch (Gdk.keyval_name (keyval)) {
+        case "1": //alt+[1-8]
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":{
+            this.window.focus_nth_tab(int.parse (Gdk.keyval_name (keyval)));
+            return true;
+        }
+      }
+    }
+
     if ((state & Gdk.ModifierType.CONTROL_MASK) == 0) {
       return false;
     }

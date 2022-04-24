@@ -298,6 +298,22 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.tab_view.set_selected_page (this.tab_view.get_nth_page (this.tab_view.n_pages - 1));
     }
   }
+
+  public void focus_nth_tab(int index){
+    if (this.tab_view.n_pages <= 1)
+      return;
+    if (index == 9) {
+      // go to last tab
+      this.tab_view.set_selected_page(this.tab_view.get_nth_page(this.tab_view.n_pages - 1));
+      return;
+    }
+    if (index > this.tab_view.n_pages)
+      return;
+    else {
+      this.tab_view.set_selected_page(this.tab_view.get_nth_page(index-1));
+      return;
+    }
+  }
 }
 
 //  [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
