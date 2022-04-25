@@ -86,16 +86,20 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   Adw.HeaderBar header_bar;
   Adw.TabBar    tab_bar;
+  Gtk.Box       layout_box;
   Gtk.Button    new_tab_button;
+  Gtk.Overlay   overlay;
   Gtk.Revealer  header_bar_revealer;
   Settings      settings = Settings.get_default ();
+
+  const uint header_bar_revealer_duration_ms = 250;
 
   construct {
     if (DEVEL) {
       this.add_css_class ("devel");
     }
 
-    var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+    this.layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
     this.header_bar = new Adw.HeaderBar () {
       show_start_title_buttons = true,
@@ -104,8 +108,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       css_classes = { "flat" },
     };
 
-    this.header_bar_revealer = new Gtk.Revealer ();
-    this.header_bar_revealer.child = this.header_bar;
+    this.header_bar_revealer = new Gtk.Revealer () {
+      transition_duration = Window.header_bar_revealer_duration_ms,
+      child = this.header_bar,
+    };
 
     this.tab_view = new Adw.TabView ();
 
@@ -135,10 +141,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.header_bar.title_widget = title_box;
 
-    layout_box.append (this.header_bar_revealer);
-    layout_box.append (this.tab_view);
+    this.layout_box.append (this.header_bar_revealer);
+    this.layout_box.append (this.tab_view);
 
-    this.content = layout_box;
+    this.overlay = new Gtk.Overlay ();
+    this.content = this.layout_box;
   }
 
   public Window (
@@ -212,6 +219,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.notify["default-height"].connect (() => {
       this.settings.window_height = this.default_height;
     });
+
+    this.settings.notify["show-headerbar"].connect (() => {
+      this.on_headerbar_toggled ();
+    });
+    this.on_headerbar_toggled ();
   }
 
   private void add_actions () {
@@ -317,6 +329,53 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.tab_view.set_selected_page (this.tab_view.get_nth_page (index - 1));
       return;
     }
+  }
+
+  // SYNC: we're currently moving the revealer to the overlay. We should
+  // probably leave the revealer as is (so that we don't have to mess with it's
+  // reveal-child prop, cuz it's bound to GSettings) and have another revealer
+  // exclusive for the overlay. One issue atm is that we can't right click if
+  // the Overlay has an overlay-child.
+
+  private void on_headerbar_toggled () {
+    //  Timeout.add
+    var show_headerbar = this.settings.show_headerbar;
+
+    var needs_to_wait_for_animation = (
+      !show_headerbar && this.header_bar_revealer.parent == this.layout_box
+    );
+
+    if (needs_to_wait_for_animation) {
+      GLib.Timeout.add (
+        Window.header_bar_revealer_duration_ms,
+        () => {
+          return this.on_headerbar_toggled_after_animation ();
+        },
+        Priority.DEFAULT
+      );
+    }
+    else {
+      this.on_headerbar_toggled_after_animation ();
+    }
+  }
+
+  private bool on_headerbar_toggled_after_animation () {
+    var show_headerbar = this.settings.show_headerbar;
+
+    if (!show_headerbar && this.header_bar_revealer.parent == this.layout_box) {
+      this.layout_box.remove (this.header_bar_revealer);
+      this.content = this.overlay;
+      this.overlay.child = this.layout_box;
+      this.overlay.add_overlay (this.header_bar_revealer);
+    }
+    else if (show_headerbar && this.header_bar_revealer.parent != this.layout_box) {
+      this.overlay.remove_overlay (this.header_bar_revealer);
+      this.layout_box.prepend (this.header_bar_revealer);
+      this.overlay.child = null;
+      this.content = this.layout_box;
+    }
+
+    return false;
   }
 }
 
