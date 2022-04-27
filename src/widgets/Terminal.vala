@@ -311,9 +311,9 @@ public class Terminal.Terminal : Vte.Terminal {
         case "6":
         case "7":
         case "8":
-        case "9":{
-            this.window.focus_nth_tab(int.parse (Gdk.keyval_name (keyval)));
-            return true;
+        case "9": {
+          this.window.focus_nth_tab (int.parse (Gdk.keyval_name (keyval)));
+          return true;
         }
       }
     }
