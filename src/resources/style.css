@@ -2,6 +2,10 @@ headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
 
+.floating-revealer headerbar {
+  /* background: transparent; */
+}
+
 tab {
   background: transparent;
 }
