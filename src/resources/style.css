@@ -14,6 +14,22 @@ tabbox background {
   background: transparent;
 }
 
+.thumbnail picture {
+  border: 2px solid transparent;
+}
+
+.thumbnail picture.selected {
+  border-color: @accent_bg_color;
+}
+
+.thumbnail image {
+  background-color: @accent_bg_color;
+  border-radius: 9999px;
+  padding: 2px;
+  color: white;
+  margin: 8px;
+}
+
 /* @define-color rg_theme_fg_color @theme_fg_color;
 @define-color rg_theme_bg_color @theme_bg_color;
 @define-color rg_theme_base_color @theme_base_color;
