@@ -1,4 +1,4 @@
-/* TerminalTab.vala
+/* ColorSchemeThumbnail.vala
  *
  * Copyright 2021-2022 Paulo Queiroz
  *
@@ -75,8 +75,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
     }
   }
 
-  public static uint8[]? apply_scheme(Scheme? scheme) {
-    return_val_if_fail(scheme != null, null);
+  public static uint8[]? apply_scheme(Scheme scheme) {
 
     // Parse svg_content into XML document
     var doc = Xml.Parser.parse_memory (svg_content, svg_content.data.length);
@@ -102,12 +101,12 @@ public class Terminal.ColorSchemePreviewPaintable: GLib.Object, Gdk.Paintable {
 
   public ColorSchemePreviewPaintable(Scheme scheme) {
     this.scheme = scheme;
-    this.load_image.begin();
+    this.load_image.begin ();
   }
 
   public void snapshot (Gdk.Snapshot snapshot, double width, double height) {
     var cr = (snapshot as Gtk.Snapshot)?.append_cairo (
-      Graphene.Rect ().init(0, 0, (float) width, (float) height)
+      Graphene.Rect ().init (0, 0, (float) width, (float) height)
     );
     try {
       this.handler.render_document (cr, Rsvg.Rectangle () {
@@ -149,7 +148,7 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
   private static ColorSchemeThumbnail? last_selected = null;
 
   public ColorSchemeThumbnail (Scheme scheme) {
-    Object(has_tooltip: true);
+    Object (has_tooltip: true);
 
     this.bind_property ("scheme_name", this, "tooltip_text", BindingFlags.DEFAULT, null, null);
     this.scheme_name = scheme.name;
@@ -163,13 +162,13 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     }
 
     // The color scheme thumbnail
-    var img = new Gtk.Picture.for_paintable (
-      new ColorSchemePreviewPaintable (scheme)
-    );
-    img.width_request = 110;
-    img.height_request = 70;
-    img.css_classes = { "card" };
-    img.set_cursor (new Gdk.Cursor.from_name ("pointer", null));
+    var img = new Gtk.Picture () {
+      paintable = new ColorSchemePreviewPaintable (scheme),
+      width_request = 110,
+      height_request = 70,
+      css_classes = { "card" },
+      cursor = new Gdk.Cursor.from_name ("pointer", null),
+    };
 
     var css_provider = new Gtk.CssProvider ();
     css_provider.load_from_data (
@@ -180,14 +179,14 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     img.get_style_context ().add_provider (css_provider, -1);
 
     // Icon will show when this.selected is true
-    var checkicon = new Gtk.Image ();
-    checkicon.icon_name = "object-select-symbolic";
-    checkicon.pixel_size = 14;
-    checkicon.vexpand = true;
-    checkicon.valign = Gtk.Align.END;
-    checkicon.halign = Gtk.Align.END;
-    checkicon.css_classes = { "suggested-action", "circular" };
-    checkicon.visible = false;
+    var checkicon = new Gtk.Image () {
+      icon_name = "object-select-symbolic",
+      pixel_size = 14,
+      vexpand = true,
+      valign = Gtk.Align.END,
+      halign = Gtk.Align.END,
+      visible = false,
+    };
 
     img.set_parent (this);
     checkicon.set_parent (this);
