@@ -25,30 +25,30 @@
 public class Terminal.ColorSchemeThumbnailProvider {
   private static string svg_content = null;
 
-  public static void init_resource() {
+  public static void init_resource () {
     if (svg_content == null) {
       try {
-        var data = GLib.resources_lookup_data (
-          "/com/raggesilver/Terminal/resources/svg/color-scheme-thumbnail.svg",
-          GLib.ResourceLookupFlags.NONE
-        )?.get_data ();
+        uint8[] data;
+
+        File.new_for_uri (
+          "resource:///com/raggesilver/Terminal/resources/svg/color-scheme-thumbnail.svg"
+        ).load_contents (null, out data, null);
 
         svg_content = (string) data;
-
       } catch (Error e) {
         error ("%s", e.message);
       }
     }
   }
 
-  private static void process_node(Xml.Node *node, Scheme scheme) {
+  private static void process_node (Xml.Node *node, Scheme scheme) {
     if (node == null) {
       return ;
     }
 
     Gdk.RGBA? color = null;
 
-    if (node->get_prop("label") == "palette") {
+    if (node->get_prop ("label") == "palette") {
       var len = scheme.colors.length;
       color = scheme.colors[Random.int_range (7, len)];
     }
@@ -58,7 +58,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
     }
 
     if (color != null) {
-      node->set_prop(
+      node->set_prop (
         "style",
         "stroke:%s;stroke-width:3;stroke-linecap:round;".printf (
           color?.to_string ()
@@ -75,8 +75,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
     }
   }
 
-  public static uint8[]? apply_scheme(Scheme scheme) {
-
+  public static uint8[]? apply_scheme (Scheme scheme) {
     // Parse svg_content into XML document
     var doc = Xml.Parser.parse_memory (svg_content, svg_content.data.length);
 
@@ -97,9 +96,9 @@ public class Terminal.ColorSchemeThumbnailProvider {
 
 public class Terminal.ColorSchemePreviewPaintable: GLib.Object, Gdk.Paintable {
   private Rsvg.Handle? handler;
-  private Scheme scheme;
+  private Scheme       scheme;
 
-  public ColorSchemePreviewPaintable(Scheme scheme) {
+  public ColorSchemePreviewPaintable (Scheme scheme) {
     this.scheme = scheme;
     this.load_image.begin ();
   }
@@ -142,7 +141,7 @@ public class Terminal.ColorSchemePreviewPaintable: GLib.Object, Gdk.Paintable {
  * https://gitlab.gnome.org/GNOME/gtksourceview/-/blob/master/gtksourceview/gtksourcestyleschemepreview.c
  */
 public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
-  public bool selected { get; set; }
+  public bool   selected    { get; set; }
   public string scheme_name { get; set; }
 
   private static ColorSchemeThumbnail? last_selected = null;
@@ -151,8 +150,8 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     Object (has_tooltip: true);
 
     this.bind_property ("scheme_name", this, "tooltip_text", BindingFlags.DEFAULT, null, null);
-    this.scheme_name = scheme.name;
     this.add_css_class ("thumbnail");
+    this.scheme_name = scheme.name;
 
     if (scheme.foreground == null) {
       scheme.foreground = scheme.colors[7];
