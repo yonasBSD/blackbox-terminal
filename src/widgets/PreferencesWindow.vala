@@ -28,15 +28,17 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
   [GtkChild] unowned Gtk.Switch remember_window_size_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
-  [GtkChild] unowned Gtk.ComboBoxText theme_combo;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
 
-  [GtkChild] unowned Adw.ActionRow theme_action_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow remember_window_size_row;
 
+  [GtkChild] unowned Adw.PreferencesGroup theme_scheme_group;
+  [GtkChild] unowned Gtk.FlowBox preview_flow_box;
+
   Window window;
+  private HashTable<string, ColorSchemeThumbnail>? preview_cached;
 
   public PreferencesWindow(Gtk.Application app, Window window) {
     Object(
@@ -52,7 +54,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       remember_window_size_row.subtitle = Constants.X11_WINDOW_SIZE_WARNING;
     }
 
-    this.theme_action_row.subtitle =
+    this.theme_scheme_group.description =
       "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>."
         .printf (
           Path.build_filename (DATADIR, "terminal", "schemes", null),
@@ -115,15 +117,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind("font", this.font_button,
       "font", SettingsBindFlags.DEFAULT);
 
-    this.window.theme_provider.themes.foreach((key) => {
-      this.theme_combo.insert(-1, key, key);
-    });
-
-    this.theme_combo.set_active_id(settings.theme);
-
-    settings.schema.bind("theme", this.theme_combo,
-      "active-id", SettingsBindFlags.DEFAULT);
-
     settings.schema.bind_with_mapping (
       "terminal-padding",
       this.padding_spin_button,
@@ -151,6 +144,39 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       null,
       null
     );
+
+    // Themes
+
+    ColorSchemeThumbnailProvider.init_resource ();
+    this.preview_cached = new HashTable<string, ColorSchemeThumbnail> (
+      str_hash,
+      str_equal
+    );
+
+    // Add thumbnials into Gtk.FlowBox
+    this.window.theme_provider.themes.for_each ((name, scheme) => {
+      return_if_fail (scheme != null);
+
+      var previewer = new ColorSchemeThumbnail (scheme);
+      this.preview_flow_box.append (previewer);
+      this.preview_cached[name] = previewer;
+
+      previewer.selected = (previewer.scheme_name == settings.theme);
+    });
+
+    this.preview_flow_box.child_activated.connect ((child) => {
+      var name = (child as ColorSchemeThumbnail)?.scheme_name;
+      if (settings.theme == name) {
+        return;
+      }
+      settings.theme = name;
+    });
+
+    settings.notify["theme"].connect (() => {
+      this.preview_cached.for_each ((name, thumbnail) => {
+        thumbnail.selected = (settings.theme == name);
+      });
+    });
   }
 
   private void on_remember_window_size_changed () {
