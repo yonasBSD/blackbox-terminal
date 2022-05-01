@@ -145,8 +145,6 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
   public bool   selected    { get; set; }
   public string scheme_name { get; set; }
 
-  private static ColorSchemeThumbnail? last_selected = null;
-
   public ColorSchemeThumbnail (Scheme scheme) {
     Object (has_tooltip: true);
 
