@@ -84,11 +84,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public ThemeProvider  theme_provider  { get; private set; }
   public Adw.TabView    tab_view        { get; private set; }
 
-  Adw.HeaderBar header_bar;
-  Adw.TabBar    tab_bar;
-  Gtk.Button    new_tab_button;
-  Gtk.Revealer  header_bar_revealer;
-  Settings      settings = Settings.get_default ();
+  Adw.HeaderBar   header_bar;
+  Adw.TabBar      tab_bar;
+  Gtk.Button      new_tab_button;
+  Gtk.MenuButton  menu_button;
+  Gtk.Revealer    header_bar_revealer;
+  Settings        settings = Settings.get_default ();
 
   construct {
     if (DEVEL) {
@@ -125,6 +126,23 @@ public class Terminal.Window : Adw.ApplicationWindow {
       can_focus = false,
     };
 
+    var more_menu = new GLib.Menu ();
+    var section1 = new GLib.Menu ();
+    var section2 = new GLib.Menu ();
+    section1.append ("Preferences", "win.edit_preferences");
+    section2.append ("Help", "win.show-help-overlay");
+    section2.append ("About", "app.about");
+    more_menu.append_section (null, section1);
+    more_menu.append_section (null, section2);
+    this.menu_button = new Gtk.MenuButton () {
+      can_focus = false,
+      menu_model = more_menu,
+      icon_name = "open-menu-symbolic",
+
+      hexpand = false,
+      halign = Gtk.Align.END,
+    };
+
     var title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
       hexpand = true,
       halign = Gtk.Align.FILL,
@@ -132,6 +150,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     title_box.append (this.tab_bar);
     title_box.append (this.new_tab_button);
+    title_box.append (this.menu_button);
 
     this.header_bar.title_widget = title_box;
 
@@ -189,6 +208,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
       SettingsBindFlags.GET
     );
 
+    this.settings.schema.bind (
+      "show-menu-button",
+      this.menu_button,
+      "visible",
+      SettingsBindFlags.GET
+    );
+
     this.tab_view.create_window.connect (() => {
       var w = this.new_window (null, true);
       return w.tab_view;
@@ -224,7 +250,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
       var w = new PreferencesWindow (this.application, this);
-      w.show ();
+      w.set_transient_for (this);
+      w.set_modal (true);
+      w.present ();
     });
     this.add_action (sa);
 
