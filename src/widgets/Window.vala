@@ -84,7 +84,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public ThemeProvider  theme_provider  { get; private set; }
   public Adw.TabView    tab_view        { get; private set; }
 
-  Adw.HeaderBar header_bar;
+  Adw.HeaderBar   header_bar;
   Adw.TabBar      tab_bar;
   Gtk.Button      new_tab_button;
   Gtk.MenuButton  more_button;
@@ -132,12 +132,15 @@ public class Terminal.Window : Adw.ApplicationWindow {
     section1.append ("Preferences", "win.edit_preferences");
     section2.append ("Help", "win.show-help-overlay");
     section2.append ("About", "app.about");
-    more_menu.append_section(null, section1);
-    more_menu.append_section(null, section2);
+    more_menu.append_section (null, section1);
+    more_menu.append_section (null, section2);
     this.more_button = new Gtk.MenuButton () {
       can_focus = false,
       menu_model = more_menu,
       icon_name = "open-menu-symbolic",
+
+      hexpand = false,
+      halign = Gtk.Align.END,
     };
 
     var title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
@@ -240,8 +243,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
       var w = new PreferencesWindow (this.application, this);
-      w.set_transient_for(this);
-      w.set_modal(true);
+      w.set_transient_for (this);
+      w.set_modal (true);
       w.present ();
     });
     this.add_action (sa);
