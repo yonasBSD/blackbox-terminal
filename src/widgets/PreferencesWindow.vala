@@ -148,7 +148,10 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     // Themes
 
     ColorSchemeThumbnailProvider.init_resource ();
-    this.preview_cached = new HashTable<string, ColorSchemeThumbnail> (str_hash, str_equal);
+    this.preview_cached = new HashTable<string, ColorSchemeThumbnail> (
+      str_hash,
+      str_equal
+    );
 
     // Add thumbnials into Gtk.FlowBox
     this.window.theme_provider.themes.for_each ((name, scheme) => {
@@ -158,9 +161,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       this.preview_flow_box.append (previewer);
       this.preview_cached[name] = previewer;
 
-      if (previewer.scheme_name == settings.theme) {
-        previewer.selected = true;
-      }
+      previewer.selected = (previewer.scheme_name == settings.theme);
     });
 
     this.preview_flow_box.child_activated.connect ((child) => {
@@ -169,12 +170,12 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
         return;
       }
       settings.theme = name;
-      debug ("Loaded thumbnail: %s", settings.theme);
     });
 
     settings.notify["theme"].connect (() => {
-      var widget = this.preview_cached.get (settings.theme);
-      widget.selected = true;
+      this.preview_cached.for_each ((name, thumbnail) => {
+        thumbnail.selected = (settings.theme == name);
+      });
     });
   }
 

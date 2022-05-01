@@ -17,10 +17,9 @@
  */
 
 /**
- * Used to load content of "color-scheme-thumbnail.svg" as template
- * of color scheme thumbnial.
- * It can convert Terminal.Scheme to string that contain edited version
- * of "color-scheme-thumbnail.svg".
+ * Used to load contents of "color-scheme-thumbnail.svg" as a color scheme
+ * thumbnail template. It can convert {@link Terminal.Scheme} to string that
+ * contains an edited version of "color-scheme-thumbnail.svg".
  */
 public class Terminal.ColorSchemeThumbnailProvider {
   private static string svg_content = null;
@@ -35,7 +34,8 @@ public class Terminal.ColorSchemeThumbnailProvider {
         ).load_contents (null, out data, null);
 
         svg_content = (string) data;
-      } catch (Error e) {
+      }
+      catch (Error e) {
         error ("%s", e.message);
       }
     }
@@ -61,7 +61,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
       node->set_prop (
         "style",
         "stroke:%s;stroke-width:3;stroke-linecap:round;".printf (
-          color?.to_string ()
+          color.to_string ()
         )
       );
     }
@@ -86,7 +86,6 @@ public class Terminal.ColorSchemeThumbnailProvider {
     string str;
     doc->dump_memory (out str, null);
 
-    //  debug ("File Edited: %s", str);
     var data = str.data.copy ();
 
     delete doc;
@@ -94,7 +93,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
   }
 }
 
-public class Terminal.ColorSchemePreviewPaintable: GLib.Object, Gdk.Paintable {
+public class Terminal.ColorSchemePreviewPaintable : GLib.Object, Gdk.Paintable {
   private Rsvg.Handle? handler;
   private Scheme       scheme;
 
@@ -114,7 +113,10 @@ public class Terminal.ColorSchemePreviewPaintable: GLib.Object, Gdk.Paintable {
         width = width,
         height = height
       });
-    } catch (Error e) {
+    }
+    catch (Error e) {
+      // TODO: should we make this a warning? It seems a bit overkill to crash
+      // the app because we can't render a thumbnail
       error ("%s", e.message);
     }
   }
@@ -127,11 +129,10 @@ public class Terminal.ColorSchemePreviewPaintable: GLib.Object, Gdk.Paintable {
 
     try {
       this.handler = new Rsvg.Handle.from_data (file_content);
-    } catch (Error e) {
+    }
+    catch (Error e) {
       error ("%s", e.message);
     }
-
-    debug ("Svg file has been edited for [ %s ] thumbnails", this.scheme.name);
   }
 }
 
@@ -149,10 +150,20 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
   public ColorSchemeThumbnail (Scheme scheme) {
     Object (has_tooltip: true);
 
-    this.bind_property ("scheme_name", this, "tooltip_text", BindingFlags.DEFAULT, null, null);
+    this.bind_property (
+      "scheme_name",
+      this,
+      "tooltip_text",
+      BindingFlags.DEFAULT,
+      null,
+      null
+    );
     this.add_css_class ("thumbnail");
     this.scheme_name = scheme.name;
 
+    // FIXME: scheme is a reference and this is altering things outside the
+    // scope of this function. We either have to ensure there's always a
+    // background/foreground color set in scheme or use a local fallback here
     if (scheme.foreground == null) {
       scheme.foreground = scheme.colors[7];
     }
@@ -169,13 +180,16 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
       cursor = new Gdk.Cursor.from_name ("pointer", null),
     };
 
-    var css_provider = new Gtk.CssProvider ();
-    css_provider.load_from_data (
+    var css_provider = Marble.get_css_provider_for_data (
       "picture { background-color: %s; }".printf (
         scheme.background.to_string ()
-      ).data
+      )
     );
-    img.get_style_context ().add_provider (css_provider, -1);
+
+    img.get_style_context ().add_provider (
+      css_provider,
+      Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+    );
 
     // Icon will show when this.selected is true
     var checkicon = new Gtk.Image () {
@@ -192,16 +206,12 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
 
     this.notify["selected"].connect (() => {
       if (this.selected) {
-        if (last_selected != null) {
-          last_selected.selected = false;
-        }
-        last_selected = this;
         img.add_css_class ("selected");
-        checkicon.show ();
-      } else {
-        img.remove_css_class ("selected");
-        checkicon.hide ();
       }
+      else {
+        img.remove_css_class ("selected");
+      }
+      checkicon.visible = this.selected;
     });
 
     // Emit activate signal when thumbnail is chicked.
