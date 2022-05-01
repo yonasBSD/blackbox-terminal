@@ -204,4 +204,39 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
         : null;
     }
   }
+
+  [GtkCallback]
+  private void on_reset_request () {
+    var d = new Gtk.MessageDialog (
+      this,
+      Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+      Gtk.MessageType.QUESTION,
+      Gtk.ButtonsType.YES_NO,
+      "Are you sure you want to reset all settings?"
+    );
+
+    var yes_button = d.get_widget_for_response (Gtk.ResponseType.YES);
+    yes_button?.add_css_class ("destructive-action");
+
+    var no_button = d.get_widget_for_response (Gtk.ResponseType.NO);
+    no_button?.add_css_class ("suggested-action");
+
+    d.set_default_response (Gtk.ResponseType.NO);
+
+    d.response.connect ((response) => {
+      if (response == Gtk.ResponseType.YES) {
+        this.do_reset_preferences ();
+      }
+      d.destroy ();
+    });
+
+    d.present ();
+  }
+
+  private void do_reset_preferences () {
+    var settings = Settings.get_default ();
+    foreach (var key in settings.schema.settings_schema.list_keys ()) {
+      settings.schema.reset (key);
+    }
+  }
 }

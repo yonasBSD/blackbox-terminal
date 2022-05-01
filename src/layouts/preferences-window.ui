@@ -222,6 +222,33 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="title" translatable="yes">Danger zone</property>
+            <child>
+              <object class="AdwActionRow">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Reset preferences</property>
+                <property name="subtitle" translatable="yes">This will revert all settings back to default. Your extra themes will not be removed.</property>
+
+                <child>
+                  <object class="GtkButton" id="reset_all_button">
+                    <property name="visible">True</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                    <property name="halign">GTK_ALIGN_END</property>
+                    <property name="label">Reset preferences</property>
+                    <signal name="clicked" handler="on_reset_request" swapped="no"/>
+                    <style>
+                      <class name="destructive-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>
