@@ -28,7 +28,14 @@ terminal_deps = [
   dependency('vte-2.91-gtk4', version: '>= 0.68.0'),
   dependency('json-glib-1.0', version: '>= 1.4.4'),
   dependency('libpcre2-8'),
+  dependency('libxml-2.0', version: '>= 2.9.12'),
+  dependency('librsvg-2.0', version: '>= 2.54.0')
 ]
+
+if meson.get_compiler('vala').version().version_compare('>=0.56.1')
+  # This is needed because X11 needs special attention in some areas
+  terminal_deps += dependency('gtk4-x11')
+endif
 
 # https://github.com/elementary/terminal/blob/d9620eb12331a28c658f97ac9a1bdb809aa90089/meson.build
 vapi_dir = meson.current_source_dir() / 'vapi'

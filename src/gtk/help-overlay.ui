@@ -67,6 +67,18 @@
                 <property name="action-name">app.focus-previous-tab</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;alt&gt;1...8</property>
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab</property>
+              </object>
+            </child>
+              <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;alt&gt;9</property>
+                <property name="title" translatable="yes" context="shortcut window">Switch to last Tab</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -90,3 +102,4 @@
     </child>
   </object>
 </interface>
+

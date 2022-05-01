@@ -4,5 +4,6 @@
     <file>gtk/help-overlay.ui</file>
     <file>layouts/preferences-window.ui</file>
     <file>resources/style.css</file>
+    <file>resources/svg/color-scheme-thumbnail.svg</file>
   </gresource>
 </gresources>

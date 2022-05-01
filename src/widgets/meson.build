@@ -3,5 +3,6 @@ terminal_sources += files(
   'PreferencesWindow.vala',
   'Terminal.vala',
   'TerminalTab.vala',
+  'ColorSchemeThumbnail.vala',
   'Window.vala',
 )
