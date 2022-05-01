@@ -43,6 +43,20 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwActionRow" id="show_menu_button_action_row">
+                <property name="activatable-widget">show_menu_button_switch</property>
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Show menu button</property>
+
+                <child>
+                  <object class="GtkSwitch" id="show_menu_button_switch">
+                    <property name="visible">True</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>

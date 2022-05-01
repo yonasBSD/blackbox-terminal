@@ -87,7 +87,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   Adw.HeaderBar   header_bar;
   Adw.TabBar      tab_bar;
   Gtk.Button      new_tab_button;
-  Gtk.MenuButton  more_button;
+  Gtk.MenuButton  menu_button;
   Gtk.Revealer    header_bar_revealer;
   Settings        settings = Settings.get_default ();
 
@@ -134,7 +134,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     section2.append ("About", "app.about");
     more_menu.append_section (null, section1);
     more_menu.append_section (null, section2);
-    this.more_button = new Gtk.MenuButton () {
+    this.menu_button = new Gtk.MenuButton () {
       can_focus = false,
       menu_model = more_menu,
       icon_name = "open-menu-symbolic",
@@ -150,7 +150,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     title_box.append (this.tab_bar);
     title_box.append (this.new_tab_button);
-    title_box.append (this.more_button);
+    title_box.append (this.menu_button);
 
     this.header_bar.title_widget = title_box;
 
@@ -205,6 +205,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "show-headerbar",
       this.header_bar_revealer,
       "reveal-child",
+      SettingsBindFlags.GET
+    );
+
+    this.settings.schema.bind (
+      "show-menu-button",
+      this.menu_button,
+      "visible",
       SettingsBindFlags.GET
     );
 

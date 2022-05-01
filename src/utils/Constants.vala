@@ -32,4 +32,6 @@ namespace Terminal.Constants {
   };
 
   const string X11_WINDOW_SIZE_WARNING = "Warning: restoring window size under X11 does not work properly. See <a href=\"https://gitlab.gnome.org/GNOME/gtk/-/issues/4136\">this bug</a>.";
+
+  const string MENU_BUTTON_ALTERNATIVE = "You can still access the menu by right-clicking any terminal.";
 }

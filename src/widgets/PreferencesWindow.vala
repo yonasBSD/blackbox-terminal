@@ -23,6 +23,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;
   [GtkChild] unowned Gtk.Switch show_headerbar_switch;
+  [GtkChild] unowned Gtk.Switch show_menu_button_switch;
   [GtkChild] unowned Gtk.Switch use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
@@ -30,6 +31,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
 
+  [GtkChild] unowned Adw.ActionRow show_menu_button_action_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow remember_window_size_row;
@@ -69,6 +71,20 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind("show-headerbar", this.show_headerbar_switch,
       "active", SettingsBindFlags.DEFAULT);
+
+    settings.schema.bind(
+      "show-menu-button",
+      this.show_menu_button_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.notify["show-menu-button"].connect (() => {
+      this.show_menu_button_action_row.subtitle =
+        settings.show_menu_button
+          ? null
+          : Constants.MENU_BUTTON_ALTERNATIVE;
+    });
 
     // Scrolling ====
 
