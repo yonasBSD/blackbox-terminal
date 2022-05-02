@@ -1,6 +1,6 @@
 <div align="center">
-  <h1><img src="./data/icons/hicolor/scalable/apps/com.raggesilver.Terminal.svg" height="64"/>Terminal</h1>
-  <h4>A beautiful and simple GTK 4 terminal.</h4>
+  <h1><img src="./data/icons/hicolor/scalable/apps/com.raggesilver.BlackBox.svg" height="64"/>Black Box</h1>
+  <h4>A beautiful GTK 4 terminal.</h4>
   <p>
     <a href="#install">Install</a> •
     <a href="#features">Features</a> •
@@ -11,12 +11,12 @@
 <div align="center">
   <img src="https://i.imgur.com/kCQDGcb.png" alt="Preview"/><br/>
   <small><i>
-    Terminal 42.alpha0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Black Box 42.alpha0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
 
-> This is work in progress. Feel free to use Terminal and report any bugs you
+> This is work in progress. Feel free to use Black Box and report any bugs you
 > find.
 
 I created this project so that I could use a decent looking terminal app on
@@ -36,36 +36,37 @@ Linux. There are more featureful alternatives out there.
 
 **Download**
 
-- [Flatpak](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/main/raw/terminal.flatpak?job=flatpak)
+- [Flatpak](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/main/raw/blackbox.flatpak?job=flatpak)
 - [Zip](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/main/download?job=flatpak)
 
 *Note: these two links will not work if the latest pipeline failed/was skipped/is still running*
 
 **Flathub**
 
-Terminal will be available on Flathub when 42 is out.
+Black Box will be available on Flathub when 42 is out.
 
 ## Compile
 
 **Flatpak**
 
-To build and run Terminal, use GNOME Builder, or VS Code along with [Vala](https://marketplace.visualstudio.com/items?itemName=prince781.vala) and [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) extensions.
+To build and run Black Box, use GNOME Builder, or VS Code along with [Vala](https://marketplace.visualstudio.com/items?itemName=prince781.vala) and [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) extensions.
 
-If you want to manually build Terminal take a look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
+If you want to manually build Black Box take a look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
 
 ## Some other screenshots
 
 <div align="center">
   <img src="https://imgur.com/75C25vk.png" alt="Headerbar-less terminal"/><br/>
   <small><i>
-    Terminal with "show headerbar" off.
+    Black Box with "show headerbar" off.
   </i></small>
   <br/><br/>
 </div>
 
 ## Credits
 
-- Most of Terminal's themes come (straight out copied) from [Tilix](https://github.com/gnunn1/tilix)
+- Most of Black Box's themes come (straight out copied) from [Tilix](https://github.com/gnunn1/tilix)
 - Most non-Tilix-default themes come (straight out copied) from [Tilix-Themes](https://github.com/storm119/Tilix-Themes)
-- Terminal's icon is a (very) slightly modified version of [GNOME Terminal's icon](https://gitlab.gnome.org/GNOME/gnome-terminal/-/blob/af6fa5af6ba69e3cd392de20e9c2954c6405a2dc/data/icons/hicolor_apps_scalable_org.gnome.Terminal.svg)
+- Thank you, @linuxllama, for QA testing and creating Black Box's app icon
+- Thank you, @predvodnik, for coming up with the name "Black Box"
 - Source code that derives from other projects is properly attributed in the code itself

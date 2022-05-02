@@ -30,7 +30,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
         uint8[] data;
 
         File.new_for_uri (
-          "resource:///com/raggesilver/Terminal/resources/svg/color-scheme-thumbnail.svg"
+          "resource:///com/raggesilver/BlackBox/resources/svg/color-scheme-thumbnail.svg"
         ).load_contents (null, out data, null);
 
         svg_content = (string) data;

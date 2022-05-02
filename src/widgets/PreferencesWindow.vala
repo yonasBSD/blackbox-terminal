@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-[GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/layouts/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;

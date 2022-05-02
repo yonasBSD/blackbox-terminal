@@ -1,6 +1,6 @@
-data/com.raggesilver.Terminal.desktop.in
-data/com.raggesilver.Terminal.appdata.xml.in
-data/com.raggesilver.Terminal.gschema.xml
+data/com.raggesilver.BlackBox.desktop.in
+data/com.raggesilver.BlackBox.appdata.xml.in
+data/com.raggesilver.BlackBox.gschema.xml
 src/window.ui
 src/main.vala
 src/window.vala

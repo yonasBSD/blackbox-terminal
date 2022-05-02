@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="terminal">
-  <schema id="com.raggesilver.Terminal" path="/com/raggesilver/Terminal/">
+  <schema id="com.raggesilver.BlackBox" path="/com/raggesilver/BlackBox/">
     <key name="window-width" type="u">
       <default>600</default>
       <summary>Window width</summary>

@@ -176,7 +176,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     );
 
     Marble.add_css_provider_from_resource (
-      "/com/raggesilver/Terminal/resources/style.css"
+      "/com/raggesilver/BlackBox/resources/style.css"
     );
 
     this.theme_provider = new ThemeProvider (this.settings);
@@ -348,7 +348,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 }
 
-//  [GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/window.ui")]
+//  [GtkTemplate (ui = "/com/raggesilver/BlackBox/layouts/window.ui")]
 //  public class Terminal.Window : Adw.ApplicationWindow {
 //    private PreferencesWindow? pref_window = null;
 //    private Adw.TabView tab_view;
@@ -369,7 +369,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
 //      Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
 //      Marble.add_css_provider_from_resource(
-//        "/com/raggesilver/Terminal/resources/style.css"
+//        "/com/raggesilver/BlackBox/resources/style.css"
 //      );
 
 //      this.settings = new Settings();

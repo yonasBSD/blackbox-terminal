@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>com.raggesilver.Terminal</id>
+  <id>com.raggesilver.BlackBox</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
-  <name>Terminal</name>
-  <summary>A beautiful and simple GTK 4 terminal.</summary>
+  <name>BlackBox</name>
+  <summary>A beautiful GTK 4 terminal.</summary>
 
   <developer_name>Paulo Queiroz</developer_name>
 
@@ -16,10 +16,10 @@
 
   <description>
     <p>
-      Terminal is a native terminal emulator for GNOME that offers superb
+      Black Box is a native terminal emulator for GNOME that offers superb
       theming options.
     </p>
-    <p>With Terminal you can:</p>
+    <p>With Black Box you can:</p>
     <ul>
       <li>Set colors schemes and integrate them with the rest of the window</li>
       <li>Customize font and size</li>
@@ -32,12 +32,12 @@
 
   <screenshots>
     <screenshot type="default">
-      <caption>Terminal screenshot</caption>
+      <caption>Black Box screenshot</caption>
       <image>https://i.imgur.com/8S04oVv.png</image>
     </screenshot>
   </screenshots>
 
-  <launchable type="desktop-id">com.raggesilver.Terminal.desktop</launchable>
+  <launchable type="desktop-id">com.raggesilver.BlackBox.desktop</launchable>
 
   <categories>
     <category>Utility</category>

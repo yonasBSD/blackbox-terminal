@@ -4,8 +4,8 @@ install_subdir('schemes',
     install_dir: join_paths(get_option('datadir'), 'terminal'))
 
 desktop_file = i18n.merge_file(
-  input: 'com.raggesilver.Terminal.desktop.in',
-  output: 'com.raggesilver.Terminal.desktop',
+  input: 'com.raggesilver.BlackBox.desktop.in',
+  output: 'com.raggesilver.BlackBox.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -20,8 +20,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.raggesilver.Terminal.appdata.xml.in',
-  output: 'com.raggesilver.Terminal.appdata.xml',
+  input: 'com.raggesilver.BlackBox.appdata.xml.in',
+  output: 'com.raggesilver.BlackBox.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -34,7 +34,7 @@ if appstream_util.found()
   )
 endif
 
-install_data('com.raggesilver.Terminal.gschema.xml',
+install_data('com.raggesilver.BlackBox.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

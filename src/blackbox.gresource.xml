@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/com/raggesilver/Terminal">
+  <gresource prefix="/com/raggesilver/BlackBox">
     <file>gtk/help-overlay.ui</file>
     <file>layouts/preferences-window.ui</file>
     <file>resources/style.css</file>

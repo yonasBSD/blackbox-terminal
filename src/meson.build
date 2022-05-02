@@ -44,12 +44,12 @@ add_project_arguments('-DPCRE2_CODE_UNIT_WIDTH=0', language: 'c')
 
 gnome = import('gnome')
 
-terminal_sources += gnome.compile_resources('terminal-resources',
-  'terminal.gresource.xml',
+terminal_sources += gnome.compile_resources('blackbox-resources',
+  'blackbox.gresource.xml',
   c_name: 'terminal'
 )
 
-executable('terminal', terminal_sources, config_header,
+executable('blackbox', terminal_sources, config_header,
   vala_args: '--target-glib=2.50',  dependencies: terminal_deps,
   install: true,
 )
