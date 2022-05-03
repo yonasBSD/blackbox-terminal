@@ -50,6 +50,12 @@
                 <property name="accelerator">&lt;primary&gt;&lt;shift&gt;p</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;h</property>
+                <property name="title" translatable="yes" context="shortcut window">Switch headbar mode</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -73,7 +79,7 @@
                 <property name="title" translatable="yes" context="shortcut window">Switch to Tab</property>
               </object>
             </child>
-              <child>
+            <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;alt&gt;9</property>
                 <property name="title" translatable="yes" context="shortcut window">Switch to last Tab</property>
@@ -102,4 +108,3 @@
     </child>
   </object>
 </interface>
-
