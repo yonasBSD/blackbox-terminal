@@ -24,11 +24,11 @@ namespace Terminal {
       authors = { "Paulo Queiroz <pvaqueiroz@gmail.com>" },
       destroy_with_parent = true,
       license_type = Gtk.License.GPL_3_0,
-      logo_icon_name = "com.raggesilver.Terminal",
+      logo_icon_name = "com.raggesilver.BlackBox",
       modal = true,
-      program_name = "Terminal",
+      program_name = "Black Box",
       version = VERSION,
-      website = "https://gitlab.gnome.org/raggesilver/terminal",
+      website = "https://gitlab.gnome.org/raggesilver/blackbox",
       website_label = "Repo",
     };
 

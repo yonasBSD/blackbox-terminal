@@ -34,7 +34,7 @@ public class Terminal.Settings : Marble.Settings {
   private static Settings instance = null;
 
   private Settings () {
-    base ("com.raggesilver.Terminal");
+    base ("com.raggesilver.BlackBox");
   }
 
   public static Settings get_default () {

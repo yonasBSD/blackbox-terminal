@@ -1,1 +1,1 @@
-i18n.gettext('terminal', preset: 'glib')
+i18n.gettext('blackbox', preset: 'glib')

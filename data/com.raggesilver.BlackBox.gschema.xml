@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="terminal">
-  <schema id="com.raggesilver.Terminal" path="/com/raggesilver/Terminal/">
+<schemalist gettext-domain="blackbox">
+  <schema id="com.raggesilver.BlackBox" path="/com/raggesilver/BlackBox/">
     <key name="window-width" type="u">
       <default>600</default>
       <summary>Window width</summary>
@@ -46,7 +46,7 @@
       <summary>If enabled, terminals will scroll by pixels instead of rows</summary>
     </key>
     <key name="theme" type="s">
-      <default>'Material'</default>
+      <default>'Japanesque'</default>
       <summary>The color scheme for the terminal</summary>
     </key>
     <key name="terminal-padding" type="(uuuu)">

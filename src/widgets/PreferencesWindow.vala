@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-[GtkTemplate (ui = "/com/raggesilver/Terminal/layouts/preferences-window.ui")]
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/layouts/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;
@@ -59,7 +59,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     this.theme_scheme_group.description =
       "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>."
         .printf (
-          Path.build_filename (DATADIR, "terminal", "schemes", null),
+          Path.build_filename (DATADIR, "blackbox", "schemes", null),
           "https://github.com/storm119/Tilix-Themes"
         );
 

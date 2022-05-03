@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Black Box
+Exec=blackbox
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;System;TerminalEmulator;
+StartupNotify=true
+Keywords=Terminal;terminal;shell;prompt;command;commandline;cmd;box;
+Icon=com.raggesilver.BlackBox

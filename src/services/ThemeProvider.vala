@@ -57,7 +57,7 @@ public class Terminal.ThemeProvider : Object {
   private void load_themes() throws Error {
     string? fname = null;
     string path = Path.build_path(
-      Path.DIR_SEPARATOR_S, DATADIR, "terminal", "schemes", null
+      Path.DIR_SEPARATOR_S, DATADIR, "blackbox", "schemes", null
     );
     var d = Dir.open(path);
 

@@ -28,7 +28,7 @@ public class Terminal.Application : Adw.Application {
   };
 
   public Application (ApplicationFlags flags) {
-    Object (application_id: "com.raggesilver.Terminal", flags: flags);
+    Object (application_id: "com.raggesilver.BlackBox", flags: flags);
 
     this.add_action_entries (ACTIONS, this);
 

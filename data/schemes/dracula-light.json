@@ -1,0 +1,25 @@
+{
+    "name": "Dracula Light",
+    "comment": "Ported for Terminix Colour Scheme",
+    "use-theme-colors": false,
+    "foreground-color": "#1e1f29",
+    "background-color": "#ffffff",
+    "palette": [
+        "#000000",
+        "#ff5555",
+        "#07f643",
+        "#d1e30a",
+        "#bd93f9",
+        "#ff79c6",
+        "#04c2eb",
+        "#bbbbbb",
+        "#555555",
+        "#ff5555",
+        "#07f643",
+        "#d1e30a",
+        "#bd93f9",
+        "#ff79c6",
+        "#04c2eb",
+        "#ffffff"
+    ]
+}

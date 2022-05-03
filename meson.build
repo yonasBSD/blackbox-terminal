@@ -1,5 +1,5 @@
-project('terminal', ['c', 'vala'],
-          version: '42.alpha2',
+project('blackbox', ['c', 'vala'],
+          version: '42.alpha3',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2',
                    ],

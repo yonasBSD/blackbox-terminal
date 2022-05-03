@@ -1,9 +1,9 @@
 {
-  "app-id" : "com.raggesilver.Terminal",
+  "app-id" : "com.raggesilver.BlackBox",
   "runtime" : "org.gnome.Platform",
   "runtime-version" : "42",
   "sdk" : "org.gnome.Sdk",
-  "command" : "terminal",
+  "command" : "blackbox",
   "finish-args" : [
     "--allow=devel",
     "--filesystem=home",
@@ -63,13 +63,13 @@
       ]
     },
     {
-      "name" : "terminal",
+      "name" : "blackbox",
       "builddir" : true,
       "buildsystem" : "meson",
       "sources" : [
         {
           "type" : "git",
-          "url" : "https://gitlab.gnome.org/raggesilver/terminal"
+          "url" : "https://gitlab.gnome.org/raggesilver/blackbox"
         }
       ]
     }
