@@ -269,6 +269,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
     // TODO: this will stay disabled until copying actually works in Vte-Gtk4
     sa.set_enabled (false);
     this.add_action (sa);
+
+    sa = new SimpleAction ("switch-headerbar-mode", null);
+    sa.activate.connect (() => {
+      this.settings.show_headerbar = !this.settings.show_headerbar;
+    });
+    this.add_action (sa);
   }
 
   public void new_tab () {

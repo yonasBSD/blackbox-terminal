@@ -37,6 +37,7 @@ public class Terminal.Application : Adw.Application {
     this.set_accels_for_action ("app.new-window", { "<primary><shift>n" });
     this.set_accels_for_action ("app.quit", { "<primary>q" });
 
+    this.set_accels_for_action ("win.switch-headerbar-mode", { "<primary><shift>h" });
     this.set_accels_for_action ("win.new_tab", { "<primary><shift>t" });
     this.set_accels_for_action ("win.edit_preferences", { "<primary>comma" });
     this.set_accels_for_action ("win.copy", { "<primary><shift>c" });
