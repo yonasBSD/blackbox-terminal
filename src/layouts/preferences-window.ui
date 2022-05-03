@@ -204,7 +204,7 @@
             <property name="can-focus">False</property>
             <!-- <property name="use-markup">True</property> -->
             <property name="title" translatable="yes">Experimental 🧪</property>
-            <property name="description" translatable="yes">Features in this section are known to be wonky. Please feel free to test and &lt;a href="https://gitlab.gnome.org/raggesilver/terminal/-/issues"&gt;report bugs&lt;/a&gt;.</property>
+            <property name="description" translatable="yes">Features in this section are known to be wonky. Please feel free to test and &lt;a href="https://gitlab.gnome.org/raggesilver/blackbox/-/issues"&gt;report bugs&lt;/a&gt;.</property>
             <child>
               <object class="AdwActionRow" id="pixel_scrolling_action_row">
                 <property name="activatable-widget">pixel_scrolling_switch</property>

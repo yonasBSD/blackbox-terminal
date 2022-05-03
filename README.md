@@ -36,8 +36,8 @@ Linux. There are more featureful alternatives out there.
 
 **Download**
 
-- [Flatpak](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/main/raw/blackbox.flatpak?job=flatpak)
-- [Zip](https://gitlab.gnome.org/raggesilver/terminal/-/jobs/artifacts/main/download?job=flatpak)
+- [Flatpak](https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/artifacts/main/raw/blackbox.flatpak?job=flatpak)
+- [Zip](https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/artifacts/main/download?job=flatpak)
 
 *Note: these two links will not work if the latest pipeline failed/was skipped/is still running*
 

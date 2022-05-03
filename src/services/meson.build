@@ -1,4 +1,4 @@
-terminal_sources += files([
+blackbox_sources += files([
     'ThemeProvider.vala',
     'Settings.vala',
 ])

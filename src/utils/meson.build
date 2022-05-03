@@ -1,4 +1,4 @@
-terminal_sources += files([
+blackbox_sources += files([
     'Constants.vala',
     'Terminal.vala',
     'X11.vala',

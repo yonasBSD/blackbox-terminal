@@ -28,7 +28,7 @@ namespace Terminal {
       modal = true,
       program_name = "Black Box",
       version = VERSION,
-      website = "https://gitlab.gnome.org/raggesilver/terminal",
+      website = "https://gitlab.gnome.org/raggesilver/blackbox",
       website_label = "Repo",
     };
 

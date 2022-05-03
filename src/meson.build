@@ -1,4 +1,4 @@
-terminal_sources = files(
+blackbox_sources = files(
   'Application.vala',
   'main.vala',
 )
@@ -20,7 +20,7 @@ config_header = configure_file(
     configuration: conf_data
     )
 
-terminal_deps = [
+blackbox_deps = [
   dependency('gio-2.0', version: '>= 2.50'),
   dependency('gtk4', version: '>= 4.6.2'),
   dependency('libadwaita-1'),
@@ -34,7 +34,7 @@ terminal_deps = [
 
 if meson.get_compiler('vala').version().version_compare('>=0.56.1')
   # This is needed because X11 needs special attention in some areas
-  terminal_deps += dependency('gtk4-x11')
+  blackbox_deps += dependency('gtk4-x11')
 endif
 
 # https://github.com/elementary/terminal/blob/d9620eb12331a28c658f97ac9a1bdb809aa90089/meson.build
@@ -44,12 +44,12 @@ add_project_arguments('-DPCRE2_CODE_UNIT_WIDTH=0', language: 'c')
 
 gnome = import('gnome')
 
-terminal_sources += gnome.compile_resources('blackbox-resources',
+blackbox_sources += gnome.compile_resources('blackbox-resources',
   'blackbox.gresource.xml',
-  c_name: 'terminal'
+  c_name: 'blackbox'
 )
 
-executable('blackbox', terminal_sources, config_header,
-  vala_args: '--target-glib=2.50',  dependencies: terminal_deps,
+executable('blackbox', blackbox_sources, config_header,
+  vala_args: '--target-glib=2.50',  dependencies: blackbox_deps,
   install: true,
 )

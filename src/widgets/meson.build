@@ -1,4 +1,4 @@
-terminal_sources += files(
+blackbox_sources += files(
   'AboutDialog.vala',
   'PreferencesWindow.vala',
   'Terminal.vala',

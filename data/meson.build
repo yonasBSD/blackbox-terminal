@@ -1,7 +1,7 @@
 subdir('icons')
 
 install_subdir('schemes',
-    install_dir: join_paths(get_option('datadir'), 'terminal'))
+    install_dir: join_paths(get_option('datadir'), 'blackbox'))
 
 desktop_file = i18n.merge_file(
   input: 'com.raggesilver.BlackBox.desktop.in',

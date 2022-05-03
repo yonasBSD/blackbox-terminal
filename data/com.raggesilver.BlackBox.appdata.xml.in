@@ -105,11 +105,11 @@
     </release>
   </releases>
 
-  <url type="homepage">https://gitlab.gnome.org/raggesilver/terminal</url>
-  <url type="bugtracker">https://gitlab.gnome.org/raggesilver/terminal/issues</url>
+  <url type="homepage">https://gitlab.gnome.org/raggesilver/blackbox</url>
+  <url type="bugtracker">https://gitlab.gnome.org/raggesilver/blackbox/issues</url>
   <url type="donation">https://www.patreon.com/raggesilver</url>
-  <url type="help">https://gitlab.gnome.org/raggesilver/terminal/issues</url>
-  <url type="translate">https://gitlab.gnome.org/raggesilver/terminal/issues</url>
+  <url type="help">https://gitlab.gnome.org/raggesilver/blackbox/issues</url>
+  <url type="translate">https://gitlab.gnome.org/raggesilver/blackbox/issues</url>
 
   <update_contact>pvaqueiroz@gmail.com</update_contact>
 </component>

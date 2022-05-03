@@ -69,7 +69,7 @@
       "sources" : [
         {
           "type" : "git",
-          "url" : "https://gitlab.gnome.org/raggesilver/terminal"
+          "url" : "https://gitlab.gnome.org/raggesilver/blackbox"
         }
       ]
     }
