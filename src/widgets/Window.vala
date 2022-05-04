@@ -246,21 +246,43 @@ public class Terminal.Window : Adw.ApplicationWindow {
       }
 
       var h = this.header_bar.get_height ();
-      var v = y <= (h * 2);
-      this.floating_header_bar_revealer.reveal_child = v;
-    });
+      var is_showing = this.floating_header_bar_revealer.reveal_child;
 
-    this.floating_header_bar_revealer.notify["reveal-child"].connect (() => {
-      if (this.floating_header_bar_revealer.reveal_child) {
-        this.theme_provider.extra_padding_request ({ this.header_bar.get_height (), 0, 0, 0 });
-      }
-      else {
-        this.theme_provider.extra_padding_request ({ 0 });
+      // TODO: Make to_show_erea be configurable in Preferences
+      var to_show_erea = 3;
+
+      // When float headerbar is hiding, just leave a small erea to
+      // show it
+      var v = y <= (is_showing ? h : to_show_erea);
+
+      if (v != is_showing) {
+        if (is_showing) {
+          // when leave the area, clear source of timeout and
+          // hide floating headerbar
+          Source.remove (this.waiting_for_floating_hb_animation);
+          this.waiting_for_floating_hb_animation = 0;
+          this.floating_header_bar_revealer.reveal_child = v;
+        } else {
+          // Add timeout when show float headerbar, then show
+          // floating headerbar
+
+          // TODO: Make timeout time can be configureable in Preferences
+          this.waiting_for_floating_hb_animation = Timeout.add (
+            500,
+            () => {
+              this.floating_header_bar_revealer.reveal_child = v;
+              this.waiting_for_floating_hb_animation = 0;
+              return false;
+            }
+          );
+        }
       }
     });
 
     (this as Gtk.Widget)?.add_controller (c);
   }
+
+  private uint waiting_for_floating_hb_animation = 0;
 
   private void add_actions () {
     var sa = new SimpleAction ("new_tab", null);
