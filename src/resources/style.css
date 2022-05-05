@@ -2,6 +2,14 @@ headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
 
+.floating-revealer headerbar {
+  background: transparent;
+}
+
+.floating-revealer button {
+  opacity: 1;
+}
+
 tab {
   background: transparent;
 }
@@ -28,6 +36,39 @@ tabbox background {
   padding: 2px;
   color: white;
   margin: 8px;
+}
+
+.floating-btn-box button,
+.floating-revealer menubutton,
+.floating-revealer menubutton button,
+.floating-revealer separator{
+  margin: 0;
+}
+
+.floating-btn-box {
+  border-radius: 9999px;
+}
+
+.floating-revealer menubutton button,
+.floating-btn-box,
+.floating-revealer windowcontrols image {
+  background: @headerbar_bg_color;
+}
+
+.floating-revealer menubutton button:hover,
+.floating-btn-box button:hover,
+.floating-revealer windowcontrols image:hover {
+  background: lighter(@headerbar_bg_color);
+}
+
+.floating-btn-box button {
+  border-radius: 0;
+}
+.floating-btn-box button:first-child {
+  padding-left: 8px;
+}
+.floating-btn-box button:last-child {
+  padding-right: 8px;
 }
 
 /* @define-color rg_theme_fg_color @theme_fg_color;

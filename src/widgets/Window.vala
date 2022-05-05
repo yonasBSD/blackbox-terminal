@@ -85,18 +85,27 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Adw.TabView    tab_view        { get; private set; }
 
   Adw.HeaderBar   header_bar;
+  Gtk.HeaderBar   floating_bar;
   Adw.TabBar      tab_bar;
+  Gtk.Box         layout_box;
+  Gtk.Box         floating_controls;
   Gtk.Button      new_tab_button;
   Gtk.MenuButton  menu_button;
+  Gtk.Button      show_headerbar_button;
+  Gtk.Button      fullscreen_button;
+  Gtk.Overlay     overlay;
   Gtk.Revealer    header_bar_revealer;
+  Gtk.Revealer    floating_header_bar_revealer;
   Settings        settings = Settings.get_default ();
+
+  const uint header_bar_revealer_duration_ms = 250;
 
   construct {
     if (DEVEL) {
       this.add_css_class ("devel");
     }
 
-    var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+    this.layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
     this.header_bar = new Adw.HeaderBar () {
       show_start_title_buttons = true,
@@ -105,8 +114,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       css_classes = { "flat" },
     };
 
-    this.header_bar_revealer = new Gtk.Revealer ();
-    this.header_bar_revealer.child = this.header_bar;
+    this.header_bar_revealer = new Gtk.Revealer () {
+      transition_duration = Window.header_bar_revealer_duration_ms,
+      child = this.header_bar,
+    };
 
     this.tab_view = new Adw.TabView ();
 
@@ -154,10 +165,62 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.header_bar.title_widget = title_box;
 
-    layout_box.append (this.header_bar_revealer);
-    layout_box.append (this.tab_view);
+    this.fullscreen_button = new Gtk.Button.from_icon_name (
+      "com.raggesilver.BlackBox-fullscreen-symbolic"
+    );
+    this.show_headerbar_button = new Gtk.Button.from_icon_name (
+      "com.raggesilver.BlackBox-show-headerbar-symbolic"
+    );
 
-    this.content = layout_box;
+    this.floating_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12) {
+      hexpand = true,
+      valign = Gtk.Align.CENTER,
+      halign = Gtk.Align.START
+    };
+    var btn_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+      css_classes = { "floating-btn-box" },
+      overflow = Gtk.Overflow.HIDDEN,
+      valign = Gtk.Align.CENTER,
+    };
+
+    btn_box.append (this.fullscreen_button);
+    btn_box.append (new Gtk.Separator(Gtk.Orientation.VERTICAL));
+    btn_box.append (this.show_headerbar_button);
+    this.floating_controls.append (new Gtk.MenuButton () {
+      menu_model = more_menu,
+      icon_name = "open-menu-symbolic",
+      css_classes = { "circular" },
+      valign = Gtk.Align.CENTER,
+      can_focus = false,
+    });
+    this.floating_controls.append (btn_box);
+
+    this.floating_bar = new Gtk.HeaderBar () {
+      css_classes = {"flat" },
+      title_widget = new Gtk.Label (null),
+    };
+
+    this.floating_header_bar_revealer = new Gtk.Revealer () {
+      transition_duration = Window.header_bar_revealer_duration_ms,
+      //  transition_type = Gtk.RevealerTransitionType.CROSSFADE,
+
+      valign = Gtk.Align.START,
+      vexpand = false,
+      child = floating_bar,
+
+      css_classes = { "floating-revealer" },
+    };
+
+    this.on_decoration_layout_changed ();
+
+    this.layout_box.append (this.header_bar_revealer);
+    this.layout_box.append (this.tab_view);
+
+    this.overlay = new Gtk.Overlay ();
+    this.overlay.child = this.layout_box;
+    this.overlay.add_overlay (this.floating_header_bar_revealer);
+
+    this.content = this.overlay;
   }
 
   public Window (
@@ -238,7 +301,73 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.notify["default-height"].connect (() => {
       this.settings.window_height = this.default_height;
     });
+
+    this.fullscreen_button.clicked.connect (() => {
+      if (this.fullscreened) {
+        this.unfullscreen ();
+      } else {
+        this.fullscreen ();
+      }
+    });
+
+    this.show_headerbar_button.clicked.connect (() => {
+      this.settings.show_headerbar = true;
+      this.floating_header_bar_revealer.reveal_child = false;
+    });
+
+    var s = Gtk.Settings.get_default ();
+    s.notify["gtk-decoration-layout"].connect(this.on_decoration_layout_changed);
+
+    //  this.settings.notify["show-headerbar"].connect (() => {
+    //    this.on_headerbar_toggled ();
+    //  });
+    //  this.on_headerbar_toggled ();
+
+    var c = new Gtk.EventControllerMotion ();
+    c.motion.connect ((_, x, y) => {
+      if (this.settings.show_headerbar) {
+        return;
+      }
+
+      var h = this.floating_bar.get_height ();
+      var is_showing = this.floating_header_bar_revealer.reveal_child;
+
+      // TODO: Make to_show_erea be configurable in Preferences
+      var to_show_erea = 3;
+
+      // When float headerbar is hiding, just leave a small erea to
+      // show it
+      var v = y <= (is_showing ? h : to_show_erea);
+
+      if (v != is_showing) {
+        if (is_showing) {
+          // when leave the area, clear source of timeout and
+          // hide floating headerbar
+          Source.remove (this.waiting_for_floating_hb_animation);
+          this.waiting_for_floating_hb_animation = 0;
+          this.floating_header_bar_revealer.reveal_child = v;
+        } else {
+          // Add timeout when show float headerbar, then show
+          // floating headerbar
+
+          // TODO: Make timeout time can be configureable in Preferences
+          this.waiting_for_floating_hb_animation = Timeout.add (
+            500,
+            () => {
+              this.floating_header_bar_revealer.reveal_child = v;
+              this.waiting_for_floating_hb_animation = 0;
+              this.floating_bar.focus (Gtk.DirectionType.UP);
+              return false;
+            }
+          );
+        }
+      }
+    });
+
+    (this as Gtk.Widget)?.add_controller (c);
   }
+
+  private uint waiting_for_floating_hb_animation = 0;
 
   private void add_actions () {
     var sa = new SimpleAction ("new_tab", null);
@@ -305,6 +434,19 @@ public class Terminal.Window : Adw.ApplicationWindow {
     (this.tab_view.selected_page?.child as TerminalTab)?.terminal.grab_focus ();
   }
 
+  private void on_decoration_layout_changed () {
+    var layout = Gtk.Settings.get_default ().gtk_decoration_layout;
+    var window_controls_in_end = layout.has_prefix ("appmenu");
+    this.floating_bar.remove (this.floating_controls);
+    if (window_controls_in_end) {
+      this.floating_bar.pack_start (this.floating_controls);
+    } else {
+      this.floating_bar.pack_end (this.floating_controls);
+    }
+    this.floating_bar.title_widget.halign
+      = window_controls_in_end ? Gtk.Align.START : Gtk.Align.END;
+  }
+
   public Window new_window (
     string? cwd = null,
     bool skip_initial_tab = false
@@ -352,141 +494,84 @@ public class Terminal.Window : Adw.ApplicationWindow {
       return;
     }
   }
+
+  // SYNC: we're currently moving the revealer to the overlay. We should
+  // probably leave the revealer as is (so that we don't have to mess with it's
+  // reveal-child prop, cuz it's bound to GSettings) and have another revealer
+  // exclusive for the overlay. One issue atm is that we can't right click if
+  // the Overlay has an overlay-child.
+
+  //  private void on_headerbar_toggled () {
+    //  Timeout.add
+    //  var show_headerbar = this.settings.show_headerbar;
+
+    //  // If the user just disabled the header bar, we need to wait for the
+    //  // revealer animation to end to only then move the headerbar to the floating
+    //  // revealer
+    //  var needs_to_wait_for_animation = (
+    //    !show_headerbar && this.header_bar.parent == this.header_bar_revealer
+    //  );
+
+    //  if (needs_to_wait_for_animation) {
+    //    GLib.Timeout.add (
+    //      Window.header_bar_revealer_duration_ms,
+    //      () => {
+    //        return this.on_headerbar_toggled_after_animation ();
+    //      },
+    //      Priority.DEFAULT
+    //    );
+    //  }
+    //  else {
+    //    this.on_headerbar_toggled_after_animation ();
+    //  }
+
+    //  if (show_headerbar) {
+    //    this.move_headerbar_to_regular ();
+    //  }
+    //  else {
+    //    this.move_headerbar_to_floating ();
+    //  }
+  //  }
+
+  // In case the user spams the "Show headerbar" toggle, we might need to keep
+  // track of the Timeout we set to wait for the headerbar animation to end.
+  //  private uint waiting_for_hb_animation = 0;
+
+  //  private void move_headerbar_to_floating () {
+  //    //  this.header_bar_revealer.child = null;
+
+  //    //  var prev_duration = this.floating_header_bar_revealer.transition_duration;
+  //    //  var prev_reveal = this.floating_header_bar_revealer.reveal_child;
+  //    //  var prev_ttype = this.floating_header_bar_revealer.transition_type;
+
+  //    //  this.floating_header_bar_revealer.transition_type = this.header_bar_revealer.transition_type;
+  //    //  this.floating_header_bar_revealer.transition_duration = 0;
+  //    //  this.floating_header_bar_revealer.reveal_child = true;
+
+  //    //  this.floating_header_bar_revealer.child = this.header_bar;
+
+  //    //  this.floating_header_bar_revealer.transition_duration = prev_duration;
+  //    //  this.floating_header_bar_revealer.reveal_child = prev_reveal;
+
+  //    this.waiting_for_hb_animation = Timeout.add (
+  //      Window.header_bar_revealer_duration_ms,
+  //      () => {
+  //        this.header_bar_revealer.child = null;
+  //        this.floating_header_bar_revealer.child = this.header_bar;
+  //        this.waiting_for_hb_animation = 0;
+  //        return false;
+  //      },
+  //      Priority.DEFAULT
+  //    );
+  //  }
+
+  //  private void move_headerbar_to_regular () {
+  //    if (this.waiting_for_hb_animation > 0) {
+  //      Source.remove (this.waiting_for_hb_animation);
+  //      this.waiting_for_hb_animation = 0;
+  //    }
+
+  //    this.floating_header_bar_revealer.child = null;
+  //    this.header_bar_revealer.child = this.header_bar;
+  //  }
 }
-
-//  [GtkTemplate (ui = "/com/raggesilver/BlackBox/layouts/window.ui")]
-//  public class Terminal.Window : Adw.ApplicationWindow {
-//    private PreferencesWindow? pref_window = null;
-//    private Adw.TabView tab_view;
-
-//    [GtkChild] unowned Gtk.Box content_box;
-//    [GtkChild] unowned Gtk.Revealer revealer;
-//    [GtkChild] unowned Adw.TabBar tab_bar;
-
-//    public Settings settings { get; private set; }
-//    public ThemeProvider theme_provider { get; private set; }
-
-//    public Window(
-//      Gtk.Application app,
-//      string? cwd = null,
-//      bool skip_initial_tab = false
-//    ) {
-//      Object(application: app);
-
-//      Gtk.Settings.get_default().gtk_application_prefer_dark_theme = true;
-//      Marble.add_css_provider_from_resource(
-//        "/com/raggesilver/BlackBox/resources/style.css"
-//      );
-
-//      this.settings = new Settings();
-//      this.get_style_context().add_class("ragged-terminal");
-
-//      this.settings.schema.bind("show-headerbar", this.revealer,
-//        "reveal-child", SettingsBindFlags.GET);
-
-//      this.settings.schema.bind("fill-tabs", this.tab_bar,
-//        "expand-tabs", SettingsBindFlags.DEFAULT);
-
-//      this.theme_provider = new ThemeProvider(this.settings);
-
-//      var sa = new SimpleAction("new_window", null);
-//      sa.activate.connect(() => {
-//        var w = new Window(this.application);
-//        w.show();
-//      });
-//      this.add_action(sa);
-
-//      sa = new SimpleAction("new_tab", null);
-//      sa.activate.connect(() => {
-//        this.new_tab();
-//      });
-//      this.add_action(sa);
-
-//      sa = new SimpleAction("edit_preferences", null);
-//      sa.activate.connect(() => {
-//        if (this.pref_window == null) {
-//          this.pref_window = new PreferencesWindow(this.application, this);
-//          //  this.pref_window.destroy.connect(() => {
-//          //    this.pref_window = null;
-//          //  });
-//        }
-//        this.pref_window.present();
-//      });
-//      this.add_action(sa);
-
-//      sa = new SimpleAction("about", null);
-//      sa.activate.connect(() => {
-//        var win = new Gtk.AboutDialog();
-//        win.set_transient_for(this);
-//        win.present();
-//      });
-//      this.add_action(sa);
-
-//      this.tab_view = new Adw.TabView() {
-//        halign = Gtk.Align.FILL,
-//        hexpand = true,
-//      };
-
-//      this.content_box.append(this.tab_viewthis.settings = new Settings();
-//      this.tab_view.notify["n-pages"].connect(this.on_n_pages_changed);
-//      this.tab_view.notify["selected-page"].connect(this.on_page_selected);
-//      this.tab_view.create_window.connect(this.on_new_window_requested);
-
-//      if (!skip_initial_tab) {
-//        this.new_tab();
-//      }
-//    }
-
-//    public void on_page_attached(Adw.TabPage page) {
-//      var tab = page.get_child() as TerminalTab;
-//      tab.window = tab.terminal.window = this;
-//    }
-
-//    public unowned Adw.TabView? on_new_window_requested() {
-//      var win = new Window(this.application, null, true);
-//      win.present();
-//      return win.tab_view;
-//    }
-
-//    public void on_n_pages_changed() {
-//      int count = this.tab_view.n_pages;
-//      var context = this.get_style_context();
-
-//      switch (count) {
-//        case 0:
-//          this.close();
-//          break;
-//        case 1:
-//          context.add_class("single-tab");
-//          break;
-//        default:
-//          context.remove_class("single-tab");
-//          break;
-//      }
-//    }
-
-//    private void on_page_selected() {
-//      if (this.tab_view.n_pages < 1) {
-//        return;
-//      }
-
-//      var tab = this.tab_view.selected_page.get_child() as TerminalTab;
-//      if (tab.terminal != null) {
-//        tab.terminal.grab_focus();
-//      }
-//    }
-
-//    public void new_tab() {
-//      var tab = new TerminalTab(this, null);
-//      var page = this.tab_view.add_page(tab, null);
-
-//      page.title = @"tab $(this.tab_view.n_pages)";
-//      tab.notify["title"].connect(() => {
-//        page.title = tab.title;
-//      });
-//      tab.exit.connect(() => {
-//        this.tab_view.close_page(page);
-//      });
-//      this.tab_view.set_selected_page(page);
-//    }
-//  }
