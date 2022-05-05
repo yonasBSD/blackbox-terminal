@@ -85,9 +85,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Adw.TabView    tab_view        { get; private set; }
 
   Adw.HeaderBar header_bar;
+  Adw.HeaderBar floating_bar;
   Adw.TabBar    tab_bar;
   Gtk.Box       layout_box;
   Gtk.Button    new_tab_button;
+  Gtk.Button    show_menu_button;
+  Gtk.Button    show_headerbar_button;
+  Gtk.Button    fullscreen_button;
   Gtk.Overlay   overlay;
   Gtk.Revealer  header_bar_revealer;
   Gtk.Revealer  floating_header_bar_revealer;
@@ -114,12 +118,30 @@ public class Terminal.Window : Adw.ApplicationWindow {
       child = this.header_bar,
     };
 
+    this.floating_bar = new Adw.HeaderBar () {
+      show_start_title_buttons = true,
+      show_end_title_buttons = true,
+      css_classes = {"flat" },
+      title_widget = new Gtk.Label(null),
+    };
+
+    this.show_menu_button = new Gtk.Button.from_icon_name ("com.raggesilver.BlackBox-menu-symbolic");
+    this.fullscreen_button = new Gtk.Button.from_icon_name ("com.raggesilver.BlackBox-fullscreen-symbolic");
+    this.show_headerbar_button = new Gtk.Button.from_icon_name ("com.raggesilver.BlackBox-show-headerbar-symbolic");
+
+    var btn_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+    btn_box.append (this.fullscreen_button);
+    btn_box.append (this.show_headerbar_button);
+    this.floating_bar.pack_end (this.show_menu_button);
+    this.floating_bar.pack_end (btn_box);
+
     this.floating_header_bar_revealer = new Gtk.Revealer () {
       transition_duration = Window.header_bar_revealer_duration_ms,
       //  transition_type = Gtk.RevealerTransitionType.CROSSFADE,
 
       valign = Gtk.Align.START,
       vexpand = false,
+      child = floating_bar,
 
       css_classes = { "floating-revealer" },
     };
@@ -234,10 +256,27 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.settings.window_height = this.default_height;
     });
 
-    this.settings.notify["show-headerbar"].connect (() => {
-      this.on_headerbar_toggled ();
+    this.show_menu_button.clicked.connect (() => {
+      warning ("unimpletent");
     });
-    this.on_headerbar_toggled ();
+
+    this.fullscreen_button.clicked.connect (() => {
+      if (this.fullscreened) {
+        this.unfullscreen ();
+      } else {
+        this.fullscreen ();
+      }
+    });
+
+    this.show_headerbar_button.clicked.connect (() => {
+      this.settings.show_headerbar = true;
+      this.floating_header_bar_revealer.reveal_child = false;
+    });
+
+    //  this.settings.notify["show-headerbar"].connect (() => {
+    //    this.on_headerbar_toggled ();
+    //  });
+    //  this.on_headerbar_toggled ();
 
     var c = new Gtk.EventControllerMotion ();
     c.motion.connect ((_, x, y) => {
@@ -245,7 +284,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
         return;
       }
 
-      var h = this.header_bar.get_height ();
+      var h = this.floating_bar.get_height ();
       var is_showing = this.floating_header_bar_revealer.reveal_child;
 
       // TODO: Make to_show_erea be configurable in Preferences
@@ -272,6 +311,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
             () => {
               this.floating_header_bar_revealer.reveal_child = v;
               this.waiting_for_floating_hb_animation = 0;
+              this.floating_bar.focus (Gtk.DirectionType.UP);
               return false;
             }
           );
@@ -395,9 +435,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
   // exclusive for the overlay. One issue atm is that we can't right click if
   // the Overlay has an overlay-child.
 
-  private void on_headerbar_toggled () {
+  //  private void on_headerbar_toggled () {
     //  Timeout.add
-    var show_headerbar = this.settings.show_headerbar;
+    //  var show_headerbar = this.settings.show_headerbar;
 
     //  // If the user just disabled the header bar, we need to wait for the
     //  // revealer animation to end to only then move the headerbar to the floating
@@ -419,53 +459,53 @@ public class Terminal.Window : Adw.ApplicationWindow {
     //    this.on_headerbar_toggled_after_animation ();
     //  }
 
-    if (show_headerbar) {
-      this.move_headerbar_to_regular ();
-    }
-    else {
-      this.move_headerbar_to_floating ();
-    }
-  }
+    //  if (show_headerbar) {
+    //    this.move_headerbar_to_regular ();
+    //  }
+    //  else {
+    //    this.move_headerbar_to_floating ();
+    //  }
+  //  }
 
   // In case the user spams the "Show headerbar" toggle, we might need to keep
   // track of the Timeout we set to wait for the headerbar animation to end.
-  private uint waiting_for_hb_animation = 0;
+  //  private uint waiting_for_hb_animation = 0;
 
-  private void move_headerbar_to_floating () {
-    //  this.header_bar_revealer.child = null;
+  //  private void move_headerbar_to_floating () {
+  //    //  this.header_bar_revealer.child = null;
 
-    //  var prev_duration = this.floating_header_bar_revealer.transition_duration;
-    //  var prev_reveal = this.floating_header_bar_revealer.reveal_child;
-    //  var prev_ttype = this.floating_header_bar_revealer.transition_type;
+  //    //  var prev_duration = this.floating_header_bar_revealer.transition_duration;
+  //    //  var prev_reveal = this.floating_header_bar_revealer.reveal_child;
+  //    //  var prev_ttype = this.floating_header_bar_revealer.transition_type;
 
-    //  this.floating_header_bar_revealer.transition_type = this.header_bar_revealer.transition_type;
-    //  this.floating_header_bar_revealer.transition_duration = 0;
-    //  this.floating_header_bar_revealer.reveal_child = true;
+  //    //  this.floating_header_bar_revealer.transition_type = this.header_bar_revealer.transition_type;
+  //    //  this.floating_header_bar_revealer.transition_duration = 0;
+  //    //  this.floating_header_bar_revealer.reveal_child = true;
 
-    //  this.floating_header_bar_revealer.child = this.header_bar;
+  //    //  this.floating_header_bar_revealer.child = this.header_bar;
 
-    //  this.floating_header_bar_revealer.transition_duration = prev_duration;
-    //  this.floating_header_bar_revealer.reveal_child = prev_reveal;
+  //    //  this.floating_header_bar_revealer.transition_duration = prev_duration;
+  //    //  this.floating_header_bar_revealer.reveal_child = prev_reveal;
 
-    this.waiting_for_hb_animation = Timeout.add (
-      Window.header_bar_revealer_duration_ms,
-      () => {
-        this.header_bar_revealer.child = null;
-        this.floating_header_bar_revealer.child = this.header_bar;
-        this.waiting_for_hb_animation = 0;
-        return false;
-      },
-      Priority.DEFAULT
-    );
-  }
+  //    this.waiting_for_hb_animation = Timeout.add (
+  //      Window.header_bar_revealer_duration_ms,
+  //      () => {
+  //        this.header_bar_revealer.child = null;
+  //        this.floating_header_bar_revealer.child = this.header_bar;
+  //        this.waiting_for_hb_animation = 0;
+  //        return false;
+  //      },
+  //      Priority.DEFAULT
+  //    );
+  //  }
 
-  private void move_headerbar_to_regular () {
-    if (this.waiting_for_hb_animation > 0) {
-      Source.remove (this.waiting_for_hb_animation);
-      this.waiting_for_hb_animation = 0;
-    }
+  //  private void move_headerbar_to_regular () {
+  //    if (this.waiting_for_hb_animation > 0) {
+  //      Source.remove (this.waiting_for_hb_animation);
+  //      this.waiting_for_hb_animation = 0;
+  //    }
 
-    this.floating_header_bar_revealer.child = null;
-    this.header_bar_revealer.child = this.header_bar;
-  }
+  //    this.floating_header_bar_revealer.child = null;
+  //    this.header_bar_revealer.child = this.header_bar;
+  //  }
 }

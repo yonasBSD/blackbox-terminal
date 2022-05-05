@@ -5,3 +5,8 @@ install_subdir('hicolor/scalable', install_dir: pkgicondir)
 
 install_data(['hicolor/scalable/apps/com.raggesilver.Terminal.svg'],
              install_dir: join_paths(icondir, 'scalable/apps'))
+
+install_data(['hicolor/scalable/actions/com.raggesilver.BlackBox-fullscreen-symbolic.svg',
+              'hicolor/scalable/actions/com.raggesilver.BlackBox-menu-symbolic.svg',
+              'hicolor/scalable/actions/com.raggesilver.BlackBox-show-headerbar-symbolic.svg',
+             ], install_dir: join_paths(icondir, 'scalable/apps'))

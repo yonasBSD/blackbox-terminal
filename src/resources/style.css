@@ -3,7 +3,11 @@ headerbar:not(.background) {
 }
 
 .floating-revealer headerbar {
-  /* background: transparent; */
+  background: transparent;
+}
+
+.floating-revealer button {
+  opacity: 1;
 }
 
 tab {
