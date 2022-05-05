@@ -31,6 +31,10 @@ public class Terminal.Settings : Marble.Settings {
   public uint    window_height          { get; set; }
   public Variant terminal_padding       { get; set; }
 
+  public bool floating_controls         { get; set; }
+  public uint emit_height               { get; set; }
+  public uint delay_before_showing_floating_controls { get; set; }
+
   private static Settings instance = null;
 
   private Settings () {

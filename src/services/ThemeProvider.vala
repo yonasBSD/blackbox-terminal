@@ -31,9 +31,6 @@ public struct Terminal.Scheme {
 }
 
 public class Terminal.ThemeProvider : Object {
-
-  public signal void extra_padding_request (Padding pad);
-
   private Settings settings;
   private Gtk.CssProvider? theme_provider = null;
 

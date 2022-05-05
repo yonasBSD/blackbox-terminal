@@ -67,11 +67,6 @@ public class Terminal.Terminal : Vte.Terminal {
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
 
-    this.window.theme_provider.extra_padding_request.connect ((pad) => {
-      this.extra_padding = pad;
-      this.on_padding_changed ();
-    });
-
     this.setup_drag_drop ();
     this.setup_regexes ();
     this.connect_accels ();
@@ -185,8 +180,6 @@ public class Terminal.Terminal : Vte.Terminal {
   }
 
   private Gtk.CssProvider? padding_provider = null;
-  private Padding extra_padding = { 0 };
-
   private void on_padding_changed () {
     var pad = this.settings.get_padding ();
 
@@ -197,10 +190,10 @@ public class Terminal.Terminal : Vte.Terminal {
 
     this.padding_provider = Marble.get_css_provider_for_data(
       "vte-terminal { padding: %upx %upx %upx %upx; }".printf(
-        pad.top + extra_padding.top,
-        pad.right + extra_padding.right,
-        pad.bottom + extra_padding.bottom,
-        pad.left + extra_padding.left
+        pad.top,
+        pad.right,
+        pad.bottom,
+        pad.left
       )
     );
 

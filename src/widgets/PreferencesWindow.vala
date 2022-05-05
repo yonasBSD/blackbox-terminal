@@ -39,6 +39,10 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.PreferencesGroup theme_scheme_group;
   [GtkChild] unowned Gtk.FlowBox preview_flow_box;
 
+  [GtkChild] unowned Gtk.Switch floating_control_switch;
+  [GtkChild] unowned Gtk.Adjustment emit_height_adjustment;
+  [GtkChild] unowned Gtk.Adjustment delay_time_adjustment;
+
   Window window;
   private HashTable<string, ColorSchemeThumbnail>? preview_cached;
 
@@ -193,6 +197,21 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
         thumbnail.selected = (settings.theme == name);
       });
     });
+
+    // Floating controls ====
+
+    settings.schema.bind ("floating-controls", this.floating_control_switch,
+      "active", SettingsBindFlags.DEFAULT);
+
+    settings.schema.bind ("emit-height", this.emit_height_adjustment,
+      "value", SettingsBindFlags.DEFAULT);
+
+    settings.schema.bind (
+      "delay-before-showing-floating-controls",
+      this.delay_time_adjustment,
+      "value",
+      SettingsBindFlags.DEFAULT
+    );
   }
 
   private void on_remember_window_size_changed () {

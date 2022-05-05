@@ -65,10 +65,10 @@ tabbox background {
   border-radius: 0;
 }
 .floating-btn-box button:first-child {
-  padding-left: 8px;
+  padding-left: 4px;
 }
 .floating-btn-box button:last-child {
-  padding-right: 8px;
+  padding-right: 4px;
 }
 
 /* @define-color rg_theme_fg_color @theme_fg_color;

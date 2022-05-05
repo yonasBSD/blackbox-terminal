@@ -85,17 +85,17 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Adw.TabView    tab_view        { get; private set; }
 
   Adw.HeaderBar   header_bar;
-  Gtk.HeaderBar   floating_bar;
   Adw.TabBar      tab_bar;
-  Gtk.Box         layout_box;
-  Gtk.Box         floating_controls;
   Gtk.Button      new_tab_button;
   Gtk.MenuButton  menu_button;
+  Gtk.Revealer    header_bar_revealer;
+
+  Gtk.HeaderBar   floating_bar;
+  Gtk.Box         floating_controls;
   Gtk.Button      show_headerbar_button;
   Gtk.Button      fullscreen_button;
-  Gtk.Overlay     overlay;
-  Gtk.Revealer    header_bar_revealer;
   Gtk.Revealer    floating_header_bar_revealer;
+
   Settings        settings = Settings.get_default ();
 
   const uint header_bar_revealer_duration_ms = 250;
@@ -105,7 +105,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.add_css_class ("devel");
     }
 
-    this.layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+    var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
     this.header_bar = new Adw.HeaderBar () {
       show_start_title_buttons = true,
@@ -165,27 +165,28 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.header_bar.title_widget = title_box;
 
+    // Floating controls bar  ===============
+
     this.fullscreen_button = new Gtk.Button.from_icon_name (
       "com.raggesilver.BlackBox-fullscreen-symbolic"
     );
     this.show_headerbar_button = new Gtk.Button.from_icon_name (
       "com.raggesilver.BlackBox-show-headerbar-symbolic"
     );
+    var btn_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+      css_classes = { "floating-btn-box" },
+      overflow = Gtk.Overflow.HIDDEN,
+      valign = Gtk.Align.CENTER,
+    };
+    btn_box.append (this.fullscreen_button);
+    btn_box.append (new Gtk.Separator(Gtk.Orientation.VERTICAL));
+    btn_box.append (this.show_headerbar_button);
 
     this.floating_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12) {
       hexpand = true,
       valign = Gtk.Align.CENTER,
       halign = Gtk.Align.START
     };
-    var btn_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
-      css_classes = { "floating-btn-box" },
-      overflow = Gtk.Overflow.HIDDEN,
-      valign = Gtk.Align.CENTER,
-    };
-
-    btn_box.append (this.fullscreen_button);
-    btn_box.append (new Gtk.Separator(Gtk.Orientation.VERTICAL));
-    btn_box.append (this.show_headerbar_button);
     this.floating_controls.append (new Gtk.MenuButton () {
       menu_model = more_menu,
       icon_name = "open-menu-symbolic",
@@ -197,7 +198,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.floating_bar = new Gtk.HeaderBar () {
       css_classes = {"flat" },
-      title_widget = new Gtk.Label (null),
+      title_widget = new Gtk.Label ("") { hexpand = true },
     };
 
     this.floating_header_bar_revealer = new Gtk.Revealer () {
@@ -213,14 +214,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.on_decoration_layout_changed ();
 
-    this.layout_box.append (this.header_bar_revealer);
-    this.layout_box.append (this.tab_view);
+    layout_box.append (this.header_bar_revealer);
+    layout_box.append (this.tab_view);
 
-    this.overlay = new Gtk.Overlay ();
-    this.overlay.child = this.layout_box;
-    this.overlay.add_overlay (this.floating_header_bar_revealer);
+    var overlay = new Gtk.Overlay ();
+    overlay.child = layout_box;
+    overlay.add_overlay (this.floating_header_bar_revealer);
 
-    this.content = this.overlay;
+    this.content = overlay;
   }
 
   public Window (
@@ -278,6 +279,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
       SettingsBindFlags.GET
     );
 
+    settings.notify["floating-controls"].connect(() => {
+      if (!settings.floating_controls) {
+        this.floating_header_bar_revealer.reveal_child = false;
+      }
+    });
+
+    settings.notify["show-headerbar"].connect(() => {
+      if (settings.show_headerbar) {
+        this.floating_header_bar_revealer.reveal_child = false;
+      }
+    });
+
     this.tab_view.create_window.connect (() => {
       var w = this.new_window (null, true);
       return w.tab_view;
@@ -318,26 +331,23 @@ public class Terminal.Window : Adw.ApplicationWindow {
     var s = Gtk.Settings.get_default ();
     s.notify["gtk-decoration-layout"].connect(this.on_decoration_layout_changed);
 
-    //  this.settings.notify["show-headerbar"].connect (() => {
-    //    this.on_headerbar_toggled ();
-    //  });
-    //  this.on_headerbar_toggled ();
-
     var c = new Gtk.EventControllerMotion ();
     c.motion.connect ((_, x, y) => {
       if (this.settings.show_headerbar) {
+        return;
+      }
+      if (!this.settings.floating_controls) {
         return;
       }
 
       var h = this.floating_bar.get_height ();
       var is_showing = this.floating_header_bar_revealer.reveal_child;
 
-      // TODO: Make to_show_erea be configurable in Preferences
-      var to_show_erea = 3;
+      var to_show_erea = settings.emit_height;
 
       // When float headerbar is hiding, just leave a small erea to
       // show it
-      var v = y <= (is_showing ? h : to_show_erea);
+      var v = (y >= 0) && y <= (is_showing ? h : to_show_erea);
 
       if (v != is_showing) {
         if (is_showing) {
@@ -349,10 +359,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
         } else {
           // Add timeout when show float headerbar, then show
           // floating headerbar
-
-          // TODO: Make timeout time can be configureable in Preferences
           this.waiting_for_floating_hb_animation = Timeout.add (
-            500,
+            settings.delay_before_showing_floating_controls,
             () => {
               this.floating_header_bar_revealer.reveal_child = v;
               this.waiting_for_floating_hb_animation = 0;
@@ -436,7 +444,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   private void on_decoration_layout_changed () {
     var layout = Gtk.Settings.get_default ().gtk_decoration_layout;
-    var window_controls_in_end = layout.has_prefix ("appmenu");
+
+    debug ("Decoration layout: %s", layout);
+
+    var window_controls_in_end = layout.split (":", 2)[0].contains ("menu");
     this.floating_bar.remove (this.floating_controls);
     if (window_controls_in_end) {
       this.floating_bar.pack_start (this.floating_controls);
@@ -494,84 +505,4 @@ public class Terminal.Window : Adw.ApplicationWindow {
       return;
     }
   }
-
-  // SYNC: we're currently moving the revealer to the overlay. We should
-  // probably leave the revealer as is (so that we don't have to mess with it's
-  // reveal-child prop, cuz it's bound to GSettings) and have another revealer
-  // exclusive for the overlay. One issue atm is that we can't right click if
-  // the Overlay has an overlay-child.
-
-  //  private void on_headerbar_toggled () {
-    //  Timeout.add
-    //  var show_headerbar = this.settings.show_headerbar;
-
-    //  // If the user just disabled the header bar, we need to wait for the
-    //  // revealer animation to end to only then move the headerbar to the floating
-    //  // revealer
-    //  var needs_to_wait_for_animation = (
-    //    !show_headerbar && this.header_bar.parent == this.header_bar_revealer
-    //  );
-
-    //  if (needs_to_wait_for_animation) {
-    //    GLib.Timeout.add (
-    //      Window.header_bar_revealer_duration_ms,
-    //      () => {
-    //        return this.on_headerbar_toggled_after_animation ();
-    //      },
-    //      Priority.DEFAULT
-    //    );
-    //  }
-    //  else {
-    //    this.on_headerbar_toggled_after_animation ();
-    //  }
-
-    //  if (show_headerbar) {
-    //    this.move_headerbar_to_regular ();
-    //  }
-    //  else {
-    //    this.move_headerbar_to_floating ();
-    //  }
-  //  }
-
-  // In case the user spams the "Show headerbar" toggle, we might need to keep
-  // track of the Timeout we set to wait for the headerbar animation to end.
-  //  private uint waiting_for_hb_animation = 0;
-
-  //  private void move_headerbar_to_floating () {
-  //    //  this.header_bar_revealer.child = null;
-
-  //    //  var prev_duration = this.floating_header_bar_revealer.transition_duration;
-  //    //  var prev_reveal = this.floating_header_bar_revealer.reveal_child;
-  //    //  var prev_ttype = this.floating_header_bar_revealer.transition_type;
-
-  //    //  this.floating_header_bar_revealer.transition_type = this.header_bar_revealer.transition_type;
-  //    //  this.floating_header_bar_revealer.transition_duration = 0;
-  //    //  this.floating_header_bar_revealer.reveal_child = true;
-
-  //    //  this.floating_header_bar_revealer.child = this.header_bar;
-
-  //    //  this.floating_header_bar_revealer.transition_duration = prev_duration;
-  //    //  this.floating_header_bar_revealer.reveal_child = prev_reveal;
-
-  //    this.waiting_for_hb_animation = Timeout.add (
-  //      Window.header_bar_revealer_duration_ms,
-  //      () => {
-  //        this.header_bar_revealer.child = null;
-  //        this.floating_header_bar_revealer.child = this.header_bar;
-  //        this.waiting_for_hb_animation = 0;
-  //        return false;
-  //      },
-  //      Priority.DEFAULT
-  //    );
-  //  }
-
-  //  private void move_headerbar_to_regular () {
-  //    if (this.waiting_for_hb_animation > 0) {
-  //      Source.remove (this.waiting_for_hb_animation);
-  //      this.waiting_for_hb_animation = 0;
-  //    }
-
-  //    this.floating_header_bar_revealer.child = null;
-  //    this.header_bar_revealer.child = this.header_bar;
-  //  }
 }

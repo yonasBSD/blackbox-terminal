@@ -220,6 +220,62 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwActionRow" id="floating_control_action_row">
+                <property name="activatable-widget">floating_control_switch</property>
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Floating controls</property>
+                <property name="subtitle" translatable="yes">Show floating controls in headbarless mode.</property>
+                <child>
+                  <object class="GtkSwitch" id="floating_control_switch">
+                    <property name="visible">True</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="sensitive" bind-source="floating_control_switch" bind-property="active" bind-flags="sync-create"/>
+                <property name="title" translatable="yes">Emit erea to show floating controls</property>
+                <property name="subtitle" translatable="yes">The height of erea at top of window to show floating controls when mouse pointer entered. "Floating controls" must be enabled.</property>
+                <child>
+                  <object class="GtkSpinButton">
+                    <property name="valign">center</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment" id="emit_height_adjustment">
+                        <property name="lower">2</property>
+                        <property name="upper">200</property>
+                        <property name="value">5</property>
+                        <property name="page-increment">1</property>
+                        <property name="step-increment">1</property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="sensitive" bind-source="floating_control_switch" bind-property="active" bind-flags="sync-create"/>
+                <property name="title" translatable="yes">Delay before show floating controls</property>
+                <property name="subtitle" translatable="yes">Delay time (ms) before show floating controls. "Floating controls" must be enabled.</property>
+                <child>
+                  <object class="GtkSpinButton">
+                    <property name="valign">center</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment" id="delay_time_adjustment">
+                        <property name="lower">100</property>
+                        <property name="upper">10000</property>
+                        <property name="value">400</property>
+                        <property name="page-increment">100</property>
+                        <property name="step-increment">100</property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>
