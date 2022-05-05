@@ -203,11 +203,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.floating_header_bar_revealer = new Gtk.Revealer () {
       transition_duration = Window.header_bar_revealer_duration_ms,
-      //  transition_type = Gtk.RevealerTransitionType.CROSSFADE,
+      transition_type = Gtk.RevealerTransitionType.CROSSFADE,
 
       valign = Gtk.Align.START,
       vexpand = false,
       child = floating_bar,
+      visible = false,
 
       css_classes = { "floating-revealer" },
     };
@@ -326,6 +327,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.show_headerbar_button.clicked.connect (() => {
       this.settings.show_headerbar = true;
       this.floating_header_bar_revealer.reveal_child = false;
+    });
+
+    this.floating_header_bar_revealer.notify["reveal-child"].connect (() => {
+      if (this.floating_header_bar_revealer.reveal_child) {
+        this.floating_header_bar_revealer.visible = true;
+      }
+    });
+
+    this.floating_header_bar_revealer.notify["child-revealed"].connect (() => {
+      if (!this.floating_header_bar_revealer.reveal_child) {
+        this.floating_header_bar_revealer.visible = false;
+      }
     });
 
     var s = Gtk.Settings.get_default ();
