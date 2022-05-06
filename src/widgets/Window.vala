@@ -312,13 +312,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.settings.window_height = this.default_height;
     });
 
-    this.fullscreen_button.clicked.connect (() => {
-      if (this.fullscreened) {
-        this.unfullscreen ();
-      } else {
-        this.fullscreen ();
-      }
-    });
+    this.fullscreen_button.clicked.connect (this.toggle_fullscreen);
 
     this.show_headerbar_button.clicked.connect (() => {
       this.settings.show_headerbar = true;
@@ -421,6 +415,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.settings.show_headerbar = !this.settings.show_headerbar;
     });
     this.add_action (sa);
+
+    sa = new SimpleAction ("fullscreen", null);
+    sa.activate.connect (this.toggle_fullscreen);
+    this.add_action (sa);
   }
 
   public void new_tab () {
@@ -465,6 +463,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.floating_bar.pack_end (this.floating_btns);
     }
     this.floating_bar.pack_end (this.floating_menu_btn);
+  }
+
+  private void toggle_fullscreen () {
+    if (this.fullscreened) {
+      this.unfullscreen ();
+    } else {
+      this.fullscreen ();
+    }
   }
 
   public Window new_window (
