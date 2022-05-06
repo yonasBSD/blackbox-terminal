@@ -2,14 +2,6 @@ headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
 
-.floating-revealer headerbar {
-  background: transparent;
-}
-
-.floating-revealer button {
-  opacity: 1;
-}
-
 tab {
   background: transparent;
 }
@@ -38,10 +30,12 @@ tabbox background {
   margin: 8px;
 }
 
+.floating-revealer headerbar {
+  background: transparent;
+}
+
 .floating-btn-box button,
-.floating-revealer menubutton,
-.floating-revealer menubutton button,
-.floating-revealer separator{
+.floating-btn-box separator{
   margin: 0;
 }
 
