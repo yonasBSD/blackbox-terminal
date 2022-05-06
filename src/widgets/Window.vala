@@ -277,6 +277,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       SettingsBindFlags.GET
     );
 
+    this.settings.notify["show-menu-button"].connect (
+      this.on_decoration_layout_changed
+    );
+
     settings.notify["floating-controls"].connect(() => {
       if (!settings.floating_controls) {
         this.floating_header_bar_revealer.reveal_child = false;
@@ -456,14 +460,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
     debug ("Decoration layout: %s", layout);
 
     var window_controls_in_end = layout.split (":", 2)[0].contains ("menu");
+
     this.floating_bar.remove (this.floating_btns);
-    this.floating_bar.pack_end (this.floating_menu_btn);
+    this.floating_bar.remove (this.floating_menu_btn);
+    if (this.settings.show_menu_button) {
+      this.floating_bar.pack_end (this.floating_menu_btn);
+    }
+
     if (window_controls_in_end) {
       this.floating_bar.pack_start (this.floating_btns);
     } else {
       this.floating_bar.pack_end (this.floating_btns);
     }
-    this.floating_bar.pack_end (this.floating_menu_btn);
   }
 
   private void toggle_fullscreen () {
