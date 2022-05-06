@@ -91,7 +91,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   Gtk.Revealer    header_bar_revealer;
 
   Gtk.HeaderBar   floating_bar;
-  Gtk.Box         floating_controls;
+  Gtk.Box         floating_btns;
+  Gtk.MenuButton  floating_menu_btn;
   Gtk.Button      show_headerbar_button;
   Gtk.Button      fullscreen_button;
   Gtk.Revealer    floating_header_bar_revealer;
@@ -140,6 +141,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     var more_menu = new GLib.Menu ();
     var section1 = new GLib.Menu ();
     var section2 = new GLib.Menu ();
+    section1.append ("Fullscreen", "win.fullscreen");
     section1.append ("Preferences", "win.edit_preferences");
     section2.append ("Help", "win.show-help-overlay");
     section2.append ("About", "app.about");
@@ -173,28 +175,22 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.show_headerbar_button = new Gtk.Button.from_icon_name (
       "com.raggesilver.BlackBox-show-headerbar-symbolic"
     );
-    var btn_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
+    this.floating_btns = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
       css_classes = { "floating-btn-box" },
       overflow = Gtk.Overflow.HIDDEN,
       valign = Gtk.Align.CENTER,
     };
-    btn_box.append (this.fullscreen_button);
-    btn_box.append (new Gtk.Separator(Gtk.Orientation.VERTICAL));
-    btn_box.append (this.show_headerbar_button);
+    this.floating_btns.append (this.fullscreen_button);
+    this.floating_btns.append (new Gtk.Separator(Gtk.Orientation.VERTICAL));
+    this.floating_btns.append (this.show_headerbar_button);
 
-    this.floating_controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12) {
-      hexpand = true,
-      valign = Gtk.Align.CENTER,
-      halign = Gtk.Align.START
-    };
-    this.floating_controls.append (new Gtk.MenuButton () {
+    this.floating_menu_btn = new Gtk.MenuButton () {
       menu_model = more_menu,
       icon_name = "open-menu-symbolic",
       css_classes = { "circular" },
       valign = Gtk.Align.CENTER,
       can_focus = false,
-    });
-    this.floating_controls.append (btn_box);
+    };
 
     this.floating_bar = new Gtk.HeaderBar () {
       css_classes = {"flat" },
@@ -461,14 +457,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
     debug ("Decoration layout: %s", layout);
 
     var window_controls_in_end = layout.split (":", 2)[0].contains ("menu");
-    this.floating_bar.remove (this.floating_controls);
+    this.floating_bar.remove (this.floating_btns);
+    this.floating_bar.pack_end (this.floating_menu_btn);
     if (window_controls_in_end) {
-      this.floating_bar.pack_start (this.floating_controls);
+      this.floating_bar.pack_start (this.floating_btns);
     } else {
-      this.floating_bar.pack_end (this.floating_controls);
+      this.floating_bar.pack_end (this.floating_btns);
     }
-    this.floating_bar.title_widget.halign
-      = window_controls_in_end ? Gtk.Align.START : Gtk.Align.END;
+    this.floating_bar.pack_end (this.floating_menu_btn);
   }
 
   public Window new_window (
