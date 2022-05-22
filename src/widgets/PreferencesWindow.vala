@@ -30,6 +30,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch remember_window_size_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
+  [GtkChild] unowned Gtk.DropDown cursor_shape_dropdown;
 
   [GtkChild] unowned Adw.ActionRow show_menu_button_action_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
