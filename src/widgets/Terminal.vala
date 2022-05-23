@@ -66,6 +66,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.settings.notify["theme"].connect (this.on_theme_changed);
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
+    this.settings.notify["cursor-shape"].connect (this.on_cursor_changed);
 
     this.setup_drag_drop ();
     this.setup_regexes ();
@@ -73,6 +74,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.on_theme_changed ();
     this.on_font_changed ();
     this.on_padding_changed ();
+    this.on_cursor_changed();
 
     this.spawn (command, cwd);
   }
@@ -201,6 +203,15 @@ public class Terminal.Terminal : Vte.Terminal {
       this.padding_provider,
       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     );
+  }
+
+  public void on_cursor_changed() {
+    var shape = this.settings.cursor_shape;
+    switch (shape) {
+      case 0: this.set_cursor_shape(BLOCK); break;
+      case 1: this.set_cursor_shape(IBEAM); break;
+      case 2: this.set_cursor_shape(UNDERLINE); break;
+    }
   }
 
   private void connect_accels () {
@@ -374,6 +385,7 @@ public class Terminal.Terminal : Vte.Terminal {
       this.copy_clipboard_format (Vte.Format.TEXT);
     }
   }
+
 
   //  private void on_drag_data_received(
   //    Gdk.DragContext _context,
