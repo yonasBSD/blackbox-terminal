@@ -162,6 +162,12 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       null
     );
 
+    // Cursor ====
+
+    // 0: Block 1: IBeam 2: Underline
+    settings.schema.bind("cursor-shape", this.cursor_shape_dropdown,
+    "selected", SettingsBindFlags.DEFAULT);
+
     // Themes
 
     ColorSchemeThumbnailProvider.init_resource ();
