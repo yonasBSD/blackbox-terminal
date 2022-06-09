@@ -30,6 +30,42 @@ tabbox background {
   margin: 8px;
 }
 
+.floating-revealer headerbar {
+  background: transparent;
+}
+
+.floating-btn-box button,
+.floating-btn-box separator{
+  margin: 0;
+  outline: 0;
+}
+
+.floating-btn-box {
+  border-radius: 8px;
+}
+
+.floating-revealer menubutton button,
+.floating-btn-box,
+.floating-revealer windowcontrols image {
+  background: @headerbar_bg_color;
+}
+
+.floating-revealer menubutton button:hover,
+.floating-btn-box button:hover,
+.floating-revealer windowcontrols image:hover {
+  background: lighter(@headerbar_bg_color);
+}
+
+.floating-btn-box button {
+  border-radius: 0;
+}
+.floating-btn-box button:first-child {
+  padding-left: 4px;
+}
+.floating-btn-box button:last-child {
+  padding-right: 4px;
+}
+
 /* @define-color rg_theme_fg_color @theme_fg_color;
 @define-color rg_theme_bg_color @theme_bg_color;
 @define-color rg_theme_base_color @theme_base_color;
