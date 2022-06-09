@@ -42,6 +42,7 @@ public class Terminal.Application : Adw.Application {
     this.set_accels_for_action ("win.edit_preferences", { "<primary>comma" });
     this.set_accels_for_action ("win.copy", { "<primary><shift>c" });
     this.set_accels_for_action ("win.paste", { "<primary><shift>p" });
+    this.set_accels_for_action ("win.fullscreen", { "F11" });
   }
 
   public override void activate () {
