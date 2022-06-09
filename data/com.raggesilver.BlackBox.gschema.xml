@@ -51,7 +51,7 @@
     </key>
     <key name="emit-height" type="u">
       <default>5</default>
-      <summary>Emit height of erea at top of window to showing floating controls</summary>
+      <summary>Emit height of area at top of window to showing floating controls</summary>
     </key>
     <key name="delay-before-showing-floating-controls" type="u">
       <default>400</default>

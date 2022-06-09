@@ -237,8 +237,8 @@
             <child>
               <object class="AdwActionRow">
                 <property name="sensitive" bind-source="floating_control_switch" bind-property="active" bind-flags="sync-create"/>
-                <property name="title" translatable="yes">Emit erea to show floating controls</property>
-                <property name="subtitle" translatable="yes">The height of erea at top of window to show floating controls when mouse pointer entered. "Floating controls" must be enabled.</property>
+                <property name="title" translatable="yes">Emit area to show floating controls</property>
+                <property name="subtitle" translatable="yes">The height of area at top of window to show floating controls when mouse pointer entered. "Floating controls" must be enabled.</property>
                 <child>
                   <object class="GtkSpinButton">
                     <property name="valign">center</property>

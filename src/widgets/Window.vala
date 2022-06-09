@@ -100,6 +100,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   Settings        settings = Settings.get_default ();
 
   const uint header_bar_revealer_duration_ms = 250;
+  private uint waiting_for_floating_hb_animation = 0;
 
   construct {
     if (DEVEL) {
@@ -200,12 +201,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.floating_header_bar_revealer = new Gtk.Revealer () {
       transition_duration = Window.header_bar_revealer_duration_ms,
-      transition_type = Gtk.RevealerTransitionType.CROSSFADE,
+      transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN,
 
       valign = Gtk.Align.START,
       vexpand = false,
       child = floating_bar,
-      visible = false,
 
       css_classes = { "floating-revealer" },
     };
@@ -324,66 +324,53 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.floating_header_bar_revealer.reveal_child = false;
     });
 
-    this.floating_header_bar_revealer.notify["reveal-child"].connect (() => {
-      if (this.floating_header_bar_revealer.reveal_child) {
-        this.floating_header_bar_revealer.visible = true;
-      }
-    });
-
-    this.floating_header_bar_revealer.notify["child-revealed"].connect (() => {
-      if (!this.floating_header_bar_revealer.reveal_child) {
-        this.floating_header_bar_revealer.visible = false;
-      }
-    });
-
     var s = Gtk.Settings.get_default ();
     s.notify["gtk-decoration-layout"].connect(this.on_decoration_layout_changed);
 
     var c = new Gtk.EventControllerMotion ();
-    c.motion.connect ((_, x, y) => {
-      if (this.settings.show_headerbar) {
-        return;
-      }
-      if (!this.settings.floating_controls) {
+    c.motion.connect ((_, _mouseX, mouseY) => {
+      // Ignore mouse motion if standard headerbars are shown or if floating
+      // controls are disabled
+      if (this.settings.show_headerbar || !this.settings.floating_controls) {
         return;
       }
 
       var h = this.floating_bar.get_height ();
-      var is_showing = this.floating_header_bar_revealer.reveal_child;
+      var is_shown = this.floating_header_bar_revealer.reveal_child;
 
-      var to_show_erea = settings.emit_height;
+      var trigger_area = settings.emit_height;
 
-      // When float headerbar is hiding, just leave a small erea to
-      // show it
-      var v = (y >= 0) && y <= (is_showing ? h : to_show_erea);
+      bool is_hovering_trigger_area =
+        mouseY >= 0 && mouseY <= (is_shown ? h : trigger_area);
 
-      if (v != is_showing) {
-        if (is_showing) {
-          // when leave the area, clear source of timeout and
-          // hide floating headerbar
-          Source.remove (this.waiting_for_floating_hb_animation);
-          this.waiting_for_floating_hb_animation = 0;
-          this.floating_header_bar_revealer.reveal_child = v;
-        } else {
-          // Add timeout when show float headerbar, then show
-          // floating headerbar
+      if (is_hovering_trigger_area && !is_shown) {
+        // Only schedule animation if there aren't any scheduled
+        if (this.waiting_for_floating_hb_animation == 0) {
+          // Wait for delay to show floating controls
           this.waiting_for_floating_hb_animation = Timeout.add (
             settings.delay_before_showing_floating_controls,
             () => {
-              this.floating_header_bar_revealer.reveal_child = v;
+              this.floating_header_bar_revealer.reveal_child = true;
               this.waiting_for_floating_hb_animation = 0;
-              this.floating_bar.focus (Gtk.DirectionType.UP);
               return false;
             }
           );
         }
       }
+      else if (
+        !is_hovering_trigger_area &&
+        (is_shown || this.waiting_for_floating_hb_animation != 0)
+      ) {
+        if (this.waiting_for_floating_hb_animation != 0) {
+          Source.remove (this.waiting_for_floating_hb_animation);
+          this.waiting_for_floating_hb_animation = 0;
+        }
+        this.floating_header_bar_revealer.reveal_child = false;
+      }
     });
 
     (this as Gtk.Widget)?.add_controller (c);
   }
-
-  private uint waiting_for_floating_hb_animation = 0;
 
   private void add_actions () {
     var sa = new SimpleAction ("new_tab", null);

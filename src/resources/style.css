@@ -37,10 +37,11 @@ tabbox background {
 .floating-btn-box button,
 .floating-btn-box separator{
   margin: 0;
+  outline: 0;
 }
 
 .floating-btn-box {
-  border-radius: 9999px;
+  border-radius: 8px;
 }
 
 .floating-revealer menubutton button,
