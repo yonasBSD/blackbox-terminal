@@ -30,6 +30,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch remember_window_size_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
+  [GtkChild] unowned Adw.ComboRow cursor_shape_combo_row;
 
   [GtkChild] unowned Adw.ActionRow show_menu_button_action_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
@@ -163,6 +164,16 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       },
       null,
       null
+    );
+
+    // Cursor ====
+
+    // 0: Block 1: IBeam 2: Underline
+    settings.schema.bind(
+      "cursor-shape",
+      this.cursor_shape_combo_row,
+      "selected",
+      SettingsBindFlags.DEFAULT
     );
 
     // Themes

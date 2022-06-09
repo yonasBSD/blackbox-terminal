@@ -30,6 +30,7 @@ public class Terminal.Settings : Marble.Settings {
   public uint    window_width           { get; set; }
   public uint    window_height          { get; set; }
   public Variant terminal_padding       { get; set; }
+  public uint    cursor_shape           { get; set; }
 
   public bool floating_controls                       { get; set; }
   public uint floating_controls_hover_area            { get; set; }

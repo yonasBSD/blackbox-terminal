@@ -215,6 +215,21 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwComboRow" id="cursor_shape_combo_row">
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Cursor</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Block</item>
+                      <item translatable="yes">IBeam</item>
+                      <item translatable="yes">Underline</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

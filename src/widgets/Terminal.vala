@@ -67,6 +67,15 @@ public class Terminal.Terminal : Vte.Terminal {
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
 
+    this.settings.bind_property (
+      "cursor-shape",
+      this,
+      "cursor-shape",
+      BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+
     this.setup_drag_drop ();
     this.setup_regexes ();
     this.connect_accels ();
@@ -374,6 +383,7 @@ public class Terminal.Terminal : Vte.Terminal {
       this.copy_clipboard_format (Vte.Format.TEXT);
     }
   }
+
 
   //  private void on_drag_data_received(
   //    Gdk.DragContext _context,
