@@ -216,24 +216,18 @@
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwComboRow" id="cursor_shape_combo_row">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Cursor</property>
-                <child>
-                  <object class="GtkDropDown" id="cursor_shape_dropdown">
-                    <property name="valign">GTK_ALIGN_CENTER</property>
-                    <property name="visible">True</property>
-                    <property name="model">
-                      <object class="GtkStringList">
-                        <items>
-                          <item translatable="yes">Block</item>
-                          <item translatable="yes">IBeam</item>
-                          <item translatable="yes">Underline</item>
-                        </items>
-                      </object>
-                    </property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Block</item>
+                      <item translatable="yes">IBeam</item>
+                      <item translatable="yes">Underline</item>
+                    </items>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
           </object>
