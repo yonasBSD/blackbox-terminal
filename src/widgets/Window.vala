@@ -338,7 +338,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       var h = this.floating_bar.get_height ();
       var is_shown = this.floating_header_bar_revealer.reveal_child;
 
-      var trigger_area = settings.emit_height;
+      var trigger_area = settings.floating_controls_hover_area;
 
       bool is_hovering_trigger_area =
         mouseY >= 0 && mouseY <= (is_shown ? h : trigger_area);

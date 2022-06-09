@@ -49,9 +49,9 @@
       <default>false</default>
       <summary>If enabled, floating controls will be shown in headerless mode</summary>
     </key>
-    <key name="emit-height" type="u">
-      <default>5</default>
-      <summary>Emit height of area at top of window to showing floating controls</summary>
+    <key name="floating-controls-hover-area" type="u">
+      <default>10</default>
+      <summary>Hoverable area (in pixels) at the top of the window to trigger floating controls</summary>
     </key>
     <key name="delay-before-showing-floating-controls" type="u">
       <default>400</default>
