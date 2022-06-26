@@ -47,7 +47,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Paste</property>
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;p</property>
+                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;v</property>
               </object>
             </child>
             <child>

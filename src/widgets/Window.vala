@@ -83,6 +83,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   public ThemeProvider  theme_provider  { get; private set; }
   public Adw.TabView    tab_view        { get; private set; }
+  public Terminal       active_terminal { get; private set; }
 
   Adw.HeaderBar   header_bar;
   Adw.TabBar      tab_bar;
@@ -101,6 +102,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   const uint header_bar_revealer_duration_ms = 250;
   private uint waiting_for_floating_hb_animation = 0;
+
+  private SimpleAction copy_action;
+  private ulong active_terminal_selection_changed_signal = 0;
 
   construct {
     if (DEVEL) {
@@ -328,6 +332,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
     var s = Gtk.Settings.get_default ();
     s.notify["gtk-decoration-layout"].connect(this.on_decoration_layout_changed);
 
+    this.notify["active-terminal"].connect (this.on_active_terminal_changed);
+
     var c = new Gtk.EventControllerMotion ();
     c.motion.connect ((_, _mouseX, mouseY) => {
       // Ignore mouse motion if standard headerbars are shown or if floating
@@ -395,13 +401,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
     this.add_action (sa);
 
-    sa = new SimpleAction ("copy", null);
-    sa.activate.connect (() => {
+    this.copy_action = new SimpleAction ("copy", null);
+    copy_action.activate.connect (() => {
       this.on_copy_activated ();
     });
-    // TODO: this will stay disabled until copying actually works in Vte-Gtk4
-    sa.set_enabled (false);
-    this.add_action (sa);
+    this.copy_action.set_enabled (false);
+    this.add_action (this.copy_action);
 
     sa = new SimpleAction ("switch-headerbar-mode", null);
     sa.activate.connect (() => {
@@ -439,7 +444,37 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void on_tab_selected () {
-    (this.tab_view.selected_page?.child as TerminalTab)?.terminal.grab_focus ();
+    if (
+      this.active_terminal != null &&
+      this.active_terminal_selection_changed_signal != 0
+    ) {
+      this.active_terminal.disconnect (
+        this.active_terminal_selection_changed_signal
+      );
+      this.active_terminal_selection_changed_signal = 0;
+    }
+    var terminal = (this.tab_view.selected_page?.child as TerminalTab)?.terminal;
+    this.active_terminal = terminal;
+    terminal?.grab_focus ();
+  }
+
+  private void on_active_terminal_changed () {
+    if (this.active_terminal == null) {
+      return;
+    }
+
+    this.on_active_terminal_selection_changed ();
+    this.active_terminal_selection_changed_signal = this.active_terminal
+      .selection_changed
+      .connect (this.on_active_terminal_selection_changed);
+  }
+
+  private void on_active_terminal_selection_changed () {
+    bool enabled = false;
+    if (this.active_terminal?.get_has_selection ()) {
+      enabled = true;
+    }
+    this.copy_action.set_enabled (enabled);
   }
 
   private void on_decoration_layout_changed () {
@@ -480,10 +515,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
       return false;
     });
     return w;
-  }
-
-  public Terminal? get_active_terminal () {
-    return (this.tab_view.selected_page?.child as TerminalTab)?.terminal;
   }
 
   public void focus_next_tab () {

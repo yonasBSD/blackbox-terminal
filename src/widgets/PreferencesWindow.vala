@@ -28,6 +28,8 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
   [GtkChild] unowned Gtk.Switch remember_window_size_switch;
+  [GtkChild] unowned Gtk.Switch easy_copy_paste_switch;
+  [GtkChild] unowned Gtk.Switch warn_copy_not_implemented_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
   [GtkChild] unowned Adw.ComboRow cursor_shape_combo_row;
@@ -90,6 +92,20 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
           ? null
           : Constants.MENU_BUTTON_ALTERNATIVE;
     });
+
+    settings.schema.bind(
+      "easy-copy-paste",
+      this.easy_copy_paste_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "warn-copy-not-implemented",
+      this.warn_copy_not_implemented_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
 
     // Scrolling ====
 

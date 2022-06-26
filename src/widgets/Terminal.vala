@@ -332,13 +332,22 @@ public class Terminal.Terminal : Vte.Terminal {
     }
 
     switch (Gdk.keyval_name (keyval)) {
-      case "C": {
-        this.do_copy_clipboard ();
-        return true;
+      case "c": {
+        if (
+          this.get_has_selection () &&
+          Settings.get_default ().easy_copy_paste
+        ) {
+          this.do_copy_clipboard ();
+          return true;
+        }
+        return false;
       }
-      case "V": {
-        this.do_paste_clipboard ();
-        return true;
+      case "v": {
+        if (Settings.get_default ().easy_copy_paste) {
+          this.do_paste_clipboard ();
+          return true;
+        }
+        return false;
       }
       case "plus": {
         this.font_scale = double.min (10, this.font_scale + 0.1);
@@ -379,8 +388,35 @@ public class Terminal.Terminal : Vte.Terminal {
 
   public void do_copy_clipboard () {
     if (this.get_has_selection ()) {
-      warning ("Copying hasn't been implemented yet.");
-      this.copy_clipboard_format (Vte.Format.TEXT);
+      var s = Settings.get_default ();
+
+      if (!s.warn_copy_not_implemented) {
+        return;
+      }
+
+      var d = new Gtk.MessageDialog (
+        this.window,
+        Gtk.DialogFlags.MODAL,
+        Gtk.MessageType.WARNING,
+        Gtk.ButtonsType.OK,
+        "%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of progress has been made on this port, copying has yet to be implemented. This means there's currently no way to copy text in %s.",
+        APP_NAME,
+        APP_NAME
+      );
+
+      var check_button = new Gtk.CheckButton.with_label (
+        "Do not remind me again"
+      );
+      check_button.can_focus = false;
+
+      (d.get_message_area () as Gtk.Box).append (check_button);
+
+      d.set_default_response (Gtk.ResponseType.OK);
+      d.response.connect (() => {
+        s.warn_copy_not_implemented = !check_button.active;
+        d.close ();
+      });
+      d.show ();
     }
   }
 
