@@ -9,9 +9,9 @@
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/kCQDGcb.png" alt="Preview"/><br/>
+  <img src="https://i.imgur.com/pasvxd4.png" alt="Preview"/><br/>
   <small><i>
-    Black Box 42.alpha0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Black Box 0.8.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
@@ -29,8 +29,10 @@ Linux. There are more featureful alternatives out there.
 - Custom fonts
 - Tabs
 - Headerbarless mode
-- `Ctrl` + `click` to open links & files
-- Drag files to paste their path
+- `Ctrl` + `click` to open links & files*
+- Drag files to paste their path*
+
+> \* = not working properly in the Gtk 4 port
 
 ## Install
 
@@ -56,7 +58,7 @@ If you want to manually build Black Box take a look at the build script in [.git
 ## Some other screenshots
 
 <div align="center">
-  <img src="https://imgur.com/75C25vk.png" alt="Headerbar-less terminal"/><br/>
+  <img src="https://i.imgur.com/DAiKhD3.png" alt="Headerbar-less terminal"/><br/>
   <small><i>
     Black Box with "show headerbar" off.
   </i></small>
