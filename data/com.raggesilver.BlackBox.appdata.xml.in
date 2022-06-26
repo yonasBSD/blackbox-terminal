@@ -102,11 +102,12 @@
         </ul>
       </description>
     </release>
-    <release date="2022-04-18" version="42.alpha0">
+    <release date="2022-04-18" version="0.7.0">
       <description>
         <p>
           Initial port to Gtk 4. This is an alpha release that has known bugs
-          and lacks support for copying text from the terminal.
+          and lacks support for copying text from the terminal. (renamed from
+          42.alpha0)
         </p>
       </description>
     </release>
