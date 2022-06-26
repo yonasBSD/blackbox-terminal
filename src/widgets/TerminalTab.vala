@@ -26,14 +26,14 @@ public class Terminal.TerminalTab : Gtk.Box {
 
   public Window window;
 
-  public TerminalTab (Window window, string? cwd) {
+  public TerminalTab (Window window, string? command, string? cwd) {
     Object (
       orientation: Gtk.Orientation.VERTICAL,
       spacing: 0
     );
 
     this.window = window;
-    this.terminal = new Terminal (this.window, null, cwd);
+    this.terminal = new Terminal (this.window, command, cwd);
 
     // Hack to stop vala-language-server from complaining
     var twig = this.terminal as Gtk.Widget;

@@ -224,6 +224,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   public Window (
     Gtk.Application app,
+    string? command = null,
     string? cwd = null,
     bool skip_initial_tab = false
   ) {
@@ -244,14 +245,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.theme_provider = new ThemeProvider (this.settings);
 
     this.new_tab_button.clicked.connect (() => {
-      this.new_tab ();
+      this.new_tab (null, null);
     });
 
     this.add_actions ();
     this.connect_signals ();
 
     if (!skip_initial_tab) {
-      this.new_tab ();
+      this.new_tab (command, cwd);
     }
   }
 
@@ -375,7 +376,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   private void add_actions () {
     var sa = new SimpleAction ("new_tab", null);
     sa.activate.connect (() => {
-      this.new_tab ();
+      this.new_tab (null, null);
     });
     this.add_action (sa);
 
@@ -413,11 +414,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.add_action (sa);
   }
 
-  public void new_tab () {
-    var tab = new TerminalTab (this, null);
+  public void new_tab (string? command, string? cwd) {
+    var tab = new TerminalTab (this, command, cwd);
     var page = this.tab_view.add_page (tab, null);
 
-    page.title = @"tab $(this.tab_view.n_pages)";
+    page.title = command ?? @"tab $(this.tab_view.n_pages)";
     tab.notify["title"].connect (() => {
       page.title = tab.title;
     });
@@ -473,7 +474,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     string? cwd = null,
     bool skip_initial_tab = false
   ) {
-    var w = new Window (this.application, cwd, skip_initial_tab);
+    var w = new Window (this.application, null, cwd, skip_initial_tab);
     w.show ();
     w.close_request.connect (() => {
       return false;
