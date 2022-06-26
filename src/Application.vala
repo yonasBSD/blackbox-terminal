@@ -49,7 +49,6 @@ public class Terminal.Application : Adw.Application {
   }
 
   public override void activate () {
-    message ("Called activate");
     new Window (this).show ();
   }
 

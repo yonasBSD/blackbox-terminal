@@ -28,12 +28,11 @@ public struct Terminal.CommandLineOptions {
 //  Usage:
 //    blackbox [OPTION…] [-- COMMAND ...]
 //
-//  Help Options:
-//    -h, --help                  Show help options
-//
-//  Application Options:
+//  Options:
 //    -v, --version               Show app version
 //    -w, --working-directory     Set current working directory
+//    -c, --command               Execute command in a terminal
+//    -h, --help                  Show help
 
 public class Terminal.CommandLine {
   public static bool parse_command_line (GLib.ApplicationCommandLine cmd,
