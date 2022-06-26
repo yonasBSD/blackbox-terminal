@@ -33,7 +33,11 @@
   <screenshots>
     <screenshot type="default">
       <caption>Black Box screenshot</caption>
-      <image>https://i.imgur.com/8S04oVv.png</image>
+      <image>https://i.imgur.com/pasvxd4.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Black Box in headerbar-less mode</caption>
+      <image>https://i.imgur.com/DAiKhD3.png</image>
     </screenshot>
   </screenshots>
 
@@ -79,11 +83,31 @@
   </kudos>
 
   <releases>
-    <release date="2022-04-18" version="42.alpha0">
+    <release date="2022-06-26" version="0.8.0">
+      <description>
+        <p>
+          New features:
+        </p>
+        <ul>
+          <li>Display scrollbars and overlay scrolling</li>
+          <li>Shortcuts window</li>
+          <li>Toggle-able menu button</li>
+          <li>Reset all settings</li>
+          <li>You can now add padding around the terminal</li>
+          <li>Floating controls in headerbar-less mode</li>
+          <li>Customizable cursor shape</li>
+          <li>Full screen mode</li>
+          <li>Keyboard based tab navigation</li>
+          <li>Command line options</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2022-04-18" version="0.7.0">
       <description>
         <p>
           Initial port to Gtk 4. This is an alpha release that has known bugs
-          and lacks support for copying text from the terminal.
+          and lacks support for copying text from the terminal. (renamed from
+          42.alpha0)
         </p>
       </description>
     </release>

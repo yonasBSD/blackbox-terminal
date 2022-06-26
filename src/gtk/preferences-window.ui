@@ -230,6 +230,20 @@
                 </property>
               </object>
             </child>
+            <child>
+              <object class="AdwActionRow" id="easy_copy_paste_action_row">
+                <property name="activatable-widget">easy_copy_paste_switch</property>
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Easy copy &amp;amp; paste</property>
+                <property name="subtitle" translatable="yes">Use ctrl+c/ctrl+v for copy/paste.</property>
+                <child>
+                  <object class="GtkSwitch" id="easy_copy_paste_switch">
+                    <property name="visible">True</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -272,6 +286,28 @@
 
                 <child>
                   <object class="GtkSwitch" id="pixel_scrolling_switch">
+                    <property name="visible">True</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="title" translatable="yes">Other</property>
+            <child>
+              <object class="AdwActionRow" id="warn_copy_not_implemented_action_row">
+                <property name="activatable-widget">warn_copy_not_implemented_switch</property>
+                <property name="visible">True</property>
+                <property name="title" translatable="yes">Warn copy not implemented</property>
+                <property name="subtitle" translatable="yes">Whether or not to warn copying hasn't been implemented yet. &lt;a href="https://gitlab.gnome.org/raggesilver/blackbox/-/issues/1"&gt;See issue&lt;/a&gt;.</property>
+
+                <child>
+                  <object class="GtkSwitch" id="warn_copy_not_implemented_switch">
                     <property name="visible">True</property>
                     <property name="valign">GTK_ALIGN_CENTER</property>
                   </object>

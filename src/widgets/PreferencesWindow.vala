@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-[GtkTemplate (ui = "/com/raggesilver/BlackBox/layouts/preferences-window.ui")]
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch pretty_switch;
   [GtkChild] unowned Gtk.Switch fill_tabs_switch;
@@ -28,6 +28,8 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
   [GtkChild] unowned Gtk.Switch remember_window_size_switch;
+  [GtkChild] unowned Gtk.Switch easy_copy_paste_switch;
+  [GtkChild] unowned Gtk.Switch warn_copy_not_implemented_switch;
   [GtkChild] unowned Gtk.FontButton font_button;
   [GtkChild] unowned Gtk.SpinButton padding_spin_button;
   [GtkChild] unowned Adw.ComboRow cursor_shape_combo_row;
@@ -57,10 +59,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     this.window = window;
     var settings = Settings.get_default ();
 
-    if (IS_X11 ()) {
-      remember_window_size_row.subtitle = Constants.X11_WINDOW_SIZE_WARNING;
-    }
-
     this.theme_scheme_group.description =
       "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>."
         .printf (
@@ -84,12 +82,23 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
-    settings.notify["show-menu-button"].connect (() => {
-      this.show_menu_button_action_row.subtitle =
-        settings.show_menu_button
-          ? null
-          : Constants.MENU_BUTTON_ALTERNATIVE;
-    });
+    this.on_show_menu_button_changed ();
+    settings.notify["show-menu-button"]
+      .connect (this.on_show_menu_button_changed);
+
+    settings.schema.bind(
+      "easy-copy-paste",
+      this.easy_copy_paste_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "warn-copy-not-implemented",
+      this.warn_copy_not_implemented_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
 
     // Scrolling ====
 
@@ -120,10 +129,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "active",
       SettingsBindFlags.DEFAULT
     );
-
-    settings.notify["remember-window-size"].connect (() => {
-      this.on_remember_window_size_changed ();
-    });
 
     // If "Show scrollbars" is off, we want to disable every other setting
     // related to scrolling
@@ -233,14 +238,11 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     );
   }
 
-  private void on_remember_window_size_changed () {
-    var settings = Settings.get_default ();
-
-    if (IS_X11 ()) {
-      remember_window_size_row.icon_name = settings.remember_window_size
-        ? "dialog-warning-symbolic"
-        : null;
-    }
+  private void on_show_menu_button_changed () {
+    this.show_menu_button_action_row.subtitle =
+        Settings.get_default ().show_menu_button
+          ? null
+          : Constants.MENU_BUTTON_ALTERNATIVE;
   }
 
   [GtkCallback]

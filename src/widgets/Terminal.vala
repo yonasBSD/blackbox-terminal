@@ -83,7 +83,12 @@ public class Terminal.Terminal : Vte.Terminal {
     this.on_font_changed ();
     this.on_padding_changed ();
 
-    this.spawn (command, cwd);
+    try {
+      this.spawn (command, cwd);
+    }
+    catch (Error e) {
+      warning ("%s", e.message);
+    }
   }
 
   // Methods ===================================================================
@@ -220,7 +225,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.add_controller (kpcontroller);
   }
 
-  private void spawn (string? command, string? cwd) {
+  private void spawn (string? command, string? cwd) throws Error {
     string[] argv;
     string[] envv;
     Vte.PtyFlags flags = Vte.PtyFlags.DEFAULT;
@@ -332,13 +337,22 @@ public class Terminal.Terminal : Vte.Terminal {
     }
 
     switch (Gdk.keyval_name (keyval)) {
-      case "C": {
-        this.do_copy_clipboard ();
-        return true;
+      case "c": {
+        if (
+          this.get_has_selection () &&
+          Settings.get_default ().easy_copy_paste
+        ) {
+          this.do_copy_clipboard ();
+          return true;
+        }
+        return false;
       }
-      case "V": {
-        this.do_paste_clipboard ();
-        return true;
+      case "v": {
+        if (Settings.get_default ().easy_copy_paste) {
+          this.do_paste_clipboard ();
+          return true;
+        }
+        return false;
       }
       case "plus": {
         this.font_scale = double.min (10, this.font_scale + 0.1);
@@ -370,17 +384,49 @@ public class Terminal.Terminal : Vte.Terminal {
     // this.paste_clipboard ();
     var cb = Gdk.Display.get_default ().get_clipboard ();
     cb.read_text_async.begin (null, (_, res) => {
-      var text = cb.read_text_async.end (res);
-      if (text != null) {
-        this.paste_text (text);
+      try {
+        var text = cb.read_text_async.end (res);
+        if (text != null) {
+          this.paste_text (text);
+        }
+      }
+      catch (Error e) {
+        warning ("%s", e.message);
       }
     });
   }
 
   public void do_copy_clipboard () {
     if (this.get_has_selection ()) {
-      warning ("Copying hasn't been implemented yet.");
-      this.copy_clipboard_format (Vte.Format.TEXT);
+      var s = Settings.get_default ();
+
+      if (!s.warn_copy_not_implemented) {
+        return;
+      }
+
+      var d = new Gtk.MessageDialog (
+        this.window,
+        Gtk.DialogFlags.MODAL,
+        Gtk.MessageType.WARNING,
+        Gtk.ButtonsType.OK,
+        Constants.COPYING_NOT_IMPLEMENTED_WARNING_FMT,
+        APP_NAME,
+        APP_NAME
+      );
+
+      var check_button = new Gtk.CheckButton.with_label (
+        "Do not remind me again"
+      );
+      check_button.can_focus = false;
+
+      (d.get_message_area () as Gtk.Box)?.append (check_button);
+
+      d.set_default_response (Gtk.ResponseType.OK);
+      d.response.connect (() => {
+        s.warn_copy_not_implemented = !check_button.active;
+        d.close ();
+      });
+      d.show ();
     }
   }
 

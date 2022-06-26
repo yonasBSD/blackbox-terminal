@@ -69,5 +69,13 @@
       <default>0</default>
       <summary>Cursor shape</summary>
     </key>
+    <key name="easy-copy-paste" type="b">
+      <default>false</default>
+      <summary>If enabled, ctrl+c and ctrl+v will work for copy/paste</summary>
+    </key>
+    <key name="warn-copy-not-implemented" type="b">
+      <default>true</default>
+      <summary>(temporary) Whether to show a dialog warning copying isn't implemented yet</summary>
+    </key>
   </schema>
 </schemalist>
