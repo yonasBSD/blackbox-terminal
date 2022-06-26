@@ -61,6 +61,15 @@ public class Terminal.CommandLine {
         arg_description = null,
       },
       OptionEntry () {
+        long_name       = "command",
+        short_name      = 'c',
+        description     = "Execute command in a terminal",
+        flags           = OptionFlags.NONE,
+        arg             = OptionArg.FILENAME,
+        arg_data        = &options.command,
+        arg_description = null,
+      },
+      OptionEntry () {
         long_name       = "help",
         short_name      = 'h',
         description     = "Show help",
@@ -97,13 +106,15 @@ public class Terminal.CommandLine {
       }
     }
 
-    options.command = dd ? string.joinv (" ", commandv) : null;
-
     try {
       ctx.parse_strv (ref real_argv);
 
       if (options.help) {
         cmd.print_literal (ctx.get_help (true, null));
+      }
+      // If "--" was present and "-c" wasn't set
+      if (dd && options.command == null) {
+        options.command = string.joinv (" ", commandv);
       }
     }
     catch (Error e) {

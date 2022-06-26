@@ -66,7 +66,12 @@ public class Terminal.Application : Adw.Application {
       // For logistical reasons help is handled in `parse_command_line`.
     }
     else if (options.version) {
-      cmd.print ("%s version %s\n", APP_NAME, VERSION);
+      cmd.print (
+        "%s version %s%s\n",
+        APP_NAME,
+        VERSION,
+        is_flatpak () ? " (flatpak)" : ""
+      );
     }
     else {
       new Window (
