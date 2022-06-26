@@ -86,12 +86,9 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
-    settings.notify["show-menu-button"].connect (() => {
-      this.show_menu_button_action_row.subtitle =
-        settings.show_menu_button
-          ? null
-          : Constants.MENU_BUTTON_ALTERNATIVE;
-    });
+    this.on_show_menu_button_changed ();
+    settings.notify["show-menu-button"]
+      .connect (this.on_show_menu_button_changed);
 
     settings.schema.bind(
       "easy-copy-paste",
@@ -257,6 +254,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
         ? "dialog-warning-symbolic"
         : null;
     }
+  }
+
+  private void on_show_menu_button_changed () {
+    this.show_menu_button_action_row.subtitle =
+        Settings.get_default ().show_menu_button
+          ? null
+          : Constants.MENU_BUTTON_ALTERNATIVE;
   }
 
   [GtkCallback]
