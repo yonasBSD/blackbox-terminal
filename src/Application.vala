@@ -62,6 +62,9 @@ public class Terminal.Application : Adw.Application {
       this.release ();
       return -1;
     }
+    else if (options.help) {
+      // For logistical reasons help is handled in `parse_command_line`.
+    }
     else if (options.version) {
       cmd.print ("%s version %s\n", APP_NAME, VERSION);
     }

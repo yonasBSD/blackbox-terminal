@@ -22,6 +22,7 @@ public struct Terminal.CommandLineOptions {
   string? command;
   string? current_working_dir;
   bool    version;
+  bool    help;
 }
 
 //  Usage:
@@ -59,10 +60,22 @@ public class Terminal.CommandLine {
         arg_data        = &options.current_working_dir,
         arg_description = null,
       },
+      OptionEntry () {
+        long_name       = "help",
+        short_name      = 'h',
+        description     = "Show help",
+        flags           = OptionFlags.NONE,
+        arg             = OptionArg.NONE,
+        arg_data        = &options.help,
+        arg_description = null,
+      },
     };
 
     var ctx = new OptionContext ("[-- COMMAND ...]");
-    ctx.set_help_enabled (true);
+    // If this is set to true and the user launches blackbox with --help, the
+    // entire GTK application will close (with exit(0)), even if there are other
+    // windows open
+    ctx.set_help_enabled (false);
     ctx.add_main_entries (option_entries, null);
 
     var original_argv = cmd.get_arguments ();
@@ -88,6 +101,10 @@ public class Terminal.CommandLine {
 
     try {
       ctx.parse_strv (ref real_argv);
+
+      if (options.help) {
+        cmd.print_literal (ctx.get_help (true, null));
+      }
     }
     catch (Error e) {
       cmd.printerr ("%s\n", e.message);
