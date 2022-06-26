@@ -27,8 +27,11 @@ public class Terminal.Application : Adw.Application {
     { "quit", on_app_quit },
   };
 
-  public Application (ApplicationFlags flags) {
-    Object (application_id: "com.raggesilver.BlackBox", flags: flags);
+  public Application () {
+    Object (
+      application_id: "com.raggesilver.BlackBox",
+      flags: ApplicationFlags.HANDLES_COMMAND_LINE
+    );
 
     this.add_action_entries (ACTIONS, this);
 
@@ -46,7 +49,32 @@ public class Terminal.Application : Adw.Application {
   }
 
   public override void activate () {
+    message ("Called activate");
     new Window (this).show ();
+  }
+
+  public override int command_line (GLib.ApplicationCommandLine cmd) {
+    CommandLineOptions options;
+
+    this.hold ();
+
+    if (!CommandLine.parse_command_line (cmd, out options)) {
+      this.release ();
+      return -1;
+    }
+    else if (options.version) {
+      cmd.print ("%s version %s\n", APP_NAME, VERSION);
+    }
+    else {
+      new Window (
+        this,
+        options.command,
+        options.current_working_dir,
+        false
+      ).show ();
+    }
+    this.release ();
+    return 0;
   }
 
   private void on_app_quit () {
@@ -61,7 +89,7 @@ public class Terminal.Application : Adw.Application {
   }
 
   private void on_new_window () {
-    new Window (this, null, false).show ();
+    new Window (this, null, null, false).show ();
   }
 
   private void on_focus_next_tab () {

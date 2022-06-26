@@ -1,5 +1,6 @@
 blackbox_sources = files(
   'Application.vala',
+  'CommandLine.vala',
   'main.vala',
 )
 

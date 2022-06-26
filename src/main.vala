@@ -17,5 +17,5 @@
  */
 
 int main (string[] args) {
-  return new Terminal.Application (ApplicationFlags.FLAGS_NONE).run (args);
+  return new Terminal.Application ().run (args);
 }
