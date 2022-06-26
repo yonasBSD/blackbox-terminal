@@ -31,8 +31,6 @@ namespace Terminal.Constants {
     "(?:news:|man:|info:)[[:alnum:]\\Q^_{|}~!\"#$%&'()*+,./;:=?`\\E]+"
   };
 
-  const string X11_WINDOW_SIZE_WARNING = "Warning: restoring window size under X11 does not work properly. See <a href=\"https://gitlab.gnome.org/GNOME/gtk/-/issues/4136\">this bug</a>.";
-
   const string MENU_BUTTON_ALTERNATIVE = "You can still access the menu by right-clicking any terminal.";
 
   const string COPYING_NOT_IMPLEMENTED_WARNING_FMT = "%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of progress has been made on this port, copying has yet to be implemented. This means there's currently no way to copy text in %s.";

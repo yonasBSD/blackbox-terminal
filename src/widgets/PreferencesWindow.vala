@@ -59,10 +59,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     this.window = window;
     var settings = Settings.get_default ();
 
-    if (IS_X11 ()) {
-      remember_window_size_row.subtitle = Constants.X11_WINDOW_SIZE_WARNING;
-    }
-
     this.theme_scheme_group.description =
       "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>."
         .printf (
@@ -133,10 +129,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "active",
       SettingsBindFlags.DEFAULT
     );
-
-    settings.notify["remember-window-size"].connect (() => {
-      this.on_remember_window_size_changed ();
-    });
 
     // If "Show scrollbars" is off, we want to disable every other setting
     // related to scrolling
@@ -244,16 +236,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "value",
       SettingsBindFlags.DEFAULT
     );
-  }
-
-  private void on_remember_window_size_changed () {
-    var settings = Settings.get_default ();
-
-    if (IS_X11 ()) {
-      remember_window_size_row.icon_name = settings.remember_window_size
-        ? "dialog-warning-symbolic"
-        : null;
-    }
   }
 
   private void on_show_menu_button_changed () {
