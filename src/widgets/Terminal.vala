@@ -409,7 +409,7 @@ public class Terminal.Terminal : Vte.Terminal {
         Gtk.DialogFlags.MODAL,
         Gtk.MessageType.WARNING,
         Gtk.ButtonsType.OK,
-        "%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of progress has been made on this port, copying has yet to be implemented. This means there's currently no way to copy text in %s.",
+        Constants.COPYING_NOT_IMPLEMENTED_WARNING_FMT,
         APP_NAME,
         APP_NAME
       );
