@@ -30,7 +30,8 @@ blackbox_deps = [
   dependency('json-glib-1.0', version: '>= 1.4.4'),
   dependency('libpcre2-8'),
   dependency('libxml-2.0', version: '>= 2.9.12'),
-  dependency('librsvg-2.0', version: '>= 2.54.0')
+  dependency('librsvg-2.0', version: '>= 2.54.0'),
+  dependency('graphene-gobject-1.0'),
 ]
 
 if meson.get_compiler('vala').version().version_compare('>=0.56.1')

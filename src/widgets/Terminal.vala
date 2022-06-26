@@ -83,7 +83,12 @@ public class Terminal.Terminal : Vte.Terminal {
     this.on_font_changed ();
     this.on_padding_changed ();
 
-    this.spawn (command, cwd);
+    try {
+      this.spawn (command, cwd);
+    }
+    catch (Error e) {
+      warning ("%s", e.message);
+    }
   }
 
   // Methods ===================================================================
@@ -220,7 +225,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.add_controller (kpcontroller);
   }
 
-  private void spawn (string? command, string? cwd) {
+  private void spawn (string? command, string? cwd) throws Error {
     string[] argv;
     string[] envv;
     Vte.PtyFlags flags = Vte.PtyFlags.DEFAULT;
@@ -379,9 +384,14 @@ public class Terminal.Terminal : Vte.Terminal {
     // this.paste_clipboard ();
     var cb = Gdk.Display.get_default ().get_clipboard ();
     cb.read_text_async.begin (null, (_, res) => {
-      var text = cb.read_text_async.end (res);
-      if (text != null) {
-        this.paste_text (text);
+      try {
+        var text = cb.read_text_async.end (res);
+        if (text != null) {
+          this.paste_text (text);
+        }
+      }
+      catch (Error e) {
+        warning ("%s", e.message);
       }
     });
   }
@@ -409,7 +419,7 @@ public class Terminal.Terminal : Vte.Terminal {
       );
       check_button.can_focus = false;
 
-      (d.get_message_area () as Gtk.Box).append (check_button);
+      (d.get_message_area () as Gtk.Box)?.append (check_button);
 
       d.set_default_response (Gtk.ResponseType.OK);
       d.response.connect (() => {
