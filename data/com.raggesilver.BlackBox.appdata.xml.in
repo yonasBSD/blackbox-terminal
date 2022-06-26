@@ -84,6 +84,13 @@
   </kudos>
 
   <releases>
+    <release date="2022-06-26" version="0.8.1">
+      <description>
+        <p>
+          Removed unnecessary Flatpak permissions.
+        </p>
+      </description>
+    </release>
     <release date="2022-06-26" version="0.8.0">
       <description>
         <p>
