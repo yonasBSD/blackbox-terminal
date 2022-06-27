@@ -5,7 +5,7 @@
   "sdk" : "org.gnome.Sdk",
   "command" : "blackbox",
   "finish-args" : [
-    "--allow=devel",
+    "--filesystem=home:ro",
     "--share=ipc",
     "--socket=fallback-x11",
     "--socket=wayland",
@@ -34,9 +34,9 @@
       ],
       "sources" : [
         {
-          "type" : "git",
-          "url" : "https://gitlab.gnome.org/GNOME/vte",
-          "commit": "1398ac862fb10b3cb7cdfc8267be2df5d5f39eb5"
+          "type" : "archive",
+          "url" : "https://gitlab.gnome.org/GNOME/vte/-/archive/1398ac862fb10b3cb7cdfc8267be2df5d5f39eb5/vte-1398ac862fb10b3cb7cdfc8267be2df5d5f39eb5.tar.gz",
+          "sha256": "9d76c963d70b19b48ffcbbf2acaee529fb1ec9c53cf0c1f1884f65b2c860bc1f"
         }
       ]
     },
@@ -45,8 +45,9 @@
       "buildsystem" : "meson",
       "sources" : [
         {
-          "type" : "git",
-          "url" : "https://gitlab.gnome.org/GNOME/json-glib"
+          "type" : "archive",
+          "url" : "https://gitlab.gnome.org/GNOME/json-glib/-/archive/23ae2f59bea7405d95218e82edb7f3c4c7c80a87/json-glib-23ae2f59bea7405d95218e82edb7f3c4c7c80a87.tar.gz",
+          "sha256": "9fa88f1b8fc926bfd7c4115354a06f79b7b30fa367450a3e7a36932e3b7022ba"
         }
       ]
     },
@@ -55,9 +56,9 @@
       "buildsystem" : "meson",
       "sources" : [
         {
-          "type" : "git",
-          "url" : "https://gitlab.com/raggesilver/marble",
-          "commit": "6dcc6fefa35f0151b0549c01bd774750fe6bdef8"
+          "type" : "archive",
+          "url" : "https://gitlab.com/raggesilver/marble/-/archive/6dcc6fefa35f0151b0549c01bd774750fe6bdef8/marble-6dcc6fefa35f0151b0549c01bd774750fe6bdef8.tar.gz",
+          "sha256": "6fe25ab863bf9a81fac827861b3f17d07fb4a0e4d944dbb0d5b09dfafca59fb4"
         }
       ]
     },

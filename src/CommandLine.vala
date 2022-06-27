@@ -64,7 +64,7 @@ public class Terminal.CommandLine {
         short_name      = 'c',
         description     = "Execute command in a terminal",
         flags           = OptionFlags.NONE,
-        arg             = OptionArg.FILENAME,
+        arg             = OptionArg.STRING,
         arg_data        = &options.command,
         arg_description = null,
       },
