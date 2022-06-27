@@ -65,6 +65,14 @@
       <default>(0,0,0,0)</default>
       <summary>Amount of padding around terminal widgets (top, right, bottom, left)</summary>
     </key>
+    <key name="terminal-cell-width" type="d">
+      <default>1.0</default>
+      <summary>Terminal cell width</summary>
+    </key>
+    <key name="terminal-cell-height" type="d">
+      <default>1.0</default>
+      <summary>Terminal cell height</summary>
+    </key>
     <key name="cursor-shape" type="u">
       <default>0</default>
       <summary>Cursor shape</summary>

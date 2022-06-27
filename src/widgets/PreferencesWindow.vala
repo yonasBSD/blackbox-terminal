@@ -37,13 +37,14 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ActionRow show_menu_button_action_row;
   [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
   [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
-  [GtkChild] unowned Adw.ActionRow remember_window_size_row;
 
   [GtkChild] unowned Adw.PreferencesGroup theme_scheme_group;
   [GtkChild] unowned Gtk.FlowBox preview_flow_box;
 
   [GtkChild] unowned Gtk.Adjustment floating_controls_hover_area_adjustment;
   [GtkChild] unowned Gtk.Adjustment floating_controls_delay_adjustment;
+  [GtkChild] unowned Gtk.Adjustment cell_width_spacing_adjustment;
+  [GtkChild] unowned Gtk.Adjustment cell_height_spacing_adjustment;
   [GtkChild] unowned Gtk.Switch floating_controls_switch;
 
   Window window;
@@ -233,6 +234,20 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind (
       "delay-before-showing-floating-controls",
       this.floating_controls_delay_adjustment,
+      "value",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "terminal-cell-width",
+      this.cell_width_spacing_adjustment,
+      "value",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "terminal-cell-height",
+      this.cell_height_spacing_adjustment,
       "value",
       SettingsBindFlags.DEFAULT
     );

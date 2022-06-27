@@ -79,6 +79,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.setup_drag_drop ();
     this.setup_regexes ();
     this.connect_accels ();
+    this.bind_data ();
     this.on_theme_changed ();
     this.on_font_changed ();
     this.on_padding_changed ();
@@ -214,6 +215,22 @@ public class Terminal.Terminal : Vte.Terminal {
     this.get_style_context ().add_provider (
       this.padding_provider,
       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+    );
+  }
+
+  private void bind_data () {
+    this.settings.schema.bind (
+      "terminal-cell-width",
+      this,
+      "cell-width-scale",
+      SettingsBindFlags.DEFAULT
+    );
+
+    this.settings.schema.bind (
+      "terminal-cell-height",
+      this,
+      "cell-height-scale",
+      SettingsBindFlags.DEFAULT
     );
   }
 

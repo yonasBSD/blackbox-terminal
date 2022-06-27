@@ -26,6 +26,8 @@ public class Terminal.Settings : Marble.Settings {
   public bool    show_menu_button       { get; set; }
   public bool    show_scrollbars        { get; set; }
   public bool    use_overlay_scrolling  { get; set; }
+  public double  terminal_cell_width    { get; set; }
+  public double  terminal_cell_height   { get; set; }
   public string  font                   { get; set; }
   public string  theme                  { get; set; }
   public uint    cursor_shape           { get; set; }
