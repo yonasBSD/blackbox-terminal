@@ -1,7 +1,10 @@
 data/com.raggesilver.BlackBox.desktop.in
-data/com.raggesilver.BlackBox.appdata.xml.in
 data/com.raggesilver.BlackBox.gschema.xml
-src/window.ui
+src/gtk/help-overlay.ui
+src/gtk/preferences-window.ui
 src/main.vala
-src/window.vala
-
+src/CommandLine.vala
+src/widgets/Window.vala
+src/widgets/TerminalTab.vala
+src/widgets/PreferencesWindow.vala
+src/utils/Constants.vala

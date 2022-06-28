@@ -146,10 +146,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
     var more_menu = new GLib.Menu ();
     var section1 = new GLib.Menu ();
     var section2 = new GLib.Menu ();
-    section1.append ("Fullscreen", "win.fullscreen");
-    section1.append ("Preferences", "win.edit_preferences");
-    section2.append ("Help", "win.show-help-overlay");
-    section2.append ("About", "app.about");
+    section1.append (_ ("Fullscreen"), "win.fullscreen");
+    section1.append (_ ("Preferences"), "win.edit_preferences");
+    section2.append (_ ("Help"), "win.show-help-overlay");
+    section2.append (_ ("About"), "app.about");
     more_menu.append_section (null, section1);
     more_menu.append_section (null, section2);
     this.menu_button = new Gtk.MenuButton () {
@@ -176,10 +176,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.fullscreen_button = new Gtk.Button.from_icon_name (
       "com.raggesilver.BlackBox-fullscreen-symbolic"
-    ) { tooltip_text = "Fullscreen" };
+    ) { tooltip_text = _ ("Fullscreen") };
     this.show_headerbar_button = new Gtk.Button.from_icon_name (
       "com.raggesilver.BlackBox-show-headerbar-symbolic"
-    ) { tooltip_text = "Show headerbar" };
+    ) { tooltip_text = _ ("Show headerbar") };
     this.floating_btns = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
       css_classes = { "floating-btn-box" },
       overflow = Gtk.Overflow.HIDDEN,
@@ -195,7 +195,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       css_classes = { "circular" },
       valign = Gtk.Align.CENTER,
       can_focus = false,
-      tooltip_text = "Menu"
+      tooltip_text = _ ("Menu")
     };
 
     this.floating_bar = new Gtk.HeaderBar () {
