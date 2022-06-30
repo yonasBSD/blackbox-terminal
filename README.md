@@ -36,16 +36,20 @@ Linux. There are more featureful alternatives out there.
 
 ## Install
 
+**Flathub**
+
+<a href='https://flathub.org/apps/details/com.raggesilver.BlackBox'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.svg'/></a>
+
+```bash
+flatpak install flathub com.raggesilver.BlackBox
+```
+
 **Download**
 
 - [Flatpak](https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/artifacts/main/raw/blackbox.flatpak?job=flatpak)
 - [Zip](https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/artifacts/main/download?job=flatpak)
 
 *Note: these two links will not work if the latest pipeline failed/was skipped/is still running*
-
-**Flathub**
-
-Black Box will be available on Flathub when 42 is out.
 
 ## Compile
 
