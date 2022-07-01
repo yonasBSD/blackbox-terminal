@@ -3,5 +3,5 @@ namespace Terminal {
   public const string APP_CLI_NAME = @PROJECT_NAME@;
   public const string DATADIR = @DATADIR@;
   public const string VERSION = @VERSION@;
-  public const bool DEVEL = true;
+  public const bool DEVEL = @DEVEL@;
 }
