@@ -85,10 +85,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Adw.TabView    tab_view        { get; private set; }
   public Terminal       active_terminal { get; private set; }
 
-  Adw.HeaderBar   header_bar;
+  BaseHeaderBar   header_bar;
   Adw.TabBar      tab_bar;
-  Gtk.Button      new_tab_button;
-  Gtk.MenuButton  menu_button;
   Gtk.Revealer    header_bar_revealer;
 
   Gtk.HeaderBar   floating_bar;
@@ -113,18 +111,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-    this.header_bar = new Adw.HeaderBar () {
-      show_start_title_buttons = true,
-      show_end_title_buttons = true,
-
-      css_classes = { "flat" },
-    };
-
-    this.header_bar_revealer = new Gtk.Revealer () {
-      transition_duration = Window.header_bar_revealer_duration_ms,
-      child = this.header_bar,
-    };
-
     this.tab_view = new Adw.TabView ();
 
     this.tab_bar = new Adw.TabBar () {
@@ -139,38 +125,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
       can_focus = false,
     };
 
-    this.new_tab_button = new Gtk.Button.from_icon_name ("list-add-symbolic") {
-      can_focus = false,
+    this.header_bar = new HeaderBar (this.tab_bar);
+
+    this.header_bar_revealer = new Gtk.Revealer () {
+      transition_duration = Window.header_bar_revealer_duration_ms,
+      child = this.header_bar,
     };
-
-    var more_menu = new GLib.Menu ();
-    var section1 = new GLib.Menu ();
-    var section2 = new GLib.Menu ();
-    section1.append (_ ("Fullscreen"), "win.fullscreen");
-    section1.append (_ ("Preferences"), "win.edit_preferences");
-    section2.append (_ ("Help"), "win.show-help-overlay");
-    section2.append (_ ("About"), "app.about");
-    more_menu.append_section (null, section1);
-    more_menu.append_section (null, section2);
-    this.menu_button = new Gtk.MenuButton () {
-      can_focus = false,
-      menu_model = more_menu,
-      icon_name = "open-menu-symbolic",
-
-      hexpand = false,
-      halign = Gtk.Align.END,
-    };
-
-    var title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
-      hexpand = true,
-      halign = Gtk.Align.FILL,
-    };
-
-    title_box.append (this.tab_bar);
-    title_box.append (this.new_tab_button);
-    title_box.append (this.menu_button);
-
-    this.header_bar.title_widget = title_box;
 
     // Floating controls bar  ===============
 
@@ -190,7 +150,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     this.floating_btns.append (this.show_headerbar_button);
 
     this.floating_menu_btn = new Gtk.MenuButton () {
-      menu_model = more_menu,
+      menu_model = get_window_menu_model (),
       icon_name = "open-menu-symbolic",
       css_classes = { "circular" },
       valign = Gtk.Align.CENTER,
@@ -248,7 +208,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.theme_provider = new ThemeProvider (this.settings);
 
-    this.new_tab_button.clicked.connect (() => {
+    this.header_bar.new_tab_button.clicked.connect (() => {
       this.new_tab (null, null);
     });
 
@@ -272,13 +232,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "show-headerbar",
       this.header_bar_revealer,
       "reveal-child",
-      SettingsBindFlags.GET
-    );
-
-    this.settings.schema.bind (
-      "show-menu-button",
-      this.menu_button,
-      "visible",
       SettingsBindFlags.GET
     );
 
