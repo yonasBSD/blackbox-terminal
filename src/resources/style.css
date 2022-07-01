@@ -2,6 +2,20 @@ headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
 
+/**
+ * Our custom header bar inserts window controls inside Adw.HeaderBar which
+ * doubles the padding on the sides.
+ *
+ * https://gitlab.gnome.org/GNOME/libadwaita/-/blob/12f891a7d04951a471e0cc65b7c4a8b3e9dfb8bf/src/stylesheet/widgets/_header-bar.scss#L15
+ */
+.custom-headerbar headerbar windowhandle > box {
+  padding: 0;
+}
+
+.custom-headerbar windowcontrols.start.empty {
+  margin-right: 34px;
+}
+
 tab {
   background: transparent;
 }
