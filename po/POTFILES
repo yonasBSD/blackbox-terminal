@@ -7,4 +7,5 @@ src/CommandLine.vala
 src/widgets/Window.vala
 src/widgets/TerminalTab.vala
 src/widgets/PreferencesWindow.vala
+src/widgets/HeaderBar.vala
 src/utils/Constants.vala
