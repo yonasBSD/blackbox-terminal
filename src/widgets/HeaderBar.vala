@@ -45,7 +45,8 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
   public virtual Gtk.MenuButton  menu_button     { get; protected set; }
   public virtual Gtk.Button      new_tab_button  { get; protected set; }
 
-  protected Adw.TabBar tab_bar;
+  protected Adw.TabBar  tab_bar;
+  protected Window      window;
 
   construct {
     // Menu button
@@ -70,14 +71,20 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
     this.new_tab_button = new Gtk.Button.from_icon_name ("list-add-symbolic");
   }
 
-  protected BaseHeaderBar (Adw.TabBar tab_bar) {
+  protected BaseHeaderBar (Window window) {
     Object (orientation: Gtk.Orientation.HORIZONTAL, spacing: 0);
 
-    this.tab_bar = tab_bar;
+    this.window = window;
+    this.tab_bar = this.window.tab_bar;
   }
 }
 
 public class Terminal.HeaderBar : BaseHeaderBar {
+
+  private Gtk.WindowControls left_controls;
+  private Gtk.WindowControls right_controls;
+
+  private Gtk.Button unfullscreen_button;
 
   // Adw.HeaderBar allows us to set a center widget. This widget may expand and
   // take all the available space. However, if there are any other widgets on
@@ -91,8 +98,8 @@ public class Terminal.HeaderBar : BaseHeaderBar {
   // widget. Inside this box we manually add window controls, so no one knows
   // there's anything different.
 
-  public HeaderBar (Adw.TabBar tab_bar) {
-    base (tab_bar);
+  public HeaderBar (Window window) {
+    base (window);
 
     var hb = new Adw.HeaderBar ();
     hb.show_start_title_buttons = false;
@@ -104,21 +111,65 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     hb.halign = Gtk.Align.FILL;
     hb.hexpand = true;
 
-    var left_controls = new Gtk.WindowControls (Gtk.PackType.START);
-    var right_controls = new Gtk.WindowControls (Gtk.PackType.END);
+    this.unfullscreen_button = new Gtk.Button () {
+      icon_name = "view-restore-symbolic",
+      halign = Gtk.Align.END,
+    };
+
+    this.left_controls = new Gtk.WindowControls (Gtk.PackType.START);
+    this.right_controls = new Gtk.WindowControls (Gtk.PackType.END);
 
     var layout = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
     layout.halign = Gtk.Align.FILL;
     layout.hexpand = true;
 
-    layout.append (left_controls);
+    layout.append (this.left_controls);
     layout.append (tab_bar);
     layout.append (this.new_tab_button);
+    layout.append (this.unfullscreen_button);
     layout.append (this.menu_button);
-    layout.append (right_controls);
+    layout.append (this.right_controls);
 
     hb.title_widget = layout;
     this.append (hb);
     this.add_css_class ("custom-headerbar");
+
+    this.connect_signals ();
+  }
+
+  private void connect_signals () {
+    // window.fullscreened -> unfullscreen_button visibility
+    this.window.bind_property (
+      "fullscreened",
+      this.unfullscreen_button,
+      "visible",
+      GLib.BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+    // !window.fullscreened -> left_controls visibility
+    this.window.bind_property (
+      "fullscreened",
+      this.left_controls,
+      "visible",
+      GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.INVERT_BOOLEAN,
+      null,
+      null
+    );
+    // !window.fullscreened -> right_controls visibility
+    this.window.bind_property (
+      "fullscreened",
+      this.right_controls,
+      "visible",
+      GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.INVERT_BOOLEAN,
+      null,
+      null
+    );
+
+    this.unfullscreen_button.clicked.connect (this.on_unmaximize);
+  }
+
+  private void on_unmaximize () {
+    this.window.unfullscreen ();
   }
 }

@@ -15,6 +15,7 @@ conf_data.set_quoted('VERSION', meson.project_version())
 conf_data.set_quoted('PREFIX', get_option('prefix'))
 conf_data.set_quoted('DATADIR', join_paths (get_option('prefix'), get_option('datadir')))
 conf_data.set_quoted('LOCALEDIR', join_paths (get_option('prefix'), get_option('localedir')))
+conf_data.set('DEVEL', get_option('devel').to_string().to_lower())
 
 config_header = configure_file(
             input: 'config.vala.in',

@@ -5,5 +5,5 @@ namespace Terminal {
   public const string DATADIR = @DATADIR@;
   public const string LOCALEDIR = @LOCALEDIR@;
   public const string VERSION = @VERSION@;
-  public const bool DEVEL = true;
+  public const bool DEVEL = @DEVEL@;
 }
