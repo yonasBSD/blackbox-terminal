@@ -83,10 +83,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   public ThemeProvider  theme_provider  { get; private set; }
   public Adw.TabView    tab_view        { get; private set; }
+  public Adw.TabBar     tab_bar         { get; private set; }
   public Terminal       active_terminal { get; private set; }
 
   BaseHeaderBar   header_bar;
-  Adw.TabBar      tab_bar;
   Gtk.Revealer    header_bar_revealer;
 
   Gtk.HeaderBar   floating_bar;
@@ -125,7 +125,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       can_focus = false,
     };
 
-    this.header_bar = new HeaderBar (this.tab_bar);
+    this.header_bar = new HeaderBar (this);
 
     this.header_bar_revealer = new Gtk.Revealer () {
       transition_duration = Window.header_bar_revealer_duration_ms,
