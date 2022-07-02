@@ -14,12 +14,12 @@
           <object class="AdwPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="title" translatable="yes">Tabs and headerbar</property>
+            <property name="title" translatable="yes">Tabs and Headerbar</property>
             <child>
               <object class="AdwActionRow">
                 <property name="activatable-widget">fill_tabs_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Expand tabs</property>
+                <property name="title" translatable="yes">Expand Tabs</property>
 
                 <child>
                   <object class="GtkSwitch" id="fill_tabs_switch">
@@ -33,7 +33,7 @@
               <object class="AdwActionRow">
                 <property name="activatable-widget">hide_single_tab_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Hide single tab</property>
+                <property name="title" translatable="yes">Hide Single Tab</property>
                 <property name="subtitle" translatable="yes">Replace tab bar with a title label when a single tab is open.</property>
                 <property name="sensitive" bind-source="fill_tabs_switch" bind-property="active" bind-flags="sync-create"/>
                 <child>
@@ -48,7 +48,7 @@
               <object class="AdwActionRow" id="show_menu_button_action_row">
                 <property name="activatable-widget">show_menu_button_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Show menu button</property>
+                <property name="title" translatable="yes">Show Menu Button</property>
 
                 <child>
                   <object class="GtkSwitch" id="show_menu_button_switch">
@@ -62,7 +62,7 @@
               <object class="AdwActionRow">
                 <property name="activatable-widget">show_headerbar_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Show headerbar</property>
+                <property name="title" translatable="yes">Show Headerbar</property>
                 <child>
                   <object class="GtkSwitch" id="show_headerbar_switch">
                     <property name="visible">True</property>
@@ -74,10 +74,10 @@
             <child>
               <object class="AdwExpanderRow" id="floating_controls_expander_row">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Floating controls</property>
+                <property name="title" translatable="yes">Floating Controls</property>
                 <child>
                   <object class="AdwActionRow">
-                    <property name="title" translatable="yes">Show floating controls</property>
+                    <property name="title" translatable="yes">Show Floating Controls</property>
                     <property name="subtitle" translatable="yes">Show floating controls in headbarless mode.</property>
                     <property name="activatable-widget">floating_controls_switch</property>
                     <child>
@@ -91,7 +91,7 @@
                 <child>
                   <object class="AdwActionRow">
                     <property name="sensitive" bind-source="floating_controls_switch" bind-property="active" bind-flags="sync-create"/>
-                    <property name="title" translatable="yes">Floating controls hover area</property>
+                    <property name="title" translatable="yes">Floating Controls Hover Area</property>
                     <property name="subtitle" translatable="yes">Hoverable area (in pixels) at the top of the window to trigger floating controls.</property>
                     <child>
                       <object class="GtkSpinButton">
@@ -104,7 +104,7 @@
                 <child>
                   <object class="AdwActionRow">
                     <property name="sensitive" bind-source="floating_controls_switch" bind-property="active" bind-flags="sync-create"/>
-                    <property name="title" translatable="yes">Delay before show floating controls</property>
+                    <property name="title" translatable="yes">Delay Before Show Floating Controls</property>
                     <property name="subtitle" translatable="yes">Delay time (ms) before show floating controls.</property>
                     <child>
                       <object class="GtkSpinButton">
@@ -132,7 +132,7 @@
                   <object class="AdwActionRow">
                     <property name="activatable-widget">show_scrollbars_switch</property>
                     <property name="visible">True</property>
-                    <property name="title" translatable="yes">Show scrollbars</property>
+                    <property name="title" translatable="yes">Show Scrollbars</property>
                     <child>
                       <object class="GtkSwitch" id="show_scrollbars_switch">
                         <property name="visible">True</property>
@@ -146,7 +146,7 @@
                   <object class="AdwActionRow" id="use_overlay_scrolling_action_row">
                     <property name="activatable-widget">use_overlay_scrolling_switch</property>
                     <property name="visible">True</property>
-                    <property name="title" translatable="yes">Use overlay scrolling</property>
+                    <property name="title" translatable="yes">Use Overlay Scrolling</property>
 
                     <child>
                       <object class="GtkSwitch" id="use_overlay_scrolling_switch">
@@ -162,7 +162,7 @@
               <object class="AdwActionRow">
                 <property name="activatable-widget">pretty_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Theme integration</property>
+                <property name="title" translatable="yes">Theme Integration</property>
 
                 <child>
                   <object class="GtkSwitch" id="pretty_switch">
@@ -176,7 +176,7 @@
               <object class="AdwActionRow" id="remember_window_size_row">
                 <property name="activatable-widget">remember_window_size_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Remember window size</property>
+                <property name="title" translatable="yes">Remember Window Size</property>
 
                 <child>
                   <object class="GtkSwitch" id="remember_window_size_switch">
@@ -217,7 +217,7 @@
             <child>
               <object class="AdwExpanderRow" id="cell_spacing_expander_row">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Cell spacing</property>
+                <property name="title" translatable="yes">Cell Spacing</property>
                 <child>
                   <object class="AdwActionRow">
                     <property name="title" translatable="yes">Width</property>
@@ -280,7 +280,7 @@
               <object class="AdwActionRow" id="easy_copy_paste_action_row">
                 <property name="activatable-widget">easy_copy_paste_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Easy copy &amp;amp; paste</property>
+                <property name="title" translatable="yes">Easy Copy &amp;amp; Paste</property>
                 <property name="subtitle" translatable="yes">Use ctrl+c/ctrl+v for copy/paste.</property>
                 <child>
                   <object class="GtkSwitch" id="easy_copy_paste_switch">
@@ -327,7 +327,7 @@
               <object class="AdwActionRow" id="pixel_scrolling_action_row">
                 <property name="activatable-widget">pixel_scrolling_switch</property>
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Pixel scrolling</property>
+                <property name="title" translatable="yes">Pixel Scrolling</property>
                 <property name="subtitle" translatable="yes">Scroll by pixel units instead of scrolling by lines. "Show scrollbars" must be enabled.</property>
 
                 <child>
@@ -344,11 +344,11 @@
           <object class="AdwPreferencesGroup">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="title" translatable="yes">Danger zone</property>
+            <property name="title" translatable="yes">Danger Zone</property>
             <child>
               <object class="AdwActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Reset preferences</property>
+                <property name="title" translatable="yes">Reset Preferences</property>
                 <property name="subtitle" translatable="yes">This will revert all settings back to default. Your extra themes will not be removed.</property>
 
                 <child>
