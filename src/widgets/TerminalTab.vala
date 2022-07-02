@@ -113,8 +113,8 @@ public class Terminal.TerminalTab : Gtk.Box {
     var preferences_section = new Menu ();
     var bottom_section = new Menu ();
 
-    menu.append (_("New tab"), "win.new_tab");
-    menu.append (_("New window"), "app.new-window");
+    menu.append (_("New Tab"), "win.new_tab");
+    menu.append (_("New Window"), "app.new-window");
 
     edit_section.append (_("Copy"), "win.copy");
     edit_section.append (_("Paste"), "win.paste");
