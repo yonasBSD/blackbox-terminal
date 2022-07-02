@@ -17,10 +17,5 @@
  */
 
 int main (string[] args) {
-  Intl.setlocale (LocaleCategory.ALL, "");
-  Intl.textdomain (Terminal.GETTEXT_PACKAGE);
-  Intl.bindtextdomain (Terminal.GETTEXT_PACKAGE, Terminal.LOCALEDIR);
-  Intl.bind_textdomain_codeset (Terminal.GETTEXT_PACKAGE, "UTF-8");
-
   return new Terminal.Application ().run (args);
 }

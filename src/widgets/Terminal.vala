@@ -432,7 +432,7 @@ public class Terminal.Terminal : Vte.Terminal {
       );
 
       var check_button = new Gtk.CheckButton.with_label (
-        _ ("Do not remind me again")
+        _("Do not remind me again")
       );
       check_button.can_focus = false;
 
