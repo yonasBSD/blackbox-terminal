@@ -35,8 +35,8 @@
       "sources" : [
         {
           "type" : "archive",
-          "url" : "https://gitlab.gnome.org/GNOME/vte/-/archive/1398ac862fb10b3cb7cdfc8267be2df5d5f39eb5/vte-1398ac862fb10b3cb7cdfc8267be2df5d5f39eb5.tar.gz",
-          "sha256": "9d76c963d70b19b48ffcbbf2acaee529fb1ec9c53cf0c1f1884f65b2c860bc1f"
+          "url" : "https://gitlab.gnome.org/raggesilver/vte/-/archive/c757fc5ca3f21aa0319d4d189f1022be0fde9cee/vte-c757fc5ca3f21aa0319d4d189f1022be0fde9cee.tar.gz",
+          "sha256": "25245514a86de6a234bfb279fc9a768d9cc753b49849fcb51415e800d83ba078"
         }
       ]
     },
