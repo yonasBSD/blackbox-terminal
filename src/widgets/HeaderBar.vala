@@ -27,10 +27,10 @@ namespace Terminal {
       var section1 = new GLib.Menu ();
       var section2 = new GLib.Menu ();
 
-      section1.append ("Fullscreen", "win.fullscreen");
-      section1.append ("Preferences", "win.edit_preferences");
-      section2.append ("Help", "win.show-help-overlay");
-      section2.append ("About", "app.about");
+      section1.append (_("Fullscreen"), "win.fullscreen");
+      section1.append (_("Preferences"), "win.edit_preferences");
+      section2.append (_("Help"), "win.show-help-overlay");
+      section2.append (_("About"), "app.about");
       more_menu.append_section (null, section1);
       more_menu.append_section (null, section2);
 

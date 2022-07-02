@@ -113,19 +113,19 @@ public class Terminal.TerminalTab : Gtk.Box {
     var preferences_section = new Menu ();
     var bottom_section = new Menu ();
 
-    menu.append ("New tab", "win.new_tab");
-    menu.append ("New window", "app.new-window");
+    menu.append (_("New tab"), "win.new_tab");
+    menu.append (_("New window"), "app.new-window");
 
-    edit_section.append ("Copy", "win.copy");
-    edit_section.append ("Paste", "win.paste");
+    edit_section.append (_("Copy"), "win.copy");
+    edit_section.append (_("Paste"), "win.paste");
 
     menu.append_section (null, edit_section);
 
-    preferences_section.append ("Preferences", "win.edit_preferences");
+    preferences_section.append (_("Preferences"), "win.edit_preferences");
     menu.append_section (null, preferences_section);
 
-    bottom_section.append ("Help", "win.show-help-overlay");
-    bottom_section.append ("About", "app.about");
+    bottom_section.append (_("Help"), "win.show-help-overlay");
+    bottom_section.append (_("About"), "app.about");
     menu.append_section (null, bottom_section);
 
     var pop = new Gtk.PopoverMenu.from_model (menu);

@@ -33,6 +33,11 @@ public class Terminal.Application : Adw.Application {
       flags: ApplicationFlags.HANDLES_COMMAND_LINE
     );
 
+    Intl.setlocale (LocaleCategory.ALL, "");
+    Intl.textdomain (GETTEXT_PACKAGE);
+    Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+    Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
     this.add_action_entries (ACTIONS, this);
 
     this.set_accels_for_action ("app.focus-next-tab", { "<Control>Tab" });

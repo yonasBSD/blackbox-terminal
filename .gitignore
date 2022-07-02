@@ -19,3 +19,6 @@ repo/
 # IDE dirs
 .vscode/
 .idea/
+
+# i18n
+po/*.pot

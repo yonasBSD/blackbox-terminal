@@ -44,7 +44,7 @@ public class Terminal.CommandLine {
       OptionEntry () {
         long_name       = "version",
         short_name      = 'v',
-        description     = "Show app version",
+        description     = _("Show app version"),
         flags           = OptionFlags.NONE,
         arg             = OptionArg.NONE,
         arg_data        = &options.version,
@@ -53,7 +53,7 @@ public class Terminal.CommandLine {
       OptionEntry () {
         long_name       = "working-directory",
         short_name      = 'w',
-        description     = "Set current working directory",
+        description     = _("Set current working directory"),
         flags           = OptionFlags.NONE,
         arg             = OptionArg.FILENAME,
         arg_data        = &options.current_working_dir,
@@ -62,7 +62,7 @@ public class Terminal.CommandLine {
       OptionEntry () {
         long_name       = "command",
         short_name      = 'c',
-        description     = "Execute command in a terminal",
+        description     = _("Execute command in a terminal"),
         flags           = OptionFlags.NONE,
         arg             = OptionArg.STRING,
         arg_data        = &options.command,
@@ -71,7 +71,7 @@ public class Terminal.CommandLine {
       OptionEntry () {
         long_name       = "help",
         short_name      = 'h',
-        description     = "Show help",
+        description     = _("Show help"),
         flags           = OptionFlags.NONE,
         arg             = OptionArg.NONE,
         arg_data        = &options.help,
@@ -118,7 +118,7 @@ public class Terminal.CommandLine {
     }
     catch (Error e) {
       cmd.printerr ("%s\n", e.message);
-      cmd.printerr ("Run %s --help to get help\n", original_argv[0]);
+      cmd.printerr (_("Run %s --help to get help\n"), original_argv[0]);
       return false;
     }
 

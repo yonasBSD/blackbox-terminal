@@ -61,7 +61,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     var settings = Settings.get_default ();
 
     this.theme_scheme_group.description =
-      "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>."
+      _("Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>.")
         .printf (
           Path.build_filename (DATADIR, "blackbox", "schemes", null),
           "https://github.com/storm119/Tilix-Themes"
