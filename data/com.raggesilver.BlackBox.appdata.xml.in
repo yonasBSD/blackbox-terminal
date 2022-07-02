@@ -84,6 +84,22 @@
   </kudos>
 
   <releases>
+    <release date="2022-07-01" version="0.9.0">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>Added cell spacing option</li>
+          <li>i18n support</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Fixed floating controls action row cannot be activated</li>
+          <li>New custom headerbar fixes unwanted spacing with controls on left side</li>
+          <li>Flathub builds will no longer have "striped headerbar"</li>
+          <li>A button is now displayed in the headerbar to leave fullscreen</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-06-27" version="0.8.2">
       <description>
         <p>
