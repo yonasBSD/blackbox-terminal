@@ -81,10 +81,11 @@ public struct Terminal.Padding {
 
 public class Terminal.Window : Adw.ApplicationWindow {
 
-  public ThemeProvider  theme_provider  { get; private set; }
-  public Adw.TabView    tab_view        { get; private set; }
-  public Adw.TabBar     tab_bar         { get; private set; }
-  public Terminal       active_terminal { get; private set; }
+  public ThemeProvider  theme_provider        { get; private set; }
+  public Adw.TabView    tab_view              { get; private set; }
+  public Adw.TabBar     tab_bar               { get; private set; }
+  public Terminal       active_terminal       { get; private set; }
+  public string?        active_terminal_title { get; private set; }
 
   BaseHeaderBar   header_bar;
   Gtk.Revealer    header_bar_revealer;
@@ -103,6 +104,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   private SimpleAction copy_action;
   private ulong active_terminal_selection_changed_signal = 0;
+  private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
 
   construct {
     if (DEVEL) {
@@ -397,14 +399,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void on_tab_selected () {
-    if (
-      this.active_terminal != null &&
-      this.active_terminal_selection_changed_signal != 0
-    ) {
-      this.active_terminal.disconnect (
-        this.active_terminal_selection_changed_signal
+    if (this.active_terminal != null) {
+      foreach (unowned ulong id in this.active_terminal_signal_handlers) {
+        this.active_terminal.disconnect (id);
+      }
+      this.active_terminal_signal_handlers.remove_range (
+        0,
+        this.active_terminal_signal_handlers.length
       );
-      this.active_terminal_selection_changed_signal = 0;
     }
     var terminal = (this.tab_view.selected_page?.child as TerminalTab)?.terminal;
     this.active_terminal = terminal;
@@ -416,10 +418,25 @@ public class Terminal.Window : Adw.ApplicationWindow {
       return;
     }
 
+    ulong handler;
+
     this.on_active_terminal_selection_changed ();
-    this.active_terminal_selection_changed_signal = this.active_terminal
+    handler = this.active_terminal
       .selection_changed
       .connect (this.on_active_terminal_selection_changed);
+
+    this.active_terminal_signal_handlers.append_val (handler);
+
+    this.on_active_terminal_title_changed ();
+    handler = this.active_terminal
+      .window_title_changed
+      .connect (this.on_active_terminal_title_changed);
+
+    this.active_terminal_signal_handlers.append_val (handler);
+  }
+
+  private void on_active_terminal_title_changed () {
+    this.active_terminal_title = this.active_terminal.window_title;
   }
 
   private void on_active_terminal_selection_changed () {

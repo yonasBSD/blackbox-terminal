@@ -81,5 +81,9 @@
       <default>false</default>
       <summary>If enabled, ctrl+c and ctrl+v will work for copy/paste</summary>
     </key>
+    <key name="hide-single-tab" type="b">
+      <default>true</default>
+      <summary>If enabled, the tab bar will be replaced with a title label when there's a single open tab</summary>
+    </key>
   </schema>
 </schemalist>

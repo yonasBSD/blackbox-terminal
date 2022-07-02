@@ -81,8 +81,20 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
 
 public class Terminal.HeaderBar : BaseHeaderBar {
 
-  private Gtk.WindowControls left_controls;
-  private Gtk.WindowControls right_controls;
+  public bool single_tab_mode {
+    get {
+      var settings = Settings.get_default ();
+      return (
+        this.window.tab_view.n_pages <= 1 &&
+        settings.fill_tabs &&
+        settings.hide_single_tab
+      );
+    }
+  }
+
+  private Gtk.WindowControls  left_controls;
+  private Gtk.WindowControls  right_controls;
+  private Gtk.Label           title_label;
 
   private Gtk.Button unfullscreen_button;
 
@@ -106,8 +118,8 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     hb.show_end_title_buttons = false;
     hb.add_css_class ("flat");
 
-    tab_bar.halign = Gtk.Align.FILL;
-    tab_bar.hexpand = true;
+    this.tab_bar.halign = Gtk.Align.FILL;
+    this.tab_bar.hexpand = true;
     hb.halign = Gtk.Align.FILL;
     hb.hexpand = true;
 
@@ -119,12 +131,20 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     this.left_controls = new Gtk.WindowControls (Gtk.PackType.START);
     this.right_controls = new Gtk.WindowControls (Gtk.PackType.END);
 
+    this.title_label = new Gtk.Label (null) {
+      halign = Gtk.Align.FILL,
+      hexpand = true,
+      xalign = 0.5f,
+      css_classes = { "title-label" },
+    };
+
     var layout = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
     layout.halign = Gtk.Align.FILL;
     layout.hexpand = true;
 
     layout.append (this.left_controls);
-    layout.append (tab_bar);
+    layout.append (this.tab_bar);
+    layout.append (this.title_label);
     layout.append (this.new_tab_button);
     layout.append (this.unfullscreen_button);
     layout.append (this.menu_button);
@@ -138,6 +158,8 @@ public class Terminal.HeaderBar : BaseHeaderBar {
   }
 
   private void connect_signals () {
+    var settings = Settings.get_default ();
+
     // window.fullscreened -> unfullscreen_button visibility
     this.window.bind_property (
       "fullscreened",
@@ -165,11 +187,43 @@ public class Terminal.HeaderBar : BaseHeaderBar {
       null,
       null
     );
+    // window.active_terminal_title -> title_label subtitle
+    this.window.bind_property (
+      "active-terminal-title",
+      this.title_label,
+      "label",
+      GLib.BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+
+    this.window.tab_view.notify ["n-pages"].connect (notify_single_tab_mode);
+    settings.notify ["fill-tabs"].connect (this.notify_single_tab_mode);
+    settings.notify ["hide-single-tab"].connect (this.notify_single_tab_mode);
+
+    this.notify ["single-tab-mode"].connect (this.on_single_tab_mode_changed);
+    this.on_single_tab_mode_changed ();
 
     this.unfullscreen_button.clicked.connect (this.on_unmaximize);
   }
 
   private void on_unmaximize () {
     this.window.unfullscreen ();
+  }
+
+  private void notify_single_tab_mode () {
+    this.notify_property ("single-tab-mode");
+  }
+
+  private void on_single_tab_mode_changed () {
+    this.tab_bar.visible = !this.single_tab_mode;
+    this.title_label.visible = this.single_tab_mode;
+
+    if (this.single_tab_mode) {
+      this.add_css_class ("single-tab-mode");
+    }
+    else {
+      this.remove_css_class ("single-tab-mode");
+    }
   }
 }
