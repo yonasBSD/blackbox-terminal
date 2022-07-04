@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="TerminalPreferencesWindow2" parent="AdwApplicationWindow">
+    <property name="default-width">800</property>
+    <property name="default-height">500</property>
+    <!-- Outer layout box -->
+    <child>
+      <object class="GtkBox" id="outer_box">
+        <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+        <property name="spacing">0</property>
+        <!-- Sidebar box -->
+        <child>
+          <object class="GtkBox" id="side_box">
+            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+            <property name="spacing">0</property>
+            <!-- Headerbar -->
+            <child>
+              <object class="AdwHeaderBar" id="side_headerbar">
+                <property name="show-start-title-buttons">True</property>
+                <property name="show-end-title-buttons">False</property>
+                <child type="title">
+                  <object class="AdwWindowTitle">
+                    <property name="title">Preferences</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <!-- Search bar -->
+            <child>
+              <object class="GtkSearchBar" id="search_bar">
+                <property name="search-mode-enabled">False</property>
+                <style>
+                  <class name="inline" />
+                </style>
+                <child>
+                  <object class="GtkSearchEntry">
+                    <property name="activates-default">True</property>
+                    <property name="placeholder-text">Search</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <!-- Scrolled window > Viewport > List box -->
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="can-focus">True</property>
+                <property name="hscrollbar-policy">never</property>
+                <property name="vexpand">True</property>
+                <child>
+                  <object class="GtkViewport">
+                    <child>
+                      <object class="GtkListBox" id="side_list_box">
+                        <style>
+                          <class name="navigation-sidebar"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Separator -->
+        <child>
+          <object class="GtkSeparator">
+            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+          </object>
+        </child>
+        <!-- Main content box -->
+        <child>
+          <object class="GtkBox" id="main_box">
+            <property name="hexpand">True</property>
+            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+            <child>
+              <object class="AdwHeaderBar" id="main_headerbar">
+                <property name="show-start-title-buttons">False</property>
+                <property name="show-end-title-buttons">True</property>
+                <child type="title">
+                  <object class="AdwWindowTitle" id="main_window_title">
+                    <property name="title">General</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStack" id="content_stack">
+                <property name="vhomogeneous">False</property>
+                <property name="vexpand">True</property>
+                <!-- General page -->
+                <child>
+                  <object class="AdwPreferencesPage" id="general_page">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="title" translatable="yes">General</property>
+                    <property name="icon-name">settings-symbolic</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Window</property>
+                        <child>
+                          <object class="AdwActionRow" id="remember_window_size_row">
+                            <property name="activatable-widget">remember_window_size_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Remember Window Size</property>
+
+                            <child>
+                              <object class="GtkSwitch" id="remember_window_size_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Tabs</property>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="activatable-widget">fill_tabs_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Expand Tabs</property>
+
+                            <child>
+                              <object class="GtkSwitch" id="fill_tabs_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="activatable-widget">hide_single_tab_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Hide Single Tab</property>
+                            <property name="subtitle" translatable="yes">Replace tab bar with a title label when a single tab is open.</property>
+                            <property name="sensitive" bind-source="fill_tabs_switch" bind-property="active" bind-flags="sync-create"/>
+                            <child>
+                              <object class="GtkSwitch" id="hide_single_tab_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Headerbar</property>
+                        <child>
+                          <object class="AdwActionRow" id="show_menu_button_action_row">
+                            <property name="activatable-widget">show_menu_button_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Show Menu Button</property>
+
+                            <child>
+                              <object class="GtkSwitch" id="show_menu_button_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="activatable-widget">show_headerbar_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Show Headerbar</property>
+                            <child>
+                              <object class="GtkSwitch" id="show_headerbar_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow" id="floating_controls_expander_row">
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Floating Controls</property>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Show Floating Controls</property>
+                                <property name="subtitle" translatable="yes">Show floating controls in headbarless mode.</property>
+                                <property name="activatable-widget">floating_controls_switch</property>
+                                <child>
+                                  <object class="GtkSwitch" id="floating_controls_switch">
+                                    <property name="visible">True</property>
+                                    <property name="valign">GTK_ALIGN_CENTER</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="sensitive" bind-source="floating_controls_switch" bind-property="active" bind-flags="sync-create"/>
+                                <property name="title" translatable="yes">Floating Controls Hover Area</property>
+                                <property name="subtitle" translatable="yes">Hoverable area (in pixels) at the top of the window to trigger floating controls.</property>
+                                <child>
+                                  <object class="GtkSpinButton">
+                                    <property name="valign">center</property>
+                                    <property name="adjustment">floating_controls_hover_area_adjustment</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="sensitive" bind-source="floating_controls_switch" bind-property="active" bind-flags="sync-create"/>
+                                <property name="title" translatable="yes">Delay Before Show Floating Controls</property>
+                                <property name="subtitle" translatable="yes">Delay time (ms) before show floating controls.</property>
+                                <child>
+                                  <object class="GtkSpinButton">
+                                    <property name="valign">center</property>
+                                    <property name="adjustment">floating_controls_delay_adjustment</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <!-- Appearance page -->
+                <child>
+                  <object class="AdwPreferencesPage" id="appearance_page">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="title" translatable="yes">Appearance</property>
+                    <property name="icon-name">preferences-desktop-appearance-symbolic</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Style and Theming</property>
+                        <child>
+                          <object class="AdwComboRow" id="dark_preference_combo_row">
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Style Preference</property>
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                  <item translatable="yes">Follow System</item>
+                                  <item translatable="yes">Light Style</item>
+                                  <item translatable="yes">Dark Style</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="activatable-widget">pretty_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Theme Integration</property>
+                            <property name="subtitle" translatable="yes">Style window with terminal theme colors.</property>
+                            <child>
+                              <object class="GtkSwitch" id="pretty_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <!-- Advanced page -->
+                <child>
+                  <object class="AdwPreferencesPage" id="advanced_page">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="title" translatable="yes">Advanced</property>
+                    <property name="icon-name">applications-science-symbolic</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <!-- <property name="use-markup">True</property> -->
+                        <property name="title" translatable="yes">Experimental</property>
+                        <property name="description" translatable="yes">Features in this section are known to be wonky. Please feel free to test and &lt;a href="https://gitlab.gnome.org/raggesilver/blackbox/-/issues"&gt;report bugs&lt;/a&gt;.</property>
+                        <child>
+                          <object class="AdwActionRow" id="pixel_scrolling_action_row">
+                            <property name="activatable-widget">pixel_scrolling_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Pixel Scrolling</property>
+                            <property name="subtitle" translatable="yes">Scroll by pixel units instead of scrolling by lines. "Show scrollbars" must be enabled.</property>
+
+                            <child>
+                              <object class="GtkSwitch" id="pixel_scrolling_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Danger Zone</property>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Reset Preferences</property>
+                            <property name="subtitle" translatable="yes">This will revert all settings back to default. Your extra themes will not be removed.</property>
+                            <child>
+                              <object class="GtkButton" id="reset_all_button">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                                <property name="halign">GTK_ALIGN_END</property>
+                                <property name="label">Reset preferences</property>
+                                <!-- <signal name="clicked" handler="on_reset_request" swapped="no"/> -->
+                                <style>
+                                  <class name="destructive-action"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <!-- <child>
+                  <object class="GtkLabel" id="profile_page">
+                    <property name="label">Profile page</property>
+                  </object>
+                </child> -->
+                <child>
+                  <object class="AdwPreferencesPage" id="terminal_page">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="title" translatable="yes">Terminal</property>
+                    <property name="icon-name">utilities-terminal-symbolic</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Terminal</property>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="activatable-widget">font_button</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Font</property>
+
+                            <child>
+                              <object class="GtkFontButton" id="font_button">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <property name="use-font">True</property>
+                                <property name="use-size">True</property>
+                                <property name="font">Monospace 12</property>
+                                <property name="language">en-us</property>
+                                <property name="level">GTK_FONT_CHOOSER_LEVEL_SIZE | GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
+                                <property name="preview-text" />
+                                <property name="title" translatable="yes">Terminal Font</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwExpanderRow" id="cell_spacing_expander_row">
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Cell Spacing</property>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Width</property>
+                                <child>
+                                  <object class="GtkSpinButton">
+                                    <property name="valign">center</property>
+                                    <property name="digits">2</property>
+                                    <property name="adjustment">cell_width_spacing_adjustment</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow">
+                                <property name="title" translatable="yes">Height</property>
+                                <child>
+                                  <object class="GtkSpinButton">
+                                    <property name="valign">center</property>
+                                    <property name="digits">2</property>
+                                    <property name="adjustment">cell_height_spacing_adjustment</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Padding</property>
+                            <child>
+                              <object class="GtkSpinButton" id="padding_spin_button">
+                                <property name="adjustment">padding_spin_button_adjustment</property>
+                                <property name="climb-rate">1</property>
+                                <property name="digits">0</property>
+                                <property name="numeric">True</property>
+                                <property name="snap-to-ticks">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                                <property name="visible">True</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwComboRow" id="cursor_shape_combo_row">
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Cursor</property>
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                  <item translatable="yes">Block</item>
+                                  <item translatable="yes">IBeam</item>
+                                  <item translatable="yes">Underline</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow" id="easy_copy_paste_action_row">
+                            <property name="activatable-widget">easy_copy_paste_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Easy Copy &amp;amp; Paste</property>
+                            <property name="subtitle" translatable="yes">Use ctrl+c/ctrl+v for copy/paste.</property>
+                            <child>
+                              <object class="GtkSwitch" id="easy_copy_paste_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup" id="theme_scheme_group">
+                        <property name="title" translatable="yes">Theme</property>
+                        <property name="description" translatable="yes"></property>
+                        <child>
+                          <object class="GtkFlowBox" id="preview_flow_box">
+                            <property name="hexpand">true</property>
+                            <property name="column-spacing">12</property>
+                            <property name="row-spacing">12</property>
+                            <property name="max-children-per-line">4</property>
+                            <property name="max-children-per-line">4</property>
+                            <property name="selection-mode">none</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkAdjustment" id="floating_controls_hover_area_adjustment">
+    <property name="lower">2</property>
+    <property name="upper">100</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">0</property>
+  </object>
+
+  <object class="GtkAdjustment" id="floating_controls_delay_adjustment">
+    <property name="lower">100</property>
+    <property name="upper">5000</property>
+    <property name="step-increment">50</property>
+    <property name="page-increment">0</property>
+  </object>
+
+  <object class="GtkAdjustment" id="cell_width_spacing_adjustment">
+    <property name="lower">1</property>
+    <property name="upper">2</property>
+    <property name="step-increment">0.05</property>
+    <property name="page-increment">0</property>
+  </object>
+
+  <object class="GtkAdjustment" id="cell_height_spacing_adjustment">
+    <property name="lower">1</property>
+    <property name="upper">2</property>
+    <property name="step-increment">0.05</property>
+    <property name="page-increment">0</property>
+  </object>
+
+  <object class="GtkAdjustment" id="padding_spin_button_adjustment">
+    <property name="upper">100</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">0</property>
+  </object>
+</interface>

@@ -343,9 +343,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
-      var w = new PreferencesWindow (this.application, this);
-      w.set_transient_for (this);
-      w.set_modal (true);
+      //  var w = new PreferencesWindow (this.application, this);
+      //  w.set_transient_for (this);
+      //  w.set_modal (true);
+      var w = new PreferencesWindow2 (this);
       w.present ();
     });
     this.add_action (sa);

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="TerminalPreferencesWindow2" parent="AdwApplicationWindow">
+    <child type="content">
+      <object class="AdwLeaflet" id="leaflet">
+        <!-- Sidebar -->
+        <child>
+          <object class="GtkScrolledWindow" id="side_box">
+            <child>
+              <object class="GtkViewport">
+                <child>
+                  <object class="GtkBox" id="side_box_content">
+                    <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+                    <property name="spacing">0</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Sidebar end -->
+        <!-- Separator -->
+        <child>
+          <object class="GtkSeparator">
+            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+          </object>
+        </child>
+        <!-- Separator end -->
+        <!-- Main content -->
+        <child>
+          <object class="GtkBox" id="main_box">
+            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+            <property name="spacing">0</property>
+            <child>
+              <object class="GtkWindowControls">
+                <property name="halign">GTK_ALIGN_END</property>
+                <property name="valign">GTK_ALIGN_START</property>
+                <property name="side">GTK_PACK_END</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStack">
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Page 1</property>
+                    <property name="halign">GTK_ALIGN_CENTER</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Main content end -->
+      </object>
+    </child>
+  </template>
+</interface>
