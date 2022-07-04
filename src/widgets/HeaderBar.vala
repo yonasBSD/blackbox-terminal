@@ -204,6 +204,7 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     this.window.tab_view.notify ["n-pages"].connect (notify_single_tab_mode);
     settings.notify ["fill-tabs"].connect (this.notify_single_tab_mode);
     settings.notify ["hide-single-tab"].connect (this.notify_single_tab_mode);
+    settings.notify ["stealth-single-tab"].connect (this.notify_single_tab_mode);
 
     this.notify ["single-tab-mode"].connect (this.on_single_tab_mode_changed);
     this.on_single_tab_mode_changed ();
@@ -220,14 +221,13 @@ public class Terminal.HeaderBar : BaseHeaderBar {
   }
 
   private void on_single_tab_mode_changed () {
-    this.tab_bar.visible = !this.single_tab_mode;
-    this.title_label.visible = this.single_tab_mode;
+    bool single_tab_enabled = this.single_tab_mode;
+    bool stealth_enabled = Settings.get_default ().stealth_single_tab;
 
-    if (this.single_tab_mode) {
-      this.add_css_class ("single-tab-mode");
-    }
-    else {
-      this.remove_css_class ("single-tab-mode");
-    }
+    this.tab_bar.visible = !single_tab_enabled;
+    this.title_label.visible = single_tab_enabled;
+
+    set_css_class (this, "single-tab-mode", single_tab_enabled);
+    set_css_class (this, "stealth", single_tab_enabled && stealth_enabled);
   }
 }

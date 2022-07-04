@@ -24,8 +24,8 @@ tab:checked {
   background: @window_bg_color;
 }
 
-/* .custom-headerbar.single-tab-mode headerbar, */
-.custom-headerbar.single-tab-mode headerbar .title-label {
+.custom-headerbar.single-tab-mode.stealth headerbar,
+.custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
   background: @window_bg_color;
 }
 

@@ -85,5 +85,9 @@
       <default>true</default>
       <summary>If enabled, the tab bar will be replaced with a title label when there's a single open tab</summary>
     </key>
+    <key name="stealth-single-tab" type="b">
+      <default>true</default>
+      <summary>If enabled, a single open tab will blend with the headerbar color</summary>
+    </key>
   </schema>
 </schemalist>
