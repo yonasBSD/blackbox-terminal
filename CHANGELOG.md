@@ -1,12 +1,15 @@
 # Changelog
 
-## 0.10.0 - Unreleased
+## 0.10.0 - 2022.07.04
 
 Features:
 
 - New single tab mode makes it easier to drag the window and the UI more
   aesthetically pleasing when there's a single tab open - #31
 - Added middle-click paste (only if enabled system-wide) - #46
+- Added French translation - thanks @rene-coty
+- Added Dutch translation - thanks @Vistaus
+- Added German translation - thanks @ktutsch
 
 Bug fixes:
 

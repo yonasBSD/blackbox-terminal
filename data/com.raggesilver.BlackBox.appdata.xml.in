@@ -84,6 +84,24 @@
   </kudos>
 
   <releases>
+    <release date="2022-07-04" version="0.10.0">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>New single tab mode makes it easier to drag the window and the UI more aesthetically pleasing when there's a single tab open</li>
+          <li>Added middle-click paste (only if enabled system-wide)</li>
+          <li>Added French translation</li>
+          <li>Added Dutch translation</li>
+          <li>Added German translation</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Buttons in headerbar are no longer focusable</li>
+          <li>Labels and titles in preferences window now follow GNOME HIG for typography</li>
+          <li>Disable unimplemented `app.quit` accelerator</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-07-02" version="0.9.1">
       <description>
         <p>Use patched VTE to enable copying.</p>
