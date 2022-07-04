@@ -103,7 +103,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
   private uint waiting_for_floating_hb_animation = 0;
 
   private SimpleAction copy_action;
-  private ulong active_terminal_selection_changed_signal = 0;
   private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
 
   construct {

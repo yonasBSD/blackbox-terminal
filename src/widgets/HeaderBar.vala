@@ -68,7 +68,10 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
 
     // New tab button
     // FIXME: bundle a new tab icon
-    this.new_tab_button = new Gtk.Button.from_icon_name ("list-add-symbolic");
+    this.new_tab_button = new Gtk.Button () {
+      can_focus = false,
+      icon_name = "list-add-symbolic",
+    };
   }
 
   protected BaseHeaderBar (Window window) {
@@ -124,6 +127,7 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     hb.hexpand = true;
 
     this.unfullscreen_button = new Gtk.Button () {
+      can_focus = false,
       icon_name = "view-restore-symbolic",
       halign = Gtk.Align.END,
     };
