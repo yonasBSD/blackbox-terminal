@@ -24,7 +24,7 @@ public class Terminal.Application : Adw.Application {
     { "focus-previous-tab", on_focus_previous_tab },
     { "new-window", on_new_window },
     { "about", on_about },
-    { "quit", on_app_quit },
+    //  { "quit", on_app_quit },
   };
 
   public Application () {
@@ -43,7 +43,7 @@ public class Terminal.Application : Adw.Application {
     this.set_accels_for_action ("app.focus-next-tab", { "<Control>Tab" });
     this.set_accels_for_action ("app.focus-previous-tab", { "<Shift><Control>Tab" });
     this.set_accels_for_action ("app.new-window", { "<Shift><Control>n" });
-    this.set_accels_for_action ("app.quit", { "<Control>q" });
+    //  this.set_accels_for_action ("app.quit", { "<Shift><Control>q" });
 
     this.set_accels_for_action ("win.switch-headerbar-mode", { "<Shift><Control>h" });
     this.set_accels_for_action ("win.new_tab", { "<Shift><Control>t" });
@@ -89,10 +89,10 @@ public class Terminal.Application : Adw.Application {
     return 0;
   }
 
-  private void on_app_quit () {
-    // This involves confirming before closing tabs/windows
-    warning ("App quit is not implemented yet.");
-  }
+  //  private void on_app_quit () {
+  //    // This involves confirming before closing tabs/windows
+  //    warning ("App quit is not implemented yet.");
+  //  }
 
   private void on_about () {
     var win = create_about_dialog ();
