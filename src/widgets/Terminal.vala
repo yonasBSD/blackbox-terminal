@@ -269,6 +269,7 @@ public class Terminal.Terminal : Vte.Terminal {
 
       envv += "G_MESSAGES_DEBUG=false";
       envv += "TERM=xterm-256color";
+      envv += @"TERM_PROGRAM=$(APP_NAME)";
 
       foreach (unowned string env in envv) {
         argv += @"--env=$(env)";
@@ -294,6 +295,7 @@ public class Terminal.Terminal : Vte.Terminal {
       envv = Environ.get ();
       envv += "G_MESSAGES_DEBUG=false";
       envv += "TERM=xterm-256color";
+      envv += @"TERM_PROGRAM=$(APP_NAME)";
 
       argv = { Environ.get_variable (envv, "SHELL") };
 
