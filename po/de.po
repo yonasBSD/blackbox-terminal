@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-04 19:32-0300\n"
-"PO-Revision-Date: 2022-07-03 16:07+0200\n"
+"PO-Revision-Date: 2022-07-05 08:46+0200\n"
 "Last-Translator: Konstantin Tutsch <konstantin.tutsch@disroot.org>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -121,11 +121,10 @@ msgstr ""
 "den Fenstertitel ersetzt"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:90
-#, fuzzy
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
-"Wenn eingeschaltet, wird die Schwebesteuerung des Fensters auch ohne "
-"Fensterleiste angezeigt"
+"Wenn eingeschaltet, wird, wenn nur ein einzelner Tab geöffnet ist, dieser "
+"mit der Farbe der Fensterleiste harmonieren"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -225,30 +224,28 @@ msgid "Expand Tabs"
 msgstr "Tabs erweitern"
 
 #: src/gtk/preferences-window.ui:35
-#, fuzzy
 msgid "Single Tab Mode"
-msgstr "Einzelnen Tab verstecken"
+msgstr "Einzelner Tab Modus"
 
 #: src/gtk/preferences-window.ui:41
 msgid "Hide Single Tab"
 msgstr "Einzelnen Tab verstecken"
 
 #: src/gtk/preferences-window.ui:42
-#, fuzzy
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
 msgstr ""
-"Ersetze die Tableiste mit einem einzelnen Titel wenn nur ein Tab geöffnet ist"
+"Ersetze die Tab-Leiste mit dem einzelnen Titel des Tabs, wenn nur ein Tab "
+"geöffnet ist."
 
 #: src/gtk/preferences-window.ui:56
-#, fuzzy
 msgid "Stealth Single Tab"
 msgstr "Einzelnen Tab verstecken"
 
 #: src/gtk/preferences-window.ui:57
 msgid "Blend single tab with headerbar."
-msgstr ""
+msgstr "Einzelnen Tab farblich anpassen"
 
 #: src/gtk/preferences-window.ui:73
 msgid "Show Menu Button"
@@ -309,7 +306,7 @@ msgstr "Nutze Overlay Bildlauf"
 
 #: src/gtk/preferences-window.ui:187
 msgid "Theme Integration"
-msgstr "Themaintegration"
+msgstr "Themenintegration"
 
 #: src/gtk/preferences-window.ui:201
 msgid "Remember Window Size"
@@ -365,7 +362,7 @@ msgstr "Einfaches Kopieren &amp; Einfügen"
 
 #: src/gtk/preferences-window.ui:306
 msgid "Use ctrl+c/ctrl+v for copy/paste."
-msgstr "Nutze STRG+C/STRG+V um zu Kopieren/Einzufügen"
+msgstr "Sie werden mit STRG+C/STRG+V Kopieren/Einzufügen können"
 
 #: src/gtk/preferences-window.ui:319
 msgid "Theme"
@@ -386,9 +383,8 @@ msgid ""
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
 "bugs</a>."
 msgstr ""
-"Funktionen in diesem Abschnitt sind bekannt dafür, nicht immer ganz zu "
-"funktionieren. Fühle dich frei <a href=\"https://gitlab.gnome.org/"
-"raggesilver/blackbox/-/issues\">Fehler zu melden</a>."
+"Funktionen in diesem Abschnitt sind fehleranfällig. <a href=\"https://gitlab."
+"gnome.org/raggesilver/blackbox/-/issues\">Melden Sie ruhig Fehler</a>."
 
 #: src/gtk/preferences-window.ui:352
 msgid "Pixel Scrolling"
@@ -399,8 +395,8 @@ msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
 msgstr ""
-"Scrolle in Pixeleinheiten und nicht in Zeilen. \"Zeige Bildlaufleisten an\" "
-"muss eingeschaltet sein."
+"Scrollen Sie in Pixeleinheiten und nicht in Zeilen. \"Zeige Bildlaufleisten "
+"an\" muss eingeschaltet sein."
 
 #: src/gtk/preferences-window.ui:369
 msgid "Danger Zone"
@@ -482,17 +478,17 @@ msgstr "Über"
 #: src/widgets/PreferencesWindow.vala:65
 #, c-format
 msgid ""
-"Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
-"href=\"%s\">online</a>."
+"Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s"
+"\">online</a>."
 msgstr ""
-"Öffne den <a href=\"file://%s\">Themen Ordner</a>. Laden mehr Themen <a "
-"href=\"%s\">Online</a> heruner."
+"Öffnen Sie den <a href=\"file://%s\">Themen Ordner</a> und laden Sie mehr "
+"Themen <a href=\"%s\">online</a> herunter."
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
 msgstr ""
-"Du kannst das Menü trotzdem jederzeit mit einem Rechtsklick auf ein Terminal "
-"öffnen."
+"Sie können das Menü trotzdem jederzeit mit einem Rechtsklick auf ein "
+"Terminal öffnen."
 
 #: src/utils/Constants.vala:36
 #, c-format
