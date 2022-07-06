@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-05 16:23+0300\n"
+"POT-Creation-Date: 2022-07-06 10:33-0300\n"
 "PO-Revision-Date: 2022-07-05ы 19:31+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
@@ -67,12 +67,14 @@ msgstr "Включить ли оверлейную прокрутку"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:46
 msgid "If enabled, terminals will scroll by pixels instead of rows"
-msgstr "Если включено, прокрутка будет происходить по пикселям, а не по строкам"
+msgstr ""
+"Если включено, прокрутка будет происходить по пикселям, а не по строкам"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:50
 msgid "If enabled, floating controls will be shown in headerless mode"
-msgstr "Если включено, плавающие элементы управления будут отображаться в "
-"режиме без заголовка"
+msgstr ""
+"Если включено, плавающие элементы управления будут отображаться в режиме без "
+"заголовка"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:54
 msgid ""
@@ -92,8 +94,8 @@ msgstr "Цветовая схема терминала"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:66
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
-msgstr "Размер отступов вокруг виджетов терминала"
-"(сверху, справа, снизу, слева)"
+msgstr ""
+"Размер отступов вокруг виджетов терминала(сверху, справа, снизу, слева)"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:70
 msgid "Terminal cell width"
@@ -116,8 +118,8 @@ msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
 msgstr ""
-"Если включено, панель вкладок будет заменена заголовком с одной открытой"
-"вкладкой"
+"Если включено, панель вкладок будет заменена заголовком с одной "
+"открытойвкладкой"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:90
 msgid "If enabled, a single open tab will blend with the headerbar color"
@@ -233,8 +235,8 @@ msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
 msgstr ""
-"Сделать панель вкладок частью заголовка, если открыта только одна "
-"вкладка. Проще перемещать окно."
+"Сделать панель вкладок частью заголовка, если открыта только одна вкладка. "
+"Проще перемещать окно."
 
 #: src/gtk/preferences-window.ui:56
 msgid "Stealth Single Tab"
@@ -272,8 +274,9 @@ msgstr "Область наведения плавающих элементов 
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
-msgstr "Наводимая область (в пикселях) в верхней части окна для запуска "
-"плавающих элементов управления."
+msgstr ""
+"Наводимая область (в пикселях) в верхней части окна для запуска плавающих "
+"элементов управления."
 
 #: src/gtk/preferences-window.ui:129
 msgid "Delay Before Show Floating Controls"
@@ -378,8 +381,8 @@ msgid ""
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
 "bugs</a>."
 msgstr ""
-"Функции в этом разделе работают нестабильно. Не стесняйтесь тестировать и "
-"<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">сообщать об "
+"Функции в этом разделе работают нестабильно. Не стесняйтесь тестировать и <a "
+"href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">сообщать об "
 "ошибках</a>."
 
 #: src/gtk/preferences-window.ui:352
@@ -391,8 +394,8 @@ msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
 msgstr ""
-"Прокрутка по пикселям вместо прокрутки по строкам. "
-"\"Показывать полосы прокрутки\" должно быть включено."
+"Прокрутка по пикселям вместо прокрутки по строкам. \"Показывать полосы "
+"прокрутки\" должно быть включено."
 
 #: src/gtk/preferences-window.ui:369
 msgid "Danger Zone"
@@ -406,8 +409,9 @@ msgstr "Сброс настроек"
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
-msgstr "Все настройки вернутся к значениям по умолчанию. "
-"Персональные темы не будут удалены."
+msgstr ""
+"Все настройки вернутся к значениям по умолчанию. Персональные темы не будут "
+"удалены."
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
