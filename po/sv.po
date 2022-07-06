@@ -1,0 +1,507 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the blackbox package.
+# Luna Jernberg <lunajernberg@gnome.org>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Black Box\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-04 19:32-0300\n"
+"PO-Revision-Date: 2022-07-06 09:45+0200\n"
+"Last-Translator: Luna Jernberg <lunajernberg@gnome.org>\n"
+"Language-Team: Swedish <>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: data/com.raggesilver.BlackBox.desktop.in:3
+msgid "Black Box"
+msgstr "Black Box"
+
+#: data/com.raggesilver.BlackBox.desktop.in:9
+msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
+msgstr "Terminal;terminal;skal;prompt;kommando;kommandorad;cmd;box;"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:6
+msgid "Window width"
+msgstr "Fönster bredd"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:10
+msgid "Window height"
+msgstr "Fönsterhöjd"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:14
+msgid "Whether or not to remember window size"
+msgstr "Om fönsterstorleken ska kommas ihåg eller inte"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:18
+msgid "Font family and size"
+msgstr "Teckensnittsfamilj och storlek"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:22
+msgid "Whether the window should inherit terminal theme's colors"
+msgstr "Om fönstret ska ärva terminaltemats färger"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:26
+msgid "Whether or not tabs should expand to fill tab bar"
+msgstr "Om flikar ska expanderas för att fylla flikfältet"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:30
+msgid "Whether the headerbar should be shown or not"
+msgstr "Om fönsterlisten ska visas eller inte"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:34
+msgid "Whether or not to display a menu button in the headerbar"
+msgstr "Om en menyknapp ska visas i rubrikfältet eller inte"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:38
+msgid "Whether or not to show scrollbars"
+msgstr "Om rullningslister ska visas eller inte"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:42
+msgid "Whether overlay scrolling should be enabled"
+msgstr "Om överlagringsrullning ska aktiveras"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:46
+msgid "If enabled, terminals will scroll by pixels instead of rows"
+msgstr ""
+"Om det är aktiverat rullar terminalerna efter pixlar istället för rader"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:50
+msgid "If enabled, floating controls will be shown in headerless mode"
+msgstr "Om aktiverat, så kommer flytande kontroller visas i fönsterlöst läge"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:54
+msgid ""
+"Hoverable area (in pixels) at the top of the window to trigger floating "
+"controls"
+msgstr ""
+"Svävbart område (i pixlar) överst i fönstret för att utlösa flytande "
+"kontroller"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:58
+msgid "Delay time before showing floating controls"
+msgstr "Fördröjning innan flytande kontroller visas"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:62
+msgid "The color scheme for the terminal"
+msgstr "Färgschemat för terminalen"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:66
+msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
+msgstr ""
+"Mängden utfyllnad runt terminalwidgets (överst, höger, botten, vänster)"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:70
+msgid "Terminal cell width"
+msgstr "Terminal cellbredd"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:74
+msgid "Terminal cell height"
+msgstr "Terminal cell höjd"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:78
+msgid "Cursor shape"
+msgstr "Markör form"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:82
+msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
+msgstr ""
+"Om det är aktiverat kommer ctrl+c och ctrl+v att fungera för kopiera/klistra "
+"in"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:86
+msgid ""
+"If enabled, the tab bar will be replaced with a title label when there's a "
+"single open tab"
+msgstr ""
+"Om det är aktiverat kommer flikfältet att ersättas med en titeletikett när "
+"det finns en enda öppen flik"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:90
+msgid "If enabled, a single open tab will blend with the headerbar color"
+msgstr ""
+"Om det är aktiverat kommer en enda öppen flik att blandas med rubrikfältets "
+"färg"
+
+#: src/gtk/help-overlay.ui:10
+msgctxt "shortcut window"
+msgid "Window"
+msgstr "Fönster"
+
+#: src/gtk/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Nytt fönster"
+
+#: src/gtk/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "New tab"
+msgstr "Ny flik"
+
+#: src/gtk/help-overlay.ui:25
+msgctxt "shortcut window"
+msgid "Close tab"
+msgstr "Stäng flik"
+
+#: src/gtk/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Zooma in"
+
+#: src/gtk/help-overlay.ui:37
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Zooma ut"
+
+#: src/gtk/help-overlay.ui:43
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "Kopiera"
+
+#: src/gtk/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "Klistra in"
+
+#: src/gtk/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Switch headbar mode"
+msgstr "Ändra huvudlistläge"
+
+#: src/gtk/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Toggle fullscreen"
+msgstr "Växla helskärmsläge"
+
+#: src/gtk/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "Navigering"
+
+#: src/gtk/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Focus next tab"
+msgstr "Fokusera på nästa flik"
+
+#: src/gtk/help-overlay.ui:78
+msgctxt "shortcut window"
+msgid "Focus previous tab"
+msgstr "Fokusera på föregående flik"
+
+#: src/gtk/help-overlay.ui:85
+msgctxt "shortcut window"
+msgid "Switch to Tab"
+msgstr "Byt till flik"
+
+#: src/gtk/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Switch to last Tab"
+msgstr "Byt till sista flik"
+
+#: src/gtk/help-overlay.ui:98
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Allmänt"
+
+#: src/gtk/help-overlay.ui:101
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Visa genvägar"
+
+#: src/gtk/preferences-window.ui:11
+msgid "General"
+msgstr "Allmänt"
+
+#: src/gtk/preferences-window.ui:17
+msgid "Tabs and Headerbar"
+msgstr "Flikar och fönsterlist"
+
+#: src/gtk/preferences-window.ui:22
+msgid "Expand Tabs"
+msgstr "Expandera flikar"
+
+#: src/gtk/preferences-window.ui:35
+msgid "Single Tab Mode"
+msgstr "Enkelfliksläge"
+
+#: src/gtk/preferences-window.ui:41
+msgid "Hide Single Tab"
+msgstr "Dölj enskild flik"
+
+#: src/gtk/preferences-window.ui:42
+msgid ""
+"Replace tab bar with a title label when a single tab is open. Easier to drag "
+"the window."
+msgstr ""
+"Ersätt flikraden med en titeletikett när en enskild flik är öppen. Lättare "
+"att dra fönstret."
+
+#: src/gtk/preferences-window.ui:56
+msgid "Stealth Single Tab"
+msgstr "Smygande enskild flik"
+
+#: src/gtk/preferences-window.ui:57
+msgid "Blend single tab with headerbar."
+msgstr "Blanda enskild flik med huvudlist"
+
+#: src/gtk/preferences-window.ui:73
+msgid "Show Menu Button"
+msgstr "Visa menyknapp"
+
+#: src/gtk/preferences-window.ui:87
+msgid "Show Headerbar"
+msgstr "Visa fönsterlist"
+
+#: src/gtk/preferences-window.ui:99
+msgid "Floating Controls"
+msgstr "Flytande kontroller"
+
+#: src/gtk/preferences-window.ui:102
+msgid "Show Floating Controls"
+msgstr "Visa flytande kontroller"
+
+#: src/gtk/preferences-window.ui:103
+msgid "Show floating controls in headbarless mode."
+msgstr "Visa flytande kontroller i fönsterlöst läge."
+
+#: src/gtk/preferences-window.ui:116
+msgid "Floating Controls Hover Area"
+msgstr "Flytande kontroller svävbart område"
+
+#: src/gtk/preferences-window.ui:117
+msgid ""
+"Hoverable area (in pixels) at the top of the window to trigger floating "
+"controls."
+msgstr ""
+"Svävbart område (i pixlar) överst i fönstret för att utlösa flytande "
+"kontroller."
+
+#: src/gtk/preferences-window.ui:129
+msgid "Delay Before Show Floating Controls"
+msgstr "Fördröjning före visning av flytande kontroller"
+
+#: src/gtk/preferences-window.ui:130
+msgid "Delay time (ms) before show floating controls."
+msgstr "Fördröjningstid (ms) före visande av flytande kontroller."
+
+#: src/gtk/preferences-window.ui:147
+msgid "Window"
+msgstr "Fönster"
+
+#: src/gtk/preferences-window.ui:151
+msgid "Scrollbars"
+msgstr "Rullningslister"
+
+#: src/gtk/preferences-window.ui:157
+msgid "Show Scrollbars"
+msgstr "Visa rullningslister"
+
+#: src/gtk/preferences-window.ui:171
+msgid "Use Overlay Scrolling"
+msgstr "Använd överläggsrullning"
+
+#: src/gtk/preferences-window.ui:187
+msgid "Theme Integration"
+msgstr "Temaintegration"
+
+#: src/gtk/preferences-window.ui:201
+msgid "Remember Window Size"
+msgstr "Kom ihåg fönsterstorlek"
+
+#: src/gtk/preferences-window.ui:217
+msgid "Terminal"
+msgstr "Terminal"
+
+#: src/gtk/preferences-window.ui:222
+msgid "Font"
+msgstr "Teckensnitt"
+
+#: src/gtk/preferences-window.ui:234
+msgid "Terminal Font"
+msgstr "Terminal Teckensnitt"
+
+#: src/gtk/preferences-window.ui:242
+msgid "Cell Spacing"
+msgstr "Cellavstånd"
+
+#: src/gtk/preferences-window.ui:245
+msgid "Width"
+msgstr "Bredd"
+
+#: src/gtk/preferences-window.ui:257
+msgid "Height"
+msgstr "Höjd"
+
+#: src/gtk/preferences-window.ui:272
+msgid "Padding"
+msgstr "Platta"
+
+#: src/gtk/preferences-window.ui:289
+msgid "Cursor"
+msgstr "Markör"
+
+#: src/gtk/preferences-window.ui:293
+msgid "Block"
+msgstr "Block"
+
+#: src/gtk/preferences-window.ui:294
+msgid "IBeam"
+msgstr "IBeam"
+
+#: src/gtk/preferences-window.ui:295
+msgid "Underline"
+msgstr "Understrykning"
+
+#: src/gtk/preferences-window.ui:305
+msgid "Easy Copy &amp; Paste"
+msgstr "Lätt kopiera &amp; Klistra in"
+
+#: src/gtk/preferences-window.ui:306
+msgid "Use ctrl+c/ctrl+v for copy/paste."
+msgstr "Använd ctrl+c/ctrl+v för att kopiera/klistra in."
+
+#: src/gtk/preferences-window.ui:319
+msgid "Theme"
+msgstr "Tema"
+
+#: src/gtk/preferences-window.ui:339
+msgid "Advanced"
+msgstr "Avancerat"
+
+#. <property name="use-markup">True</property>
+#: src/gtk/preferences-window.ui:346
+msgid "Experimental 🧪"
+msgstr "Experimentell 🧪"
+
+#: src/gtk/preferences-window.ui:347
+msgid ""
+"Features in this section are known to be wonky. Please feel free to test and "
+"<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
+"bugs</a>."
+msgstr ""
+"Funktioner i det här avsnittet är kända för att inte riktigt fungera som dom "
+"ska. Testa och <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">rapportera buggar</a>."
+
+#: src/gtk/preferences-window.ui:352
+msgid "Pixel Scrolling"
+msgstr "Pixelrullning"
+
+#: src/gtk/preferences-window.ui:353
+msgid ""
+"Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
+"must be enabled."
+msgstr ""
+"Bläddra efter pixelenheter istället för att rulla efter rader. \"Visa "
+"rullningslister\" måste vara aktiverat."
+
+#: src/gtk/preferences-window.ui:369
+msgid "Danger Zone"
+msgstr "Farozon"
+
+#: src/gtk/preferences-window.ui:373
+msgid "Reset Preferences"
+msgstr "Återställ inställningar"
+
+#: src/gtk/preferences-window.ui:374
+msgid ""
+"This will revert all settings back to default. Your extra themes will not be "
+"removed."
+msgstr ""
+"Detta kommer att återställa alla inställningar till standardinställningarna. "
+"Dina extra teman kommer inte att tas bort."
+
+#: src/CommandLine.vala:47
+msgid "Show app version"
+msgstr "Visa program version"
+
+#: src/CommandLine.vala:56
+msgid "Set current working directory"
+msgstr "Ställ in aktuell arbetskatalog"
+
+#: src/CommandLine.vala:65
+msgid "Execute command in a terminal"
+msgstr "Kör kommando i en terminal"
+
+#: src/CommandLine.vala:74
+msgid "Show help"
+msgstr "Visa hjälp"
+
+#: src/CommandLine.vala:121
+#, c-format
+msgid "Run %s --help to get help\n"
+msgstr "Kör %s --help för att få hjälp\n"
+
+#: src/widgets/Window.vala:140 src/widgets/HeaderBar.vala:30
+msgid "Fullscreen"
+msgstr "Helskärmsläge"
+
+#: src/widgets/Window.vala:143
+msgid "Show headerbar"
+msgstr "Visa fönsterlista"
+
+#: src/widgets/Window.vala:159
+msgid "Menu"
+msgstr "Meny"
+
+#: src/widgets/TerminalTab.vala:116
+msgid "New Tab"
+msgstr "Ny flik"
+
+#: src/widgets/TerminalTab.vala:117
+msgid "New Window"
+msgstr "Nytt fönster"
+
+#: src/widgets/TerminalTab.vala:119
+msgid "Copy"
+msgstr "Kopiera"
+
+#: src/widgets/TerminalTab.vala:120
+msgid "Paste"
+msgstr "Klistra in"
+
+#: src/widgets/TerminalTab.vala:124 src/widgets/HeaderBar.vala:31
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: src/widgets/TerminalTab.vala:127 src/widgets/HeaderBar.vala:32
+msgid "Help"
+msgstr "Hjälp"
+
+#: src/widgets/TerminalTab.vala:128 src/widgets/HeaderBar.vala:33
+msgid "About"
+msgstr "Om"
+
+#: src/widgets/PreferencesWindow.vala:65
+#, c-format
+msgid ""
+"Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
+"href=\"%s\">online</a>."
+msgstr ""
+"Öppna <a href=\"file://%s\">Temakatalog</a>. Skaffa mer teman <a "
+"href=\"%s\">Online</a>."
+
+#: src/utils/Constants.vala:34
+msgid "You can still access the menu by right-clicking any terminal."
+msgstr ""
+"Du kan fortfarande komma åt menyn genom att högerklicka på valfri terminal."
+
+#: src/utils/Constants.vala:36
+#, c-format
+msgid ""
+"%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of "
+"progress has been made on this port, copying has yet to be implemented. This "
+"means there's currently no way to copy text in %s."
+msgstr ""
+"%s Använder en tidig Gtk 4 port av VTE som en terminalwidget. Även om många "
+"framsteg har gjorts med denna port, har kopiering ännu inte implementerats. "
+"Det betyder att det för närvarande inte finns något sätt att kopiera text i "
+"%s."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Quit"
+#~ msgstr "Verlassen"
