@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-06 10:33-0300\n"
+"POT-Creation-Date: 2022-07-07 22:51-0300\n"
 "PO-Revision-Date: 2022-07-05 12:53+0200\n"
 "Last-Translator: panmourovaty <dominikhejl@yahoo.com>\n"
 "Language-Team: Czech <>\n"
@@ -38,43 +38,43 @@ msgstr "Výška okna"
 msgid "Whether or not to remember window size"
 msgstr "Pamatovat si velikost okna"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:18
+#: data/com.raggesilver.BlackBox.gschema.xml:24
 msgid "Font family and size"
 msgstr "Rodina písem a velikost"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:22
+#: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Má okno použít motiv stejný jako terminál"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:26
+#: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "Mají záložky vyplnit celou šířku záhlaví"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:30
+#: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether the headerbar should be shown or not"
 msgstr "Má být záhlaví zobrazeno"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:34
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Zobrazovat tlačítko menu v záhlaví"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:38
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to show scrollbars"
 msgstr "Zobrazovat posuvníky"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:42
+#: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether overlay scrolling should be enabled"
 msgstr "Použít posuvníky co překrývají obsah"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:46
+#: data/com.raggesilver.BlackBox.gschema.xml:52
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr "Pokud povoleno terminál bude skrolovat na základě pixelů místo řádků"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:50
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "Pokud zapnuto, plovoucí ovládací panel bude zobrazen v bezešvém režimu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:54
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -82,36 +82,36 @@ msgstr ""
 "Oblast (v pixelech) na vršku okna na kterou když najedete tak se zobrazí "
 "panel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:58
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "Delay time before showing floating controls"
 msgstr "Prodleva než se zobrazí plovoucí panel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:62
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "The color scheme for the terminal"
 msgstr "Barevný motiv terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:66
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr "Odsazení okolo terminálu (nahoře, vpravo, dole, vlevo)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:70
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Terminal cell width"
 msgstr "Šířka buňky terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:74
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "Terminal cell height"
 msgstr "Výška buňky terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:78
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "Cursor shape"
 msgstr "Tvar kurzoru"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:82
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr ""
 "Pokud zapnuto, ctrl+c a ctrl+v bude možno použít pro kopírování/vkládání"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:86
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -119,7 +119,7 @@ msgstr ""
 "Pokud povoleno, lišta karet bude nahrazena titulkem, pokud je otevřená jedna "
 "karta"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:90
+#: data/com.raggesilver.BlackBox.gschema.xml:96
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
 "Pokud zapnuto a je otevřená pouze jedna karta tak splyne s barvou záhlaví"

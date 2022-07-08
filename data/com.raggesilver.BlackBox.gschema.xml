@@ -13,6 +13,12 @@
       <default>false</default>
       <summary>Whether or not to remember window size</summary>
     </key>
+    <key name="was-maximized" type="b">
+      <default>false</default>
+    </key>
+    <key name="was-fullscreened" type="b">
+      <default>false</default>
+    </key>
     <key name="font" type="s">
       <default>'Monospace 12'</default>
       <summary>Font family and size</summary>

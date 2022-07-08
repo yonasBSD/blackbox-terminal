@@ -200,7 +200,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
     Object (
       application: app,
       default_width: wwidth,
-      default_height: wheight
+      default_height: wheight,
+      fullscreened: sett.remember_window_size && sett.was_fullscreened,
+      maximized: sett.remember_window_size && sett.was_maximized
     );
 
     Marble.add_css_provider_from_resource (
@@ -331,6 +333,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
 
     (this as Gtk.Widget)?.add_controller (c);
+
+    this.close_request.connect (() => {
+      Settings.get_default ().was_fullscreened = this.fullscreened;
+      Settings.get_default ().was_maximized = this.maximized;
+      return false;
+    });
   }
 
   private void add_actions () {

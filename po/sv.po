@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Black Box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-06 10:33-0300\n"
+"POT-Creation-Date: 2022-07-07 22:51-0300\n"
 "PO-Revision-Date: 2022-07-06 09:45+0200\n"
 "Last-Translator: Luna Jernberg <lunajernberg@gnome.org>\n"
 "Language-Team: Swedish <>\n"
@@ -37,44 +37,44 @@ msgstr "Fönsterhöjd"
 msgid "Whether or not to remember window size"
 msgstr "Om fönsterstorleken ska kommas ihåg eller inte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:18
+#: data/com.raggesilver.BlackBox.gschema.xml:24
 msgid "Font family and size"
 msgstr "Teckensnittsfamilj och storlek"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:22
+#: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Om fönstret ska ärva terminaltemats färger"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:26
+#: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "Om flikar ska expanderas för att fylla flikfältet"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:30
+#: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether the headerbar should be shown or not"
 msgstr "Om fönsterlisten ska visas eller inte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:34
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Om en menyknapp ska visas i rubrikfältet eller inte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:38
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to show scrollbars"
 msgstr "Om rullningslister ska visas eller inte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:42
+#: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether overlay scrolling should be enabled"
 msgstr "Om överlagringsrullning ska aktiveras"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:46
+#: data/com.raggesilver.BlackBox.gschema.xml:52
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr ""
 "Om det är aktiverat rullar terminalerna efter pixlar istället för rader"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:50
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "Om aktiverat, så kommer flytande kontroller visas i fönsterlöst läge"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:54
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -82,38 +82,38 @@ msgstr ""
 "Svävbart område (i pixlar) överst i fönstret för att utlösa flytande "
 "kontroller"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:58
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "Delay time before showing floating controls"
 msgstr "Fördröjning innan flytande kontroller visas"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:62
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "The color scheme for the terminal"
 msgstr "Färgschemat för terminalen"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:66
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr ""
 "Mängden utfyllnad runt terminalwidgets (överst, höger, botten, vänster)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:70
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Terminal cell width"
 msgstr "Terminal cellbredd"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:74
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "Terminal cell height"
 msgstr "Terminal cell höjd"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:78
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "Cursor shape"
 msgstr "Markör form"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:82
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr ""
 "Om det är aktiverat kommer ctrl+c och ctrl+v att fungera för kopiera/klistra "
 "in"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:86
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -121,7 +121,7 @@ msgstr ""
 "Om det är aktiverat kommer flikfältet att ersättas med en titeletikett när "
 "det finns en enda öppen flik"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:90
+#: data/com.raggesilver.BlackBox.gschema.xml:96
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
 "Om det är aktiverat kommer en enda öppen flik att blandas med rubrikfältets "

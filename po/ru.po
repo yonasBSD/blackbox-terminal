@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-06 10:33-0300\n"
+"POT-Creation-Date: 2022-07-07 22:51-0300\n"
 "PO-Revision-Date: 2022-07-05ы 19:31+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
@@ -37,46 +37,46 @@ msgstr "Высота окна"
 msgid "Whether or not to remember window size"
 msgstr "Запоминать ли размер окна"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:18
+#: data/com.raggesilver.BlackBox.gschema.xml:24
 msgid "Font family and size"
 msgstr "Семейство и размер шрифта"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:22
+#: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Должно ли окно использовать цвета темы терминала"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:26
+#: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "Должны ли вкладки расширяться для заполнения панели вкладок"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:30
+#: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether the headerbar should be shown or not"
 msgstr "Должна ли отображаться панель заголовка"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:34
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Должна ли отображаться кнопка меню на панели заголовка"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:38
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to show scrollbars"
 msgstr "Показывать ли полосы прокрутки"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:42
+#: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether overlay scrolling should be enabled"
 msgstr "Включить ли оверлейную прокрутку"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:46
+#: data/com.raggesilver.BlackBox.gschema.xml:52
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr ""
 "Если включено, прокрутка будет происходить по пикселям, а не по строкам"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:50
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr ""
 "Если включено, плавающие элементы управления будут отображаться в режиме без "
 "заголовка"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:54
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -84,36 +84,36 @@ msgstr ""
 "Наводимая область (в пикселях) в верхней части окна для вызова плавающих "
 "элементов управления"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:58
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "Delay time before showing floating controls"
 msgstr "Время задержки перед отображением плавающих элементов управления"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:62
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "The color scheme for the terminal"
 msgstr "Цветовая схема терминала"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:66
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr ""
 "Размер отступов вокруг виджетов терминала(сверху, справа, снизу, слева)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:70
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Terminal cell width"
 msgstr "Ширина письма"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:74
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "Terminal cell height"
 msgstr "Высота письма"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:78
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "Cursor shape"
 msgstr "Форма курсора"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:82
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr "Если включено, Сtrl+С и Сtrl+V будут работать для копирования/вставки"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:86
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -121,7 +121,7 @@ msgstr ""
 "Если включено, панель вкладок будет заменена заголовком с одной "
 "открытойвкладкой"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:90
+#: data/com.raggesilver.BlackBox.gschema.xml:96
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr "Если включено, одна вкладки примет цвет панели заголовка"
 

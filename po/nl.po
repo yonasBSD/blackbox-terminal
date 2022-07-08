@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-06 10:33-0300\n"
+"POT-Creation-Date: 2022-07-07 22:51-0300\n"
 "PO-Revision-Date: 2022-07-03 14:21+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -38,45 +38,45 @@ msgstr "Vensterhoogte"
 msgid "Whether or not to remember window size"
 msgstr "Of de vensterafmetingen onthouden dienen te worden"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:18
+#: data/com.raggesilver.BlackBox.gschema.xml:24
 msgid "Font family and size"
 msgstr "Lettertype en tekstgrootte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:22
+#: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Of het venster de themakleuren van de terminal dient te gebruiken"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:26
+#: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr ""
 "Of tabbladen over de gehele breedte van de tabbladbalk dienen te worden "
 "getoond"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:30
+#: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether the headerbar should be shown or not"
 msgstr "Of de kopbalk dient te worden getoond"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:34
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Of er een menuknop op de kopbalk dient te worden getoond"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:38
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to show scrollbars"
 msgstr "Of er schuifbalken dienen te worden getoond"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:42
+#: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether overlay scrolling should be enabled"
 msgstr "Of er zwevende schuifbalken dienen te worden getoond"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:46
+#: data/com.raggesilver.BlackBox.gschema.xml:52
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr "Schakel in om pixel voor pixel te scrollen in plaats van per rij"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:50
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "Schakel in om zwevende bediening te tonen in de kopbalkloze modus"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:54
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -84,37 +84,37 @@ msgstr ""
 "Het aanwijsgebied (in pixels) bovenaan het vensters waarmee de zwevende "
 "bediening kan worden opgeroepen"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:58
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "Delay time before showing floating controls"
 msgstr "Wachttijd alvorens zwevende bediening te tonen"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:62
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "The color scheme for the terminal"
 msgstr "Het kleurenschema van het terminalvenster"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:66
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr ""
 "De hoeveelheid opvulling van terminalelementen (bovenaan, rechts, onderaan, "
 "links)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:70
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Terminal cell width"
 msgstr "Celbreedte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:74
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "Terminal cell height"
 msgstr "Celhoogte"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:78
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "Cursor shape"
 msgstr "Cursorvorm"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:82
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr "Schakel in om Ctrl+C en Ctrl+V te gebruiken om te kopiëren/plakken"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:86
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -122,7 +122,7 @@ msgstr ""
 "Schakel in om de tabbladbalk bij slechts één geopend tabblad te vervangen "
 "door een naamlabel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:90
+#: data/com.raggesilver.BlackBox.gschema.xml:96
 #, fuzzy
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr "Schakel in om zwevende bediening te tonen in de kopbalkloze modus"
