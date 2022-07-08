@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.1 - 2022.07.08
+
+Features:
+
+- Improved German translation - thanks @konstantin.tch
+- Added Czech translation - thanks @panmourovaty
+- Added Russian translation - thanks @acephale
+- Added Swedish translation - thanks @droidbittin
+
+Bug fixes:
+
+- Black Box now sets the TERM_PROGRAM env variable. This makes apps like
+  neofetch report a correct terminal app in Flatpak - #53
+- "Remember window size" will now remember fullscreen and maximized state too - #55
+
 ## 0.10.0 - 2022.07.04
 
 Features:
