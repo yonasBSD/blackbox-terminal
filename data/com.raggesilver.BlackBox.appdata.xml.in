@@ -34,10 +34,10 @@
   <screenshots>
     <screenshot type="default">
       <caption>Black Box screenshot</caption>
-      <image>https://i.imgur.com/pasvxd4.png</image>
+      <image>https://i.imgur.com/qvJ7TQW.png</image>
     </screenshot>
     <screenshot>
-      <caption>Black Box in headerbar-less mode</caption>
+      <caption>Black Box in header-bar-less mode</caption>
       <image>https://i.imgur.com/DAiKhD3.png</image>
     </screenshot>
   </screenshots>
