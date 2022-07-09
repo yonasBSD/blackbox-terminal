@@ -19,22 +19,114 @@
  */
 
 namespace Terminal {
-  public Gtk.AboutDialog create_about_dialog () {
-    var dialog = new Gtk.AboutDialog () {
-      authors = { "Paulo Queiroz <pvaqueiroz@gmail.com>" },
-      destroy_with_parent = true,
+  public Adw.AboutWindow create_about_dialog () {
+    var window = new Adw.AboutWindow () {
+      developer_name = "Paulo Queiroz",
+      copyright = "© 2022 Paulo Queiroz",
       license_type = Gtk.License.GPL_3_0,
-      logo_icon_name = "com.raggesilver.BlackBox",
-      modal = true,
-      program_name = "Black Box",
+      application_icon = APP_ID,
+      application_name = APP_NAME,
       version = VERSION,
       website = "https://gitlab.gnome.org/raggesilver/blackbox",
-      website_label = "Repo",
+      issue_url = "https://gitlab.gnome.org/raggesilver/blackbox/-/issues",
+      debug_info = get_debug_information (),
     };
 
-    dialog.titlebar.add_css_class ("flat");
-    dialog.titlebar.add_css_class ("background");
+    window.add_link (_("Donate"), "https://www.patreon.com/raggesilver");
 
-    return dialog;
+    return window;
+  }
+
+  private string get_debug_information () {
+    var builder = new StringBuilder ("");
+
+    var app = "Black Box: %s\n".printf (VERSION);
+    var backend = "Backend: %s\n".printf (get_gtk_backend ());
+    var renderer = "Renderer: %s\n".printf (get_renderer ());
+    var flatpak = get_flatpak_info ();
+    var os_info = get_os_info ();
+    var libs = get_libraries_info ();
+
+    return app + backend + renderer + flatpak + os_info + libs;
+  }
+
+  private string get_gtk_backend () {
+    var display = Gdk.Display.get_default ();
+    switch (display.get_class ().get_name ()) {
+      case "GdkX11Display": return "X11";
+      case "GdkWaylandDisplay": return "Wayland";
+      case "GdkBroadwayDisplay": return "Broadway";
+      case "GdkWin32Display": return "Windows";
+      case "GdkMacosDisplay": return "macOS";
+      default: return display.get_class ().get_name ();
+    }
+  }
+
+  private string get_renderer () {
+    var display = Gdk.Display.get_default ();
+    var surface = new Gdk.Surface.toplevel (display);
+    var renderer = Gsk.Renderer.for_surface (surface);
+
+    var name = renderer.get_class ().get_name ();
+    renderer.unrealize ();
+
+    switch (name) {
+      case "GskVulkanRenderer": return "Vulkan";
+      case "GskGLRenderer": return "GL";
+      case "GskCairoRenderer": return "Cairo";
+      default: return name;
+    }
+  }
+
+  static KeyFile? flatpak_keyfile = null;
+
+  private string? get_flatpak_value (string group, string key) {
+    try {
+      if (flatpak_keyfile == null) {
+        flatpak_keyfile = new KeyFile ();
+        flatpak_keyfile.load_from_file ("/.flatpak-info", 0);
+      }
+      return flatpak_keyfile.get_string (group, key);
+    }
+    catch (Error e) {
+      warning ("%s", e.message);
+      return null;
+    }
+  }
+
+  private string get_flatpak_info () {
+    if (!is_flatpak ()) {
+      return "Flatpak: No\n";
+    }
+
+    string res = "Flatpak:\n";
+
+    res += " - Runtime: %s\n".printf (get_flatpak_value ("Application", "runtime"));
+    res += " - Runtime commit: %s\n".printf (get_flatpak_value ("Instance", "runtime-commit"));
+    res += " - Arch: %s\n".printf (get_flatpak_value ("Instance", "arch"));
+    res += " - Flatpak version: %s\n".printf (get_flatpak_value ("Instance", "flatpak-version"));
+    res += " - Devel: %s\n".printf (get_flatpak_value ("Instance", "devel") != null ? "yes" : "no");
+
+    return res;
+  }
+
+  private string get_libraries_info () {
+    string res = "Libraries:\n";
+
+    res += " - Gtk: %d.%d.%d\n".printf (Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+    res += " - VTE: %d.%d.%d\n".printf (Vte.MAJOR_VERSION, Vte.MINOR_VERSION, Vte.MICRO_VERSION);
+    res += " - Libadwaita: %s\n".printf (Adw.VERSION_S);
+    res += " - JSON-glib: %s\n".printf (Json.VERSION_S);
+
+    return res;
+  }
+
+  private string get_os_info () {
+    string res = "OS:\n";
+
+    res += " - Name: %s\n".printf (Environment.get_os_info (OsInfoKey.NAME));
+    res += " - Version: %s\n".printf (Environment.get_os_info (OsInfoKey.VERSION));
+
+    return res;
   }
 }

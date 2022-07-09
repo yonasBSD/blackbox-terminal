@@ -1,4 +1,4 @@
-headerbar:not(.background) {
+window:not(.about) headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
 
