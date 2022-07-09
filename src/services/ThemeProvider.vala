@@ -28,6 +28,7 @@ public struct Terminal.Scheme {
   public Gdk.RGBA colors[16];
   public Gdk.RGBA? background;
   public Gdk.RGBA? foreground;
+  public bool is_dark;
 }
 
 public class Terminal.ThemeProvider : Object {
@@ -36,11 +37,21 @@ public class Terminal.ThemeProvider : Object {
 
   public HashTable<string, Scheme?> themes;
 
-  public ThemeProvider(Settings settings) {
+  public string current_theme {
+    get {
+      return this.is_dark_style_active
+        ? Settings.get_default ().theme_dark
+        : Settings.get_default ().theme_light;
+    }
+  }
+
+  public bool is_dark_style_active { get; private set; }
+
+  private static ThemeProvider instance = null;
+
+  private ThemeProvider (Settings settings) {
     this.settings = settings;
     this.themes = new HashTable<string, Scheme?>(str_hash, str_equal);
-
-    debug("Selected theme %s", settings.theme);
 
     try {
       this.load_themes();
@@ -49,9 +60,61 @@ public class Terminal.ThemeProvider : Object {
       warning(e.message);
     }
 
-    this.settings.notify["theme"].connect(this.apply_theming);
-    this.settings.notify["pretty"].connect(this.apply_theming);
+    this.is_dark_style_active = Adw.StyleManager.get_default ().dark;
+    Adw.StyleManager.get_default ().notify ["dark"].connect (() => {
+      this.is_dark_style_active = Adw.StyleManager.get_default ().dark;
+    });
+
+    this.notify ["current-theme"].connect (() => {
+      this.apply_theming ();
+    });
+    this.settings.notify ["pretty"].connect(this.apply_theming);
+
+    this.notify["is-dark-style-active"].connect (() => {
+      this.notify_property ("current-theme");
+    });
+
+    this.settings.notify["theme-light"].connect (() => {
+      if (!this.is_dark_style_active) {
+        this.notify_property ("current-theme");
+      }
+    });
+
+    this.settings.notify["theme-dark"].connect (() => {
+      if (this.is_dark_style_active) {
+        this.notify_property ("current-theme");
+      }
+    });
+
+    // React to style-preference changes
+    this.settings.schema.bind_with_mapping (
+      "style-preference",
+      Adw.StyleManager.get_default (),
+      "color-scheme",
+      SettingsBindFlags.GET,
+      // From settings to Adw.StyleManager
+      (to_val, settings_vari) => {
+        var style_pref = settings_vari.get_uint32 ();
+        to_val = style_pref == 0
+              ? Adw.ColorScheme.DEFAULT
+              : style_pref == 1
+                ? Adw.ColorScheme.FORCE_LIGHT
+                : Adw.ColorScheme.FORCE_DARK;
+        return true;
+      },
+      null,
+      null,
+      null
+    );
+
     this.apply_theming();
+  }
+
+  public static ThemeProvider get_default () {
+    if (instance == null) {
+      instance = new ThemeProvider (Settings.get_default ());
+    }
+    return instance;
   }
 
   private void load_themes() throws Error {
@@ -113,8 +176,12 @@ public class Terminal.ThemeProvider : Object {
 
     s.name = name;
 
+    // FIXME: deprecate support for themes without background/foreground
     s.background = (bg != null) ? rgba_from_string(bg) : null;
     s.foreground = (fg != null) ? rgba_from_string(fg) : null;
+    s.is_dark = s.foreground != null
+      ? get_brightness(s.foreground) > 0.5
+      : false;
 
     for (int i = 0; i < 16; i++) {
       Gdk.RGBA? c = rgba_from_string(arr.get_string_element(i));
@@ -140,25 +207,23 @@ public class Terminal.ThemeProvider : Object {
       this.theme_provider = null;
     }
 
-    var theme = this.themes[this.settings.theme];
+    var theme = this.themes[this.current_theme];
 
-    if (!this.settings.pretty || theme == null) return;
+    if (
+      theme == null ||
+      !this.settings.pretty ||
+      !this.is_safe_to_be_pretty(theme)
+    ) {
+      return;
+    }
 
     var foreground = theme.foreground;
     var background = theme.background;
 
     if (foreground == null || background == null) return;
 
-    bool is_dark_theme = this.get_brightness(foreground) > 0.5;
+    bool is_dark_theme = this.is_dark_style_active;
     string inv_mode = is_dark_theme ? "lighter" : "darker";
-
-    // TODO: we could find a better way to integrate with dark/light preferences
-
-    Adw.StyleManager.get_default ().set_color_scheme (
-      is_dark_theme ? Adw.ColorScheme.FORCE_DARK : Adw.ColorScheme.FORCE_LIGHT
-    );
-
-    debug("This theme is %s", is_dark_theme ? "dark" : "light");
 
     this.theme_provider = Marble.get_css_provider_for_data("""
       @define-color window_bg_color %1$s;
@@ -178,5 +243,12 @@ public class Terminal.ThemeProvider : Object {
       this.theme_provider,
       Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
     );
+  }
+
+  // If the current style is dark and a light theme is loaded, all window text
+  // and icons will be illegible. Same goes for light style with dark theme
+  // selected. In those cases, we need to disable theme integration.
+  private bool is_safe_to_be_pretty (Scheme theme) {
+    return this.is_dark_style_active == theme.is_dark;
   }
 }

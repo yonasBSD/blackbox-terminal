@@ -209,7 +209,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "/com/raggesilver/BlackBox/resources/style.css"
     );
 
-    this.theme_provider = new ThemeProvider (this.settings);
+    this.theme_provider = ThemeProvider.get_default ();
 
     this.header_bar.new_tab_button.clicked.connect (() => {
       this.new_tab (null, null);

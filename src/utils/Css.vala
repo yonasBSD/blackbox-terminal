@@ -31,4 +31,8 @@ namespace Terminal {
       widget.remove_css_class (classname);
     }
   }
+
+  public bool is_dark_style_active () {
+    return Adw.StyleManager.get_default ().dark;
+  }
 }

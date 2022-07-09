@@ -25,6 +25,12 @@
                     <property name="title">Preferences</property>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">system-search-symbolic</property>
+                    <property name="active" bind-source="search_bar" bind-property="search-mode-enabled" bind-flags="bidirectional|sync-create" />
+                  </object>
+                </child>
               </object>
             </child>
             <!-- Search bar -->
@@ -353,26 +359,18 @@
                       <object class="AdwPreferencesGroup">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="title" translatable="yes">Terminal</property>
+                        <property name="title" translatable="yes">Text</property>
                         <child>
                           <object class="AdwActionRow">
-                            <property name="activatable-widget">font_button</property>
+                            <!-- <property name="activatable-widget">font_button</property> -->
                             <property name="visible">True</property>
                             <property name="title" translatable="yes">Font</property>
-
                             <child>
-                              <object class="GtkFontButton" id="font_button">
+                              <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="valign">GTK_ALIGN_CENTER</property>
                                 <property name="can-focus">True</property>
-                                <property name="receives-default">True</property>
-                                <property name="use-font">True</property>
-                                <property name="use-size">True</property>
-                                <property name="font">Monospace 12</property>
-                                <property name="language">en-us</property>
-                                <property name="level">GTK_FONT_CHOOSER_LEVEL_SIZE | GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
-                                <property name="preview-text" />
-                                <property name="title" translatable="yes">Terminal Font</property>
+                                <property name="label" translatable="yes">Monospace 10</property>
                               </object>
                             </child>
                           </object>
@@ -408,6 +406,27 @@
                           </object>
                         </child>
                         <child>
+                          <object class="AdwActionRow" id="easy_copy_paste_action_row">
+                            <property name="activatable-widget">easy_copy_paste_switch</property>
+                            <property name="visible">True</property>
+                            <property name="title" translatable="yes">Easy Copy &amp;amp; Paste</property>
+                            <property name="subtitle" translatable="yes">Use ctrl+c/ctrl+v for copy/paste.</property>
+                            <child>
+                              <object class="GtkSwitch" id="easy_copy_paste_switch">
+                                <property name="visible">True</property>
+                                <property name="valign">GTK_ALIGN_CENTER</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="title" translatable="yes">Terminal</property>
+                        <child>
                           <object class="AdwActionRow">
                             <property name="visible">True</property>
                             <property name="title" translatable="yes">Padding</property>
@@ -439,34 +458,49 @@
                             </property>
                           </object>
                         </child>
-                        <child>
-                          <object class="AdwActionRow" id="easy_copy_paste_action_row">
-                            <property name="activatable-widget">easy_copy_paste_switch</property>
-                            <property name="visible">True</property>
-                            <property name="title" translatable="yes">Easy Copy &amp;amp; Paste</property>
-                            <property name="subtitle" translatable="yes">Use ctrl+c/ctrl+v for copy/paste.</property>
-                            <child>
-                              <object class="GtkSwitch" id="easy_copy_paste_switch">
-                                <property name="visible">True</property>
-                                <property name="valign">GTK_ALIGN_CENTER</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
                       </object>
                     </child>
                     <child>
                       <object class="AdwPreferencesGroup" id="theme_scheme_group">
                         <property name="title" translatable="yes">Theme</property>
-                        <property name="description" translatable="yes"></property>
+                        <property name="description" translatable="yes">Set a theme for your terminal. If Appearance > Style is set to "Follow System" you'll be able to set a light and a dark theme.</property>
                         <child>
-                          <object class="GtkFlowBox" id="preview_flow_box">
-                            <property name="hexpand">true</property>
-                            <property name="column-spacing">12</property>
-                            <property name="row-spacing">12</property>
-                            <property name="max-children-per-line">4</property>
-                            <property name="max-children-per-line">4</property>
-                            <property name="selection-mode">none</property>
+                          <object class="GtkBox">
+                            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+                            <property name="spacing">8</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
+                                <property name="spacing">0</property>
+                                <!-- <property name="halign">GTK_ALIGN_CENTER</property> -->
+                                <property name="hexpand">True</property>
+                                <property name="homogeneous">True</property>
+                                <style>
+                                  <class name="linked" />
+                                </style>
+                                <child>
+                                  <object class="GtkToggleButton" id="light_theme_toggle">
+                                    <property name="label" translatable="yes">Light Theme</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="dark_theme_toggle">
+                                    <property name="label" translatable="yes">Dark Theme</property>
+                                    <property name="group">light_theme_toggle</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkFlowBox" id="preview_flow_box">
+                                <property name="hexpand">true</property>
+                                <property name="column-spacing">12</property>
+                                <property name="row-spacing">12</property>
+                                <property name="max-children-per-line">4</property>
+                                <property name="max-children-per-line">4</property>
+                                <property name="selection-mode">none</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>

@@ -33,8 +33,10 @@ public class Terminal.Settings : Marble.Settings {
   public double  terminal_cell_height   { get; set; }
   public double  terminal_cell_width    { get; set; }
   public string  font                   { get; set; }
-  public string  theme                  { get; set; }
+  public string  theme_dark             { get; set; }
+  public string  theme_light            { get; set; }
   public uint    cursor_shape           { get; set; }
+  public uint    style_preference       { get; set; }
   public uint    window_height          { get; set; }
   public uint    window_width           { get; set; }
   public Variant terminal_padding       { get; set; }

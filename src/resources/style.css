@@ -18,9 +18,15 @@ headerbar:not(.background) {
 
 tab {
   background: transparent;
+  border-radius: 0;   /* libadwaita 1.2 workaround */
 }
 
-tab:checked {
+tabboxchild  {
+  margin: 0;          /* libadwaita 1.2 workaround */
+  border-radius: 0;   /* libadwaita 1.2 workaround */
+}
+
+tab:selected {
   background: @window_bg_color;
 }
 

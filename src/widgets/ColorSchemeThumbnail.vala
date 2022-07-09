@@ -143,21 +143,13 @@ public class Terminal.ColorSchemePreviewPaintable : GLib.Object, Gdk.Paintable {
  */
 public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
   public bool   selected    { get; set; }
-  public string scheme_name { get; set; }
+  public Scheme scheme      { get; set; }
 
   public ColorSchemeThumbnail (Scheme scheme) {
-    Object (has_tooltip: true);
+    Object (has_tooltip: true, scheme: scheme);
 
-    this.bind_property (
-      "scheme_name",
-      this,
-      "tooltip_text",
-      BindingFlags.DEFAULT,
-      null,
-      null
-    );
+    this.tooltip_text = scheme.name;
     this.add_css_class ("thumbnail");
-    this.scheme_name = scheme.name;
 
     // FIXME: scheme is a reference and this is altering things outside the
     // scope of this function. We either have to ensure there's always a
@@ -174,11 +166,13 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
       paintable = new ColorSchemePreviewPaintable (scheme),
       width_request = 110,
       height_request = 70,
+      //  height_request = 90,
       css_classes = { "card" },
       cursor = new Gdk.Cursor.from_name ("pointer", null),
     };
 
     var css_provider = Marble.get_css_provider_for_data (
+      //  "picture { background-color: %s; padding-bottom: 2em; }".printf (
       "picture { background-color: %s; }".printf (
         scheme.background.to_string ()
       )
@@ -201,6 +195,20 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
 
     img.set_parent (this);
     checkicon.set_parent (this);
+
+    //  var lbl = new Gtk.Label (scheme.name) {
+    //    ellipsize = Pango.EllipsizeMode.END,
+    //    halign = Gtk.Align.CENTER,
+    //    hexpand = true,
+    //    justify = Gtk.Justification.CENTER,
+    //    valign = Gtk.Align.END,
+    //    wrap = false,
+    //    xalign = 0.5f,
+    //  };
+
+    //  Marble.set_theming_for_data (lbl, "label { color: %s; margin: 0.5em 8px; }".printf(scheme.foreground.to_string ()), null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+    //  lbl.set_parent (this);
 
     this.notify["selected"].connect (() => {
       if (this.selected) {

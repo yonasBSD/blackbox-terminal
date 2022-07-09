@@ -63,7 +63,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.child_exited.connect (this.on_child_exited);
 
     this.settings = Settings.get_default ();
-    this.settings.notify["theme"].connect (this.on_theme_changed);
+    ThemeProvider.get_default ().notify ["current-theme"].connect (this.on_theme_changed);
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
 
@@ -163,8 +163,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void on_theme_changed () {
     var ctx = this.get_style_context ();
-    var theme_name = this.settings.theme;
-    var theme = this.window.theme_provider.themes.get (theme_name);
+    var theme_provider = ThemeProvider.get_default ();
+    var theme_name = theme_provider.current_theme;
+    var theme = theme_provider.themes.get (theme_name);
 
     if (theme == null) {
       warning ("INVALID THEME '%s'", theme_name);
@@ -180,7 +181,6 @@ public class Terminal.Terminal : Vte.Terminal {
       this.bg == null &&
       !ctx.lookup_color ("theme_base_color", out this.bg)
     ) {
-      warning ("Theme '%s' has no background, using fallback", theme.name);
       this.bg = { 0, 0, 0, 1 };
     }
 
@@ -383,6 +383,7 @@ public class Terminal.Terminal : Vte.Terminal {
       case "v": {
         if (Settings.get_default ().easy_copy_paste) {
           this.do_paste_clipboard ();
+          this.unselect_all ();
           return true;
         }
         return false;

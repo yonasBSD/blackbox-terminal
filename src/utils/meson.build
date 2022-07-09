@@ -1,5 +1,5 @@
-blackbox_sources += files([
+blackbox_sources += files(
     'Constants.vala',
     'Css.vala',
     'Terminal.vala',
-])
+)

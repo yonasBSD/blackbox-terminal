@@ -63,9 +63,18 @@
       <default>400</default>
       <summary>Delay time before showing floating controls</summary>
     </key>
-    <key name="theme" type="s">
-      <default>'Japanesque'</default>
-      <summary>The color scheme for the terminal</summary>
+    <key name="theme-light" type="s">
+      <default>'Tomorrow'</default>
+      <summary>The light color scheme for the terminal</summary>
+    </key>
+    <key name="theme-dark" type="s">
+      <default>'Tomorrow Night'</default>
+      <summary>The dark color scheme for the terminal</summary>
+    </key>
+    <key name="style-preference" type="u">
+      <default>0</default>
+      <!-- 0 = Follow system, 1 = Light Style, 2 = Dark Style -->
+      <summary>Style preference</summary>
     </key>
     <key name="terminal-padding" type="(uuuu)">
       <default>(0,0,0,0)</default>
