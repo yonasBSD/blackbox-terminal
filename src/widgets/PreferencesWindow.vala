@@ -427,7 +427,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   private void on_open_themes_folder () {
     Gtk.show_uri (
       this,
-      "file://" + Path.build_filename (DATADIR, "blackbox", "schemes", null),
+      "file://" + Constants.get_user_schemes_dir (),
       (int32) (get_monotonic_time () / 1000)
     );
   }

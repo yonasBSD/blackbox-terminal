@@ -286,6 +286,7 @@ public class Terminal.Terminal : Vte.Terminal {
         argv += command;
       }
       else {
+        // TODO: make this optional
         argv += "--login";
       }
 

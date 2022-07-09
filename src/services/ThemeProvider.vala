@@ -54,6 +54,7 @@ public class Terminal.ThemeProvider : Object {
     this.themes = new HashTable<string, Scheme?>(str_hash, str_equal);
 
     try {
+      this.ensure_user_schemes_dir_exists ();
       this.load_themes();
     }
     catch (Error e) {
@@ -118,17 +119,25 @@ public class Terminal.ThemeProvider : Object {
   }
 
   private void load_themes() throws Error {
-    string? fname = null;
-    string path = Path.build_path(
-      Path.DIR_SEPARATOR_S, DATADIR, "blackbox", "schemes", null
-    );
-    var d = Dir.open(path);
+    string[] paths = {
+      Constants.get_user_schemes_dir (),
+      Constants.get_app_schemes_dir (),
+    };
 
-    while ((fname = d.read_name()) != null) {
-      if (!fname.has_suffix(".json"))
+    foreach (unowned string path in paths) {
+      if (!FileUtils.test (path, FileTest.IS_DIR)) {
         continue;
-      debug("Found possible theme file '%s'", fname);
-      this.load_theme(File.new_build_filename(path, fname, null));
+      }
+
+      var d = Dir.open(path);
+      string? fname = null;
+
+      while ((fname = d.read_name()) != null) {
+        if (!fname.has_suffix(".json"))
+          continue;
+        debug("Found possible theme file '%s'", fname);
+        this.load_theme(File.new_build_filename(path, fname, null));
+      }
     }
   }
 
@@ -250,5 +259,20 @@ public class Terminal.ThemeProvider : Object {
   // selected. In those cases, we need to disable theme integration.
   private bool is_safe_to_be_pretty (Scheme theme) {
     return this.is_dark_style_active == theme.is_dark;
+  }
+
+  private void ensure_user_schemes_dir_exists () {
+    var path = Constants.get_user_schemes_dir ();
+
+    if (!FileUtils.test (path, FileTest.IS_DIR)) {
+      var f = File.new_for_path (path);
+
+      try {
+        f.make_directory ();
+      }
+      catch (Error e) {
+        warning ("%s", e.message);
+      }
+    }
   }
 }
