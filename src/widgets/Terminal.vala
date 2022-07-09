@@ -240,6 +240,14 @@ public class Terminal.Terminal : Vte.Terminal {
     kpcontroller.key_pressed.connect (this.on_key_pressed);
 
     this.add_controller (kpcontroller);
+
+    var middle_click_controller = new Gtk.GestureClick () {
+      button = Gdk.BUTTON_MIDDLE,
+    };
+
+    middle_click_controller.pressed.connect (this.on_middle_click_pressed);
+
+    this.add_controller (middle_click_controller);
   }
 
   private void spawn (string? command, string? cwd) throws Error {
@@ -261,6 +269,7 @@ public class Terminal.Terminal : Vte.Terminal {
 
       envv += "G_MESSAGES_DEBUG=false";
       envv += "TERM=xterm-256color";
+      envv += @"TERM_PROGRAM=$(APP_NAME)";
 
       foreach (unowned string env in envv) {
         argv += @"--env=$(env)";
@@ -286,6 +295,7 @@ public class Terminal.Terminal : Vte.Terminal {
       envv = Environ.get ();
       envv += "G_MESSAGES_DEBUG=false";
       envv += "TERM=xterm-256color";
+      envv += @"TERM_PROGRAM=$(APP_NAME)";
 
       argv = { Environ.get_variable (envv, "SHELL") };
 
@@ -324,6 +334,12 @@ public class Terminal.Terminal : Vte.Terminal {
   private void on_child_exited () {
     this.pid = -1;
     this.exit ();
+  }
+
+  private void on_middle_click_pressed () {
+    if (Gtk.Settings.get_default ().gtk_enable_primary_paste) {
+      this.do_paste_clipboard ();
+    }
   }
 
   private bool on_key_pressed (

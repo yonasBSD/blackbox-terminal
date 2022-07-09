@@ -26,9 +26,12 @@ public class Terminal.Settings : Marble.Settings {
   public bool    show_headerbar         { get; set; }
   public bool    show_menu_button       { get; set; }
   public bool    show_scrollbars        { get; set; }
+  public bool    stealth_single_tab     { get; set; }
   public bool    use_overlay_scrolling  { get; set; }
-  public double  terminal_cell_width    { get; set; }
+  public bool    was_fullscreened       { get; set; }
+  public bool    was_maximized          { get; set; }
   public double  terminal_cell_height   { get; set; }
+  public double  terminal_cell_width    { get; set; }
   public string  font                   { get; set; }
   public string  theme                  { get; set; }
   public uint    cursor_shape           { get; set; }

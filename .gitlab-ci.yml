@@ -25,7 +25,8 @@ persist_artifacts:
     - job: flatpak
       artifacts: true
   script:
-    - echo PA_JOB_ID=$CI_JOB_ID >> persist_artifacts.env
+    - PA_JOB_ID=${CI_JOB_ID}
+    - echo "PA_JOB_ID=$PA_JOB_ID" >> persist_artifacts.env
   artifacts:
     name: ${BUNDLE_NAME}
     paths:

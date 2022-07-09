@@ -103,7 +103,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
   private uint waiting_for_floating_hb_animation = 0;
 
   private SimpleAction copy_action;
-  private ulong active_terminal_selection_changed_signal = 0;
   private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
 
   construct {
@@ -201,7 +200,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
     Object (
       application: app,
       default_width: wwidth,
-      default_height: wheight
+      default_height: wheight,
+      fullscreened: sett.remember_window_size && sett.was_fullscreened,
+      maximized: sett.remember_window_size && sett.was_maximized
     );
 
     Marble.add_css_provider_from_resource (
@@ -332,6 +333,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
 
     (this as Gtk.Widget)?.add_controller (c);
+
+    this.close_request.connect (() => {
+      Settings.get_default ().was_fullscreened = this.fullscreened;
+      Settings.get_default ().was_maximized = this.maximized;
+      return false;
+    });
   }
 
   private void add_actions () {

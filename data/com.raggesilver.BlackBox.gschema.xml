@@ -13,6 +13,12 @@
       <default>false</default>
       <summary>Whether or not to remember window size</summary>
     </key>
+    <key name="was-maximized" type="b">
+      <default>false</default>
+    </key>
+    <key name="was-fullscreened" type="b">
+      <default>false</default>
+    </key>
     <key name="font" type="s">
       <default>'Monospace 12'</default>
       <summary>Font family and size</summary>
@@ -84,6 +90,10 @@
     <key name="hide-single-tab" type="b">
       <default>true</default>
       <summary>If enabled, the tab bar will be replaced with a title label when there's a single open tab</summary>
+    </key>
+    <key name="stealth-single-tab" type="b">
+      <default>true</default>
+      <summary>If enabled, a single open tab will blend with the headerbar color</summary>
     </key>
   </schema>
 </schemalist>

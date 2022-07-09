@@ -2,16 +2,18 @@
   <h1><img src="./data/icons/hicolor/scalable/apps/com.raggesilver.BlackBox.svg" height="64"/>Black Box</h1>
   <h4>A beautiful GTK 4 terminal.</h4>
   <p>
-    <a href="#install">Install</a> •
     <a href="#features">Features</a> •
-    <a href="./COPYING">License</a>
+    <a href="#install">Install</a> •
+    <a href="./CHANGELOG.md">Changelog</a> •
+    <a href="./COPYING">License</a> •
+    <a href="./CONTRIBUTING.md">Contributing</a>
   </p>
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/pasvxd4.png" alt="Preview"/><br/>
+  <img src="https://i.imgur.com/qvJ7TQW.png" alt="Preview"/><br/>
   <small><i>
-    Black Box 0.8.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Black Box 0.10.1 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
@@ -51,13 +53,17 @@ flatpak install flathub com.raggesilver.BlackBox
 
 *Note: these two links will not work if the latest pipeline failed/was skipped/is still running*
 
+**Looking for an older release?**
+
+Check out the [releases page](https://gitlab.gnome.org/raggesilver/blackbox/-/releases).
+
 ## Compile
 
 **Flatpak**
 
-To build and run Black Box, use GNOME Builder, or VS Code along with [Vala](https://marketplace.visualstudio.com/items?itemName=prince781.vala) and [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) extensions.
+To build and run Black Box, use GNOME Builder or VS Code along with [Vala](https://marketplace.visualstudio.com/items?itemName=prince781.vala) and [Flatpak](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) extensions.
 
-If you want to manually build Black Box take a look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
+If you want to build Black Box manually, look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
 
 ## Some other screenshots
 

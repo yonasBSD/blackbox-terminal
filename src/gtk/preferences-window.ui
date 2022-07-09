@@ -30,16 +30,38 @@
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
-                <property name="activatable-widget">hide_single_tab_switch</property>
+              <object class="AdwExpanderRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Hide Single Tab</property>
-                <property name="subtitle" translatable="yes">Replace tab bar with a title label when a single tab is open.</property>
-                <property name="sensitive" bind-source="fill_tabs_switch" bind-property="active" bind-flags="sync-create"/>
+                <property name="title" translatable="yes">Single Tab Mode</property>
+                <property name="expanded">False</property>
                 <child>
-                  <object class="GtkSwitch" id="hide_single_tab_switch">
+                  <object class="AdwActionRow">
+                    <property name="activatable-widget">hide_single_tab_switch</property>
                     <property name="visible">True</property>
-                    <property name="valign">GTK_ALIGN_CENTER</property>
+                    <property name="title" translatable="yes">Hide Single Tab</property>
+                    <property name="subtitle" translatable="yes">Replace tab bar with a title label when a single tab is open. Easier to drag the window.</property>
+                    <property name="sensitive" bind-source="fill_tabs_switch" bind-property="active" bind-flags="sync-create"/>
+                    <child>
+                      <object class="GtkSwitch" id="hide_single_tab_switch">
+                        <property name="visible">True</property>
+                        <property name="valign">GTK_ALIGN_CENTER</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="activatable-widget">stealth_single_tab_switch</property>
+                    <property name="visible">True</property>
+                    <property name="title" translatable="yes">Stealth Single Tab</property>
+                    <property name="subtitle" translatable="yes">Blend single tab with headerbar.</property>
+                    <property name="sensitive" bind-source="fill_tabs_switch" bind-property="active" bind-flags="sync-create"/>
+                    <child>
+                      <object class="GtkSwitch" id="stealth_single_tab_switch">
+                        <property name="visible">True</property>
+                        <property name="valign">GTK_ALIGN_CENTER</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -315,7 +337,7 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="title" translatable="yes">Advanced</property>
-        <property name="icon-name">applications-science</property>
+        <property name="icon-name">applications-science-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="visible">True</property>
