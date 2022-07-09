@@ -28,14 +28,10 @@ bool light_themes_filter_func (Gtk.FlowBoxChild child) {
   return !thumbnail.scheme.is_dark;
 }
 
-[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window4.ui")]
-public class Terminal.PreferencesWindow2 : Adw.PreferencesWindow {
-  [GtkChild] unowned Adw.ActionRow        pixel_scrolling_action_row;
-  [GtkChild] unowned Adw.ActionRow        show_menu_button_action_row;
-  [GtkChild] unowned Adw.ActionRow        use_overlay_scrolling_action_row;
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window.ui")]
+public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
   [GtkChild] unowned Adw.ComboRow         style_preference_combo_row;
-  [GtkChild] unowned Adw.PreferencesGroup theme_scheme_group;
   [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       cell_width_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       floating_controls_delay_adjustment;
@@ -60,7 +56,6 @@ public class Terminal.PreferencesWindow2 : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
   private Window window;
-  private HashTable<string, ColorSchemeThumbnail> preview_cached;
 
   public string selected_theme {
     get {
@@ -78,7 +73,7 @@ public class Terminal.PreferencesWindow2 : Adw.PreferencesWindow {
     }
   }
 
-  public PreferencesWindow2 (Window window) {
+  public PreferencesWindow (Window window) {
     Object (
       application: window.application,
       transient_for: window,
@@ -94,18 +89,7 @@ public class Terminal.PreferencesWindow2 : Adw.PreferencesWindow {
   // Build UI
 
   private void build_ui () {
-    //  this.theme_scheme_group.description +=
-    //  _("\n\nOpen <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>.")
-    //    .printf (
-    //      Path.build_filename (DATADIR, "blackbox", "schemes", null),
-    //      "https://github.com/storm119/Tilix-Themes"
-    //    );
-
     ColorSchemeThumbnailProvider.init_resource ();
-    this.preview_cached = new HashTable<string, ColorSchemeThumbnail> (
-      str_hash,
-      str_equal
-    );
 
     //  var model = new GLib.ListStore (typeof (ColorSchemeThumbnail));
 
@@ -136,10 +120,6 @@ public class Terminal.PreferencesWindow2 : Adw.PreferencesWindow {
 
       return strcmp (a.scheme.name, b.scheme.name);
     });
-
-    //  this.preview_flow_box.bind_model (model, (_thumbnail) => {
-    //    return _thumbnail as ColorSchemeThumbnail;
-    //  });
   }
 
   // Connections
@@ -313,12 +293,6 @@ public class Terminal.PreferencesWindow2 : Adw.PreferencesWindow {
     this.preview_flow_box.child_activated.connect ((child) => {
       var name = (child as ColorSchemeThumbnail)?.scheme.name;
       this.selected_theme = name;
-    });
-
-    this.notify["selected-theme"].connect (() => {
-      this.preview_cached.for_each ((name, thumbnail) => {
-        thumbnail.selected = (name == this.selected_theme);
-      });
     });
 
     this.light_theme_toggle.notify["active"].connect (() => {

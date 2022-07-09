@@ -87,6 +87,10 @@
     {
       "name": "libadwaita",
       "buildsystem": "meson",
+      "config-opts": [
+        "-Dtests=false",
+        "-Dexamples=false"
+      ],
       "sources": [
         {
           "type": "archive",
