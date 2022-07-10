@@ -63,6 +63,43 @@
       ]
     },
     {
+      "name": "libsass",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/lazka/libsass/archive/refs/heads/meson.zip",
+          "sha256": "3692f4d1ac10afe5645a6271d25d53572cd10fcc3f7f12d4fc05ff630d0b97c0"
+        }
+      ]
+    },
+    {
+      "name": "sassc",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/lazka/sassc/archive/refs/heads/meson.zip",
+          "sha256": "028ef1cce6037db3c69f889951293b7865b74c20c1ee9d2215df79ca7d4a9e61"
+        }
+      ]
+    },
+    {
+      "name": "libadwaita",
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Dtests=false",
+        "-Dexamples=false"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://gitlab.gnome.org/GNOME/libadwaita/-/archive/df80e9087b80b6a0c3d2494434391730481789c2/libadwaita-df80e9087b80b6a0c3d2494434391730481789c2.tar.gz",
+          "sha256": "828355cd0f023acb9cb715c0c5e8bf1ac3c12b10f8e2ea285cf638fba89bb01b"
+        }
+      ]
+    },
+    {
       "name" : "blackbox",
       "builddir" : true,
       "buildsystem" : "meson",

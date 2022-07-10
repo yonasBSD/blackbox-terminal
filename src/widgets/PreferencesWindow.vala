@@ -1,6 +1,6 @@
-/* PreferencesWindow.vala
+/* PreferencesWindow2.vala
  *
- * Copyright 2020-2022 Paulo Queiroz <pvaqueiroz@gmail.com>
+ * Copyright 2022 Paulo Queiroz <pvaqueiroz@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,64 +18,166 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+bool dark_themes_filter_func (Gtk.FlowBoxChild child) {
+  var thumbnail = child as Terminal.ColorSchemeThumbnail;
+  return thumbnail.scheme.is_dark;
+}
+
+bool light_themes_filter_func (Gtk.FlowBoxChild child) {
+  var thumbnail = child as Terminal.ColorSchemeThumbnail;
+  return !thumbnail.scheme.is_dark;
+}
+
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
-  [GtkChild] unowned Gtk.Switch pretty_switch;
-  [GtkChild] unowned Gtk.Switch fill_tabs_switch;
-  [GtkChild] unowned Gtk.Switch show_headerbar_switch;
-  [GtkChild] unowned Gtk.Switch show_menu_button_switch;
-  [GtkChild] unowned Gtk.Switch use_overlay_scrolling_switch;
-  [GtkChild] unowned Gtk.Switch show_scrollbars_switch;
-  [GtkChild] unowned Gtk.Switch pixel_scrolling_switch;
-  [GtkChild] unowned Gtk.Switch remember_window_size_switch;
-  [GtkChild] unowned Gtk.Switch easy_copy_paste_switch;
-  [GtkChild] unowned Gtk.Switch hide_single_tab_switch;
-  [GtkChild] unowned Gtk.Switch stealth_single_tab_switch;
-  [GtkChild] unowned Gtk.FontButton font_button;
-  [GtkChild] unowned Gtk.SpinButton padding_spin_button;
-  [GtkChild] unowned Adw.ComboRow cursor_shape_combo_row;
+  [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
+  [GtkChild] unowned Adw.ComboRow         style_preference_combo_row;
+  [GtkChild] unowned Adw.EntryRow         custom_command_entry_row;
+  [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
+  [GtkChild] unowned Gtk.Adjustment       cell_width_spacing_adjustment;
+  [GtkChild] unowned Gtk.Adjustment       floating_controls_delay_adjustment;
+  [GtkChild] unowned Gtk.Adjustment       floating_controls_hover_area_adjustment;
+  [GtkChild] unowned Gtk.CheckButton      filter_themes_check_button;
+  [GtkChild] unowned Gtk.FlowBox          preview_flow_box;
+  [GtkChild] unowned Gtk.Label            font_label;
+  [GtkChild] unowned Gtk.SpinButton       padding_spin_button;
+  [GtkChild] unowned Gtk.Switch           easy_copy_paste_switch;
+  [GtkChild] unowned Gtk.Switch           fill_tabs_switch;
+  [GtkChild] unowned Gtk.Switch           floating_controls_switch;
+  [GtkChild] unowned Gtk.Switch           hide_single_tab_switch;
+  [GtkChild] unowned Gtk.Switch           pixel_scrolling_switch;
+  [GtkChild] unowned Gtk.Switch           pretty_switch;
+  [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
+  [GtkChild] unowned Gtk.Switch           show_headerbar_switch;
+  [GtkChild] unowned Gtk.Switch           show_menu_button_switch;
+  [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
+  [GtkChild] unowned Gtk.Switch           stealth_single_tab_switch;
+  [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
+  [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
+  [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
+  [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
+  [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
-  [GtkChild] unowned Adw.ActionRow show_menu_button_action_row;
-  [GtkChild] unowned Adw.ActionRow use_overlay_scrolling_action_row;
-  [GtkChild] unowned Adw.ActionRow pixel_scrolling_action_row;
+  private Window window;
 
-  [GtkChild] unowned Adw.PreferencesGroup theme_scheme_group;
-  [GtkChild] unowned Gtk.FlowBox preview_flow_box;
+  public string selected_theme {
+    get {
+      return this.light_theme_toggle.active
+        ? Settings.get_default ().theme_light
+        : Settings.get_default ().theme_dark;
+    }
+    set {
+      if (this.light_theme_toggle.active) {
+        Settings.get_default ().theme_light = value;
+      }
+      else {
+        Settings.get_default ().theme_dark = value;
+      }
+    }
+  }
 
-  [GtkChild] unowned Gtk.Adjustment floating_controls_hover_area_adjustment;
-  [GtkChild] unowned Gtk.Adjustment floating_controls_delay_adjustment;
-  [GtkChild] unowned Gtk.Adjustment cell_width_spacing_adjustment;
-  [GtkChild] unowned Gtk.Adjustment cell_height_spacing_adjustment;
-  [GtkChild] unowned Gtk.Switch floating_controls_switch;
-
-  Window window;
-  private HashTable<string, ColorSchemeThumbnail>? preview_cached;
-
-  public PreferencesWindow(Gtk.Application app, Window window) {
-    Object(
-      application: app,
-      modal: false
-      //  type_hint: Gdk.WindowTypeHint.NORMAL
+  public PreferencesWindow (Window window) {
+    Object (
+      application: window.application,
+      transient_for: window,
+      destroy_with_parent: true
     );
 
     this.window = window;
-    var settings = Settings.get_default ();
 
-    this.theme_scheme_group.description =
-      _("Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s\">online</a>.")
-        .printf (
-          Path.build_filename (DATADIR, "blackbox", "schemes", null),
-          "https://github.com/storm119/Tilix-Themes"
+    this.build_ui ();
+    this.bind_data ();
+  }
+
+  // Build UI
+
+  private void build_ui () {
+    ColorSchemeThumbnailProvider.init_resource ();
+
+    //  var model = new GLib.ListStore (typeof (ColorSchemeThumbnail));
+
+    this.window.theme_provider.themes.for_each ((name, scheme) => {
+      if (scheme != null) {
+        var t = new ColorSchemeThumbnail (scheme);
+
+        this.bind_property (
+          "selected-theme",
+          t,
+          "selected",
+          BindingFlags.SYNC_CREATE,
+          (_, from, ref to) => {
+            to = from.get_string () == t.scheme.name;
+            return true;
+          },
+          null
         );
 
-    settings.schema.bind("pretty", this.pretty_switch,
-      "active", SettingsBindFlags.DEFAULT);
+        //  model.append (t);
+        this.preview_flow_box.append (t);
+      }
+    });
 
-    settings.schema.bind("fill-tabs", this.fill_tabs_switch,
-      "active", SettingsBindFlags.DEFAULT);
+    this.preview_flow_box.set_sort_func ((child1, child2) => {
+      var a = child1 as ColorSchemeThumbnail;
+      var b = child2 as ColorSchemeThumbnail;
 
-    settings.schema.bind("show-headerbar", this.show_headerbar_switch,
-      "active", SettingsBindFlags.DEFAULT);
+      return strcmp (a.scheme.name, b.scheme.name);
+    });
+  }
+
+  // Connections
+
+  private void bind_data () {
+    var settings = Settings.get_default ();
+
+    settings.schema.bind (
+      "font",
+      this.font_label,
+      "label",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "command-as-login-shell",
+      this.run_command_as_login_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "custom-shell-command",
+      this.custom_command_entry_row,
+      "text",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "use-custom-command",
+      this.custom_command_entry_row,
+      "sensitive",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "use-custom-command",
+      this.use_custom_shell_command_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "pretty",
+      this.pretty_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "fill-tabs",
+      this.fill_tabs_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
 
     settings.schema.bind(
       "show-menu-button",
@@ -84,9 +186,12 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
-    this.on_show_menu_button_changed ();
-    settings.notify["show-menu-button"]
-      .connect (this.on_show_menu_button_changed);
+    settings.schema.bind(
+      "show-headerbar",
+      this.show_headerbar_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
 
     settings.schema.bind(
       "easy-copy-paste",
@@ -108,8 +213,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "active",
       SettingsBindFlags.DEFAULT
     );
-
-    // Scrolling ====
 
     settings.schema.bind (
       "show-scrollbars",
@@ -139,19 +242,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
-    // If "Show scrollbars" is off, we want to disable every other setting
-    // related to scrolling
-    settings.notify["show-scrollbars"].connect (() => {
-      this.use_overlay_scrolling_action_row.sensitive = settings.show_scrollbars;
-      this.pixel_scrolling_action_row.sensitive = settings.show_scrollbars;
-    });
-    settings.notify_property ("show-scrollbars");
-
-    // Fonts ====
-
-    settings.schema.bind("font", this.font_button,
-      "font", SettingsBindFlags.DEFAULT);
-
     settings.schema.bind_with_mapping (
       "terminal-padding",
       this.padding_spin_button,
@@ -180,9 +270,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       null
     );
 
-    // Cursor ====
-
-    // 0: Block 1: IBeam 2: Underline
+    // 0 = Block, 1 = IBeam, 2 = Underline
     settings.schema.bind(
       "cursor-shape",
       this.cursor_shape_combo_row,
@@ -190,40 +278,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
-    // Themes
-
-    ColorSchemeThumbnailProvider.init_resource ();
-    this.preview_cached = new HashTable<string, ColorSchemeThumbnail> (
-      str_hash,
-      str_equal
+    //  0 = Follow System, 1 = Light Style, 2 = Dark Style
+    settings.schema.bind(
+      "style-preference",
+      this.style_preference_combo_row,
+      "selected",
+      SettingsBindFlags.DEFAULT
     );
-
-    // Add thumbnials into Gtk.FlowBox
-    this.window.theme_provider.themes.for_each ((name, scheme) => {
-      return_if_fail (scheme != null);
-
-      var previewer = new ColorSchemeThumbnail (scheme);
-      this.preview_flow_box.append (previewer);
-      this.preview_cached[name] = previewer;
-
-      previewer.selected = (previewer.scheme_name == settings.theme);
-    });
-
-    this.preview_flow_box.child_activated.connect ((child) => {
-      var name = (child as ColorSchemeThumbnail)?.scheme_name;
-      if (settings.theme == name) {
-        return;
-      }
-      settings.theme = name;
-    });
-
-    settings.notify["theme"].connect (() => {
-      this.preview_cached.for_each ((name, thumbnail) => {
-        thumbnail.selected = (settings.theme == name);
-      });
-    });
-
-    // Floating controls ====
 
     settings.schema.bind (
       "floating-controls",
@@ -259,14 +320,102 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "value",
       SettingsBindFlags.DEFAULT
     );
+
+    this.preview_flow_box.child_activated.connect ((child) => {
+      var name = (child as ColorSchemeThumbnail)?.scheme.name;
+      this.selected_theme = name;
+    });
+
+    this.light_theme_toggle.notify["active"].connect (() => {
+      this.notify_property ("selected-theme");
+      this.set_themes_filter_func ();
+    });
+
+    settings.notify["theme-light"].connect (() => {
+      if (this.light_theme_toggle.active) {
+        this.notify_property ("selected-theme");
+      }
+    });
+
+    settings.notify["theme-dark"].connect (() => {
+      if (this.dark_theme_toggle.active) {
+        this.notify_property ("selected-theme");
+      }
+    });
+
+    if (ThemeProvider.get_default ().is_dark_style_active) {
+      this.dark_theme_toggle.active = true;
+    }
+    else {
+      this.light_theme_toggle.active = true;
+    }
+
+    ThemeProvider.get_default ().notify ["is-dark-style-active"].connect (() => {
+      if (ThemeProvider.get_default ().is_dark_style_active) {
+        this.dark_theme_toggle.active = true;
+      }
+      else {
+        this.light_theme_toggle.active = true;
+      }
+    });
+
+    // themes-filter-func
+
+    this.filter_themes_check_button.notify ["active"].connect (() => {
+      this.set_themes_filter_func ();
+    });
+
+    this.set_themes_filter_func ();
   }
 
-  private void on_show_menu_button_changed () {
-    this.show_menu_button_action_row.subtitle =
-        Settings.get_default ().show_menu_button
-          ? null
-          : Constants.MENU_BUTTON_ALTERNATIVE;
+  // Methods
+
+  private void set_themes_filter_func () {
+    if (!this.filter_themes_check_button.active) {
+      this.preview_flow_box.set_filter_func (null);
+    }
+    else {
+      if (this.light_theme_toggle.active) {
+        this.preview_flow_box.set_filter_func (light_themes_filter_func);
+      }
+      else {
+        this.preview_flow_box.set_filter_func (dark_themes_filter_func);
+
+      }
+    }
   }
+
+  private void do_reset_preferences () {
+    var settings = Settings.get_default ();
+    foreach (var key in settings.schema.settings_schema.list_keys ()) {
+      settings.schema.reset (key);
+    }
+  }
+
+  // Callbacks
+
+  [GtkCallback]
+  private void on_font_row_activated () {
+    var fc = new Gtk.FontChooserDialog (_("Terminal Font"), this) {
+      level = Gtk.FontChooserLevel.FAMILY | Gtk.FontChooserLevel.SIZE,
+      // Setting the font seems to have no effect
+      font = Settings.get_default ().font,
+    };
+
+    fc.set_filter_func ((desc) => {
+      return desc.is_monospace ();
+    });
+
+    fc.response.connect_after ((response) => {
+      if (response == Gtk.ResponseType.OK && fc.font != null) {
+        Settings.get_default ().font = fc.font;
+      }
+      fc.destroy ();
+    });
+
+    fc.show ();
+  }
+
 
   [GtkCallback]
   private void on_reset_request () {
@@ -296,10 +445,21 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     d.present ();
   }
 
-  private void do_reset_preferences () {
-    var settings = Settings.get_default ();
-    foreach (var key in settings.schema.settings_schema.list_keys ()) {
-      settings.schema.reset (key);
-    }
+  [GtkCallback]
+  private void on_get_more_themes_online () {
+    Gtk.show_uri (
+      this,
+      "https://github.com/storm119/Tilix-Themes",
+      (int32) (get_monotonic_time () / 1000)
+    );
+  }
+
+  [GtkCallback]
+  private void on_open_themes_folder () {
+    Gtk.show_uri (
+      this,
+      "file://" + Constants.get_user_schemes_dir (),
+      (int32) (get_monotonic_time () / 1000)
+    );
   }
 }

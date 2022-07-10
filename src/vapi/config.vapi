@@ -5,5 +5,6 @@ namespace Terminal {
   public const string DATADIR;
   public const string LOCALEDIR;
   public const string VERSION;
+  public const string APP_ID;
   public const bool DEVEL;
 }

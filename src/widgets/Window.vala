@@ -209,7 +209,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "/com/raggesilver/BlackBox/resources/style.css"
     );
 
-    this.theme_provider = new ThemeProvider (this.settings);
+    this.theme_provider = ThemeProvider.get_default ();
 
     this.header_bar.new_tab_button.clicked.connect (() => {
       this.new_tab (null, null);
@@ -350,9 +350,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
-      var w = new PreferencesWindow (this.application, this);
-      w.set_transient_for (this);
-      w.set_modal (true);
+      var w = new PreferencesWindow (this);
       w.present ();
     });
     this.add_action (sa);

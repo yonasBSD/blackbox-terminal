@@ -63,7 +63,7 @@ public class Terminal.Terminal : Vte.Terminal {
     this.child_exited.connect (this.on_child_exited);
 
     this.settings = Settings.get_default ();
-    this.settings.notify["theme"].connect (this.on_theme_changed);
+    ThemeProvider.get_default ().notify ["current-theme"].connect (this.on_theme_changed);
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
 
@@ -163,8 +163,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void on_theme_changed () {
     var ctx = this.get_style_context ();
-    var theme_name = this.settings.theme;
-    var theme = this.window.theme_provider.themes.get (theme_name);
+    var theme_provider = ThemeProvider.get_default ();
+    var theme_name = theme_provider.current_theme;
+    var theme = theme_provider.themes.get (theme_name);
 
     if (theme == null) {
       warning ("INVALID THEME '%s'", theme_name);
@@ -180,7 +181,6 @@ public class Terminal.Terminal : Vte.Terminal {
       this.bg == null &&
       !ctx.lookup_color ("theme_base_color", out this.bg)
     ) {
-      warning ("Theme '%s' has no background, using fallback", theme.name);
       this.bg = { 0, 0, 0, 1 };
     }
 
@@ -255,9 +255,23 @@ public class Terminal.Terminal : Vte.Terminal {
     string[] envv;
     Vte.PtyFlags flags = Vte.PtyFlags.DEFAULT;
 
+    var settings = Settings.get_default ();
+    string[]? custom_shell_commandv = null;
+
+    string shell;
+
+    if (
+      settings.use_custom_command &&
+      settings.custom_shell_command != ""
+    ) {
+      Shell.parse_argv (settings.custom_shell_command, out custom_shell_commandv);
+    }
+
     // Spawning works differently on host vs flatpak
     if (is_flatpak ()) {
-      string shell = fp_guess_shell () ?? "/usr/bin/bash";
+      shell = fp_guess_shell () ?? "/usr/bin/bash";
+
+      flags = Vte.PtyFlags.NO_CTTY;
 
       argv = {
         "/usr/bin/flatpak-spawn",
@@ -274,22 +288,6 @@ public class Terminal.Terminal : Vte.Terminal {
       foreach (unowned string env in envv) {
         argv += @"--env=$(env)";
       }
-
-      argv += shell;
-
-      // TODO: I believe if this worked correctly, when the command finished
-      // our terminal would be killed. It would be nice to check other
-      // terminal apps and see if they kill the terminal once the command
-      // exits or if they go back to the shell.
-      if (command != null) {
-        argv += "-c";
-        argv += command;
-      }
-      else {
-        argv += "--login";
-      }
-
-      flags = Vte.PtyFlags.NO_CTTY;
     }
     else {
       envv = Environ.get ();
@@ -297,14 +295,30 @@ public class Terminal.Terminal : Vte.Terminal {
       envv += "TERM=xterm-256color";
       envv += @"TERM_PROGRAM=$(APP_NAME)";
 
-      argv = { Environ.get_variable (envv, "SHELL") };
+      shell = Environ.get_variable (envv, "SHELL");
 
-      if (command != null) {
-        argv += "-c";
-        argv += command;
-      }
+      argv = {};
 
       flags = Vte.PtyFlags.DEFAULT;
+    }
+
+    if (custom_shell_commandv != null) {
+      foreach (unowned string s in custom_shell_commandv) {
+        argv += s;
+      }
+    }
+    else {
+      argv += shell;
+      if (settings.command_as_login_shell && command == null) {
+        argv += "--login";
+      }
+    }
+    if (command != null) {
+      string[] commandv = {};
+      Shell.parse_argv (command, out commandv);
+
+      argv += "-c";
+      argv += command;
     }
 
     this.spawn_async (
@@ -383,6 +397,7 @@ public class Terminal.Terminal : Vte.Terminal {
       case "v": {
         if (Settings.get_default ().easy_copy_paste) {
           this.do_paste_clipboard ();
+          this.unselect_all ();
           return true;
         }
         return false;
