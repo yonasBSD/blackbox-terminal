@@ -32,6 +32,7 @@ bool light_themes_filter_func (Gtk.FlowBoxChild child) {
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
   [GtkChild] unowned Adw.ComboRow         style_preference_combo_row;
+  [GtkChild] unowned Adw.EntryRow         custom_command_entry_row;
   [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       cell_width_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       floating_controls_delay_adjustment;
@@ -52,6 +53,8 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch           stealth_single_tab_switch;
   [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
+  [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
+  [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
@@ -131,6 +134,34 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "font",
       this.font_label,
       "label",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "command-as-login-shell",
+      this.run_command_as_login_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "custom-shell-command",
+      this.custom_command_entry_row,
+      "text",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "use-custom-command",
+      this.custom_command_entry_row,
+      "sensitive",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "use-custom-command",
+      this.use_custom_shell_command_switch,
+      "active",
       SettingsBindFlags.DEFAULT
     );
 

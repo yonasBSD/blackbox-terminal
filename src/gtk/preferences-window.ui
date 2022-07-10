@@ -299,8 +299,6 @@
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Command</property>
-            <property name="description" translatable="yes">Coming soon.</property>
-            <property name="sensitive">False</property>
             <child>
               <object class="AdwActionRow">
                 <property name="activatable-widget">run_command_as_login_switch</property>
@@ -324,8 +322,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwEntryRow">
-                <property name="sensitive" bind-source="use_custom_shell_command_switch" bind-property="active" bind-flags="sync-create" />
+              <object class="AdwEntryRow" id="custom_command_entry_row">
                 <property name="title" translatable="yes">Custom Command</property>
               </object>
             </child>

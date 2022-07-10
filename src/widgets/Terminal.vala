@@ -255,9 +255,23 @@ public class Terminal.Terminal : Vte.Terminal {
     string[] envv;
     Vte.PtyFlags flags = Vte.PtyFlags.DEFAULT;
 
+    var settings = Settings.get_default ();
+    string[]? custom_shell_commandv = null;
+
+    string shell;
+
+    if (
+      settings.use_custom_command &&
+      settings.custom_shell_command != ""
+    ) {
+      Shell.parse_argv (settings.custom_shell_command, out custom_shell_commandv);
+    }
+
     // Spawning works differently on host vs flatpak
     if (is_flatpak ()) {
-      string shell = fp_guess_shell () ?? "/usr/bin/bash";
+      shell = fp_guess_shell () ?? "/usr/bin/bash";
+
+      flags = Vte.PtyFlags.NO_CTTY;
 
       argv = {
         "/usr/bin/flatpak-spawn",
@@ -274,23 +288,6 @@ public class Terminal.Terminal : Vte.Terminal {
       foreach (unowned string env in envv) {
         argv += @"--env=$(env)";
       }
-
-      argv += shell;
-
-      // TODO: I believe if this worked correctly, when the command finished
-      // our terminal would be killed. It would be nice to check other
-      // terminal apps and see if they kill the terminal once the command
-      // exits or if they go back to the shell.
-      if (command != null) {
-        argv += "-c";
-        argv += command;
-      }
-      else {
-        // TODO: make this optional
-        argv += "--login";
-      }
-
-      flags = Vte.PtyFlags.NO_CTTY;
     }
     else {
       envv = Environ.get ();
@@ -298,14 +295,30 @@ public class Terminal.Terminal : Vte.Terminal {
       envv += "TERM=xterm-256color";
       envv += @"TERM_PROGRAM=$(APP_NAME)";
 
-      argv = { Environ.get_variable (envv, "SHELL") };
+      shell = Environ.get_variable (envv, "SHELL");
 
-      if (command != null) {
-        argv += "-c";
-        argv += command;
-      }
+      argv = {};
 
       flags = Vte.PtyFlags.DEFAULT;
+    }
+
+    if (custom_shell_commandv != null) {
+      foreach (unowned string s in custom_shell_commandv) {
+        argv += s;
+      }
+    }
+    else {
+      argv += shell;
+      if (settings.command_as_login_shell && command == null) {
+        argv += "--login";
+      }
+    }
+    if (command != null) {
+      string[] commandv = {};
+      Shell.parse_argv (command, out commandv);
+
+      argv += "-c";
+      argv += command;
     }
 
     this.spawn_async (
