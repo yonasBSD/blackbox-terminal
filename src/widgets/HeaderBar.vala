@@ -140,6 +140,7 @@ public class Terminal.HeaderBar : BaseHeaderBar {
       hexpand = true,
       xalign = 0.5f,
       css_classes = { "title-label" },
+      ellipsize = Pango.EllipsizeMode.END,
     };
 
     var layout = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
@@ -191,11 +192,20 @@ public class Terminal.HeaderBar : BaseHeaderBar {
       null,
       null
     );
-    // window.active_terminal_title -> title_label subtitle
+    // window.active_terminal_title -> title_label label
     this.window.bind_property (
       "active-terminal-title",
       this.title_label,
       "label",
+      GLib.BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+    // window.active_terminal_title -> title_label tooltip-text
+    this.window.bind_property (
+      "active-terminal-title",
+      this.title_label,
+      "tooltip-text",
       GLib.BindingFlags.SYNC_CREATE,
       null,
       null
