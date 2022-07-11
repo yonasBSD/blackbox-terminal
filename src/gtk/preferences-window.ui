@@ -398,7 +398,7 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">If you select a dark color scheme while using the app-wide light style or vice-versa, &quot;Theme Integration&quot; will be disabled to ensure readability.</property>
+                    <property name="label" translatable="yes">To ensure readability, "Theme Integration" will be disabled if you select a light color scheme while using the dark app style or a dark color scheme while using the light app style.</property>
                     <property name="wrap">True</property>
                     <property name="visible" bind-source="filter_themes_check_button" bind-property="active" bind-flags="sync-create|invert-boolean" />
                     <style>

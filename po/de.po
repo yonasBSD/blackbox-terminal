@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-07 22:51-0300\n"
+"POT-Creation-Date: 2022-07-11 09:40-0300\n"
 "PO-Revision-Date: 2022-07-05 08:46+0200\n"
 "Last-Translator: Konstantin Tutsch <konstantin.tutsch@disroot.org>\n"
 "Language-Team: German <>\n"
@@ -88,31 +88,43 @@ msgid "Delay time before showing floating controls"
 msgstr "Verzögerung vor dem Anzeigen der Schwebesteuerung des Fensters"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
-msgid "The color scheme for the terminal"
+#, fuzzy
+msgid "The light color scheme for the terminal"
 msgstr "Das Farbschema des Terminals"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
+#, fuzzy
+msgid "The dark color scheme for the terminal"
+msgstr "Das Farbschema des Terminals"
+
+#. 0 = Follow system, 1 = Light Style, 2 = Dark Style
+#: data/com.raggesilver.BlackBox.gschema.xml:77
+#, fuzzy
+msgid "Style preference"
+msgstr "Einstellungen zurücksetzen"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:81
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr "Menge des Randes um Terminal Widgets (oben, rechts, unten, links)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:76
+#: data/com.raggesilver.BlackBox.gschema.xml:85
 msgid "Terminal cell width"
 msgstr "Terminal Buchstabenbreite"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:80
+#: data/com.raggesilver.BlackBox.gschema.xml:89
 msgid "Terminal cell height"
 msgstr "Terminal Buchstabenhöhe"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:84
+#: data/com.raggesilver.BlackBox.gschema.xml:93
 msgid "Cursor shape"
 msgstr "Cursorform"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:88
+#: data/com.raggesilver.BlackBox.gschema.xml:97
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr ""
 "Wenn eingeschaltet, werden STRG+C und STRG+V für Kopieren/Einfügen genutzt"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:92
+#: data/com.raggesilver.BlackBox.gschema.xml:101
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -120,11 +132,23 @@ msgstr ""
 "Wenn eingeschaltet, wird wenn nur ein Tab geöffnet ist, die Tableiste durch "
 "den Fenstertitel ersetzt"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:96
+#: data/com.raggesilver.BlackBox.gschema.xml:105
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
 "Wenn eingeschaltet, wird, wenn nur ein einzelner Tab geöffnet ist, dieser "
 "mit der Farbe der Fensterleiste harmonieren"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:109
+msgid "Whether to spawn shell in login mode"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:113
+msgid "Whether to use a custom command instead of the user's shell"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:117
+msgid "Custom command to use instead of the user's shell"
+msgstr ""
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -211,27 +235,73 @@ msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Verknüpfungen zeigen"
 
-#: src/gtk/preferences-window.ui:11
+#: src/gtk/preferences-window.ui:9
 msgid "General"
 msgstr "Normal"
 
-#: src/gtk/preferences-window.ui:17
-msgid "Tabs and Headerbar"
-msgstr "Tabs und Fensterleiste"
+#: src/gtk/preferences-window.ui:13
+msgid "Window"
+msgstr "Fenster"
 
-#: src/gtk/preferences-window.ui:22
+#: src/gtk/preferences-window.ui:16
+msgid "Scrollbars"
+msgstr "Bildlaufleisten"
+
+#: src/gtk/preferences-window.ui:20
+msgid "Show Scrollbars"
+msgstr "Zeige Bildlaufleisten an"
+
+#: src/gtk/preferences-window.ui:31
+msgid "Use Overlay Scrolling"
+msgstr "Nutze Overlay Bildlauf"
+
+#: src/gtk/preferences-window.ui:45
+msgid "Remember Window Size"
+msgstr "Stelle Fenstergröße wiederher"
+
+#: src/gtk/preferences-window.ui:56
+msgid "Theme Integration"
+msgstr "Themenintegration"
+
+#: src/gtk/preferences-window.ui:57
+#, fuzzy
+msgid "Style window with terminal theme colors."
+msgstr "Ob das Fenster die Farben des Terminal-Themas übernimmt oder nicht"
+
+#: src/gtk/preferences-window.ui:67
+#, fuzzy
+msgid "Style Preference"
+msgstr "Einstellungen"
+
+#: src/gtk/preferences-window.ui:71
+msgid "Follow System"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:72
+msgid "Light Style"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:73
+msgid "Dark Style"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:83
+msgid "Tabs"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:87
 msgid "Expand Tabs"
 msgstr "Tabs erweitern"
 
-#: src/gtk/preferences-window.ui:35
+#: src/gtk/preferences-window.ui:97
 msgid "Single Tab Mode"
 msgstr "Einzelner Tab Modus"
 
-#: src/gtk/preferences-window.ui:41
+#: src/gtk/preferences-window.ui:102
 msgid "Hide Single Tab"
 msgstr "Einzelnen Tab verstecken"
 
-#: src/gtk/preferences-window.ui:42
+#: src/gtk/preferences-window.ui:103
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
@@ -239,39 +309,44 @@ msgstr ""
 "Ersetze die Tab-Leiste mit dem einzelnen Titel des Tabs, wenn nur ein Tab "
 "geöffnet ist."
 
-#: src/gtk/preferences-window.ui:56
+#: src/gtk/preferences-window.ui:115
 msgid "Stealth Single Tab"
 msgstr "Einzelnen Tab verstecken"
 
-#: src/gtk/preferences-window.ui:57
+#: src/gtk/preferences-window.ui:116
 msgid "Blend single tab with headerbar."
 msgstr "Einzelnen Tab farblich anpassen"
 
-#: src/gtk/preferences-window.ui:73
+#: src/gtk/preferences-window.ui:131
+#, fuzzy
+msgid "Headerbar"
+msgstr "Zeige Fensterleiste"
+
+#: src/gtk/preferences-window.ui:135
 msgid "Show Menu Button"
 msgstr "Zeige Menüknopf"
 
-#: src/gtk/preferences-window.ui:87
+#: src/gtk/preferences-window.ui:146
 msgid "Show Headerbar"
 msgstr "Zeige Fensterleiste"
 
-#: src/gtk/preferences-window.ui:99
+#: src/gtk/preferences-window.ui:156
 msgid "Floating Controls"
 msgstr "Schwebesteuerung für das Fenster"
 
-#: src/gtk/preferences-window.ui:102
+#: src/gtk/preferences-window.ui:159
 msgid "Show Floating Controls"
 msgstr "Zeige Schwebesteuerung für das Fenster"
 
-#: src/gtk/preferences-window.ui:103
+#: src/gtk/preferences-window.ui:160
 msgid "Show floating controls in headbarless mode."
 msgstr "Zeige Schwebesteuerung für das Fenster im fensterleistenlosen Modus"
 
-#: src/gtk/preferences-window.ui:116
+#: src/gtk/preferences-window.ui:172
 msgid "Floating Controls Hover Area"
 msgstr "Schwebesteuerung für das Fenster Reaktionsgebiet"
 
-#: src/gtk/preferences-window.ui:117
+#: src/gtk/preferences-window.ui:173
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
@@ -279,105 +354,130 @@ msgstr ""
 "Kontaktfläche (in Pixeln) am inneren oberen Rand des Fensters um die "
 "Schwebesteuerung des Fensters anzuzeigen."
 
-#: src/gtk/preferences-window.ui:129
+#: src/gtk/preferences-window.ui:185
 msgid "Delay Before Show Floating Controls"
 msgstr "Verzögerung vor dem Anzeigen der Schwebesteuerung des Fensters."
 
-#: src/gtk/preferences-window.ui:130
+#: src/gtk/preferences-window.ui:186
 msgid "Delay time (ms) before show floating controls."
 msgstr ""
 "Verzögerung (in ms) vor dem Anzeigen der Schwebesteuerung des Fensters."
 
-#: src/gtk/preferences-window.ui:147
-msgid "Window"
-msgstr "Fenster"
-
-#: src/gtk/preferences-window.ui:151
-msgid "Scrollbars"
-msgstr "Bildlaufleisten"
-
-#: src/gtk/preferences-window.ui:157
-msgid "Show Scrollbars"
-msgstr "Zeige Bildlaufleisten an"
-
-#: src/gtk/preferences-window.ui:171
-msgid "Use Overlay Scrolling"
-msgstr "Nutze Overlay Bildlauf"
-
-#: src/gtk/preferences-window.ui:187
-msgid "Theme Integration"
-msgstr "Themenintegration"
-
-#: src/gtk/preferences-window.ui:201
-msgid "Remember Window Size"
-msgstr "Stelle Fenstergröße wiederher"
-
-#: src/gtk/preferences-window.ui:217
+#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:266
 msgid "Terminal"
 msgstr "Terminal"
 
-#: src/gtk/preferences-window.ui:222
+#: src/gtk/preferences-window.ui:207
+msgid "Text"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:211
 msgid "Font"
 msgstr "Schrift"
 
-#: src/gtk/preferences-window.ui:234
-msgid "Terminal Font"
-msgstr "Terminalschrift"
-
-#: src/gtk/preferences-window.ui:242
+#: src/gtk/preferences-window.ui:223
 msgid "Cell Spacing"
 msgstr "Buchstabenlücken"
 
-#: src/gtk/preferences-window.ui:245
+#: src/gtk/preferences-window.ui:226
 msgid "Width"
 msgstr "Breite"
 
-#: src/gtk/preferences-window.ui:257
+#: src/gtk/preferences-window.ui:238
 msgid "Height"
 msgstr "Höhe"
 
-#: src/gtk/preferences-window.ui:272
-msgid "Padding"
-msgstr "Puffer"
-
-#: src/gtk/preferences-window.ui:289
-msgid "Cursor"
-msgstr "Cursor"
-
-#: src/gtk/preferences-window.ui:293
-msgid "Block"
-msgstr "Block"
-
-#: src/gtk/preferences-window.ui:294
-msgid "IBeam"
-msgstr "I-Strebe"
-
-#: src/gtk/preferences-window.ui:295
-msgid "Underline"
-msgstr "Unterstrichen"
-
-#: src/gtk/preferences-window.ui:305
+#: src/gtk/preferences-window.ui:253
 msgid "Easy Copy &amp; Paste"
 msgstr "Einfaches Kopieren &amp; Einfügen"
 
-#: src/gtk/preferences-window.ui:306
+#: src/gtk/preferences-window.ui:254
 msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Sie werden mit STRG+C/STRG+V Kopieren/Einzufügen können"
 
-#: src/gtk/preferences-window.ui:319
+#: src/gtk/preferences-window.ui:269
+msgid "Padding"
+msgstr "Puffer"
+
+#: src/gtk/preferences-window.ui:283
+msgid "Cursor"
+msgstr "Cursor"
+
+#: src/gtk/preferences-window.ui:287
+msgid "Block"
+msgstr "Block"
+
+#: src/gtk/preferences-window.ui:288
+msgid "IBeam"
+msgstr "I-Strebe"
+
+#: src/gtk/preferences-window.ui:289
+msgid "Underline"
+msgstr "Unterstrichen"
+
+#: src/gtk/preferences-window.ui:299
+msgid "Command"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:303
+msgid "Run Command as Login Shell"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:314
+msgid "Use Custom Command"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:324
+msgid "Custom Command"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:331
 msgid "Theme"
 msgstr "Thema"
 
-#: src/gtk/preferences-window.ui:339
+#: src/gtk/preferences-window.ui:342
+msgid "Open folder"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:350
+msgid "Get more themes online"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:364
+msgid "Set your preferred theme for light and dark styles."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:379
+#, fuzzy
+msgid "Light Theme"
+msgstr "Thema"
+
+#: src/gtk/preferences-window.ui:385
+#, fuzzy
+msgid "Dark Theme"
+msgstr "Thema"
+
+#: src/gtk/preferences-window.ui:393
+msgid "Only display themes for the current style"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:401
+msgid ""
+"To ensure readability, \"Theme Integration\" will be disabled if you select "
+"a light color scheme while using the dark app style or a dark color scheme "
+"while using the light app style."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:428
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#. <property name="use-markup">True</property>
-#: src/gtk/preferences-window.ui:346
-msgid "Experimental 🧪"
+#: src/gtk/preferences-window.ui:432
+#, fuzzy
+msgid "Experimental"
 msgstr "Experimentell 🧪"
 
-#: src/gtk/preferences-window.ui:347
+#: src/gtk/preferences-window.ui:433
 msgid ""
 "Features in this section are known to be wonky. Please feel free to test and "
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
@@ -386,11 +486,11 @@ msgstr ""
 "Funktionen in diesem Abschnitt sind fehleranfällig. <a href=\"https://gitlab."
 "gnome.org/raggesilver/blackbox/-/issues\">Melden Sie ruhig Fehler</a>."
 
-#: src/gtk/preferences-window.ui:352
+#: src/gtk/preferences-window.ui:437
 msgid "Pixel Scrolling"
 msgstr "Pixel Bildlauf"
 
-#: src/gtk/preferences-window.ui:353
+#: src/gtk/preferences-window.ui:438
 msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
@@ -398,15 +498,15 @@ msgstr ""
 "Scrollen Sie in Pixeleinheiten und nicht in Zeilen. \"Zeige Bildlaufleisten "
 "an\" muss eingeschaltet sein."
 
-#: src/gtk/preferences-window.ui:369
+#: src/gtk/preferences-window.ui:450
 msgid "Danger Zone"
 msgstr "Gefahrenzone"
 
-#: src/gtk/preferences-window.ui:373
+#: src/gtk/preferences-window.ui:453
 msgid "Reset Preferences"
 msgstr "Einstellungen zurücksetzen"
 
-#: src/gtk/preferences-window.ui:374
+#: src/gtk/preferences-window.ui:454
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
@@ -475,14 +575,9 @@ msgstr "Hilfe"
 msgid "About"
 msgstr "Über"
 
-#: src/widgets/PreferencesWindow.vala:65
-#, c-format
-msgid ""
-"Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
-"href=\"%s\">online</a>."
-msgstr ""
-"Öffnen Sie den <a href=\"file://%s\">Themen Ordner</a> und laden Sie mehr "
-"Themen <a href=\"%s\">online</a> herunter."
+#: src/widgets/PreferencesWindow.vala:399
+msgid "Terminal Font"
+msgstr "Terminalschrift"
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
@@ -501,6 +596,17 @@ msgstr ""
 "viel Fortschritt bei dieser Übertragung gibt, muss Kopieren noch "
 "implementiert werden. Das bedeutet, dass es unmöglich ist Text aus %s zu "
 "kopieren."
+
+#~ msgid "Tabs and Headerbar"
+#~ msgstr "Tabs und Fensterleiste"
+
+#, c-format
+#~ msgid ""
+#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
+#~ "href=\"%s\">online</a>."
+#~ msgstr ""
+#~ "Öffnen Sie den <a href=\"file://%s\">Themen Ordner</a> und laden Sie mehr "
+#~ "Themen <a href=\"%s\">online</a> herunter."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Quit"
