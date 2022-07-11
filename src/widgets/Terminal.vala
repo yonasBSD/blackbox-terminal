@@ -352,7 +352,7 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void on_middle_click_pressed () {
     if (Gtk.Settings.get_default ().gtk_enable_primary_paste) {
-      this.do_paste_clipboard ();
+      this.do_paste_from_selection ();
     }
   }
 
@@ -448,6 +448,12 @@ public class Terminal.Terminal : Vte.Terminal {
     if (this.get_has_selection ()) {
       Gdk.Display.get_default ().get_clipboard ()
         .set_text (this.get_text_selected ());
+    }
+  }
+
+  public void do_paste_from_selection () {
+    if (this.get_has_selection ()) {
+      this.paste_text (this.get_text_selected ());
     }
   }
 }

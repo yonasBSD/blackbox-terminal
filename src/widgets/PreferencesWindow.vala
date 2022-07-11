@@ -121,7 +121,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       var a = child1 as ColorSchemeThumbnail;
       var b = child2 as ColorSchemeThumbnail;
 
-      return strcmp (a.scheme.name, b.scheme.name);
+      return strcmp (a.scheme.name.down (), b.scheme.name.down ());
     });
   }
 
