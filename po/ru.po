@@ -137,15 +137,15 @@ msgstr "Если включено, единственная вкладка пр�
 
 #: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid "Whether to spawn shell in login mode"
-msgstr ""
+msgstr "Запускать ли оболочку в режиме login"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "Whether to use a custom command instead of the user's shell"
-msgstr ""
+msgstr "Использовать ли пользовательскую команду вместо оболочки пользователя"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Custom command to use instead of the user's shell"
-msgstr ""
+msgstr "Пользовательская команда для использования вместо оболочки пользователя"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -345,16 +345,16 @@ msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
 msgstr ""
-"Наводимая область (в пикселях) в верхней части окна для запуска плавающих "
+"Наводимая область (в пикселях) в верхней части окна для вызова плавающих "
 "элементов управления."
 
 #: src/gtk/preferences-window.ui:185
 msgid "Delay Before Show Floating Controls"
-msgstr "Задержка перед показом плавающих элементов управления"
+msgstr "Задержка перед появлением плавающих элементов управления"
 
 #: src/gtk/preferences-window.ui:186
 msgid "Delay time (ms) before show floating controls."
-msgstr "Время задержки (мс) перед показом плавающих элементов управления."
+msgstr "Время задержки (мс) перед появлением плавающих элементов управления."
 
 #: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:266
 msgid "Terminal"
@@ -402,7 +402,7 @@ msgstr "Блок"
 
 #: src/gtk/preferences-window.ui:288
 msgid "IBeam"
-msgstr "Двутавр"
+msgstr "I-образный"
 
 #: src/gtk/preferences-window.ui:289
 msgid "Underline"
@@ -414,7 +414,7 @@ msgstr "Команда"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Run Command as Login Shell"
-msgstr "Выполнить команду в действующей оболочке"
+msgstr "Выполнить команду в Login Shell"
 
 #: src/gtk/preferences-window.ui:314
 msgid "Use Custom Command"
@@ -438,7 +438,7 @@ msgstr "Больше тем можно найти онлайн"
 
 #: src/gtk/preferences-window.ui:364
 msgid "Set your preferred theme for light and dark styles."
-msgstr "Установите предпочитаемую тему для светлого и тёмного стилей."
+msgstr "Установить предпочитаемую тему для светлого и тёмного стилей."
 
 #: src/gtk/preferences-window.ui:379
 msgid "Light Theme"
@@ -458,13 +458,13 @@ msgid ""
 "a light color scheme while using the dark app style or a dark color scheme "
 "while using the light app style."
 msgstr ""
-"Для обеспечения читабельности, опция \"Интеграция темы\" будет отключена, если вы выберете "
+"Для обеспечения читабельности опция \"Интеграция темы\" будет отключена, если вы выберете "
 "светлую цветовую схему при использовании темного стиля или темную цветовую схему "
 "при использовании светлого стиля."
 
 #: src/gtk/preferences-window.ui:428
 msgid "Advanced"
-msgstr "Продвинутые"
+msgstr "Расширенные"
 
 #: src/gtk/preferences-window.ui:432
 msgid "Experimental"
@@ -575,7 +575,7 @@ msgstr "Шрифт терминала"
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
-msgstr "Вы можете открыть меню, щелкнув правой кнопкой мыши на терминале."
+msgstr "Вы можете открыть меню, щёлкнув правой кнопкой мыши по терминалу."
 
 #: src/utils/Constants.vala:36
 #, c-format
