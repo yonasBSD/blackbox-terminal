@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/raggesilver/blackbox/-/issues\n"
 "POT-Creation-Date: 2022-07-11 09:40-0300\n"
-"PO-Revision-Date: 2022-07-11 17:16+0300\n"
+"PO-Revision-Date: 2022-07-11 21:26+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
 "Language: ru\n"
@@ -414,7 +414,7 @@ msgstr "Команда"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Run Command as Login Shell"
-msgstr "Выполнить команду в Login Shell"
+msgstr "Выполнить команду как Login Shell"
 
 #: src/gtk/preferences-window.ui:314
 msgid "Use Custom Command"
