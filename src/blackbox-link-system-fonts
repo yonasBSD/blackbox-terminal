@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+# For some reason `flatpak build ... blackbox` does not give Black Box access to
+# the system fonts. Or rather, it does, but GTK (or whatever) cannot find these
+# fonts unless I hackily link them. If for some reason this script gets executed
+# outside Flatpak, nothing will happen besides running `blackbox`.
+
+
+if [ -e /.flatpak-info ]; then
+  /usr/bin/ln -s /run/host/usr/share/fonts /run/host/fonts
+fi
+
+blackbox "$@"

@@ -52,3 +52,12 @@ executable('blackbox', blackbox_sources, config_header,
   vala_args: '--target-glib=2.50',  dependencies: blackbox_deps,
   install: true,
 )
+
+if get_option('devel')
+  custom_target ('flatpak-exe',
+                 input: 'blackbox-link-system-fonts',
+                 output: ['blackbox-link-system-fonts'],
+                 command: ['cp', '@INPUT@', '@OUTPUT@'],
+                 install: true,
+                 install_dir: 'bin')
+endif

@@ -38,8 +38,6 @@ namespace Terminal {
   }
 
   private string get_debug_information () {
-    var builder = new StringBuilder ("");
-
     var app = "Black Box: %s\n".printf (VERSION);
     var backend = "Backend: %s\n".printf (get_gtk_backend ());
     var renderer = "Renderer: %s\n".printf (get_renderer ());

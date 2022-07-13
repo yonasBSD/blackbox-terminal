@@ -29,7 +29,7 @@ public class Terminal.ColorSchemeThumbnailProvider {
       try {
         uint8[] data;
 
-        File.new_for_uri (
+        GLib.File.new_for_uri (
           "resource:///com/raggesilver/BlackBox/resources/svg/color-scheme-thumbnail.svg"
         ).load_contents (null, out data, null);
 
@@ -49,12 +49,12 @@ public class Terminal.ColorSchemeThumbnailProvider {
     Gdk.RGBA? color = null;
 
     if (node->get_prop ("label") == "palette") {
-      var len = scheme.colors.length;
-      color = scheme.colors[Random.int_range (7, len)];
+      int len = (int) scheme.palette.length;
+      color = scheme.palette.index (Random.int_range (7, len));
     }
 
     if (node->get_prop ("label") == "fg") {
-      color = scheme.foreground;
+      color = scheme.foreground_color;
     }
 
     if (color != null) {
@@ -151,16 +151,6 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     this.tooltip_text = scheme.name;
     this.add_css_class ("thumbnail");
 
-    // FIXME: scheme is a reference and this is altering things outside the
-    // scope of this function. We either have to ensure there's always a
-    // background/foreground color set in scheme or use a local fallback here
-    if (scheme.foreground == null) {
-      scheme.foreground = scheme.colors[7];
-    }
-    if (scheme.background == null) {
-      scheme.background = scheme.colors[0];
-    }
-
     // The color scheme thumbnail
     var img = new Gtk.Picture () {
       paintable = new ColorSchemePreviewPaintable (scheme),
@@ -174,7 +164,7 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     var css_provider = Marble.get_css_provider_for_data (
       //  "picture { background-color: %s; padding-bottom: 2em; }".printf (
       "picture { background-color: %s; }".printf (
-        scheme.background.to_string ()
+        scheme.background_color.to_string ()
       )
     );
 
@@ -206,7 +196,7 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     //    xalign = 0.5f,
     //  };
 
-    //  Marble.set_theming_for_data (lbl, "label { color: %s; margin: 0.5em 8px; }".printf(scheme.foreground.to_string ()), null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    //  Marble.set_theming_for_data (lbl, "label { color: %s; margin: 0.5em 8px; }".printf(scheme.foreground_color.to_string ()), null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     //  lbl.set_parent (this);
 

@@ -115,8 +115,8 @@ public class Terminal.Terminal : Vte.Terminal {
   ) {
     var vtype = value.type ();
 
-    if (vtype == typeof (File)) {
-      var file = (File) value.get_object ();
+    if (vtype == typeof (GLib.File)) {
+      var file = (GLib.File) value.get_object ();
       var path = file?.get_path ();
 
       if (path != null) {
@@ -162,7 +162,6 @@ public class Terminal.Terminal : Vte.Terminal {
   }
 
   private void on_theme_changed () {
-    var ctx = this.get_style_context ();
     var theme_provider = ThemeProvider.get_default ();
     var theme_name = theme_provider.current_theme;
     var theme = theme_provider.themes.get (theme_name);
@@ -172,26 +171,10 @@ public class Terminal.Terminal : Vte.Terminal {
       return;
     }
 
-    this.bg = theme.background;
-    this.fg = theme.foreground;
+    this.bg = theme.background_color;
+    this.fg = theme.foreground_color;
 
-    // TODO: check if something changed with ctx.lookup_color in
-    // Gtk 4/libadwaita, and if named colors in libadwaita work as intended here
-    if (
-      this.bg == null &&
-      !ctx.lookup_color ("theme_base_color", out this.bg)
-    ) {
-      this.bg = { 0, 0, 0, 1 };
-    }
-
-    if (
-      this.fg == null &&
-      !ctx.lookup_color ("theme_fg_color", out this.fg)
-    ) {
-      this.fg = { 1, 1, 1, 1 };
-    }
-
-    this.set_colors (this.fg, this.bg, theme.colors);
+    this.set_colors (this.fg, this.bg, theme.palette.data);
   }
 
   private Gtk.CssProvider? padding_provider = null;
@@ -314,9 +297,6 @@ public class Terminal.Terminal : Vte.Terminal {
       }
     }
     if (command != null) {
-      string[] commandv = {};
-      Shell.parse_argv (command, out commandv);
-
       argv += "-c";
       argv += command;
     }

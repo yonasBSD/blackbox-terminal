@@ -1,10 +1,10 @@
 {
-  "app-id" : "com.raggesilver.BlackBox",
-  "runtime" : "org.gnome.Platform",
-  "runtime-version" : "42",
-  "sdk" : "org.gnome.Sdk",
-  "command" : "blackbox",
-  "finish-args" : [
+  "app-id": "com.raggesilver.BlackBox",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "42",
+  "sdk": "org.gnome.Sdk",
+  "command": "blackbox-link-system-fonts",
+  "finish-args": [
     "--filesystem=home:ro",
     "--share=ipc",
     "--socket=fallback-x11",
@@ -12,7 +12,7 @@
     "--device=dri",
     "--talk-name=org.freedesktop.Flatpak"
   ],
-  "cleanup" : [
+  "cleanup": [
     "/include",
     "/lib/pkgconfig",
     "/man",
@@ -24,40 +24,37 @@
     "*.la",
     "*.a"
   ],
-  "modules" : [
+  "modules": [
     {
-      "name" : "vte",
-      "buildsystem" : "meson",
-      "config-opts": [
-        "-Dgtk4=true",
-        "-Dgtk3=false"
-      ],
-      "sources" : [
+      "name": "vte",
+      "buildsystem": "meson",
+      "config-opts": ["-Dgtk4=true", "-Dgtk3=false"],
+      "sources": [
         {
-          "type" : "archive",
-          "url" : "https://gitlab.gnome.org/raggesilver/vte/-/archive/c757fc5ca3f21aa0319d4d189f1022be0fde9cee/vte-c757fc5ca3f21aa0319d4d189f1022be0fde9cee.tar.gz",
+          "type": "archive",
+          "url": "https://gitlab.gnome.org/raggesilver/vte/-/archive/c757fc5ca3f21aa0319d4d189f1022be0fde9cee/vte-c757fc5ca3f21aa0319d4d189f1022be0fde9cee.tar.gz",
           "sha256": "25245514a86de6a234bfb279fc9a768d9cc753b49849fcb51415e800d83ba078"
         }
       ]
     },
     {
-      "name" : "json-glib",
-      "buildsystem" : "meson",
-      "sources" : [
+      "name": "json-glib",
+      "buildsystem": "meson",
+      "sources": [
         {
-          "type" : "archive",
-          "url" : "https://gitlab.gnome.org/GNOME/json-glib/-/archive/23ae2f59bea7405d95218e82edb7f3c4c7c80a87/json-glib-23ae2f59bea7405d95218e82edb7f3c4c7c80a87.tar.gz",
+          "type": "archive",
+          "url": "https://gitlab.gnome.org/GNOME/json-glib/-/archive/23ae2f59bea7405d95218e82edb7f3c4c7c80a87/json-glib-23ae2f59bea7405d95218e82edb7f3c4c7c80a87.tar.gz",
           "sha256": "9fa88f1b8fc926bfd7c4115354a06f79b7b30fa367450a3e7a36932e3b7022ba"
         }
       ]
     },
     {
-      "name" : "marble",
-      "buildsystem" : "meson",
-      "sources" : [
+      "name": "marble",
+      "buildsystem": "meson",
+      "sources": [
         {
-          "type" : "archive",
-          "url" : "https://gitlab.com/raggesilver/marble/-/archive/6dcc6fefa35f0151b0549c01bd774750fe6bdef8/marble-6dcc6fefa35f0151b0549c01bd774750fe6bdef8.tar.gz",
+          "type": "archive",
+          "url": "https://gitlab.com/raggesilver/marble/-/archive/6dcc6fefa35f0151b0549c01bd774750fe6bdef8/marble-6dcc6fefa35f0151b0549c01bd774750fe6bdef8.tar.gz",
           "sha256": "6fe25ab863bf9a81fac827861b3f17d07fb4a0e4d944dbb0d5b09dfafca59fb4"
         }
       ]
@@ -87,10 +84,7 @@
     {
       "name": "libadwaita",
       "buildsystem": "meson",
-      "config-opts": [
-        "-Dtests=false",
-        "-Dexamples=false"
-      ],
+      "config-opts": ["-Dtests=false", "-Dexamples=false"],
       "sources": [
         {
           "type": "archive",
@@ -100,16 +94,14 @@
       ]
     },
     {
-      "name" : "blackbox",
-      "builddir" : true,
-      "buildsystem" : "meson",
-      "config-opts": [
-        "-Ddevel=true"
-      ],
-      "sources" : [
+      "name": "blackbox",
+      "builddir": true,
+      "buildsystem": "meson",
+      "config-opts": ["-Ddevel=true"],
+      "sources": [
         {
-          "type" : "git",
-          "url" : "https://gitlab.gnome.org/raggesilver/blackbox"
+          "type": "git",
+          "url": "https://gitlab.gnome.org/raggesilver/blackbox"
         }
       ]
     }
