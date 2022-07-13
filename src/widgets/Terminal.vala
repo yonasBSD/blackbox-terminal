@@ -98,7 +98,8 @@ public class Terminal.Terminal : Vte.Terminal {
     var target = new Gtk.DropTarget (Type.INVALID, Gdk.DragAction.COPY);
 
     target.set_gtypes ({
-      typeof (File),
+      typeof (Gdk.FileList),
+      typeof (GLib.File),
       typeof (string),
     });
 
@@ -115,7 +116,17 @@ public class Terminal.Terminal : Vte.Terminal {
   ) {
     var vtype = value.type ();
 
-    if (vtype == typeof (GLib.File)) {
+    if (vtype == typeof (Gdk.FileList)) {
+      var list = (Gdk.FileList) value.get_boxed ();
+
+      foreach (unowned GLib.File file in list.get_files ()) {
+        this.feed_child (Shell.quote (file.get_path ()).data);
+        this.feed_child (" ".data);
+      }
+
+      return true;
+    }
+    else if (vtype == typeof (GLib.File)) {
       var file = (GLib.File) value.get_object ();
       var path = file?.get_path ();
 
