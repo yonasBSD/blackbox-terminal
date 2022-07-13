@@ -107,6 +107,7 @@
           <li>Middle-click paste will now paste from user selection</li>
           <li>Color scheme sorting is now case insensitive</li>
           <li>Long window title resizes window in single tab mode</li>
+          <li>Drag-n-drop now works with multiple files</li>
           <li>Improved theme integration. Popovers, menus, and lists are now properly styled according to the user's terminal color scheme</li>
         </ul>
       </description>

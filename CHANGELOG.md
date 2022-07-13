@@ -28,6 +28,7 @@ Bug fixes:
 - Middle-click paste will now paste from user selection - #46
 - Color scheme sorting is now case insensitive
 - Long window title resizes window in single tab mode - #77
+- Drag-n-drop now works with multiple files - #67
 - Improved theme integration. Popovers, menus, and lists are now properly styled
   according to the user's terminal color scheme - #42
 
