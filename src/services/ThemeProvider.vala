@@ -210,7 +210,7 @@ public class Terminal.ThemeProvider : Object {
       var f = GLib.File.new_for_path (path);
 
       try {
-        f.make_directory ();
+        f.make_directory_with_parents ();
       }
       catch (Error e) {
         warning ("%s", e.message);

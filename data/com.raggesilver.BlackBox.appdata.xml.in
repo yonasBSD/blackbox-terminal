@@ -84,6 +84,19 @@
   </kudos>
 
   <releases>
+    <release date="2022-07-13" version="0.11.1">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>Black Box will set the BLACKBOX_THEMES_DIR env variable to the user's Black Box theme folder</li>
+        </ul>
+        <p>Bugs:</p>
+        <ul>
+          <li>Fix opaque floating header bar</li>
+          <li>User themes dir is no longer hard-coded and will be different for host install vs Flatpak</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-07-13" version="0.11.0">
       <description>
         <p>Features:</p>

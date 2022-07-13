@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.11.1 - 2022.07.13
+
+Features:
+
+- Black Box will set the BLACKBOX_THEMES_DIR env variable to the user's theme
+  folder - #82
+
+Bug fixes:
+
+- Fix opaque floating header bar
+- User themes dir is no longer hard-coded and will be different for host vs
+  Flatpak - #90 thanks @nahuelwexd
+
 ## 0.11.0 - 2022.07.13
 
 Features:

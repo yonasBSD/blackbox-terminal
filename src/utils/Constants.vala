@@ -37,13 +37,13 @@ namespace Terminal.Constants {
 
   public string get_user_schemes_dir () {
     return Path.build_path(
-      Path.DIR_SEPARATOR_S, Environment.get_home_dir (), ".var", "app", APP_ID, "schemes", null
+      Path.DIR_SEPARATOR_S, Environment.get_user_data_dir (), "blackbox", "schemes"
     );
   }
 
   public string get_app_schemes_dir () {
-    return Path.build_path(
-      Path.DIR_SEPARATOR_S, DATADIR, "blackbox", "schemes", null
+    return Path.build_path (
+      Path.DIR_SEPARATOR_S, DATADIR, "blackbox", "schemes"
     );
   }
 }

@@ -55,7 +55,7 @@ tabbox background {
   margin: 8px;
 }
 
-.floating-revealer headerbar {
+window:not(.about) .floating-revealer > headerbar {
   background: transparent;
 }
 
