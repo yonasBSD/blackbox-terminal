@@ -68,7 +68,7 @@
       <summary>The light color scheme for the terminal</summary>
     </key>
     <key name="theme-dark" type="s">
-      <default>'Tomorrow Night'</default>
+      <default>'Tommorow Night'</default>
       <summary>The dark color scheme for the terminal</summary>
     </key>
     <key name="style-preference" type="u">
