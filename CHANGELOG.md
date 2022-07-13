@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.11.0 - 2022.07.13
+
+Features:
+
+- The preferences window has a new layout that allows for more
+  features/customization to be added
+- Added support for the system-wide dark style preference - #17
+- Users can now set a terminal color scheme for dark style and another for light
+  style
+- Black Box now uses the new libadwaita about window
+- New themes included with Black Box: one-dark, pencil-dark, pencil-light,
+  tomorrow, and tommorrow-night
+- Black Box will also load themes from `~/.var/app/com.raggesilver.BlackBox/schemes` - #54
+- You can customize which and how your shell is spawned in Black Box - #43
+  - Run command as login shell
+  - Set custom command instead of the default shell
+
+Deprecations:
+
+- The Linux and Tango color schemes have been removed
+- All color schemes must now set `background-color` and `foreground-color`
+
+Bug fixes:
+
+- Fixed a bug that prevented users from typing values in the preferences window - #13
+- Middle-click paste will now paste from user selection - #46
+- Color scheme sorting is now case insensitive
+- Long window title resizes window in single tab mode - #77
+- Improved theme integration. Popovers, menus, and lists are now properly styled
+  according to the user's terminal color scheme - #42
+
 ## 0.10.1 - 2022.07.08
 
 Features:
