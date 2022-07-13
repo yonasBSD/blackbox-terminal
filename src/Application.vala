@@ -95,7 +95,7 @@ public class Terminal.Application : Adw.Application {
   //  }
 
   private void on_about () {
-    var win = create_about_dialog ();
+    var win = create_about_dialog () as Gtk.Window;
     win.set_transient_for (this.get_active_window ());
     win.show ();
   }

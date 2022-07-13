@@ -183,21 +183,8 @@ public class Terminal.ThemeProvider : Object {
       return;
     }
 
-    var foreground = theme.foreground_color;
-    var background = theme.background_color;
-
-    bool is_dark_theme = this.is_dark_style_active;
-    string inv_mode = is_dark_theme ? "lighter" : "darker";
-
-    this.theme_provider = Marble.get_css_provider_for_data ("""
-      @define-color window_bg_color %1$s;
-      @define-color window_fg_color %2$s;
-      @define-color headerbar_bg_color %3$s(%1$s);
-    """.printf (
-        background.to_string (),
-        foreground.to_string (),
-        inv_mode
-      )
+    this.theme_provider = Marble.get_css_provider_for_data (
+      this.generate_gtk_theme (theme)
     );
 
     if (this.theme_provider == null) return;
@@ -229,5 +216,57 @@ public class Terminal.ThemeProvider : Object {
         warning ("%s", e.message);
       }
     }
+  }
+
+  /**
+   * generate_gtk_theme
+   *
+   * Copyright 2021 Christian Hergert <chergert@redhat.com>
+   * Copyright 2022 Paulo Queiroz
+   *
+   * The following function is work derived from GNOME Text Editor, which is
+   * also licensed under the GNU General Public License version 3.
+   *
+   * Additionally, sourced from:
+   *   https://gitlab.gnome.org/GNOME/gnome-text-editor/-/blob/86ceeeda2c35c3b504cfdf817d8119bd41782587/src/editor-recoloring.c
+   */
+
+  private string generate_gtk_theme (Scheme scheme) {
+    string theme = """
+      @define-color window_bg_color         %1$s;
+      @define-color window_fg_color         %2$s;
+      @define-color headerbar_bg_color      %3$s(%1$s);
+
+      @define-color card_fg_color           @window_fg_color;
+      @define-color headerbar_fg_color      @window_fg_color;
+      @define-color headerbar_border_color  @window_fg_color;
+      @define-color popover_fg_color        @window_fg_color;
+      @define-color dialog_fg_color         @window_fg_color;
+      @define-color dark_fill_bg_color      @headerbar_bg_color;
+      @define-color view_bg_color           @card_bg_color;
+      @define-color view_fg_color           @window_fg_color;
+    """.printf (
+      scheme.background_color.to_string (),
+      scheme.foreground_color.to_string (),
+      this.is_dark_style_active ? "lighter" : "darker"
+    );
+
+    if (this.is_dark_style_active) {
+      theme += """
+        @define-color popover_bg_color      mix(@window_bg_color, white, 0.07);
+        @define-color dialog_bg_color       mix(@window_bg_color, white, 0.07);
+        @define-color card_bg_color         alpha(white, .08);
+        @define-color view_bg_color         darker(@window_bg_color);
+      """;
+    }
+    else {
+      theme += """
+        @define-color popover_bg_color      mix(@window_bg_color, white, .1);
+        @define-color dialog_bg_color       @window_bg_color;
+        @define-color card_bg_color         alpha(white, .6);
+      """;
+    }
+
+    return theme;
   }
 }
