@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-11 09:40-0300\n"
-"PO-Revision-Date: 2022-07-03 00:26+0200\n"
+"PO-Revision-Date: 2022-07-14 11:39+0200\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -18,11 +18,13 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
-msgstr ""
+msgstr "Boîte Noire"
 
 #: data/com.raggesilver.BlackBox.desktop.in:9
 msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
 msgstr ""
+"Terminal;terminal;shell;prompt;command;commandline;cmd;box;ligne de commande;"
+"boîte;"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:6
 msgid "Window width"
@@ -89,20 +91,17 @@ msgid "Delay time before showing floating controls"
 msgstr "Délai avant l’affichage des commandes flottantes"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
-#, fuzzy
 msgid "The light color scheme for the terminal"
-msgstr "Le schéma de couleur pour le terminal"
+msgstr "Le schéma de couleur clair pour le terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
-#, fuzzy
 msgid "The dark color scheme for the terminal"
-msgstr "Le schéma de couleur pour le terminal"
+msgstr "Le schéma de couleur sombre pour le terminal"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
 #: data/com.raggesilver.BlackBox.gschema.xml:77
-#, fuzzy
 msgid "Style preference"
-msgstr "Réinitialiser les préférences"
+msgstr "Préférence de style"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:81
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
@@ -133,23 +132,23 @@ msgstr ""
 "étiquette de titre lorsqu'un seul onglet est ouvert"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:105
-#, fuzzy
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
-"Si cette option est activée, les contrôles flottants seront affichés en mode "
-"sans en-tête"
+"Si cette option est activée, un onglet seul ouvert se fondra dans la couleur "
+"de la barre d’en-tête"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid "Whether to spawn shell in login mode"
-msgstr ""
+msgstr "Si le shell doit être lancé en mode login"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr ""
+"S’il faut utiliser une commande personnalisée à la place du shell utilisateur"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Custom command to use instead of the user's shell"
-msgstr ""
+msgstr "Commande personnalisée à utiliser à la place du shell utilisateur"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -265,66 +264,60 @@ msgid "Theme Integration"
 msgstr "Intégration du thème"
 
 #: src/gtk/preferences-window.ui:57
-#, fuzzy
 msgid "Style window with terminal theme colors."
-msgstr "Si la fenêtre devrait hériter des couleurs du thème du terminal"
+msgstr "Styliser la fenêtre avec les couleurs du thème du terminal."
 
 #: src/gtk/preferences-window.ui:67
-#, fuzzy
 msgid "Style Preference"
-msgstr "Préférences"
+msgstr "Préférence de style"
 
 #: src/gtk/preferences-window.ui:71
 msgid "Follow System"
-msgstr ""
+msgstr "Suivre le système"
 
 #: src/gtk/preferences-window.ui:72
 msgid "Light Style"
-msgstr ""
+msgstr "Style clair"
 
 #: src/gtk/preferences-window.ui:73
 msgid "Dark Style"
-msgstr ""
+msgstr "Style sombre"
 
 #: src/gtk/preferences-window.ui:83
 msgid "Tabs"
-msgstr ""
+msgstr "Onglets"
 
 #: src/gtk/preferences-window.ui:87
 msgid "Expand Tabs"
 msgstr "Étendre les onglets"
 
 #: src/gtk/preferences-window.ui:97
-#, fuzzy
 msgid "Single Tab Mode"
-msgstr "Masquer un onglet unique"
+msgstr "Mode onglet unique"
 
 #: src/gtk/preferences-window.ui:102
 msgid "Hide Single Tab"
 msgstr "Masquer un onglet unique"
 
 #: src/gtk/preferences-window.ui:103
-#, fuzzy
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
 msgstr ""
 "Remplacer la barre d’onglets par une étiquette de titre lorsqu’un seul "
-"onglet est ouvert."
+"onglet est ouvert. Plus facile pour faire glisser la fenêtre."
 
 #: src/gtk/preferences-window.ui:115
-#, fuzzy
 msgid "Stealth Single Tab"
-msgstr "Masquer un onglet unique"
+msgstr "Onglet unique discret"
 
 #: src/gtk/preferences-window.ui:116
 msgid "Blend single tab with headerbar."
-msgstr ""
+msgstr "Fondre un onglet seul avec la barre supérieure."
 
 #: src/gtk/preferences-window.ui:131
-#, fuzzy
 msgid "Headerbar"
-msgstr "Afficher la barre supérieure"
+msgstr "Barre supérieure"
 
 #: src/gtk/preferences-window.ui:135
 msgid "Show Menu Button"
@@ -372,7 +365,7 @@ msgstr "Terminal"
 
 #: src/gtk/preferences-window.ui:207
 msgid "Text"
-msgstr ""
+msgstr "Texte"
 
 #: src/gtk/preferences-window.ui:211
 msgid "Font"
@@ -396,11 +389,11 @@ msgstr "Copier &amp; Coller facilement"
 
 #: src/gtk/preferences-window.ui:254
 msgid "Use ctrl+c/ctrl+v for copy/paste."
-msgstr "Utiliser Ctrl+C et Ctrl+V pour copier / coller"
+msgstr "Utiliser Ctrl+C et Ctrl+V pour copier / coller."
 
 #: src/gtk/preferences-window.ui:269
 msgid "Padding"
-msgstr "Rembourrage"
+msgstr "Padding"
 
 #: src/gtk/preferences-window.ui:283
 msgid "Cursor"
@@ -420,19 +413,19 @@ msgstr "Soulignage"
 
 #: src/gtk/preferences-window.ui:299
 msgid "Command"
-msgstr ""
+msgstr "Commande"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Run Command as Login Shell"
-msgstr ""
+msgstr "Exécuter la commande en tant que Login Shell"
 
 #: src/gtk/preferences-window.ui:314
 msgid "Use Custom Command"
-msgstr ""
+msgstr "Utiliser une commande personnalisée"
 
 #: src/gtk/preferences-window.ui:324
 msgid "Custom Command"
-msgstr ""
+msgstr "Commande personnalisée"
 
 #: src/gtk/preferences-window.ui:331
 msgid "Theme"
@@ -440,29 +433,27 @@ msgstr "Thème"
 
 #: src/gtk/preferences-window.ui:342
 msgid "Open folder"
-msgstr ""
+msgstr "Ouvrir le dossier"
 
 #: src/gtk/preferences-window.ui:350
 msgid "Get more themes online"
-msgstr ""
+msgstr "Obtenir plus de thèmes en ligne"
 
 #: src/gtk/preferences-window.ui:364
 msgid "Set your preferred theme for light and dark styles."
-msgstr ""
+msgstr "Définissez votre thème préféré pour les styles clairs et sombres."
 
 #: src/gtk/preferences-window.ui:379
-#, fuzzy
 msgid "Light Theme"
-msgstr "Thème"
+msgstr "Thème clair"
 
 #: src/gtk/preferences-window.ui:385
-#, fuzzy
 msgid "Dark Theme"
-msgstr "Thème"
+msgstr "Thème sombre"
 
 #: src/gtk/preferences-window.ui:393
 msgid "Only display themes for the current style"
-msgstr ""
+msgstr "Afficher uniquement les thèmes pour le style actuel"
 
 #: src/gtk/preferences-window.ui:401
 msgid ""
@@ -470,15 +461,18 @@ msgid ""
 "a light color scheme while using the dark app style or a dark color scheme "
 "while using the light app style."
 msgstr ""
+"Pour garantir la lisibilité, l’« intégration du thème » sera désactivée si "
+"vous sélectionnez un schéma de couleurs clair lorsque vous utilisez le style "
+"d’application sombre ou un schéma de couleurs sombre lorsque vous utilisez "
+"le style d'application clair."
 
 #: src/gtk/preferences-window.ui:428
 msgid "Advanced"
 msgstr "Avancé"
 
 #: src/gtk/preferences-window.ui:432
-#, fuzzy
 msgid "Experimental"
-msgstr "Expérimental 🧪"
+msgstr "Expérimental"
 
 #: src/gtk/preferences-window.ui:433
 msgid ""
