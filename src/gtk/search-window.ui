@@ -85,8 +85,18 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="clear_selection_on_close_check_button">
-                        <property name="label" translatable="yes">Clear selection on close</property>
+                      <object class="GtkCheckButton" id="match_case_sensitive_check_button">
+                        <property name="label" translatable="yes">Match is case sensitive</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="match_whole_words_check_button">
+                        <property name="label" translatable="yes">Match entire words only</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckButton" id="match_regex_check_button">
+                        <property name="label" translatable="yes">Match using regular expression</property>
                       </object>
                     </child>
                   </object>

@@ -268,17 +268,6 @@
             <property name="title" translatable="yes">Search</property>
             <child>
               <object class="AdwActionRow">
-                <property name="activatable-widget">search_wraps_around_switch</property>
-                <property name="title" translatable="yes">Search Wraps Around</property>
-                <child>
-                  <object class="GtkSwitch" id="search_wraps_around_switch">
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
                 <property name="activatable-widget">search_clear_selection_on_exit_switch</property>
                 <property name="title" translatable="yes">Clear Selection on Exit</property>
                 <property name="subtitle" translatable="yes">Enable to clear match selection when search window is closed.</property>

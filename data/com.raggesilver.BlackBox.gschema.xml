@@ -131,5 +131,17 @@
       <default>false</default>
       <summary>Whether new search windows should be fixed by default</summary>
     </key>
+    <key name="match-case-sensitive" type="b">
+      <default>false</default>
+      <summary>Whether search should be case sensitive</summary>
+    </key>
+    <key name="match-whole-words" type="b">
+      <default>false</default>
+      <summary>Whether search should only match entire words</summary>
+    </key>
+    <key name="match-regex" type="b">
+      <default>false</default>
+      <summary>Whether search should be performed using regular expressions</summary>
+    </key>
   </schema>
 </schemalist>

@@ -24,7 +24,9 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
 
   [GtkChild] private unowned Gtk.SearchEntry search_entry;
   [GtkChild] private unowned Gtk.CheckButton wrap_around_check_button;
-  [GtkChild] private unowned Gtk.CheckButton clear_selection_on_close_check_button;
+  [GtkChild] private unowned Gtk.CheckButton match_case_sensitive_check_button;
+  [GtkChild] private unowned Gtk.CheckButton match_whole_words_check_button;
+  [GtkChild] private unowned Gtk.CheckButton match_regex_check_button;
   [GtkChild] private unowned Gtk.ToggleButton fixed_window_button;
   [GtkChild] private unowned Gtk.Button previous_button;
   [GtkChild] private unowned Gtk.Button next_button;
@@ -53,9 +55,31 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
 
     var ssetings = SearchSettings.get_default ();
 
+    // These buttons do not update the user's settings. To change these options
+    // users must go to the preferences window
     this.wrap_around_check_button.active = ssetings.wrap_around;
-    this.clear_selection_on_close_check_button.active = ssetings.clear_selection_on_exit;
     this.fixed_window_button.active = ssetings.fixed;
+
+    ssetings.schema.bind (
+      "match-whole-words",
+      this.match_whole_words_check_button,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    ssetings.schema.bind (
+      "match-case-sensitive",
+      this.match_case_sensitive_check_button,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    ssetings.schema.bind (
+      "match-regex",
+      this.match_regex_check_button,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
 
     this.connect_signals ();
 
@@ -81,6 +105,8 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
   }
 
   private void connect_signals () {
+    var ssettings = SearchSettings.get_default ();
+
     // If the search window is fixed and the user switches to another tab, we
     // need to hide the search window until this tab is opened again
     this.active_terminal_handler = this.parent_window.notify ["active-terminal"]
@@ -94,7 +120,7 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
       });
 
     this.close_request.connect (() => {
-      if (this.clear_selection_on_close_check_button.active) {
+      if (SearchSettings.get_default ().clear_selection_on_exit) {
         this.terminal.unselect_all ();
       }
       this.terminal.match_remove_all ();
@@ -135,6 +161,13 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
     var fc = new Gtk.EventControllerFocus ();
     fc.leave.connect (this.on_focus_lost);
     (this as Gtk.Widget)?.add_controller (fc);
+
+    ssettings.notify.connect ((spec) => {
+      // If any search match related properties changed call search again
+      if (spec.name.has_prefix ("match-")) {
+        this.do_search ();
+      }
+    });
   }
 
   public void search (string text) {
@@ -151,13 +184,32 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
       return;
     }
 
+    // TODO: return here if the window is not shown
+
     this.terminal.search_find_next ();
 
-    var search_string = Regex.escape_string (text);
+    string search_string = null;
+    var ssettings = SearchSettings.get_default ();
+    PCRE2.Flags search_flags = PCRE2.Flags.MULTILINE;
+
+    if (ssettings.match_regex) {
+      search_string = text;
+    }
+    else {
+      search_string = Regex.escape_string (text);
+    }
+
+    if (ssettings.match_whole_words) {
+      search_string = "\\b%s\\b".printf (search_string);
+    }
+
+    if (!ssettings.match_case_sensitive) {
+      search_flags |= PCRE2.Flags.CASELESS;
+    }
 
     try {
       this.terminal.search_set_regex (
-        new Vte.Regex.for_search (search_string, -1, PCRE2.Flags.MULTILINE),
+        new Vte.Regex.for_search (search_string, -1, search_flags),
         0
       );
 

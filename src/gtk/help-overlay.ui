@@ -28,14 +28,25 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Zoom in</property>
-                <property name="accelerator">&lt;primary&gt;plus</property>
+                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;h</property>
+                <property name="title" translatable="yes" context="shortcut window">Switch headbar mode</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Zoom out</property>
-                <property name="accelerator">&lt;primary&gt;underscore</property>
+                <property name="accelerator">F11</property>
+                <property name="title" translatable="yes" context="shortcut window">Toggle fullscreen</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes" context="shortcut window">Terminal</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Search</property>
+                <property name="action-name">win.search</property>
               </object>
             </child>
             <child>
@@ -52,14 +63,14 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;h</property>
-                <property name="title" translatable="yes" context="shortcut window">Switch headbar mode</property>
+                <property name="title" translatable="yes" context="shortcut window">Zoom in</property>
+                <property name="accelerator">&lt;primary&gt;plus</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">F11</property>
-                <property name="title" translatable="yes" context="shortcut window">Toggle fullscreen</property>
+                <property name="title" translatable="yes" context="shortcut window">Zoom out</property>
+                <property name="accelerator">&lt;primary&gt;underscore</property>
               </object>
             </child>
           </object>

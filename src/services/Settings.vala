@@ -73,6 +73,9 @@ public class Terminal.Settings : Marble.Settings {
 public class Terminal.SearchSettings : Marble.Settings {
   public bool    clear_selection_on_exit  { get; set; }
   public bool    fixed                    { get; set; }
+  public bool    match_case_sensitive     { get; set; }
+  public bool    match_whole_words        { get; set; }
+  public bool    match_regex              { get; set; }
   public bool    wrap_around              { get; set; }
 
   private static SearchSettings instance = null;
