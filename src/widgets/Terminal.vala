@@ -29,6 +29,14 @@ public class Terminal.Terminal : Vte.Terminal {
     TEXT,
   }
 
+  static string[] blackbox_envv = {
+    "G_MESSAGES_DEBUG=false",
+    "TERM=xterm-256color",
+    "COLORTERM=truecolor",
+    "TERM_PROGRAM=%s".printf (APP_NAME),
+    "BLACKBOX_THEMES_DIR=%s".printf (Constants.get_user_schemes_dir ()),
+  };
+
   // Signals
 
   /**
@@ -275,10 +283,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
       envv = fp_get_env () ?? Environ.get ();
 
-      envv += "G_MESSAGES_DEBUG=false";
-      envv += "TERM=xterm-256color";
-      envv += "TERM_PROGRAM=%s".printf (APP_NAME);
-      envv += "BLACKBOX_THEMES_DIR=%s".printf (Constants.get_user_schemes_dir ());
+      foreach (unowned string env in Terminal.blackbox_envv) {
+        argv += @"--env=$(env)";
+      }
 
       foreach (unowned string env in envv) {
         argv += @"--env=$(env)";
@@ -286,10 +293,10 @@ public class Terminal.Terminal : Vte.Terminal {
     }
     else {
       envv = Environ.get ();
-      envv += "G_MESSAGES_DEBUG=false";
-      envv += "TERM=xterm-256color";
-      envv += "TERM_PROGRAM=%s".printf (APP_NAME);
-      envv += "BLACKBOX_THEMES_DIR=%s".printf (Constants.get_user_schemes_dir ());
+
+      foreach (unowned string env in Terminal.blackbox_envv) {
+        envv += env;
+      }
 
       shell = Environ.get_variable (envv, "SHELL");
 
