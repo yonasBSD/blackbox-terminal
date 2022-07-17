@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.2 - 2022.07.17
+
+- Updated translations
+- Added Simplified Chinese translation
+- Black Box now sets the COLORTERM env variable to `truecolor` - #98
+
 ## 0.11.1 - 2022.07.13
 
 Features:
