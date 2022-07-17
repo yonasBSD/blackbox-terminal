@@ -117,4 +117,19 @@
       <summary>Custom command to use instead of the user's shell</summary>
     </key>
   </schema>
+
+  <schema id="com.raggesilver.BlackBox.terminal.search" path="/com/raggesilver/BlackBox/terminal/search/">
+    <key name="wrap-around" type="b">
+      <default>true</default>
+      <summary>Whether clicking next on the last search result should return to the first</summary>
+    </key>
+    <key name="clear-selection-on-exit" type="b">
+      <default>false</default>
+      <summary>If set to true, closing the search window will unselect the search result</summary>
+    </key>
+    <key name="fixed" type="b">
+      <default>false</default>
+      <summary>Whether new search windows should be fixed by default</summary>
+    </key>
+  </schema>
 </schemalist>

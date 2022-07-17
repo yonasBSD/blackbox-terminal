@@ -55,6 +55,9 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
   [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
+  [GtkChild] unowned Gtk.Switch           search_clear_selection_on_exit_switch;
+  [GtkChild] unowned Gtk.Switch           search_wraps_around_switch;
+  [GtkChild] unowned Gtk.Switch           search_window_fixed_by_default_swtich;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
@@ -129,6 +132,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   private void bind_data () {
     var settings = Settings.get_default ();
+    var ssettings = SearchSettings.get_default ();
 
     settings.schema.bind (
       "font",
@@ -318,6 +322,27 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "terminal-cell-height",
       this.cell_height_spacing_adjustment,
       "value",
+      SettingsBindFlags.DEFAULT
+    );
+
+    ssettings.schema.bind (
+      "wrap-around",
+      this.search_wraps_around_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    ssettings.schema.bind (
+      "clear-selection-on-exit",
+      this.search_clear_selection_on_exit_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    ssettings.schema.bind (
+      "fixed",
+      this.search_window_fixed_by_default_swtich,
+      "active",
       SettingsBindFlags.DEFAULT
     );
 

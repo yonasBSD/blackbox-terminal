@@ -259,6 +259,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
       return w.tab_view;
     });
 
+    this.tab_view.close_page.connect ((page) => {
+      (page.child as TerminalTab)?.destroy ();
+      return false;
+    });
+
     // Close the window if all tabs were closed
     this.tab_view.notify["n-pages"].connect (() => {
       if (this.tab_view.n_pages < 1) {
@@ -377,6 +382,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
     sa = new SimpleAction ("fullscreen", null);
     sa.activate.connect (this.toggle_fullscreen);
     this.add_action (sa);
+
+    sa = new SimpleAction ("search", null);
+    sa.activate.connect (this.search);
+    this.add_action (sa);
+  }
+
+  public void search () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.search ();
   }
 
   public void new_tab (string? command, string? cwd) {

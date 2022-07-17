@@ -3,6 +3,7 @@ blackbox_sources += files(
   'ColorSchemeThumbnail.vala',
   'HeaderBar.vala',
   'PreferencesWindow.vala',
+  'SearchWindow.vala',
   'Terminal.vala',
   'TerminalTab.vala',
   'Window.vala',

@@ -69,3 +69,22 @@ public class Terminal.Settings : Marble.Settings {
     this.terminal_padding = padding.to_variant ();
   }
 }
+
+public class Terminal.SearchSettings : Marble.Settings {
+  public bool    clear_selection_on_exit  { get; set; }
+  public bool    fixed                    { get; set; }
+  public bool    wrap_around              { get; set; }
+
+  private static SearchSettings instance = null;
+
+  private SearchSettings () {
+    base ("com.raggesilver.BlackBox.terminal.search");
+  }
+
+  public static SearchSettings get_default () {
+    if (SearchSettings.instance == null) {
+      SearchSettings.instance = new SearchSettings ();
+    }
+    return SearchSettings.instance;
+  }
+}

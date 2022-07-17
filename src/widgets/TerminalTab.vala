@@ -142,4 +142,25 @@ public class Terminal.TerminalTab : Gtk.Box {
     pop.set_pointing_to (r);
     pop.popup ();
   }
+
+  private SearchWindow? search_window = null;
+
+  public void search () {
+    if (this.search_window != null) {
+      return;
+    }
+
+    this.search_window = new SearchWindow (this.window, this.terminal);
+
+    this.destroy.connect (() => {
+      this.search_window?.close ();
+    });
+
+    this.search_window.close_request.connect (() => {
+      this.search_window = null;
+      return false;
+    });
+
+    this.search_window.show ();
+  }
 }

@@ -50,6 +50,7 @@ public class Terminal.Application : Adw.Application {
     this.set_accels_for_action ("win.edit_preferences", { "<Control>comma" });
     this.set_accels_for_action ("win.copy", { "<Shift><Control>c" });
     this.set_accels_for_action ("win.paste", { "<Shift><Control>v" });
+    this.set_accels_for_action ("win.search", { "<Shift><Control>f" });
     this.set_accels_for_action ("win.fullscreen", { "F11" });
   }
 

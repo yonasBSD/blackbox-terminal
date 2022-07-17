@@ -202,6 +202,7 @@
       <object class="AdwPreferencesPage">
         <property name="title" translatable="yes">Terminal</property>
         <property name="icon-name">utilities-terminal-symbolic</property>
+        <!-- Text section -->
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Text</property>
@@ -254,6 +255,47 @@
                 <property name="subtitle" translatable="yes">Use ctrl+c/ctrl+v for copy/paste.</property>
                 <child>
                   <object class="GtkSwitch" id="easy_copy_paste_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Search section -->
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Search</property>
+            <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">search_wraps_around_switch</property>
+                <property name="title" translatable="yes">Search Wraps Around</property>
+                <child>
+                  <object class="GtkSwitch" id="search_wraps_around_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">search_clear_selection_on_exit_switch</property>
+                <property name="title" translatable="yes">Clear Selection on Exit</property>
+                <property name="subtitle" translatable="yes">Enable to clear match selection when search window is closed.</property>
+                <child>
+                  <object class="GtkSwitch" id="search_clear_selection_on_exit_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">search_window_fixed_by_default_swtich</property>
+                <property name="title" translatable="yes">Pinned Search Window</property>
+                <property name="subtitle" translatable="yes">Enable to make new search windows pinned by default.</property>
+                <child>
+                  <object class="GtkSwitch" id="search_window_fixed_by_default_swtich">
                     <property name="valign">center</property>
                   </object>
                 </child>
