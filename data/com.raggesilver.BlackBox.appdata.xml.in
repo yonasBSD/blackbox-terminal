@@ -86,6 +86,7 @@
   <releases>
     <release date="2022-07-17" version="0.11.2">
       <description>
+        <p>Updates:</p>
         <ul>
           <li>Updated translations</li>
           <li>Added Simplified Chinese translation</li>
