@@ -250,6 +250,27 @@ public class Terminal.Terminal : Vte.Terminal {
     middle_click_controller.pressed.connect (this.on_middle_click_pressed);
 
     this.add_controller (middle_click_controller);
+
+    var left_click_controller = new Gtk.GestureClick () {
+      button = Gdk.BUTTON_PRIMARY,
+    };
+
+    left_click_controller.pressed.connect ((gesture, n_clicked, x, y) => {
+      var button = left_click_controller.get_button ();
+      var event = left_click_controller.get_current_event ();
+      var pattern = this.get_pattern_at_coords (x, y);
+
+      if (
+        (event.get_modifier_state () & Gdk.ModifierType.CONTROL_MASK) == 0 ||
+        pattern == null
+      ) {
+        return;
+      }
+
+      Gtk.show_uri (this.window, pattern, event.get_time ());
+    });
+
+    this.add_controller (left_click_controller);
   }
 
   private void spawn (string? command, string? cwd) throws Error {
@@ -341,6 +362,25 @@ public class Terminal.Terminal : Vte.Terminal {
         this.pid = _pid;
       }
     );
+  }
+
+  /**
+   * get_pattern_at_coords
+   *
+   * Copyright 2016-2022 Christian Hergert <chergert@redhat.com>
+   * Copyright 2022 Paulo Queiroz
+   *
+   * The following function is work derived from GNOME Builder, which is also
+   * licensed under the GNU General Public License version 3.
+   *
+   * Additionally, sourced from:
+   * https://gitlab.gnome.org/GNOME/gnome-builder/-/blob/13302072a4ebae6bbe39dca9a7fb1eed75423371/src/libide/terminal/ide-terminal.c#L150
+   */
+  private string? get_pattern_at_coords (double x, double y) {
+    var col = (x / this.get_char_width ());
+    var row = (y / this.get_char_height ());
+
+    return this.match_check ((long) col, (long) row, null);
   }
 
   // Signal callbacks ==========================================================
