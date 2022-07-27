@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 15:58-0300\n"
+"POT-Creation-Date: 2022-07-27 20:14-0300\n"
 "PO-Revision-Date: 2022-07-11 21:26+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
@@ -148,6 +148,33 @@ msgid "Custom command to use instead of the user's shell"
 msgstr ""
 "Пользовательская команда для использования вместо оболочки пользователя"
 
+#: data/com.raggesilver.BlackBox.gschema.xml:124
+msgid ""
+"Whether clicking next on the last search result should return to the first"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:128
+msgid ""
+"If set to true, closing the search window will unselect the search result"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:132
+msgid "Whether new search windows should be fixed by default"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:136
+#, fuzzy
+msgid "Whether search should be case sensitive"
+msgstr "Должна ли отображаться панель заголовка"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:140
+msgid "Whether search should only match entire words"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:144
+msgid "Whether search should be performed using regular expressions"
+msgstr ""
+
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
 msgid "Window"
@@ -168,67 +195,78 @@ msgctxt "shortcut window"
 msgid "Close tab"
 msgstr "Закрыть вкладку"
 
-#: src/gtk/help-overlay.ui:31
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Увеличить масштаб"
-
-#: src/gtk/help-overlay.ui:37
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Уменьшить масштаб"
-
-#: src/gtk/help-overlay.ui:43
-msgctxt "shortcut window"
-msgid "Copy"
-msgstr "Копировать"
-
-#: src/gtk/help-overlay.ui:49
-msgctxt "shortcut window"
-msgid "Paste"
-msgstr "Вставить"
-
-#: src/gtk/help-overlay.ui:56
+#: src/gtk/help-overlay.ui:32
 msgctxt "shortcut window"
 msgid "Switch headbar mode"
 msgstr "Переключение режима панели заголовка"
 
-#: src/gtk/help-overlay.ui:62
+#: src/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
 msgid "Toggle fullscreen"
 msgstr "Переключение полноэкранного режима"
 
-#: src/gtk/help-overlay.ui:69
+#: src/gtk/help-overlay.ui:45
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Terminal"
+msgstr "Терминал"
+
+#: src/gtk/help-overlay.ui:48
+msgctxt "shortcut window"
+msgid "Search"
+msgstr ""
+
+#: src/gtk/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "Копировать"
+
+#: src/gtk/help-overlay.ui:60
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "Вставить"
+
+#: src/gtk/help-overlay.ui:66
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Увеличить масштаб"
+
+#: src/gtk/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Уменьшить масштаб"
+
+#: src/gtk/help-overlay.ui:80
 msgctxt "shortcut window"
 msgid "Navigation"
 msgstr "Навигация"
 
-#: src/gtk/help-overlay.ui:72
+#: src/gtk/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Focus next tab"
 msgstr "Фокус на следующей вкладке"
 
-#: src/gtk/help-overlay.ui:78
+#: src/gtk/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Focus previous tab"
 msgstr "Фокус на предыдущей вкладке"
 
-#: src/gtk/help-overlay.ui:85
+#: src/gtk/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Switch to Tab"
 msgstr "Переключиться на вкладку"
 
-#: src/gtk/help-overlay.ui:91
+#: src/gtk/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Switch to last Tab"
 msgstr "Переключиться на последнюю вкладку"
 
-#: src/gtk/help-overlay.ui:98
+#: src/gtk/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Основные"
 
-#: src/gtk/help-overlay.ui:101
+#: src/gtk/help-overlay.ui:112
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Показать горячие клавиши"
@@ -358,103 +396,123 @@ msgstr "Задержка перед появлением плавающих эл
 msgid "Delay time (ms) before show floating controls."
 msgstr "Время задержки (мс) перед появлением плавающих элементов управления."
 
-#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:266
+#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:297
 msgid "Terminal"
 msgstr "Терминал"
 
-#: src/gtk/preferences-window.ui:207
+#: src/gtk/preferences-window.ui:208
 msgid "Text"
 msgstr "Текст"
 
-#: src/gtk/preferences-window.ui:211
+#: src/gtk/preferences-window.ui:212
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/gtk/preferences-window.ui:223
+#: src/gtk/preferences-window.ui:224
 msgid "Cell Spacing"
 msgstr "Интервалы"
 
-#: src/gtk/preferences-window.ui:226
+#: src/gtk/preferences-window.ui:227
 msgid "Width"
 msgstr "Ширина"
 
-#: src/gtk/preferences-window.ui:238
+#: src/gtk/preferences-window.ui:239
 msgid "Height"
 msgstr "Высота"
 
-#: src/gtk/preferences-window.ui:253
+#: src/gtk/preferences-window.ui:254
 msgid "Easy Copy &amp; Paste"
 msgstr "Простое копирование и вставка"
 
-#: src/gtk/preferences-window.ui:254
+#: src/gtk/preferences-window.ui:255
 msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Использовать CTRL+C/CTRL+V для копирования/вставки."
 
-#: src/gtk/preferences-window.ui:269
+#: src/gtk/preferences-window.ui:268
+msgid "Search"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:272
+msgid "Clear Selection on Exit"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:273
+msgid "Enable to clear match selection when search window is closed."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:284
+msgid "Pinned Search Window"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:285
+msgid "Enable to make new search windows pinned by default."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:300
 msgid "Padding"
 msgstr "Отступ"
 
-#: src/gtk/preferences-window.ui:283
+#: src/gtk/preferences-window.ui:314
 msgid "Cursor"
 msgstr "Курсор"
 
-#: src/gtk/preferences-window.ui:287
+#: src/gtk/preferences-window.ui:318
 msgid "Block"
 msgstr "Блок"
 
-#: src/gtk/preferences-window.ui:288
+#: src/gtk/preferences-window.ui:319
 msgid "IBeam"
 msgstr "I-образный"
 
-#: src/gtk/preferences-window.ui:289
+#: src/gtk/preferences-window.ui:320
 msgid "Underline"
 msgstr "Подчёркивание"
 
-#: src/gtk/preferences-window.ui:299
+#: src/gtk/preferences-window.ui:330
 msgid "Command"
 msgstr "Команда"
 
-#: src/gtk/preferences-window.ui:303
+#: src/gtk/preferences-window.ui:334
 msgid "Run Command as Login Shell"
 msgstr "Выполнить команду как Login Shell"
 
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:345
 msgid "Use Custom Command"
 msgstr "Использовать пользовательскую команду"
 
-#: src/gtk/preferences-window.ui:324
+#: src/gtk/preferences-window.ui:355
 msgid "Custom Command"
 msgstr "Пользовательская команда"
 
-#: src/gtk/preferences-window.ui:331
+#: src/gtk/preferences-window.ui:362
 msgid "Theme"
 msgstr "Тема"
 
-#: src/gtk/preferences-window.ui:342
+#: src/gtk/preferences-window.ui:373
 msgid "Open folder"
 msgstr "Открыть папку"
 
-#: src/gtk/preferences-window.ui:350
+#: src/gtk/preferences-window.ui:381
 msgid "Get more themes online"
 msgstr "Больше тем можно найти онлайн"
 
-#: src/gtk/preferences-window.ui:364
+#: src/gtk/preferences-window.ui:395
 msgid "Set your preferred theme for light and dark styles."
 msgstr "Установить предпочитаемую тему для светлого и тёмного стилей."
 
-#: src/gtk/preferences-window.ui:379
+#: src/gtk/preferences-window.ui:410
 msgid "Light Theme"
 msgstr "Светлая тема"
 
-#: src/gtk/preferences-window.ui:385
+#: src/gtk/preferences-window.ui:416
 msgid "Dark Theme"
 msgstr "Тёмная тема"
 
-#: src/gtk/preferences-window.ui:393
+#: src/gtk/preferences-window.ui:424
 msgid "Only display themes for the current style"
 msgstr "Отображать только темы для выбранного стиля"
 
-#: src/gtk/preferences-window.ui:401
+#: src/gtk/preferences-window.ui:432
 msgid ""
 "To ensure readability, \"Theme Integration\" will be disabled if you select "
 "a light color scheme while using the dark app style or a dark color scheme "
@@ -464,15 +522,15 @@ msgstr ""
 "если вы выберете светлую цветовую схему при использовании темного стиля или "
 "темную цветовую схему при использовании светлого стиля."
 
-#: src/gtk/preferences-window.ui:428
+#: src/gtk/preferences-window.ui:459
 msgid "Advanced"
 msgstr "Расширенные"
 
-#: src/gtk/preferences-window.ui:432
+#: src/gtk/preferences-window.ui:463
 msgid "Experimental"
 msgstr "Экспериментальные 🧪"
 
-#: src/gtk/preferences-window.ui:433
+#: src/gtk/preferences-window.ui:464
 msgid ""
 "Features in this section are known to be wonky. Please feel free to test and "
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
@@ -482,11 +540,11 @@ msgstr ""
 "href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">сообщать об "
 "ошибках</a>."
 
-#: src/gtk/preferences-window.ui:437
+#: src/gtk/preferences-window.ui:468
 msgid "Pixel Scrolling"
 msgstr "Пиксельная прокрутка"
 
-#: src/gtk/preferences-window.ui:438
+#: src/gtk/preferences-window.ui:469
 msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
@@ -494,21 +552,26 @@ msgstr ""
 "Прокрутка по пикселям вместо прокрутки по строкам. Опция \"Показывать полосы "
 "прокрутки\" должна быть включена."
 
-#: src/gtk/preferences-window.ui:450
+#: src/gtk/preferences-window.ui:481
 msgid "Danger Zone"
 msgstr "Опасная зона"
 
-#: src/gtk/preferences-window.ui:453
+#: src/gtk/preferences-window.ui:484
 msgid "Reset Preferences"
 msgstr "Сброс настроек"
 
-#: src/gtk/preferences-window.ui:454
+#: src/gtk/preferences-window.ui:485
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
 msgstr ""
 "Все настройки вернутся к значениям по умолчанию. Персональные темы не будут "
 "удалены."
+
+#: src/gtk/preferences-window.ui:490
+#, fuzzy
+msgid "Reset preferences"
+msgstr "Сброс настроек"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
@@ -543,35 +606,35 @@ msgstr "Показывать панель заголовка"
 msgid "Menu"
 msgstr "Меню"
 
-#: src/widgets/TerminalTab.vala:116
+#: src/widgets/TerminalTab.vala:120
 msgid "New Tab"
 msgstr "Новая вкладка"
 
-#: src/widgets/TerminalTab.vala:117
+#: src/widgets/TerminalTab.vala:121
 msgid "New Window"
 msgstr "Новое окно"
 
-#: src/widgets/TerminalTab.vala:119
+#: src/widgets/TerminalTab.vala:123
 msgid "Copy"
 msgstr "Копировать"
 
-#: src/widgets/TerminalTab.vala:120
+#: src/widgets/TerminalTab.vala:124
 msgid "Paste"
 msgstr "Вставить"
 
-#: src/widgets/TerminalTab.vala:124 src/widgets/HeaderBar.vala:31
+#: src/widgets/TerminalTab.vala:128 src/widgets/HeaderBar.vala:31
 msgid "Preferences"
 msgstr "Параметры"
 
-#: src/widgets/TerminalTab.vala:127 src/widgets/HeaderBar.vala:32
+#: src/widgets/TerminalTab.vala:131 src/widgets/HeaderBar.vala:32
 msgid "Help"
 msgstr "Справка"
 
-#: src/widgets/TerminalTab.vala:128 src/widgets/HeaderBar.vala:33
+#: src/widgets/TerminalTab.vala:132 src/widgets/HeaderBar.vala:33
 msgid "About"
 msgstr "О Black Box"
 
-#: src/widgets/PreferencesWindow.vala:399
+#: src/widgets/PreferencesWindow.vala:416
 msgid "Terminal Font"
 msgstr "Шрифт терминала"
 

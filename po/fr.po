@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-14 15:58-0300\n"
+"POT-Creation-Date: 2022-07-27 20:14-0300\n"
 "PO-Revision-Date: 2022-07-14 11:39+0200\n"
 "Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: \n"
@@ -150,6 +150,33 @@ msgstr ""
 msgid "Custom command to use instead of the user's shell"
 msgstr "Commande personnalisée à utiliser à la place du shell utilisateur"
 
+#: data/com.raggesilver.BlackBox.gschema.xml:124
+msgid ""
+"Whether clicking next on the last search result should return to the first"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:128
+msgid ""
+"If set to true, closing the search window will unselect the search result"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:132
+msgid "Whether new search windows should be fixed by default"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:136
+#, fuzzy
+msgid "Whether search should be case sensitive"
+msgstr "Afficher ou non la barre supérieure"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:140
+msgid "Whether search should only match entire words"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:144
+msgid "Whether search should be performed using regular expressions"
+msgstr ""
+
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
 msgid "Window"
@@ -170,67 +197,78 @@ msgctxt "shortcut window"
 msgid "Close tab"
 msgstr "Fermer l’onglet"
 
-#: src/gtk/help-overlay.ui:31
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Zoom avant"
-
-#: src/gtk/help-overlay.ui:37
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Zoom arrière"
-
-#: src/gtk/help-overlay.ui:43
-msgctxt "shortcut window"
-msgid "Copy"
-msgstr "Copier"
-
-#: src/gtk/help-overlay.ui:49
-msgctxt "shortcut window"
-msgid "Paste"
-msgstr "Coller"
-
-#: src/gtk/help-overlay.ui:56
+#: src/gtk/help-overlay.ui:32
 msgctxt "shortcut window"
 msgid "Switch headbar mode"
 msgstr "Changement de mode de barre supérieure"
 
-#: src/gtk/help-overlay.ui:62
+#: src/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
 msgid "Toggle fullscreen"
 msgstr "Basculer en mode plein écran"
 
-#: src/gtk/help-overlay.ui:69
+#: src/gtk/help-overlay.ui:45
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Terminal"
+msgstr "Terminal"
+
+#: src/gtk/help-overlay.ui:48
+msgctxt "shortcut window"
+msgid "Search"
+msgstr ""
+
+#: src/gtk/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "Copier"
+
+#: src/gtk/help-overlay.ui:60
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "Coller"
+
+#: src/gtk/help-overlay.ui:66
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Zoom avant"
+
+#: src/gtk/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Zoom arrière"
+
+#: src/gtk/help-overlay.ui:80
 msgctxt "shortcut window"
 msgid "Navigation"
 msgstr "Navigation"
 
-#: src/gtk/help-overlay.ui:72
+#: src/gtk/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Focus next tab"
 msgstr "Focus sur l’onglet suivant"
 
-#: src/gtk/help-overlay.ui:78
+#: src/gtk/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Focus previous tab"
 msgstr "Focus sur l’onglet précédent"
 
-#: src/gtk/help-overlay.ui:85
+#: src/gtk/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Switch to Tab"
 msgstr "Basculer vers un onglet"
 
-#: src/gtk/help-overlay.ui:91
+#: src/gtk/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Switch to last Tab"
 msgstr "Basculer vers le dernier onglet"
 
-#: src/gtk/help-overlay.ui:98
+#: src/gtk/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Général"
 
-#: src/gtk/help-overlay.ui:101
+#: src/gtk/help-overlay.ui:112
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Afficher les raccourcis"
@@ -359,103 +397,123 @@ msgstr "Délai avant l’affichage des contrôles flottants"
 msgid "Delay time (ms) before show floating controls."
 msgstr "Délai en millisecondes avant l’affichage des commandes flottantes."
 
-#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:266
+#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:297
 msgid "Terminal"
 msgstr "Terminal"
 
-#: src/gtk/preferences-window.ui:207
+#: src/gtk/preferences-window.ui:208
 msgid "Text"
 msgstr "Texte"
 
-#: src/gtk/preferences-window.ui:211
+#: src/gtk/preferences-window.ui:212
 msgid "Font"
 msgstr "Police"
 
-#: src/gtk/preferences-window.ui:223
+#: src/gtk/preferences-window.ui:224
 msgid "Cell Spacing"
 msgstr "Espacement des cellules"
 
-#: src/gtk/preferences-window.ui:226
+#: src/gtk/preferences-window.ui:227
 msgid "Width"
 msgstr "Largeur"
 
-#: src/gtk/preferences-window.ui:238
+#: src/gtk/preferences-window.ui:239
 msgid "Height"
 msgstr "Hauteur"
 
-#: src/gtk/preferences-window.ui:253
+#: src/gtk/preferences-window.ui:254
 msgid "Easy Copy &amp; Paste"
 msgstr "Copier &amp; Coller facilement"
 
-#: src/gtk/preferences-window.ui:254
+#: src/gtk/preferences-window.ui:255
 msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Utiliser Ctrl+C et Ctrl+V pour copier / coller."
 
-#: src/gtk/preferences-window.ui:269
+#: src/gtk/preferences-window.ui:268
+msgid "Search"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:272
+msgid "Clear Selection on Exit"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:273
+msgid "Enable to clear match selection when search window is closed."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:284
+msgid "Pinned Search Window"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:285
+msgid "Enable to make new search windows pinned by default."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:300
 msgid "Padding"
 msgstr "Padding"
 
-#: src/gtk/preferences-window.ui:283
+#: src/gtk/preferences-window.ui:314
 msgid "Cursor"
 msgstr "Curseur"
 
-#: src/gtk/preferences-window.ui:287
+#: src/gtk/preferences-window.ui:318
 msgid "Block"
 msgstr "Bloc"
 
-#: src/gtk/preferences-window.ui:288
+#: src/gtk/preferences-window.ui:319
 msgid "IBeam"
 msgstr "IBeam"
 
-#: src/gtk/preferences-window.ui:289
+#: src/gtk/preferences-window.ui:320
 msgid "Underline"
 msgstr "Soulignage"
 
-#: src/gtk/preferences-window.ui:299
+#: src/gtk/preferences-window.ui:330
 msgid "Command"
 msgstr "Commande"
 
-#: src/gtk/preferences-window.ui:303
+#: src/gtk/preferences-window.ui:334
 msgid "Run Command as Login Shell"
 msgstr "Exécuter la commande en tant que Login Shell"
 
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:345
 msgid "Use Custom Command"
 msgstr "Utiliser une commande personnalisée"
 
-#: src/gtk/preferences-window.ui:324
+#: src/gtk/preferences-window.ui:355
 msgid "Custom Command"
 msgstr "Commande personnalisée"
 
-#: src/gtk/preferences-window.ui:331
+#: src/gtk/preferences-window.ui:362
 msgid "Theme"
 msgstr "Thème"
 
-#: src/gtk/preferences-window.ui:342
+#: src/gtk/preferences-window.ui:373
 msgid "Open folder"
 msgstr "Ouvrir le dossier"
 
-#: src/gtk/preferences-window.ui:350
+#: src/gtk/preferences-window.ui:381
 msgid "Get more themes online"
 msgstr "Obtenir plus de thèmes en ligne"
 
-#: src/gtk/preferences-window.ui:364
+#: src/gtk/preferences-window.ui:395
 msgid "Set your preferred theme for light and dark styles."
 msgstr "Définissez votre thème préféré pour les styles clairs et sombres."
 
-#: src/gtk/preferences-window.ui:379
+#: src/gtk/preferences-window.ui:410
 msgid "Light Theme"
 msgstr "Thème clair"
 
-#: src/gtk/preferences-window.ui:385
+#: src/gtk/preferences-window.ui:416
 msgid "Dark Theme"
 msgstr "Thème sombre"
 
-#: src/gtk/preferences-window.ui:393
+#: src/gtk/preferences-window.ui:424
 msgid "Only display themes for the current style"
 msgstr "Afficher uniquement les thèmes pour le style actuel"
 
-#: src/gtk/preferences-window.ui:401
+#: src/gtk/preferences-window.ui:432
 msgid ""
 "To ensure readability, \"Theme Integration\" will be disabled if you select "
 "a light color scheme while using the dark app style or a dark color scheme "
@@ -466,15 +524,15 @@ msgstr ""
 "d’application sombre ou un schéma de couleurs sombre lorsque vous utilisez "
 "le style d'application clair."
 
-#: src/gtk/preferences-window.ui:428
+#: src/gtk/preferences-window.ui:459
 msgid "Advanced"
 msgstr "Avancé"
 
-#: src/gtk/preferences-window.ui:432
+#: src/gtk/preferences-window.ui:463
 msgid "Experimental"
 msgstr "Expérimental"
 
-#: src/gtk/preferences-window.ui:433
+#: src/gtk/preferences-window.ui:464
 msgid ""
 "Features in this section are known to be wonky. Please feel free to test and "
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
@@ -484,11 +542,11 @@ msgstr ""
 "N’hésitez pas à tester et à <a href=\"https://gitlab.gnome.org/raggesilver/"
 "blackbox/-/issues\">reporter les bogues</a>."
 
-#: src/gtk/preferences-window.ui:437
+#: src/gtk/preferences-window.ui:468
 msgid "Pixel Scrolling"
 msgstr "Défilement par pixels"
 
-#: src/gtk/preferences-window.ui:438
+#: src/gtk/preferences-window.ui:469
 msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
@@ -496,21 +554,26 @@ msgstr ""
 "Faire défiler par unités de pixels au lieu de faire défiler par lignes. "
 "L’option « Afficher les barres de défilement » doit être activée."
 
-#: src/gtk/preferences-window.ui:450
+#: src/gtk/preferences-window.ui:481
 msgid "Danger Zone"
 msgstr "Zone de danger"
 
-#: src/gtk/preferences-window.ui:453
+#: src/gtk/preferences-window.ui:484
 msgid "Reset Preferences"
 msgstr "Réinitialiser les préférences"
 
-#: src/gtk/preferences-window.ui:454
+#: src/gtk/preferences-window.ui:485
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
 msgstr ""
 "Cela rétablira tous les paramètres par défaut. Vos thèmes supplémentaires ne "
 "seront pas supprimés."
+
+#: src/gtk/preferences-window.ui:490
+#, fuzzy
+msgid "Reset preferences"
+msgstr "Réinitialiser les préférences"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
@@ -545,35 +608,35 @@ msgstr "Afficher la barre supérieure"
 msgid "Menu"
 msgstr "Menu"
 
-#: src/widgets/TerminalTab.vala:116
+#: src/widgets/TerminalTab.vala:120
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
-#: src/widgets/TerminalTab.vala:117
+#: src/widgets/TerminalTab.vala:121
 msgid "New Window"
 msgstr "Nouvelle fenêtre"
 
-#: src/widgets/TerminalTab.vala:119
+#: src/widgets/TerminalTab.vala:123
 msgid "Copy"
 msgstr "Copier"
 
-#: src/widgets/TerminalTab.vala:120
+#: src/widgets/TerminalTab.vala:124
 msgid "Paste"
 msgstr "Coller"
 
-#: src/widgets/TerminalTab.vala:124 src/widgets/HeaderBar.vala:31
+#: src/widgets/TerminalTab.vala:128 src/widgets/HeaderBar.vala:31
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/widgets/TerminalTab.vala:127 src/widgets/HeaderBar.vala:32
+#: src/widgets/TerminalTab.vala:131 src/widgets/HeaderBar.vala:32
 msgid "Help"
 msgstr "Aide"
 
-#: src/widgets/TerminalTab.vala:128 src/widgets/HeaderBar.vala:33
+#: src/widgets/TerminalTab.vala:132 src/widgets/HeaderBar.vala:33
 msgid "About"
 msgstr "À propos"
 
-#: src/widgets/PreferencesWindow.vala:399
+#: src/widgets/PreferencesWindow.vala:416
 msgid "Terminal Font"
 msgstr "Police du terminal"
 
