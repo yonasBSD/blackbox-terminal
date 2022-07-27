@@ -24,7 +24,8 @@ public class Terminal.TerminalTab : Gtk.Box {
   public Terminal           terminal  { get; protected set; }
   public Gtk.ScrolledWindow scrolled  { get; protected set; }
 
-  public Window window;
+  private SearchToolbar     search_toolbar;
+  public  Window            window;
 
   public TerminalTab (Window window, string? command, string? cwd) {
     Object (
@@ -43,6 +44,9 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     this.append (this.scrolled);
     twig.grab_focus ();
+
+    this.search_toolbar = new SearchToolbar (this.terminal);
+    this.append (this.search_toolbar);
 
     var click = new Gtk.GestureClick () {
       button = Gdk.BUTTON_SECONDARY,
@@ -143,24 +147,7 @@ public class Terminal.TerminalTab : Gtk.Box {
     pop.popup ();
   }
 
-  private SearchWindow? search_window = null;
-
   public void search () {
-    if (this.search_window != null) {
-      return;
-    }
-
-    this.search_window = new SearchWindow (this.window, this.terminal);
-
-    this.destroy.connect (() => {
-      this.search_window?.close ();
-    });
-
-    this.search_window.close_request.connect (() => {
-      this.search_window = null;
-      return false;
-    });
-
-    this.search_window.show ();
+    this.search_toolbar.open ();
   }
 }

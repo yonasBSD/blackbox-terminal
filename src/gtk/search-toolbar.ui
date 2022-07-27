@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.0" />
+  <template class="TerminalSearchToolbar" parent="GtkWidget">
+    <child>
+      <object class="GtkRevealer" id="revealer">
+        <property name="transition-duration">100</property>
+        <style>
+          <class name="toolbar" />
+          <class name="view" />
+        </style>
+        <child>
+          <object class="GtkCenterBox">
+            <child type="center">
+              <object class="AdwClamp">
+                <child>
+                  <object class="GtkSearchEntry" id="search_entry">
+                    <property name="hexpand">true</property>
+                    <property name="placeholder-text" translatable="yes">Find</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkBox">
+                <property name="margin-start">8</property>
+                <property name="hexpand">true</property>
+                <!-- Right next-to-center buttons -->
+                <child>
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
+                    <property name="hexpand">true</property>
+                    <child>
+                      <object class="GtkBox">
+                        <style>
+                          <class name="linked" />
+                        </style>
+                        <child>
+                          <object class="GtkButton" id="previous_button">
+                            <property name="icon-name">go-up-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Previous result</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="next_button">
+                            <property name="icon-name">go-down-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Next result</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuButton" id="show_settings_button">
+                        <property name="icon-name">view-more-symbolic</property>
+                        <property name="popover">settings_popover</property>
+                        <property name="direction">up</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <!-- Close button -->
+                <child>
+                  <object class="GtkButton" id="close_button">
+                    <property name="icon-name">window-close-symbolic</property>
+                    <property name="halign">end</property>
+                    <signal name="clicked" handler="on_close_button_pressed" />
+                    <style>
+                      <class name="circular" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkPopover" id="settings_popover">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="margin-top">6</property>
+        <style>
+          <class name="list" />
+        </style>
+        <child>
+          <object class="GtkCheckButton" id="wrap_around_check_button">
+            <property name="label" translatable="yes">Search wraps around</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="match_case_sensitive_check_button">
+            <property name="label" translatable="yes">Match is case sensitive</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="match_whole_words_check_button">
+            <property name="label" translatable="yes">Match entire words only</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkCheckButton" id="match_regex_check_button">
+            <property name="label" translatable="yes">Match using regular expression</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

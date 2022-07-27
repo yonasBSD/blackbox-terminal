@@ -1,4 +1,4 @@
-/* SearchWindow.vala
+/* SearchToolbar.vala
  *
  * Copyright 2022 Paulo Queiroz <pvaqueiroz@gmail.com>
  *
@@ -18,47 +18,69 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/search-toolbar.ui")]
+public class Terminal.SearchToolbar : Gtk.Widget {
 
-[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/search-window.ui")]
-public class Terminal.SearchWindow : Adw.ApplicationWindow {
+  [GtkChild] private unowned Gtk.Button       next_button;
+  [GtkChild] private unowned Gtk.Button       previous_button;
+  [GtkChild] private unowned Gtk.CheckButton  match_case_sensitive_check_button;
+  [GtkChild] private unowned Gtk.CheckButton  match_regex_check_button;
+  [GtkChild] private unowned Gtk.CheckButton  match_whole_words_check_button;
+  [GtkChild] private unowned Gtk.CheckButton  wrap_around_check_button;
+  [GtkChild] private unowned Gtk.Revealer     revealer;
+  [GtkChild] private unowned Gtk.SearchEntry  search_entry;
 
-  [GtkChild] private unowned Gtk.SearchEntry search_entry;
-  [GtkChild] private unowned Gtk.CheckButton wrap_around_check_button;
-  [GtkChild] private unowned Gtk.CheckButton match_case_sensitive_check_button;
-  [GtkChild] private unowned Gtk.CheckButton match_whole_words_check_button;
-  [GtkChild] private unowned Gtk.CheckButton match_regex_check_button;
-  [GtkChild] private unowned Gtk.ToggleButton fixed_window_button;
-  [GtkChild] private unowned Gtk.Button previous_button;
-  [GtkChild] private unowned Gtk.Button next_button;
+  public weak Terminal terminal { get; set; }
 
-  private weak Terminal terminal;
-  private Window parent_window;
+  public SearchToolbar (Terminal terminal) {
+    Object (terminal: terminal);
 
-  private ulong active_terminal_handler = 0;
-
-  public uint n_results { get; private set; default = 0; }
-  public uint selected_result { get; private set; default = 0; }
-
-  public SearchWindow (Window parent_window, Terminal terminal) {
-    Object (
-      application: parent_window.application,
-      transient_for: parent_window,
-      destroy_with_parent: true,
-      resizable: false,
-      title: _("Search")
-    );
-
-    this.terminal = terminal;
-    this.parent_window = parent_window;
+    this.set_layout_manager (new Gtk.BinLayout ());
 
     this.search_entry.set_key_capture_widget (this);
 
+    this.bind_data ();
+    this.connect_signals ();
+  }
+
+  public void open () {
+    this.revealer.reveal_child = true;
+    this.search_entry.grab_focus ();
+
+    if (this.terminal.get_has_selection ()) {
+      var text = this.terminal.get_text_selected (
+        Vte.Format.TEXT
+      );
+      this.terminal.unselect_all ();
+      this.search_entry.text = text;
+    }
+  }
+
+  public void close () {
+    this.revealer.reveal_child = false;
+    this.search_entry.text = "";
+    this.terminal.unselect_all ();
+    this.terminal.match_remove_all ();
+    this.terminal.search_set_regex (null, 0);
+  }
+
+  private bool on_key_pressed (uint keyval, uint _kc, Gdk.ModifierType _mod) {
+    if (keyval == Gdk.Key.Escape) {
+      this.close ();
+      return Gdk.EVENT_STOP;
+    }
+    return Gdk.EVENT_PROPAGATE;
+  }
+
+  private void bind_data () {
     var ssetings = SearchSettings.get_default ();
 
-    // These buttons do not update the user's settings. To change these options
-    // users must go to the preferences window
-    this.wrap_around_check_button.active = ssetings.wrap_around;
-    this.fixed_window_button.active = ssetings.fixed;
+    ssetings.schema.bind (
+      "wrap-around",
+      this.wrap_around_check_button,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
 
     ssetings.schema.bind (
       "match-whole-words",
@@ -80,64 +102,17 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
       "active",
       SettingsBindFlags.DEFAULT
     );
-
-    this.connect_signals ();
-
-    if (this.terminal.get_has_selection ()) {
-      var text = this.terminal.get_text_selected (Vte.Format.TEXT);
-      this.terminal.unselect_all ();
-      this.search (text);
-    }
-  }
-
-  private bool on_key_pressed (uint keyval, uint _kc, Gdk.ModifierType _mod) {
-    if (keyval == Gdk.Key.Escape) {
-      this.close ();
-      return true;
-    }
-    return false;
-  }
-
-  private void on_focus_lost () {
-    if (!this.fixed_window_button.active) {
-      this.close ();
-    }
   }
 
   private void connect_signals () {
     var ssettings = SearchSettings.get_default ();
 
-    // If the search window is fixed and the user switches to another tab, we
-    // need to hide the search window until this tab is opened again
-    this.active_terminal_handler = this.parent_window.notify ["active-terminal"]
-      .connect (() => {
-        if (this.parent_window.active_terminal != this.terminal) {
-          this.hide ();
-        }
-        else {
-          this.show ();
-        }
-      });
-
-    this.close_request.connect (() => {
-      if (SearchSettings.get_default ().clear_selection_on_exit) {
-        this.terminal.unselect_all ();
-      }
-      this.terminal.match_remove_all ();
-      this.terminal.search_set_regex (null, 0);
-      this.parent_window.disconnect (this.active_terminal_handler);
-      return false;
-    });
-
-    this.parent_window.close_request.connect (() => {
-      this.close ();
-      return false;
-    });
-
     this.search_entry.search_changed.connect (this.do_search);
     this.search_entry.activate.connect (this.search_previous);
     this.search_entry.search_started.connect (() => {
-      this.search_entry.grab_focus ();
+      if (!this.search_entry.has_focus) {
+        this.search_entry.grab_focus ();
+      }
     });
 
     this.previous_button.clicked.connect (this.search_previous);
@@ -157,10 +132,6 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
     kpc = new Gtk.EventControllerKey ();
     kpc.key_pressed.connect (this.on_key_pressed);
     (this as Gtk.Widget)?.add_controller (kpc);
-
-    var fc = new Gtk.EventControllerFocus ();
-    fc.leave.connect (this.on_focus_lost);
-    (this as Gtk.Widget)?.add_controller (fc);
 
     ssettings.notify.connect ((spec) => {
       // If any search match related properties changed call search again
@@ -183,8 +154,6 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
       this.terminal.search_set_regex (null, 0);
       return;
     }
-
-    // TODO: return here if the window is not shown
 
     this.terminal.search_find_next ();
 
@@ -227,5 +196,10 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
 
   private void search_previous () {
     this.terminal.search_find_previous ();
+  }
+
+  [GtkCallback]
+  private void on_close_button_pressed () {
+    this.close ();
   }
 }

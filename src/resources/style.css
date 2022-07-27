@@ -39,6 +39,14 @@ tabbox background {
   background: transparent;
 }
 
+.toolbar {
+  background-color: @headerbar_bg_color;
+}
+
+.toolbar > * {
+  padding: 2px 8px;
+}
+
 .thumbnail picture {
   border: 2px solid transparent;
 }
