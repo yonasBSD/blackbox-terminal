@@ -123,14 +123,6 @@
       <default>true</default>
       <summary>Whether clicking next on the last search result should return to the first</summary>
     </key>
-    <key name="clear-selection-on-exit" type="b">
-      <default>false</default>
-      <summary>If set to true, closing the search window will unselect the search result</summary>
-    </key>
-    <key name="fixed" type="b">
-      <default>false</default>
-      <summary>Whether new search windows should be fixed by default</summary>
-    </key>
     <key name="match-case-sensitive" type="b">
       <default>false</default>
       <summary>Whether search should be case sensitive</summary>
