@@ -84,7 +84,7 @@ public class Terminal.SearchWindow : Adw.ApplicationWindow {
     this.connect_signals ();
 
     if (this.terminal.get_has_selection ()) {
-      var text = this.terminal.get_text_selected ();
+      var text = this.terminal.get_text_selected (Vte.Format.TEXT);
       this.terminal.unselect_all ();
       this.search (text);
     }

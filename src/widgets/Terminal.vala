@@ -487,13 +487,13 @@ public class Terminal.Terminal : Vte.Terminal {
   public void do_copy_clipboard () {
     if (this.get_has_selection ()) {
       Gdk.Display.get_default ().get_clipboard ()
-        .set_text (this.get_text_selected ());
+        .set_text (this.get_text_selected (Vte.Format.TEXT));
     }
   }
 
   public void do_paste_from_selection () {
     if (this.get_has_selection ()) {
-      this.paste_text (this.get_text_selected ());
+      this.paste_text (this.get_text_selected (Vte.Format.TEXT));
     }
   }
 }

@@ -43,6 +43,9 @@ vapi_dir = meson.current_source_dir() / 'vapi'
 add_project_arguments('--vapidir=' + vapi_dir, language: 'vala')
 add_project_arguments('-DPCRE2_CODE_UNIT_WIDTH=0', language: 'c')
 
+# This is required until VTE 0.70 is out
+add_project_arguments('--disable-since-check', language: 'vala')
+
 gnome = import('gnome')
 
 blackbox_sources += gnome.compile_resources('blackbox-resources',
