@@ -86,7 +86,7 @@ public class Terminal.Terminal : Vte.Terminal {
 
     this.setup_drag_drop ();
     this.setup_regexes ();
-    this.connect_accels ();
+    this.connect_signals ();
     this.bind_data ();
     this.on_theme_changed ();
     this.on_font_changed ();
@@ -236,27 +236,21 @@ public class Terminal.Terminal : Vte.Terminal {
     );
   }
 
-  private void connect_accels () {
+  private void connect_signals () {
     var kpcontroller = new Gtk.EventControllerKey ();
-
     kpcontroller.key_pressed.connect (this.on_key_pressed);
-
     this.add_controller (kpcontroller);
 
     var middle_click_controller = new Gtk.GestureClick () {
       button = Gdk.BUTTON_MIDDLE,
     };
-
     middle_click_controller.pressed.connect (this.on_middle_click_pressed);
-
     this.add_controller (middle_click_controller);
 
     var left_click_controller = new Gtk.GestureClick () {
       button = Gdk.BUTTON_PRIMARY,
     };
-
     left_click_controller.pressed.connect ((gesture, n_clicked, x, y) => {
-      var button = left_click_controller.get_button ();
       var event = left_click_controller.get_current_event ();
       var pattern = this.get_pattern_at_coords (x, y);
 
@@ -269,8 +263,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
       Gtk.show_uri (this.window, pattern, event.get_time ());
     });
-
     this.add_controller (left_click_controller);
+
+    this.selection_changed.connect (this.on_selection_changed);
   }
 
   private void spawn (string? command, string? cwd) throws Error {
@@ -392,7 +387,17 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void on_middle_click_pressed () {
     if (Gtk.Settings.get_default ().gtk_enable_primary_paste) {
-      this.do_paste_from_selection ();
+      this.do_paste_from_selection_clipboard.begin ();
+    }
+  }
+
+  private void on_selection_changed () {
+    if (
+      this.get_has_selection () &&
+      Gtk.Settings.get_default ().gtk_enable_primary_paste
+    ) {
+      Gdk.Display.get_default ().get_primary_clipboard ()
+        .set_text (this.get_text_selected (Vte.Format.TEXT));
     }
   }
 
@@ -491,9 +496,17 @@ public class Terminal.Terminal : Vte.Terminal {
     }
   }
 
-  public void do_paste_from_selection () {
-    if (this.get_has_selection ()) {
-      this.paste_text (this.get_text_selected (Vte.Format.TEXT));
+  public async void do_paste_from_selection_clipboard () {
+    //  This function does not seem to be working in GTK 4 yet.
+    //  this.paste_primary ();
+
+    var clipboard = Gdk.Display.get_default ().get_primary_clipboard ();
+    try {
+      var text = yield clipboard.read_text_async (null);
+      this.paste_text (text);
+    }
+    catch (Error e) {
+      warning ("%s", e.message);
     }
   }
 }
