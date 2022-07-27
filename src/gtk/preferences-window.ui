@@ -487,7 +487,7 @@
                   <object class="GtkButton" id="reset_all_button">
                     <property name="valign">center</property>
                     <property name="halign">end</property>
-                    <property name="label">Reset preferences</property>
+                    <property name="label" translatable="yes">Reset preferences</property>
                     <signal name="clicked" handler="on_reset_request" swapped="no" />
                     <style>
                       <class name="destructive-action" />
