@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-27 20:14-0300\n"
-"PO-Revision-Date: 2022-07-11 21:26+0300\n"
+"PO-Revision-Date: 2022-07-28 03:05+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
 "Language: ru\n"
@@ -209,7 +209,6 @@ msgid "Toggle fullscreen"
 msgstr "Переключение полноэкранного режима"
 
 #: src/gtk/help-overlay.ui:45
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Terminal"
 msgstr "Терминал"
@@ -572,7 +571,6 @@ msgstr ""
 "удалены."
 
 #: src/gtk/preferences-window.ui:490
-#, fuzzy
 msgid "Reset preferences"
 msgstr "Сброс настроек"
 
