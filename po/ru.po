@@ -216,7 +216,7 @@ msgstr "Терминал"
 #: src/gtk/help-overlay.ui:48
 msgctxt "shortcut window"
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: src/gtk/help-overlay.ui:54
 msgctxt "shortcut window"
@@ -572,7 +572,7 @@ msgstr ""
 
 #: src/gtk/preferences-window.ui:490
 msgid "Reset preferences"
-msgstr "Сброс настроек"
+msgstr "Сбросить настройки"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
