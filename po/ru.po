@@ -500,15 +500,15 @@ msgstr "Больше тем онлайн"
 
 #: src/gtk/preferences-window.ui:395
 msgid "Set your preferred theme for light and dark styles."
-msgstr "Установить предпочитаемую тему для каждого стиля."
+msgstr "Предпочитаемая тема для каждого стиля."
 
 #: src/gtk/preferences-window.ui:410
 msgid "Light Theme"
-msgstr "Светлая тема"
+msgstr "Светлая"
 
 #: src/gtk/preferences-window.ui:416
 msgid "Dark Theme"
-msgstr "Тёмная тема"
+msgstr "Тёмная"
 
 #: src/gtk/preferences-window.ui:424
 msgid "Only display themes for the current style"
