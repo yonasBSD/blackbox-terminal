@@ -50,16 +50,27 @@ public class Terminal.Terminal : Vte.Terminal {
   public Scheme scheme  { get; set; }
   public Pid    pid     { get; protected set; }
 
+  public uint user_scrollback_lines {
+    get {
+      var settings = Settings.get_default ();
+
+      return settings.use_custom_scrollback
+        ? settings.scrollback_lines
+        : this.original_scrollback_lines;
+    }
+  }
+
   // Fields
 
-  public Gdk.RGBA? fg;
-  public Gdk.RGBA? bg;
-  public Window window;
+  public  Window  window;
+  private uint    original_scrollback_lines;
 
   Settings settings;
 
   public Terminal (Window window, string? command = null, string? cwd = null) {
     Object (allow_hyperlink: true, receives_default: true);
+
+    this.original_scrollback_lines = this.scrollback_lines;
 
     this.window = window;
 
@@ -74,15 +85,6 @@ public class Terminal.Terminal : Vte.Terminal {
     ThemeProvider.get_default ().notify ["current-theme"].connect (this.on_theme_changed);
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
-
-    this.settings.bind_property (
-      "cursor-shape",
-      this,
-      "cursor-shape",
-      BindingFlags.SYNC_CREATE,
-      null,
-      null
-    );
 
     this.setup_drag_drop ();
     this.setup_regexes ();
@@ -190,10 +192,11 @@ public class Terminal.Terminal : Vte.Terminal {
       return;
     }
 
-    this.bg = theme.background_color;
-    this.fg = theme.foreground_color;
-
-    this.set_colors (this.fg, this.bg, theme.palette.data);
+    this.set_colors (
+      theme.foreground_color,
+      theme.background_color,
+      theme.palette.data
+    );
   }
 
   private Gtk.CssProvider? padding_provider = null;
@@ -234,6 +237,24 @@ public class Terminal.Terminal : Vte.Terminal {
       "cell-height-scale",
       SettingsBindFlags.DEFAULT
     );
+
+    this.settings.bind_property (
+      "cursor-shape",
+      this,
+      "cursor-shape",
+      BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+
+    this.bind_property (
+      "user-scrollback-lines",
+      this,
+      "scrollback-lines",
+      BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
   }
 
   private void connect_signals () {
@@ -266,6 +287,16 @@ public class Terminal.Terminal : Vte.Terminal {
     this.add_controller (left_click_controller);
 
     this.selection_changed.connect (this.on_selection_changed);
+
+    this.settings.notify ["scrollback-lines"]
+      .connect (() => {
+        this.notify_property ("user-scrollback-lines");
+      });
+
+    this.settings.notify ["use-custom-scrollback"]
+      .connect (() => {
+        this.notify_property ("user-scrollback-lines");
+      });
   }
 
   private void spawn (string? command, string? cwd) throws Error {

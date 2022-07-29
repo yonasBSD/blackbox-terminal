@@ -51,6 +51,14 @@
       <default>false</default>
       <summary>If enabled, terminals will scroll by pixels instead of rows</summary>
     </key>
+    <key name="use-custom-scrollback" type="b">
+      <default>false</default>
+      <summary>Enable to limit terminal scrollback</summary>
+    </key>
+    <key name="scrollback-lines" type="u">
+      <default>10000</default>
+      <summary>Number of lines stored in scrollback</summary>
+    </key>
     <key name="floating-controls" type="b">
       <default>false</default>
       <summary>If enabled, floating controls will be shown in headerless mode</summary>

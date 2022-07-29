@@ -29,6 +29,7 @@ public class Terminal.Settings : Marble.Settings {
   public bool    show_scrollbars        { get; set; }
   public bool    stealth_single_tab     { get; set; }
   public bool    use_custom_command     { get; set; }
+  public bool    use_custom_scrollback  { get; set; }
   public bool    use_overlay_scrolling  { get; set; }
   public bool    was_fullscreened       { get; set; }
   public bool    was_maximized          { get; set; }
@@ -39,6 +40,7 @@ public class Terminal.Settings : Marble.Settings {
   public string  theme_dark             { get; set; }
   public string  theme_light            { get; set; }
   public uint    cursor_shape           { get; set; }
+  public uint    scrollback_lines       { get; set; }
   public uint    style_preference       { get; set; }
   public uint    window_height          { get; set; }
   public uint    window_width           { get; set; }

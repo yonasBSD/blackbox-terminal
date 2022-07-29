@@ -12,34 +12,6 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Window</property>
             <child>
-              <object class="AdwExpanderRow" id="scrollbars_expander_row">
-                <property name="title" translatable="yes">Scrollbars</property>
-                <child>
-                  <object class="AdwActionRow">
-                    <property name="activatable-widget">show_scrollbars_switch</property>
-                    <property name="title" translatable="yes">Show Scrollbars</property>
-                    <child>
-                      <object class="GtkSwitch" id="show_scrollbars_switch">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwActionRow" id="use_overlay_scrolling_action_row">
-                    <property name="activatable-widget">use_overlay_scrolling_switch</property>
-                    <property name="title" translatable="yes">Use Overlay Scrolling</property>
-                    <property name="sensitive" bind-source="show_scrollbars_switch" bind-property="active" bind-flags="sync-create" />
-                    <child>
-                      <object class="GtkSwitch" id="use_overlay_scrolling_switch">
-                        <property name="valign">center</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
               <object class="AdwActionRow" id="remember_window_size_row">
                 <property name="activatable-widget">remember_window_size_switch</property>
                 <property name="title" translatable="yes">Remember Window Size</property>
@@ -266,6 +238,20 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Terminal</property>
             <child>
+              <object class="AdwComboRow" id="cursor_shape_combo_row">
+                <property name="title" translatable="yes">Cursor</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Block</item>
+                      <item translatable="yes">IBeam</item>
+                      <item translatable="yes">Underline</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Padding</property>
                 <child>
@@ -279,18 +265,62 @@
                 </child>
               </object>
             </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Scrolling</property>
             <child>
-              <object class="AdwComboRow" id="cursor_shape_combo_row">
-                <property name="title" translatable="yes">Cursor</property>
-                <property name="model">
-                  <object class="GtkStringList">
-                    <items>
-                      <item translatable="yes">Block</item>
-                      <item translatable="yes">IBeam</item>
-                      <item translatable="yes">Underline</item>
-                    </items>
+              <object class="AdwExpanderRow" id="scrollbars_expander_row">
+                <property name="title" translatable="yes">Scrollbars</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Show Scrollbars</property>
+                    <property name="activatable-widget">show_scrollbars_switch</property>
+                    <child>
+                      <object class="GtkSwitch" id="show_scrollbars_switch">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
                   </object>
-                </property>
+                </child>
+                <child>
+                  <object class="AdwActionRow" id="use_overlay_scrolling_action_row">
+                    <property name="title" translatable="yes">Use Overlay Scrolling</property>
+                    <property name="activatable-widget">use_overlay_scrolling_switch</property>
+                    <property name="sensitive" bind-source="show_scrollbars_switch" bind-property="active" bind-flags="sync-create" />
+                    <child>
+                      <object class="GtkSwitch" id="use_overlay_scrolling_switch">
+                        <property name="valign">center</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Set Scrollback Limit</property>
+                <property name="activatable-widget">use_custom_scrollback_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="use_custom_scrollback_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Scrollback Lines</property>
+                <property name="activatable-widget">custom_scrollback_spin_button</property>
+                <property name="sensitive" bind-source="use_custom_scrollback_switch" bind-property="active" bind-flags="sync-create" />
+                <child>
+                  <object class="GtkSpinButton" id="custom_scrollback_spin_button">
+                    <property name="valign">center</property>
+                    <property name="width-chars">6</property>
+                    <property name="adjustment">custom_scrollback_adjustment</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -493,6 +523,9 @@
   </object>
   <object class="GtkAdjustment" id="padding_spin_button_adjustment">
     <property name="upper">100</property>
+    <property name="step-increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="custom_scrollback_adjustment">
     <property name="step-increment">1</property>
   </object>
 </interface>

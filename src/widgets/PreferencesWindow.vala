@@ -35,11 +35,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.EntryRow         custom_command_entry_row;
   [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       cell_width_spacing_adjustment;
+  [GtkChild] unowned Gtk.Adjustment       custom_scrollback_adjustment;
   [GtkChild] unowned Gtk.Adjustment       floating_controls_delay_adjustment;
   [GtkChild] unowned Gtk.Adjustment       floating_controls_hover_area_adjustment;
   [GtkChild] unowned Gtk.CheckButton      filter_themes_check_button;
   [GtkChild] unowned Gtk.FlowBox          preview_flow_box;
   [GtkChild] unowned Gtk.Label            font_label;
+  [GtkChild] unowned Gtk.SpinButton       custom_scrollback_spin_button;
   [GtkChild] unowned Gtk.SpinButton       padding_spin_button;
   [GtkChild] unowned Gtk.Switch           easy_copy_paste_switch;
   [GtkChild] unowned Gtk.Switch           fill_tabs_switch;
@@ -48,13 +50,14 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           pixel_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           pretty_switch;
   [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
+  [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
   [GtkChild] unowned Gtk.Switch           show_headerbar_switch;
   [GtkChild] unowned Gtk.Switch           show_menu_button_switch;
   [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch           stealth_single_tab_switch;
-  [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
+  [GtkChild] unowned Gtk.Switch           use_custom_scrollback_switch;
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
-  [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
+  [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
@@ -84,6 +87,8 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     );
 
     this.window = window;
+
+    this.custom_scrollback_adjustment.upper = uint.MAX;
 
     this.build_ui ();
     this.bind_data ();
@@ -227,6 +232,36 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       this.use_overlay_scrolling_switch,
       "active",
       SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "use-custom-scrollback",
+      this.use_custom_scrollback_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "scrollback-lines",
+      this.custom_scrollback_spin_button,
+      "value",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind_with_mapping (
+      "scrollback-lines",
+      this.custom_scrollback_spin_button,
+      "value",
+      GLib.SettingsBindFlags.DEFAULT,
+      (to_value, settings_vari) => {
+        to_value = (double) settings_vari.get_uint32 ();
+        return true;
+      },
+      (value) => {;
+        return new Variant.uint32 ((uint32) value.get_double ());
+      },
+      null,
+      null
     );
 
     settings.schema.bind (
