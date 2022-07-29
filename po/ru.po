@@ -1,13 +1,15 @@
 # Russian translation for Black Box
 # Copyright (C) 2022 Black Box’s COPYRIGHT HOLDER
 # This file is distributed under the same license as the Black Box package.
+# Translators (this list can grow):
+# acephale <acephaleee@protonmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-28 21:26-0300\n"
-"PO-Revision-Date: 2022-07-29 05:22+0300\n"
+"PO-Revision-Date: 2022-07-29 05:34+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
 "Language: ru\n"
@@ -451,7 +453,7 @@ msgstr "Использовать оверлейную прокрутку"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Set Scrollback Limit"
-msgstr "Лимит буфера прокрутки"
+msgstr "Установить лимит буфера прокрутки"
 
 #: src/gtk/preferences-window.ui:314
 msgid "Scrollback Lines"
@@ -463,7 +465,7 @@ msgstr "Команда"
 
 #: src/gtk/preferences-window.ui:334
 msgid "Run Command as Login Shell"
-msgstr "Выполнить команду как оболочку входа"
+msgstr "Выполнять команду как оболочку входа"
 
 #: src/gtk/preferences-window.ui:345
 msgid "Use Custom Command"
