@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-28 21:26-0300\n"
-"PO-Revision-Date: 2022-07-28 03:05+0300\n"
+"PO-Revision-Date: 2022-07-29 05:22+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
 "Language: ru\n"
@@ -73,11 +73,11 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Enable to limit terminal scrollback"
-msgstr ""
+msgstr "Включите для ограничения буфера прокрутки терминала"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Number of lines stored in scrollback"
-msgstr ""
+msgstr "Количество строк в буфере прокрутки"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, floating controls will be shown in headerless mode"
@@ -434,9 +434,8 @@ msgid "Padding"
 msgstr "Отступы"
 
 #: src/gtk/preferences-window.ui:272
-#, fuzzy
 msgid "Scrolling"
-msgstr "Попиксельная прокрутка"
+msgstr "Прокрутка"
 
 #: src/gtk/preferences-window.ui:275
 msgid "Scrollbars"
@@ -452,12 +451,11 @@ msgstr "Использовать оверлейную прокрутку"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Set Scrollback Limit"
-msgstr ""
+msgstr "Лимит буфера прокрутки"
 
 #: src/gtk/preferences-window.ui:314
-#, fuzzy
 msgid "Scrollback Lines"
-msgstr "Полосы прокрутки"
+msgstr "Количество строк"
 
 #: src/gtk/preferences-window.ui:330
 msgid "Command"
