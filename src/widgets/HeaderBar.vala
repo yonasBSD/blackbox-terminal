@@ -220,6 +220,14 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     this.on_single_tab_mode_changed ();
 
     this.unfullscreen_button.clicked.connect (this.on_unmaximize);
+
+    var mcc = new Gtk.GestureClick () {
+      button = Gdk.BUTTON_MIDDLE,
+    };
+    mcc.pressed.connect (() => {
+      this.window.new_tab (null, null);
+    });
+    this.add_controller (mcc);
   }
 
   private void on_unmaximize () {
