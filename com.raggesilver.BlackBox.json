@@ -88,8 +88,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://gitlab.gnome.org/GNOME/libadwaita/-/archive/df80e9087b80b6a0c3d2494434391730481789c2/libadwaita-df80e9087b80b6a0c3d2494434391730481789c2.tar.gz",
-          "sha256": "828355cd0f023acb9cb715c0c5e8bf1ac3c12b10f8e2ea285cf638fba89bb01b"
+          "url": "https://gitlab.gnome.org/GNOME/libadwaita/-/archive/161249fa953fb06a146d8d22612711707ede1ea9/libadwaita-161249fa953fb06a146d8d22612711707ede1ea9.tar.gz",
+          "sha256": "013608439427187be56765ded578b3edf4d8ff104f4e5b33fd37d6bbdf77bac0"
         }
       ]
     },
