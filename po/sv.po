@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Black Box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-27 20:14-0300\n"
+"POT-Creation-Date: 2022-07-28 21:26-0300\n"
 "PO-Revision-Date: 2022-07-06 09:45+0200\n"
 "Last-Translator: Luna Jernberg <lunajernberg@gnome.org>\n"
 "Language-Team: Swedish <>\n"
@@ -71,10 +71,18 @@ msgstr ""
 "Om det är aktiverat rullar terminalerna efter pixlar istället för rader"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
+msgid "Enable to limit terminal scrollback"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:60
+msgid "Number of lines stored in scrollback"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "Om aktiverat, så kommer flytande kontroller visas i fönsterlöst läge"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:60
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -82,50 +90,50 @@ msgstr ""
 "Svävbart område (i pixlar) överst i fönstret för att utlösa flytande "
 "kontroller"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:64
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Delay time before showing floating controls"
 msgstr "Fördröjning innan flytande kontroller visas"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:68
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 #, fuzzy
 msgid "The light color scheme for the terminal"
 msgstr "Färgschemat för terminalen"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:72
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 #, fuzzy
 msgid "The dark color scheme for the terminal"
 msgstr "Färgschemat för terminalen"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
-#: data/com.raggesilver.BlackBox.gschema.xml:77
+#: data/com.raggesilver.BlackBox.gschema.xml:85
 #, fuzzy
 msgid "Style preference"
 msgstr "Återställ inställningar"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:81
+#: data/com.raggesilver.BlackBox.gschema.xml:89
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr ""
 "Mängden utfyllnad runt terminalwidgets (överst, höger, botten, vänster)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:85
+#: data/com.raggesilver.BlackBox.gschema.xml:93
 msgid "Terminal cell width"
 msgstr "Terminal cellbredd"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:89
+#: data/com.raggesilver.BlackBox.gschema.xml:97
 msgid "Terminal cell height"
 msgstr "Terminal cell höjd"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:93
+#: data/com.raggesilver.BlackBox.gschema.xml:101
 msgid "Cursor shape"
 msgstr "Markör form"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:97
+#: data/com.raggesilver.BlackBox.gschema.xml:105
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr ""
 "Om det är aktiverat kommer ctrl+c och ctrl+v att fungera för kopiera/klistra "
 "in"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:101
+#: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -133,36 +141,27 @@ msgstr ""
 "Om det är aktiverat kommer flikfältet att ersättas med en titeletikett när "
 "det finns en enda öppen flik"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:105
+#: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
 "Om det är aktiverat kommer en enda öppen flik att blandas med rubrikfältets "
 "färg"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:109
+#: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Whether to spawn shell in login mode"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:113
+#: data/com.raggesilver.BlackBox.gschema.xml:121
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:117
+#: data/com.raggesilver.BlackBox.gschema.xml:125
 msgid "Custom command to use instead of the user's shell"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:124
+#: data/com.raggesilver.BlackBox.gschema.xml:132
 msgid ""
 "Whether clicking next on the last search result should return to the first"
-msgstr ""
-
-#: data/com.raggesilver.BlackBox.gschema.xml:128
-msgid ""
-"If set to true, closing the search window will unselect the search result"
-msgstr ""
-
-#: data/com.raggesilver.BlackBox.gschema.xml:132
-msgid "Whether new search windows should be fixed by default"
 msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:136
@@ -282,65 +281,53 @@ msgstr "Allmänt"
 msgid "Window"
 msgstr "Fönster"
 
-#: src/gtk/preferences-window.ui:16
-msgid "Scrollbars"
-msgstr "Rullningslister"
-
-#: src/gtk/preferences-window.ui:20
-msgid "Show Scrollbars"
-msgstr "Visa rullningslister"
-
-#: src/gtk/preferences-window.ui:31
-msgid "Use Overlay Scrolling"
-msgstr "Använd överläggsrullning"
-
-#: src/gtk/preferences-window.ui:45
+#: src/gtk/preferences-window.ui:17
 msgid "Remember Window Size"
 msgstr "Kom ihåg fönsterstorlek"
 
-#: src/gtk/preferences-window.ui:56
+#: src/gtk/preferences-window.ui:28
 msgid "Theme Integration"
 msgstr "Temaintegration"
 
-#: src/gtk/preferences-window.ui:57
+#: src/gtk/preferences-window.ui:29
 #, fuzzy
 msgid "Style window with terminal theme colors."
 msgstr "Om fönstret ska ärva terminaltemats färger"
 
-#: src/gtk/preferences-window.ui:67
+#: src/gtk/preferences-window.ui:39
 #, fuzzy
 msgid "Style Preference"
 msgstr "Inställningar"
 
-#: src/gtk/preferences-window.ui:71
+#: src/gtk/preferences-window.ui:43
 msgid "Follow System"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:72
+#: src/gtk/preferences-window.ui:44
 msgid "Light Style"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:73
+#: src/gtk/preferences-window.ui:45
 msgid "Dark Style"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:83
+#: src/gtk/preferences-window.ui:55
 msgid "Tabs"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:87
+#: src/gtk/preferences-window.ui:59
 msgid "Expand Tabs"
 msgstr "Expandera flikar"
 
-#: src/gtk/preferences-window.ui:97
+#: src/gtk/preferences-window.ui:69
 msgid "Single Tab Mode"
 msgstr "Enkelfliksläge"
 
-#: src/gtk/preferences-window.ui:102
+#: src/gtk/preferences-window.ui:74
 msgid "Hide Single Tab"
 msgstr "Dölj enskild flik"
 
-#: src/gtk/preferences-window.ui:103
+#: src/gtk/preferences-window.ui:75
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
@@ -348,44 +335,44 @@ msgstr ""
 "Ersätt flikraden med en titeletikett när en enskild flik är öppen. Lättare "
 "att dra fönstret."
 
-#: src/gtk/preferences-window.ui:115
+#: src/gtk/preferences-window.ui:87
 msgid "Stealth Single Tab"
 msgstr "Smygande enskild flik"
 
-#: src/gtk/preferences-window.ui:116
+#: src/gtk/preferences-window.ui:88
 msgid "Blend single tab with headerbar."
 msgstr "Blanda enskild flik med huvudlist"
 
-#: src/gtk/preferences-window.ui:131
+#: src/gtk/preferences-window.ui:103
 #, fuzzy
 msgid "Headerbar"
 msgstr "Visa fönsterlist"
 
-#: src/gtk/preferences-window.ui:135
+#: src/gtk/preferences-window.ui:107
 msgid "Show Menu Button"
 msgstr "Visa menyknapp"
 
-#: src/gtk/preferences-window.ui:146
+#: src/gtk/preferences-window.ui:118
 msgid "Show Headerbar"
 msgstr "Visa fönsterlist"
 
-#: src/gtk/preferences-window.ui:156
+#: src/gtk/preferences-window.ui:128
 msgid "Floating Controls"
 msgstr "Flytande kontroller"
 
-#: src/gtk/preferences-window.ui:159
+#: src/gtk/preferences-window.ui:131
 msgid "Show Floating Controls"
 msgstr "Visa flytande kontroller"
 
-#: src/gtk/preferences-window.ui:160
+#: src/gtk/preferences-window.ui:132
 msgid "Show floating controls in headbarless mode."
 msgstr "Visa flytande kontroller i fönsterlöst läge."
 
-#: src/gtk/preferences-window.ui:172
+#: src/gtk/preferences-window.ui:144
 msgid "Floating Controls Hover Area"
 msgstr "Flytande kontroller svävbart område"
 
-#: src/gtk/preferences-window.ui:173
+#: src/gtk/preferences-window.ui:145
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
@@ -393,85 +380,91 @@ msgstr ""
 "Svävbart område (i pixlar) överst i fönstret för att utlösa flytande "
 "kontroller."
 
-#: src/gtk/preferences-window.ui:185
+#: src/gtk/preferences-window.ui:157
 msgid "Delay Before Show Floating Controls"
 msgstr "Fördröjning före visning av flytande kontroller"
 
-#: src/gtk/preferences-window.ui:186
+#: src/gtk/preferences-window.ui:158
 msgid "Delay time (ms) before show floating controls."
 msgstr "Fördröjningstid (ms) före visande av flytande kontroller."
 
-#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:297
+#: src/gtk/preferences-window.ui:175 src/gtk/preferences-window.ui:239
 msgid "Terminal"
 msgstr "Terminal"
 
-#: src/gtk/preferences-window.ui:208
+#: src/gtk/preferences-window.ui:180
 msgid "Text"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:212
+#: src/gtk/preferences-window.ui:184
 msgid "Font"
 msgstr "Teckensnitt"
 
-#: src/gtk/preferences-window.ui:224
+#: src/gtk/preferences-window.ui:196
 msgid "Cell Spacing"
 msgstr "Cellavstånd"
 
-#: src/gtk/preferences-window.ui:227
+#: src/gtk/preferences-window.ui:199
 msgid "Width"
 msgstr "Bredd"
 
-#: src/gtk/preferences-window.ui:239
+#: src/gtk/preferences-window.ui:211
 msgid "Height"
 msgstr "Höjd"
 
-#: src/gtk/preferences-window.ui:254
+#: src/gtk/preferences-window.ui:226
 msgid "Easy Copy &amp; Paste"
 msgstr "Lätt kopiera &amp; Klistra in"
 
-#: src/gtk/preferences-window.ui:255
+#: src/gtk/preferences-window.ui:227
 msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Använd ctrl+c/ctrl+v för att kopiera/klistra in."
 
-#: src/gtk/preferences-window.ui:268
-msgid "Search"
-msgstr ""
-
-#: src/gtk/preferences-window.ui:272
-msgid "Clear Selection on Exit"
-msgstr ""
-
-#: src/gtk/preferences-window.ui:273
-msgid "Enable to clear match selection when search window is closed."
-msgstr ""
-
-#: src/gtk/preferences-window.ui:284
-msgid "Pinned Search Window"
-msgstr ""
-
-#: src/gtk/preferences-window.ui:285
-msgid "Enable to make new search windows pinned by default."
-msgstr ""
-
-#: src/gtk/preferences-window.ui:300
-msgid "Padding"
-msgstr "Platta"
-
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:242
 msgid "Cursor"
 msgstr "Markör"
 
-#: src/gtk/preferences-window.ui:318
+#: src/gtk/preferences-window.ui:246
 msgid "Block"
 msgstr "Block"
 
-#: src/gtk/preferences-window.ui:319
+#: src/gtk/preferences-window.ui:247
 msgid "IBeam"
 msgstr "IBeam"
 
-#: src/gtk/preferences-window.ui:320
+#: src/gtk/preferences-window.ui:248
 msgid "Underline"
 msgstr "Understrykning"
+
+#: src/gtk/preferences-window.ui:256
+msgid "Padding"
+msgstr "Platta"
+
+#: src/gtk/preferences-window.ui:272
+#, fuzzy
+msgid "Scrolling"
+msgstr "Pixelrullning"
+
+#: src/gtk/preferences-window.ui:275
+msgid "Scrollbars"
+msgstr "Rullningslister"
+
+#: src/gtk/preferences-window.ui:278
+msgid "Show Scrollbars"
+msgstr "Visa rullningslister"
+
+#: src/gtk/preferences-window.ui:289
+msgid "Use Overlay Scrolling"
+msgstr "Använd överläggsrullning"
+
+#: src/gtk/preferences-window.ui:303
+msgid "Set Scrollback Limit"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:314
+#, fuzzy
+msgid "Scrollback Lines"
+msgstr "Rullningslister"
 
 #: src/gtk/preferences-window.ui:330
 msgid "Command"
@@ -639,7 +632,7 @@ msgstr "Hjälp"
 msgid "About"
 msgstr "Om"
 
-#: src/widgets/PreferencesWindow.vala:416
+#: src/widgets/PreferencesWindow.vala:435
 msgid "Terminal Font"
 msgstr "Terminal Teckensnitt"
 

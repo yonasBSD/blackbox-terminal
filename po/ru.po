@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-27 20:14-0300\n"
+"POT-Creation-Date: 2022-07-28 21:26-0300\n"
 "PO-Revision-Date: 2022-07-28 03:05+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
@@ -72,12 +72,20 @@ msgstr ""
 "Если включено, прокрутка будет происходить по пикселям, а не по строкам"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
+msgid "Enable to limit terminal scrollback"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:60
+msgid "Number of lines stored in scrollback"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr ""
 "Если включено, плавающие элементы управления будут отображаться в режиме без "
 "панели заголовка"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:60
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -85,45 +93,45 @@ msgstr ""
 "Наводимая область (в пикселях) в верхней части окна для вызова плавающих "
 "элементов управления"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:64
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Delay time before showing floating controls"
 msgstr "Время задержки отображения плавающих элементов управления"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:68
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "The light color scheme for the terminal"
 msgstr "Светлая цветовая схема"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:72
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "The dark color scheme for the terminal"
 msgstr "Тёмная цветовая схема"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
-#: data/com.raggesilver.BlackBox.gschema.xml:77
+#: data/com.raggesilver.BlackBox.gschema.xml:85
 msgid "Style preference"
 msgstr "Параметры стиля"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:81
+#: data/com.raggesilver.BlackBox.gschema.xml:89
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr ""
 "Размер отступов вокруг виджетов терминала (сверху, справа, снизу, слева)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:85
+#: data/com.raggesilver.BlackBox.gschema.xml:93
 msgid "Terminal cell width"
 msgstr "Ширина письма"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:89
+#: data/com.raggesilver.BlackBox.gschema.xml:97
 msgid "Terminal cell height"
 msgstr "Высота письма"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:93
+#: data/com.raggesilver.BlackBox.gschema.xml:101
 msgid "Cursor shape"
 msgstr "Форма курсора"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:97
+#: data/com.raggesilver.BlackBox.gschema.xml:105
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr "Если включено, Сtrl+С и Сtrl+V будут работать для копирования/вставки"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:101
+#: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -131,40 +139,28 @@ msgstr ""
 "Если включено, панель вкладок будет заменена заголовком с одной открытой "
 "вкладкой"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:105
+#: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr "Если включено, единственная вкладка примет цвет панели заголовка"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:109
+#: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Whether to spawn shell in login mode"
 msgstr "Запускать ли оболочку в режиме входа"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:113
+#: data/com.raggesilver.BlackBox.gschema.xml:121
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr "Использовать ли другую команду вместо оболочки пользователя"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:117
+#: data/com.raggesilver.BlackBox.gschema.xml:125
 msgid "Custom command to use instead of the user's shell"
-msgstr ""
-"Другая команда для использования вместо оболочки пользователя"
+msgstr "Другая команда для использования вместо оболочки пользователя"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:124
+#: data/com.raggesilver.BlackBox.gschema.xml:132
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
 "Должно ли нажатие кнопки \"Далее\" на последнем результате поиска возвращать "
 "к первому"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:128
-msgid ""
-"If set to true, closing the search window will unselect the search result"
-msgstr ""
-"Если установлено значение true, закрытие окна поиска снимет выделение с "
-"результата поиска"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:132
-msgid "Whether new search windows should be fixed by default"
-msgstr "Должно ли новое окно поиска быть закреплённым по умолчанию"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:136
 msgid "Whether search should be case sensitive"
@@ -281,108 +277,95 @@ msgstr "Основные"
 msgid "Window"
 msgstr "Окно"
 
-#: src/gtk/preferences-window.ui:16
-msgid "Scrollbars"
-msgstr "Полосы прокрутки"
-
-#: src/gtk/preferences-window.ui:20
-msgid "Show Scrollbars"
-msgstr "Отображать полосы прокрутки"
-
-#: src/gtk/preferences-window.ui:31
-msgid "Use Overlay Scrolling"
-msgstr "Использовать оверлейную прокрутку"
-
-#: src/gtk/preferences-window.ui:45
+#: src/gtk/preferences-window.ui:17
 msgid "Remember Window Size"
 msgstr "Запоминать размер окна"
 
-#: src/gtk/preferences-window.ui:56
+#: src/gtk/preferences-window.ui:28
 msgid "Theme Integration"
 msgstr "Интеграция темы"
 
-#: src/gtk/preferences-window.ui:57
+#: src/gtk/preferences-window.ui:29
 msgid "Style window with terminal theme colors."
 msgstr "Применяет тему терминала для окна."
 
-#: src/gtk/preferences-window.ui:67
+#: src/gtk/preferences-window.ui:39
 msgid "Style Preference"
 msgstr "Стиль"
 
-#: src/gtk/preferences-window.ui:71
+#: src/gtk/preferences-window.ui:43
 msgid "Follow System"
 msgstr "Системный"
 
-#: src/gtk/preferences-window.ui:72
+#: src/gtk/preferences-window.ui:44
 msgid "Light Style"
 msgstr "Светлый"
 
-#: src/gtk/preferences-window.ui:73
+#: src/gtk/preferences-window.ui:45
 msgid "Dark Style"
 msgstr "Тёмный"
 
-#: src/gtk/preferences-window.ui:83
+#: src/gtk/preferences-window.ui:55
 msgid "Tabs"
 msgstr "Вкладки"
 
-#: src/gtk/preferences-window.ui:87
+#: src/gtk/preferences-window.ui:59
 msgid "Expand Tabs"
 msgstr "Растянуть вкладки"
 
-#: src/gtk/preferences-window.ui:97
+#: src/gtk/preferences-window.ui:69
 msgid "Single Tab Mode"
 msgstr "Режим одиночной вкладки"
 
-#: src/gtk/preferences-window.ui:102
+#: src/gtk/preferences-window.ui:74
 msgid "Hide Single Tab"
 msgstr "Спрятать вкладку"
 
-#: src/gtk/preferences-window.ui:103
+#: src/gtk/preferences-window.ui:75
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
 msgstr ""
-"Заменяет панель вкладок заголовком, если открыта только одна вкладка. Упрощает "
-"перемещение окна."
+"Заменяет панель вкладок заголовком, если открыта только одна вкладка. "
+"Упрощает перемещение окна."
 
-#: src/gtk/preferences-window.ui:115
+#: src/gtk/preferences-window.ui:87
 msgid "Stealth Single Tab"
 msgstr "Незаметная вкладка"
 
-#: src/gtk/preferences-window.ui:116
+#: src/gtk/preferences-window.ui:88
 msgid "Blend single tab with headerbar."
 msgstr "Смешивает одиночную вкладку с панелью заголовка."
 
-#: src/gtk/preferences-window.ui:131
+#: src/gtk/preferences-window.ui:103
 msgid "Headerbar"
 msgstr "Панель заголовка"
 
-#: src/gtk/preferences-window.ui:135
+#: src/gtk/preferences-window.ui:107
 msgid "Show Menu Button"
 msgstr "Отображать кнопку меню"
 
-#: src/gtk/preferences-window.ui:146
+#: src/gtk/preferences-window.ui:118
 msgid "Show Headerbar"
 msgstr "Отображать панель заголовка"
 
-#: src/gtk/preferences-window.ui:156
+#: src/gtk/preferences-window.ui:128
 msgid "Floating Controls"
 msgstr "Плавающие элементы управления"
 
-#: src/gtk/preferences-window.ui:159
+#: src/gtk/preferences-window.ui:131
 msgid "Show Floating Controls"
 msgstr "Отображение"
 
-#: src/gtk/preferences-window.ui:160
+#: src/gtk/preferences-window.ui:132
 msgid "Show floating controls in headbarless mode."
-msgstr ""
-"Плавающие элементы управления в режиме без панели заголовка."
+msgstr "Плавающие элементы управления в режиме без панели заголовка."
 
-#: src/gtk/preferences-window.ui:172
+#: src/gtk/preferences-window.ui:144
 msgid "Floating Controls Hover Area"
 msgstr "Область наведения"
 
-#: src/gtk/preferences-window.ui:173
+#: src/gtk/preferences-window.ui:145
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
@@ -390,85 +373,91 @@ msgstr ""
 "Наводимая область (в пикселях) в верхней части окна для вызова плавающих "
 "элементов управления."
 
-#: src/gtk/preferences-window.ui:185
+#: src/gtk/preferences-window.ui:157
 msgid "Delay Before Show Floating Controls"
 msgstr "Задержка отображения"
 
-#: src/gtk/preferences-window.ui:186
+#: src/gtk/preferences-window.ui:158
 msgid "Delay time (ms) before show floating controls."
 msgstr "Время задержки (мс) отображения плавающих элементов управления."
 
-#: src/gtk/preferences-window.ui:203 src/gtk/preferences-window.ui:297
+#: src/gtk/preferences-window.ui:175 src/gtk/preferences-window.ui:239
 msgid "Terminal"
 msgstr "Терминал"
 
-#: src/gtk/preferences-window.ui:208
+#: src/gtk/preferences-window.ui:180
 msgid "Text"
 msgstr "Текст"
 
-#: src/gtk/preferences-window.ui:212
+#: src/gtk/preferences-window.ui:184
 msgid "Font"
 msgstr "Шрифт"
 
-#: src/gtk/preferences-window.ui:224
+#: src/gtk/preferences-window.ui:196
 msgid "Cell Spacing"
 msgstr "Интервалы"
 
-#: src/gtk/preferences-window.ui:227
+#: src/gtk/preferences-window.ui:199
 msgid "Width"
 msgstr "Ширина"
 
-#: src/gtk/preferences-window.ui:239
+#: src/gtk/preferences-window.ui:211
 msgid "Height"
 msgstr "Высота"
 
-#: src/gtk/preferences-window.ui:254
+#: src/gtk/preferences-window.ui:226
 msgid "Easy Copy &amp; Paste"
 msgstr "Простые копирование и вставка"
 
-#: src/gtk/preferences-window.ui:255
+#: src/gtk/preferences-window.ui:227
 msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Использовать Ctrl+C/Ctrl+V для копирования/вставки."
 
-#: src/gtk/preferences-window.ui:268
-msgid "Search"
-msgstr "Поиск"
-
-#: src/gtk/preferences-window.ui:272
-msgid "Clear Selection on Exit"
-msgstr "Снятие выделения при выходе"
-
-#: src/gtk/preferences-window.ui:273
-msgid "Enable to clear match selection when search window is closed."
-msgstr "Включает снятие выделения совпадений, когда окно поиска закрыто."
-
-#: src/gtk/preferences-window.ui:284
-msgid "Pinned Search Window"
-msgstr "Закрепление поиска"
-
-#: src/gtk/preferences-window.ui:285
-msgid "Enable to make new search windows pinned by default."
-msgstr "Включает закрепление нового окна поиска по умолчанию."
-
-#: src/gtk/preferences-window.ui:300
-msgid "Padding"
-msgstr "Отступы"
-
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:242
 msgid "Cursor"
 msgstr "Курсор"
 
-#: src/gtk/preferences-window.ui:318
+#: src/gtk/preferences-window.ui:246
 msgid "Block"
 msgstr "Блок"
 
-#: src/gtk/preferences-window.ui:319
+#: src/gtk/preferences-window.ui:247
 msgid "IBeam"
 msgstr "I-образный"
 
-#: src/gtk/preferences-window.ui:320
+#: src/gtk/preferences-window.ui:248
 msgid "Underline"
 msgstr "Подчёркивание"
+
+#: src/gtk/preferences-window.ui:256
+msgid "Padding"
+msgstr "Отступы"
+
+#: src/gtk/preferences-window.ui:272
+#, fuzzy
+msgid "Scrolling"
+msgstr "Попиксельная прокрутка"
+
+#: src/gtk/preferences-window.ui:275
+msgid "Scrollbars"
+msgstr "Полосы прокрутки"
+
+#: src/gtk/preferences-window.ui:278
+msgid "Show Scrollbars"
+msgstr "Отображать полосы прокрутки"
+
+#: src/gtk/preferences-window.ui:289
+msgid "Use Overlay Scrolling"
+msgstr "Использовать оверлейную прокрутку"
+
+#: src/gtk/preferences-window.ui:303
+msgid "Set Scrollback Limit"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:314
+#, fuzzy
+msgid "Scrollback Lines"
+msgstr "Полосы прокрутки"
 
 #: src/gtk/preferences-window.ui:330
 msgid "Command"
@@ -635,7 +624,7 @@ msgstr "Справка"
 msgid "About"
 msgstr "О приложении"
 
-#: src/widgets/PreferencesWindow.vala:416
+#: src/widgets/PreferencesWindow.vala:435
 msgid "Terminal Font"
 msgstr "Шрифт терминала"
 
@@ -653,6 +642,30 @@ msgstr ""
 "%s использует ранний Gtk 4 порт VTE как виджет терминала. Хотя достаточно "
 "серьёзный прогресс был достигнут в развитии порта, копирование текста в %s "
 "пока не поддерживается."
+
+#~ msgid ""
+#~ "If set to true, closing the search window will unselect the search result"
+#~ msgstr ""
+#~ "Если установлено значение true, закрытие окна поиска снимет выделение с "
+#~ "результата поиска"
+
+#~ msgid "Whether new search windows should be fixed by default"
+#~ msgstr "Должно ли новое окно поиска быть закреплённым по умолчанию"
+
+#~ msgid "Search"
+#~ msgstr "Поиск"
+
+#~ msgid "Clear Selection on Exit"
+#~ msgstr "Снятие выделения при выходе"
+
+#~ msgid "Enable to clear match selection when search window is closed."
+#~ msgstr "Включает снятие выделения совпадений, когда окно поиска закрыто."
+
+#~ msgid "Pinned Search Window"
+#~ msgstr "Закрепление поиска"
+
+#~ msgid "Enable to make new search windows pinned by default."
+#~ msgstr "Включает закрепление нового окна поиска по умолчанию."
 
 #~ msgid "Tabs and Headerbar"
 #~ msgstr "Вкладки и панель заголовка"
