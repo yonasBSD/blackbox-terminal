@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-28 21:26-0300\n"
-"PO-Revision-Date: 2022-07-05 08:46+0200\n"
+"PO-Revision-Date: 2022-07-31 22:37+0200\n"
 "Last-Translator: Konstantin Tutsch <konstantin.tutsch@disroot.org>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -71,11 +71,11 @@ msgstr "Wenn eingeschaltet, wird nach Pixel und nicht nach Zeilen gescrollt"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Enable to limit terminal scrollback"
-msgstr ""
+msgstr "Schalte das limitieren der Terminal Bildlaufleiste ein"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Number of lines stored in scrollback"
-msgstr ""
+msgstr "Anzahl der Zeilen, die für den Bildlauf gespeichert werden"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, floating controls will be shown in headerless mode"
@@ -96,20 +96,17 @@ msgid "Delay time before showing floating controls"
 msgstr "Verzögerung vor dem Anzeigen der Schwebesteuerung des Fensters"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:76
-#, fuzzy
 msgid "The light color scheme for the terminal"
-msgstr "Das Farbschema des Terminals"
+msgstr "Das helle Farbschema des Terminals"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:80
-#, fuzzy
 msgid "The dark color scheme for the terminal"
-msgstr "Das Farbschema des Terminals"
+msgstr "Das dunkle Farbschema des Terminals"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
 #: data/com.raggesilver.BlackBox.gschema.xml:85
-#, fuzzy
 msgid "Style preference"
-msgstr "Einstellungen zurücksetzen"
+msgstr "Stil"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:89
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
@@ -148,33 +145,37 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Whether to spawn shell in login mode"
-msgstr ""
+msgstr "Ob die Kommandozeile im Hellen Modus gestartet wird"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:121
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr ""
+"Ob ein benutzerdefiniertes Kommando statt der Nutzerkommandozeile genutzt "
+"wird"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:125
 msgid "Custom command to use instead of the user's shell"
 msgstr ""
+"Benutzerdefiniertes Kommando um die Kommandozeile des Benutzers zu ersetzen"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:132
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
+"Ob, wenn das letzte Suchergebnis ausgewählt ist, nach dem wechseln zum "
+"nächsten Ergebnis zum ersten Ergebnis gewechselt wird"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:136
-#, fuzzy
 msgid "Whether search should be case sensitive"
-msgstr "Ob die Fensterleiste angezeigt wird oder nicht"
+msgstr "Ob die Suche Groß-/Kleinschreibung beachtet"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:140
 msgid "Whether search should only match entire words"
-msgstr ""
+msgstr "Ob die Suche nur auf ganze Wörter zutrifft"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:144
 msgid "Whether search should be performed using regular expressions"
-msgstr ""
+msgstr "Ob die Suche nur regular Expressions nutzen sollte"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -207,7 +208,6 @@ msgid "Toggle fullscreen"
 msgstr "Vollbildmodus umschalten"
 
 #: src/gtk/help-overlay.ui:45
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Terminal"
 msgstr "Terminal"
@@ -215,7 +215,7 @@ msgstr "Terminal"
 #: src/gtk/help-overlay.ui:48
 msgctxt "shortcut window"
 msgid "Search"
-msgstr ""
+msgstr "Suchen"
 
 #: src/gtk/help-overlay.ui:54
 msgctxt "shortcut window"
@@ -289,30 +289,28 @@ msgid "Theme Integration"
 msgstr "Themenintegration"
 
 #: src/gtk/preferences-window.ui:29
-#, fuzzy
 msgid "Style window with terminal theme colors."
-msgstr "Ob das Fenster die Farben des Terminal-Themas übernimmt oder nicht"
+msgstr "Nutze die Themenfarbe auch für das Fenster"
 
 #: src/gtk/preferences-window.ui:39
-#, fuzzy
 msgid "Style Preference"
-msgstr "Einstellungen"
+msgstr "Stil"
 
 #: src/gtk/preferences-window.ui:43
 msgid "Follow System"
-msgstr ""
+msgstr "Systemstandard"
 
 #: src/gtk/preferences-window.ui:44
 msgid "Light Style"
-msgstr ""
+msgstr "Hell"
 
 #: src/gtk/preferences-window.ui:45
 msgid "Dark Style"
-msgstr ""
+msgstr "Dunkel"
 
 #: src/gtk/preferences-window.ui:55
 msgid "Tabs"
-msgstr ""
+msgstr "Tabs"
 
 #: src/gtk/preferences-window.ui:59
 msgid "Expand Tabs"
@@ -343,9 +341,8 @@ msgid "Blend single tab with headerbar."
 msgstr "Einzelnen Tab farblich anpassen"
 
 #: src/gtk/preferences-window.ui:103
-#, fuzzy
 msgid "Headerbar"
-msgstr "Zeige Fensterleiste"
+msgstr "Fensterleiste"
 
 #: src/gtk/preferences-window.ui:107
 msgid "Show Menu Button"
@@ -441,9 +438,8 @@ msgid "Padding"
 msgstr "Puffer"
 
 #: src/gtk/preferences-window.ui:272
-#, fuzzy
 msgid "Scrolling"
-msgstr "Pixel Bildlauf"
+msgstr "Bildlauf"
 
 #: src/gtk/preferences-window.ui:275
 msgid "Scrollbars"
@@ -459,28 +455,27 @@ msgstr "Nutze Overlay Bildlauf"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Set Scrollback Limit"
-msgstr ""
+msgstr "Setze das Bildlauflimit"
 
 #: src/gtk/preferences-window.ui:314
-#, fuzzy
 msgid "Scrollback Lines"
 msgstr "Bildlaufleisten"
 
 #: src/gtk/preferences-window.ui:330
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
 #: src/gtk/preferences-window.ui:334
 msgid "Run Command as Login Shell"
-msgstr ""
+msgstr "Nutze Kommando als Anmelde-Kommandozeile"
 
 #: src/gtk/preferences-window.ui:345
 msgid "Use Custom Command"
-msgstr ""
+msgstr "Nutze benutzerdefiniertes Kommando"
 
 #: src/gtk/preferences-window.ui:355
 msgid "Custom Command"
-msgstr ""
+msgstr "benutzerdefiniertes Kommando"
 
 #: src/gtk/preferences-window.ui:362
 msgid "Theme"
@@ -488,29 +483,27 @@ msgstr "Thema"
 
 #: src/gtk/preferences-window.ui:373
 msgid "Open folder"
-msgstr ""
+msgstr "Öffne Ordner"
 
 #: src/gtk/preferences-window.ui:381
 msgid "Get more themes online"
-msgstr ""
+msgstr "Lade mehr Themen online herunter"
 
 #: src/gtk/preferences-window.ui:395
 msgid "Set your preferred theme for light and dark styles."
-msgstr ""
+msgstr "Wähle dein bevorzugtes Thema für den dunklen und hellen Stil"
 
 #: src/gtk/preferences-window.ui:410
-#, fuzzy
 msgid "Light Theme"
-msgstr "Thema"
+msgstr "Helles Thema"
 
 #: src/gtk/preferences-window.ui:416
-#, fuzzy
 msgid "Dark Theme"
-msgstr "Thema"
+msgstr "Dunkles Thema"
 
 #: src/gtk/preferences-window.ui:424
 msgid "Only display themes for the current style"
-msgstr ""
+msgstr "Zeige nur Themen für den aktuellen Stil an"
 
 #: src/gtk/preferences-window.ui:432
 msgid ""
@@ -518,15 +511,17 @@ msgid ""
 "a light color scheme while using the dark app style or a dark color scheme "
 "while using the light app style."
 msgstr ""
+"Um die Lesbarkeit zu verbessern wird \"Themenintegration\" ausgeschaltet, "
+"wenn ein helles Schema bei einer dunklen App oder wenn ein dunkles Schema "
+"bei einer hellen App Einstellung verwendet wird."
 
 #: src/gtk/preferences-window.ui:459
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
 #: src/gtk/preferences-window.ui:463
-#, fuzzy
 msgid "Experimental"
-msgstr "Experimentell 🧪"
+msgstr "Experimentell"
 
 #: src/gtk/preferences-window.ui:464
 msgid ""
@@ -566,7 +561,6 @@ msgstr ""
 "Zusätzlich hinzugefügte Themen werden nicht entfernt."
 
 #: src/gtk/preferences-window.ui:490
-#, fuzzy
 msgid "Reset preferences"
 msgstr "Einstellungen zurücksetzen"
 
@@ -658,8 +652,8 @@ msgstr ""
 
 #, c-format
 #~ msgid ""
-#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
-#~ "href=\"%s\">online</a>."
+#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s"
+#~ "\">online</a>."
 #~ msgstr ""
 #~ "Öffnen Sie den <a href=\"file://%s\">Themen Ordner</a> und laden Sie mehr "
 #~ "Themen <a href=\"%s\">online</a> herunter."
