@@ -269,7 +269,7 @@ msgstr "Основные"
 #: src/gtk/help-overlay.ui:112
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Показать комбинации клавиш"
+msgstr "Отобразить комбинации клавиш"
 
 #: src/gtk/preferences-window.ui:9
 msgid "General"
