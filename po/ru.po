@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-28 21:26-0300\n"
-"PO-Revision-Date: 2022-07-29 05:34+0300\n"
+"PO-Revision-Date: 2022-08-9 3:21+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
 "Language: ru\n"
@@ -313,7 +313,7 @@ msgstr "Вкладки"
 
 #: src/gtk/preferences-window.ui:59
 msgid "Expand Tabs"
-msgstr "Растянуть вкладки"
+msgstr "Расширить вкладки"
 
 #: src/gtk/preferences-window.ui:69
 msgid "Single Tab Mode"
@@ -533,7 +533,7 @@ msgstr ""
 
 #: src/gtk/preferences-window.ui:468
 msgid "Pixel Scrolling"
-msgstr "Попиксельная прокрутка"
+msgstr "Прокрутка по пикселям"
 
 #: src/gtk/preferences-window.ui:469
 msgid ""
@@ -565,7 +565,7 @@ msgstr "Сбросить настройки"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
-msgstr "Показать версию приложения"
+msgstr "Отобразить версию приложения"
 
 #: src/CommandLine.vala:56
 msgid "Set current working directory"
@@ -577,7 +577,7 @@ msgstr "Выполнить команду в терминале"
 
 #: src/CommandLine.vala:74
 msgid "Show help"
-msgstr "Показать справку"
+msgstr "Отобразить справку"
 
 #: src/CommandLine.vala:121
 #, c-format
