@@ -120,11 +120,11 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     hb.show_start_title_buttons = false;
     hb.show_end_title_buttons = false;
     hb.add_css_class ("flat");
+    hb.halign = Gtk.Align.FILL;
+    hb.hexpand = true;
 
     this.tab_bar.halign = Gtk.Align.FILL;
     this.tab_bar.hexpand = true;
-    hb.halign = Gtk.Align.FILL;
-    hb.hexpand = true;
 
     this.unfullscreen_button = new Gtk.Button () {
       can_focus = false,
@@ -135,6 +135,9 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     this.left_controls = new Gtk.WindowControls (Gtk.PackType.START);
     this.right_controls = new Gtk.WindowControls (Gtk.PackType.END);
 
+    //  this.left_controls.bind_property ("empty", this.left_controls, "visible", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.INVERT_BOOLEAN, null, null);
+    //  this.right_controls.bind_property ("empty", this.right_controls, "visible", GLib.BindingFlags.SYNC_CREATE | GLib.BindingFlags.INVERT_BOOLEAN, null, null);
+
     this.title_label = new Gtk.Label (null) {
       halign = Gtk.Align.FILL,
       hexpand = true,
@@ -143,16 +146,22 @@ public class Terminal.HeaderBar : BaseHeaderBar {
       ellipsize = Pango.EllipsizeMode.END,
     };
 
-    var layout = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+    var button_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
+      margin_start = 6,
+      margin_end = 0,
+    };
+    button_box.append (this.new_tab_button);
+    button_box.append (this.unfullscreen_button);
+    button_box.append (this.menu_button);
+
+    var layout = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
     layout.halign = Gtk.Align.FILL;
     layout.hexpand = true;
 
     layout.append (this.left_controls);
     layout.append (this.tab_bar);
     layout.append (this.title_label);
-    layout.append (this.new_tab_button);
-    layout.append (this.unfullscreen_button);
-    layout.append (this.menu_button);
+    layout.append (button_box);
     layout.append (this.right_controls);
 
     hb.title_widget = layout;

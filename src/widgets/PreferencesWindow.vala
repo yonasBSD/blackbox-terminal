@@ -54,6 +54,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           show_headerbar_switch;
   [GtkChild] unowned Gtk.Switch           show_menu_button_switch;
   [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
+  [GtkChild] unowned Gtk.Switch           show_window_borders_switch;
   [GtkChild] unowned Gtk.Switch           stealth_single_tab_switch;
   [GtkChild] unowned Gtk.Switch           use_custom_scrollback_switch;
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
@@ -174,6 +175,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind(
       "pretty",
       this.pretty_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "window-show-borders",
+      this.show_window_borders_switch,
       "active",
       SettingsBindFlags.DEFAULT
     );

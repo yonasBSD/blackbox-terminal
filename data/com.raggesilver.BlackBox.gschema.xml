@@ -9,6 +9,10 @@
       <default>350</default>
       <summary>Window height</summary>
     </key>
+    <key name="window-show-borders" type="b">
+      <default>true</default>
+      <summary>Whether or not to display borders around the window and tabs</summary>
+    </key>
     <key name="remember-window-size" type="b">
       <default>false</default>
       <summary>Whether or not to remember window size</summary>

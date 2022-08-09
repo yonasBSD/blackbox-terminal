@@ -1,3 +1,14 @@
+#blackbox-main-window.with-borders {
+  border: 1px solid @borders;
+}
+
+#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) headerbar {
+  background-image: image(@borders);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
 window:not(.about) headerbar:not(.background) {
   background: @headerbar_bg_color;
 }
@@ -12,22 +23,52 @@ window:not(.about) headerbar:not(.background) {
   padding: 0;
 }
 
-.custom-headerbar windowcontrols.start.empty {
-  margin-right: 34px;
-}
+/**
+ * Fix unfocused custom headerbar look. With default styling, tabs become
+ * transparent and the "fake bottom tab border" becomes visible behind the
+ * active tab.
+ */
+.custom-headerbar:backdrop windowhandle { filter: none; }
+
+.custom-headerbar:backdrop { filter: opacity(0.5); }
 
 tab {
   background: transparent;
   border-radius: 0;   /* libadwaita 1.2 workaround */
+  border: 0;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 
 tabboxchild  {
   margin: 0;          /* libadwaita 1.2 workaround */
   border-radius: 0;   /* libadwaita 1.2 workaround */
+  margin: 0 -3px;     /* libadwaita 1.2 workaround */
 }
 
 tab:selected {
   background: @window_bg_color;
+}
+
+#blackbox-main-window.with-borders tab:selected {
+  border-left-color: @borders;
+  border-right-color: @borders;
+}
+
+.custom-headerbar windowcontrols.end.empty {
+  margin-left: 2px;
+}
+
+.custom-headerbar windowcontrols.end:not(.empty) {
+  margin-left: 6px;
+}
+
+#blackbox-main-window:not(.with-borders) .custom-headerbar windowcontrols.start.empty {
+  margin-right: 34px;
+}
+
+#blackbox-main-window.with-borders .custom-headerbar windowcontrols.start.empty ~ tabbar {
+  margin-left: -8px;
 }
 
 .custom-headerbar.single-tab-mode.stealth headerbar,
@@ -98,3 +139,22 @@ window:not(.about) .floating-revealer > headerbar {
 .floating-btn-box button:last-child {
   padding-right: 4px;
 }
+
+/* :root {
+  --color-0: rgb(40,40,40);
+  --color-1: rgb(204,36,29);
+  --color-2: rgb(152,151,26);
+  --color-3: rgb(215,153,33);
+  --color-4: rgb(69,133,136);
+  --color-5: rgb(177,98,134);
+  --color-6: rgb(104,157,106);
+  --color-7: rgb(168,153,132);
+  --color-8: rgb(146,131,116);
+  --color-9: rgb(251,73,52);
+  --color-10: rgb(184,187,38);
+  --color-11: rgb(250,189,47);
+  --color-12: rgb(131,165,152);
+  --color-13: rgb(211,134,155);
+  --color-14: rgb(142,192,124);
+  --color-15: rgb(235,219,178);
+} */

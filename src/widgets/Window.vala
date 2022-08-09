@@ -185,6 +185,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
     overlay.add_overlay (this.floating_header_bar_revealer);
 
     this.content = overlay;
+
+    this.set_name ("blackbox-main-window");
   }
 
   public Window (
@@ -253,6 +255,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
         this.floating_header_bar_revealer.reveal_child = false;
       }
     });
+
+    settings.notify ["window-show-borders"].connect (() => {
+      set_css_class (this, "with-borders", settings.window_show_borders);
+    });
+    set_css_class (this, "with-borders", settings.window_show_borders);
 
     this.tab_view.create_window.connect (() => {
       var w = this.new_window (null, true);

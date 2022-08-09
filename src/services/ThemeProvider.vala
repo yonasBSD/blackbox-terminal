@@ -16,6 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public enum Terminal.SchemePaletteColorIndex {
+  BACKGROUND = 0,
+  RED = 1,
+  GREEN = 2,
+  YELLOW = 3,
+  BLUE = 4,
+  PURPLE = 5,
+  CYAN = 6,
+  FOREGROUND = 7,
+  LIGHT_BACKGROUND = 8,
+  LIGHT_RED = 9,
+  LIGHT_GREEN = 10,
+  LIGHT_YELLOW = 11,
+  LIGHT_BLUE = 12,
+  LIGHT_PURPLE = 13,
+  LIGHT_CYAN = 14,
+  LIGHT_FOREGROUND = 15,
+}
+
 namespace Terminal {
   public Gdk.RGBA? rgba_from_string (string? color) {
     if (color == null) {
@@ -244,14 +263,9 @@ public class Terminal.ThemeProvider : Object {
       @define-color dark_fill_bg_color      @headerbar_bg_color;
       @define-color view_bg_color           @card_bg_color;
       @define-color view_fg_color           @window_fg_color;
-
-      @define-color accent_color            %3$s;
-      @define-color accent_bg_color         %3$s;
-      @define-color accent_fg_color         white;
     """.printf (
       scheme.background_color.to_string (),
-      scheme.foreground_color.to_string (),
-      scheme.palette.index (4).to_string ()
+      scheme.foreground_color.to_string ()
     );
 
     if (this.is_dark_style_active) {
@@ -261,7 +275,23 @@ public class Terminal.ThemeProvider : Object {
         @define-color dialog_bg_color       mix(@window_bg_color, white, 0.07);
         @define-color card_bg_color         alpha(white, .08);
         @define-color view_bg_color         darker(@window_bg_color);
-      """;
+
+        @define-color accent_color            %3$s;
+        @define-color accent_bg_color         %3$s;
+        @define-color accent_fg_color         white;
+        @define-color destructive_color       %1$s;
+        @define-color success_color           %2$s;
+        @define-color warning_color           %4$s;
+      """.printf(
+        /** 1 */
+        scheme.palette.index (SchemePaletteColorIndex.LIGHT_RED).to_string (),
+        /** 2 */
+        scheme.palette.index (SchemePaletteColorIndex.LIGHT_GREEN).to_string (),
+        /** 3 */
+        scheme.palette.index (SchemePaletteColorIndex.LIGHT_BLUE).to_string (),
+        /** 4 */
+        scheme.palette.index (SchemePaletteColorIndex.LIGHT_YELLOW).to_string ()
+      );
     }
     else {
       theme += """
@@ -269,8 +299,31 @@ public class Terminal.ThemeProvider : Object {
         @define-color popover_bg_color      mix(@window_bg_color, white, .1);
         @define-color dialog_bg_color       @window_bg_color;
         @define-color card_bg_color         alpha(white, .6);
-      """;
+
+        @define-color accent_color            %3$s;
+        @define-color accent_bg_color         %3$s;
+        @define-color accent_fg_color         white;
+        @define-color destructive_color       %1$s;
+        @define-color success_color           %2$s;
+        @define-color warning_color           %4$s;
+      """.printf(
+        /** 1 */
+        scheme.palette.index (SchemePaletteColorIndex.RED).to_string (),
+        /** 2 */
+        scheme.palette.index (SchemePaletteColorIndex.GREEN).to_string (),
+        /** 3 */
+        scheme.palette.index (SchemePaletteColorIndex.BLUE).to_string (),
+        /** 4 */
+        scheme.palette.index (SchemePaletteColorIndex.YELLOW).to_string ()
+      );
     }
+
+    theme += """
+      @define-color error_color             @destructive_color;
+      @define-color destructive_bg_color    @destructive_color;
+      @define-color success_bg_color        @success_color;
+      @define-color warning_bg_color        @warning_color;
+    """;
 
     return theme;
   }
