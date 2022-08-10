@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.12.0 - Unreleased
+
+Features:
+
+- Added support for searching text from terminal output - #93
+- Open a new tab by cliking on the header bar with the middle mouse button - #88
+- Customizable number of lines to keep buffered - #92
+
+Improvements:
+
+- Greatly improved performance, thanks to an update in VTE
+- Theme integration now uses red, green, blue, and yellow from your terminal
+  theme to paint the rest of the app
+- Theme integration now uses a different approach to calculate colors based on
+  your terminal theme's background color. This results in more aesthetically
+  pleasing header bar colors
+
+Bug fixes:
+
+- Primary clipboard now works as intended - #46
+- "Reset Preferences" button is now translatable - #117
+- High CPU usage - #21
+
+## 0.11.3 - 2022.07.21
+
+- Ctrl + click can now be used to open URLs - #25
+
 ## 0.11.2 - 2022.07.17
 
 - Updated translations

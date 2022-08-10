@@ -11,9 +11,9 @@
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/qvJ7TQW.png" alt="Preview"/><br/>
+  <img src="https://i.imgur.com/bBk8jKc.png" alt="Preview"/><br/>
   <small><i>
-    Black Box 0.10.1 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Black Box 0.12.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
@@ -29,12 +29,11 @@ Linux. There are more featureful alternatives out there.
 - Theming ([Tilix](https://github.com/gnunn1/tilix) compatible color scheme support)
 - Theme integration with the window decorations
 - Custom fonts
+- Various customizable UI settings
 - Tabs
-- Headerbarless mode
-- `Ctrl` + `click` to open links & files*
-- Drag files to paste their path*
-
-> \* = not working properly in the Gtk 4 port
+- Toggleable header bar
+- Click to open links
+- Files drag-n-drop support
 
 ## Install
 
@@ -68,7 +67,7 @@ If you want to build Black Box manually, look at the build script in [.gitlab-ci
 ## Some other screenshots
 
 <div align="center">
-  <img src="https://i.imgur.com/DAiKhD3.png" alt="Headerbar-less terminal"/><br/>
+  <img src="https://i.imgur.com/O7Nblz8.png" alt="Black Box with 'Show Header bar' off"/><br/>
   <small><i>
     Black Box with "show headerbar" off.
   </i></small>

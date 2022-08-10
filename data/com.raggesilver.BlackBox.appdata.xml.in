@@ -84,6 +84,14 @@
   </kudos>
 
   <releases>
+    <release date="2022-07-21" version="0.11.3">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>Use ctrl + click to open links</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-07-17" version="0.11.2">
       <description>
         <p>Updates:</p>
