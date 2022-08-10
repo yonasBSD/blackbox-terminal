@@ -43,6 +43,10 @@
       <default>true</default>
       <summary>Whether or not to display a menu button in the headerbar</summary>
     </key>
+    <key name="headerbar-draw-line-single-tab" type="b">
+      <default>false</default>
+      <summary>Whether or not to draw a 1px line under the header bar when there's a single tab open</summary>
+    </key>
     <key name="show-scrollbars" type="b">
       <default>true</default>
       <summary>Whether or not to show scrollbars</summary>

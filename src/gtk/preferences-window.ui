@@ -97,7 +97,7 @@
                   <object class="AdwActionRow">
                     <property name="activatable-widget">stealth_single_tab_switch</property>
                     <property name="title" translatable="yes">Stealth Single Tab</property>
-                    <property name="subtitle" translatable="yes">Blend single tab with headerbar.</property>
+                    <property name="subtitle" translatable="yes">Blend single tab with header bar.</property>
                     <property name="sensitive" bind-source="fill_tabs_switch" bind-property="active" bind-flags="sync-create" />
                     <child>
                       <object class="GtkSwitch" id="stealth_single_tab_switch">
@@ -112,7 +112,7 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Headerbar</property>
+            <property name="title" translatable="yes">Header Bar</property>
             <child>
               <object class="AdwActionRow" id="show_menu_button_action_row">
                 <property name="activatable-widget">show_menu_button_switch</property>
@@ -127,9 +127,22 @@
             <child>
               <object class="AdwActionRow">
                 <property name="activatable-widget">show_headerbar_switch</property>
-                <property name="title" translatable="yes">Show Headerbar</property>
+                <property name="title" translatable="yes">Show Header Bar</property>
                 <child>
                   <object class="GtkSwitch" id="show_headerbar_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">draw_line_single_tab_switch</property>
+                <property name="sensitive" bind-source="show_window_borders_switch" bind-property="active" bind-flags="sync-create" />
+                <property name="title" translatable="yes">Draw Line Under Header Bar</property>
+                <property name="subtitle" translatable="yes">Enable to draw a line under the header bar when a single tab is open. Requires "Show Borders".</property>
+                <child>
+                  <object class="GtkSwitch" id="draw_line_single_tab_switch">
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -141,7 +154,7 @@
                 <child>
                   <object class="AdwActionRow">
                     <property name="title" translatable="yes">Show Floating Controls</property>
-                    <property name="subtitle" translatable="yes">Show floating controls in headbarless mode.</property>
+                    <property name="subtitle" translatable="yes">Show floating controls when header bar is hidden.</property>
                     <property name="activatable-widget">floating_controls_switch</property>
                     <child>
                       <object class="GtkSwitch" id="floating_controls_switch">

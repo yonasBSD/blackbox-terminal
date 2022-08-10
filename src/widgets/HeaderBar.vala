@@ -224,6 +224,10 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     settings.notify ["fill-tabs"].connect (this.notify_single_tab_mode);
     settings.notify ["hide-single-tab"].connect (this.notify_single_tab_mode);
     settings.notify ["stealth-single-tab"].connect (this.notify_single_tab_mode);
+    settings.notify ["headerbar-draw-line-single-tab"].connect (
+      this.on_draw_line_singe_tab_changed
+    );
+    this.on_draw_line_singe_tab_changed ();
 
     this.notify ["single-tab-mode"].connect (this.on_single_tab_mode_changed);
     this.on_single_tab_mode_changed ();
@@ -245,6 +249,12 @@ public class Terminal.HeaderBar : BaseHeaderBar {
 
   private void notify_single_tab_mode () {
     this.notify_property ("single-tab-mode");
+  }
+
+  private void on_draw_line_singe_tab_changed () {
+    var draw_line = Settings.get_default ().headerbar_draw_line_single_tab;
+
+    set_css_class (this, "draw-line-in-single-tab", draw_line);
   }
 
   private void on_single_tab_mode_changed () {

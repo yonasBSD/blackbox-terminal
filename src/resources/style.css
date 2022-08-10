@@ -1,16 +1,26 @@
+window:not(.about) headerbar:not(.background) {
+  background: @headerbar_bg_color;
+}
+
 #blackbox-main-window.with-borders {
   border: 1px solid @borders;
 }
 
-#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) headerbar {
+#blackbox-main-window.with-borders .custom-headerbar {
+  /**
+   * Without this line the header bar is 47px tall. We add another pixel for the
+   * bottom "border".
+   */
+  min-height: 48px;
+}
+
+#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) headerbar,
+#blackbox-main-window.with-borders .custom-headerbar.single-tab-mode.draw-line-in-single-tab headerbar {
   background-image: image(@borders);
   background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: bottom;
-}
-
-window:not(.about) headerbar:not(.background) {
-  background: @headerbar_bg_color;
+  transition: background-image 0s;
 }
 
 /**
@@ -50,7 +60,8 @@ tab:selected {
   background: @window_bg_color;
 }
 
-#blackbox-main-window.with-borders tab:selected {
+#blackbox-main-window.with-borders tab:selected,
+#blackbox-main-window.with-borders .custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
   border-left-color: @borders;
   border-right-color: @borders;
 }
@@ -67,13 +78,16 @@ tab:selected {
   margin-right: 34px;
 }
 
-#blackbox-main-window.with-borders .custom-headerbar windowcontrols.start.empty ~ tabbar {
+#blackbox-main-window.with-borders .custom-headerbar windowcontrols.start.empty ~ tabbar,
+#blackbox-main-window.with-borders .custom-headerbar windowcontrols.start.empty ~ .title-label {
   margin-left: -8px;
 }
 
 .custom-headerbar.single-tab-mode.stealth headerbar,
 .custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
   background: @window_bg_color;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 
 tabbox background {
