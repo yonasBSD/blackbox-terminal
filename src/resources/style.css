@@ -81,8 +81,12 @@ tab:selected {
   margin-left: -8px;
 }
 
+.custom-headerbar.single-tab-mode.stealth headerbar,
 .custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
   background: @window_bg_color;
+}
+
+.custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
 }
@@ -107,7 +111,7 @@ tab:selected {
 /**
  * Make header bar darker when "Draw Line" is on and there is a single tab open.
  */
-#blackbox-main-window.with-borders .custom-headerbar.single-tab-mode.draw-line-in-single-tab headerbar {
+.with-borders .custom-headerbar.single-tab-mode.stealth.draw-line-in-single-tab headerbar {
   background-color: @headerbar_bg_color;
 }
 
