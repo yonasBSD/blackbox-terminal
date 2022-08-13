@@ -105,6 +105,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   private SimpleAction copy_action;
   private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
 
+  static PreferencesWindow? preferences_window = null;
+
   construct {
     if (DEVEL) {
       this.add_css_class ("devel");
@@ -362,8 +364,15 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
-      var w = new PreferencesWindow (this);
-      w.present ();
+      if (preferences_window == null) {
+        preferences_window = new PreferencesWindow (this);
+        preferences_window.close_request.connect (() => {
+          preferences_window = null;
+          return false;
+        });
+      }
+
+      preferences_window.present ();
     });
     this.add_action (sa);
 

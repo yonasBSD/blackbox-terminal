@@ -20,6 +20,7 @@ public class Terminal.Settings : Marble.Settings {
   public bool    command_as_login_shell               { get; set; }
   public bool    easy_copy_paste                      { get; set; }
   public bool    fill_tabs                            { get; set; }
+  public bool    headerbar_drag_area                  { get; set; }
   public bool    headerbar_draw_line_single_tab       { get; set; }
   public bool    hide_single_tab                      { get; set; }
   public bool    pixel_scrolling                      { get; set; }

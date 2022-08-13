@@ -3,6 +3,8 @@
   <requires lib="gtk" version="4.0" />
   <requires lib="libadwaita" version="1.0" />
   <template class="TerminalPreferencesWindow" parent="AdwPreferencesWindow">
+    <property name="default-width">640</property>
+    <property name="default-height">800</property>
     <property name="modal">False</property>
     <child>
       <object class="AdwPreferencesPage">
@@ -114,6 +116,17 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Header Bar</property>
             <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">show_headerbar_switch</property>
+                <property name="title" translatable="yes">Show Header Bar</property>
+                <child>
+                  <object class="GtkSwitch" id="show_headerbar_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="AdwActionRow" id="show_menu_button_action_row">
                 <property name="activatable-widget">show_menu_button_switch</property>
                 <property name="title" translatable="yes">Show Menu Button</property>
@@ -126,10 +139,11 @@
             </child>
             <child>
               <object class="AdwActionRow">
-                <property name="activatable-widget">show_headerbar_switch</property>
-                <property name="title" translatable="yes">Show Header Bar</property>
+                <property name="activatable-widget">drag_area_switch</property>
+                <property name="title" translatable="yes">Drag Area</property>
+                <property name="subtitle" translatable="yes">Enable to reserve some space on the left side to drag the window.</property>
                 <child>
-                  <object class="GtkSwitch" id="show_headerbar_switch">
+                  <object class="GtkSwitch" id="drag_area_switch">
                     <property name="valign">center</property>
                   </object>
                 </child>

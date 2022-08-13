@@ -60,6 +60,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
   [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           draw_line_single_tab_switch;
+  [GtkChild] unowned Gtk.Switch           drag_area_switch;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
@@ -211,6 +212,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind(
       "headerbar-draw-line-single-tab",
       this.draw_line_single_tab_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "headerbar-drag-area",
+      this.drag_area_switch,
       "active",
       SettingsBindFlags.DEFAULT
     );

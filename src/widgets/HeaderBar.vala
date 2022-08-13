@@ -224,10 +224,16 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     settings.notify ["fill-tabs"].connect (this.notify_single_tab_mode);
     settings.notify ["hide-single-tab"].connect (this.notify_single_tab_mode);
     settings.notify ["stealth-single-tab"].connect (this.notify_single_tab_mode);
+
     settings.notify ["headerbar-draw-line-single-tab"].connect (
       this.on_draw_line_singe_tab_changed
     );
     this.on_draw_line_singe_tab_changed ();
+
+    settings.notify ["headerbar-drag-area"].connect (
+      this.on_drag_area_changed
+    );
+    this.on_drag_area_changed ();
 
     this.notify ["single-tab-mode"].connect (this.on_single_tab_mode_changed);
     this.on_single_tab_mode_changed ();
@@ -255,6 +261,12 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     var draw_line = Settings.get_default ().headerbar_draw_line_single_tab;
 
     set_css_class (this, "draw-line-in-single-tab", draw_line);
+  }
+
+  private void on_drag_area_changed () {
+    var drag_area = Settings.get_default ().headerbar_drag_area;
+
+    set_css_class (this, "with-dragarea", drag_area);
   }
 
   private void on_single_tab_mode_changed () {

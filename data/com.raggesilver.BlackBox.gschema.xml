@@ -47,6 +47,10 @@
       <default>false</default>
       <summary>Whether or not to draw a 1px line under the header bar when there's a single tab open</summary>
     </key>
+    <key name="headerbar-drag-area" type="b">
+      <default>false</default>
+      <summary>Whether or not to reserve an area for dragging the header bar</summary>
+    </key>
     <key name="show-scrollbars" type="b">
       <default>true</default>
       <summary>Whether or not to show scrollbars</summary>

@@ -5,8 +5,9 @@
 Features:
 
 - Added support for searching text from terminal output - #93
-- Open a new tab by cliking on the header bar with the middle mouse button - #88
+- Open a new tab by clicking on the header bar with the middle mouse button - #88
 - Customizable number of lines to keep buffered - #92
+- Added option to reserve an area in the header bar to drag the window
 
 Improvements:
 
