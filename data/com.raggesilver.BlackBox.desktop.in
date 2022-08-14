@@ -4,6 +4,6 @@ Exec=blackbox
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;System;TerminalEmulator;
-StartupNotify=true
+StartupNotify=false
 Keywords=Terminal;terminal;shell;prompt;command;commandline;cmd;box;
 Icon=com.raggesilver.BlackBox

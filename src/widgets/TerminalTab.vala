@@ -135,8 +135,8 @@ public class Terminal.TerminalTab : Gtk.Box {
     var pop = new Gtk.PopoverMenu.from_model (menu);
 
     Gdk.Rectangle r = {0};
-    r.x = (int) x;
-    r.y = (int) y;
+    r.x = (int) (x + Settings.get_default ().get_padding ().left);
+    r.y = (int) (y + Settings.get_default ().get_padding ().top);
 
     pop.closed.connect_after (() => {
       pop.destroy ();

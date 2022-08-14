@@ -8,7 +8,7 @@ set -e
 # outside Flatpak, nothing will happen besides running `blackbox`.
 
 
-if [ -e /.flatpak-info ]; then
+if [ -e /.flatpak-info ] && [ -z $INSIDE_GNOME_BUILDER ]; then
   /usr/bin/ln -s /run/host/usr/share/fonts /run/host/fonts
 fi
 

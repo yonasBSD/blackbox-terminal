@@ -77,7 +77,8 @@ tab:selected {
   margin-left: 6px;
 }
 
-#blackbox-main-window.with-borders .custom-headerbar windowcontrols.start.empty ~ .title-label {
+#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) windowcontrols.start.empty ~ .title-label,
+#blackbox-main-window.with-borders .custom-headerbar:not(.stealth) windowcontrols.start.empty ~ .title-label {
   margin-left: -8px;
 }
 
