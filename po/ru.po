@@ -1,13 +1,15 @@
 # Russian translation for Black Box
 # Copyright (C) 2022 Black Box’s COPYRIGHT HOLDER
 # This file is distributed under the same license as the Black Box package.
+# Translators (this list can grow):
+# acephale <acephaleee@protonmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-28 21:26-0300\n"
-"PO-Revision-Date: 2022-07-28 03:05+0300\n"
+"PO-Revision-Date: 2022-08-9 3:21+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <>\n"
 "Language: ru\n"
@@ -73,11 +75,11 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Enable to limit terminal scrollback"
-msgstr ""
+msgstr "Включите для ограничения буфера прокрутки терминала"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Number of lines stored in scrollback"
-msgstr ""
+msgstr "Количество строк в буфере прокрутки"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, floating controls will be shown in headerless mode"
@@ -267,7 +269,7 @@ msgstr "Основные"
 #: src/gtk/help-overlay.ui:112
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Показать комбинации клавиш"
+msgstr "Отобразить комбинации клавиш"
 
 #: src/gtk/preferences-window.ui:9
 msgid "General"
@@ -311,7 +313,7 @@ msgstr "Вкладки"
 
 #: src/gtk/preferences-window.ui:59
 msgid "Expand Tabs"
-msgstr "Растянуть вкладки"
+msgstr "Расширить вкладки"
 
 #: src/gtk/preferences-window.ui:69
 msgid "Single Tab Mode"
@@ -434,9 +436,8 @@ msgid "Padding"
 msgstr "Отступы"
 
 #: src/gtk/preferences-window.ui:272
-#, fuzzy
 msgid "Scrolling"
-msgstr "Попиксельная прокрутка"
+msgstr "Прокрутка"
 
 #: src/gtk/preferences-window.ui:275
 msgid "Scrollbars"
@@ -452,12 +453,11 @@ msgstr "Использовать оверлейную прокрутку"
 
 #: src/gtk/preferences-window.ui:303
 msgid "Set Scrollback Limit"
-msgstr ""
+msgstr "Установить лимит буфера прокрутки"
 
 #: src/gtk/preferences-window.ui:314
-#, fuzzy
 msgid "Scrollback Lines"
-msgstr "Полосы прокрутки"
+msgstr "Количество строк"
 
 #: src/gtk/preferences-window.ui:330
 msgid "Command"
@@ -465,7 +465,7 @@ msgstr "Команда"
 
 #: src/gtk/preferences-window.ui:334
 msgid "Run Command as Login Shell"
-msgstr "Выполнить команду как оболочку входа"
+msgstr "Выполнять команду как оболочку входа"
 
 #: src/gtk/preferences-window.ui:345
 msgid "Use Custom Command"
@@ -533,7 +533,7 @@ msgstr ""
 
 #: src/gtk/preferences-window.ui:468
 msgid "Pixel Scrolling"
-msgstr "Попиксельная прокрутка"
+msgstr "Прокрутка по пикселям"
 
 #: src/gtk/preferences-window.ui:469
 msgid ""
@@ -565,7 +565,7 @@ msgstr "Сбросить настройки"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
-msgstr "Показать версию приложения"
+msgstr "Отобразить версию приложения"
 
 #: src/CommandLine.vala:56
 msgid "Set current working directory"
@@ -577,7 +577,7 @@ msgstr "Выполнить команду в терминале"
 
 #: src/CommandLine.vala:74
 msgid "Show help"
-msgstr "Показать справку"
+msgstr "Отобразить справку"
 
 #: src/CommandLine.vala:121
 #, c-format
