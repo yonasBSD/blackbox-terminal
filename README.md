@@ -21,7 +21,7 @@
 > This is work in progress. Feel free to use Black Box and report any bugs you
 > find.
 
-I created this project so that I could use a decent looking terminal app on
+I created this project so that I could use a decent-looking terminal app on
 Linux. There are more featureful alternatives out there.
 
 ## Features
@@ -69,7 +69,7 @@ If you want to build Black Box manually, look at the build script in [.gitlab-ci
 <div align="center">
   <img src="https://i.imgur.com/O7Nblz8.png" alt="Black Box with 'Show Header bar' off"/><br/>
   <small><i>
-    Black Box with "show headerbar" off.
+    Black Box with "show header bar" off.
   </i></small>
   <br/><br/>
 </div>

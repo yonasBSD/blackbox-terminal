@@ -20,9 +20,11 @@ Improvements:
 
 Bug fixes:
 
-- Primary clipboard now works as intended - #46
-- "Reset Preferences" button is now translatable - #117
+- The primary clipboard now works as intended - #46
+- The "Reset Preferences" button is now translatable - #117
 - High CPU usage - #21
+- Fix right-click menu spawn position - closes #52
+- Fix long loading times - fixes #135
 
 ## 0.11.3 - 2022.07.21
 

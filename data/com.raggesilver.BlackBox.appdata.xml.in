@@ -34,11 +34,11 @@
   <screenshots>
     <screenshot type="default">
       <caption>Black Box screenshot</caption>
-      <image>https://i.imgur.com/qvJ7TQW.png</image>
+      <image>https://i.imgur.com/bBk8jKc.png</image>
     </screenshot>
     <screenshot>
-      <caption>Black Box in header-bar-less mode</caption>
-      <image>https://i.imgur.com/DAiKhD3.png</image>
+      <caption>Black Box with header bars turned off</caption>
+      <image>https://i.imgur.com/O7Nblz8.png</image>
     </screenshot>
   </screenshots>
 
@@ -84,6 +84,31 @@
   </kudos>
 
   <releases>
+    <release date="2022-08-15" version="0.12.0">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>Added support for searching text from terminal output</li>
+          <li>Open a new tab by clicking on the header bar with the middle mouse button</li>
+          <li>Customizable number of lines to keep buffered</li>
+          <li>Added option to reserve an area in the header bar to drag the window</li>
+        </ul>
+        <p>Improvements:</p>
+        <ul>
+          <li>UI tweaks, including the addition of toggle-able borders around the window and tabs</li>
+          <li>Theme integration now uses the red, green, blue, and yellow colors from your terminal color scheme to paint the rest of the app</li>
+          <li>Theme integration now uses a different approach to calculate colors based on your terminal theme's background color. This results in more aesthetically pleasing header bar colors</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>The primary clipboard now works as intended</li>
+          <li>The "Reset Preferences" button is now translatable</li>
+          <li>Lower CPU usage, thanks to an updated version of VTE</li>
+          <li>Fix right-click menu spawn position - closes</li>
+          <li>Fix long loading times</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-07-21" version="0.11.3">
       <description>
         <p>Features:</p>
