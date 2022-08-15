@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-28 21:26-0300\n"
+"POT-Creation-Date: 2022-08-15 15:52-0300\n"
 "PO-Revision-Date: 2022-06-28 10:30+0800\n"
 "Last-Translator: Luo Yi <langisme@qq.com>\n"
 "Language-Team: none\n"
@@ -34,136 +34,152 @@ msgid "Window height"
 msgstr "窗口高度"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:14
+#, fuzzy
+msgid "Whether or not to display borders around the window and tabs"
+msgstr "在否在标题栏上显示菜单按钮"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:18
 msgid "Whether or not to remember window size"
 msgstr "是否记住窗口大小"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:24
+#: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Font family and size"
 msgstr "字体及字体大小"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:28
+#: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Whether the window should inherit terminal theme's colors"
 msgstr "是否将终端主题的配色集成到应用窗口"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:32
+#: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "是否将标签页扩充至整个标题栏"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:36
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether the headerbar should be shown or not"
 msgstr "是否显示标题栏"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:40
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "在否在标题栏上显示菜单按钮"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:44
+#: data/com.raggesilver.BlackBox.gschema.xml:48
+msgid ""
+"Whether or not to draw a 1px line under the header bar when there's a single "
+"tab open"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:52
+#, fuzzy
+msgid "Whether or not to reserve an area for dragging the header bar"
+msgstr "在否在标题栏上显示菜单按钮"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to show scrollbars"
 msgstr "是否显示滚动条"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:48
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Whether overlay scrolling should be enabled"
 msgstr "是否启用叠加滚动条"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:52
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr "启用后，终端将按像素滚动，而非按行滚动"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:56
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "Enable to limit terminal scrollback"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:60
+#: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Number of lines stored in scrollback"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:64
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "启用后，隐藏标题栏时将显示浮动控件"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:68
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
 msgstr "窗口顶部的触发区域（以像素为单位），鼠标进入此区域时将显示浮动控件"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:72
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "Delay time before showing floating controls"
 msgstr "显示浮动控件之前的延迟时间"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:76
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 #, fuzzy
 msgid "The light color scheme for the terminal"
 msgstr "终端配色方案"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:80
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 #, fuzzy
 msgid "The dark color scheme for the terminal"
 msgstr "终端配色方案"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
-#: data/com.raggesilver.BlackBox.gschema.xml:85
+#: data/com.raggesilver.BlackBox.gschema.xml:97
 #, fuzzy
 msgid "Style preference"
 msgstr "重置设置"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:89
+#: data/com.raggesilver.BlackBox.gschema.xml:101
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr "终端部件的（上、下、左、右）内边距"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:93
+#: data/com.raggesilver.BlackBox.gschema.xml:105
 msgid "Terminal cell width"
 msgstr "单元格宽度"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:97
+#: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid "Terminal cell height"
 msgstr "单元格高度"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:101
+#: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "Cursor shape"
 msgstr "光标形状"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:105
+#: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr "启用后，使用 ctrl + c 和 ctrl + v 来复制/粘贴"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:109
+#: data/com.raggesilver.BlackBox.gschema.xml:121
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
 msgstr "启用后，在只有一个标签页打开时，将标签替换成标题栏文本"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:113
+#: data/com.raggesilver.BlackBox.gschema.xml:125
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr "启用后，单个打开的标签页将与标题栏颜色混合"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:117
+#: data/com.raggesilver.BlackBox.gschema.xml:129
 msgid "Whether to spawn shell in login mode"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:121
+#: data/com.raggesilver.BlackBox.gschema.xml:133
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:125
+#: data/com.raggesilver.BlackBox.gschema.xml:137
 msgid "Custom command to use instead of the user's shell"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:132
+#: data/com.raggesilver.BlackBox.gschema.xml:144
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:136
+#: data/com.raggesilver.BlackBox.gschema.xml:148
 #, fuzzy
 msgid "Whether search should be case sensitive"
 msgstr "是否显示标题栏"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:140
+#: data/com.raggesilver.BlackBox.gschema.xml:152
 msgid "Whether search should only match entire words"
 msgstr ""
 
-#: data/com.raggesilver.BlackBox.gschema.xml:144
+#: data/com.raggesilver.BlackBox.gschema.xml:156
 msgid "Whether search should be performed using regular expressions"
 msgstr ""
 
@@ -263,259 +279,289 @@ msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "显示快捷键"
 
-#: src/gtk/preferences-window.ui:9
+#: src/gtk/preferences-window.ui:11
 msgid "General"
 msgstr "常规"
 
-#: src/gtk/preferences-window.ui:13
+#: src/gtk/preferences-window.ui:15
 msgid "Window"
 msgstr "窗口"
 
-#: src/gtk/preferences-window.ui:17
+#: src/gtk/preferences-window.ui:19
 msgid "Remember Window Size"
 msgstr "记住窗口大小"
 
-#: src/gtk/preferences-window.ui:28
+#: src/gtk/preferences-window.ui:30
+#, fuzzy
+msgid "Show Borders"
+msgstr "显示标题栏"
+
+#: src/gtk/preferences-window.ui:31
+msgid "Enable to draw a border around the window and the active tab."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:42
 msgid "Theme Integration"
 msgstr "主题集成"
 
-#: src/gtk/preferences-window.ui:29
+#: src/gtk/preferences-window.ui:43
 #, fuzzy
 msgid "Style window with terminal theme colors."
 msgstr "是否将终端主题的配色集成到应用窗口"
 
-#: src/gtk/preferences-window.ui:39
+#: src/gtk/preferences-window.ui:53
 #, fuzzy
 msgid "Style Preference"
 msgstr "首选项"
 
-#: src/gtk/preferences-window.ui:43
+#: src/gtk/preferences-window.ui:57
 msgid "Follow System"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:44
+#: src/gtk/preferences-window.ui:58
 msgid "Light Style"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:45
+#: src/gtk/preferences-window.ui:59
 msgid "Dark Style"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:55
+#: src/gtk/preferences-window.ui:69
 msgid "Tabs"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:59
+#: src/gtk/preferences-window.ui:73
 msgid "Expand Tabs"
 msgstr "展开标签页"
 
-#: src/gtk/preferences-window.ui:69
+#: src/gtk/preferences-window.ui:83
 msgid "Single Tab Mode"
 msgstr "单标签页模式"
 
-#: src/gtk/preferences-window.ui:74
+#: src/gtk/preferences-window.ui:88
 msgid "Hide Single Tab"
 msgstr "隐藏单个标签页"
 
-#: src/gtk/preferences-window.ui:75
+#: src/gtk/preferences-window.ui:89
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
 msgstr "在只有一个标签页时将标签页替换成标题栏文本，以更方便地拖拽窗口"
 
-#: src/gtk/preferences-window.ui:87
+#: src/gtk/preferences-window.ui:101
 msgid "Stealth Single Tab"
 msgstr "隐藏单个标签页"
 
-#: src/gtk/preferences-window.ui:88
-msgid "Blend single tab with headerbar."
+#: src/gtk/preferences-window.ui:102
+#, fuzzy
+msgid "Blend single tab with header bar."
 msgstr "将单个标签页的颜色与标题栏混合"
 
-#: src/gtk/preferences-window.ui:103
+#: src/gtk/preferences-window.ui:117
 #, fuzzy
-msgid "Headerbar"
+msgid "Header Bar"
 msgstr "显示标题栏"
 
-#: src/gtk/preferences-window.ui:107
+#: src/gtk/preferences-window.ui:121
+#, fuzzy
+msgid "Show Header Bar"
+msgstr "显示标题栏"
+
+#: src/gtk/preferences-window.ui:132
 msgid "Show Menu Button"
 msgstr "显示菜单按钮"
 
-#: src/gtk/preferences-window.ui:118
-msgid "Show Headerbar"
-msgstr "显示标题栏"
+#: src/gtk/preferences-window.ui:143
+msgid "Drag Area"
+msgstr ""
 
-#: src/gtk/preferences-window.ui:128
+#: src/gtk/preferences-window.ui:144
+msgid "Enable to reserve some space on the left side to drag the window."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:156
+msgid "Draw Line Under Header Bar"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:157
+msgid ""
+"Enable to draw a line under the header bar when a single tab is open. "
+"Requires \"Show Borders\"."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
 msgstr "浮动控件"
 
-#: src/gtk/preferences-window.ui:131
+#: src/gtk/preferences-window.ui:170
 msgid "Show Floating Controls"
 msgstr "显示浮动控件"
 
-#: src/gtk/preferences-window.ui:132
-msgid "Show floating controls in headbarless mode."
+#: src/gtk/preferences-window.ui:171
+#, fuzzy
+msgid "Show floating controls when header bar is hidden."
 msgstr "在隐藏标题栏时显示浮动控件"
 
-#: src/gtk/preferences-window.ui:144
+#: src/gtk/preferences-window.ui:183
 msgid "Floating Controls Hover Area"
 msgstr "触发区域"
 
-#: src/gtk/preferences-window.ui:145
+#: src/gtk/preferences-window.ui:184
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
 msgstr "在窗口顶部的触发区域（px），鼠标进入此区域时显示浮动控件"
 
-#: src/gtk/preferences-window.ui:157
+#: src/gtk/preferences-window.ui:196
 msgid "Delay Before Show Floating Controls"
 msgstr "延迟时间"
 
-#: src/gtk/preferences-window.ui:158
+#: src/gtk/preferences-window.ui:197
 msgid "Delay time (ms) before show floating controls."
 msgstr "显示浮动控件之前的延迟时间（ms）"
 
-#: src/gtk/preferences-window.ui:175 src/gtk/preferences-window.ui:239
+#: src/gtk/preferences-window.ui:214 src/gtk/preferences-window.ui:278
 msgid "Terminal"
 msgstr "终端"
 
-#: src/gtk/preferences-window.ui:180
+#: src/gtk/preferences-window.ui:219
 msgid "Text"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:184
+#: src/gtk/preferences-window.ui:223
 msgid "Font"
 msgstr "字体"
 
-#: src/gtk/preferences-window.ui:196
+#: src/gtk/preferences-window.ui:235
 msgid "Cell Spacing"
 msgstr "单元格间距"
 
-#: src/gtk/preferences-window.ui:199
+#: src/gtk/preferences-window.ui:238
 msgid "Width"
 msgstr "宽度"
 
-#: src/gtk/preferences-window.ui:211
+#: src/gtk/preferences-window.ui:250
 msgid "Height"
 msgstr "高度"
 
-#: src/gtk/preferences-window.ui:226
+#: src/gtk/preferences-window.ui:265
 msgid "Easy Copy &amp; Paste"
 msgstr "快捷复制粘贴"
 
-#: src/gtk/preferences-window.ui:227
+#: src/gtk/preferences-window.ui:266
 msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "使用快捷键 Ctrl+c/ctrl+v 来复制/粘贴"
 
-#: src/gtk/preferences-window.ui:242
+#: src/gtk/preferences-window.ui:281
 msgid "Cursor"
 msgstr "光标"
 
-#: src/gtk/preferences-window.ui:246
+#: src/gtk/preferences-window.ui:285
 msgid "Block"
 msgstr "Block"
 
-#: src/gtk/preferences-window.ui:247
+#: src/gtk/preferences-window.ui:286
 msgid "IBeam"
 msgstr "IBeam"
 
-#: src/gtk/preferences-window.ui:248
+#: src/gtk/preferences-window.ui:287
 msgid "Underline"
 msgstr "Underline"
 
-#: src/gtk/preferences-window.ui:256
+#: src/gtk/preferences-window.ui:295
 msgid "Padding"
 msgstr "内边距"
 
-#: src/gtk/preferences-window.ui:272
+#: src/gtk/preferences-window.ui:311
 #, fuzzy
 msgid "Scrolling"
 msgstr "像素滚动"
 
-#: src/gtk/preferences-window.ui:275
+#: src/gtk/preferences-window.ui:314
 msgid "Scrollbars"
 msgstr "滚动条"
 
-#: src/gtk/preferences-window.ui:278
+#: src/gtk/preferences-window.ui:317
 msgid "Show Scrollbars"
 msgstr "显示滚动条"
 
-#: src/gtk/preferences-window.ui:289
+#: src/gtk/preferences-window.ui:328
 #, fuzzy
 msgid "Use Overlay Scrolling"
 msgstr "启用叠加滚动条"
 
-#: src/gtk/preferences-window.ui:303
+#: src/gtk/preferences-window.ui:342
 msgid "Set Scrollback Limit"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:353
 #, fuzzy
 msgid "Scrollback Lines"
 msgstr "滚动条"
 
-#: src/gtk/preferences-window.ui:330
+#: src/gtk/preferences-window.ui:369
 msgid "Command"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:334
+#: src/gtk/preferences-window.ui:373
 msgid "Run Command as Login Shell"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:345
+#: src/gtk/preferences-window.ui:384
 msgid "Use Custom Command"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:355
+#: src/gtk/preferences-window.ui:394
 msgid "Custom Command"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:362
+#: src/gtk/preferences-window.ui:401
 msgid "Theme"
 msgstr "主题"
 
-#: src/gtk/preferences-window.ui:373
+#: src/gtk/preferences-window.ui:412
 msgid "Open folder"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:381
+#: src/gtk/preferences-window.ui:420
 msgid "Get more themes online"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:395
+#: src/gtk/preferences-window.ui:434
 msgid "Set your preferred theme for light and dark styles."
 msgstr ""
 
-#: src/gtk/preferences-window.ui:410
+#: src/gtk/preferences-window.ui:449
 #, fuzzy
 msgid "Light Theme"
 msgstr "主题"
 
-#: src/gtk/preferences-window.ui:416
+#: src/gtk/preferences-window.ui:455
 #, fuzzy
 msgid "Dark Theme"
 msgstr "主题"
 
-#: src/gtk/preferences-window.ui:424
+#: src/gtk/preferences-window.ui:463
 msgid "Only display themes for the current style"
 msgstr ""
 
-#: src/gtk/preferences-window.ui:432
+#: src/gtk/preferences-window.ui:471
 msgid ""
 "To ensure readability, \"Theme Integration\" will be disabled if you select "
 "a light color scheme while using the dark app style or a dark color scheme "
 "while using the light app style."
 msgstr ""
 
-#: src/gtk/preferences-window.ui:459
+#: src/gtk/preferences-window.ui:498
 msgid "Advanced"
 msgstr "高级"
 
-#: src/gtk/preferences-window.ui:463
+#: src/gtk/preferences-window.ui:502
 #, fuzzy
 msgid "Experimental"
 msgstr "实验功能 🧪"
 
-#: src/gtk/preferences-window.ui:464
+#: src/gtk/preferences-window.ui:503
 msgid ""
 "Features in this section are known to be wonky. Please feel free to test and "
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
@@ -524,31 +570,31 @@ msgstr ""
 "这里的功能还不太稳定。请随意测试，在遇到问题时可以<a href=\"https://gitlab."
 "gnome.org/raggesilver/blackbox/-/issues\">报告 bug</a>"
 
-#: src/gtk/preferences-window.ui:468
+#: src/gtk/preferences-window.ui:507
 msgid "Pixel Scrolling"
 msgstr "像素滚动"
 
-#: src/gtk/preferences-window.ui:469
+#: src/gtk/preferences-window.ui:508
 msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
 msgstr "按像素单位滚动，而不是按行滚动。 必须启用 \"显示滚动条\" "
 
-#: src/gtk/preferences-window.ui:481
+#: src/gtk/preferences-window.ui:520
 msgid "Danger Zone"
 msgstr "危险区域"
 
-#: src/gtk/preferences-window.ui:484
+#: src/gtk/preferences-window.ui:523
 msgid "Reset Preferences"
 msgstr "重置设置"
 
-#: src/gtk/preferences-window.ui:485
+#: src/gtk/preferences-window.ui:524
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
 msgstr "恢复默认设置，此功能不会删除之前添加的主题"
 
-#: src/gtk/preferences-window.ui:490
+#: src/gtk/preferences-window.ui:529
 #, fuzzy
 msgid "Reset preferences"
 msgstr "重置设置"
@@ -574,15 +620,15 @@ msgstr "显示帮助信息"
 msgid "Run %s --help to get help\n"
 msgstr "运行 %s --help 以显示帮助信息\n"
 
-#: src/widgets/Window.vala:140 src/widgets/HeaderBar.vala:30
+#: src/widgets/Window.vala:142 src/widgets/HeaderBar.vala:30
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: src/widgets/Window.vala:143
+#: src/widgets/Window.vala:145
 msgid "Show headerbar"
 msgstr "显示标题栏"
 
-#: src/widgets/Window.vala:159
+#: src/widgets/Window.vala:161
 msgid "Menu"
 msgstr "菜单"
 
@@ -614,7 +660,7 @@ msgstr "帮助"
 msgid "About"
 msgstr "关于"
 
-#: src/widgets/PreferencesWindow.vala:435
+#: src/widgets/PreferencesWindow.vala:459
 msgid "Terminal Font"
 msgstr "终端字体"
 
