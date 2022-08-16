@@ -34,11 +34,11 @@
   <screenshots>
     <screenshot type="default">
       <caption>Black Box screenshot</caption>
-      <image>https://i.imgur.com/bBk8jKc.png</image>
+      <image>https://i.imgur.com/AzxyHwA.png</image>
     </screenshot>
     <screenshot>
       <caption>Black Box with header bars turned off</caption>
-      <image>https://i.imgur.com/O7Nblz8.png</image>
+      <image>https://i.imgur.com/xxtFYc5.png</image>
     </screenshot>
   </screenshots>
 
@@ -84,7 +84,7 @@
   </kudos>
 
   <releases>
-    <release date="2022-08-15" version="0.12.0">
+    <release date="2022-08-16" version="0.12.0">
       <description>
         <p>Features:</p>
         <ul>
@@ -92,6 +92,7 @@
           <li>Open a new tab by clicking on the header bar with the middle mouse button</li>
           <li>Customizable number of lines to keep buffered</li>
           <li>Added option to reserve an area in the header bar to drag the window</li>
+          <li>Added Spanish translation</li>
         </ul>
         <p>Improvements:</p>
         <ul>
