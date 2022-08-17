@@ -1,17 +1,20 @@
+#
+# Irénée THIRION <irenee.thirion@e.email>, 2022.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-15 15:52-0300\n"
-"PO-Revision-Date: 2022-07-14 11:39+0200\n"
-"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2022-08-17 18:34+0200\n"
+"Last-Translator: Irénée THIRION <irenee.thirion@e.email>\n"
+"Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 42.0\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: po\n"
 "X-Poedit-SearchPath-1: .\n"
@@ -35,9 +38,8 @@ msgid "Window height"
 msgstr "Hauteur de la fenêtre"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:14
-#, fuzzy
 msgid "Whether or not to display borders around the window and tabs"
-msgstr "Afficher ou non un bouton de menu dans la barre supérieure"
+msgstr "Afficher ou non des bordures autour de la fenêtre et des onglets"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:18
 msgid "Whether or not to remember window size"
@@ -57,22 +59,23 @@ msgstr "Étendre ou non les onglets pour remplir la barre des onglets"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether the headerbar should be shown or not"
-msgstr "Afficher ou non la barre supérieure"
+msgstr "Afficher ou non la barre d’en-tête"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to display a menu button in the headerbar"
-msgstr "Afficher ou non un bouton de menu dans la barre supérieure"
+msgstr "Afficher ou non un bouton de menu dans la barre d’en-tête"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid ""
 "Whether or not to draw a 1px line under the header bar when there's a single "
 "tab open"
 msgstr ""
+"Dessiner ou non une ligne de 1px sous la barre d’en-tête lorsqu’un seul "
+"onglet est ouvert"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:52
-#, fuzzy
 msgid "Whether or not to reserve an area for dragging the header bar"
-msgstr "Afficher ou non un bouton de menu dans la barre supérieure"
+msgstr "Réserver ou non une zone pour faire glisser la barre d’en-tête"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to show scrollbars"
@@ -90,11 +93,11 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "Enable to limit terminal scrollback"
-msgstr ""
+msgstr "Activer pour limiter le défilement du terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Number of lines stored in scrollback"
-msgstr ""
+msgstr "Nombre de lignes mémorisées pour le défilement"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "If enabled, floating controls will be shown in headerless mode"
@@ -178,19 +181,21 @@ msgstr "Commande personnalisée à utiliser à la place du shell utilisateur"
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
+"Si le fait de cliquer sur le bouton « Suivant » du dernier résultat de "
+"recherche doit permettre de revenir au premier résultat"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:148
-#, fuzzy
 msgid "Whether search should be case sensitive"
-msgstr "Afficher ou non la barre supérieure"
+msgstr "Si la recherche doit être sensible à la casse"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:152
 msgid "Whether search should only match entire words"
-msgstr ""
+msgstr "Si la recherche doit correspondre uniquement aux mots entiers"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:156
 msgid "Whether search should be performed using regular expressions"
 msgstr ""
+"Si la recherche doit être effectuée en utilisant des expressions régulières"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -215,7 +220,7 @@ msgstr "Fermer l’onglet"
 #: src/gtk/help-overlay.ui:32
 msgctxt "shortcut window"
 msgid "Switch headbar mode"
-msgstr "Changement de mode de barre supérieure"
+msgstr "Changement de mode de barre d’en-tête"
 
 #: src/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
@@ -223,7 +228,6 @@ msgid "Toggle fullscreen"
 msgstr "Basculer en mode plein écran"
 
 #: src/gtk/help-overlay.ui:45
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Terminal"
 msgstr "Terminal"
@@ -231,7 +235,7 @@ msgstr "Terminal"
 #: src/gtk/help-overlay.ui:48
 msgctxt "shortcut window"
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: src/gtk/help-overlay.ui:54
 msgctxt "shortcut window"
@@ -301,13 +305,13 @@ msgid "Remember Window Size"
 msgstr "Se souvenir de la taille de la fenêtre"
 
 #: src/gtk/preferences-window.ui:30
-#, fuzzy
 msgid "Show Borders"
-msgstr "Afficher la barre supérieure"
+msgstr "Afficher les bordures"
 
 #: src/gtk/preferences-window.ui:31
 msgid "Enable to draw a border around the window and the active tab."
 msgstr ""
+"Activer pour dessiner une bordure autour de la fenêtre et de l’onglet actif."
 
 #: src/gtk/preferences-window.ui:42
 msgid "Theme Integration"
@@ -362,19 +366,16 @@ msgid "Stealth Single Tab"
 msgstr "Onglet unique discret"
 
 #: src/gtk/preferences-window.ui:102
-#, fuzzy
 msgid "Blend single tab with header bar."
-msgstr "Fondre un onglet seul avec la barre supérieure."
+msgstr "Fondre un onglet seul avec la barre d’en-tête."
 
 #: src/gtk/preferences-window.ui:117
-#, fuzzy
 msgid "Header Bar"
-msgstr "Barre supérieure"
+msgstr "Barre d’en-tête"
 
 #: src/gtk/preferences-window.ui:121
-#, fuzzy
 msgid "Show Header Bar"
-msgstr "Afficher la barre supérieure"
+msgstr "Afficher la barre d’en-tête"
 
 #: src/gtk/preferences-window.ui:132
 msgid "Show Menu Button"
@@ -382,21 +383,24 @@ msgstr "Afficher le bouton du Menu"
 
 #: src/gtk/preferences-window.ui:143
 msgid "Drag Area"
-msgstr ""
+msgstr "Aire de glissage"
 
 #: src/gtk/preferences-window.ui:144
 msgid "Enable to reserve some space on the left side to drag the window."
 msgstr ""
+"Activer pour réserver un espace sur la gauche pour faire glisser la fenêtre"
 
 #: src/gtk/preferences-window.ui:156
 msgid "Draw Line Under Header Bar"
-msgstr ""
+msgstr "Dessiner une ligne sous la barre d‘en-tête"
 
 #: src/gtk/preferences-window.ui:157
 msgid ""
 "Enable to draw a line under the header bar when a single tab is open. "
 "Requires \"Show Borders\"."
 msgstr ""
+"Activer pour dessiner une ligne sous la barre d’en-tête quand un seul onglet "
+"est ouvert. Requiert « Afficher les bordures »"
 
 #: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
@@ -407,9 +411,8 @@ msgid "Show Floating Controls"
 msgstr "Afficher les contrôles flottants"
 
 #: src/gtk/preferences-window.ui:171
-#, fuzzy
 msgid "Show floating controls when header bar is hidden."
-msgstr "Afficher les contrôles flottants en mode sans barre supérieure."
+msgstr "Afficher les contrôles flottants quand la barre d’en-tête est masquée."
 
 #: src/gtk/preferences-window.ui:183
 msgid "Floating Controls Hover Area"
@@ -484,9 +487,8 @@ msgid "Padding"
 msgstr "Padding"
 
 #: src/gtk/preferences-window.ui:311
-#, fuzzy
 msgid "Scrolling"
-msgstr "Défilement par pixels"
+msgstr "Défilement"
 
 #: src/gtk/preferences-window.ui:314
 msgid "Scrollbars"
@@ -502,12 +504,11 @@ msgstr "Utiliser le défilement en superposition"
 
 #: src/gtk/preferences-window.ui:342
 msgid "Set Scrollback Limit"
-msgstr ""
+msgstr "Définir une limite de défilement"
 
 #: src/gtk/preferences-window.ui:353
-#, fuzzy
 msgid "Scrollback Lines"
-msgstr "Barres de défilement"
+msgstr "Lignes de défilement"
 
 #: src/gtk/preferences-window.ui:369
 msgid "Command"
@@ -611,7 +612,6 @@ msgstr ""
 "seront pas supprimés."
 
 #: src/gtk/preferences-window.ui:529
-#, fuzzy
 msgid "Reset preferences"
 msgstr "Réinitialiser les préférences"
 
@@ -642,7 +642,7 @@ msgstr "Plein écran"
 
 #: src/widgets/Window.vala:145
 msgid "Show headerbar"
-msgstr "Afficher la barre supérieure"
+msgstr "Afficher la barre d’en-tête"
 
 #: src/widgets/Window.vala:161
 msgid "Menu"
@@ -703,8 +703,8 @@ msgstr ""
 
 #, c-format
 #~ msgid ""
-#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
-#~ "href=\"%s\">online</a>."
+#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s"
+#~ "\">online</a>."
 #~ msgstr ""
 #~ "Ouvrir le <a href=\"file://%s\">dossier des thèmes</a>. Obtenez plus de "
 #~ "thèmes <a href=\"%s\">en ligne</a>."
