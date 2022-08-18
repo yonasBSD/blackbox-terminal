@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-15 15:52-0300\n"
-"PO-Revision-Date: 2022-08-18 05:47+0300\n"
+"PO-Revision-Date: 2022-08-18 05:51+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n""Language: ru\n"
 "Language: ru\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
-msgstr "Чёрный ящик"
+msgstr "Чёрный Ящик"
 
 #: data/com.raggesilver.BlackBox.desktop.in:9
 msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
