@@ -391,7 +391,7 @@ msgid ""
 "Enable to draw a line under the header bar when a single tab is open. "
 "Requires \"Show Borders\"."
 msgstr "Включает отображение линии под панелью заголовка, если открыта "
-"одна вкладка. Опция \"Отображать Границы\" должна быть включена."
+"одна вкладка. Опция \"Отображать границы\" должна быть включена."
 
 #: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
