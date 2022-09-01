@@ -40,15 +40,15 @@ msgstr "Altura da janela"
 #: data/com.raggesilver.BlackBox.gschema.xml:14
 #, fuzzy
 msgid "Whether or not to display borders around the window and tabs"
-msgstr "Mostrar ou não exibir bordas ao redor da janela e guias"
+msgstr "Exibir ou não bordas ao redor da janela e de abas"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:18
 msgid "Whether or not to remember window size"
-msgstr "Lembrar ou não lembrar o tamanho da janela"
+msgstr "Lembrar ou não o tamanho da janela"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Font family and size"
-msgstr "Família e tamanho da fonte"
+msgstr "Família de fontes e tamanhos"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Whether the window should inherit terminal theme's colors"
@@ -56,7 +56,7 @@ msgstr "Se a janela deve herdar as cores do tema do terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether or not tabs should expand to fill tab bar"
-msgstr "Se as guias devem ou não se expandir para preencher a barra de guias"
+msgstr "Se as abas devem ou não se expandir para preencher a barra de abas"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether the headerbar should be shown or not"
@@ -64,7 +64,7 @@ msgstr "Se a barra de cabeçalho deve ser mostrada ou não"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether or not to display a menu button in the headerbar"
-msgstr "Mostrar ou não um botão de menu na barra de cabeçalho"
+msgstr "Exibir ou não um botão de menu na barra de cabeçalho"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid ""
@@ -72,7 +72,7 @@ msgid ""
 "tab open"
 msgstr ""
 "Se deve ou não desenhar uma linha de 1px sob a barra de cabeçalho quando há "
-"uma única guia aberta"
+"uma única aba aberta"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:52
 #, fuzzy
@@ -90,11 +90,11 @@ msgstr "Se a rolagem de sobreposição deve ser ativada"
 #: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr ""
-"Se ativado, os terminais rolarão por pixels em vez de linhas"
+"Se ativado, os terminais rolarão por pixels ao invés de linhas"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "Enable to limit terminal scrollback"
-msgstr "Ative para limitar a rolagem do terminal"
+msgstr "Ativar para limitar a rolagem do terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Number of lines stored in scrollback"
@@ -157,13 +157,13 @@ msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
 msgstr ""
-"Se ativado, a barra de guias será substituída por um rótulo quando houver "
-"uma única guia aberta"
+"Se ativado, a barra de abas será substituída por um rótulo quando houver "
+"uma única aba aberta"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:125
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
-"Se ativado, uma única guia aberta será combinada com a cor da barra "
+"Se ativado, uma única aba aberta será combinada com a cor da barra "
 "do cabeçalho"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:129
@@ -172,11 +172,11 @@ msgstr "Se o shell deve ser gerado no modo de login"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:133
 msgid "Whether to use a custom command instead of the user's shell"
-msgstr "Se deve usar um comando personalizado em vez do shell do usuário"
+msgstr "Se deve usar um comando personalizado ao invés do shell do usuário"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:137
 msgid "Custom command to use instead of the user's shell"
-msgstr "Comando personalizado para usar em vez do shell do usuário"
+msgstr "Comando personalizado para usar ao invés do shell do usuário"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:144
 msgid ""
@@ -210,12 +210,12 @@ msgstr "Nova janela"
 #: src/gtk/help-overlay.ui:19
 msgctxt "shortcut window"
 msgid "New tab"
-msgstr "Nova guia"
+msgstr "Nova aba"
 
 #: src/gtk/help-overlay.ui:25
 msgctxt "shortcut window"
 msgid "Close tab"
-msgstr "Fechar guia"
+msgstr "Fechar aba"
 
 #: src/gtk/help-overlay.ui:32
 msgctxt "shortcut window"
@@ -265,22 +265,22 @@ msgstr "Navegação"
 #: src/gtk/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Focus next tab"
-msgstr "Foco na próxima guia"
+msgstr "Foco na próxima aba"
 
 #: src/gtk/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Focus previous tab"
-msgstr "Foco na guia anterior"
+msgstr "Foco na aba anterior"
 
 #: src/gtk/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Switch to Tab"
-msgstr "Mudar para Guia"
+msgstr "Mudar para Aba"
 
 #: src/gtk/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Switch to last Tab"
-msgstr "Mudar para a última guia"
+msgstr "Mudar para a última aba"
 
 #: src/gtk/help-overlay.ui:109
 msgctxt "shortcut window"
@@ -311,7 +311,7 @@ msgstr "Mostrar Bordas"
 
 #: src/gtk/preferences-window.ui:31
 msgid "Enable to draw a border around the window and the active tab."
-msgstr "Ative para desenhar uma borda ao redor da janela e da guia ativa."
+msgstr "Ativar para desenhar uma borda ao redor da janela e da aba ativa."
 
 #: src/gtk/preferences-window.ui:42
 msgid "Theme Integration"
@@ -339,26 +339,26 @@ msgstr "Estilo Escuro"
 
 #: src/gtk/preferences-window.ui:69
 msgid "Tabs"
-msgstr "Guias"
+msgstr "Abas"
 
 #: src/gtk/preferences-window.ui:73
 msgid "Expand Tabs"
-msgstr "Expandir Guias"
+msgstr "Expandir Abas"
 
 #: src/gtk/preferences-window.ui:83
 msgid "Single Tab Mode"
-msgstr "Modo de Guia Única"
+msgstr "Modo de Aba Única"
 
 #: src/gtk/preferences-window.ui:88
 msgid "Hide Single Tab"
-msgstr "Ocultar Guia Única"
+msgstr "Ocultar Aba Única"
 
 #: src/gtk/preferences-window.ui:89
 msgid ""
 "Replace tab bar with a title label when a single tab is open. Easier to drag "
 "the window."
 msgstr ""
-"Substitua a barra de guias por um rótulo quando uma única guia estiver aberta. "
+"Substitua a barra de abas por um rótulo quando uma única aba estiver aberta. "
 "Mais fácil de arrastar a janela."
 
 #: src/gtk/preferences-window.ui:101
@@ -368,7 +368,7 @@ msgstr "Aba Única Invisível"
 #: src/gtk/preferences-window.ui:102
 #, fuzzy
 msgid "Blend single tab with header bar."
-msgstr "Mescle uma guia única com a barra de cabeçalho."
+msgstr "Mesclar aba única com a barra de cabeçalho."
 
 #: src/gtk/preferences-window.ui:117
 #, fuzzy
@@ -390,7 +390,7 @@ msgstr "Área de Arrasto"
 
 #: src/gtk/preferences-window.ui:144
 msgid "Enable to reserve some space on the left side to drag the window."
-msgstr "Ative para reservar algum espaço no lado esquerdo para arrastar a janela."
+msgstr "Ativar para reservar algum espaço no lado esquerdo para arrastar a janela."
 
 #: src/gtk/preferences-window.ui:156
 msgid "Draw Line Under Header Bar"
@@ -401,8 +401,8 @@ msgid ""
 "Enable to draw a line under the header bar when a single tab is open. "
 "Requires \"Show Borders\"."
 msgstr ""
-"Ative para desenhar uma linha abaixo da barra de cabeçalho quando uma "
-"única guia estiver aberta. Requer \"Mostrar Bordas\"."
+"Ativar para desenhar uma linha abaixo da barra de cabeçalho quando uma "
+"única aba estiver aberta. Requer \"Mostrar Bordas\"."
 
 #: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
@@ -543,7 +543,7 @@ msgstr "Obtenha mais temas online"
 
 #: src/gtk/preferences-window.ui:434
 msgid "Set your preferred theme for light and dark styles."
-msgstr "Defina seu tema preferido para estilos claros e escuros."
+msgstr "Definir seu tema preferido para estilos claros e escuros."
 
 #: src/gtk/preferences-window.ui:449
 msgid "Light Theme"
@@ -564,8 +564,8 @@ msgid ""
 "while using the light app style."
 msgstr ""
 "Para garantir a legibilidade, \"Integração do tema\" será desativado se você selecionar "
-"um esquema de cores claras ao usar o estilo do aplicativo escuro ou um esquema "
-"de cores escuras enquanto estiver usando o estilo do aplicativo claro. "
+"um esquema de cores claras ao usar o estilo escuro do aplicativo ou um esquema "
+"de cores escuras enquanto estiver usando o estilo claro do aplicativo. "
 
 #: src/gtk/preferences-window.ui:498
 msgid "Advanced"
@@ -594,7 +594,7 @@ msgid ""
 "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
 "must be enabled."
 msgstr ""
-"Role por unidades de pixel em vez de rolar por linhas. "
+"Rolar por unidades de pixel ao invés de rolar por linhas. "
 "\"Mostrar barras de rolagem\" deve estar ativado."
 
 #: src/gtk/preferences-window.ui:520
@@ -652,7 +652,7 @@ msgstr "Menu"
 
 #: src/widgets/TerminalTab.vala:120
 msgid "New Tab"
-msgstr "Nova Guia"
+msgstr "Nova Aba"
 
 #: src/widgets/TerminalTab.vala:121
 msgid "New Window"
