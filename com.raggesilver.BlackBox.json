@@ -1,7 +1,7 @@
 {
   "app-id": "com.raggesilver.BlackBox",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "42",
+  "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
   "command": "blackbox-link-system-fonts",
   "finish-args": [
@@ -32,8 +32,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/70366d113516382038c69f863c9915753041e563/vte-70366d113516382038c69f863c9915753041e563.tar.gz",
-          "sha256": "22b7c8298c147faa58c10a1847184745e71d213221ef522bb96c722444ea0d17"
+          "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/9dbae321af881924b5cae245b3d956497e088437/vte-9dbae321af881924b5cae245b3d956497e088437.tar.gz",
+          "sha256": "f96908a6c06b5efd256fb88f001f82042bc10b8e0f9ca3e46f5a477646386428"
         }
       ]
     },
@@ -56,40 +56,6 @@
           "type": "archive",
           "url": "https://gitlab.com/raggesilver/marble/-/archive/6dcc6fefa35f0151b0549c01bd774750fe6bdef8/marble-6dcc6fefa35f0151b0549c01bd774750fe6bdef8.tar.gz",
           "sha256": "6fe25ab863bf9a81fac827861b3f17d07fb4a0e4d944dbb0d5b09dfafca59fb4"
-        }
-      ]
-    },
-    {
-      "name": "libsass",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/lazka/libsass/archive/refs/heads/meson.zip",
-          "sha256": "3692f4d1ac10afe5645a6271d25d53572cd10fcc3f7f12d4fc05ff630d0b97c0"
-        }
-      ]
-    },
-    {
-      "name": "sassc",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/lazka/sassc/archive/refs/heads/meson.zip",
-          "sha256": "028ef1cce6037db3c69f889951293b7865b74c20c1ee9d2215df79ca7d4a9e61"
-        }
-      ]
-    },
-    {
-      "name": "libadwaita",
-      "buildsystem": "meson",
-      "config-opts": ["-Dtests=false", "-Dexamples=false"],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://gitlab.gnome.org/GNOME/libadwaita/-/archive/161249fa953fb06a146d8d22612711707ede1ea9/libadwaita-161249fa953fb06a146d8d22612711707ede1ea9.tar.gz",
-          "sha256": "013608439427187be56765ded578b3edf4d8ff104f4e5b33fd37d6bbdf77bac0"
         }
       ]
     },
