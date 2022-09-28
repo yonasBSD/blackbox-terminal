@@ -84,6 +84,22 @@
   </kudos>
 
   <releases>
+    <release date="2022-09-28" version="0.12.1">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>Added Brazilian Portuguese translation</li>
+        </ul>
+        <p>Improvements:</p>
+        <ul>
+          <li>Updated French, Russian, Italian, Czech, and Swedish translations</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Flatpak CLI 1.13>= had weird output</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-08-16" version="0.12.0">
       <description>
         <p>Features:</p>

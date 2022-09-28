@@ -1,5 +1,5 @@
 project('blackbox', ['c', 'vala'],
-          version: '0.12.90',
+          version: '0.12.1',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2',
                    ],

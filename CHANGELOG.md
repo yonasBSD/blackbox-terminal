@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.12.1 - 2022.09.28
+
+Features:
+
+- Added Brazilian Portuguese translation - thanks to @ciro-mota
+
+Improvements:
+
+- Updated French, Russian, Italian, Czech, and Swedish translations
+
+Bug fixes:
+
+- Flatpak CLI `1.13>=` had weird output - #165
+
 ## 0.12.0 - 2022.08.16
 
 Features:
