@@ -30,7 +30,6 @@ public class Terminal.Terminal : Vte.Terminal {
   }
 
   static string[] blackbox_envv = {
-    "G_MESSAGES_DEBUG=false",
     "TERM=xterm-256color",
     "COLORTERM=truecolor",
     "TERM_PROGRAM=%s".printf (APP_NAME),
