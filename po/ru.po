@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-15 15:52-0300\n"
-"PO-Revision-Date: 2022-08-9 3:21+0300\n"
+"PO-Revision-Date: 2022-08-18 05:51+0300\n"
 "Last-Translator: acephale <acephaleee@protonmail.com>\n"
-"Language-Team: Русский <>\n"
+"Language-Team: Русский <gnome-cyr@gnome.org>\n""Language: ru\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -37,9 +37,8 @@ msgid "Window height"
 msgstr "Высота окна"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:14
-#, fuzzy
 msgid "Whether or not to display borders around the window and tabs"
-msgstr "Должна ли отображаться кнопка меню на панели заголовка"
+msgstr "Должны ли отображаться границы вокруг окна и вкладок"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:18
 msgid "Whether or not to remember window size"
@@ -69,12 +68,12 @@ msgstr "Должна ли отображаться кнопка меню на п
 msgid ""
 "Whether or not to draw a 1px line under the header bar when there's a single "
 "tab open"
-msgstr ""
+msgstr "Отображать ли однопиксельную линию под панелью заголовка когда открыта "
+"одна вкладка"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:52
-#, fuzzy
 msgid "Whether or not to reserve an area for dragging the header bar"
-msgstr "Должна ли отображаться кнопка меню на панели заголовка"
+msgstr "Резервировать ли область для перетаскивания панели заголовка"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to show scrollbars"
@@ -215,12 +214,12 @@ msgstr "Закрыть вкладку"
 #: src/gtk/help-overlay.ui:32
 msgctxt "shortcut window"
 msgid "Switch headbar mode"
-msgstr "Переключение режима панели заголовка"
+msgstr "Режим панели заголовка"
 
 #: src/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
 msgid "Toggle fullscreen"
-msgstr "Переключение полноэкранного режима"
+msgstr "Полноэкранный режим"
 
 #: src/gtk/help-overlay.ui:45
 msgctxt "shortcut window"
@@ -260,22 +259,22 @@ msgstr "Навигация"
 #: src/gtk/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Focus next tab"
-msgstr "Переключиться на следующую вкладку"
+msgstr "Следующая вкладка"
 
 #: src/gtk/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Focus previous tab"
-msgstr "Переключиться на предыдущую вкладку"
+msgstr "Предыдущая вкладка"
 
 #: src/gtk/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Switch to Tab"
-msgstr "Переключиться на вкладку"
+msgstr "Переключиться на вкладку (номер)"
 
 #: src/gtk/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Switch to last Tab"
-msgstr "Переключиться на последнюю вкладку"
+msgstr "Последняя вкладка"
 
 #: src/gtk/help-overlay.ui:109
 msgctxt "shortcut window"
@@ -285,7 +284,7 @@ msgstr "Основные"
 #: src/gtk/help-overlay.ui:112
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Отобразить комбинации клавиш"
+msgstr "Комбинации клавиш"
 
 #: src/gtk/preferences-window.ui:11
 msgid "General"
@@ -300,13 +299,12 @@ msgid "Remember Window Size"
 msgstr "Запоминать размер окна"
 
 #: src/gtk/preferences-window.ui:30
-#, fuzzy
 msgid "Show Borders"
-msgstr "Отображать панель заголовка"
+msgstr "Отображать границы"
 
 #: src/gtk/preferences-window.ui:31
 msgid "Enable to draw a border around the window and the active tab."
-msgstr ""
+msgstr "Включает отображение границ вокруг окна и активной вкладки."
 
 #: src/gtk/preferences-window.ui:42
 msgid "Theme Integration"
@@ -354,24 +352,21 @@ msgid ""
 "the window."
 msgstr ""
 "Заменяет панель вкладок заголовком, если открыта только одна вкладка. "
-"Упрощает перемещение окна."
+"Упрощает перетаскивание окна."
 
 #: src/gtk/preferences-window.ui:101
 msgid "Stealth Single Tab"
 msgstr "Незаметная вкладка"
 
 #: src/gtk/preferences-window.ui:102
-#, fuzzy
 msgid "Blend single tab with header bar."
 msgstr "Смешивает одиночную вкладку с панелью заголовка."
 
 #: src/gtk/preferences-window.ui:117
-#, fuzzy
 msgid "Header Bar"
 msgstr "Панель заголовка"
 
 #: src/gtk/preferences-window.ui:121
-#, fuzzy
 msgid "Show Header Bar"
 msgstr "Отображать панель заголовка"
 
@@ -381,21 +376,22 @@ msgstr "Отображать кнопку меню"
 
 #: src/gtk/preferences-window.ui:143
 msgid "Drag Area"
-msgstr ""
+msgstr "Область перетаскивания"
 
 #: src/gtk/preferences-window.ui:144
 msgid "Enable to reserve some space on the left side to drag the window."
-msgstr ""
+msgstr "Резервирует место с левой стороны для перетаскивания окна."
 
 #: src/gtk/preferences-window.ui:156
 msgid "Draw Line Under Header Bar"
-msgstr ""
+msgstr "Линия под панелью заголовка"
 
 #: src/gtk/preferences-window.ui:157
 msgid ""
 "Enable to draw a line under the header bar when a single tab is open. "
 "Requires \"Show Borders\"."
-msgstr ""
+msgstr "Включает отображение линии под панелью заголовка, если открыта "
+"одна вкладка. Опция \"Отображать границы\" должна быть включена."
 
 #: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
@@ -406,7 +402,6 @@ msgid "Show Floating Controls"
 msgstr "Отображение"
 
 #: src/gtk/preferences-window.ui:171
-#, fuzzy
 msgid "Show floating controls when header bar is hidden."
 msgstr "Плавающие элементы управления в режиме без панели заголовка."
 
@@ -456,11 +451,11 @@ msgstr "Высота"
 
 #: src/gtk/preferences-window.ui:265
 msgid "Easy Copy &amp; Paste"
-msgstr "Простые копирование и вставка"
+msgstr "Упрощение копирования и вставки"
 
 #: src/gtk/preferences-window.ui:266
 msgid "Use ctrl+c/ctrl+v for copy/paste."
-msgstr "Использовать Ctrl+C/Ctrl+V для копирования/вставки."
+msgstr "Ctrl+C/Ctrl+V для копирования/вставки."
 
 #: src/gtk/preferences-window.ui:281
 msgid "Cursor"
@@ -709,7 +704,7 @@ msgstr ""
 #~ msgstr "Включает снятие выделения совпадений, когда окно поиска закрыто."
 
 #~ msgid "Pinned Search Window"
-#~ msgstr "Закрепление поиска"
+#~ msgstr "Закрепление окна поиска"
 
 #~ msgid "Enable to make new search windows pinned by default."
 #~ msgstr "Включает закрепление нового окна поиска по умолчанию."
