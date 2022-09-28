@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Black Box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-15 15:52-0300\n"
-"PO-Revision-Date: 2022-07-06 09:45+0200\n"
+"PO-Revision-Date: 2022-08-24 10:10+0200\n"
 "Last-Translator: Luna Jernberg <lunajernberg@gnome.org>\n"
 "Language-Team: Swedish <>\n"
 "Language: sv\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -34,9 +34,8 @@ msgid "Window height"
 msgstr "Fönsterhöjd"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:14
-#, fuzzy
 msgid "Whether or not to display borders around the window and tabs"
-msgstr "Om en menyknapp ska visas i rubrikfältet eller inte"
+msgstr "Om du vill visa ramar runt fönstret och flikarna eller inte"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:18
 msgid "Whether or not to remember window size"
@@ -67,11 +66,12 @@ msgid ""
 "Whether or not to draw a 1px line under the header bar when there's a single "
 "tab open"
 msgstr ""
+"Huruvida en 1px linje ska ritas under rubrikfältet när det finns en enda "
+"flik öppen"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:52
-#, fuzzy
 msgid "Whether or not to reserve an area for dragging the header bar"
-msgstr "Om en menyknapp ska visas i rubrikfältet eller inte"
+msgstr "Om du vill reservera ett område för att dra i rubrikfältet eller inte"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to show scrollbars"
@@ -88,11 +88,11 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "Enable to limit terminal scrollback"
-msgstr ""
+msgstr "Aktivera för att begränsa terminal rulla tillbaka"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
 msgid "Number of lines stored in scrollback"
-msgstr ""
+msgstr "Antal rader lagrade i rulla tillbaka"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "If enabled, floating controls will be shown in headerless mode"
@@ -111,20 +111,17 @@ msgid "Delay time before showing floating controls"
 msgstr "Fördröjning innan flytande kontroller visas"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:88
-#, fuzzy
 msgid "The light color scheme for the terminal"
-msgstr "Färgschemat för terminalen"
+msgstr "Det ljusa färgschemat för terminalen"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:92
-#, fuzzy
 msgid "The dark color scheme for the terminal"
-msgstr "Färgschemat för terminalen"
+msgstr "Det mörka färgschemat för terminalen"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
 #: data/com.raggesilver.BlackBox.gschema.xml:97
-#, fuzzy
 msgid "Style preference"
-msgstr "Återställ inställningar"
+msgstr "Stil inställningar"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:101
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
@@ -165,33 +162,33 @@ msgstr ""
 
 #: data/com.raggesilver.BlackBox.gschema.xml:129
 msgid "Whether to spawn shell in login mode"
-msgstr ""
+msgstr "Om skalet ska skapas i inloggningsläge"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:133
 msgid "Whether to use a custom command instead of the user's shell"
-msgstr ""
+msgstr "Om ett anpassat kommando ska användas istället för användarens skal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:137
 msgid "Custom command to use instead of the user's shell"
-msgstr ""
+msgstr "Anpassat kommando att använda istället för användarens skal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:144
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
+"Om du klickar på nästa på det sista sökresultatet bör återgå till det första"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:148
-#, fuzzy
 msgid "Whether search should be case sensitive"
-msgstr "Om fönsterlisten ska visas eller inte"
+msgstr "Om sökning ska vara skiftlägeskänslig"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:152
 msgid "Whether search should only match entire words"
-msgstr ""
+msgstr "Om sökningen bara ska matcha hela ord"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:156
 msgid "Whether search should be performed using regular expressions"
-msgstr ""
+msgstr "Om sökning ska utföras med reguljära uttryck"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -224,7 +221,6 @@ msgid "Toggle fullscreen"
 msgstr "Växla helskärmsläge"
 
 #: src/gtk/help-overlay.ui:45
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Terminal"
 msgstr "Terminal"
@@ -232,7 +228,7 @@ msgstr "Terminal"
 #: src/gtk/help-overlay.ui:48
 msgctxt "shortcut window"
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: src/gtk/help-overlay.ui:54
 msgctxt "shortcut window"
@@ -302,43 +298,40 @@ msgid "Remember Window Size"
 msgstr "Kom ihåg fönsterstorlek"
 
 #: src/gtk/preferences-window.ui:30
-#, fuzzy
 msgid "Show Borders"
-msgstr "Visa fönsterlist"
+msgstr "Visa ram"
 
 #: src/gtk/preferences-window.ui:31
 msgid "Enable to draw a border around the window and the active tab."
-msgstr ""
+msgstr "Aktivera för att rita en ram runt fönstret och den aktiva fliken."
 
 #: src/gtk/preferences-window.ui:42
 msgid "Theme Integration"
 msgstr "Temaintegration"
 
 #: src/gtk/preferences-window.ui:43
-#, fuzzy
 msgid "Style window with terminal theme colors."
-msgstr "Om fönstret ska ärva terminaltemats färger"
+msgstr "Stilfönster med terminaltemats färger"
 
 #: src/gtk/preferences-window.ui:53
-#, fuzzy
 msgid "Style Preference"
-msgstr "Inställningar"
+msgstr "Stilinställningar"
 
 #: src/gtk/preferences-window.ui:57
 msgid "Follow System"
-msgstr ""
+msgstr "Följ System"
 
 #: src/gtk/preferences-window.ui:58
 msgid "Light Style"
-msgstr ""
+msgstr "Ljus stil"
 
 #: src/gtk/preferences-window.ui:59
 msgid "Dark Style"
-msgstr ""
+msgstr "Mörk stil"
 
 #: src/gtk/preferences-window.ui:69
 msgid "Tabs"
-msgstr ""
+msgstr "Flikar"
 
 #: src/gtk/preferences-window.ui:73
 msgid "Expand Tabs"
@@ -365,19 +358,16 @@ msgid "Stealth Single Tab"
 msgstr "Smygande enskild flik"
 
 #: src/gtk/preferences-window.ui:102
-#, fuzzy
 msgid "Blend single tab with header bar."
-msgstr "Blanda enskild flik med huvudlist"
+msgstr "Blanda enskild flik med fönsterlist."
 
 #: src/gtk/preferences-window.ui:117
-#, fuzzy
 msgid "Header Bar"
-msgstr "Visa fönsterlist"
+msgstr "Fönsterlist"
 
 #: src/gtk/preferences-window.ui:121
-#, fuzzy
 msgid "Show Header Bar"
-msgstr "Visa fönsterlist"
+msgstr "Visa Fönsterlist"
 
 #: src/gtk/preferences-window.ui:132
 msgid "Show Menu Button"
@@ -385,21 +375,24 @@ msgstr "Visa menyknapp"
 
 #: src/gtk/preferences-window.ui:143
 msgid "Drag Area"
-msgstr ""
+msgstr "Dra område"
 
 #: src/gtk/preferences-window.ui:144
 msgid "Enable to reserve some space on the left side to drag the window."
 msgstr ""
+"Aktivera för att reservera lite utrymme på vänster sida för att dra fönstret."
 
 #: src/gtk/preferences-window.ui:156
 msgid "Draw Line Under Header Bar"
-msgstr ""
+msgstr "Rita linje under Fönsterlist"
 
 #: src/gtk/preferences-window.ui:157
 msgid ""
 "Enable to draw a line under the header bar when a single tab is open. "
 "Requires \"Show Borders\"."
 msgstr ""
+"Aktivera för att rita en linje under fönsterlist när en enskild flik är "
+"öppen. Kräver \"Visa ram\"."
 
 #: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
@@ -410,9 +403,8 @@ msgid "Show Floating Controls"
 msgstr "Visa flytande kontroller"
 
 #: src/gtk/preferences-window.ui:171
-#, fuzzy
 msgid "Show floating controls when header bar is hidden."
-msgstr "Visa flytande kontroller i fönsterlöst läge."
+msgstr "Visa flytande kontroller när fönsterlist är dold."
 
 #: src/gtk/preferences-window.ui:183
 msgid "Floating Controls Hover Area"
@@ -440,7 +432,7 @@ msgstr "Terminal"
 
 #: src/gtk/preferences-window.ui:219
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/gtk/preferences-window.ui:223
 msgid "Font"
@@ -487,9 +479,8 @@ msgid "Padding"
 msgstr "Platta"
 
 #: src/gtk/preferences-window.ui:311
-#, fuzzy
 msgid "Scrolling"
-msgstr "Pixelrullning"
+msgstr "Rullning"
 
 #: src/gtk/preferences-window.ui:314
 msgid "Scrollbars"
@@ -505,28 +496,27 @@ msgstr "Använd överläggsrullning"
 
 #: src/gtk/preferences-window.ui:342
 msgid "Set Scrollback Limit"
-msgstr ""
+msgstr "Ställ in Rulla tillbaka gräns"
 
 #: src/gtk/preferences-window.ui:353
-#, fuzzy
 msgid "Scrollback Lines"
-msgstr "Rullningslister"
+msgstr "Rulla tillbaka rader"
 
 #: src/gtk/preferences-window.ui:369
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
 #: src/gtk/preferences-window.ui:373
 msgid "Run Command as Login Shell"
-msgstr ""
+msgstr "Kör kommando som inloggningsskal"
 
 #: src/gtk/preferences-window.ui:384
 msgid "Use Custom Command"
-msgstr ""
+msgstr "Använd anpassat kommando"
 
 #: src/gtk/preferences-window.ui:394
 msgid "Custom Command"
-msgstr ""
+msgstr "Anpassat kommando"
 
 #: src/gtk/preferences-window.ui:401
 msgid "Theme"
@@ -534,29 +524,27 @@ msgstr "Tema"
 
 #: src/gtk/preferences-window.ui:412
 msgid "Open folder"
-msgstr ""
+msgstr "Öppna mapp"
 
 #: src/gtk/preferences-window.ui:420
 msgid "Get more themes online"
-msgstr ""
+msgstr "Skaffa fler teman online"
 
 #: src/gtk/preferences-window.ui:434
 msgid "Set your preferred theme for light and dark styles."
-msgstr ""
+msgstr "Ställ in ditt föredragna tema för ljusa och mörka stilar."
 
 #: src/gtk/preferences-window.ui:449
-#, fuzzy
 msgid "Light Theme"
-msgstr "Tema"
+msgstr "Ljust tema"
 
 #: src/gtk/preferences-window.ui:455
-#, fuzzy
 msgid "Dark Theme"
-msgstr "Tema"
+msgstr "Mörkt tema"
 
 #: src/gtk/preferences-window.ui:463
 msgid "Only display themes for the current style"
-msgstr ""
+msgstr "Visa endast teman för den aktuella stilen"
 
 #: src/gtk/preferences-window.ui:471
 msgid ""
@@ -564,15 +552,17 @@ msgid ""
 "a light color scheme while using the dark app style or a dark color scheme "
 "while using the light app style."
 msgstr ""
+"För att säkerställa läsbarheten kommer \"Tema Integration\" att inaktiveras "
+"om du väljer ett ljust färgschema medan du använder den mörka program stilen "
+"eller ett mörkt färgschema medan du använder den ljusa program stilen."
 
 #: src/gtk/preferences-window.ui:498
 msgid "Advanced"
 msgstr "Avancerat"
 
 #: src/gtk/preferences-window.ui:502
-#, fuzzy
 msgid "Experimental"
-msgstr "Experimentell 🧪"
+msgstr "Experimentell"
 
 #: src/gtk/preferences-window.ui:503
 msgid ""
@@ -613,7 +603,6 @@ msgstr ""
 "Dina extra teman kommer inte att tas bort."
 
 #: src/gtk/preferences-window.ui:529
-#, fuzzy
 msgid "Reset preferences"
 msgstr "Återställ inställningar"
 
