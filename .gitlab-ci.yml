@@ -5,7 +5,6 @@ variables:
 
 flatpak:
   extends: .flatpak
-  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:42'
   timeout: 90m
   variables:
     GIT_SUBMODULE_STRATEGY: normal
