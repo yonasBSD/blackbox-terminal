@@ -29,7 +29,7 @@ namespace Terminal {
 
       section1.append (_("Fullscreen"), "win.fullscreen");
       section1.append (_("Preferences"), "win.edit_preferences");
-      section2.append (_("Help"), "win.show-help-overlay");
+      section2.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
       section2.append (_("About"), "app.about");
       more_menu.append_section (null, section1);
       more_menu.append_section (null, section2);
