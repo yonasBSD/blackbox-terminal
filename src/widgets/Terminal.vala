@@ -441,6 +441,7 @@ public class Terminal.Terminal : Vte.Terminal {
           Settings.get_default ().easy_copy_paste
         ) {
           this.do_copy_clipboard ();
+          this.unselect_all ();
           return true;
         }
         return false;
