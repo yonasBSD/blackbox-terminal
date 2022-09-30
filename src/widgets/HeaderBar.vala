@@ -29,7 +29,7 @@ namespace Terminal {
 
       section1.append (_("Fullscreen"), "win.fullscreen");
       section1.append (_("Preferences"), "win.edit_preferences");
-      section2.append (_("Help"), "win.show-help-overlay");
+      section2.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
       section2.append (_("About"), "app.about");
       more_menu.append_section (null, section1);
       more_menu.append_section (null, section2);
@@ -54,6 +54,7 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
       can_focus = false,
       menu_model = get_window_menu_model (),
       icon_name = "open-menu-symbolic",
+      tooltip_text = _("Menu"),
 
       hexpand = false,
       halign = Gtk.Align.END,
@@ -71,6 +72,7 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
     this.new_tab_button = new Gtk.Button () {
       can_focus = false,
       icon_name = "list-add-symbolic",
+      tooltip_text = _("New Tab"),
     };
   }
 
