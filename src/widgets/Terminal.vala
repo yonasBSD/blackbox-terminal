@@ -261,12 +261,6 @@ public class Terminal.Terminal : Vte.Terminal {
     kpcontroller.key_pressed.connect (this.on_key_pressed);
     this.add_controller (kpcontroller);
 
-    var middle_click_controller = new Gtk.GestureClick () {
-      button = Gdk.BUTTON_MIDDLE,
-    };
-    middle_click_controller.pressed.connect (this.on_middle_click_pressed);
-    this.add_controller (middle_click_controller);
-
     var left_click_controller = new Gtk.GestureClick () {
       button = Gdk.BUTTON_PRIMARY,
     };
@@ -284,8 +278,6 @@ public class Terminal.Terminal : Vte.Terminal {
       Gtk.show_uri (this.window, pattern, event.get_time ());
     });
     this.add_controller (left_click_controller);
-
-    this.selection_changed.connect (this.on_selection_changed);
 
     this.settings.notify ["scrollback-lines"]
       .connect (() => {
@@ -415,22 +407,6 @@ public class Terminal.Terminal : Vte.Terminal {
     this.exit ();
   }
 
-  private void on_middle_click_pressed () {
-    if (Gtk.Settings.get_default ().gtk_enable_primary_paste) {
-      this.do_paste_from_selection_clipboard.begin ();
-    }
-  }
-
-  private void on_selection_changed () {
-    if (
-      this.get_has_selection () &&
-      Gtk.Settings.get_default ().gtk_enable_primary_paste
-    ) {
-      Gdk.Display.get_default ().get_primary_clipboard ()
-        .set_text (this.get_text_selected (Vte.Format.TEXT));
-    }
-  }
-
   private bool on_key_pressed (
     uint keyval,
     uint keycode,
@@ -472,7 +448,6 @@ public class Terminal.Terminal : Vte.Terminal {
       case "v": {
         if (Settings.get_default ().easy_copy_paste) {
           this.do_paste_clipboard ();
-          this.unselect_all ();
           return true;
         }
         return false;
