@@ -102,7 +102,7 @@ public class Terminal.TerminalTab : Gtk.Box {
       // Make vala-language-server stop complaining
       this.terminal as Object,
       "scroll-unit-is-pixels",
-      BindingFlags.DEFAULT,
+      BindingFlags.SYNC_CREATE,
       (_, from, ref to) => {
         to = Settings.get_default ().show_scrollbars && from.get_boolean ();
         return true;
