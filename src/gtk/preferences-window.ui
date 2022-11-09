@@ -513,6 +513,18 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwActionRow" id="use_sixel_action_row">
+                <property name="activatable-widget">use_sixel_switch</property>
+                <property name="title" translatable="yes">Sixel Support</property>
+                <property name="subtitle" translatable="yes">Render sixel escape sequences.</property>
+                <child>
+                  <object class="GtkSwitch" id="use_sixel_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>

@@ -28,7 +28,7 @@
     {
       "name": "vte",
       "buildsystem": "meson",
-      "config-opts": ["-Dgtk4=true", "-Dgtk3=false"],
+      "config-opts": ["-Dgtk4=true", "-Dgtk3=false", "-Dsixel=true"],
       "sources": [
         {
           "type": "archive",

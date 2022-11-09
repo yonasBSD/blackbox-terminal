@@ -109,6 +109,13 @@ public class Terminal.TerminalTab : Gtk.Box {
       },
       null
     );
+
+    settings.bind_property (
+      "use-sixel",
+      this.terminal as Object,
+      "enable-sixel",
+      BindingFlags.SYNC_CREATE
+    );
   }
 
   public void show_menu (int n_pressed, double x, double y) {
