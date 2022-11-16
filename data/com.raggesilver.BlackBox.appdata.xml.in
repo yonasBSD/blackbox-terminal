@@ -84,6 +84,23 @@
   </kudos>
 
   <releases>
+    <release date="2022-11-16" version="0.12.2">
+      <description>
+        <p>Features:</p>
+        <ul>
+          <li>Added Turkish translation</li>
+        </ul>
+        <p>Improvements:</p>
+        <ul>
+          <li>UI consistency</li>
+          <li>Clear selection after copying text with easy copy/paste</li>
+        </ul>
+        <p>Bug fixes:</p>
+        <ul>
+          <li>Text selection was broken</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-09-28" version="0.12.1">
       <description>
         <p>Features:</p>
