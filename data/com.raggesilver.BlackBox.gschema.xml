@@ -63,6 +63,10 @@
       <default>false</default>
       <summary>If enabled, terminals will scroll by pixels instead of rows</summary>
     </key>
+    <key name="use-sixel" type="b">
+      <default>false</default>
+      <summary>If enabled, terminals will render sixel escape sequences</summary>
+    </key>
     <key name="use-custom-scrollback" type="b">
       <default>false</default>
       <summary>Enable to limit terminal scrollback</summary>
