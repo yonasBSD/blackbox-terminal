@@ -84,9 +84,6 @@ public class Terminal.TerminalTab : Gtk.Box {
         this.scrolled.child = null;
         this.append (this.terminal);
       }
-      // Pixel scrolling depends on this, so we'll notify it to trigger any
-      // listeners
-      settings.notify_property ("pixel-scrolling");
     });
     settings.notify_property ("show-scrollbars");
 
@@ -95,19 +92,6 @@ public class Terminal.TerminalTab : Gtk.Box {
       this.scrolled,
       "overlay-scrolling",
       SettingsBindFlags.GET
-    );
-
-    settings.bind_property (
-      "pixel-scrolling",
-      // Make vala-language-server stop complaining
-      this.terminal as Object,
-      "scroll-unit-is-pixels",
-      BindingFlags.SYNC_CREATE,
-      (_, from, ref to) => {
-        to = Settings.get_default ().show_scrollbars && from.get_boolean ();
-        return true;
-      },
-      null
     );
 
     settings.bind_property (

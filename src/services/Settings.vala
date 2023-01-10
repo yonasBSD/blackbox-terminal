@@ -23,7 +23,6 @@ public class Terminal.Settings : Marble.Settings {
   public bool    headerbar_drag_area                  { get; set; }
   public bool    headerbar_draw_line_single_tab       { get; set; }
   public bool    hide_single_tab                      { get; set; }
-  public bool    pixel_scrolling                      { get; set; }
   public bool    use_sixel                            { get; set; }
   public bool    pretty                               { get; set; }
   public bool    remember_window_size                 { get; set; }
