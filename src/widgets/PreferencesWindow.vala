@@ -47,7 +47,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           fill_tabs_switch;
   [GtkChild] unowned Gtk.Switch           floating_controls_switch;
   [GtkChild] unowned Gtk.Switch           hide_single_tab_switch;
-  [GtkChild] unowned Gtk.Switch           pixel_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           use_sixel_switch;
   [GtkChild] unowned Gtk.Switch           pretty_switch;
   [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
@@ -287,13 +286,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       },
       null,
       null
-    );
-
-    settings.schema.bind (
-      "pixel-scrolling",
-      this.pixel_scrolling_switch,
-      "active",
-      SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind (

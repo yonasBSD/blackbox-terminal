@@ -67,7 +67,11 @@ public class Terminal.Terminal : Vte.Terminal {
   Settings settings;
 
   public Terminal (Window window, string? command = null, string? cwd = null) {
-    Object (allow_hyperlink: true, receives_default: true);
+    Object (
+      allow_hyperlink: true,
+      receives_default: true,
+      scroll_unit_is_pixels: true
+    );
 
     this.original_scrollback_lines = this.scrollback_lines;
 
@@ -251,6 +255,23 @@ public class Terminal.Terminal : Vte.Terminal {
       this,
       "scrollback-lines",
       BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+
+    // Fallback scrolling makes it so that VTE handles scrolling on its own. We
+    // want VTE to let GtkScrolledWindow take care of scrolling if the user
+    // enabled "show scrollbars". Thus we set
+    // `enable-fallback-scrolling = !show-scrollbars`
+    //
+    // See:
+    // - https://gitlab.gnome.org/raggesilver/blackbox/-/issues/179
+    // - https://gitlab.gnome.org/GNOME/vte/-/issues/336
+    this.settings.bind_property (
+      "show-scrollbars",
+      this,
+      "enable-fallback-scrolling",
+      BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN,
       null,
       null
     );
