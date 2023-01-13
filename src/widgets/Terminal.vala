@@ -34,6 +34,9 @@ public class Terminal.Terminal : Vte.Terminal {
     "COLORTERM=truecolor",
     "TERM_PROGRAM=%s".printf (APP_NAME),
     "BLACKBOX_THEMES_DIR=%s".printf (Constants.get_user_schemes_dir ()),
+    "VTE_VERSION=%u".printf (
+      Vte.MAJOR_VERSION * 10000 + Vte.MINOR_VERSION * 100 + Vte.MICRO_VERSION
+    )
   };
 
   // Signals
