@@ -37,6 +37,9 @@ public class Terminal.Scheme : Object, Json.Serializable {
     ParamSpec spec,
     Json.Node node
   ) {
+    // Supress "possibly unitialized value"
+    @value = Value(spec.value_type);
+
     switch (name) {
       case "foreground-color":
       case "background-color": {

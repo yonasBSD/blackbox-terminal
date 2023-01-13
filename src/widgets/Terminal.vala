@@ -433,24 +433,6 @@ public class Terminal.Terminal : Vte.Terminal {
     uint keycode,
     Gdk.ModifierType state
   ) {
-
-    if ((state & Gdk.ModifierType.ALT_MASK) > 0) {
-      switch (Gdk.keyval_name (keyval)) {
-        case "1": //alt+[1-8]
-        case "2":
-        case "3":
-        case "4":
-        case "5":
-        case "6":
-        case "7":
-        case "8":
-        case "9": {
-          this.window.focus_nth_tab (int.parse (Gdk.keyval_name (keyval)));
-          return true;
-        }
-      }
-    }
-
     if ((state & Gdk.ModifierType.CONTROL_MASK) == 0) {
       return false;
     }
@@ -474,29 +456,21 @@ public class Terminal.Terminal : Vte.Terminal {
         }
         return false;
       }
-      case "plus": {
-        this.font_scale = double.min (10, this.font_scale + 0.1);
-        return true;
-      }
-      case "underscore": {
-        this.font_scale = double.max (0.1, this.font_scale - 0.1);
-        return true;
-      }
-      case "N": {
-        this.window.activate_action ("new_window", null);
-        return true;
-      }
-      case "T": {
-        this.window.activate_action ("new_tab", null);
-        return true;
-      }
-      case "W": {
-        this.exit ();
-        return true;
-      }
     }
 
     return false;
+  }
+
+  public void zoom_in () {
+    this.font_scale = double.min (10, this.font_scale + 0.1);
+  }
+
+  public void zoom_out () {
+    this.font_scale = double.max (0.1, this.font_scale - 0.1);
+  }
+
+  public void zoom_default () {
+    this.font_scale = 1.0;
   }
 
   public void do_paste_clipboard () {

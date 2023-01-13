@@ -40,18 +40,8 @@ public class Terminal.Application : Adw.Application {
 
     this.add_action_entries (ACTIONS, this);
 
-    this.set_accels_for_action ("app.focus-next-tab", { "<Control>Tab" });
-    this.set_accels_for_action ("app.focus-previous-tab", { "<Shift><Control>Tab" });
-    this.set_accels_for_action ("app.new-window", { "<Shift><Control>n" });
-    //  this.set_accels_for_action ("app.quit", { "<Shift><Control>q" });
-
-    this.set_accels_for_action ("win.switch-headerbar-mode", { "<Shift><Control>h" });
-    this.set_accels_for_action ("win.new_tab", { "<Shift><Control>t" });
-    this.set_accels_for_action ("win.edit_preferences", { "<Control>comma" });
-    this.set_accels_for_action ("win.copy", { "<Shift><Control>c" });
-    this.set_accels_for_action ("win.paste", { "<Shift><Control>v" });
-    this.set_accels_for_action ("win.search", { "<Shift><Control>f" });
-    this.set_accels_for_action ("win.fullscreen", { "F11" });
+    var keymap = Keymap.get_default ();
+    keymap.apply (this);
   }
 
   public override void activate () {

@@ -11,31 +11,31 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">New window</property>
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;n</property>
+                <property name="action-name">app.new-window</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">New tab</property>
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;t</property>
+                <property name="action-name">win.new_tab</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Close tab</property>
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;w</property>
+                <property name="action-name">win.close-tab</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;h</property>
                 <property name="title" translatable="yes" context="shortcut window">Switch headbar mode</property>
+                <property name="action-name">win.switch-headerbar-mode</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">F11</property>
                 <property name="title" translatable="yes" context="shortcut window">Toggle fullscreen</property>
+                <property name="action-name">win.fullscreen</property>
               </object>
             </child>
           </object>
@@ -52,25 +52,25 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Copy</property>
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;c</property>
+                <property name="action-name">win.copy</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Paste</property>
-                <property name="accelerator">&lt;primary&gt;&lt;shift&gt;v</property>
+                <property name="action-name">win.paste</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Zoom in</property>
-                <property name="accelerator">&lt;primary&gt;plus</property>
+                <property name="action-name">win.zoom-in</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Zoom out</property>
-                <property name="accelerator">&lt;primary&gt;underscore</property>
+                <property name="action-name">win.zoom-out</property>
               </object>
             </child>
           </object>
@@ -92,14 +92,62 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;alt&gt;1...8</property>
-                <property name="title" translatable="yes" context="shortcut window">Switch to Tab</property>
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 1</property>
+                <property name="action-name">win.switch-tab-1</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="accelerator">&lt;alt&gt;9</property>
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 2</property>
+                <property name="action-name">win.switch-tab-2</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 3</property>
+                <property name="action-name">win.switch-tab-3</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 4</property>
+                <property name="action-name">win.switch-tab-4</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 5</property>
+                <property name="action-name">win.switch-tab-5</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 6</property>
+                <property name="action-name">win.switch-tab-6</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 7</property>
+                <property name="action-name">win.switch-tab-7</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 8</property>
+                <property name="action-name">win.switch-tab-8</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Switch to Tab 9</property>
+                <property name="action-name">win.switch-tab-9</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Switch to last Tab</property>
+                <property name="action-name">win.switch-tab-last</property>
               </object>
             </child>
           </object>

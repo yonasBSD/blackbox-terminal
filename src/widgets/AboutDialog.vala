@@ -30,7 +30,24 @@ namespace Terminal {
       website = "https://gitlab.gnome.org/raggesilver/blackbox",
       issue_url = "https://gitlab.gnome.org/raggesilver/blackbox/-/issues",
       debug_info = get_debug_information (),
+      release_notes_version = "0.13.0-alpha.0",
+      release_notes = """
+        <p>
+          The latest version of Black Box completely revamps keyboard shortcuts.
+        </p>
+        <ul>
+          <li>Customizable keyboard shortcuts</li>
+          <li>Set multiple shortcuts for a single action</li>
+          <li>Easily disable any shortcut</li>
+          <li>Dedicated settings page for tweaking shortcuts</li>
+          <li>User-editable JSON configuration file</li>
+        </ul>
+      """
     };
+
+    if (DEVEL) {
+      window.add_css_class ("devel");
+    }
 
     window.add_link (_("Donate"), "https://www.patreon.com/raggesilver");
 
