@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-28 19:31-0300\n"
+"POT-Creation-Date: 2023-01-13 20:34-0300\n"
 "PO-Revision-Date: 2022-08-20 00:05+0200\n"
 "Last-Translator: panmourovaty <dominikhejl@yahoo.com>\n"
 "Language-Team: Czech <>\n"
@@ -51,52 +51,61 @@ msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Má okno použít motiv stejný jako terminál"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
+msgid "Terminal window background opacity"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "Mají karty vyplnit celou šířku záhlaví"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:40
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether the headerbar should be shown or not"
 msgstr "Má být záhlaví zobrazeno"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:44
+#: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Zobrazovat tlačítko menu v záhlaví"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:48
+#: data/com.raggesilver.BlackBox.gschema.xml:52
 msgid ""
 "Whether or not to draw a 1px line under the header bar when there's a single "
 "tab open"
 msgstr "Zobrazovat 1px linku pod záhlavím když je otevřena pouze jedna karta"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:52
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to reserve an area for dragging the header bar"
 msgstr "Rezervovat místo pro přetahování okna"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:56
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Whether or not to show scrollbars"
 msgstr "Zobrazovat posuvníky"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:60
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "Whether overlay scrolling should be enabled"
 msgstr "Použít posuvníky co překrývají obsah"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:64
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr "Pokud povoleno terminál bude skrolovat na základě pixelů místo řádků"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:68
+#: data/com.raggesilver.BlackBox.gschema.xml:72
+#, fuzzy
+msgid "If enabled, terminals will render sixel escape sequences"
+msgstr "Pokud povoleno terminál bude skrolovat na základě pixelů místo řádků"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Enable to limit terminal scrollback"
 msgstr "Povolte pro omezení skrolování terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:72
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "Number of lines stored in scrollback"
 msgstr "Počet linek uložených ke skrolování"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:76
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "Pokud zapnuto, plovoucí ovládací panel bude zobrazen v bezešvém režimu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:80
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -104,45 +113,50 @@ msgstr ""
 "Oblast (v pixelech) na vršku okna na kterou když najedete tak se zobrazí "
 "panel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:84
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 msgid "Delay time before showing floating controls"
 msgstr "Prodleva než se zobrazí plovoucí panel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:88
+#: data/com.raggesilver.BlackBox.gschema.xml:96
 msgid "The light color scheme for the terminal"
 msgstr "Světlý motiv terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:92
+#: data/com.raggesilver.BlackBox.gschema.xml:100
 msgid "The dark color scheme for the terminal"
 msgstr "Tmavý motiv terminálu"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
-#: data/com.raggesilver.BlackBox.gschema.xml:97
+#: data/com.raggesilver.BlackBox.gschema.xml:105
 msgid "Style preference"
 msgstr "Preference motivu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:101
+#: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr "Odsazení okolo terminálu (nahoře, vpravo, dole, vlevo)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:105
+#: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "Terminal cell width"
 msgstr "Šířka buňky terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:109
+#: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Terminal cell height"
 msgstr "Výška buňky terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:113
+#: data/com.raggesilver.BlackBox.gschema.xml:121
 msgid "Cursor shape"
 msgstr "Tvar kurzoru"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:117
+#: data/com.raggesilver.BlackBox.gschema.xml:125
+#, fuzzy
+msgid "Whether or not the cursor should blink"
+msgstr "Zobrazovat posuvníky"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:129
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr ""
 "Pokud zapnuto, ctrl+c a ctrl+v bude možno použít pro kopírování/vkládání"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:121
+#: data/com.raggesilver.BlackBox.gschema.xml:133
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -150,39 +164,69 @@ msgstr ""
 "Pokud povoleno, lišta karet bude nahrazena titulkem, pokud je otevřená jedna "
 "karta"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:125
+#: data/com.raggesilver.BlackBox.gschema.xml:137
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr ""
 "Pokud zapnuto a je otevřená pouze jedna karta tak splyne s barvou záhlaví"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:129
+#: data/com.raggesilver.BlackBox.gschema.xml:141
 msgid "Whether to spawn shell in login mode"
 msgstr "Spouštět shell v přihlašovacím režimu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:133
+#: data/com.raggesilver.BlackBox.gschema.xml:145
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr "Použít vlastní příkaz místo uživatelova shellu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:137
+#: data/com.raggesilver.BlackBox.gschema.xml:149
 msgid "Custom command to use instead of the user's shell"
 msgstr "Vlastní příkaz který bude použit místo uživatelského shellu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:144
+#: data/com.raggesilver.BlackBox.gschema.xml:156
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
 "Zda se má kliknutím na další na poslední výsledek vyhledávání vrátit na první"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:148
+#: data/com.raggesilver.BlackBox.gschema.xml:160
 msgid "Whether search should be case sensitive"
 msgstr "Má být hledání citlivé na velikost písmen (case sensitive)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:152
+#: data/com.raggesilver.BlackBox.gschema.xml:164
 msgid "Whether search should only match entire words"
 msgstr "Má hledání odpovídat pouze celým slovům"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:156
+#: data/com.raggesilver.BlackBox.gschema.xml:168
 msgid "Whether search should be performed using regular expressions"
+msgstr "Má hledání být prováděno regulárními výrazy"
+
+#: src/gtk/search-toolbar.ui:20
+msgid "Find"
+msgstr ""
+
+#: src/gtk/search-toolbar.ui:42
+msgid "Previous result"
+msgstr ""
+
+#: src/gtk/search-toolbar.ui:48
+msgid "Next result"
+msgstr ""
+
+#: src/gtk/search-toolbar.ui:91
+msgid "Search wraps around"
+msgstr ""
+
+#: src/gtk/search-toolbar.ui:96
+#, fuzzy
+msgid "Match is case sensitive"
+msgstr "Má být hledání citlivé na velikost písmen (case sensitive)"
+
+#: src/gtk/search-toolbar.ui:101
+msgid "Match entire words only"
+msgstr ""
+
+#: src/gtk/search-toolbar.ui:106
+#, fuzzy
+msgid "Match using regular expression"
 msgstr "Má hledání být prováděno regulárními výrazy"
 
 #: src/gtk/help-overlay.ui:10
@@ -205,12 +249,12 @@ msgctxt "shortcut window"
 msgid "Close tab"
 msgstr "Zavřít kartu"
 
-#: src/gtk/help-overlay.ui:32
+#: src/gtk/help-overlay.ui:31
 msgctxt "shortcut window"
 msgid "Switch headbar mode"
 msgstr "Přepnout režim záhlaví"
 
-#: src/gtk/help-overlay.ui:38
+#: src/gtk/help-overlay.ui:37
 msgctxt "shortcut window"
 msgid "Toggle fullscreen"
 msgstr "Přepnout na celou obrazovku"
@@ -260,24 +304,103 @@ msgctxt "shortcut window"
 msgid "Focus previous tab"
 msgstr "Zaměřit se na předchozí Kartu"
 
-#: src/gtk/help-overlay.ui:96
+#: src/gtk/help-overlay.ui:95
+#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab"
+msgid "Switch to Tab 1"
 msgstr "Přepnout na Kartu"
 
-#: src/gtk/help-overlay.ui:102
+#: src/gtk/help-overlay.ui:101
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 2"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:107
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 3"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:113
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 4"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:119
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 5"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:125
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 6"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:131
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 7"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:137
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 8"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:143
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 9"
+msgstr "Přepnout na Kartu"
+
+#: src/gtk/help-overlay.ui:149
 msgctxt "shortcut window"
 msgid "Switch to last Tab"
 msgstr "Přepnout na poslední Kartu"
 
-#: src/gtk/help-overlay.ui:109
+#: src/gtk/help-overlay.ui:157
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Obecné"
 
-#: src/gtk/help-overlay.ui:112
+#: src/gtk/help-overlay.ui:160
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
+msgstr "Zobrazit Zkratky"
+
+#: src/gtk/shortcut-dialog.ui:6
+#, fuzzy
+msgid "Edit Shortcut"
+msgstr "Zobrazit Zkratky"
+
+#: src/gtk/shortcut-dialog.ui:21
+msgid "Cancel"
+msgstr ""
+
+#: src/gtk/shortcut-dialog.ui:28
+msgid "Apply"
+msgstr ""
+
+#: src/gtk/shortcut-dialog.ui:68
+msgid "This shortcut is already in use"
+msgstr ""
+
+#: src/gtk/shortcut-dialog.ui:81
+msgid "Press Escape to cancel or Backspace to disable shortcut"
+msgstr ""
+
+#: src/gtk/shortcut-editor.ui:6
+msgid "Keyboard"
+msgstr ""
+
+#: src/gtk/shortcut-editor.ui:10
+#, fuzzy
+msgid "Shortcuts"
 msgstr "Zobrazit Zkratky"
 
 #: src/gtk/preferences-window.ui:11
@@ -312,7 +435,7 @@ msgstr "Má okno použít motiv stejný jako terminál."
 msgid "Style Preference"
 msgstr "Nastavení stylu"
 
-#: src/gtk/preferences-window.ui:57
+#: src/gtk/preferences-window.ui:57 src/gtk/preferences-window.ui:300
 msgid "Follow System"
 msgstr "Podle systému"
 
@@ -453,8 +576,9 @@ msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Použít ctrl+c/ctrl+v pro kopírování/vložení."
 
 #: src/gtk/preferences-window.ui:281
-msgid "Cursor"
-msgstr "Kurzor"
+#, fuzzy
+msgid "Cursor Shape"
+msgstr "Tvar kurzoru"
 
 #: src/gtk/preferences-window.ui:285
 msgid "Block"
@@ -469,78 +593,103 @@ msgid "Underline"
 msgstr "Podtržení"
 
 #: src/gtk/preferences-window.ui:295
+msgid "Cursor Blinking"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:296
+#, fuzzy
+msgid "Whether or not the cursor should blink."
+msgstr "Zobrazovat posuvníky"
+
+#: src/gtk/preferences-window.ui:301
+msgid "On"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:302
+msgid "Off"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:310
 msgid "Padding"
 msgstr "Okraj"
 
-#: src/gtk/preferences-window.ui:311
+#: src/gtk/preferences-window.ui:324
+msgid "Opacity"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:325
+msgid "Terminal background opacity."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:341
 msgid "Scrolling"
 msgstr "Skrolování"
 
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:344
 msgid "Scrollbars"
 msgstr "Posuvníky"
 
-#: src/gtk/preferences-window.ui:317
+#: src/gtk/preferences-window.ui:347
 msgid "Show Scrollbars"
 msgstr "Zobrazit Posuvníky"
 
-#: src/gtk/preferences-window.ui:328
+#: src/gtk/preferences-window.ui:358
 msgid "Use Overlay Scrolling"
 msgstr "Použít překrývající Posuvníky"
 
-#: src/gtk/preferences-window.ui:342
+#: src/gtk/preferences-window.ui:372
 msgid "Set Scrollback Limit"
 msgstr "Nastavit limit skrolování"
 
-#: src/gtk/preferences-window.ui:353
+#: src/gtk/preferences-window.ui:383
 msgid "Scrollback Lines"
 msgstr "Skrolovací čáry"
 
-#: src/gtk/preferences-window.ui:369
+#: src/gtk/preferences-window.ui:399
 msgid "Command"
 msgstr "Příkaz"
 
-#: src/gtk/preferences-window.ui:373
+#: src/gtk/preferences-window.ui:403
 msgid "Run Command as Login Shell"
 msgstr "Spustit příkaz jako přihlašovací shell"
 
-#: src/gtk/preferences-window.ui:384
+#: src/gtk/preferences-window.ui:414
 msgid "Use Custom Command"
 msgstr "Použít vlastní příkaz"
 
-#: src/gtk/preferences-window.ui:394
+#: src/gtk/preferences-window.ui:424
 msgid "Custom Command"
 msgstr "Vlastní příkaz"
 
-#: src/gtk/preferences-window.ui:401
+#: src/gtk/preferences-window.ui:431
 msgid "Theme"
 msgstr "Motiv"
 
-#: src/gtk/preferences-window.ui:412
+#: src/gtk/preferences-window.ui:442
 msgid "Open folder"
 msgstr "Otevřít složku"
 
-#: src/gtk/preferences-window.ui:420
+#: src/gtk/preferences-window.ui:450
 msgid "Get more themes online"
 msgstr "Získat více motivů online"
 
-#: src/gtk/preferences-window.ui:434
+#: src/gtk/preferences-window.ui:464
 msgid "Set your preferred theme for light and dark styles."
 msgstr "Zvolte svůj světlý a tmavý motiv."
 
-#: src/gtk/preferences-window.ui:449
+#: src/gtk/preferences-window.ui:479
 msgid "Light Theme"
 msgstr "Světlý Motiv"
 
-#: src/gtk/preferences-window.ui:455
+#: src/gtk/preferences-window.ui:485
 msgid "Dark Theme"
 msgstr "Tmavý Motiv"
 
-#: src/gtk/preferences-window.ui:463
+#: src/gtk/preferences-window.ui:493
 msgid "Only display themes for the current style"
 msgstr "Zobrazovat motivy pouze pro současný styl"
 
-#: src/gtk/preferences-window.ui:471
+#: src/gtk/preferences-window.ui:501
 msgid ""
 "To ensure readability, \"Theme Integration\" will be disabled if you select "
 "a light color scheme while using the dark app style or a dark color scheme "
@@ -550,15 +699,15 @@ msgstr ""
 "vyberete světlé barevné schéma při použití tmavého stylu aplikace nebo tmavé "
 "barevné schéma při použití světlého stylu aplikace."
 
-#: src/gtk/preferences-window.ui:498
+#: src/gtk/preferences-window.ui:533
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: src/gtk/preferences-window.ui:502
+#: src/gtk/preferences-window.ui:537
 msgid "Experimental"
 msgstr "Experimentální"
 
-#: src/gtk/preferences-window.ui:503
+#: src/gtk/preferences-window.ui:538
 msgid ""
 "Features in this section are known to be wonky. Please feel free to test and "
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
@@ -568,27 +717,23 @@ msgstr ""
 "href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">nahlaste "
 "zde</a>."
 
-#: src/gtk/preferences-window.ui:507
-msgid "Pixel Scrolling"
-msgstr "Pixelové skrolování"
-
-#: src/gtk/preferences-window.ui:508
-msgid ""
-"Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
-"must be enabled."
+#: src/gtk/preferences-window.ui:542
+msgid "Sixel Support"
 msgstr ""
-"Skrolovat na základě pixelů místo řádků. \"Zobrazit posuvníky\" musí být "
-"povoleno."
 
-#: src/gtk/preferences-window.ui:520
+#: src/gtk/preferences-window.ui:543
+msgid "Render sixel escape sequences."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:555
 msgid "Danger Zone"
 msgstr "Nebezpečná zóna"
 
-#: src/gtk/preferences-window.ui:523
+#: src/gtk/preferences-window.ui:558
 msgid "Reset Preferences"
 msgstr "Resetovat nastavení"
 
-#: src/gtk/preferences-window.ui:524
+#: src/gtk/preferences-window.ui:559
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
@@ -596,9 +741,141 @@ msgstr ""
 "Toto vrátí všechna nastavení do výchozích hodnot. Vaše motivy nebudou "
 "odstraněny."
 
-#: src/gtk/preferences-window.ui:529
+#: src/gtk/preferences-window.ui:564
 msgid "Reset preferences"
 msgstr "Resetovat nastavení"
+
+#: src/utils/Constants.vala:34
+msgid "You can still access the menu by right-clicking any terminal."
+msgstr ""
+"Menu můžete pořád otevřít pomocí kliknutí pravým tlačítkem v terminálu."
+
+#: src/utils/Constants.vala:36
+#, c-format
+msgid ""
+"%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of "
+"progress has been made on this port, copying has yet to be implemented. This "
+"means there's currently no way to copy text in %s."
+msgstr ""
+
+#: src/widgets/AboutDialog.vala:59
+msgid "Donate"
+msgstr ""
+
+#: src/widgets/HeaderBar.vala:30 src/widgets/ShortcutEditor.vala:168
+#: src/widgets/Window.vala:142
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+#: src/widgets/HeaderBar.vala:31 src/widgets/ShortcutEditor.vala:164
+#: src/widgets/TerminalTab.vala:119
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: src/widgets/HeaderBar.vala:32 src/widgets/ShortcutEditor.vala:169
+#: src/widgets/TerminalTab.vala:122
+#, fuzzy
+msgid "Keyboard Shortcuts"
+msgstr "Zobrazit Zkratky"
+
+#: src/widgets/HeaderBar.vala:33 src/widgets/TerminalTab.vala:123
+msgid "About"
+msgstr "O Aplikaci"
+
+#: src/widgets/HeaderBar.vala:57 src/widgets/Window.vala:161
+msgid "Menu"
+msgstr "Menu"
+
+#: src/widgets/HeaderBar.vala:75 src/widgets/ShortcutEditor.vala:163
+#: src/widgets/TerminalTab.vala:111
+msgid "New Tab"
+msgstr "Nová Karta"
+
+#: src/widgets/ShortcutDialog.vala:46
+msgid "Enter new shortcut"
+msgstr ""
+
+#: src/widgets/ShortcutDialog.vala:47
+#, c-format
+msgid "Enter new shortcut for \"%s\""
+msgstr ""
+
+#: src/widgets/ShortcutEditor.vala:131
+msgid "Disabled"
+msgstr ""
+
+#: src/widgets/ShortcutEditor.vala:159
+#, fuzzy
+msgid "Focus Next Tab"
+msgstr "Zaměřit se na další Kartu"
+
+#: src/widgets/ShortcutEditor.vala:160
+#, fuzzy
+msgid "Focus Previous Tab"
+msgstr "Zaměřit se na předchozí Kartu"
+
+#: src/widgets/ShortcutEditor.vala:161 src/widgets/TerminalTab.vala:112
+msgid "New Window"
+msgstr "Nové Okno"
+
+#: src/widgets/ShortcutEditor.vala:162
+#, fuzzy
+msgid "Toggle Header Bar"
+msgstr "Zobrazit záhlaví"
+
+#: src/widgets/ShortcutEditor.vala:165 src/widgets/TerminalTab.vala:114
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: src/widgets/ShortcutEditor.vala:166 src/widgets/TerminalTab.vala:115
+msgid "Paste"
+msgstr "Vložit"
+
+#: src/widgets/ShortcutEditor.vala:167
+#, fuzzy
+msgid "Search"
+msgstr "Hledat"
+
+#: src/widgets/ShortcutEditor.vala:170
+#, fuzzy
+msgid "Zoom In"
+msgstr "Přiblížit"
+
+#: src/widgets/ShortcutEditor.vala:171
+#, fuzzy
+msgid "Zoom Out"
+msgstr "Oddálit"
+
+#: src/widgets/ShortcutEditor.vala:172
+msgid "Reset Zoom"
+msgstr ""
+
+#: src/widgets/ShortcutEditor.vala:173
+#, fuzzy
+msgid "Close Tab"
+msgstr "Zavřít kartu"
+
+#: src/widgets/ShortcutEditor.vala:175 src/widgets/ShortcutEditor.vala:176
+#: src/widgets/ShortcutEditor.vala:177 src/widgets/ShortcutEditor.vala:178
+#: src/widgets/ShortcutEditor.vala:179 src/widgets/ShortcutEditor.vala:180
+#: src/widgets/ShortcutEditor.vala:181 src/widgets/ShortcutEditor.vala:182
+#: src/widgets/ShortcutEditor.vala:183
+#, fuzzy, c-format
+msgid "Switch to Tab %u"
+msgstr "Přepnout na Kartu"
+
+#: src/widgets/ShortcutEditor.vala:184
+#, fuzzy
+msgid "Switch to Last Tab"
+msgstr "Přepnout na poslední Kartu"
+
+#: src/widgets/Window.vala:145
+msgid "Show headerbar"
+msgstr "Zobrazit záhlaví"
+
+#: src/widgets/PreferencesWindow.vala:496
+msgid "Terminal Font"
+msgstr "Font Terminálu"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
@@ -621,62 +898,21 @@ msgstr "Zobrazit nápovědu"
 msgid "Run %s --help to get help\n"
 msgstr "Spusť %s --pro získání nápovědy\n"
 
-#: src/widgets/Window.vala:142 src/widgets/HeaderBar.vala:30
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
+#~ msgid "Cursor"
+#~ msgstr "Kurzor"
 
-#: src/widgets/Window.vala:145
-msgid "Show headerbar"
-msgstr "Zobrazit záhlaví"
+#~ msgid "Pixel Scrolling"
+#~ msgstr "Pixelové skrolování"
 
-#: src/widgets/Window.vala:161
-msgid "Menu"
-msgstr "Menu"
+#~ msgid ""
+#~ "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
+#~ "must be enabled."
+#~ msgstr ""
+#~ "Skrolovat na základě pixelů místo řádků. \"Zobrazit posuvníky\" musí být "
+#~ "povoleno."
 
-#: src/widgets/TerminalTab.vala:120
-msgid "New Tab"
-msgstr "Nová Karta"
-
-#: src/widgets/TerminalTab.vala:121
-msgid "New Window"
-msgstr "Nové Okno"
-
-#: src/widgets/TerminalTab.vala:123
-msgid "Copy"
-msgstr "Kopírovat"
-
-#: src/widgets/TerminalTab.vala:124
-msgid "Paste"
-msgstr "Vložit"
-
-#: src/widgets/TerminalTab.vala:128 src/widgets/HeaderBar.vala:31
-msgid "Preferences"
-msgstr "Nastavení"
-
-#: src/widgets/TerminalTab.vala:131 src/widgets/HeaderBar.vala:32
-msgid "Help"
-msgstr "Nápověda"
-
-#: src/widgets/TerminalTab.vala:132 src/widgets/HeaderBar.vala:33
-msgid "About"
-msgstr "O Aplikaci"
-
-#: src/widgets/PreferencesWindow.vala:459
-msgid "Terminal Font"
-msgstr "Font Terminálu"
-
-#: src/utils/Constants.vala:34
-msgid "You can still access the menu by right-clicking any terminal."
-msgstr ""
-"Menu můžete pořád otevřít pomocí kliknutí pravým tlačítkem v terminálu."
-
-#: src/utils/Constants.vala:36
-#, c-format
-msgid ""
-"%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of "
-"progress has been made on this port, copying has yet to be implemented. This "
-"means there's currently no way to copy text in %s."
-msgstr ""
+#~ msgid "Help"
+#~ msgstr "Nápověda"
 
 #~ msgid "Tabs and Headerbar"
 #~ msgstr "Karty a Záhlaví"

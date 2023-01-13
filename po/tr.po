@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Black Box master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/raggesilver/blackbox\n"
-"POT-Creation-Date: 2022-09-29 21:13+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-13 20:34-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -22,6 +22,14 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: data\n"
+
+#: data/com.raggesilver.BlackBox.desktop.in:3
+msgid "Black Box"
+msgstr "Kara Kutu"
+
+#: data/com.raggesilver.BlackBox.desktop.in:9
+msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
+msgstr "Uçbirim;uçbirim;shell;kabuk;komut satırı;komut;cmd;box;kutu;"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:6
 msgid "Window width"
@@ -48,53 +56,62 @@ msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Pencerenin uçbirim temasının renklerini miras alma durumu"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
+msgid "Terminal window background opacity"
+msgstr ""
+
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "Sekmelerin sekme çubuğunu dolduracak şekilde genişletilme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:40
+#: data/com.raggesilver.BlackBox.gschema.xml:44
 msgid "Whether the headerbar should be shown or not"
 msgstr "Başlık çubuğunun gösterilme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:44
+#: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Başlık çubuğunda menü düğmesinin gösterilme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:48
+#: data/com.raggesilver.BlackBox.gschema.xml:52
 msgid ""
 "Whether or not to draw a 1px line under the header bar when there's a single "
 "tab open"
 msgstr ""
 "Tek sekme açıkken başlık çubuğunun altına 1 piksellik çizgi çizilme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:52
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to reserve an area for dragging the header bar"
 msgstr "Başlık çubuğunu sürüklemek için bir alan ayrılma durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:56
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Whether or not to show scrollbars"
 msgstr "Kaydırma çubuklarının gösterilme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:60
+#: data/com.raggesilver.BlackBox.gschema.xml:64
 msgid "Whether overlay scrolling should be enabled"
 msgstr "Yer paylaşımlı kaydırmanın etkinleştirilme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:64
+#: data/com.raggesilver.BlackBox.gschema.xml:68
 msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr "Etkinleştirilirse, uçbirimler satır yerine piksel olarak kaydırılır"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:68
+#: data/com.raggesilver.BlackBox.gschema.xml:72
+#, fuzzy
+msgid "If enabled, terminals will render sixel escape sequences"
+msgstr "Etkinleştirilirse, uçbirimler satır yerine piksel olarak kaydırılır"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Enable to limit terminal scrollback"
 msgstr "Uçbirim geri kaydırmasını sınırlamak için etkinleştirin"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:72
+#: data/com.raggesilver.BlackBox.gschema.xml:80
 msgid "Number of lines stored in scrollback"
 msgstr "Geri kaydırmada saklanacak satır sayısı"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:76
+#: data/com.raggesilver.BlackBox.gschema.xml:84
 msgid "If enabled, floating controls will be shown in headerless mode"
 msgstr "Etkinleştirilirse, yüzen denetimler başlıksız kipte gösterilecektir"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:80
+#: data/com.raggesilver.BlackBox.gschema.xml:88
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
@@ -102,44 +119,49 @@ msgstr ""
 "Yüzen denetimleri tetiklemek için pencerenin üstündeki gezinebilir alan "
 "(piksel olarak)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:84
+#: data/com.raggesilver.BlackBox.gschema.xml:92
 msgid "Delay time before showing floating controls"
 msgstr "Yüzen denetimleri göstermeden önceki gecikme süresi"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:88
+#: data/com.raggesilver.BlackBox.gschema.xml:96
 msgid "The light color scheme for the terminal"
 msgstr "Uçbirim için açık renk şeması"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:92
+#: data/com.raggesilver.BlackBox.gschema.xml:100
 msgid "The dark color scheme for the terminal"
 msgstr "Uçbirim için koyu renk şeması"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
-#: data/com.raggesilver.BlackBox.gschema.xml:97
+#: data/com.raggesilver.BlackBox.gschema.xml:105
 msgid "Style preference"
 msgstr "Biçem tercihleri"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:101
+#: data/com.raggesilver.BlackBox.gschema.xml:109
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
 msgstr "Uçbirim parçacıklarının etrafındaki dolgu miktarı (üst, sağ, alt, sol)"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:105
+#: data/com.raggesilver.BlackBox.gschema.xml:113
 msgid "Terminal cell width"
 msgstr "Uçbirim hücre genişliği"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:109
+#: data/com.raggesilver.BlackBox.gschema.xml:117
 msgid "Terminal cell height"
 msgstr "Uçbirim hücre yüksekliği"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:113
+#: data/com.raggesilver.BlackBox.gschema.xml:121
 msgid "Cursor shape"
 msgstr "İmleç biçimi"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:117
+#: data/com.raggesilver.BlackBox.gschema.xml:125
+#, fuzzy
+msgid "Whether or not the cursor should blink"
+msgstr "Kaydırma çubuklarının gösterilme durumu"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:129
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr "Etkinleştirilirse, ctrl+c ve ctrl+v kopyala/yapıştır olarak çalışır"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:121
+#: data/com.raggesilver.BlackBox.gschema.xml:133
 msgid ""
 "If enabled, the tab bar will be replaced with a title label when there's a "
 "single open tab"
@@ -147,60 +169,67 @@ msgstr ""
 "Etkinleştirilirse, tek açık sekme olduğunda sekme çubuğu başlık etiketiyle "
 "değiştirilir"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:125
+#: data/com.raggesilver.BlackBox.gschema.xml:137
 msgid "If enabled, a single open tab will blend with the headerbar color"
 msgstr "Etkinleştirilirse, tek açık sekme başlık çubuğu rengiyle karıştırılır"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:129
+#: data/com.raggesilver.BlackBox.gschema.xml:141
 msgid "Whether to spawn shell in login mode"
 msgstr "Oturum açma kipinde kabuğun oluşturulma durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:133
+#: data/com.raggesilver.BlackBox.gschema.xml:145
 msgid "Whether to use a custom command instead of the user's shell"
 msgstr "Kullanıcı kabuğu yerine özel komut kullanılma durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:137
+#: data/com.raggesilver.BlackBox.gschema.xml:149
 msgid "Custom command to use instead of the user's shell"
 msgstr "Kullanıcı kabuğu yerine kullanılacak özel komut"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:144
+#: data/com.raggesilver.BlackBox.gschema.xml:156
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
 "Son arama sonucunun sonraki tıklanmasının ilk sonuca dönmesi gerekmesi durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:148
+#: data/com.raggesilver.BlackBox.gschema.xml:160
 msgid "Whether search should be case sensitive"
 msgstr "Aramanın büyük/küçük harfe duyarlı olma durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:152
+#: data/com.raggesilver.BlackBox.gschema.xml:164
 msgid "Whether search should only match entire words"
 msgstr "Aramanın yalnızca tam sözcüklerle eşleşmesi gerekme durumu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:156
+#: data/com.raggesilver.BlackBox.gschema.xml:168
 msgid "Whether search should be performed using regular expressions"
 msgstr "Aramanın düzenli ifadeler kullanılarak yapılma durumu"
 
-#: src/CommandLine.vala:47
-msgid "Show app version"
-msgstr "Oykulama sürümünü göster"
+#: src/gtk/search-toolbar.ui:20
+msgid "Find"
+msgstr "Bul"
 
-#: src/CommandLine.vala:56
-msgid "Set current working directory"
-msgstr "Geçerli çalışma dizinini ayarla"
+#: src/gtk/search-toolbar.ui:42
+msgid "Previous result"
+msgstr "Önceki sonuç"
 
-#: src/CommandLine.vala:65
-msgid "Execute command in a terminal"
-msgstr "Komutu uçbirimde çalıştır"
+#: src/gtk/search-toolbar.ui:48
+msgid "Next result"
+msgstr "Sonraki sonuç"
 
-#: src/CommandLine.vala:74
-msgid "Show help"
-msgstr "Yardım göster"
+#: src/gtk/search-toolbar.ui:91
+msgid "Search wraps around"
+msgstr "Aramayı başa sar"
 
-#: src/CommandLine.vala:121
-#, c-format
-msgid "Run %s --help to get help\n"
-msgstr "Yardım almak için %s --help komutunu çalıştırın\n"
+#: src/gtk/search-toolbar.ui:96
+msgid "Match is case sensitive"
+msgstr "Eşleşme büyük/küçük harfe duyarlı"
+
+#: src/gtk/search-toolbar.ui:101
+msgid "Match entire words only"
+msgstr "Yalnızca tam sözcükleri eşleştir"
+
+#: src/gtk/search-toolbar.ui:106
+msgid "Match using regular expression"
+msgstr "Düzenli ifade kullanılarak eşleştir"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -222,12 +251,12 @@ msgctxt "shortcut window"
 msgid "Close tab"
 msgstr "Sekmeyi kapat"
 
-#: src/gtk/help-overlay.ui:32
+#: src/gtk/help-overlay.ui:31
 msgctxt "shortcut window"
 msgid "Switch headbar mode"
 msgstr "Başlık kipini değiştir"
 
-#: src/gtk/help-overlay.ui:38
+#: src/gtk/help-overlay.ui:37
 msgctxt "shortcut window"
 msgid "Toggle fullscreen"
 msgstr "Tam ekranı aç/kapat"
@@ -277,24 +306,103 @@ msgctxt "shortcut window"
 msgid "Focus previous tab"
 msgstr "Önceki sekmeye odaklan"
 
-#: src/gtk/help-overlay.ui:96
+#: src/gtk/help-overlay.ui:95
+#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab"
+msgid "Switch to Tab 1"
 msgstr "Sekmeye Geç"
 
-#: src/gtk/help-overlay.ui:102
+#: src/gtk/help-overlay.ui:101
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 2"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:107
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 3"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:113
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 4"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:119
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 5"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:125
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 6"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:131
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 7"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:137
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 8"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:143
+#, fuzzy
+msgctxt "shortcut window"
+msgid "Switch to Tab 9"
+msgstr "Sekmeye Geç"
+
+#: src/gtk/help-overlay.ui:149
 msgctxt "shortcut window"
 msgid "Switch to last Tab"
 msgstr "Son sekmeye geç"
 
-#: src/gtk/help-overlay.ui:109
+#: src/gtk/help-overlay.ui:157
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Genel"
 
-#: src/gtk/help-overlay.ui:112
+#: src/gtk/help-overlay.ui:160
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
+msgstr "Kısayolları Göster"
+
+#: src/gtk/shortcut-dialog.ui:6
+#, fuzzy
+msgid "Edit Shortcut"
+msgstr "Kısayolları Göster"
+
+#: src/gtk/shortcut-dialog.ui:21
+msgid "Cancel"
+msgstr ""
+
+#: src/gtk/shortcut-dialog.ui:28
+msgid "Apply"
+msgstr ""
+
+#: src/gtk/shortcut-dialog.ui:68
+msgid "This shortcut is already in use"
+msgstr ""
+
+#: src/gtk/shortcut-dialog.ui:81
+msgid "Press Escape to cancel or Backspace to disable shortcut"
+msgstr ""
+
+#: src/gtk/shortcut-editor.ui:6
+msgid "Keyboard"
+msgstr ""
+
+#: src/gtk/shortcut-editor.ui:10
+#, fuzzy
+msgid "Shortcuts"
 msgstr "Kısayolları Göster"
 
 #: src/gtk/preferences-window.ui:11
@@ -329,7 +437,7 @@ msgstr "Pencereyi uçbirim tema renkleriyle biçimlendir."
 msgid "Style Preference"
 msgstr "Biçem Tercihleri"
 
-#: src/gtk/preferences-window.ui:57
+#: src/gtk/preferences-window.ui:57 src/gtk/preferences-window.ui:300
 msgid "Follow System"
 msgstr "Sistemi İzle"
 
@@ -471,8 +579,9 @@ msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Kopyalama/Yapıştırma için ctrl+c/ctrl+v kullan."
 
 #: src/gtk/preferences-window.ui:281
-msgid "Cursor"
-msgstr "İmleç"
+#, fuzzy
+msgid "Cursor Shape"
+msgstr "İmleç biçimi"
 
 #: src/gtk/preferences-window.ui:285
 msgid "Block"
@@ -487,78 +596,103 @@ msgid "Underline"
 msgstr "Alt Çizgi"
 
 #: src/gtk/preferences-window.ui:295
+msgid "Cursor Blinking"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:296
+#, fuzzy
+msgid "Whether or not the cursor should blink."
+msgstr "Kaydırma çubuklarının gösterilme durumu"
+
+#: src/gtk/preferences-window.ui:301
+msgid "On"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:302
+msgid "Off"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:310
 msgid "Padding"
 msgstr "Doldurma"
 
-#: src/gtk/preferences-window.ui:311
+#: src/gtk/preferences-window.ui:324
+msgid "Opacity"
+msgstr ""
+
+#: src/gtk/preferences-window.ui:325
+msgid "Terminal background opacity."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:341
 msgid "Scrolling"
 msgstr "Kaydırma"
 
-#: src/gtk/preferences-window.ui:314
+#: src/gtk/preferences-window.ui:344
 msgid "Scrollbars"
 msgstr "Kaydırma Çubukları"
 
-#: src/gtk/preferences-window.ui:317
+#: src/gtk/preferences-window.ui:347
 msgid "Show Scrollbars"
 msgstr "Kaydırma Çubuklarını Göster"
 
-#: src/gtk/preferences-window.ui:328
+#: src/gtk/preferences-window.ui:358
 msgid "Use Overlay Scrolling"
 msgstr "Yer Paylaşımlı Kaydırmayı Kullan"
 
-#: src/gtk/preferences-window.ui:342
+#: src/gtk/preferences-window.ui:372
 msgid "Set Scrollback Limit"
 msgstr "Geri Kaydırma Sınırını Ayarla"
 
-#: src/gtk/preferences-window.ui:353
+#: src/gtk/preferences-window.ui:383
 msgid "Scrollback Lines"
 msgstr "Geri Kaydırılacak Satırlar"
 
-#: src/gtk/preferences-window.ui:369
+#: src/gtk/preferences-window.ui:399
 msgid "Command"
 msgstr "Komut"
 
-#: src/gtk/preferences-window.ui:373
+#: src/gtk/preferences-window.ui:403
 msgid "Run Command as Login Shell"
 msgstr "Komutu Giriş Kabuğu Olarak Çalıştır"
 
-#: src/gtk/preferences-window.ui:384
+#: src/gtk/preferences-window.ui:414
 msgid "Use Custom Command"
 msgstr "Özel Komut Kullan"
 
-#: src/gtk/preferences-window.ui:394
+#: src/gtk/preferences-window.ui:424
 msgid "Custom Command"
 msgstr "Özel Komut"
 
-#: src/gtk/preferences-window.ui:401
+#: src/gtk/preferences-window.ui:431
 msgid "Theme"
 msgstr "Tema"
 
-#: src/gtk/preferences-window.ui:412
+#: src/gtk/preferences-window.ui:442
 msgid "Open folder"
 msgstr "Klasör aç"
 
-#: src/gtk/preferences-window.ui:420
+#: src/gtk/preferences-window.ui:450
 msgid "Get more themes online"
 msgstr "Çevrimiçi olarak daha fazla tema edin"
 
-#: src/gtk/preferences-window.ui:434
+#: src/gtk/preferences-window.ui:464
 msgid "Set your preferred theme for light and dark styles."
 msgstr "Açık ve koyu biçemler için tercih ettiğiniz temayı ayarlayın."
 
-#: src/gtk/preferences-window.ui:449
+#: src/gtk/preferences-window.ui:479
 msgid "Light Theme"
 msgstr "Açık Tema"
 
-#: src/gtk/preferences-window.ui:455
+#: src/gtk/preferences-window.ui:485
 msgid "Dark Theme"
 msgstr "Koyu Tema"
 
-#: src/gtk/preferences-window.ui:463
+#: src/gtk/preferences-window.ui:493
 msgid "Only display themes for the current style"
 msgstr "Yalnızca geçerli biçem için temaları göster"
 
-#: src/gtk/preferences-window.ui:471
+#: src/gtk/preferences-window.ui:501
 msgid ""
 "To ensure readability, \"Theme Integration\" will be disabled if you select "
 "a light color scheme while using the dark app style or a dark color scheme "
@@ -568,82 +702,50 @@ msgstr ""
 "şeması ya da açık uygulama biçemini kullanırken koyu renk şeması seçerseniz "
 "\"Tema Entegrasyonu\" devre dışı bırakılır."
 
-#: src/gtk/preferences-window.ui:498
+#: src/gtk/preferences-window.ui:533
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: src/gtk/preferences-window.ui:502
+#: src/gtk/preferences-window.ui:537
 msgid "Experimental"
 msgstr "Deneysel"
 
-#: src/gtk/preferences-window.ui:503
+#: src/gtk/preferences-window.ui:538
 msgid ""
 "Features in this section are known to be wonky. Please feel free to test and "
 "<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
 "bugs</a>."
 msgstr ""
 "Bu bölümdeki özelliklerin riskli olduğu bilinmektedir. Lütfen test etmekten "
-"ve <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues"
-"\">hataları bildirmekten</a> çekinmeyin."
+"ve <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">hataları bildirmekten</a> çekinmeyin."
 
-#: src/gtk/preferences-window.ui:507
-msgid "Pixel Scrolling"
-msgstr "Piksel Kaydırma"
-
-#: src/gtk/preferences-window.ui:508
-msgid ""
-"Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
-"must be enabled."
+#: src/gtk/preferences-window.ui:542
+msgid "Sixel Support"
 msgstr ""
-"Satırlara göre kaydırmak yerine piksel birimlerine göre kaydırın. \"Kaydırma "
-"çubuklarını göster\" etkinleştirilmelidir."
 
-#: src/gtk/preferences-window.ui:520
+#: src/gtk/preferences-window.ui:543
+msgid "Render sixel escape sequences."
+msgstr ""
+
+#: src/gtk/preferences-window.ui:555
 msgid "Danger Zone"
 msgstr "Tehlikeli Bölge"
 
-#: src/gtk/preferences-window.ui:523
+#: src/gtk/preferences-window.ui:558
 msgid "Reset Preferences"
 msgstr "Tercihleri Sıfırla"
 
-#: src/gtk/preferences-window.ui:524
+#: src/gtk/preferences-window.ui:559
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
 msgstr ""
 "Bu, tüm ayarları varsayılana döndürür. Ek temalarınız kaldırılmayacaktır."
 
-#: src/gtk/preferences-window.ui:529
+#: src/gtk/preferences-window.ui:564
 msgid "Reset preferences"
 msgstr "Tercihleri sıfırla"
-
-#: src/gtk/search-toolbar.ui:20
-msgid "Find"
-msgstr "Bul"
-
-#: src/gtk/search-toolbar.ui:42
-msgid "Previous result"
-msgstr "Önceki sonuç"
-
-#: src/gtk/search-toolbar.ui:48
-msgid "Next result"
-msgstr "Sonraki sonuç"
-
-#: src/gtk/search-toolbar.ui:91
-msgid "Search wraps around"
-msgstr "Aramayı başa sar"
-
-#: src/gtk/search-toolbar.ui:96
-msgid "Match is case sensitive"
-msgstr "Eşleşme büyük/küçük harfe duyarlı"
-
-#: src/gtk/search-toolbar.ui:101
-msgid "Match entire words only"
-msgstr "Yalnızca tam sözcükleri eşleştir"
-
-#: src/gtk/search-toolbar.ui:106
-msgid "Match using regular expression"
-msgstr "Düzenli ifade kullanılarak eşleştir"
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
@@ -661,56 +763,158 @@ msgstr ""
 "değil. Bunun anlamı %s içindeki metni kopyalamanın henüz bir yolu yok "
 "anlamına gelmektedir."
 
-#: src/widgets/AboutDialog.vala:35
+#: src/widgets/AboutDialog.vala:59
 msgid "Donate"
 msgstr "Bağış Yap"
 
-#: src/widgets/HeaderBar.vala:30 src/widgets/Window.vala:142
+#: src/widgets/HeaderBar.vala:30 src/widgets/ShortcutEditor.vala:168
+#: src/widgets/Window.vala:142
 msgid "Fullscreen"
 msgstr "Tam ekran"
 
-#: src/widgets/HeaderBar.vala:31 src/widgets/TerminalTab.vala:128
+#: src/widgets/HeaderBar.vala:31 src/widgets/ShortcutEditor.vala:164
+#: src/widgets/TerminalTab.vala:119
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: src/widgets/HeaderBar.vala:32 src/widgets/TerminalTab.vala:131
-msgid "Help"
-msgstr "Yardım"
+#: src/widgets/HeaderBar.vala:32 src/widgets/ShortcutEditor.vala:169
+#: src/widgets/TerminalTab.vala:122
+#, fuzzy
+msgid "Keyboard Shortcuts"
+msgstr "Kısayolları Göster"
 
-#: src/widgets/HeaderBar.vala:33 src/widgets/TerminalTab.vala:132
+#: src/widgets/HeaderBar.vala:33 src/widgets/TerminalTab.vala:123
 msgid "About"
 msgstr "Hakkında"
 
-#: src/widgets/PreferencesWindow.vala:459
-msgid "Terminal Font"
-msgstr "Uçbirim Yazı Tipi"
+#: src/widgets/HeaderBar.vala:57 src/widgets/Window.vala:161
+msgid "Menu"
+msgstr "Menü"
 
-#: src/widgets/TerminalTab.vala:120
+#: src/widgets/HeaderBar.vala:75 src/widgets/ShortcutEditor.vala:163
+#: src/widgets/TerminalTab.vala:111
 msgid "New Tab"
 msgstr "Yeni Sekme"
 
-#: src/widgets/TerminalTab.vala:121
+#: src/widgets/ShortcutDialog.vala:46
+msgid "Enter new shortcut"
+msgstr ""
+
+#: src/widgets/ShortcutDialog.vala:47
+#, c-format
+msgid "Enter new shortcut for \"%s\""
+msgstr ""
+
+#: src/widgets/ShortcutEditor.vala:131
+msgid "Disabled"
+msgstr ""
+
+#: src/widgets/ShortcutEditor.vala:159
+#, fuzzy
+msgid "Focus Next Tab"
+msgstr "Sonraki sekmeye odaklan"
+
+#: src/widgets/ShortcutEditor.vala:160
+#, fuzzy
+msgid "Focus Previous Tab"
+msgstr "Önceki sekmeye odaklan"
+
+#: src/widgets/ShortcutEditor.vala:161 src/widgets/TerminalTab.vala:112
 msgid "New Window"
 msgstr "Yeni Pencere"
 
-#: src/widgets/TerminalTab.vala:123
+#: src/widgets/ShortcutEditor.vala:162
+#, fuzzy
+msgid "Toggle Header Bar"
+msgstr "Başlık Çubuğunu Göster"
+
+#: src/widgets/ShortcutEditor.vala:165 src/widgets/TerminalTab.vala:114
 msgid "Copy"
 msgstr "Kopyala"
 
-#: src/widgets/TerminalTab.vala:124
+#: src/widgets/ShortcutEditor.vala:166 src/widgets/TerminalTab.vala:115
 msgid "Paste"
 msgstr "Yapıştır"
+
+#: src/widgets/ShortcutEditor.vala:167
+#, fuzzy
+msgid "Search"
+msgstr "Arama"
+
+#: src/widgets/ShortcutEditor.vala:170
+#, fuzzy
+msgid "Zoom In"
+msgstr "Yakınlaştır"
+
+#: src/widgets/ShortcutEditor.vala:171
+#, fuzzy
+msgid "Zoom Out"
+msgstr "Uzaklaştır"
+
+#: src/widgets/ShortcutEditor.vala:172
+msgid "Reset Zoom"
+msgstr ""
+
+#: src/widgets/ShortcutEditor.vala:173
+#, fuzzy
+msgid "Close Tab"
+msgstr "Sekmeyi kapat"
+
+#: src/widgets/ShortcutEditor.vala:175 src/widgets/ShortcutEditor.vala:176
+#: src/widgets/ShortcutEditor.vala:177 src/widgets/ShortcutEditor.vala:178
+#: src/widgets/ShortcutEditor.vala:179 src/widgets/ShortcutEditor.vala:180
+#: src/widgets/ShortcutEditor.vala:181 src/widgets/ShortcutEditor.vala:182
+#: src/widgets/ShortcutEditor.vala:183
+#, fuzzy, c-format
+msgid "Switch to Tab %u"
+msgstr "Sekmeye Geç"
+
+#: src/widgets/ShortcutEditor.vala:184
+#, fuzzy
+msgid "Switch to Last Tab"
+msgstr "Son sekmeye geç"
 
 #: src/widgets/Window.vala:145
 msgid "Show headerbar"
 msgstr "Başlık çubuğunu göster"
 
-#: src/widgets/Window.vala:161
-msgid "Menu"
-msgstr "Menü"
+#: src/widgets/PreferencesWindow.vala:496
+msgid "Terminal Font"
+msgstr "Uçbirim Yazı Tipi"
 
-#~ msgid "Black Box"
-#~ msgstr "Kara Kutu"
+#: src/CommandLine.vala:47
+msgid "Show app version"
+msgstr "Oykulama sürümünü göster"
 
-#~ msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
-#~ msgstr "Uçbirim;uçbirim;shell;kabuk;komut satırı;komut;cmd;box;kutu;"
+#: src/CommandLine.vala:56
+msgid "Set current working directory"
+msgstr "Geçerli çalışma dizinini ayarla"
+
+#: src/CommandLine.vala:65
+msgid "Execute command in a terminal"
+msgstr "Komutu uçbirimde çalıştır"
+
+#: src/CommandLine.vala:74
+msgid "Show help"
+msgstr "Yardım göster"
+
+#: src/CommandLine.vala:121
+#, c-format
+msgid "Run %s --help to get help\n"
+msgstr "Yardım almak için %s --help komutunu çalıştırın\n"
+
+#~ msgid "Cursor"
+#~ msgstr "İmleç"
+
+#~ msgid "Pixel Scrolling"
+#~ msgstr "Piksel Kaydırma"
+
+#~ msgid ""
+#~ "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
+#~ "must be enabled."
+#~ msgstr ""
+#~ "Satırlara göre kaydırmak yerine piksel birimlerine göre kaydırın. "
+#~ "\"Kaydırma çubuklarını göster\" etkinleştirilmelidir."
+
+#~ msgid "Help"
+#~ msgstr "Yardım"
