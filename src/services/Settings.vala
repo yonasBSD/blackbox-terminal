@@ -25,6 +25,7 @@ public class Terminal.Settings : Marble.Settings {
   public bool    hide_single_tab                      { get; set; }
   public bool    use_sixel                            { get; set; }
   public bool    pretty                               { get; set; }
+  public uint    opacity                         { get; set; }
   public bool    remember_window_size                 { get; set; }
   public bool    show_headerbar                       { get; set; }
   public bool    show_menu_button                     { get; set; }

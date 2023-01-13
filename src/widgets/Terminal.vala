@@ -91,6 +91,7 @@ public class Terminal.Terminal : Vte.Terminal {
     ThemeProvider.get_default ().notify ["current-theme"].connect (this.on_theme_changed);
     this.settings.notify["font"].connect (this.on_font_changed);
     this.settings.notify["terminal-padding"].connect (this.on_padding_changed);
+    this.settings.notify["opacity"].connect (this.on_theme_changed);
 
     this.setup_drag_drop ();
     this.setup_regexes ();
@@ -188,6 +189,12 @@ public class Terminal.Terminal : Vte.Terminal {
     );
   }
 
+  private Gdk.RGBA get_background_color(Scheme theme) {
+    var bg_transparent = theme.background_color.copy();
+    bg_transparent.alpha = this.settings.opacity * 0.01f;
+    return bg_transparent;
+  }
+
   private void on_theme_changed () {
     var theme_provider = ThemeProvider.get_default ();
     var theme_name = theme_provider.current_theme;
@@ -198,9 +205,10 @@ public class Terminal.Terminal : Vte.Terminal {
       return;
     }
 
+    var bg = this.get_background_color (theme);
     this.set_colors (
       theme.foreground_color,
-      theme.background_color,
+      bg,
       theme.palette.data
     );
   }

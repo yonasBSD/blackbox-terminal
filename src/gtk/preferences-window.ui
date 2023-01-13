@@ -319,6 +319,21 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Opacity</property>
+                <property name="subtitle" translatable="yes">Terminal background opacity.</property>
+                <child>
+                  <object class="GtkSpinButton" id="opacity_spin_button">
+                    <property name="adjustment">opacity_spin_button_adjustment</property>
+                    <property name="climb-rate">1</property>
+                    <property name="numeric">1</property>
+                    <property name="snap-to-ticks">False</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -581,6 +596,11 @@
     <property name="step-increment">0.05</property>
   </object>
   <object class="GtkAdjustment" id="padding_spin_button_adjustment">
+    <property name="upper">100</property>
+    <property name="step-increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="opacity_spin_button_adjustment">
+    <property name="lower">0</property>
     <property name="upper">100</property>
     <property name="step-increment">1</property>
   </object>
