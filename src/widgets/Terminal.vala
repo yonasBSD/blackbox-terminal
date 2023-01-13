@@ -246,6 +246,15 @@ public class Terminal.Terminal : Vte.Terminal {
       null
     );
 
+    this.settings.bind_property (
+      "cursor-blink-mode",
+      this,
+      "cursor-blink-mode",
+      BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+
     this.bind_property (
       "user-scrollback-lines",
       this,

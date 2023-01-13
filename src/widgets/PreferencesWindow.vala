@@ -31,6 +31,7 @@ bool light_themes_filter_func (Gtk.FlowBoxChild child) {
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
+  [GtkChild] unowned Adw.ComboRow         cursor_blink_mode_combo_row;
   [GtkChild] unowned Adw.ComboRow         style_preference_combo_row;
   [GtkChild] unowned Adw.EntryRow         custom_command_entry_row;
   [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
@@ -342,6 +343,14 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind(
       "cursor-shape",
       this.cursor_shape_combo_row,
+      "selected",
+      SettingsBindFlags.DEFAULT
+    );
+
+    // 0 = Follow System, 1 = On, 2 = Off
+    settings.schema.bind(
+      "cursor-blink-mode",
+      this.cursor_blink_mode_combo_row,
       "selected",
       SettingsBindFlags.DEFAULT
     );

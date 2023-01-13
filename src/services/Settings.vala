@@ -44,6 +44,7 @@ public class Terminal.Settings : Marble.Settings {
   public string  theme_dark                           { get; set; }
   public string  theme_light                          { get; set; }
   public uint    cursor_shape                         { get; set; }
+  public uint    cursor_blink_mode                    { get; set; }
   public uint    scrollback_lines                     { get; set; }
   public uint    style_preference                     { get; set; }
   public uint    window_height                        { get; set; }

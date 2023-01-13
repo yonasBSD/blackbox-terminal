@@ -116,6 +116,10 @@
       <default>0</default>
       <summary>Cursor shape</summary>
     </key>
+    <key name="cursor-blink-mode" type="u">
+      <default>0</default>
+      <summary>Whether or not the cursor should blink</summary>
+    </key>
     <key name="easy-copy-paste" type="b">
       <default>false</default>
       <summary>If enabled, ctrl+c and ctrl+v will work for copy/paste</summary>
