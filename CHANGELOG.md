@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.13.0 - 2023-01-13
+
+The latest version of Black Box brings much-awaited new features and bug fixes.
+
+Features:
+
+- Customizable keyboard shortcuts
+- Background transparency - thanks to @bennyp
+- Customizable cursor blinking mode - thanks to @knuxify
+- Experimental Sixel support - thanks to @PJungkamp
+
+Bug fixes:
+
+- Manually set VTE_VERSION environment variable - fixes compatibility with a few terminal programs - #208
+- Copying text outside the current scroll view now works correctly - #166
+- Scrolling with a touchpad or touchscreen now works as intended - #179
+
 ## 0.12.2 - 2022.11.16
 
 Features:

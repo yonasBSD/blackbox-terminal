@@ -84,6 +84,27 @@
   </kudos>
 
   <releases>
+    <release date="2023-01-13" version="0.13.0">
+      <description>
+        <p>
+          The latest version of Black Box brings much awaited new features and
+          bug fixes.
+        </p>
+        <p>Features</p>
+        <ul>
+          <li>Customizable keyboard shortcuts</li>
+          <li>Background transparency</li>
+          <li>Customizable cursor blinking mode</li>
+          <li>Experimental sixel support</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>Manually set VTE_VERSION environment variable - fixes compatibility with a few terminal programs</li>
+          <li>Copying text outside the current scroll view now works correctly</li>
+          <li>Scrolling with a touchpad or touchscreen now works as intended</li>
+        </ul>
+      </description>
+    </release>
     <release date="2022-11-16" version="0.12.2">
       <description>
         <p>Features:</p>
