@@ -82,6 +82,16 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     }
   }
 
+  static construct {
+    typeof (ShortcutEditor).class_ref ();
+  }
+
+  construct {
+    if (DEVEL) {
+      this.add_css_class ("devel");
+    }
+  }
+
   public PreferencesWindow (Window window) {
     Object (
       application: window.application,
@@ -137,7 +147,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   private void bind_data () {
     var settings = Settings.get_default ();
-    var ssettings = SearchSettings.get_default ();
 
     settings.schema.bind (
       "font",

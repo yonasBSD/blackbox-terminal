@@ -494,6 +494,11 @@
       </object>
     </child>
     <child>
+      <object class="TerminalShortcutEditor">
+        <property name="app" bind-source="TerminalPreferencesWindow" bind-property="application" bind-flags="default" />
+      </object>
+    </child>
+    <child>
       <object class="AdwPreferencesPage">
         <property name="title" translatable="yes">Advanced</property>
         <property name="icon-name">applications-science-symbolic</property>

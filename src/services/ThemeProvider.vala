@@ -263,10 +263,16 @@ public class Terminal.ThemeProvider : Object {
       @define-color dark_fill_bg_color      @headerbar_bg_color;
       @define-color view_bg_color           @card_bg_color;
       @define-color view_fg_color           @window_fg_color;
+
+      /* @define-color borders                 mix(@window_fg_color, @window_bg_color, 0.8); */
     """.printf (
       scheme.background_color.to_string (),
       scheme.foreground_color.to_string ()
     );
+
+    // Libadwaita sets border colors to foreground color at 15% opacity. This
+    // works beautifuly for all background colors, but it breaks the borders we
+    // draw
 
     if (this.is_dark_style_active) {
       theme += """

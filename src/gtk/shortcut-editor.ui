@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.0" />
+  <template class="TerminalShortcutEditor" parent="AdwPreferencesPage">
+    <property name="title" translatable="yes">Keyboard</property>
+    <property name="icon-name">input-keyboard-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup" id="shortcuts_group">
+        <property name="title" translatable="yes">Shortcuts</property>
+      </object>
+    </child>
+  </template>
+</interface>

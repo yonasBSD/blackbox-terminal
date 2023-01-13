@@ -402,10 +402,59 @@ public class Terminal.Window : Adw.ApplicationWindow {
     sa = new SimpleAction ("search", null);
     sa.activate.connect (this.search);
     this.add_action (sa);
+
+    sa = new SimpleAction ("zoom-in", null);
+    sa.activate.connect (this.zoom_in);
+    this.add_action (sa);
+
+    sa = new SimpleAction ("zoom-out", null);
+    sa.activate.connect (this.zoom_out);
+    this.add_action (sa);
+
+    sa = new SimpleAction ("zoom-default", null);
+    sa.activate.connect (this.zoom_default);
+    this.add_action (sa);
+
+    sa = new SimpleAction ("close-tab", null);
+    sa.activate.connect (this.close_active_tab);
+    this.add_action (sa);
+
+    for (uint i = 1; i < 10; i++) {
+      sa = new SimpleAction ("switch-tab-%u".printf (i), null);
+      sa.activate.connect (() => {
+        this.focus_nth_tab ((int) i);
+      });
+      this.add_action (sa);
+    }
+
+    sa = new SimpleAction ("switch-tab-last", null);
+    sa.activate.connect (() => {
+      this.focus_nth_tab (-1);
+    });
+    this.add_action (sa);
   }
 
   public void search () {
     (this.tab_view.selected_page?.child as TerminalTab)?.search ();
+  }
+
+  public void zoom_in () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
+      .zoom_in ();
+  }
+
+  public void zoom_out () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
+      .zoom_out ();
+  }
+
+  public void zoom_default () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
+      .zoom_default ();
+  }
+
+  public void close_active_tab () {
+    (this.tab_view.selected_page?.child as TerminalTab)?.close_request ();
   }
 
   public void new_tab (string? command, string? cwd) {
@@ -537,7 +586,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     if (this.tab_view.n_pages <= 1) {
       return;
     }
-    if (index == 9) {
+    if (index < 0) {
       // Go to last tab
       this.tab_view.set_selected_page (
         this.tab_view.get_nth_page (this.tab_view.n_pages - 1)

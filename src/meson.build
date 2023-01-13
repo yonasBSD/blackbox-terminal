@@ -23,6 +23,20 @@ config_header = configure_file(
     configuration: conf_data
     )
 
+# blackbox_deps = [
+#   dependency('gio-2.0', version: '>= 2.73'),
+#   dependency('gtk4', version: '>= 4.8'),
+#   dependency('libadwaita-1', version: '>= 1.2'),
+#   dependency('marble', version: '>= 42'),
+#   dependency('vte-2.91-gtk4', version: '>= 0.71'),
+#   dependency('json-glib-1.0', version: '>= 1.6'),
+#   dependency('libpcre2-8', version: '>= 10.40'),
+#   dependency('libxml-2.0', version: '>= 2.10'),
+#   dependency('librsvg-2.0', version: '>= 2.55'),
+#   dependency('gee-0.8', version: '>=0.20'),
+#   dependency('graphene-gobject-1.0', version: '>= 1.11'),
+# ]
+
 blackbox_deps = [
   dependency('gio-2.0', version: '>= 2.50'),
   dependency('gtk4', version: '>= 4.6.2'),
@@ -35,6 +49,7 @@ blackbox_deps = [
   dependency('libpcre2-8'),
   dependency('libxml-2.0', version: '>= 2.9.12'),
   dependency('librsvg-2.0', version: '>= 2.54.0'),
+  dependency('gee-0.8', version: '>=0.20'),
   dependency('graphene-gobject-1.0'),
 ]
 

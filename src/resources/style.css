@@ -1,4 +1,7 @@
-window:not(.about) headerbar:not(.background) {
+/* libadwaita does 0.85, but 0.8 looks better */
+@define-color fixed-borders mix(@window_fg_color, @window_bg_color, 0.8);
+
+window:not(.about) headerbar:not(.background), .custom-headerbar {
   background: @headerbar_bg_color;
 }
 
@@ -6,9 +9,14 @@ window:not(.about) headerbar:not(.background) {
   border: 1px solid @borders;
 }
 
+/* #blackbox-main-window.with-borders:not(.fullscreen):backdrop {
+  border-color: alpha(@borders, 0.5);
+} */
+
 #blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) headerbar,
 #blackbox-main-window.with-borders .custom-headerbar.single-tab-mode.draw-line-in-single-tab headerbar {
-  background-image: image(@borders);
+  background-color: transparent;
+  background-image: image(@fixed-borders);
   background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -65,8 +73,8 @@ tab:selected {
 
 #blackbox-main-window.with-borders tab:selected,
 #blackbox-main-window.with-borders .custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
-  border-left-color: @borders;
-  border-right-color: @borders;
+  border-left-color: @fixed-borders;
+  border-right-color: @fixed-borders;
 }
 
 .custom-headerbar windowcontrols.end.empty {
@@ -178,6 +186,10 @@ window:not(.about) .floating-revealer > headerbar {
 }
 .floating-btn-box button:last-child {
   padding-right: 4px;
+}
+
+.shortcut-row {
+  padding: 12px;
 }
 
 /* :root {

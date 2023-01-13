@@ -62,4 +62,10 @@ public class Terminal.File : Object {
       ? null
       : ((string) buf).make_valid ((ssize_t) read);
   }
+
+  public void write_plus (string str) throws Error {
+    var iostream = this.file.replace_readwrite (null, false, FileCreateFlags.NONE);
+    var os = iostream.output_stream;
+    os.write_all (str.data, null, null);
+  }
 }
