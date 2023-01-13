@@ -50,6 +50,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           hide_single_tab_switch;
   [GtkChild] unowned Gtk.Switch           use_sixel_switch;
   [GtkChild] unowned Gtk.Switch           pretty_switch;
+  [GtkChild] unowned Gtk.SpinButton       opacity_spin_button;
   [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
   [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
   [GtkChild] unowned Gtk.Switch           show_headerbar_switch;
@@ -189,6 +190,24 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       this.pretty_switch,
       "active",
       SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind_with_mapping(
+      "opacity",
+      this.opacity_spin_button,
+      "value",
+      SettingsBindFlags.DEFAULT,
+      // From settings to spin button
+      (to_val, settings_variant) => {
+        to_val = settings_variant.get_uint32();
+        return true;
+      },
+      // From spin button to settings
+      (value) => {
+        return new GLib.Variant.uint32((uint)value.get_double());
+      },
+      null,
+      null
     );
 
     settings.schema.bind(
@@ -541,3 +560,4 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     );
   }
 }
+

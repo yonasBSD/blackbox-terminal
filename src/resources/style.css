@@ -13,6 +13,10 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
   border-color: alpha(@borders, 0.5);
 } */
 
+#blackbox-main-window {
+  background: transparent;
+}
+
 #blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) headerbar,
 #blackbox-main-window.with-borders .custom-headerbar.single-tab-mode.draw-line-in-single-tab headerbar {
   background-color: transparent;
@@ -40,7 +44,7 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
  */
 .custom-headerbar:backdrop windowhandle { filter: none; }
 
-.custom-headerbar:backdrop { filter: opacity(0.5); }
+.custom-headerbar:backdrop > * { filter: opacity(0.5); }
 
 tab {
   background: transparent;
