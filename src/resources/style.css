@@ -6,7 +6,7 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
 }
 
 #blackbox-main-window.with-borders:not(.fullscreen) {
-  border: 1px solid @borders;
+  border: 1px solid @fixed-borders;
 }
 
 /* #blackbox-main-window.with-borders:not(.fullscreen):backdrop {
