@@ -39,6 +39,7 @@ namespace Terminal {
         <p>Bug fixes</p>
         <ul>
           <li>Style improvements</li>
+          <li>Allow setting font style (regular, light, bold, etc)</li>
         </ul>
       """
     };

@@ -509,7 +509,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkCallback]
   private void on_font_row_activated () {
     var fc = new Gtk.FontChooserDialog (_("Terminal Font"), this) {
-      level = Gtk.FontChooserLevel.FAMILY | Gtk.FontChooserLevel.SIZE,
+      level = Gtk.FontChooserLevel.FAMILY | Gtk.FontChooserLevel.SIZE | Gtk.FontChooserLevel.STYLE,
       // Setting the font seems to have no effect
       font = Settings.get_default ().font,
     };
