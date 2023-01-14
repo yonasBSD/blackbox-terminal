@@ -40,6 +40,9 @@ namespace Terminal {
         <ul>
           <li>Style improvements</li>
           <li>Allow setting font style (regular, light, bold, etc)</li>
+          <li>Improved keybinding validation</li>
+          <li>Tab navigation shortcuts now work as expected</li>
+          <li>Fixed default "Reset Zoom" keybinding</li>
         </ul>
       """
     };

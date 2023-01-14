@@ -13,6 +13,9 @@ Bug fixes:
 
 - Style improvements - #181
 - Allow setting font style (regular, light, bold, etc) - #170
+- Improved keybinding validation - #214
+- Tab navigation shortcuts now work as expected
+- Fixed default "Reset Zoom" keybinding
 
 ## 0.13.0 - 2023-01-13
 
