@@ -1,8 +1,8 @@
 # Turkish translation for Black Box.
-# Copyright (C) 2022 Black Box's COPYRIGHT HOLDER
+# Copyright (C) 2022, 2023 Black Box's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Black Box package.
 #
-# Sabri Ünal <libreajans@gmail.com>, 2022.
+# Sabri Ünal <libreajans@gmail.com>, 2022, 2023.
 #
 msgid ""
 msgstr ""
@@ -57,7 +57,7 @@ msgstr "Pencerenin uçbirim temasının renklerini miras alma durumu"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Terminal window background opacity"
-msgstr ""
+msgstr "Uçbirim penceresi arka plan matlığı"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not tabs should expand to fill tab bar"
@@ -95,9 +95,8 @@ msgid "If enabled, terminals will scroll by pixels instead of rows"
 msgstr "Etkinleştirilirse, uçbirimler satır yerine piksel olarak kaydırılır"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
-#, fuzzy
 msgid "If enabled, terminals will render sixel escape sequences"
-msgstr "Etkinleştirilirse, uçbirimler satır yerine piksel olarak kaydırılır"
+msgstr "Etkinleştirilirse, uçbirimler sixel kaçma dizilerini işler"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Enable to limit terminal scrollback"
@@ -153,9 +152,8 @@ msgid "Cursor shape"
 msgstr "İmleç biçimi"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:125
-#, fuzzy
 msgid "Whether or not the cursor should blink"
-msgstr "Kaydırma çubuklarının gösterilme durumu"
+msgstr "İmlecin yanıp sönmesinin gerekip gerekmediği"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:129
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
@@ -307,58 +305,49 @@ msgid "Focus previous tab"
 msgstr "Önceki sekmeye odaklan"
 
 #: src/gtk/help-overlay.ui:95
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 1"
-msgstr "Sekmeye Geç"
+msgstr "1. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:101
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 2"
-msgstr "Sekmeye Geç"
+msgstr "2. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:107
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 3"
-msgstr "Sekmeye Geç"
+msgstr "3. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:113
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 4"
-msgstr "Sekmeye Geç"
+msgstr "4. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:119
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 5"
-msgstr "Sekmeye Geç"
+msgstr "5. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:125
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 6"
-msgstr "Sekmeye Geç"
+msgstr "6. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:131
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 7"
-msgstr "Sekmeye Geç"
+msgstr "7. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:137
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 8"
-msgstr "Sekmeye Geç"
+msgstr "8. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:143
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 9"
-msgstr "Sekmeye Geç"
+msgstr "9. sekmeye geç"
 
 #: src/gtk/help-overlay.ui:149
 msgctxt "shortcut window"
@@ -376,34 +365,34 @@ msgid "Show Shortcuts"
 msgstr "Kısayolları Göster"
 
 #: src/gtk/shortcut-dialog.ui:6
-#, fuzzy
 msgid "Edit Shortcut"
-msgstr "Kısayolları Göster"
+msgstr "Kısayolları Düzenle"
 
 #: src/gtk/shortcut-dialog.ui:21
 msgid "Cancel"
-msgstr ""
+msgstr "İptal Et"
 
 #: src/gtk/shortcut-dialog.ui:28
 msgid "Apply"
-msgstr ""
+msgstr "Uygula"
 
 #: src/gtk/shortcut-dialog.ui:68
 msgid "This shortcut is already in use"
-msgstr ""
+msgstr "Bu kısayol zaten kullanımda"
 
 #: src/gtk/shortcut-dialog.ui:81
 msgid "Press Escape to cancel or Backspace to disable shortcut"
 msgstr ""
+"İptal etmek için Esc tuşuna veya kısayolu devre dışı bırakmak için Geri "
+"tuşuna basın"
 
 #: src/gtk/shortcut-editor.ui:6
 msgid "Keyboard"
-msgstr ""
+msgstr "Klavye"
 
 #: src/gtk/shortcut-editor.ui:10
-#, fuzzy
 msgid "Shortcuts"
-msgstr "Kısayolları Göster"
+msgstr "Kısayollar"
 
 #: src/gtk/preferences-window.ui:11
 msgid "General"
@@ -579,9 +568,8 @@ msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Kopyalama/Yapıştırma için ctrl+c/ctrl+v kullan."
 
 #: src/gtk/preferences-window.ui:281
-#, fuzzy
 msgid "Cursor Shape"
-msgstr "İmleç biçimi"
+msgstr "İmleç Biçimi"
 
 #: src/gtk/preferences-window.ui:285
 msgid "Block"
@@ -597,20 +585,19 @@ msgstr "Alt Çizgi"
 
 #: src/gtk/preferences-window.ui:295
 msgid "Cursor Blinking"
-msgstr ""
+msgstr "İmleç Yanıp Sönmesi"
 
 #: src/gtk/preferences-window.ui:296
-#, fuzzy
 msgid "Whether or not the cursor should blink."
-msgstr "Kaydırma çubuklarının gösterilme durumu"
+msgstr "İmlecin yanıp sönmesinin gerekip gerekmediği."
 
 #: src/gtk/preferences-window.ui:301
 msgid "On"
-msgstr ""
+msgstr "Açık"
 
 #: src/gtk/preferences-window.ui:302
 msgid "Off"
-msgstr ""
+msgstr "Kapalı"
 
 #: src/gtk/preferences-window.ui:310
 msgid "Padding"
@@ -618,11 +605,11 @@ msgstr "Doldurma"
 
 #: src/gtk/preferences-window.ui:324
 msgid "Opacity"
-msgstr ""
+msgstr "Matlık"
 
 #: src/gtk/preferences-window.ui:325
 msgid "Terminal background opacity."
-msgstr ""
+msgstr "Uçbirim arka plan matlığı."
 
 #: src/gtk/preferences-window.ui:341
 msgid "Scrolling"
@@ -722,11 +709,11 @@ msgstr ""
 
 #: src/gtk/preferences-window.ui:542
 msgid "Sixel Support"
-msgstr ""
+msgstr "Sixel Desteği"
 
 #: src/gtk/preferences-window.ui:543
 msgid "Render sixel escape sequences."
-msgstr ""
+msgstr "Sixel kaçma dizilerini işle."
 
 #: src/gtk/preferences-window.ui:555
 msgid "Danger Zone"
@@ -779,9 +766,8 @@ msgstr "Tercihler"
 
 #: src/widgets/HeaderBar.vala:32 src/widgets/ShortcutEditor.vala:169
 #: src/widgets/TerminalTab.vala:122
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Kısayolları Göster"
+msgstr "Klavye Kısayolları"
 
 #: src/widgets/HeaderBar.vala:33 src/widgets/TerminalTab.vala:123
 msgid "About"
@@ -798,35 +784,32 @@ msgstr "Yeni Sekme"
 
 #: src/widgets/ShortcutDialog.vala:46
 msgid "Enter new shortcut"
-msgstr ""
+msgstr "Yeni kısayol gir"
 
 #: src/widgets/ShortcutDialog.vala:47
 #, c-format
 msgid "Enter new shortcut for \"%s\""
-msgstr ""
+msgstr "\"%s\" için yeni kısayol gir"
 
 #: src/widgets/ShortcutEditor.vala:131
 msgid "Disabled"
-msgstr ""
+msgstr "Devre Dışı"
 
 #: src/widgets/ShortcutEditor.vala:159
-#, fuzzy
 msgid "Focus Next Tab"
-msgstr "Sonraki sekmeye odaklan"
+msgstr "Sonraki Sekmeye Odaklan"
 
 #: src/widgets/ShortcutEditor.vala:160
-#, fuzzy
 msgid "Focus Previous Tab"
-msgstr "Önceki sekmeye odaklan"
+msgstr "Önceki Sekmeye Odaklan"
 
 #: src/widgets/ShortcutEditor.vala:161 src/widgets/TerminalTab.vala:112
 msgid "New Window"
 msgstr "Yeni Pencere"
 
 #: src/widgets/ShortcutEditor.vala:162
-#, fuzzy
 msgid "Toggle Header Bar"
-msgstr "Başlık Çubuğunu Göster"
+msgstr "Başlık Çubuğunu Aç/Kapat"
 
 #: src/widgets/ShortcutEditor.vala:165 src/widgets/TerminalTab.vala:114
 msgid "Copy"
@@ -837,42 +820,37 @@ msgid "Paste"
 msgstr "Yapıştır"
 
 #: src/widgets/ShortcutEditor.vala:167
-#, fuzzy
 msgid "Search"
 msgstr "Arama"
 
 #: src/widgets/ShortcutEditor.vala:170
-#, fuzzy
 msgid "Zoom In"
 msgstr "Yakınlaştır"
 
 #: src/widgets/ShortcutEditor.vala:171
-#, fuzzy
 msgid "Zoom Out"
 msgstr "Uzaklaştır"
 
 #: src/widgets/ShortcutEditor.vala:172
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Yakınlaştırmayı Sıfırla"
 
 #: src/widgets/ShortcutEditor.vala:173
-#, fuzzy
 msgid "Close Tab"
-msgstr "Sekmeyi kapat"
+msgstr "Sekmeyi Kapat"
 
 #: src/widgets/ShortcutEditor.vala:175 src/widgets/ShortcutEditor.vala:176
 #: src/widgets/ShortcutEditor.vala:177 src/widgets/ShortcutEditor.vala:178
 #: src/widgets/ShortcutEditor.vala:179 src/widgets/ShortcutEditor.vala:180
 #: src/widgets/ShortcutEditor.vala:181 src/widgets/ShortcutEditor.vala:182
 #: src/widgets/ShortcutEditor.vala:183
-#, fuzzy, c-format
+#, c-format
 msgid "Switch to Tab %u"
-msgstr "Sekmeye Geç"
+msgstr "%u. Sekmeye Geç"
 
 #: src/widgets/ShortcutEditor.vala:184
-#, fuzzy
 msgid "Switch to Last Tab"
-msgstr "Son sekmeye geç"
+msgstr "En Son Sekmeye Geç"
 
 #: src/widgets/Window.vala:145
 msgid "Show headerbar"
@@ -902,19 +880,3 @@ msgstr "Yardım göster"
 #, c-format
 msgid "Run %s --help to get help\n"
 msgstr "Yardım almak için %s --help komutunu çalıştırın\n"
-
-#~ msgid "Cursor"
-#~ msgstr "İmleç"
-
-#~ msgid "Pixel Scrolling"
-#~ msgstr "Piksel Kaydırma"
-
-#~ msgid ""
-#~ "Scroll by pixel units instead of scrolling by lines. \"Show scrollbars\" "
-#~ "must be enabled."
-#~ msgstr ""
-#~ "Satırlara göre kaydırmak yerine piksel birimlerine göre kaydırın. "
-#~ "\"Kaydırma çubuklarını göster\" etkinleştirilmelidir."
-
-#~ msgid "Help"
-#~ msgstr "Yardım"
