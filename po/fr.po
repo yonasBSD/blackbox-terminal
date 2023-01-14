@@ -6,15 +6,15 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-13 20:34-0300\n"
-"PO-Revision-Date: 2022-08-17 18:34+0200\n"
-"Last-Translator: Irénée THIRION <irenee.thirion@e.email>\n"
+"PO-Revision-Date: 2023-01-14 11:11+0100\n"
+"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
 "Language-Team: French <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: po\n"
 "X-Poedit-SearchPath-1: .\n"
@@ -55,7 +55,7 @@ msgstr "Si la fenêtre devrait hériter des couleurs du thème du terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Terminal window background opacity"
-msgstr ""
+msgstr "Opacité de la fenêtre du terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether or not tabs should expand to fill tab bar"
@@ -96,11 +96,10 @@ msgstr ""
 "rangées"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:72
-#, fuzzy
 msgid "If enabled, terminals will render sixel escape sequences"
 msgstr ""
-"Si cette option est activée, les terminaux défileront par pixels et non par "
-"rangées"
+"Si cette option est activée, les terminaux rendront les séquences "
+"d’échappement sixel"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:76
 msgid "Enable to limit terminal scrollback"
@@ -158,9 +157,8 @@ msgid "Cursor shape"
 msgstr "Forme du curseur"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:125
-#, fuzzy
 msgid "Whether or not the cursor should blink"
-msgstr "Afficher ou non les barres de défilement"
+msgstr "Indique si le curseur doit clignoter"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:129
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
@@ -215,34 +213,31 @@ msgstr ""
 
 #: src/gtk/search-toolbar.ui:20
 msgid "Find"
-msgstr ""
+msgstr "Chercher"
 
 #: src/gtk/search-toolbar.ui:42
 msgid "Previous result"
-msgstr ""
+msgstr "Résultat précédent"
 
 #: src/gtk/search-toolbar.ui:48
 msgid "Next result"
-msgstr ""
+msgstr "Résultat suivant"
 
 #: src/gtk/search-toolbar.ui:91
 msgid "Search wraps around"
-msgstr ""
+msgstr "Dans toute la fenêtre"
 
 #: src/gtk/search-toolbar.ui:96
-#, fuzzy
 msgid "Match is case sensitive"
-msgstr "Si la recherche doit être sensible à la casse"
+msgstr "Sensibilité à la casse"
 
 #: src/gtk/search-toolbar.ui:101
 msgid "Match entire words only"
-msgstr ""
+msgstr "Mots entiers seulement"
 
 #: src/gtk/search-toolbar.ui:106
-#, fuzzy
 msgid "Match using regular expression"
-msgstr ""
-"Si la recherche doit être effectuée en utilisant des expressions régulières"
+msgstr "Utiliser les expressions régulières"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -320,58 +315,49 @@ msgid "Focus previous tab"
 msgstr "Focus sur l’onglet précédent"
 
 #: src/gtk/help-overlay.ui:95
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 1"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 1"
 
 #: src/gtk/help-overlay.ui:101
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 2"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 2"
 
 #: src/gtk/help-overlay.ui:107
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 3"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 3"
 
 #: src/gtk/help-overlay.ui:113
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 4"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 4"
 
 #: src/gtk/help-overlay.ui:119
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 5"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 5"
 
 #: src/gtk/help-overlay.ui:125
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 6"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 6"
 
 #: src/gtk/help-overlay.ui:131
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 7"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 7"
 
 #: src/gtk/help-overlay.ui:137
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 8"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 8"
 
 #: src/gtk/help-overlay.ui:143
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 9"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet 9"
 
 #: src/gtk/help-overlay.ui:149
 msgctxt "shortcut window"
@@ -389,34 +375,34 @@ msgid "Show Shortcuts"
 msgstr "Afficher les raccourcis"
 
 #: src/gtk/shortcut-dialog.ui:6
-#, fuzzy
 msgid "Edit Shortcut"
-msgstr "Afficher les raccourcis"
+msgstr "Modifier le raccourci"
 
 #: src/gtk/shortcut-dialog.ui:21
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: src/gtk/shortcut-dialog.ui:28
 msgid "Apply"
-msgstr ""
+msgstr "Appliquer"
 
 #: src/gtk/shortcut-dialog.ui:68
 msgid "This shortcut is already in use"
-msgstr ""
+msgstr "Ce raccourci est déjà utilisé"
 
 #: src/gtk/shortcut-dialog.ui:81
 msgid "Press Escape to cancel or Backspace to disable shortcut"
 msgstr ""
+"Appuyer sur Échap pour annuler ou sur Retour arrière pour désactiver le "
+"raccourci clavier."
 
 #: src/gtk/shortcut-editor.ui:6
 msgid "Keyboard"
-msgstr ""
+msgstr "Clavier"
 
 #: src/gtk/shortcut-editor.ui:10
-#, fuzzy
 msgid "Shortcuts"
-msgstr "Afficher les raccourcis"
+msgstr "Raccourcis"
 
 #: src/gtk/preferences-window.ui:11
 msgid "General"
@@ -514,7 +500,7 @@ msgstr "Aire de glissage"
 #: src/gtk/preferences-window.ui:144
 msgid "Enable to reserve some space on the left side to drag the window."
 msgstr ""
-"Activer pour réserver un espace sur la gauche pour faire glisser la fenêtre"
+"Activer pour réserver un espace sur la gauche pour faire glisser la fenêtre."
 
 #: src/gtk/preferences-window.ui:156
 msgid "Draw Line Under Header Bar"
@@ -526,7 +512,7 @@ msgid ""
 "Requires \"Show Borders\"."
 msgstr ""
 "Activer pour dessiner une ligne sous la barre d’en-tête quand un seul onglet "
-"est ouvert. Requiert « Afficher les bordures »"
+"est ouvert. Requiert « Afficher les bordures »."
 
 #: src/gtk/preferences-window.ui:167
 msgid "Floating Controls"
@@ -593,7 +579,6 @@ msgid "Use ctrl+c/ctrl+v for copy/paste."
 msgstr "Utiliser Ctrl+C et Ctrl+V pour copier / coller."
 
 #: src/gtk/preferences-window.ui:281
-#, fuzzy
 msgid "Cursor Shape"
 msgstr "Forme du curseur"
 
@@ -611,20 +596,19 @@ msgstr "Soulignage"
 
 #: src/gtk/preferences-window.ui:295
 msgid "Cursor Blinking"
-msgstr ""
+msgstr "Clignotement du curseur"
 
 #: src/gtk/preferences-window.ui:296
-#, fuzzy
 msgid "Whether or not the cursor should blink."
-msgstr "Afficher ou non les barres de défilement"
+msgstr "Indique si le curseur doit clignoter."
 
 #: src/gtk/preferences-window.ui:301
 msgid "On"
-msgstr ""
+msgstr "Activé"
 
 #: src/gtk/preferences-window.ui:302
 msgid "Off"
-msgstr ""
+msgstr "Désactivé"
 
 #: src/gtk/preferences-window.ui:310
 msgid "Padding"
@@ -632,11 +616,11 @@ msgstr "Padding"
 
 #: src/gtk/preferences-window.ui:324
 msgid "Opacity"
-msgstr ""
+msgstr "Opacité"
 
 #: src/gtk/preferences-window.ui:325
 msgid "Terminal background opacity."
-msgstr ""
+msgstr "Opacité de la fenêtre de terminal."
 
 #: src/gtk/preferences-window.ui:341
 msgid "Scrolling"
@@ -737,11 +721,11 @@ msgstr ""
 
 #: src/gtk/preferences-window.ui:542
 msgid "Sixel Support"
-msgstr ""
+msgstr "Support Sixel"
 
 #: src/gtk/preferences-window.ui:543
 msgid "Render sixel escape sequences."
-msgstr ""
+msgstr "Active le rendu des séquences d’échappement sixel."
 
 #: src/gtk/preferences-window.ui:555
 msgid "Danger Zone"
@@ -783,7 +767,7 @@ msgstr ""
 
 #: src/widgets/AboutDialog.vala:59
 msgid "Donate"
-msgstr ""
+msgstr "Faire un don"
 
 #: src/widgets/HeaderBar.vala:30 src/widgets/ShortcutEditor.vala:168
 #: src/widgets/Window.vala:142
@@ -797,9 +781,8 @@ msgstr "Préférences"
 
 #: src/widgets/HeaderBar.vala:32 src/widgets/ShortcutEditor.vala:169
 #: src/widgets/TerminalTab.vala:122
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Afficher les raccourcis"
+msgstr "Raccourcis clavier"
 
 #: src/widgets/HeaderBar.vala:33 src/widgets/TerminalTab.vala:123
 msgid "About"
@@ -816,24 +799,22 @@ msgstr "Nouvel onglet"
 
 #: src/widgets/ShortcutDialog.vala:46
 msgid "Enter new shortcut"
-msgstr ""
+msgstr "Entrer un nouveau raccourci"
 
 #: src/widgets/ShortcutDialog.vala:47
 #, c-format
 msgid "Enter new shortcut for \"%s\""
-msgstr ""
+msgstr "Entrez un nouveau raccourci pour « %s »"
 
 #: src/widgets/ShortcutEditor.vala:131
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 #: src/widgets/ShortcutEditor.vala:159
-#, fuzzy
 msgid "Focus Next Tab"
 msgstr "Focus sur l’onglet suivant"
 
 #: src/widgets/ShortcutEditor.vala:160
-#, fuzzy
 msgid "Focus Previous Tab"
 msgstr "Focus sur l’onglet précédent"
 
@@ -842,9 +823,8 @@ msgid "New Window"
 msgstr "Nouvelle fenêtre"
 
 #: src/widgets/ShortcutEditor.vala:162
-#, fuzzy
 msgid "Toggle Header Bar"
-msgstr "Afficher la barre d’en-tête"
+msgstr "Afficher / masquer la barre d’en-tête"
 
 #: src/widgets/ShortcutEditor.vala:165 src/widgets/TerminalTab.vala:114
 msgid "Copy"
@@ -855,26 +835,22 @@ msgid "Paste"
 msgstr "Coller"
 
 #: src/widgets/ShortcutEditor.vala:167
-#, fuzzy
 msgid "Search"
 msgstr "Rechercher"
 
 #: src/widgets/ShortcutEditor.vala:170
-#, fuzzy
 msgid "Zoom In"
 msgstr "Zoom avant"
 
 #: src/widgets/ShortcutEditor.vala:171
-#, fuzzy
 msgid "Zoom Out"
 msgstr "Zoom arrière"
 
 #: src/widgets/ShortcutEditor.vala:172
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Réinitialiser le zoom"
 
 #: src/widgets/ShortcutEditor.vala:173
-#, fuzzy
 msgid "Close Tab"
 msgstr "Fermer l’onglet"
 
@@ -883,12 +859,11 @@ msgstr "Fermer l’onglet"
 #: src/widgets/ShortcutEditor.vala:179 src/widgets/ShortcutEditor.vala:180
 #: src/widgets/ShortcutEditor.vala:181 src/widgets/ShortcutEditor.vala:182
 #: src/widgets/ShortcutEditor.vala:183
-#, fuzzy, c-format
+#, c-format
 msgid "Switch to Tab %u"
-msgstr "Basculer vers un onglet"
+msgstr "Basculer vers l’onglet %u"
 
 #: src/widgets/ShortcutEditor.vala:184
-#, fuzzy
 msgid "Switch to Last Tab"
 msgstr "Basculer vers le dernier onglet"
 
