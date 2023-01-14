@@ -7,9 +7,18 @@ set -e
 # fonts unless I hackily link them. If for some reason this script gets executed
 # outside Flatpak, nothing will happen besides running `blackbox`.
 
+SYM_LINK_TARGET="/run/host/fonts"
+SYM_LINK_SOURCE="/run/host/usr/share/fonts"
 
-if [ -e /.flatpak-info ] && [ -z $INSIDE_GNOME_BUILDER ]; then
-  /usr/bin/ln -s /run/host/usr/share/fonts /run/host/fonts
+# If running in Flatpak, and not inside GNOME Builder, and we have write
+# permission to create the symlink, and the target doesn't exist already
+
+if [ -e /.flatpak-info ] && \
+   [ -z $INSIDE_GNOME_BUILDER ] && \
+   [ -w $(dirname $SYM_LINK_TARGET) ] && \
+   [ ! -e $SYM_LINK_TARGET ]
+then
+  /usr/bin/ln -s $SYM_LINK_SOURCE $SYM_LINK_TARGET 2> /dev/null || echo "Failed to create font symlink"
 fi
 
 blackbox "$@"
