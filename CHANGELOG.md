@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.13.1 - Preview
+
+First 0.13 patch release.
+
+Features:
+
+- New Scrollback Mode allows you to set scrollback to a fixed number of lines,
+  unlimited lines, or disable scrollback altogether - #197
+
+Bug fixes:
+
+- Style improvements
+
 ## 0.13.0 - 2023-01-13
 
 The latest version of Black Box brings much-awaited new features and bug fixes.

@@ -30,24 +30,15 @@ namespace Terminal {
       website = "https://gitlab.gnome.org/raggesilver/blackbox",
       issue_url = "https://gitlab.gnome.org/raggesilver/blackbox/-/issues",
       debug_info = get_debug_information (),
-      release_notes_version = "0.13.0",
       release_notes = """
-        <p>
-          The latest version of Black Box brings much awaited new features and
-          bug fixes.
-        </p>
+        <p>First 0.13 patch release.</p>
         <p>Features</p>
         <ul>
-          <li>Customizable keyboard shortcuts</li>
-          <li>Background transparency</li>
-          <li>Customizable cursor blinking mode</li>
-          <li>Experimental sixel support</li>
+          <li>New Scrollback Mode allows you to set scrollback to a fixed number of lines, unlimited lines, or disable scrollback altogether</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
-          <li>Manually set VTE_VERSION environment variable - fixes compatibility with a few terminal programs</li>
-          <li>Copying text outside the current scroll view now works correctly</li>
-          <li>Scrolling with a touchpad or touchscreen now works as intended</li>
+          <li>Style improvements</li>
         </ul>
       """
     };
@@ -57,6 +48,7 @@ namespace Terminal {
     }
 
     window.add_link (_("Donate"), "https://www.patreon.com/raggesilver");
+    window.add_link (_("Full Changelog"), "https://gitlab.gnome.org/raggesilver/blackbox/-/blob/main/CHANGELOG.md");
 
     return window;
   }
