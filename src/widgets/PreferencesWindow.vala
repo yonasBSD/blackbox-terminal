@@ -32,6 +32,7 @@ bool light_themes_filter_func (Gtk.FlowBoxChild child) {
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
   [GtkChild] unowned Adw.ComboRow         cursor_blink_mode_combo_row;
+  [GtkChild] unowned Adw.ComboRow         scrollback_mode_combo_row;
   [GtkChild] unowned Adw.ComboRow         style_preference_combo_row;
   [GtkChild] unowned Adw.EntryRow         custom_command_entry_row;
   [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
@@ -58,7 +59,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch           show_window_borders_switch;
   [GtkChild] unowned Gtk.Switch           stealth_single_tab_switch;
-  [GtkChild] unowned Gtk.Switch           use_custom_scrollback_switch;
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
   [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           draw_line_single_tab_switch;
@@ -68,6 +68,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   private Window window;
 
+  public bool   show_custom_scrollback_row { get; set; default = false; }
   public string selected_theme {
     get {
       return this.light_theme_toggle.active
@@ -288,13 +289,6 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     );
 
     settings.schema.bind (
-      "use-custom-scrollback",
-      this.use_custom_scrollback_switch,
-      "active",
-      SettingsBindFlags.DEFAULT
-    );
-
-    settings.schema.bind (
       "scrollback-lines",
       this.custom_scrollback_spin_button,
       "value",
@@ -357,6 +351,27 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       },
       null,
       null
+    );
+
+    settings.bind_property (
+      "scrollback-mode",
+      this,
+      "show-custom-scrollback-row",
+      BindingFlags.SYNC_CREATE,
+      // scrollback-mode -> show-custom-scrollback-row
+      (_, from_value, ref to_value) => {
+        to_value = from_value.get_uint () == 0;
+        return true;
+      },
+      null
+    );
+
+    // 0 = Fixed, 1 = Unlimited, 2 = Disabled
+    settings.schema.bind(
+      "scrollback-mode",
+      this.scrollback_mode_combo_row,
+      "selected",
+      SettingsBindFlags.DEFAULT
     );
 
     // 0 = Block, 1 = IBeam, 2 = Underline

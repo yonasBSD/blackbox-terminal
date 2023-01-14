@@ -16,6 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public enum Terminal.ScrollbackMode {
+  FIXED = 0,
+  UNLIMITED = 1,
+  DISABLED = 2,
+}
+
 public class Terminal.Settings : Marble.Settings {
   public bool    command_as_login_shell               { get; set; }
   public bool    easy_copy_paste                      { get; set; }
@@ -23,17 +29,15 @@ public class Terminal.Settings : Marble.Settings {
   public bool    headerbar_drag_area                  { get; set; }
   public bool    headerbar_draw_line_single_tab       { get; set; }
   public bool    hide_single_tab                      { get; set; }
-  public bool    use_sixel                            { get; set; }
   public bool    pretty                               { get; set; }
-  public uint    opacity                         { get; set; }
   public bool    remember_window_size                 { get; set; }
   public bool    show_headerbar                       { get; set; }
   public bool    show_menu_button                     { get; set; }
   public bool    show_scrollbars                      { get; set; }
   public bool    stealth_single_tab                   { get; set; }
   public bool    use_custom_command                   { get; set; }
-  public bool    use_custom_scrollback                { get; set; }
   public bool    use_overlay_scrolling                { get; set; }
+  public bool    use_sixel                            { get; set; }
   public bool    was_fullscreened                     { get; set; }
   public bool    was_maximized                        { get; set; }
   public bool    window_show_borders                  { get; set; }
@@ -43,9 +47,11 @@ public class Terminal.Settings : Marble.Settings {
   public string  font                                 { get; set; }
   public string  theme_dark                           { get; set; }
   public string  theme_light                          { get; set; }
-  public uint    cursor_shape                         { get; set; }
   public uint    cursor_blink_mode                    { get; set; }
+  public uint    cursor_shape                         { get; set; }
+  public uint    opacity                              { get; set; }
   public uint    scrollback_lines                     { get; set; }
+  public uint    scrollback_mode                      { get; set; }
   public uint    style_preference                     { get; set; }
   public uint    window_height                        { get; set; }
   public uint    window_width                         { get; set; }

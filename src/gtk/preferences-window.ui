@@ -367,22 +367,27 @@
                 </child>
               </object>
             </child>
+
             <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes">Set Scrollback Limit</property>
-                <property name="activatable-widget">use_custom_scrollback_switch</property>
-                <child>
-                  <object class="GtkSwitch" id="use_custom_scrollback_switch">
-                    <property name="valign">center</property>
+              <object class="AdwComboRow" id="scrollback_mode_combo_row">
+                <property name="title" translatable="yes">Scrollback mode</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Fixed Size</item>
+                      <item translatable="yes">Unlimited</item>
+                      <item translatable="yes">Disabled</item>
+                    </items>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
+
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Scrollback Lines</property>
                 <property name="activatable-widget">custom_scrollback_spin_button</property>
-                <property name="sensitive" bind-source="use_custom_scrollback_switch" bind-property="active" bind-flags="sync-create" />
+                <property name="visible" bind-source="TerminalPreferencesWindow" bind-property="show-custom-scrollback-row" bind-flags="sync-create" />
                 <child>
                   <object class="GtkSpinButton" id="custom_scrollback_spin_button">
                     <property name="valign">center</property>
@@ -392,6 +397,7 @@
                 </child>
               </object>
             </child>
+
           </object>
         </child>
         <child>

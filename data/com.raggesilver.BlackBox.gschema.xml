@@ -71,12 +71,13 @@
       <default>false</default>
       <summary>If enabled, terminals will render sixel escape sequences</summary>
     </key>
-    <key name="use-custom-scrollback" type="b">
-      <default>false</default>
-      <summary>Enable to limit terminal scrollback</summary>
+    <key name="scrollback-mode" type="u">
+      <default>0</default>
+      <!-- 0 = Fixed size, 1 = Unlimited, 2 = Disabled -->
+      <summary>Scrollback mode</summary>
     </key>
     <key name="scrollback-lines" type="u">
-      <default>10000</default>
+      <default>1000</default>
       <summary>Number of lines stored in scrollback</summary>
     </key>
     <key name="floating-controls" type="b">

@@ -56,9 +56,14 @@ public class Terminal.Terminal : Vte.Terminal {
     get {
       var settings = Settings.get_default ();
 
-      return settings.use_custom_scrollback
-        ? settings.scrollback_lines
-        : this.original_scrollback_lines;
+      switch (settings.scrollback_mode) {
+        case ScrollbackMode.FIXED:     return settings.scrollback_lines;
+        case ScrollbackMode.UNLIMITED: return -1;
+        case ScrollbackMode.DISABLED:  return 0;
+        default:
+          error ("Invalid scrollback-mode %u", settings.scrollback_mode);
+          return 0;
+      }
     }
   }
 
@@ -325,7 +330,7 @@ public class Terminal.Terminal : Vte.Terminal {
         this.notify_property ("user-scrollback-lines");
       });
 
-    this.settings.notify ["use-custom-scrollback"]
+    this.settings.notify ["scrollback-mode"]
       .connect (() => {
         this.notify_property ("user-scrollback-lines");
       });
