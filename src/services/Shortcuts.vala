@@ -85,8 +85,8 @@ public class Terminal.Keymap : Object, Json.Serializable {
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_6,            "<Alt>6");
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_7,            "<Alt>7");
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_8,            "<Alt>8");
-    this.default_keymap.set (ACTION_WIN_SWITCH_TAB_9,            null);
-    this.default_keymap.set (ACTION_WIN_SWITCH_TAB_LAST,         "<Alt>9");
+    this.default_keymap.set (ACTION_WIN_SWITCH_TAB_9,            "<Alt>9");
+    this.default_keymap.set (ACTION_WIN_SWITCH_TAB_LAST,         "<Alt>0");
   }
 
   // Private constructor

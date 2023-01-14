@@ -161,6 +161,12 @@
                 <property name="action-name">win.show-help-overlay</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Edit Preferences</property>
+                <property name="action-name">win.edit_preferences</property>
+              </object>
+            </child>
             <!-- <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Quit</property>
