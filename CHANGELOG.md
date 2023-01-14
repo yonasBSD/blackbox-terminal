@@ -11,7 +11,7 @@ Features:
 
 Bug fixes:
 
-- Style improvements
+- Style improvements - #181
 - Allow setting font style (regular, light, bold, etc) - #170
 
 ## 0.13.0 - 2023-01-13

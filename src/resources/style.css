@@ -5,7 +5,7 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
   background: @headerbar_bg_color;
 }
 
-#blackbox-main-window.with-borders:not(.fullscreen) {
+#blackbox-main-window.with-borders:not(.fullscreen):not(.maximized):not(.tiled-left):not(.tiled-right) {
   border: 1px solid @fixed-borders;
 }
 
