@@ -62,7 +62,6 @@ public class Terminal.Terminal : Vte.Terminal {
         case ScrollbackMode.DISABLED:  return 0;
         default:
           error ("Invalid scrollback-mode %u", settings.scrollback_mode);
-          return 0;
       }
     }
   }

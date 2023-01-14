@@ -83,19 +83,12 @@ public class Terminal.ShortcutDialog : Adw.Window {
     var kpc = new Gtk.EventControllerKey ();
 
     kpc.key_pressed.connect ((event, keyval, _keycode, modifier) => {
-      int[] masks = {
-        Gdk.ModifierType.CONTROL_MASK,
-        Gdk.ModifierType.SHIFT_MASK,
-        Gdk.ModifierType.ALT_MASK
-      };
+      const Gdk.ModifierType valid_modifiers =
+        Gdk.ModifierType.CONTROL_MASK |
+        Gdk.ModifierType.SHIFT_MASK |
+        Gdk.ModifierType.ALT_MASK;
 
-      var real_modifiers = 0;
-
-      foreach (unowned int mask in masks) {
-        if ((modifier & mask) == mask) {
-          real_modifiers |= mask;
-        }
-      }
+      var real_modifiers = valid_modifiers & modifier;
 
       var k = new Gtk.KeyvalTrigger (keyval, real_modifiers);
 
@@ -109,16 +102,29 @@ public class Terminal.ShortcutDialog : Adw.Window {
         return true;
       }
 
+      uint accel_key = 0;
+      Gdk.ModifierType mods = 0;
+
+      bool is_valid_gtk_accel = Gtk.accelerator_parse (
+        k.to_string (),
+        out accel_key,
+        out mods
+      );
+
+      Gdk.ModifierType consumed = (event.get_current_event () as Gdk.KeyEvent)?
+        .get_consumed_modifiers () ?? 0;
+
+      mods &= ~consumed;
+
       bool is_valid =
+        is_valid_gtk_accel &&
         // This is a very stupid way to check if the keyval is not Control_L,
         // Shift_L, or Alt_L. We don't want these keys to be valid.
         Gdk.keyval_name (keyval).index_of ("_", 0) == -1 &&
-        // Unless keyval is one of the Function keys, shortcuts need either
-        // Control or Alt.
+        // Unless keyval is one of the Function keys, shortcuts need to have a
+        // modifier.
         (
-          (keyval >= Gdk.Key.F1 && keyval <= Gdk.Key.F35) ||
-          (real_modifiers & Gdk.ModifierType.CONTROL_MASK) != 0 ||
-          (real_modifiers & Gdk.ModifierType.ALT_MASK) != 0
+          (keyval >= Gdk.Key.F1 && keyval <= Gdk.Key.F35) || (mods > 0)
         );
 
       this.shortcut_label.set_accelerator (k.to_string ());

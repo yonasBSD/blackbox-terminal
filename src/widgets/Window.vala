@@ -114,7 +114,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-    this.tab_view = new Adw.TabView ();
+    this.tab_view = new Adw.TabView () {
+      // Disable Adw.TabView shortcuts
+      shortcuts = Adw.TabViewShortcuts.NONE,
+    };
 
     this.tab_bar = new Adw.TabBar () {
       autohide = false,
@@ -419,10 +422,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
     sa.activate.connect (this.close_active_tab);
     this.add_action (sa);
 
-    for (uint i = 1; i < 10; i++) {
-      sa = new SimpleAction ("switch-tab-%u".printf (i), null);
+    for (int i = 1; i < 10; i++) {
+      var tab = i;
+      sa = new SimpleAction ("switch-tab-%d".printf (tab), null);
       sa.activate.connect (() => {
-        this.focus_nth_tab ((int) i);
+        this.focus_nth_tab (tab);
       });
       this.add_action (sa);
     }

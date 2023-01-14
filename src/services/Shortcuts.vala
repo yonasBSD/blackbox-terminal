@@ -74,7 +74,7 @@ public class Terminal.Keymap : Object, Json.Serializable {
     this.default_keymap.set (ACTION_WIN_SHOW_HELP_OVERLAY,       "<Shift><Control>question");
     this.default_keymap.set (ACTION_WIN_ZOOM_IN,                 "<Shift><Control>plus");
     this.default_keymap.set (ACTION_WIN_ZOOM_OUT,                "<Control>minus");
-    this.default_keymap.set (ACTION_WIN_ZOOM_DEFAULT,            "<Shift><Control>0");
+    this.default_keymap.set (ACTION_WIN_ZOOM_DEFAULT,            "<Shift><Control>parenright");
     this.default_keymap.set (ACTION_WIN_CLOSE_TAB,               "<Shift><Control>w");
 
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_1,            "<Alt>1");
