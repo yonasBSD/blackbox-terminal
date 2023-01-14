@@ -44,7 +44,10 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
  */
 .custom-headerbar:backdrop windowhandle { filter: none; }
 
-.custom-headerbar:backdrop > * { filter: opacity(0.5); }
+.custom-headerbar:backdrop button,
+.custom-headerbar:backdrop label {
+  filter: opacity(0.5);
+}
 
 tab {
   background: transparent;
