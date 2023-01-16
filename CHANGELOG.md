@@ -21,7 +21,7 @@ Bug fixes:
 - Fixed regression in window border color when "Show Borders" is enabled
 - Window border is no longer displayed when Black Box is docked left, right, or
   maximized #181
-- Improved keybinding validation, allowing more valid key combinatinons to be
+- Improved keybinding validation, allowing more valid key combinations to be
   used - #214
 - Tab navigation shortcuts now work as expected - #217
 - Fixed default "Reset Zoom" keybinding
