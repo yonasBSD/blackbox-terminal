@@ -18,22 +18,22 @@
   <br/><br/>
 </div>
 
-> This is work in progress. Feel free to use Black Box and report any bugs you
-> find.
-
 I created this project so that I could use a decent-looking terminal app on
 Linux. There are more featureful alternatives out there.
 
 ## Features
 
 - Theming ([Tilix](https://github.com/gnunn1/tilix) compatible color scheme support)
-- Theme integration with the window decorations
-- Custom fonts
-- Various customizable UI settings
+- App theming based on terminal color scheme
+- Transparent background
+- Custom fonts and cell spacing
 - Tabs
 - Toggleable header bar
 - Click to open links
 - Files drag-n-drop support
+- Sixel (experimental)
+- Customizable UI
+- Customizable shortcuts
 
 ## Install
 
@@ -70,6 +70,12 @@ If you want to build Black Box manually, look at the build script in [.gitlab-ci
   <img src="https://i.imgur.com/O7Nblz8.png" alt="Black Box with 'Show Header bar' off"/><br/>
   <small><i>
     Black Box with "show header bar" off.
+  </i></small>
+  <br/><br/>
+  <img src="https://i.imgur.com/CNwZhpJ.png" alt="Black Box with 'Show Header bar' off"/><br/>
+  <small><i>
+    Black Box with transparent background* and sixel support. *blur is controled
+    by your compositor.
   </i></small>
   <br/><br/>
 </div>

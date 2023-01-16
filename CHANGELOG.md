@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.13.1 - Preview
+## 0.13.1 - 2023-01-16
 
 First 0.13 patch release.
 
@@ -8,14 +8,25 @@ Features:
 
 - New Scrollback Mode allows you to set scrollback to a fixed number of lines,
   unlimited lines, or disable scrollback altogether - #197
+- Allow setting font style (regular, light, bold, etc) - #170
+
+Improvements:
+
+- Updated French, Italian, and Turkish translations
 
 Bug fixes:
 
-- Style improvements - #181
-- Allow setting font style (regular, light, bold, etc) - #170
-- Improved keybinding validation - #214
-- Tab navigation shortcuts now work as expected
+- Added missing "Open Preferences" shortcut to help overlay - @sabriunal
+- Header bar and tabs are now properly colored when the app is unfocussed
+- Fixed regression in window border color when "Show Borders" is enabled
+- Window border is no longer displayed when Black Box is docked left, right, or
+  maximized #181
+- Improved keybinding validation, allowing more valid key combinatinons to be
+  used - #214
+- Tab navigation shortcuts now work as expected - #217
 - Fixed default "Reset Zoom" keybinding
+- Fixed issue that prevented development builds of Black Box from running when
+  installed via Flatpak - #210
 
 ## 0.13.0 - 2023-01-13
 
