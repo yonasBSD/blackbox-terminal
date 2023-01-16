@@ -35,14 +35,23 @@ namespace Terminal {
         <p>Features</p>
         <ul>
           <li>New Scrollback Mode allows you to set scrollback to a fixed number of lines, unlimited lines, or disable scrollback altogether</li>
+          <li>Allow setting font style (regular, light, bold, etc)</li>
+        </ul>
+        <p>Improvements</p>
+        <ul>
+          <li>Updated French, Italian, and Turkish translations</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
-          <li>Style improvements</li>
-          <li>Allow setting font style (regular, light, bold, etc)</li>
-          <li>Improved keybinding validation</li>
+          <li>Added missing "Open Preferences" shortcut to help overlay</li>
+          <li>Header bar and tabs are now properly colored when the app is unfocussed</li>
+          <li>Fixed regression in window border color when "Show Borders" is enabled</li>
+          <li>Window border is no longer displayed when Black Box is docked left, right, or maximized</li>
+          <li>Improved keybinding validation, allowing more valid key combinatinons to be used</li>
           <li>Tab navigation shortcuts now work as expected</li>
           <li>Fixed default "Reset Zoom" keybinding</li>
+          <li>Fixed issue that prevented development builds of Black Box from running when
+          installed via Flatpak</li>
         </ul>
       """
     };
