@@ -150,6 +150,7 @@ public class Terminal.Keymap : Object, Json.Serializable {
       // null.
       if (!this.keymap.contains (action)) {
         this.keymap.@set (action, null);
+        did_sanitize = true;
       }
     }
 
