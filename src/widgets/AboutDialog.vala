@@ -31,27 +31,16 @@ namespace Terminal {
       issue_url = "https://gitlab.gnome.org/raggesilver/blackbox/-/issues",
       debug_info = get_debug_information (),
       release_notes = """
-        <p>First 0.13 patch release.</p>
+        <p>Second 0.13 patch release.</p>
         <p>Features</p>
         <ul>
-          <li>New Scrollback Mode allows you to set scrollback to a fixed number of lines, unlimited lines, or disable scrollback altogether</li>
-          <li>Allow setting font style (regular, light, bold, etc)</li>
-        </ul>
-        <p>Improvements</p>
-        <ul>
-          <li>Updated French, Italian, and Turkish translations</li>
+          <li>Added support for setting multiple shortcuts for the same action</li>
+          <li>You can now reset one, or all custom shortcuts back to default</li>
+          <li>Added a warning if "Unlimited" scrollback mode is active</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
-          <li>Added missing "Open Preferences" shortcut to help overlay</li>
-          <li>Header bar and tabs are now properly colored when the app is unfocussed</li>
-          <li>Fixed regression in window border color when "Show Borders" is enabled</li>
-          <li>Window border is no longer displayed when Black Box is docked left, right, or maximized</li>
-          <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
-          <li>Tab navigation shortcuts now work as expected</li>
-          <li>Fixed default "Reset Zoom" keybinding</li>
-          <li>Fixed issue that prevented development builds of Black Box from running when
-          installed via Flatpak</li>
+          <li>Added workaround for an error that would cause Black Box to crash</li>
         </ul>
       """
     };

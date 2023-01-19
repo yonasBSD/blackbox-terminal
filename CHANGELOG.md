@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.13.2 - Unreleased
+## 0.13.2 - 2023-01-19
 
 Second 0.13 patch release.
 

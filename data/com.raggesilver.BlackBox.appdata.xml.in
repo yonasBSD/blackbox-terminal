@@ -24,6 +24,8 @@
     <ul>
       <li>Set colors schemes and integrate them with the rest of the window</li>
       <li>Customize font and size</li>
+      <li>Customize keyboard shortcuts</li>
+      <li>Render Sixel escape sequences</li>
       <li>Fully hide the window headerbar</li>
       <li>Quickly open links and files by ctrl+clicking file paths and URLs</li>
       <li>Easily paste file paths by dragging them into the window</li>
@@ -84,7 +86,21 @@
   </kudos>
 
   <releases>
-    <release date="2023-01-13" version="0.13.1">
+    <release date="2023-01-19" version="0.13.2">
+      <description>
+        <p>Features</p>
+        <ul>
+          <li>Added support for setting multiple shortcuts for the same action</li>
+          <li>You can now reset one, or all custom shortcuts back to default</li>
+          <li>Added a warning if "Unlimited" scrollback mode is active</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>Added workaround for an error that would cause Black Box to crash</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2023-01-16" version="0.13.1">
       <description>
         <p>Features</p>
         <ul>
