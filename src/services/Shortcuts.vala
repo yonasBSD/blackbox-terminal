@@ -46,6 +46,16 @@ namespace Terminal {
   public const string ACTION_WIN_SWITCH_TAB_8           = "win.switch-tab-8";
   public const string ACTION_WIN_SWITCH_TAB_9           = "win.switch-tab-9";
   public const string ACTION_WIN_SWITCH_TAB_LAST        = "win.switch-tab-last";
+
+  // Actions without shortcut
+  public const string ACTION_SHORTCUT_EDITOR_ADD_KEYBINDING     = "shortcut-editor.add-keybinding";
+  public const string ACTION_SHORTCUT_EDITOR_REMOVE_KEYBINDING  = "shortcut-editor.remove-keybinding";
+  public const string ACTION_SHORTCUT_EDITOR_RESET              = "shortcut-editor.reset";
+  public const string ACTION_SHORTCUT_EDITOR_RESET_ALL          = "shortcut-editor.reset-all";
+}
+
+public errordomain Terminal.ShortcutError {
+  IN_USE,
 }
 
 // We load the user's keybindings and use them to override the default keymap.
@@ -121,7 +131,7 @@ public class Terminal.Keymap : Object, Json.Serializable {
       }
     }
 
-    message ("User keybindings file not found, falling back to default");
+    debug ("User keybindings file not found, falling back to default");
 
     instance = new Keymap ();
     instance.reset_user_keymap ();
@@ -150,7 +160,6 @@ public class Terminal.Keymap : Object, Json.Serializable {
       // null.
       if (!this.keymap.contains (action)) {
         this.keymap.@set (action, null);
-        did_sanitize = true;
       }
     }
 
@@ -161,9 +170,8 @@ public class Terminal.Keymap : Object, Json.Serializable {
   }
 
   public void reset_user_keymap () {
-    this.keymap = new Gee.HashMultiMap<string, string> ();
+    this.keymap = new Gee.HashMultiMap<string, string?> ();
     foreach (string action in this.default_keymap.get_keys ()) {
-      message (action);
       foreach (string? accel in this.default_keymap.@get (action)) {
         this.keymap.@set (action, accel);
       }
@@ -171,17 +179,27 @@ public class Terminal.Keymap : Object, Json.Serializable {
   }
 
   public void apply (Gtk.Application app) {
-    foreach (string key in this.keymap.get_keys ()) {
-      string[] accelerators = this.keymap.@get (key).to_array ();
-      string[] filtered_accelerators = {};
+    foreach (string action in this.keymap.get_keys ()) {
+      string?[] accelerators = this.keymap.@get (action).to_array ();
 
-      foreach (string? accel in accelerators) {
-        if (accel != null) {
-          filtered_accelerators += accel;
+      if (
+        accelerators != null &&
+        accelerators.length > 0 &&
+        accelerators [0] != null
+      ) {
+        var builder = new StrvBuilder ();
+        foreach (string? accel in accelerators) {
+          if (accel != null) {
+            builder.add (accel);
+          }
         }
+        var accels = builder.end ();
+        app.set_accels_for_action (action, accels);
       }
-
-      app.set_accels_for_action (key, accelerators);
+      else {
+        string[] accels = { null };
+        app.set_accels_for_action (action, accels);
+      }
     }
   }
 
@@ -217,9 +235,96 @@ public class Terminal.Keymap : Object, Json.Serializable {
     return empty;
   }
 
-  public void set_shortcut_for_action (string action, string? accel) {
+  public void remove_shortcut_from_action (string action, string accel) {
+    if (this.keymap.remove (action, accel) && !this.keymap.contains (action)) {
+      this.keymap.@set (action, null);
+    }
+  }
+
+  public async bool add_shortcut_for_action (string action, string? accel) {
+    if (accel == null) {
+      this.keymap.remove_all (action);
+      this.keymap.@set (action, null);
+    }
+    else {
+      var current_accel_action = this.get_action_for_shortcut (accel);
+
+      if (current_accel_action != null) {
+        if (
+          yield this.confirm_replace_keybinding (
+            accel,
+            current_accel_action,
+            action
+          )
+        ) {
+          this.remove_shortcut_from_action (current_accel_action, accel);
+        }
+        else {
+          debug ("Keybinding was already in use. User chose to keep old binding.");
+          return false;
+        }
+      }
+      this.keymap.@set (action, accel);
+      this.keymap.remove (action, null);
+    }
+    return true;
+  }
+
+  public bool is_keybinding_in_use (string accel) {
+    return this.keymap.get_values ().contains (accel);
+  }
+
+  /**
+   * Replace existing shortcuts with new ones.
+   */
+  public async void override_shortcuts_for_action (
+    string action,
+    string?[]? accels
+  ) {
+    if (!this.keymap.contains (action)) return;
+
+    // Remove all current keybindings
     this.keymap.remove_all (action);
-    this.keymap.@set (action, accel);
+    bool set_any = false;
+    if (accels != null) {
+      foreach (unowned string accel in accels) {
+        if (accel != null) {
+          set_any =
+            set_any || yield this.add_shortcut_for_action (action, accel);
+        }
+      }
+    }
+    // If we failed to assign any keybindings to this action, set its accel to
+    // null so it doesn't get removed from the keymap
+    if (!set_any) {
+      yield this.add_shortcut_for_action (action, null);
+    }
+  }
+
+  /**
+   * Reset all shortcuts for an action back to default.
+   */
+  public async void reset_shortcuts_for_action (string action) {
+    string[]? accels = this.get_default_shortcut_for_action (action);
+
+    yield this.override_shortcuts_for_action (action, accels);
+  }
+
+  private async bool confirm_replace_keybinding (
+    string accel,
+    string from_action,
+    string to_action
+  ) {
+    return yield confirm_action (
+      _("Replace keybinding?"),
+      // FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
+      // with the user-friendly action name.
+      _("%s is already assigned to %s").printf (get_accel_as_label (accel),
+                                                to_action),
+      ConfirmActionType.KEEP_REPLACE,
+      Adw.ResponseAppearance.SUGGESTED,
+      Adw.ResponseAppearance.DESTRUCTIVE
+    );
   }
 
   public string? get_action_for_shortcut (string shortcut) {
@@ -229,19 +334,6 @@ public class Terminal.Keymap : Object, Json.Serializable {
       }
     }
     return null;
-  }
-
-  public void reset_shortcut_for_action (string action) {
-    string[]? _default = this.get_default_shortcut_for_action (action);
-
-    if (_default == null) {
-      this.set_shortcut_for_action (action, null);
-    }
-    else {
-      foreach (unowned string shortcut in _default) {
-        this.set_shortcut_for_action (action, shortcut);
-      }
-    }
   }
 
   public override bool deserialize_property (

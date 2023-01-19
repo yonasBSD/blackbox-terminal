@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.0" />
+  <template class="TerminalShortcutRow" parent="AdwActionRow">
+    <property name="activatable-widget">menu_button</property>
+    <child type="suffix">
+      <object class="GtkBox" id="accelerators_box">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <property name="valign">center</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+      </object>
+    </child>
+    <child type="suffix">
+      <object class="GtkMenuButton" id="menu_button">
+        <property name="popover">popover</property>
+        <property name="icon-name">view-more-symbolic</property>
+        <property name="valign">center</property>
+        <style>
+          <class name="flat" />
+        </style>
+      </object>
+    </child>
+
+    <object class="GtkPopoverMenu" id="popover">
+      <!-- <property name="menu-model">menu</property> -->
+    </object>
+
+    <!-- <menu id="menu">
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">Reset Keybindings</attribute>
+          <attribute name="action">shortcut-editor.reset</attribute>
+          <attribute name="target-value">aaaa</attribute>
+        </item>
+      </section>
+    </menu> -->
+  </template>
+</interface>

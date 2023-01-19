@@ -28,97 +28,72 @@
   }
 }
 
-class Terminal.ShortcutRow : Gtk.Box {
-  Gtk.Box accelerators_box;
-
-  public string title { get; private set; }
-  public string subtitle { get; private set; }
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/shortcut-row.ui")]
+class Terminal.ShortcutRow : Adw.ActionRow {
 
   public Action? action { get; set; default = null; }
 
+  [GtkChild] unowned Gtk.Box accelerators_box;
+  //  [GtkChild] unowned Gtk.MenuButton menu_button;
+  [GtkChild] unowned Gtk.PopoverMenu popover;
+
   construct {
-    this.add_css_class ("shortcut-row");
-
-    var title_label = new Gtk.Label (this.title) {
-      css_classes = {"title"},
-      halign = Gtk.Align.START,
-    };
-
-    var subtitle_label = new Gtk.Label (this.subtitle) {
-      css_classes = {"subtitle"},
-      halign = Gtk.Align.START,
-    };
-
-    this.bind_property (
-      "title",
-      title_label,
-      "label",
-      BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE,
-      null,
-      null
-    );
-
-    this.bind_property (
-      "subtitle",
-      subtitle_label,
-      "label",
-      BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE,
-      null,
-      null
-    );
-
-    this.bind_property (
-      "subtitle",
-      subtitle_label,
-      "visible",
-      BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE,
-      // subtitle -> visible
-      (_, from_value, ref to_value) => {
-        var sub = from_value.get_string ();
-        to_value = sub != null && sub != "";
-        return true;
-      },
-      null
-    );
-
-    var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0) {
-      valign = Gtk.Align.CENTER,
-      halign = Gtk.Align.START,
-      hexpand = true,
-      margin_top = 6,
-      margin_bottom = 6,
-    };
-
-    vbox.append (title_label);
-    vbox.append (subtitle_label);
-
-    this.append (vbox);
-
-    this.accelerators_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6) {
-      valign = Gtk.Align.CENTER,
-    };
-
-    this.append (this.accelerators_box);
-
     this.notify ["action"].connect (this.update_ui);
-  }
-
-  public ShortcutRow () {
-    Object (
-      orientation: Gtk.Orientation.HORIZONTAL,
-      spacing: 6
-    );
   }
 
   public void update_ui () {
     this.title = this.action?.label ?? this.action?.name ?? "";
-    //  this.subtitle = this.action?.label != null ? this.action?.name : "";
 
-    var c = this.accelerators_box.get_first_child ();
+    // Remove previous ShortcutLabels
+    {
+      var c = this.accelerators_box.get_first_child ();
+      while (c != null) {
+        this.accelerators_box.remove (c);
+        c = c.get_next_sibling ();
+      }
+    }
 
-    while (c != null) {
-      this.accelerators_box.remove (c);
-      c = c.get_next_sibling ();
+    {
+      var menu = new Menu ();
+
+      var mi = new MenuItem (_("Add Keybinding"), null);
+      mi.set_action_and_target_value (
+        ACTION_SHORTCUT_EDITOR_ADD_KEYBINDING,
+        this.action.name
+      );
+      menu.append_item (mi);
+
+      mi = new MenuItem (_("Reset Keybindings"), null);
+      mi.set_action_and_target_value (
+        ACTION_SHORTCUT_EDITOR_RESET,
+        this.action.name
+      );
+      menu.append_item (mi);
+
+      var keymap = Keymap.get_default ();
+      var accels = keymap.get_accelerators_for_action (this.action.name);
+
+      if (accels != null) {
+        var section = new Menu ();
+        foreach (unowned string accel in accels) {
+          if (accel != null) {
+            mi = new MenuItem (
+              _("Remove %s").printf (get_accel_as_label (accel)),
+              null
+            );
+            mi.set_action_and_target_value (
+              ACTION_SHORTCUT_EDITOR_REMOVE_KEYBINDING,
+              accel
+            );
+            section.append_item (mi);
+          }
+        }
+        if (section.get_n_items () > 0) {
+          menu.append_section (null, section);
+        }
+      }
+
+      this.popover.set_menu_model (menu);
     }
 
     if (
@@ -133,7 +108,9 @@ class Terminal.ShortcutRow : Gtk.Box {
       });
     } else {
       foreach (unowned string accel in this.action.accelerators) {
-        this.accelerators_box.append (new Gtk.ShortcutLabel (accel));
+        this.accelerators_box.append (new Gtk.ShortcutLabel (accel) {
+          halign = Gtk.Align.END,
+        });
       }
     }
   }
@@ -143,13 +120,9 @@ class Terminal.ShortcutRow : Gtk.Box {
 public class Terminal.ShortcutEditor : Adw.PreferencesPage {
   public Gtk.Application app { get; construct set; }
 
-  [GtkChild] unowned Adw.PreferencesGroup shortcuts_group;
+  [GtkChild] unowned Gtk.ListBox list_box;
 
   static Gee.HashMap<string, string> action_map;
-
-  // We keep track of all action rows we insert into the preferences group to
-  // alow us to remove them on UI refresh later.
-  Gee.ArrayList<unowned Adw.ActionRow> action_rows;
 
   ListStore store = new ListStore (typeof (Action));
 
@@ -185,75 +158,133 @@ public class Terminal.ShortcutEditor : Adw.PreferencesPage {
   }
 
   construct {
-    this.action_rows = new Gee.ArrayList<unowned Adw.ActionRow> ();
     this.build_ui ();
+
+    this.list_box.margin_bottom = 32;
+
+    this.install_action (
+      ACTION_SHORTCUT_EDITOR_RESET,
+      "s",
+      (Gtk.WidgetActionActivateFunc) on_shortcut_editor_reset
+    );
+
+    this.install_action (
+      ACTION_SHORTCUT_EDITOR_RESET_ALL,
+      null,
+      (Gtk.WidgetActionActivateFunc) on_shortcut_editor_reset_all
+    );
+
+    this.install_action (
+      ACTION_SHORTCUT_EDITOR_REMOVE_KEYBINDING,
+      "s",
+      (Gtk.WidgetActionActivateFunc) on_shortcut_editor_remove_keybinding
+    );
+
+    this.install_action (
+      ACTION_SHORTCUT_EDITOR_ADD_KEYBINDING,
+      "s",
+      (Gtk.WidgetActionActivateFunc) on_shortcut_editor_add_keybinding
+    );
   }
 
-  void edit_shortcut (uint pos) {
-    var action = this.store.get_item (pos) as Action;
+  void on_shortcut_editor_add_keybinding (string _, Variant action) {
+    var action_name = action.get_string ();
+    var keymap = Keymap.get_default ();
 
     var w = new ShortcutDialog () {
-      shortcut_name = action.label ?? action.name,
-      current_accel = action.accelerators [0],
+      shortcut_name = action_map [action_name] ?? action_name,
       transient_for = this.app.get_active_window (),
     };
 
     string? new_accel = null;
 
-    w.shortcut_set.connect ((accel) => {
-      new_accel = accel;
+    w.shortcut_set.connect ((_new_accel) => {
+      new_accel = _new_accel;
     });
 
     w.response.connect ((response) => {
-      var keymap = Keymap.get_default ();
-
       if (response == Gtk.ResponseType.APPLY) {
-        debug ("Bind \"%s\" to %s", action.name, new_accel);
-        keymap.set_shortcut_for_action (action.name, new_accel);
-
-        action.accelerators = Keymap.get_default ().keymap.@get (action.name).to_array ();
-      }
-
-      if (response != Gtk.ResponseType.CANCEL) {
-        keymap.save ();
-        keymap.apply (this.app);
-        store.remove (pos);
-        store.insert_sorted (action, (CompareDataFunc<Action>) store_stort_func);
+        keymap.add_shortcut_for_action.begin (
+          action_name,
+          new_accel,
+          (o, res) => {
+            if (keymap.add_shortcut_for_action.end (res)) {
+              this.apply_save_and_refresh ();
+            }
+          }
+        );
       }
     });
 
     w.show ();
   }
 
+  void on_shortcut_editor_remove_keybinding (string _, Variant _accel) {
+    var keymap = Keymap.get_default ();
+
+    var accel = _accel.get_string ();
+    var action = keymap.get_action_for_shortcut (accel);
+
+    if (action != null) {
+      keymap.remove_shortcut_from_action (action, accel);
+      this.apply_save_and_refresh ();
+    }
+  }
+
+  void on_shortcut_editor_reset_all () {
+    this.request_reset_all.begin ();
+  }
+
+  async void request_reset_all () {
+    if (
+      yield confirm_action (
+        _("Reset all Shortcuts?"),
+        _("This will reset all shortcuts to default and overwrite your config file. This action is irreversible."),
+        ConfirmActionType.CANCEL_OK,
+        Adw.ResponseAppearance.SUGGESTED,
+        Adw.ResponseAppearance.DESTRUCTIVE
+      )
+    ) {
+      var keymap = Keymap.get_default ();
+      keymap.reset_user_keymap ();
+      this.apply_save_and_refresh ();
+    }
+  }
+
+  void on_shortcut_editor_reset (string _action_name, Variant shortcut_name) {
+    this.request_shortcut_reset.begin (shortcut_name.get_string ());
+  }
+
+  async void request_shortcut_reset (string action_name) {
+    var keymap = Keymap.get_default ();
+    yield keymap.reset_shortcuts_for_action (action_name);
+    this.apply_save_and_refresh ();
+  }
+
+  void apply_save_and_refresh () {
+    var keymap = Keymap.get_default ();
+    keymap.save ();
+    keymap.apply (this.app);
+    this.populate_list ();
+  }
+
   void build_ui () {
-    var selection = new Gtk.NoSelection (store);
+    this.list_box.bind_model (
+      this.store,
+      (_action) => {
+        return new ShortcutRow () {
+          action = _action as Action,
+        };
+      }
+    );
 
-    var factory = new Gtk.SignalListItemFactory ();
+    this.populate_list ();
+  }
 
-    factory.setup.connect ((_, _list_item) => {
-      var list_item = _list_item as Gtk.ListItem;
-      var row = new ShortcutRow ();
-
-      list_item.set_child (row);
-    });
-
-    factory.bind.connect ((_, _list_item) => {
-      var list_item = _list_item as Gtk.ListItem;
-      var action = list_item.get_item () as Action;
-      var row = list_item.get_child () as ShortcutRow;
-
-      row.action = action;
-    });
-
-    var list = new Gtk.ListView (selection, factory) {
-      css_classes = { "card" },
-      show_separators = true,
-      single_click_activate = true,
-    };
-
-    list.activate.connect (this.edit_shortcut);
-
-    this.shortcuts_group.add (list as Gtk.Widget);
+  void populate_list (bool clear = true) {
+    if (clear) {
+      this.store.remove_all ();
+    }
 
     var keymap = Keymap.get_default ();
     foreach (string action in keymap.keymap.get_keys ()) {
@@ -263,10 +294,8 @@ public class Terminal.ShortcutEditor : Adw.PreferencesPage {
       a.label = action_map [action];
       a.accelerators = keymap.get_accelerators_for_action (action);
 
-      store.append (a);
+      this.store.insert_sorted (a, (CompareDataFunc<Action>) store_stort_func);
     }
-
-    store.sort ((CompareDataFunc<Action>) store_stort_func);
   }
 
   static int store_stort_func (Action action_a, Action action_b) {
