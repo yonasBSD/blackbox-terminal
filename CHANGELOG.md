@@ -8,6 +8,7 @@ Features:
 
 - Added support for setting multiple shortcuts for the same action - #212
 - You can now reset one, or all custom shortcuts back to default - #211
+- A warning is displayed if a user selects "Unlimited" scrollback mode - #228
 
 Bug fixes:
 
