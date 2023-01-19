@@ -374,6 +374,21 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
+    settings.bind_property (
+      "scrollback-mode",
+      this.scrollback_mode_combo_row,
+      "subtitle",
+      BindingFlags.SYNC_CREATE,
+      // scrollback-mode -> subtitle
+      (_, mode_value, ref subtitle) => {
+        subtitle = mode_value.get_uint () == ScrollbackMode.UNLIMITED
+          ? Constants.INFINITE_SCROLLBACK_WARNING
+          : "";
+        return true;
+      },
+      null
+    );
+
     // 0 = Block, 1 = IBeam, 2 = Underline
     settings.schema.bind(
       "cursor-shape",
