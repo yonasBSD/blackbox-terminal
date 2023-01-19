@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.13.2 - Unreleased
+
+Second 0.13 patch release.
+
+Features:
+
+- Added support for setting multiple shortcuts for the same action - #212
+- You can now reset one, or all custom shortcuts back to default - #211
+
+Bug fixes:
+
+- Added workaround for a Vala error that would cause Black Box to crash
+
 ## 0.13.1 - 2023-01-16
 
 First 0.13 patch release.
