@@ -31,16 +31,10 @@ namespace Terminal {
       issue_url = "https://gitlab.gnome.org/raggesilver/blackbox/-/issues",
       debug_info = get_debug_information (),
       release_notes = """
-        <p>Second 0.13 patch release.</p>
+        <p>The Sandbox Conundrum.</p>
         <p>Features</p>
         <ul>
-          <li>Added support for setting multiple shortcuts for the same action</li>
-          <li>You can now reset one, or all custom shortcuts back to default</li>
-          <li>Added a warning if "Unlimited" scrollback mode is active</li>
-        </ul>
-        <p>Bug fixes</p>
-        <ul>
-          <li>Added workaround for an error that would cause Black Box to crash</li>
+          <li>You can now customize the working directory for new tabs. It can be set to persist the last tab's directory, the user's home directory, or an arbitrary location</li>
         </ul>
       """
     };

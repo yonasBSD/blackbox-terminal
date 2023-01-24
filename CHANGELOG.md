@@ -2,6 +2,14 @@
 
 ## 0.14.0 - Unreleased
 
+The Sandbox Conundrum.
+
+Features:
+
+- You can now customize the working directory for new tabs. It can be set to
+  persist the last tab's directory, the user's home directory, or an arbitrary
+  location - #122
+
 > Nothing
 
 ## 0.13.2 - 2023-01-19

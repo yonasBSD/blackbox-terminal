@@ -22,6 +22,12 @@ public enum Terminal.ScrollbackMode {
   DISABLED = 2,
 }
 
+public enum Terminal.WorkingDirectoryMode {
+  PREVIOUS_SESSION = 0,
+  HOME_DIRECTORY = 1,
+  CUSTOM = 2,
+}
+
 public class Terminal.Settings : Marble.Settings {
   public bool    command_as_login_shell               { get; set; }
   public bool    easy_copy_paste                      { get; set; }
@@ -44,6 +50,7 @@ public class Terminal.Settings : Marble.Settings {
   public double  terminal_cell_height                 { get; set; }
   public double  terminal_cell_width                  { get; set; }
   public string  custom_shell_command                 { get; set; }
+  public string  custom_working_directory             { get; set; }
   public string  font                                 { get; set; }
   public string  theme_dark                           { get; set; }
   public string  theme_light                          { get; set; }
@@ -55,6 +62,7 @@ public class Terminal.Settings : Marble.Settings {
   public uint    style_preference                     { get; set; }
   public uint    window_height                        { get; set; }
   public uint    window_width                         { get; set; }
+  public uint    working_directory_mode               { get; set; }
   public Variant terminal_padding                     { get; set; }
 
   public bool floating_controls                       { get; set; }

@@ -305,6 +305,7 @@
                 </property>
               </object>
             </child>
+
             <child>
               <object class="AdwActionRow">
                 <property name="title" translatable="yes">Padding</property>
@@ -336,6 +337,61 @@
             </child>
           </object>
         </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <!-- This is too repetitive. Keep commented for now. -->
+            <!-- <property name="title" translatable="yes">Working Directory</property> -->
+            <!-- <property name="description" translatable="yes">Set a directory to be used for new tabs and windows.</property> -->
+            <child>
+              <object class="AdwComboRow" id="working_directory_mode_combo_row">
+                <property name="title" translatable="yes">Working Directory</property>
+                <binding name="subtitle">
+                  <closure type="gchararray" function="explain_working_directory_mode">
+                    <lookup name="selected">working_directory_mode_combo_row</lookup>
+                  </closure>
+                </binding>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Previous Session</item>
+                      <item translatable="yes">Home Directory</item>
+                      <item translatable="yes">Custom</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+            <child>
+              <object class="AdwEntryRow" id="custom_working_directory_entry_row">
+                <property name="title" translatable="yes">Custom Working Directory</property>
+                <binding name="visible">
+                  <closure type="gboolean" function="show_custom_working_directory_entry_row">
+                    <lookup name="selected">working_directory_mode_combo_row</lookup>
+                  </closure>
+                </binding>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="valign">center</property>
+                    <signal name="clicked" handler="set_custom_working_dir_to_home" swapped="no" />
+                    <style>
+                      <class name="flat" />
+                    </style>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">user-home-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Set to user's home</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Scrolling</property>

@@ -92,7 +92,17 @@ public class Terminal.Application : Adw.Application {
   }
 
   private void on_new_window () {
-    new Window (this, null, null, false).show ();
+    // TODO: this method has an issue: if the current active window is not a
+    // main window, the check will fail and the new window will not persist the
+    // CWD. An alternative solution would be to keep track of the last active
+    // main window.
+    var w = this.get_active_window ();
+    Terminal? active_terminal = (w is Window) ? w.active_terminal : null;
+
+    string? cwd = Terminal
+      .get_current_working_directory_for_new_session (active_terminal);
+
+    new Window (this, null, cwd, false).show ();
   }
 
   private void on_focus_next_tab () {

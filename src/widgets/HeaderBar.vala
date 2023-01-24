@@ -68,11 +68,11 @@ public abstract class Terminal.BaseHeaderBar : Gtk.Box {
     );
 
     // New tab button
-    // FIXME: bundle a new tab icon
     this.new_tab_button = new Gtk.Button () {
       can_focus = false,
       icon_name = "list-add-symbolic",
       tooltip_text = _("New Tab"),
+      action_name = "win.new_tab",
     };
   }
 

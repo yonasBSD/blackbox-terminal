@@ -33,8 +33,10 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
   [GtkChild] unowned Adw.ComboRow         cursor_blink_mode_combo_row;
   [GtkChild] unowned Adw.ComboRow         scrollback_mode_combo_row;
+  [GtkChild] unowned Adw.ComboRow         working_directory_mode_combo_row;
   [GtkChild] unowned Adw.ComboRow         style_preference_combo_row;
   [GtkChild] unowned Adw.EntryRow         custom_command_entry_row;
+  [GtkChild] unowned Adw.EntryRow         custom_working_directory_entry_row;
   [GtkChild] unowned Gtk.Adjustment       cell_height_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       cell_width_spacing_adjustment;
   [GtkChild] unowned Gtk.Adjustment       custom_scrollback_adjustment;
@@ -374,6 +376,21 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       SettingsBindFlags.DEFAULT
     );
 
+    // 0 = Previous Session, 1 = Home Directory, 2 = Custom
+    settings.schema.bind (
+      "working-directory-mode",
+      this.working_directory_mode_combo_row,
+      "selected",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "custom-working-directory",
+      this.custom_working_directory_entry_row,
+      "text",
+      SettingsBindFlags.DEFAULT
+    );
+
     settings.bind_property (
       "scrollback-mode",
       this.scrollback_mode_combo_row,
@@ -470,6 +487,16 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       }
     });
 
+    settings.notify ["custom-working-directory"].connect (() => {
+      if (this.is_custom_working_directory_valid ()) {
+        this.custom_working_directory_entry_row.remove_css_class ("error");
+      }
+      else {
+        this.custom_working_directory_entry_row.add_css_class ("error");
+      }
+    });
+    settings.notify_property ("custom-working-directory");
+
     if (ThemeProvider.get_default ().is_dark_style_active) {
       this.dark_theme_toggle.active = true;
     }
@@ -517,6 +544,15 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     foreach (var key in settings.schema.settings_schema.list_keys ()) {
       settings.schema.reset (key);
     }
+  }
+
+  private bool is_custom_working_directory_valid () {
+    string filename = Settings.get_default ().custom_working_directory;
+
+    return GLib.FileUtils.test (
+      filename,
+      GLib.FileTest.EXISTS | GLib.FileTest.IS_DIR
+    );
   }
 
   // Callbacks
@@ -588,6 +624,35 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       "file://" + Constants.get_user_schemes_dir (),
       (int32) (get_monotonic_time () / 1000)
     );
+  }
+
+  [GtkCallback]
+  private bool show_custom_working_directory_entry_row (
+    WorkingDirectoryMode cwd_mode
+  ) {
+    return cwd_mode == WorkingDirectoryMode.CUSTOM;
+  }
+
+  [GtkCallback]
+  private string explain_working_directory_mode (
+    WorkingDirectoryMode cwd_mode
+  ) {
+    switch (cwd_mode) {
+      case WorkingDirectoryMode.PREVIOUS_SESSION:
+        return _("Reuse previous tab's directory.");
+        case WorkingDirectoryMode.HOME_DIRECTORY:
+        return _("Use the current user's home as working directory.");
+      case WorkingDirectoryMode.CUSTOM:
+        return _("Use a custom path as working directory.");
+      default:
+        return "";
+    }
+  }
+
+  [GtkCallback]
+  private void set_custom_working_dir_to_home () {
+    Settings.get_default ()
+      .custom_working_directory = GLib.Environment.get_home_dir ();
   }
 }
 
