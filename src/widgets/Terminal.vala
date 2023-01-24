@@ -534,4 +534,44 @@ public class Terminal.Terminal : Vte.Terminal {
       warning ("%s", e.message);
     }
   }
+
+  public string? get_current_working_directory () {
+    string? cwd = this.get_current_directory_uri ();
+
+    if (cwd != null) {
+      try {
+        string path = GLib.Filename.from_uri (cwd, null);
+        cwd = path;
+      }
+      catch (GLib.ConvertError e) {
+        warning ("%s", e.message);
+        cwd = null;
+      }
+    }
+
+    return cwd;
+  }
+
+  public static string? get_current_working_directory_for_new_session (
+    Terminal? previous_terminal = null
+  ) {
+    var settings = Settings.get_default ();
+    var mode = settings.working_directory_mode;
+    var custom_working_directory = settings.custom_working_directory;
+
+    switch (mode) {
+      case WorkingDirectoryMode.CUSTOM:
+        return custom_working_directory;
+      case WorkingDirectoryMode.HOME_DIRECTORY:
+        return GLib.Environment.get_home_dir ();
+      case WorkingDirectoryMode.PREVIOUS_SESSION: {
+        if (previous_terminal != null) {
+          return previous_terminal.get_current_working_directory ();
+        }
+        break;
+      }
+    }
+
+    return null;
+  }
 }

@@ -105,12 +105,19 @@ public class Terminal.Window : Adw.ApplicationWindow {
   private SimpleAction copy_action;
   private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
 
+  // TODO: bring all SimpleActions over here
+  private const ActionEntry[] ACTION_ENTRIES = {
+    { "new_tab", on_new_tab },
+  };
+
   static PreferencesWindow? preferences_window = null;
 
   construct {
     if (DEVEL) {
       this.add_css_class ("devel");
     }
+
+    // FIXME: move this over to an ui file
 
     var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
@@ -217,10 +224,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
     );
 
     this.theme_provider = ThemeProvider.get_default ();
-
-    this.header_bar.new_tab_button.clicked.connect (() => {
-      this.new_tab (null, null);
-    });
 
     this.add_actions ();
     this.connect_signals ();
@@ -359,13 +362,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void add_actions () {
-    var sa = new SimpleAction ("new_tab", null);
-    sa.activate.connect (() => {
-      this.new_tab (null, null);
-    });
-    this.add_action (sa);
+    this.add_action_entries (ACTION_ENTRIES, this);
 
-    sa = new SimpleAction ("edit_preferences", null);
+    var sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
       if (preferences_window == null) {
         preferences_window = new PreferencesWindow (this);
@@ -459,6 +458,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   public void close_active_tab () {
     (this.tab_view.selected_page?.child as TerminalTab)?.close_request ();
+  }
+
+  public void on_new_tab () {
+    string? cwd = Terminal
+      .get_current_working_directory_for_new_session (this.active_terminal);
+
+    this.new_tab (null, cwd);
   }
 
   public void new_tab (string? command, string? cwd) {
