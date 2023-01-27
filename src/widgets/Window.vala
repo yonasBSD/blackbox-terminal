@@ -104,6 +104,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   private SimpleAction copy_action;
   private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
+  private bool force_close = false;
 
   // TODO: bring all SimpleActions over here
   private const ActionEntry[] ACTION_ENTRIES = {
@@ -275,8 +276,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
     });
 
     this.tab_view.close_page.connect ((page) => {
-      (page.child as TerminalTab)?.destroy ();
-      return false;
+      this.try_closing_tab.begin (page);
+      return true;
     });
 
     // Close the window if all tabs were closed
@@ -355,10 +356,57 @@ public class Terminal.Window : Adw.ApplicationWindow {
     (this as Gtk.Widget)?.add_controller (c);
 
     this.close_request.connect (() => {
-      Settings.get_default ().was_fullscreened = this.fullscreened;
-      Settings.get_default ().was_maximized = this.maximized;
-      return false;
+      if (this.force_close) {
+        Settings.get_default ().was_fullscreened = this.fullscreened;
+        Settings.get_default ().was_maximized = this.maximized;
+        return false; // Allow closing
+      }
+
+      this.try_closing_window.begin ();
+      return true; // Block closing
     });
+  }
+
+  private async void try_closing_tab (Adw.TabPage page) {
+    var terminal = (page.get_child () as TerminalTab)?.terminal;
+    bool can_close = true;
+    string? command = null;
+
+    if (terminal != null) {
+      if (!(yield terminal.get_can_close (out command))) {
+        can_close = yield confirm_closing ({ command });
+      }
+    }
+
+    this.tab_view.close_page_finish (page, can_close);
+  }
+
+  private async void try_closing_window () {
+    uint n_pages = this.tab_view.n_pages;
+    string?[] commands = {};
+    bool can_close = true;
+
+    for (uint i = 0; i < n_pages; i++) {
+      string? command = null;
+      var page = this.tab_view.get_nth_page ((int) i);
+      var terminal = (page.get_child () as TerminalTab)?.terminal;
+
+      if (terminal != null && !(yield terminal.get_can_close (out command))) {
+        commands += command;
+      }
+    }
+
+    if (commands.length > 0) {
+      can_close = yield confirm_closing (
+        commands,
+        ConfirmClosingContext.WINDOW
+      );
+    }
+
+    if (can_close) {
+      this.force_close = can_close;
+      this.close ();
+    }
   }
 
   private void add_actions () {

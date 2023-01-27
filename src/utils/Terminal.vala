@@ -1,6 +1,55 @@
+/* Terminal.vala
+ *
+ * Copyright 2023 Paulo Queiroz <pvaqueiroz@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 namespace Terminal {
   public bool is_flatpak() {
     return FileUtils.test("/.flatpak-info", FileTest.EXISTS);
+  }
+
+  internal string? host_or_flatpak_spawn (string[] argv) throws GLib.Error {
+    GLib.Subprocess sp;
+    GLib.SubprocessLauncher launcher;
+    string[] real_argv = {};
+    string? buf = null;
+
+    if (is_flatpak ()) {
+      real_argv += "flatpak-spawn";
+      real_argv += "--host";
+    }
+
+    foreach (unowned string arg in argv) {
+      real_argv += arg;
+    }
+
+    launcher = new GLib.SubprocessLauncher (
+      SubprocessFlags.STDOUT_PIPE | SubprocessFlags.STDERR_SILENCE
+    );
+
+    launcher.unsetenv ("G_MESSAGES_DEBUG");
+    sp = launcher.spawnv (real_argv);
+
+    if (sp == null) return null;
+
+    if (!sp.communicate_utf8 (null, null, out buf, null)) return null;
+
+    return buf;
   }
 
   /* fp_guess_shell
@@ -69,5 +118,201 @@ namespace Terminal {
     string[] arr = buf.strip().split("\n");
 
     return arr;
+  }
+
+  public async int get_foreground_process (
+    int terminal_fd,
+    Cancellable? cancellable = null
+  ) {
+    if (!is_flatpak ()) {
+      return Posix.tcgetpgrp (terminal_fd);
+    }
+
+    try {
+      KeyFile kf = new KeyFile ();
+
+      kf.load_from_file ("/.flatpak-info", KeyFileFlags.NONE);
+      string host_root = kf.get_string ("Instance", "app-path");
+
+      string[] argv = {
+        "%s/bin/terminal-toolbox".printf (host_root),
+        "tcgetpgrp",
+        terminal_fd.to_string ()
+      };
+
+      int[] fds = new int[2];
+
+      // This creates two fds, where we can write to one and read from the
+      // other. We'll pass one fd to the HostCommand as stdout, which means
+      // we'll be able to read what is HostCommand prints out from the other
+      // fd we just opened.
+      Unix.open_pipe (fds, Posix.FD_CLOEXEC);
+
+      var read_fs = GLib.FileStream.fdopen (fds [0], "r");
+      var write_fs = GLib.FileStream.fdopen (fds [1], "w");
+      int[] pass_fds = {
+        0,
+        write_fs.fileno (), // stdout for toolbox, we can read from read_fs
+        2,
+        terminal_fd // we pass the terminal fd as (3) for toolbox
+      };
+
+      debug ("Send command");
+      yield send_host_command (null, argv, {}, pass_fds, null);
+
+      string text = read_fs.read_line ();
+      int response;
+
+      if (int.try_parse (text, out response, null, 10)) {
+        return response;
+      }
+    }
+    catch (GLib.Error e) {
+      warning ("%s", e.message);
+    }
+
+    return -1;
+  }
+
+  /**
+   * The following function is derivative work of
+   * https://github.com/gnunn1/tilix/blob/ddf5e5c069ab7d40f973cb2554eae5b13b23a87f/source/gx/tilix/terminal/terminal.d#L2967
+   * which is licensed under the Mozilla Public License 2.0. If a copy of the
+   * MPL was not distributed with this file, You can obtain one at
+   * http://mozilla.org/MPL/2.0/.
+   */
+  public static async bool send_host_command (
+    string? cwd,
+    string[] argv,
+    string[] envv,
+    int[] fds,
+    out int pid
+  ) throws GLib.Error {
+    pid = -1;
+
+    if (!is_flatpak ()) {
+      return false;
+    }
+
+    uint[] handles = {};
+
+    GLib.UnixFDList out_fd_list;
+    GLib.UnixFDList in_fd_list = new GLib.UnixFDList ();
+
+    foreach (var fd in fds) {
+      try {
+        handles += in_fd_list.append (fd);
+      }
+      catch (GLib.Error e) {
+        warning ("%s", e.message);
+      }
+    }
+
+    var connection = yield new DBusConnection.for_address (
+      GLib.Environment.get_variable ("DBUS_SESSION_BUS_ADDRESS"),
+      GLib.DBusConnectionFlags.AUTHENTICATION_CLIENT
+        | GLib.DBusConnectionFlags.MESSAGE_BUS_CONNECTION,
+      null,
+      null
+    );
+
+    uint signal_id = 0;
+
+    signal_id = connection.signal_subscribe (
+      "org.freedesktop.Flatpak",
+      "org.freedesktop.Flatpak.Development",
+      "HostCommandExited",
+      "/org/freedesktop/Flatpak/Development",
+      null,
+      DBusSignalFlags.NONE,
+      (_connection, sender_name, object_path, interface_name, signal_name, parameters) => {
+        debug ("%s %s %s %s", signal_name, sender_name, object_path, interface_name);
+        connection.signal_unsubscribe (signal_id);
+      }
+    );
+
+    Variant? reply = yield connection.call_with_unix_fd_list (
+      "org.freedesktop.Flatpak",
+      "/org/freedesktop/Flatpak/Development",
+      "org.freedesktop.Flatpak.Development",
+      "HostCommand",
+      build_host_command_variant (cwd, argv, envv, handles),
+      new VariantType ("(u)"),
+      GLib.DBusCallFlags.NONE,
+      -1,
+      in_fd_list,
+      null,
+      out out_fd_list
+    );
+
+    if (reply == null) {
+      warning ("No reply from flatpak dbus service");
+      connection.signal_unsubscribe (signal_id);
+      return false;
+    }
+    else {
+      // Pid from the host command we just spawned
+      uint p = 0;
+      reply.get ("(u)", &p);
+      pid = (int) p;
+    }
+
+    return true;
+  }
+
+  // This function builds a Variant to be passed to Flatpak's HostCommand DBus
+  // call. See the following link for more details:
+  // https://github.com/flatpak/flatpak/blob/01910ad12fd840a8667879f9a479a66e441cccdd/data/org.freedesktop.Flatpak.xml#L110
+  public static Variant build_host_command_variant (
+    string? cwd,
+    string[] argv,
+    string[] envv,
+    uint[] handles
+  ) {
+    if (cwd == null) {
+      cwd = GLib.Environment.get_home_dir ();
+    }
+
+    var handles_vb = new VariantBuilder (new VariantType ("a{uh}"));
+    for (uint i = 0; i < handles.length; i++) {
+      handles_vb.add_value (new Variant ("{uh}", i, (int32) handles [i]));
+    }
+
+    var envv_vb = new VariantBuilder (new VariantType ("a{ss}"));
+    foreach (unowned string env in envv) {
+      string[] parts = env.split ("=");
+      if (parts.length == 2) {
+        envv_vb.add_value (new Variant ("{ss}", parts [0], parts [1]));
+      }
+    }
+
+    return new Variant (
+      "(^ay^aay@a{uh}@a{ss}u)",
+      cwd,
+      argv,
+      handles_vb.end (),
+      envv_vb.end (),
+      2
+    );
+  }
+
+  public string? get_process_cmdline (int pid) {
+    try {
+      //  ps -p PID -o args --no-headers
+      string? response = host_or_flatpak_spawn ({
+        "ps",
+        "-p",
+        pid.to_string (),
+        "-o",
+        "args",
+        "--no-headers"
+      });
+
+      return response.strip ();
+    }
+    catch (GLib.Error e) {
+      warning ("%s", e.message);
+    }
+    return null;
   }
 }

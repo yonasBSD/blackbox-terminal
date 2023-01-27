@@ -50,7 +50,7 @@ public class Terminal.Terminal : Vte.Terminal {
   // Properties
 
   public Scheme scheme  { get; set; }
-  public Pid    pid     { get; protected set; }
+  public Pid    pid     { get; protected set; default = -1; }
 
   public uint user_scrollback_lines {
     get {
@@ -413,17 +413,25 @@ public class Terminal.Terminal : Vte.Terminal {
       null,
       -1,
       null,
-      // For some reason, if I try using `err` here vala will generate the
-      // following line at the top of this lambda function:
-      //
-      // g_return_if_fail (err != NULL);
-      //
-      // Which is insane, and does not work, since we expect error to be null
-      // almost always.
-      (_, _pid /*, err */) => {
+      this.on_spawn_finished
+    );
+  }
+
+  private void on_spawn_finished (Vte.Terminal t, Pid _pid, GLib.Error? error) {
+    if (error != null) {
+      warning ("%s", error.message);
+    }
+    else {
+      if (is_flatpak ()) {
+        get_foreground_process.begin (this.pty.fd, null, (_, res) => {
+          int real_pid = get_foreground_process.end (res);
+          this.pid = (real_pid != -1) ? real_pid : _pid;
+        });
+      }
+      else {
         this.pid = _pid;
       }
-    );
+    }
   }
 
   /**
@@ -484,6 +492,49 @@ public class Terminal.Terminal : Vte.Terminal {
 
     return false;
   }
+
+  public async bool get_can_close (out string command = null) {
+    command = null;
+
+    if (this.pid < 0 || this.pty == null) {
+      return true;
+    }
+
+    var fd = this.pty.fd;
+    if (fd == -1) {
+      return true;
+    }
+
+    // Get terminal's foreground process
+    var fgpid = yield get_foreground_process (fd);
+    if (fgpid == -1) {
+      return false;
+    }
+
+    if (fgpid == this.pid) {
+      return true;
+    }
+
+    command = get_process_cmdline (fgpid);
+
+    return command == null;
+  }
+
+  //  private void on_drag_data_received(
+  //    Gdk.DragContext _context,
+  //    int _x,
+  //    int _y,
+  //    Gtk.SelectionData data,
+  //    uint target_type,
+  //    uint _time
+  //  ) {
+  //    // This function was based on Tilix's code
+  //    // https://github.com/gnunn1/tilix/blob/5008e73a278a97871ca3628ee782fbad445917e7/source/gx/tilix/terminal/terminal.d
+  //    switch (target_type) {
+  //      case DropTargets.URILIST:
+  //        string[] uris = data.get_uris();
+  //        string text;
+  //        File file;
 
   public void zoom_in () {
     this.font_scale = double.min (10, this.font_scale + 0.1);

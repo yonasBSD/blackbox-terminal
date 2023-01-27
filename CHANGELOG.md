@@ -9,6 +9,8 @@ Features:
 - You can now customize the working directory for new tabs. It can be set to
   persist the last tab's directory, the user's home directory, or an arbitrary
   location - #122
+- Closing a tab or a window that still has a running process will now prompt you
+  for confirmation - fixes #201
 
 > Nothing
 

@@ -19,16 +19,23 @@
  */
 
 namespace Terminal {
+  public enum ConfirmClosingContext {
+    TAB,
+    WINDOW,
+  }
+
   public enum ConfirmActionType {
     NO_YES,
     CANCEL_OK,
-    KEEP_REPLACE;
+    KEEP_REPLACE,
+    CANCEL_CLOSE;
 
     public string[] get_labels () {
       switch (this) {
         case NO_YES: return { _("No"), _("Yes") };
         case CANCEL_OK: return { _("Cancel"), _("Ok") };
         case KEEP_REPLACE: return { _("Keep"), _("Replace") };
+        case CANCEL_CLOSE: return { _("Cancel"), _("Close") };
       }
       error ("Invalid ConfirmActionType %d", this);
     }
@@ -38,6 +45,7 @@ namespace Terminal {
         case NO_YES: return { "no", "yes" };
         case CANCEL_OK: return { "cancel", "ok" };
         case KEEP_REPLACE: return { "keep", "replace" };
+        case CANCEL_CLOSE: return { "cancel", "close" };
       }
       error ("Invalid ConfirmActionType %d", this);
     }
@@ -48,7 +56,8 @@ namespace Terminal {
     string body,
     ConfirmActionType confirm_type = ConfirmActionType.CANCEL_OK,
     Adw.ResponseAppearance appearance1 = Adw.ResponseAppearance.DEFAULT,
-    Adw.ResponseAppearance appearance2 = Adw.ResponseAppearance.DEFAULT
+    Adw.ResponseAppearance appearance2 = Adw.ResponseAppearance.DEFAULT,
+    Gtk.Widget? extra_child = null
   ) {
     bool response = false;
     SourceFunc callback = confirm_action.callback;
@@ -63,6 +72,7 @@ namespace Terminal {
     ) {
       default_response = values [1],
       close_response = values [0],
+      extra_child = extra_child
     };
 
     d.add_response (values [0], labels [0]);
@@ -79,6 +89,49 @@ namespace Terminal {
     d.show ();
 
     yield;
+
+    return response;
+  }
+
+  public async bool confirm_closing (
+    string?[]? commands,
+    ConfirmClosingContext context = ConfirmClosingContext.TAB
+  ) {
+    Gtk.Widget? child = null;
+
+    if (commands != null && commands.length > 0) {
+      var list = new Gtk.ListBox () {
+        css_classes = { "boxed-list" },
+        selection_mode = Gtk.SelectionMode.NONE,
+      };
+
+      foreach (unowned string command in commands) {
+        var row = new Adw.ActionRow () {
+          title = command ?? "",
+          css_classes = { "monospace" },
+          can_focus = false,
+        };
+        list.append (row);
+      }
+      child = list;
+    }
+
+    string title = context == ConfirmClosingContext.TAB
+      ? _("Close Tab?")
+      : _("Close Window?");
+
+    string body = context == ConfirmClosingContext.TAB
+      ? _("Some commands are still running. Closing this tab will kill them and may lead to unexpected outcomes.")
+      : _("Some commands are still running. Closing this window will kill them and may lead to unexpected outcomes.");
+
+    var response = yield confirm_action (
+      title,
+      body,
+      ConfirmActionType.CANCEL_CLOSE,
+      Adw.ResponseAppearance.DEFAULT,
+      Adw.ResponseAppearance.DESTRUCTIVE,
+      child
+    );
 
     return response;
   }
