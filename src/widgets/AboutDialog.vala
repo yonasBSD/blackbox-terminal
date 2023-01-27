@@ -35,6 +35,7 @@ namespace Terminal {
         <p>Features</p>
         <ul>
           <li>You can now customize the working directory for new tabs. It can be set to persist the last tab's directory, the user's home directory, or an arbitrary location</li>
+          <li>Closing a tab or a window that still has a running process will now prompt you for confirmation</li>
         </ul>
       """
     };

@@ -11,6 +11,7 @@ add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), la
 
 subdir('data')
 subdir('src')
+subdir('toolbox')
 subdir('po')
 
 meson.add_install_script('build-aux/meson/postinstall.py')

@@ -40,9 +40,7 @@ config_header = configure_file(
 blackbox_deps = [
   dependency('gio-2.0', version: '>= 2.50'),
   dependency('gtk4', version: '>= 4.6.2'),
-  # Black Box actually depends on libadwaita >= 1.2.alpha, but I'm keeping this
-  # at 1.1 to make it easier for translators to work on Black Box
-  dependency('libadwaita-1', version: '>= 1.1'),
+  dependency('libadwaita-1', version: '>= 1.2'),
   dependency('marble', version: '>= 42'),
   dependency('vte-2.91-gtk4', version: '>= 0.69.0'),
   dependency('json-glib-1.0', version: '>= 1.4.4'),
@@ -51,6 +49,7 @@ blackbox_deps = [
   dependency('librsvg-2.0', version: '>= 2.54.0'),
   dependency('gee-0.8', version: '>=0.20'),
   dependency('graphene-gobject-1.0'),
+  meson.get_compiler('vala').find_library('posix'),
 ]
 
 # https://github.com/elementary/terminal/blob/d9620eb12331a28c658f97ac9a1bdb809aa90089/meson.build
