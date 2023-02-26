@@ -423,15 +423,33 @@ public class Terminal.Terminal : Vte.Terminal {
     }
     else {
       if (is_flatpak ()) {
-        get_foreground_process.begin (this.pty.fd, null, (_, res) => {
-          int real_pid = get_foreground_process.end (res);
-          this.pid = (real_pid != -1) ? real_pid : _pid;
-        });
+        this.try_determining_flatpak_spawned_pid.begin (_pid);
       }
       else {
         this.pid = _pid;
       }
     }
+  }
+
+  // For some reason, the first attempt to get the spawned process' pid returns
+  // something different on Flatpak 1 out of 10 times. Perhaps it returns a pid
+  // for bwrap or flatpak-spawn. This function is a dirty hack around that.
+  private async void try_determining_flatpak_spawned_pid (Pid _pid) {
+    for (int attempt = 0; attempt < 3; attempt++) {
+      int real_pid = yield get_foreground_process (this.pty.fd, null);
+      string? cmd = real_pid > -1 ? get_process_cmdline (real_pid) : null;
+
+      if (cmd != null && cmd != "") {
+        this.pid = real_pid;
+        return;
+      }
+    }
+    warning ("Failed to retrieve real pid for spawned process");
+    // Note: this will make it so that closing this tab triggers the "confirm
+    // closing" dialog no matter what. I find it better to have a false positive
+    // and confirm closing a tab that doesn't need confirmation than not
+    // confirming one that does.
+    this.pid = _pid;
   }
 
   /**
