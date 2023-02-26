@@ -1,7 +1,7 @@
 {
   "app-id": "com.raggesilver.BlackBox",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "master",
+  "runtime-version": "43",
   "sdk": "org.gnome.Sdk",
   "command": "blackbox-link-system-fonts",
   "finish-args": [
