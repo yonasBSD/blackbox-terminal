@@ -311,7 +311,7 @@ public class Terminal.Terminal : Vte.Terminal {
     };
     left_click_controller.pressed.connect ((gesture, n_clicked, x, y) => {
       var event = left_click_controller.get_current_event ();
-      var pattern = this.get_pattern_at_coords (x, y);
+      var pattern = this.check_match_at (x, y, null);
 
       if (
         (event.get_modifier_state () & Gdk.ModifierType.CONTROL_MASK) == 0 ||
@@ -452,25 +452,6 @@ public class Terminal.Terminal : Vte.Terminal {
     this.pid = _pid;
   }
 
-  /**
-   * get_pattern_at_coords
-   *
-   * Copyright 2016-2022 Christian Hergert <chergert@redhat.com>
-   * Copyright 2022 Paulo Queiroz
-   *
-   * The following function is work derived from GNOME Builder, which is also
-   * licensed under the GNU General Public License version 3.
-   *
-   * Additionally, sourced from:
-   * https://gitlab.gnome.org/GNOME/gnome-builder/-/blob/13302072a4ebae6bbe39dca9a7fb1eed75423371/src/libide/terminal/ide-terminal.c#L150
-   */
-  private string? get_pattern_at_coords (double x, double y) {
-    var col = (x / this.get_char_width ());
-    var row = (y / this.get_char_height ());
-
-    return this.match_check ((long) col, (long) row, null);
-  }
-
   // Signal callbacks ==========================================================
 
   private void on_child_exited () {
@@ -538,22 +519,6 @@ public class Terminal.Terminal : Vte.Terminal {
     return command == null;
   }
 
-  //  private void on_drag_data_received(
-  //    Gdk.DragContext _context,
-  //    int _x,
-  //    int _y,
-  //    Gtk.SelectionData data,
-  //    uint target_type,
-  //    uint _time
-  //  ) {
-  //    // This function was based on Tilix's code
-  //    // https://github.com/gnunn1/tilix/blob/5008e73a278a97871ca3628ee782fbad445917e7/source/gx/tilix/terminal/terminal.d
-  //    switch (target_type) {
-  //      case DropTargets.URILIST:
-  //        string[] uris = data.get_uris();
-  //        string text;
-  //        File file;
-
   public void zoom_in () {
     this.font_scale = double.min (10, this.font_scale + 0.1);
   }
@@ -567,27 +532,11 @@ public class Terminal.Terminal : Vte.Terminal {
   }
 
   public void do_paste_clipboard () {
-    // FIXME: https://gitlab.gnome.org/GNOME/vte/-/issues/2557
-    // this.paste_clipboard ();
-    var cb = Gdk.Display.get_default ().get_clipboard ();
-    cb.read_text_async.begin (null, (_, res) => {
-      try {
-        var text = cb.read_text_async.end (res);
-        if (text != null) {
-          this.paste_text (text);
-        }
-      }
-      catch (Error e) {
-        warning ("%s", e.message);
-      }
-    });
+    this.paste_clipboard ();
   }
 
   public void do_copy_clipboard () {
-    if (this.get_has_selection ()) {
-      Gdk.Display.get_default ().get_clipboard ()
-        .set_text (this.get_text_selected (Vte.Format.TEXT));
-    }
+    this.copy_clipboard ();
   }
 
   public async void do_paste_from_selection_clipboard () {
