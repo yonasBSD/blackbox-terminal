@@ -355,16 +355,44 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     (this as Gtk.Widget)?.add_controller (c);
 
-    this.close_request.connect (() => {
-      if (this.force_close) {
-        Settings.get_default ().was_fullscreened = this.fullscreened;
-        Settings.get_default ().was_maximized = this.maximized;
-        return false; // Allow closing
-      }
+    this.close_request.connect (this.on_close_request);
+  }
 
-      this.try_closing_window.begin ();
-      return true; // Block closing
-    });
+  // This method is called right before the window is closed. Use it to store
+  // window-related state such as position and size.
+  private void on_before_close () {
+    var settings = Settings.get_default ();
+
+    settings.was_fullscreened = this.fullscreened;
+    settings.was_maximized = this.maximized;
+  }
+
+  // This method is called when this window emits a "close_request" event. It
+  // dispatches an asynchronous call to verify that the window may be closed
+  // (i.e. prompt user to confirm closing tabs with running processes). Before
+  // this check is completed, this function returns `true`, which tells GTK not
+  // to close the window. If the user confirms closing the window, or if there
+  // are no running processes, the dispatched function will fire a new
+  // close_request event and this function will finally close the window.
+  private bool on_close_request () {
+    if (this.force_close) {
+      this.on_before_close ();
+      return false; // Allow closing
+    }
+
+    this.try_closing_window.begin (on_close_request_resolver);
+
+    return true; // Block closing for now
+  }
+
+  private static void on_close_request_resolver (GLib.Object? _window, GLib.AsyncResult obj) {
+    if (_window != null && _window is Window) {
+      var window = _window as Window;
+      window.try_closing_window.end (obj);
+      if (window.force_close) {
+        window.close ();
+      }
+    }
   }
 
   private async void try_closing_tab (Adw.TabPage page) {
@@ -405,7 +433,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     if (can_close) {
       this.force_close = can_close;
-      this.close ();
     }
   }
 
@@ -622,9 +649,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
   ) {
     var w = new Window (this.application, null, cwd, skip_initial_tab);
     w.show ();
-    w.close_request.connect (() => {
-      return false;
-    });
     return w;
   }
 
