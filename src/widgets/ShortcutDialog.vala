@@ -120,7 +120,8 @@ public class Terminal.ShortcutDialog : Adw.Window {
         is_valid_gtk_accel &&
         // This is a very stupid way to check if the keyval is not Control_L,
         // Shift_L, or Alt_L. We don't want these keys to be valid.
-        Gdk.keyval_name (keyval).index_of ("_", 0) == -1 &&
+        !Gdk.keyval_name (keyval).has_suffix ("_L") &&
+        !Gdk.keyval_name (keyval).has_suffix ("_R") &&
         // Unless keyval is one of the Function keys, shortcuts need to have a
         // modifier.
         (
