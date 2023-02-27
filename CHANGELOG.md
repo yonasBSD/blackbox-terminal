@@ -11,6 +11,12 @@ Features:
   location - #122
 - Closing a tab or a window that still has a running process will now prompt you
   for confirmation - fixes #201
+- Black Box now uses the default Adwaita tab style - #112
+
+Bug fixes:
+
+- Improved keybinding validation, allowing more valid key combinations to be
+  used - #245
 
 > Nothing
 

@@ -1,9 +1,6 @@
 /* libadwaita does 0.85, but 0.8 looks better */
 @define-color fixed-borders mix(@window_fg_color, @window_bg_color, 0.8);
 
-window:not(.about) headerbar:not(.background), .custom-headerbar {
-  background: @headerbar_bg_color;
-}
 
 #blackbox-main-window.with-borders:not(.fullscreen):not(.maximized):not(.tiled-left):not(.tiled-right) {
   border: 1px solid @fixed-borders;
@@ -15,16 +12,6 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
 
 #blackbox-main-window {
   background: transparent;
-}
-
-#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) headerbar,
-#blackbox-main-window.with-borders .custom-headerbar.single-tab-mode.draw-line-in-single-tab headerbar {
-  background-color: transparent;
-  background-image: image(@fixed-borders);
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  transition: background-image 0s;
 }
 
 /**
@@ -49,41 +36,6 @@ window:not(.about) headerbar:not(.background), .custom-headerbar {
   filter: opacity(0.5);
 }
 
-tab {
-  background: transparent;
-  border-radius: 0;   /* libadwaita 1.2 workaround */
-  border: 0;
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
-}
-
-/**
- * Prevent tab text from getting too close to the borders.
- */
-tab label {
-  padding: 0 12px;
-}
-
-tabboxchild  {
-  margin: 0;          /* libadwaita 1.2 workaround */
-  border-radius: 0;   /* libadwaita 1.2 workaround */
-  /**
-   * The next line causes more problems than it solves. Namely, the tab bar no
-   * longer scrolls and a bunch of warnings are thrown in the console.
-   */
-  /* margin: 0 -3px;     libadwaita 1.2 workaround */
-}
-
-tab:selected {
-  background: @window_bg_color;
-}
-
-#blackbox-main-window.with-borders tab:selected,
-#blackbox-main-window.with-borders .custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
-  border-left-color: @fixed-borders;
-  border-right-color: @fixed-borders;
-}
-
 .custom-headerbar windowcontrols.end.empty {
   margin-left: 2px;
 }
@@ -92,29 +44,23 @@ tab:selected {
   margin-left: 6px;
 }
 
-#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) windowcontrols.start.empty ~ .title-label,
-#blackbox-main-window.with-borders .custom-headerbar:not(.stealth) windowcontrols.start.empty ~ .title-label {
+#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) windowcontrols.start.empty ~ .title-label {
   margin-left: -8px;
-}
-
-.custom-headerbar.single-tab-mode.stealth headerbar,
-.custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
-  background: @window_bg_color;
-}
-
-.custom-headerbar.single-tab-mode:not(.stealth) headerbar .title-label {
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
 }
 
 /* FIXME: all windowcontrols rules have no effect in fullscreen */
 
 /**
- * Remove space on the left when "Drag Area" is disabled.
+ * Align tab bar horizontally so that vertical and horizontal margins are equal.
  */
 .custom-headerbar:not(.with-dragarea):not(.single-tab-mode) windowcontrols.start.empty ~ tabbar {
-  /* 11px = (8px from header bar) + (3px from tab workaround) */
-  margin-left: -11px;
+  margin-left: -5px;
+}
+
+
+window:not(.about) headerbar,
+.custom-headerbar {
+  background: @window_bg_color;
 }
 
 /**
@@ -122,17 +68,6 @@ tab:selected {
  */
 .custom-headerbar.with-dragarea:not(.single-tab-mode) windowcontrols.start.empty ~ tabbar {
   margin-left: 34px;
-}
-
-/**
- * Make header bar darker when "Draw Line" is on and there is a single tab open.
- */
-.with-borders .custom-headerbar.single-tab-mode.stealth.draw-line-in-single-tab headerbar {
-  background-color: @headerbar_bg_color;
-}
-
-tabbox background {
-  background: transparent;
 }
 
 .toolbar {

@@ -91,8 +91,7 @@ public class Terminal.HeaderBar : BaseHeaderBar {
       var settings = Settings.get_default ();
       return (
         this.window.tab_view.n_pages <= 1 &&
-        settings.fill_tabs &&
-        settings.hide_single_tab
+        settings.fill_tabs
       );
     }
   }
@@ -224,13 +223,6 @@ public class Terminal.HeaderBar : BaseHeaderBar {
 
     this.window.tab_view.notify ["n-pages"].connect (notify_single_tab_mode);
     settings.notify ["fill-tabs"].connect (this.notify_single_tab_mode);
-    settings.notify ["hide-single-tab"].connect (this.notify_single_tab_mode);
-    settings.notify ["stealth-single-tab"].connect (this.notify_single_tab_mode);
-
-    settings.notify ["headerbar-draw-line-single-tab"].connect (
-      this.on_draw_line_singe_tab_changed
-    );
-    this.on_draw_line_singe_tab_changed ();
 
     settings.notify ["headerbar-drag-area"].connect (
       this.on_drag_area_changed
@@ -259,12 +251,6 @@ public class Terminal.HeaderBar : BaseHeaderBar {
     this.notify_property ("single-tab-mode");
   }
 
-  private void on_draw_line_singe_tab_changed () {
-    var draw_line = Settings.get_default ().headerbar_draw_line_single_tab;
-
-    set_css_class (this, "draw-line-in-single-tab", draw_line);
-  }
-
   private void on_drag_area_changed () {
     var drag_area = Settings.get_default ().headerbar_drag_area;
 
@@ -273,12 +259,10 @@ public class Terminal.HeaderBar : BaseHeaderBar {
 
   private void on_single_tab_mode_changed () {
     bool single_tab_enabled = this.single_tab_mode;
-    bool stealth_enabled = Settings.get_default ().stealth_single_tab;
 
     this.tab_bar.visible = !single_tab_enabled;
     this.title_label.visible = single_tab_enabled;
 
     set_css_class (this, "single-tab-mode", single_tab_enabled);
-    set_css_class (this, "stealth", single_tab_enabled && stealth_enabled);
   }
 }
