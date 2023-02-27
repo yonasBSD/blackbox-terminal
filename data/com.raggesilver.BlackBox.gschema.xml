@@ -47,10 +47,6 @@
       <default>true</default>
       <summary>Whether or not to display a menu button in the headerbar</summary>
     </key>
-    <key name="headerbar-draw-line-single-tab" type="b">
-      <default>false</default>
-      <summary>Whether or not to draw a 1px line under the header bar when there's a single tab open</summary>
-    </key>
     <key name="headerbar-drag-area" type="b">
       <default>false</default>
       <summary>Whether or not to reserve an area for dragging the header bar</summary>
@@ -128,14 +124,6 @@
     <key name="easy-copy-paste" type="b">
       <default>false</default>
       <summary>If enabled, ctrl+c and ctrl+v will work for copy/paste</summary>
-    </key>
-    <key name="hide-single-tab" type="b">
-      <default>true</default>
-      <summary>If enabled, the tab bar will be replaced with a title label when there's a single open tab</summary>
-    </key>
-    <key name="stealth-single-tab" type="b">
-      <default>true</default>
-      <summary>If enabled, a single open tab will blend with the headerbar color</summary>
     </key>
     <key name="command-as-login-shell" type="b">
       <default>true</default>

@@ -36,6 +36,11 @@ namespace Terminal {
         <ul>
           <li>You can now customize the working directory for new tabs. It can be set to persist the last tab's directory, the user's home directory, or an arbitrary location</li>
           <li>Closing a tab or a window that still has a running process will now prompt you for confirmation</li>
+          <li>Black Box now uses the default Adwaita tab style</li>
+        </ul>
+        <p>Bug fixes</p>
+        <ul>
+          <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
         </ul>
       """
     };

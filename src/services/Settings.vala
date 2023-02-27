@@ -33,14 +33,11 @@ public class Terminal.Settings : Marble.Settings {
   public bool    easy_copy_paste                      { get; set; }
   public bool    fill_tabs                            { get; set; }
   public bool    headerbar_drag_area                  { get; set; }
-  public bool    headerbar_draw_line_single_tab       { get; set; }
-  public bool    hide_single_tab                      { get; set; }
   public bool    pretty                               { get; set; }
   public bool    remember_window_size                 { get; set; }
   public bool    show_headerbar                       { get; set; }
   public bool    show_menu_button                     { get; set; }
   public bool    show_scrollbars                      { get; set; }
-  public bool    stealth_single_tab                   { get; set; }
   public bool    use_custom_command                   { get; set; }
   public bool    use_overlay_scrolling                { get; set; }
   public bool    use_sixel                            { get; set; }
@@ -83,7 +80,7 @@ public class Terminal.Settings : Marble.Settings {
   }
 
   public Padding get_padding () {
-    return Padding.from_variant (this.terminal_padding);
+    return Padding.from_variant (this.schema.get_value ("terminal-padding"));
   }
 
   public void set_padding (Padding padding) {
