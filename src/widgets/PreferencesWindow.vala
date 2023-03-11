@@ -61,13 +61,14 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
   [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           drag_area_switch;
+  [GtkChild] unowned Gtk.Switch           terminal_bell_switch;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
   private Window window;
 
-  public bool   show_custom_scrollback_row { get; set; default = false; }
-  public string selected_theme {
+  public bool     show_custom_scrollback_row  { get; set; default = false; }
+  public string   selected_theme {
     get {
       return this.light_theme_toggle.active
         ? Settings.get_default ().theme_light
@@ -207,6 +208,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       },
       null,
       null
+    );
+
+    settings.schema.bind(
+      "terminal-bell",
+      this.terminal_bell_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(

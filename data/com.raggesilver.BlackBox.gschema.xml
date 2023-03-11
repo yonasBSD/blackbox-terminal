@@ -109,6 +109,10 @@
       <default>1.0</default>
       <summary>Terminal cell height</summary>
     </key>
+    <key name="terminal-bell" type="b">
+      <default>true</default>
+      <summary>Terminal bell</summary>
+    </key>
     <key name="cursor-shape" type="u">
       <default>0</default>
       <summary>Cursor shape</summary>
