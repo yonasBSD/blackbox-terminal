@@ -32,10 +32,12 @@ public class Terminal.SearchToolbar : Gtk.Widget {
 
   public weak Terminal terminal { get; set; }
 
+  static construct {
+    set_layout_manager_type (typeof (Gtk.BinLayout));
+  }
+
   public SearchToolbar (Terminal terminal) {
     Object (terminal: terminal);
-
-    this.set_layout_manager (new Gtk.BinLayout ());
 
     this.search_entry.set_key_capture_widget (this);
 

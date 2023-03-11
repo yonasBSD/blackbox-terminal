@@ -161,7 +161,7 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
       cursor = new Gdk.Cursor.from_name ("pointer", null),
     };
 
-    var css_provider = Marble.get_css_provider_for_data (
+    var css_provider = PQMarble.get_css_provider_for_data (
       //  "picture { background-color: %s; padding-bottom: 2em; }".printf (
       "picture { background-color: %s; }".printf (
         scheme.background_color.to_string ()
@@ -196,7 +196,7 @@ public class Terminal.ColorSchemeThumbnail : Gtk.FlowBoxChild {
     //    xalign = 0.5f,
     //  };
 
-    //  Marble.set_theming_for_data (lbl, "label { color: %s; margin: 0.5em 8px; }".printf(scheme.foreground_color.to_string ()), null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    //  PQMarble.set_theming_for_data (lbl, "label { color: %s; margin: 0.5em 8px; }".printf(scheme.foreground_color.to_string ()), null, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     //  lbl.set_parent (this);
 

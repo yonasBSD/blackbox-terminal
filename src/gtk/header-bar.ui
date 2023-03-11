@@ -15,159 +15,224 @@
 
         <child>
           <object class="AdwHeaderBar">
-            <property name="show-start-title-buttons">false</property>
-            <property name="show-end-title-buttons">false</property>
             <property name="halign">fill</property>
             <property name="hexpand">true</property>
 
-            <property name="title-widget">
-                <object class="GtkBox" id="inner_layout_box">
-                  <property name="orientation">horizontal</property>
-                  <property name="spacing">0</property>
-                  <property name="halign">fill</property>
-                  <property name="hexpand">true</property>
+            <binding name="show-start-title-buttons">
+              <closure type="gboolean" function="show_window_controls">
+                <lookup name="fullscreened">
+                  <lookup name="window">TerminalHeaderBar</lookup>
+                </lookup>
+                <lookup name="floating-mode">TerminalHeaderBar</lookup>
+                <lookup name="single-tab-mode">TerminalHeaderBar</lookup>
+                <constant type="gboolean">true</constant>
+              </closure>
+            </binding>
 
-                  <child type="start">
-                    <object class="GtkWindowControls" id="left_controls">
-                      <property name="side">start</property>
+            <binding name="show-end-title-buttons">
+              <closure type="gboolean" function="show_window_controls">
+                <lookup name="fullscreened">
+                  <lookup name="window">TerminalHeaderBar</lookup>
+                </lookup>
+                <lookup name="floating-mode">TerminalHeaderBar</lookup>
+                <lookup name="single-tab-mode">TerminalHeaderBar</lookup>
+                <constant type="gboolean">true</constant>
+              </closure>
+            </binding>
 
-                      <binding name="visible">
-                        <closure type="gboolean" function="show_window_controls">
-                          <lookup name="fullscreened">
-                            <lookup name="window">TerminalHeaderBar</lookup>
-                          </lookup>
-                          <lookup name="floating-mode">TerminalHeaderBar</lookup>
-                        </closure>
-                      </binding>
-                    </object>
-                  </child>
-
-                  <child>
-                    <object class="AdwTabBar" id="tab_bar">
-                      <property name="halign">fill</property>
-                      <property name="hexpand">true</property>
-                      <property name="autohide">false</property>
-                      <property name="can-focus">false</property>
-                      <property name="visible" bind-source="TerminalHeaderBar" bind-property="single-tab-mode" bind-flags="sync-create|invert-boolean" />
-                      <style>
-                        <class name="inline" />
-                      </style>
-                    </object>
-                  </child>
-
-                  <child>
-                    <object class="GtkLabel" id="title_label">
-                      <property name="halign">fill</property>
-                      <property name="valign">center</property>
-                      <property name="hexpand">true</property>
-                      <property name="vexpand">false</property>
-                      <property name="xalign">0.5</property>
-                      <property name="ellipsize">end</property>
-                      <property name="visible" bind-source="TerminalHeaderBar" bind-property="single-tab-mode" bind-flags="sync-create" />
-
-                      <binding name="label">
-                        <lookup name="active-terminal-title">
-                          <lookup name="window">TerminalHeaderBar</lookup>
-                        </lookup>
-                      </binding>
-
-                      <binding name="tooltip-text">
-                        <lookup name="active-terminal-title">
-                          <lookup name="window">TerminalHeaderBar</lookup>
-                        </lookup>
-                      </binding>
-
-                      <style>
-                        <class name="flat" />
-                      </style>
-
-                      <attributes>
-                        <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
-                      </attributes>
-                    </object>
-                  </child>
-
-                  <child>
-                    <object class="GtkBox" id="buttons-box">
-                      <property name="margin-start">6</property>
-                      <property name="margin-end">0</property>
-
-                      <child>
-                        <object class="GtkButton" id="new_tab_button">
-                          <property name="tooltip-text" translatable="yes">New Tab</property>
-                          <property name="icon-name">list-add-symbolic</property>
-                          <property name="action-name">win.new_tab</property>
-                        </object>
-                      </child>
-
-                      <!-- <child>
-                        <object class="AdwSplitButton" id="new_tab_split_button">
-                          <property name="tooltip-text" translatable="yes">New Tab</property>
-                          <property name="icon-name">list-add-symbolic</property>
-                          <property name="action-name">win.new_tab</property>
-                          <property name="menu-model">new_tab_menu</property>
-                        </object>
-                      </child> -->
-
-                      <child>
-                        <object class="GtkButton" id="unfullscreen_button">
-                          <property name="tooltip-text" translatable="yes">Exit Fullscreen</property>
-                          <property name="icon-name">view-restore-symbolic</property>
-                          <property name="can-focus">false</property>
-                          <signal name="clicked" handler="unfullscreen" swapped="no" />
-
-                          <binding name="visible">
-                            <lookup name="fullscreened">
-                              <lookup name="window">TerminalHeaderBar</lookup>
-                            </lookup>
-                          </binding>
-                        </object>
-                      </child>
-
-                      <child>
-                        <object class="GtkMenuButton">
-                          <property name="tooltip-text" translatable="yes">Menu</property>
-                          <property name="menu-model">main-menu</property>
-                          <property name="icon-name">open-menu-symbolic</property>
-
-                          <binding name="visible">
-                            <lookup name="show-menu-button">
-                              <lookup name="settings">TerminalHeaderBar</lookup>
-                            </lookup>
-                          </binding>
-                        </object>
-                      </child>
-
-                    </object>
-                  </child>
-
-                  <child type="end">
-                    <object class="GtkWindowControls" id="right_controls">
-                      <property name="side">end</property>
-
-                      <binding name="visible">
-                        <closure type="gboolean" function="show_window_controls">
-                          <lookup name="fullscreened">
-                            <lookup name="window">TerminalHeaderBar</lookup>
-                          </lookup>
-                          <lookup name="floating-mode">TerminalHeaderBar</lookup>
-                        </closure>
-                      </binding>
-                    </object>
-                  </child>
-
-                </object>
-
-            </property>
+            <binding name="title-widget">
+              <closure type="GtkWidget" function="get_title_widget">
+                <lookup name="single-tab-mode">TerminalHeaderBar</lookup>
+              </closure>
+            </binding>
 
             <style>
               <class name="flat" />
             </style>
+
+            <child type="end">
+              <object class="GtkBox">
+                <property name="margin-start">6</property>
+                <property name="margin-end">0</property>
+
+                <binding name="visible">
+                  <lookup name="single-tab-mode">TerminalHeaderBar</lookup>
+                </binding>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="tooltip-text" translatable="yes">New Tab</property>
+                    <property name="icon-name">list-add-symbolic</property>
+                    <property name="action-name">win.new_tab</property>
+                  </object>
+                </child>
+
+                <!-- <child>
+                <object class="AdwSplitButton" id="new_tab_split_button">
+                  <property name="tooltip-text" translatable="yes">New Tab</property>
+                  <property name="icon-name">list-add-symbolic</property>
+                  <property name="action-name">win.new_tab</property>
+                  <property name="menu-model">new_tab_menu</property>
+                </object>
+              </child> -->
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="tooltip-text" translatable="yes">Exit Fullscreen</property>
+                    <property name="icon-name">view-restore-symbolic</property>
+                    <property name="can-focus">false</property>
+                    <signal name="clicked" handler="unfullscreen" swapped="no" />
+
+                    <binding name="visible">
+                      <lookup name="fullscreened">
+                        <lookup name="window">TerminalHeaderBar</lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkMenuButton">
+                    <property name="tooltip-text" translatable="yes">Menu</property>
+                    <property name="menu-model">main-menu</property>
+                    <property name="icon-name">open-menu-symbolic</property>
+
+                    <binding name="visible">
+                      <lookup name="show-menu-button">
+                        <lookup name="settings">TerminalHeaderBar</lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+
+              </object>
+            </child>
           </object>
         </child>
 
       </object>
     </child>
+
+    <object class="GtkBox" id="inner_layout_box">
+      <property name="orientation">horizontal</property>
+      <property name="spacing">0</property>
+      <property name="halign">fill</property>
+      <property name="hexpand">true</property>
+
+      <child type="start">
+        <object class="GtkWindowControls" id="left_controls">
+          <property name="side">start</property>
+
+          <binding name="visible">
+            <closure type="gboolean" function="show_window_controls">
+              <lookup name="fullscreened">
+                <lookup name="window">TerminalHeaderBar</lookup>
+              </lookup>
+              <lookup name="floating-mode">TerminalHeaderBar</lookup>
+              <lookup name="single-tab-mode">TerminalHeaderBar</lookup>
+              <constant type="gboolean">false</constant>
+            </closure>
+          </binding>
+        </object>
+      </child>
+
+      <child>
+        <object class="AdwTabBar" id="tab_bar">
+          <property name="halign">fill</property>
+          <property name="hexpand">true</property>
+          <property name="autohide">false</property>
+          <property name="can-focus">false</property>
+          <style>
+            <class name="inline" />
+          </style>
+        </object>
+      </child>
+
+      <child>
+        <object class="GtkBox" id="buttons-box">
+          <property name="margin-start">6</property>
+          <property name="margin-end">0</property>
+
+          <child>
+            <object class="GtkButton" id="new_tab_button">
+              <property name="tooltip-text" translatable="yes">New Tab</property>
+              <property name="icon-name">list-add-symbolic</property>
+              <property name="action-name">win.new_tab</property>
+            </object>
+          </child>
+
+          <!-- <child>
+          <object class="AdwSplitButton" id="new_tab_split_button">
+            <property name="tooltip-text" translatable="yes">New Tab</property>
+            <property name="icon-name">list-add-symbolic</property>
+            <property name="action-name">win.new_tab</property>
+            <property name="menu-model">new_tab_menu</property>
+          </object>
+        </child> -->
+
+          <child>
+            <object class="GtkButton" id="unfullscreen_button">
+              <property name="tooltip-text" translatable="yes">Exit Fullscreen</property>
+              <property name="icon-name">view-restore-symbolic</property>
+              <property name="can-focus">false</property>
+              <signal name="clicked" handler="unfullscreen" swapped="no" />
+
+              <binding name="visible">
+                <lookup name="fullscreened">
+                  <lookup name="window">TerminalHeaderBar</lookup>
+                </lookup>
+              </binding>
+            </object>
+          </child>
+
+          <child>
+            <object class="GtkMenuButton">
+              <property name="tooltip-text" translatable="yes">Menu</property>
+              <property name="menu-model">main-menu</property>
+              <property name="icon-name">open-menu-symbolic</property>
+
+              <binding name="visible">
+                <lookup name="show-menu-button">
+                  <lookup name="settings">TerminalHeaderBar</lookup>
+                </lookup>
+              </binding>
+            </object>
+          </child>
+
+        </object>
+      </child>
+
+      <child type="end">
+        <object class="GtkWindowControls" id="right_controls">
+          <property name="side">end</property>
+
+          <binding name="visible">
+            <closure type="gboolean" function="show_window_controls">
+              <lookup name="fullscreened">
+                <lookup name="window">TerminalHeaderBar</lookup>
+              </lookup>
+              <lookup name="floating-mode">TerminalHeaderBar</lookup>
+              <lookup name="single-tab-mode">TerminalHeaderBar</lookup>
+              <constant type="gboolean">false</constant>
+            </closure>
+          </binding>
+        </object>
+      </child>
+    </object>
+
+    <object class="AdwWindowTitle" id="hb_title_widget">
+      <binding name="title">
+        <lookup name="active-terminal-title">
+          <lookup name="window">TerminalHeaderBar</lookup>
+        </lookup>
+      </binding>
+
+      <binding name="tooltip-text">
+        <lookup name="active-terminal-title">
+          <lookup name="window">TerminalHeaderBar</lookup>
+        </lookup>
+      </binding>
+    </object>
   </template>
 
   <menu id="new_tab_menu">

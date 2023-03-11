@@ -15,8 +15,9 @@
  *
  * https://gitlab.gnome.org/GNOME/libadwaita/-/blob/12f891a7d04951a471e0cc65b7c4a8b3e9dfb8bf/src/stylesheet/widgets/_header-bar.scss#L15
  */
-.custom-headerbar headerbar windowhandle > box {
-  padding: 0;
+.custom-headerbar:not(.single-tab-mode) headerbar windowhandle > box {
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 /**
@@ -32,10 +33,10 @@
 }
 
 .custom-headerbar windowcontrols.end.empty {
-  margin-left: 2px;
+  /* margin-left: 2px; */
 }
 
-.custom-headerbar windowcontrols.end:not(.empty) {
+.custom-headerbar:not(.single-tab-mode) windowcontrols.end:not(.empty) {
   margin-left: 6px;
 }
 
@@ -45,7 +46,11 @@
  * Align tab bar horizontally so that vertical and horizontal margins are equal.
  */
 .custom-headerbar:not(.with-dragarea):not(.single-tab-mode) windowcontrols.start.empty ~ tabbar {
-  margin-left: -5px;
+  margin-left: -6px;
+}
+
+tabbox {
+  padding: 0;
 }
 
 
