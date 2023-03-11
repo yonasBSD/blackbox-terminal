@@ -219,33 +219,54 @@
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Terminal</property>
+
             <child>
-              <object class="AdwComboRow" id="cursor_shape_combo_row">
-                <property name="title" translatable="yes">Cursor Shape</property>
-                <property name="model">
-                  <object class="GtkStringList">
-                    <items>
-                      <item translatable="yes">Block</item>
-                      <item translatable="yes">IBeam</item>
-                      <item translatable="yes">Underline</item>
-                    </items>
+              <object class="AdwActionRow">
+                <property name="title" translatable="yes">Audible Bell</property>
+                <property name="subtitle" translatable="yes">If enabled, terminals might use an audible bell to indicate events.</property>
+                <property name="activatable-widget">terminal_bell_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="terminal_bell_switch">
+                    <property name="valign">center</property>
                   </object>
-                </property>
+                </child>
               </object>
             </child>
+
+
             <child>
-              <object class="AdwComboRow" id="cursor_blink_mode_combo_row">
-                <property name="title" translatable="yes">Cursor Blinking</property>
-                <property name="subtitle" translatable="yes">Whether or not the cursor should blink.</property>
-                <property name="model">
-                  <object class="GtkStringList">
-                    <items>
-                      <item translatable="yes">Follow System</item>
-                      <item translatable="yes">On</item>
-                      <item translatable="yes">Off</item>
-                    </items>
+              <object class="AdwExpanderRow">
+                <property name="title" translatable="yes">Cursor</property>
+                <property name="subtitle" translatable="yes">Adjust cursor shape and behavior.</property>
+                <child>
+                  <object class="AdwComboRow" id="cursor_shape_combo_row">
+                    <property name="title" translatable="yes">Cursor Shape</property>
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <items>
+                          <item translatable="yes">Block</item>
+                          <item translatable="yes">IBeam</item>
+                          <item translatable="yes">Underline</item>
+                        </items>
+                      </object>
+                    </property>
                   </object>
-                </property>
+                </child>
+                <child>
+                  <object class="AdwComboRow" id="cursor_blink_mode_combo_row">
+                    <property name="title" translatable="yes">Cursor Blinking</property>
+                    <property name="subtitle" translatable="yes">Whether or not the cursor should blink.</property>
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <items>
+                          <item translatable="yes">Follow System</item>
+                          <item translatable="yes">On</item>
+                          <item translatable="yes">Off</item>
+                        </items>
+                      </object>
+                    </property>
+                  </object>
+                </child>
               </object>
             </child>
 

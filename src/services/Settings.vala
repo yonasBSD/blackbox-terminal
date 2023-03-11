@@ -38,6 +38,7 @@ public class Terminal.Settings : Marble.Settings {
   public bool    show_headerbar                       { get; set; }
   public bool    show_menu_button                     { get; set; }
   public bool    show_scrollbars                      { get; set; }
+  public bool    terminal_bell                        { get; set; }
   public bool    use_custom_command                   { get; set; }
   public bool    use_overlay_scrolling                { get; set; }
   public bool    use_sixel                            { get; set; }

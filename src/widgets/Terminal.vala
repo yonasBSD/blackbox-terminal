@@ -243,6 +243,13 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void bind_data () {
     this.settings.schema.bind (
+      "terminal-bell",
+      this,
+      "audible-bell",
+      SettingsBindFlags.DEFAULT
+    );
+
+    this.settings.schema.bind (
       "terminal-cell-width",
       this,
       "cell-width-scale",
