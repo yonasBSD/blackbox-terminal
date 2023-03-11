@@ -43,7 +43,6 @@ public class Terminal.Settings : Marble.Settings {
   public bool    use_sixel                            { get; set; }
   public bool    was_fullscreened                     { get; set; }
   public bool    was_maximized                        { get; set; }
-  public bool    window_show_borders                  { get; set; }
   public double  terminal_cell_height                 { get; set; }
   public double  terminal_cell_width                  { get; set; }
   public string  custom_shell_command                 { get; set; }
