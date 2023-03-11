@@ -202,7 +202,7 @@ public class Terminal.ThemeProvider : Object {
       return;
     }
 
-    this.theme_provider = Marble.get_css_provider_for_data (
+    this.theme_provider = PQMarble.get_css_provider_for_data (
       this.generate_gtk_theme (theme)
     );
 

@@ -6,12 +6,12 @@
     <child>
       <object class="GtkRevealer" id="revealer">
         <property name="transition-duration">100</property>
-        <style>
-          <class name="toolbar" />
-          <class name="view" />
-        </style>
         <child>
           <object class="GtkCenterBox">
+            <style>
+              <class name="toolbar" />
+              <class name="view" />
+            </style>
             <child type="center">
               <object class="AdwClamp">
                 <child>
@@ -24,7 +24,6 @@
             </child>
             <child type="end">
               <object class="GtkBox">
-                <property name="margin-start">8</property>
                 <property name="hexpand">true</property>
                 <!-- Right next-to-center buttons -->
                 <child>
@@ -82,7 +81,6 @@
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="margin-top">6</property>
         <style>
           <class name="list" />
         </style>

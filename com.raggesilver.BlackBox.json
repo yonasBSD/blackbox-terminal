@@ -1,7 +1,7 @@
 {
   "app-id": "com.raggesilver.BlackBox",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "43",
+  "runtime-version": "master",
   "sdk": "org.gnome.Sdk",
   "command": "blackbox-link-system-fonts",
   "finish-args": [
@@ -54,8 +54,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://gitlab.com/raggesilver/marble/-/archive/6dcc6fefa35f0151b0549c01bd774750fe6bdef8/marble-6dcc6fefa35f0151b0549c01bd774750fe6bdef8.tar.gz",
-          "sha256": "6fe25ab863bf9a81fac827861b3f17d07fb4a0e4d944dbb0d5b09dfafca59fb4"
+          "url": "https://gitlab.gnome.org/raggesilver/marble/-/archive/f240b2ec7d5cdacb8fdcc553703420dc5101ffdb/marble-f240b2ec7d5cdacb8fdcc553703420dc5101ffdb.tar.gz",
+          "sha256": "46c1172a53cf974a73dc13a2142d022ec6a8dfa614133815df3aa5ede9af0cc1"
         }
       ]
     },

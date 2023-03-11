@@ -21,6 +21,8 @@
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/header-bar.ui")]
 public class Terminal.HeaderBar : Gtk.Box {
 
+  [GtkChild] private unowned Adw.WindowTitle hb_title_widget;
+  [GtkChild] private unowned Gtk.Box inner_layout_box;
   [GtkChild] public unowned Adw.TabBar tab_bar;
 
   public Window   window        { get; set; }
@@ -78,8 +80,24 @@ public class Terminal.HeaderBar : Gtk.Box {
   }
 
   [GtkCallback]
-  private bool show_window_controls (bool fullscreened, bool _is_floating) {
-    return (this.window == null || !fullscreened) && !_is_floating;
+  private bool show_window_controls (
+    bool fullscreened,
+    bool _is_floating,
+    bool _is_single_tab_mode,
+    bool is_header_bar_controls
+  ) {
+    return (
+      (this.window == null || !fullscreened) &&
+      (!_is_floating) &&
+      (!is_header_bar_controls || _is_single_tab_mode)
+    );
+  }
+
+  [GtkCallback]
+  private Gtk.Widget? get_title_widget (bool is_single_tab_mode) {
+    return is_single_tab_mode
+      ? this.hb_title_widget as Gtk.Widget
+      : this.inner_layout_box as Gtk.Widget;
   }
 
   private void notify_single_tab_mode () {

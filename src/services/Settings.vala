@@ -28,7 +28,7 @@ public enum Terminal.WorkingDirectoryMode {
   CUSTOM = 2,
 }
 
-public class Terminal.Settings : Marble.Settings {
+public class Terminal.Settings : PQMarble.Settings {
   public bool    command_as_login_shell               { get; set; }
   public bool    easy_copy_paste                      { get; set; }
   public bool    fill_tabs                            { get; set; }
@@ -88,7 +88,7 @@ public class Terminal.Settings : Marble.Settings {
   }
 }
 
-public class Terminal.SearchSettings : Marble.Settings {
+public class Terminal.SearchSettings : PQMarble.Settings {
   public bool    match_case_sensitive     { get; set; }
   public bool    match_whole_words        { get; set; }
   public bool    match_regex              { get; set; }

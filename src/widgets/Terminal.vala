@@ -226,7 +226,7 @@ public class Terminal.Terminal : Vte.Terminal {
       this.padding_provider = null;
     }
 
-    this.padding_provider = Marble.get_css_provider_for_data(
+    this.padding_provider = PQMarble.get_css_provider_for_data(
       "vte-terminal { padding: %upx %upx %upx %upx; }".printf(
         pad.top,
         pad.right,

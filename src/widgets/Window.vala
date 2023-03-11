@@ -170,7 +170,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       maximized: sett.remember_window_size && sett.was_maximized
     );
 
-    Marble.add_css_provider_from_resource (
+    PQMarble.add_css_provider_from_resource (
       "/com/raggesilver/BlackBox/resources/style.css"
     );
 
