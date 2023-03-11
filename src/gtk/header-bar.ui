@@ -80,6 +80,10 @@
                       <style>
                         <class name="flat" />
                       </style>
+
+                      <attributes>
+                        <attribute name="weight" value="PANGO_WEIGHT_BOLD" />
+                      </attributes>
                     </object>
                   </child>
 
