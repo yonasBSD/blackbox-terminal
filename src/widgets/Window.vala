@@ -219,11 +219,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
     settings.notify ["floating-controls"]
       .connect (this.on_floating_controls_changed);
 
-    settings.notify ["window-show-borders"].connect (() => {
-      set_css_class (this, "with-borders", settings.window_show_borders);
-    });
-    set_css_class (this, "with-borders", settings.window_show_borders);
-
     this.tab_view.create_window.connect (() => {
       var w = this.new_window (null, true);
       return w.tab_view;

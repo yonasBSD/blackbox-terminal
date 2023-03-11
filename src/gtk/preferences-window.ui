@@ -26,18 +26,6 @@
             </child>
             <child>
               <object class="AdwActionRow">
-                <property name="activatable-widget">show_window_borders_switch</property>
-                <property name="title" translatable="yes">Show Borders</property>
-                <property name="subtitle" translatable="yes">Enable to draw a border around the window and the active tab.</property>
-                <child>
-                  <object class="GtkSwitch" id="show_window_borders_switch">
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
                 <property name="activatable-widget">pretty_switch</property>
                 <property name="title" translatable="yes">Theme Integration</property>
                 <property name="subtitle" translatable="yes">Style window with terminal theme colors.</property>

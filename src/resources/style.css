@@ -1,11 +1,6 @@
 /* libadwaita does 0.85, but 0.8 looks better */
 @define-color fixed-borders mix(@window_fg_color, @window_bg_color, 0.8);
 
-
-#blackbox-main-window.with-borders:not(.fullscreen):not(.maximized):not(.tiled-left):not(.tiled-right) {
-  border: 1px solid @fixed-borders;
-}
-
 /* #blackbox-main-window.with-borders:not(.fullscreen):backdrop {
   border-color: alpha(@borders, 0.5);
 } */
@@ -42,10 +37,6 @@
 
 .custom-headerbar windowcontrols.end:not(.empty) {
   margin-left: 6px;
-}
-
-#blackbox-main-window.with-borders .custom-headerbar:not(.single-tab-mode) windowcontrols.start.empty ~ .title-label {
-  margin-left: -8px;
 }
 
 /* FIXME: all windowcontrols rules have no effect in fullscreen */
