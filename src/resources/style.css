@@ -58,9 +58,10 @@
 }
 
 
-window:not(.about) headerbar,
+window:not(.about):not(#blackbox-main-window) headerbar,
 .custom-headerbar {
-  background: @window_bg_color;
+  transition: background-color 0.5s;
+  background-color: @window_bg_color;
 }
 
 /**

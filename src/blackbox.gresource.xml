@@ -7,6 +7,7 @@
     <file>gtk/shortcut-dialog.ui</file>
     <file>gtk/shortcut-editor.ui</file>
     <file>gtk/shortcut-row.ui</file>
+    <file>gtk/header-bar.ui</file>
     <file>resources/style.css</file>
     <file>resources/svg/color-scheme-thumbnail.svg</file>
   </gresource>
