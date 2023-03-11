@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.2" />
+  <template class="TerminalHeaderBar" parent="GtkBox">
+    <property name="valign">start</property>
+    <property name="vexpand">false</property>
+    <style>
+      <class name="custom-headerbar" />
+    </style>
+    <child>
+      <object class="GtkBox" id="layout_box">
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+
+        <child>
+          <object class="AdwHeaderBar">
+            <property name="show-start-title-buttons">false</property>
+            <property name="show-end-title-buttons">false</property>
+            <property name="halign">fill</property>
+            <property name="hexpand">true</property>
+
+            <property name="title-widget">
+                <object class="GtkBox" id="inner_layout_box">
+                  <property name="orientation">horizontal</property>
+                  <property name="spacing">0</property>
+                  <property name="halign">fill</property>
+                  <property name="hexpand">true</property>
+
+                  <child type="start">
+                    <object class="GtkWindowControls" id="left_controls">
+                      <property name="side">start</property>
+
+                      <binding name="visible">
+                        <closure type="gboolean" function="show_window_controls">
+                          <lookup name="fullscreened">
+                            <lookup name="window">TerminalHeaderBar</lookup>
+                          </lookup>
+                          <lookup name="floating-mode">TerminalHeaderBar</lookup>
+                        </closure>
+                      </binding>
+                    </object>
+                  </child>
+
+                  <child>
+                    <object class="AdwTabBar" id="tab_bar">
+                      <property name="halign">fill</property>
+                      <property name="hexpand">true</property>
+                      <property name="autohide">false</property>
+                      <property name="can-focus">false</property>
+                      <property name="visible" bind-source="TerminalHeaderBar" bind-property="single-tab-mode" bind-flags="sync-create|invert-boolean" />
+                      <style>
+                        <class name="inline" />
+                      </style>
+                    </object>
+                  </child>
+
+                  <child>
+                    <object class="GtkLabel" id="title_label">
+                      <property name="halign">fill</property>
+                      <property name="valign">center</property>
+                      <property name="hexpand">true</property>
+                      <property name="vexpand">false</property>
+                      <property name="xalign">0.5</property>
+                      <property name="ellipsize">end</property>
+                      <property name="visible" bind-source="TerminalHeaderBar" bind-property="single-tab-mode" bind-flags="sync-create" />
+
+                      <binding name="label">
+                        <lookup name="active-terminal-title">
+                          <lookup name="window">TerminalHeaderBar</lookup>
+                        </lookup>
+                      </binding>
+
+                      <binding name="tooltip-text">
+                        <lookup name="active-terminal-title">
+                          <lookup name="window">TerminalHeaderBar</lookup>
+                        </lookup>
+                      </binding>
+
+                      <style>
+                        <class name="flat" />
+                      </style>
+                    </object>
+                  </child>
+
+                  <child>
+                    <object class="GtkBox" id="buttons-box">
+                      <property name="margin-start">6</property>
+                      <property name="margin-end">0</property>
+
+                      <child>
+                        <object class="GtkButton" id="new_tab_button">
+                          <property name="tooltip-text" translatable="yes">New Tab</property>
+                          <property name="icon-name">list-add-symbolic</property>
+                          <property name="action-name">win.new_tab</property>
+                        </object>
+                      </child>
+
+                      <!-- <child>
+                        <object class="AdwSplitButton" id="new_tab_split_button">
+                          <property name="tooltip-text" translatable="yes">New Tab</property>
+                          <property name="icon-name">list-add-symbolic</property>
+                          <property name="action-name">win.new_tab</property>
+                          <property name="menu-model">new_tab_menu</property>
+                        </object>
+                      </child> -->
+
+                      <child>
+                        <object class="GtkButton" id="unfullscreen_button">
+                          <property name="tooltip-text" translatable="yes">Exit Fullscreen</property>
+                          <property name="icon-name">view-restore-symbolic</property>
+                          <property name="can-focus">false</property>
+                          <signal name="clicked" handler="unfullscreen" swapped="no" />
+
+                          <binding name="visible">
+                            <lookup name="fullscreened">
+                              <lookup name="window">TerminalHeaderBar</lookup>
+                            </lookup>
+                          </binding>
+                        </object>
+                      </child>
+
+                      <child>
+                        <object class="GtkMenuButton">
+                          <property name="tooltip-text" translatable="yes">Menu</property>
+                          <property name="menu-model">main-menu</property>
+                          <property name="icon-name">open-menu-symbolic</property>
+
+                          <binding name="visible">
+                            <lookup name="show-menu-button">
+                              <lookup name="settings">TerminalHeaderBar</lookup>
+                            </lookup>
+                          </binding>
+                        </object>
+                      </child>
+
+                    </object>
+                  </child>
+
+                  <child type="end">
+                    <object class="GtkWindowControls" id="right_controls">
+                      <property name="side">end</property>
+
+                      <binding name="visible">
+                        <closure type="gboolean" function="show_window_controls">
+                          <lookup name="fullscreened">
+                            <lookup name="window">TerminalHeaderBar</lookup>
+                          </lookup>
+                          <lookup name="floating-mode">TerminalHeaderBar</lookup>
+                        </closure>
+                      </binding>
+                    </object>
+                  </child>
+
+                </object>
+
+            </property>
+
+            <style>
+              <class name="flat" />
+            </style>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+
+  <menu id="new_tab_menu">
+    <!-- <section>
+      <attribute name="label" translatable="yes">Shell</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Bash</attribute>
+        <attribute name="action">win.new_tab_with_command</attribute>
+        <attribute name="target" type="s">'/bin/bash'</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Zsh</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Toolbox</attribute>
+      </item>
+    </section> -->
+    <section id="remote_access_section">
+      <attribute name="label" translatable="yes">Remote Access</attribute>
+      <submenu>
+        <attribute name="label" translatable="yes">SSH Connections</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="no">Localhost</attribute>
+            <attribute name="icon">preferences-desktop-locale-symbolic</attribute>
+            <attribute name="action">win.new_localhost_ssh_session</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">New Connection</attribute>
+            <attribute name="action">app.new-ssh-profile</attribute>
+          </item>
+        </section>
+      </submenu>
+      <submenu>
+        <attribute name="label" translatable="yes">SFTP Servers</attribute>
+        <item>
+          <attribute name="label" translatable="yes">New Connection</attribute>
+        </item>
+      </submenu>
+    </section>
+  </menu>
+
+  <menu id="main-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New Tab</attribute>
+        <attribute name="action">win.new_tab</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Fullscreen</attribute>
+        <attribute name="action">win.fullscreen</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">win.edit_preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">About</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

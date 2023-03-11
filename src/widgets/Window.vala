@@ -81,30 +81,31 @@ public struct Terminal.Padding {
 
 public class Terminal.Window : Adw.ApplicationWindow {
 
+  // Signals
+
+  private signal void header_bar_animation_finished ();
+
+  // Properties
+
   public ThemeProvider  theme_provider        { get; private set; }
   public Adw.TabView    tab_view              { get; private set; }
   public Adw.TabBar     tab_bar               { get; private set; }
   public Terminal       active_terminal       { get; private set; }
   public string?        active_terminal_title { get; private set; }
 
-  BaseHeaderBar   header_bar;
-  Gtk.Revealer    header_bar_revealer;
+  // Fields
 
-  Gtk.HeaderBar   floating_bar;
-  Gtk.Box         floating_btns;
-  Gtk.MenuButton  floating_menu_btn;
-  Gtk.Button      show_headerbar_button;
-  Gtk.Button      fullscreen_button;
-  Gtk.Revealer    floating_header_bar_revealer;
-
-  Settings        settings = Settings.get_default ();
-
-  const uint header_bar_revealer_duration_ms = 250;
-  private uint waiting_for_floating_hb_animation = 0;
-
-  private SimpleAction copy_action;
-  private Array<ulong> active_terminal_signal_handlers = new Array<ulong> ();
-  private bool force_close = false;
+  Array<ulong>  active_terminal_signal_handlers = new Array<ulong> ();
+  bool          force_close = false;
+  const uint    header_bar_revealer_duration_ms = 250;
+  Gtk.Revealer  header_bar_revealer;
+  HeaderBar     header_bar;
+  Settings      settings = Settings.get_default ();
+  SimpleAction  copy_action;
+  uint          header_bar_waiting_floating_animation = 0;
+  uint          header_bar_waiting_floating_delay = 0;
+  Gtk.Box       layout_box;
+  Gtk.Overlay   overlay;
 
   // TODO: bring all SimpleActions over here
   private const ActionEntry[] ACTION_ENTRIES = {
@@ -120,84 +121,33 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     // FIXME: move this over to an ui file
 
-    var layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+    this.layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
     this.tab_view = new Adw.TabView () {
       // Disable Adw.TabView shortcuts
       shortcuts = Adw.TabViewShortcuts.NONE,
     };
 
-    this.tab_bar = new Adw.TabBar () {
-      autohide = false,
-      view = this.tab_view,
-
-      hexpand = true,
-      halign = Gtk.Align.FILL,
-
-      css_classes = { "inline" },
-
-      can_focus = false,
-    };
-
     this.header_bar = new HeaderBar (this);
+
+    this.tab_bar = this.header_bar.tab_bar;
+    this.tab_bar.view = this.tab_view;
 
     this.header_bar_revealer = new Gtk.Revealer () {
       transition_duration = Window.header_bar_revealer_duration_ms,
       child = this.header_bar,
+      valign = Gtk.Align.START,
     };
 
     // Floating controls bar  ===============
 
-    this.fullscreen_button = new Gtk.Button.from_icon_name (
-      "com.raggesilver.BlackBox-fullscreen-symbolic"
-    ) { tooltip_text = _("Fullscreen") };
-    this.show_headerbar_button = new Gtk.Button.from_icon_name (
-      "com.raggesilver.BlackBox-show-headerbar-symbolic"
-    ) { tooltip_text = _("Show headerbar") };
-    this.floating_btns = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0) {
-      css_classes = { "floating-btn-box" },
-      overflow = Gtk.Overflow.HIDDEN,
-      valign = Gtk.Align.CENTER,
-    };
-    this.floating_btns.append (this.fullscreen_button);
-    this.floating_btns.append (new Gtk.Separator(Gtk.Orientation.VERTICAL));
-    this.floating_btns.append (this.show_headerbar_button);
+    this.layout_box.append (this.header_bar_revealer);
+    this.layout_box.append (this.tab_view);
 
-    this.floating_menu_btn = new Gtk.MenuButton () {
-      menu_model = get_window_menu_model (),
-      icon_name = "open-menu-symbolic",
-      css_classes = { "circular" },
-      valign = Gtk.Align.CENTER,
-      can_focus = false,
-      tooltip_text = _("Menu")
-    };
+    this.overlay = new Gtk.Overlay ();
+    this.overlay.child = this.layout_box;
 
-    this.floating_bar = new Gtk.HeaderBar () {
-      css_classes = {"flat" },
-      title_widget = new Gtk.Label ("") { hexpand = true },
-    };
-
-    this.floating_header_bar_revealer = new Gtk.Revealer () {
-      transition_duration = Window.header_bar_revealer_duration_ms,
-      transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN,
-
-      valign = Gtk.Align.START,
-      vexpand = false,
-      child = floating_bar,
-
-      css_classes = { "floating-revealer" },
-    };
-
-    this.on_decoration_layout_changed ();
-
-    layout_box.append (this.header_bar_revealer);
-    layout_box.append (this.tab_view);
-
-    var overlay = new Gtk.Overlay ();
-    overlay.child = layout_box;
-    overlay.add_overlay (this.floating_header_bar_revealer);
-
-    this.content = overlay;
+    this.content = this.overlay;
 
     this.set_name ("blackbox-main-window");
   }
@@ -249,21 +199,25 @@ public class Terminal.Window : Adw.ApplicationWindow {
       SettingsBindFlags.GET
     );
 
-    this.settings.notify["show-menu-button"].connect (
-      this.on_decoration_layout_changed
-    );
+    this.header_bar_revealer.notify ["reveal-child"]
+      .connect (this.on_reveal_header_bar_changed);
 
-    settings.notify["floating-controls"].connect(() => {
-      if (!settings.floating_controls) {
-        this.floating_header_bar_revealer.reveal_child = false;
+    settings.notify ["show-headerbar"].connect (() => {
+      if (Settings.get_default ().show_headerbar) {
+        this.on_show_header_bar_changed ();
       }
     });
 
-    settings.notify["show-headerbar"].connect(() => {
-      if (settings.show_headerbar) {
-        this.floating_header_bar_revealer.reveal_child = false;
+    settings.notify ["show-headerbar"].connect_after (() => {
+      if (!Settings.get_default ().show_headerbar) {
+        this.on_show_header_bar_changed ();
       }
     });
+
+    this.on_show_header_bar_changed ();
+
+    settings.notify ["floating-controls"]
+      .connect (this.on_floating_controls_changed);
 
     settings.notify ["window-show-borders"].connect (() => {
       set_css_class (this, "with-borders", settings.window_show_borders);
@@ -299,63 +253,122 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.settings.window_height = this.default_height;
     });
 
-    this.fullscreen_button.clicked.connect (this.toggle_fullscreen);
-
-    this.show_headerbar_button.clicked.connect (() => {
-      this.settings.show_headerbar = true;
-      this.floating_header_bar_revealer.reveal_child = false;
-    });
-
-    var s = Gtk.Settings.get_default ();
-    s.notify["gtk-decoration-layout"].connect(this.on_decoration_layout_changed);
-
     this.notify["active-terminal"].connect (this.on_active_terminal_changed);
 
-    var c = new Gtk.EventControllerMotion ();
-    c.motion.connect ((_, _mouseX, mouseY) => {
-      // Ignore mouse motion if standard headerbars are shown or if floating
-      // controls are disabled
-      if (this.settings.show_headerbar || !this.settings.floating_controls) {
-        return;
-      }
+    var motion_controller = new Gtk.EventControllerMotion ();
+    motion_controller.motion.connect (this.on_mouse_motion);
 
-      var h = this.floating_bar.get_height ();
-      var is_shown = this.floating_header_bar_revealer.reveal_child;
-
-      var trigger_area = settings.floating_controls_hover_area;
-
-      bool is_hovering_trigger_area =
-        mouseY >= 0 && mouseY <= (is_shown ? h : trigger_area);
-
-      if (is_hovering_trigger_area && !is_shown) {
-        // Only schedule animation if there aren't any scheduled
-        if (this.waiting_for_floating_hb_animation == 0) {
-          // Wait for delay to show floating controls
-          this.waiting_for_floating_hb_animation = Timeout.add (
-            settings.delay_before_showing_floating_controls,
-            () => {
-              this.floating_header_bar_revealer.reveal_child = true;
-              this.waiting_for_floating_hb_animation = 0;
-              return false;
-            }
-          );
-        }
-      }
-      else if (
-        !is_hovering_trigger_area &&
-        (is_shown || this.waiting_for_floating_hb_animation != 0)
-      ) {
-        if (this.waiting_for_floating_hb_animation != 0) {
-          Source.remove (this.waiting_for_floating_hb_animation);
-          this.waiting_for_floating_hb_animation = 0;
-        }
-        this.floating_header_bar_revealer.reveal_child = false;
-      }
-    });
-
-    (this as Gtk.Widget)?.add_controller (c);
+    (this as Gtk.Widget)?.add_controller (motion_controller);
 
     this.close_request.connect (this.on_close_request);
+  }
+
+  private void on_mouse_motion (
+    Gtk.EventControllerMotion _,
+    double _mouseX,
+    double mouseY
+  ) {
+    // Ignore mouse motion if standard header bar is shown or if floating
+    // controls are disabled
+    if (this.settings.show_headerbar || !this.settings.floating_controls) {
+      return;
+    }
+
+    var hb_height = this.header_bar.get_height ();
+    var is_shown = this.header_bar_revealer.reveal_child;
+
+    var trigger_area = settings.floating_controls_hover_area;
+
+    bool is_hovering_trigger_area =
+      mouseY >= 0 && mouseY <= (is_shown ? hb_height : trigger_area);
+
+    if (is_hovering_trigger_area && !is_shown) {
+      // Only schedule animation if there aren't any scheduled
+      if (this.header_bar_waiting_floating_delay == 0) {
+        // Wait for delay to show floating controls
+        this.header_bar_waiting_floating_delay = Timeout.add (
+          settings.delay_before_showing_floating_controls,
+          () => {
+            this.header_bar_waiting_floating_delay = 0;
+
+            this.header_bar_revealer.reveal_child = true;
+
+            return false;
+          }
+        );
+      }
+    }
+    else if (
+      !is_hovering_trigger_area &&
+      (is_shown || this.header_bar_waiting_floating_delay != 0)
+    ) {
+      if (this.header_bar_waiting_floating_delay != 0) {
+        Source.remove (this.header_bar_waiting_floating_delay);
+        this.header_bar_waiting_floating_delay = 0;
+      }
+      this.header_bar_revealer.reveal_child = false;
+    }
+  }
+
+  private void on_reveal_header_bar_changed () {
+    this.header_bar_waiting_floating_animation = Timeout
+      .add (header_bar_revealer_duration_ms, () => {
+        this.header_bar_waiting_floating_animation = 0;
+        this.header_bar_animation_finished ();
+        return false;
+      });
+  }
+
+  private void on_floating_controls_changed () {
+    this.set_header_bar_to_floating.begin (
+      !this.settings.show_headerbar && this.settings.floating_controls
+    );
+  }
+
+  private void on_show_header_bar_changed () {
+    this.set_header_bar_to_floating.begin (
+      !this.settings.show_headerbar && this.settings.floating_controls
+    );
+  }
+
+  private async void wait_for_header_bar_animation () {
+    if (this.header_bar_waiting_floating_animation == 0) {
+      return;
+    }
+
+    SourceFunc callback = this.wait_for_header_bar_animation.callback;
+
+    ulong hid = 0;
+
+    hid = this.header_bar_animation_finished.connect_after (() => {
+      callback ();
+      this.disconnect (hid);
+    });
+
+    yield;
+  }
+
+  private bool setting_header_bar_to_floating = false;
+  private async void set_header_bar_to_floating (bool should_float) {
+    if (this.setting_header_bar_to_floating) {
+      return;
+    }
+
+    this.setting_header_bar_to_floating = true;
+
+    if (should_float && this.header_bar_revealer.parent != this.overlay) {
+      // ...
+      yield this.wait_for_header_bar_animation ();
+      this.layout_box.remove (this.header_bar_revealer);
+      this.overlay.add_overlay (this.header_bar_revealer);
+    }
+    else if (!should_float && this.header_bar_revealer.parent != this.layout_box) {
+      // ...
+      this.overlay.remove_overlay (this.header_bar_revealer);
+      this.layout_box.prepend (this.header_bar_revealer);
+    }
+
+    this.setting_header_bar_to_floating = false;
   }
 
   // This method is called right before the window is closed. Use it to store
@@ -613,26 +626,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
       enabled = true;
     }
     this.copy_action.set_enabled (enabled);
-  }
-
-  private void on_decoration_layout_changed () {
-    var layout = Gtk.Settings.get_default ().gtk_decoration_layout;
-
-    debug ("Decoration layout: %s", layout);
-
-    var window_controls_in_end = layout.split (":", 2)[0].contains ("menu");
-
-    this.floating_bar.remove (this.floating_btns);
-    this.floating_bar.remove (this.floating_menu_btn);
-    if (this.settings.show_menu_button) {
-      this.floating_bar.pack_end (this.floating_menu_btn);
-    }
-
-    if (window_controls_in_end) {
-      this.floating_bar.pack_start (this.floating_btns);
-    } else {
-      this.floating_bar.pack_end (this.floating_btns);
-    }
   }
 
   private void toggle_fullscreen () {
