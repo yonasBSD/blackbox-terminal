@@ -327,7 +327,8 @@ public class Terminal.Terminal : Vte.Terminal {
         return;
       }
 
-      Gtk.show_uri (this.window, pattern, event.get_time ());
+
+      new Gtk.UriLauncher (pattern).launch.begin (this.window, null);
     });
     this.add_controller (left_click_controller);
 

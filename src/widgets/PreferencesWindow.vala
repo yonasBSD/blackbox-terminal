@@ -586,20 +586,14 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   [GtkCallback]
   private void on_get_more_themes_online () {
-    Gtk.show_uri (
-      this,
-      "https://github.com/storm119/Tilix-Themes",
-      (int32) (get_monotonic_time () / 1000)
-    );
+    new Gtk.UriLauncher ("https://github.com/storm119/Tilix-Themes")
+      .launch.begin (null, null);
   }
 
   [GtkCallback]
   private void on_open_themes_folder () {
-    Gtk.show_uri (
-      this,
-      "file://" + Constants.get_user_schemes_dir (),
-      (int32) (get_monotonic_time () / 1000)
-    );
+    new Gtk.UriLauncher ("file://" + Constants.get_user_schemes_dir ())
+      .launch.begin (null, null);
   }
 
   [GtkCallback]

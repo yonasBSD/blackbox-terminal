@@ -36,11 +36,19 @@ namespace Terminal {
         <ul>
           <li>You can now customize the working directory for new tabs. It can be set to persist the last tab's directory, the user's home directory, or an arbitrary location</li>
           <li>Closing a tab or a window that still has a running process will now prompt you for confirmation</li>
-          <li>Black Box now uses the default Adwaita tab style</li>
+          <li>Black Box now uses the default Adwaita tab style. As consequence, some header bar options, including "Show Borders" have been removed from the preferences window</li>
+          <li>Added the option to disable terminal bell</li>
+        </ul>
+        <p>Improvements</p>
+        <ul>
+          <li>Some configuration options have been grouped together in the preferences
+  window</li>
+          <li>Application title is now bold when there's a single tab open</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
           <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
+          <li>The window title is now centered when there's only one tab</li>
         </ul>
       """
     };
