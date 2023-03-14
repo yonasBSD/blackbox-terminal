@@ -8,6 +8,7 @@
     <property name="modal">False</property>
     <child>
       <object class="AdwPreferencesPage">
+        <property name="name">general</property>
         <property name="title" translatable="yes">General</property>
         <property name="icon-name">settings-symbolic</property>
         <child>
@@ -25,29 +26,14 @@
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
-                <property name="activatable-widget">pretty_switch</property>
-                <property name="title" translatable="yes">Theme Integration</property>
-                <property name="subtitle" translatable="yes">Style window with terminal theme colors.</property>
-                <child>
-                  <object class="GtkSwitch" id="pretty_switch">
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwComboRow" id="style_preference_combo_row">
-                <property name="title" translatable="yes">Style Preference</property>
-                <property name="model">
-                  <object class="GtkStringList">
-                    <items>
-                      <item translatable="yes">Follow System</item>
-                      <item translatable="yes">Light Style</item>
-                      <item translatable="yes">Dark Style</item>
-                    </items>
-                  </object>
-                </property>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Theme settings have been moved to Terminal &gt; Appearance.</property>
+                <property name="wrap">true</property>
+                <property name="xalign">0</property>
+                <property name="margin-top">16</property>
+                <style>
+                  <class name="dim-label" />
+                </style>
               </object>
             </child>
           </object>
@@ -154,6 +140,7 @@
     </child>
     <child>
       <object class="AdwPreferencesPage">
+        <property name="name">terminal</property>
         <property name="title" translatable="yes">Terminal</property>
         <property name="icon-name">utilities-terminal-symbolic</property>
         <!-- Text section -->
@@ -453,8 +440,42 @@
           </object>
         </child>
         <child>
-          <object class="AdwPreferencesGroup" id="theme_scheme_group">
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Appearance</property>
+            <child>
+              <object class="AdwComboRow" id="style_preference_combo_row">
+                <property name="title" translatable="yes">Application Style</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Follow System</item>
+                      <item translatable="yes">Light</item>
+                      <item translatable="yes">Dark</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">pretty_switch</property>
+                <property name="title" translatable="yes">Theme Integration</property>
+                <property name="subtitle" translatable="yes">Paint the whole app with colors from your colorscheme.</property>
+                <child>
+                  <object class="GtkSwitch" id="pretty_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+
+        <child>
+          <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Theme</property>
+            <property name="description" translatable="yes">Set your preferred theme for light and dark styles.</property>
             <child type="header-suffix">
               <object class="GtkBox">
                 <property name="valign">center</property>
@@ -465,14 +486,15 @@
                 </style>
                 <child>
                   <object class="GtkButton">
-                    <property name="label" translatable="yes">Open folder</property>
+                    <property name="icon-name">folder-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Open themes folder</property>
                     <signal name="clicked" handler="on_open_themes_folder" swapped="no" />
                     <style />
                   </object>
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="icon-name">folder-download-symbolic</property>
+                    <property name="icon-name">web-browser-symbolic</property>
                     <property name="tooltip-text" translatable="yes">Get more themes online</property>
                     <signal name="clicked" handler="on_get_more_themes_online" swapped="no" />
                     <style />
@@ -480,19 +502,11 @@
                 </child>
               </object>
             </child>
+
             <child>
               <object class="GtkBox">
                 <property name="orientation">vertical</property>
                 <property name="spacing">15</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Set your preferred theme for light and dark styles.</property>
-                    <style>
-                      <class name="dim-label" />
-                    </style>
-                  </object>
-                </child>
                 <child>
                   <object class="GtkBox">
                     <property name="hexpand">True</property>
@@ -549,6 +563,7 @@
         </child>
       </object>
     </child>
+
     <child>
       <object class="TerminalShortcutEditor">
         <property name="app" bind-source="TerminalPreferencesWindow" bind-property="application" bind-flags="default" />
@@ -556,6 +571,7 @@
     </child>
     <child>
       <object class="AdwPreferencesPage">
+        <property name="name">advanced</property>
         <property name="title" translatable="yes">Advanced</property>
         <property name="icon-name">applications-science-symbolic</property>
         <child>
