@@ -592,7 +592,9 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   [GtkCallback]
   private void on_open_themes_folder () {
-    new Gtk.UriLauncher ("file://" + Constants.get_user_schemes_dir ())
+    new Gtk.FileLauncher (
+      GLib.File.new_for_path (Constants.get_user_schemes_dir ())
+    )
       .launch.begin (null, null);
   }
 
