@@ -91,7 +91,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Adw.TabView    tab_view              { get; private set; }
   public Adw.TabBar     tab_bar               { get; private set; }
   public Terminal       active_terminal       { get; private set; }
-  public string?        active_terminal_title { get; private set; }
+  public string         active_terminal_title { get; private set; default = ""; }
 
   // Fields
 
@@ -129,6 +129,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     };
 
     this.header_bar = new HeaderBar (this);
+
 
     this.tab_bar = this.header_bar.tab_bar;
     this.tab_bar.view = this.tab_view;
