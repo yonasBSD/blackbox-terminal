@@ -9,55 +9,27 @@
   background: transparent;
 }
 
-/**
- * Our custom header bar inserts window controls inside Adw.HeaderBar which
- * doubles the padding on the sides.
- *
- * https://gitlab.gnome.org/GNOME/libadwaita/-/blob/12f891a7d04951a471e0cc65b7c4a8b3e9dfb8bf/src/stylesheet/widgets/_header-bar.scss#L15
- */
-.custom-headerbar:not(.single-tab-mode) headerbar windowhandle > box {
-  padding-left: 1px;
-  padding-right: 1px;
-}
-
-/**
- * Fix unfocused custom headerbar look. With default styling, tabs become
- * transparent and the "fake bottom tab border" becomes visible behind the
- * active tab.
- */
-.custom-headerbar:backdrop windowhandle { filter: none; }
-
-.custom-headerbar:backdrop button,
-.custom-headerbar:backdrop label {
-  filter: opacity(0.5);
-}
-
-.custom-headerbar windowcontrols.end.empty {
-  /* margin-left: 2px; */
-}
-
-.custom-headerbar:not(.single-tab-mode) windowcontrols.end:not(.empty) {
-  margin-left: 6px;
-}
-
-/* FIXME: all windowcontrols rules have no effect in fullscreen */
-
-/**
- * Align tab bar horizontally so that vertical and horizontal margins are equal.
- */
-.custom-headerbar:not(.with-dragarea):not(.single-tab-mode) windowcontrols.start.empty ~ tabbar {
-  margin-left: -6px;
-}
-
-tabbox {
-  padding: 0;
-}
-
-
-window:not(.about):not(#blackbox-main-window) headerbar,
+window:not(.about) headerbar,
 .custom-headerbar {
   transition: background-color 0.5s;
   background-color: @window_bg_color;
+}
+
+.custom-headerbar windowhandle > box {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.custom-headerbar windowcontrols:not(.empty).start {
+  margin-right: 6px;
+}
+
+.custom-headerbar windowcontrols.start.empty ~ tabbar {
+  margin-left: -6px;
+}
+
+.custom-headerbar windowcontrols:not(.empty).end {
+  margin-left: 6px;
 }
 
 /**
@@ -91,61 +63,6 @@ window:not(.about):not(#blackbox-main-window) headerbar,
   margin: 8px;
 }
 
-window:not(.about) .floating-revealer > headerbar {
-  background: transparent;
-}
-
-.floating-btn-box button,
-.floating-btn-box separator{
-  margin: 0;
-  outline: 0;
-}
-
-.floating-btn-box {
-  border-radius: 8px;
-}
-
-.floating-revealer menubutton button,
-.floating-btn-box,
-.floating-revealer windowcontrols image {
-  background: @headerbar_bg_color;
-}
-
-.floating-revealer menubutton button:hover,
-.floating-btn-box button:hover,
-.floating-revealer windowcontrols image:hover {
-  background: lighter(@headerbar_bg_color);
-}
-
-.floating-btn-box button {
-  border-radius: 0;
-}
-.floating-btn-box button:first-child {
-  padding-left: 4px;
-}
-.floating-btn-box button:last-child {
-  padding-right: 4px;
-}
-
 .shortcut-row {
   padding: 12px;
 }
-
-/* :root {
-  --color-0: rgb(40,40,40);
-  --color-1: rgb(204,36,29);
-  --color-2: rgb(152,151,26);
-  --color-3: rgb(215,153,33);
-  --color-4: rgb(69,133,136);
-  --color-5: rgb(177,98,134);
-  --color-6: rgb(104,157,106);
-  --color-7: rgb(168,153,132);
-  --color-8: rgb(146,131,116);
-  --color-9: rgb(251,73,52);
-  --color-10: rgb(184,187,38);
-  --color-11: rgb(250,189,47);
-  --color-12: rgb(131,165,152);
-  --color-13: rgb(211,134,155);
-  --color-14: rgb(142,192,124);
-  --color-15: rgb(235,219,178);
-} */

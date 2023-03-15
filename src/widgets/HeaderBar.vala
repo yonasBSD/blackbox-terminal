@@ -19,10 +19,8 @@
  */
 
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/header-bar.ui")]
-public class Terminal.HeaderBar : Gtk.Box {
+public class Terminal.HeaderBar : Adw.Bin {
 
-  [GtkChild] private unowned Adw.WindowTitle hb_title_widget;
-  [GtkChild] private unowned Gtk.Box inner_layout_box;
   [GtkChild] public unowned Adw.TabBar tab_bar;
 
   public Window   window        { get; set; }
@@ -37,6 +35,10 @@ public class Terminal.HeaderBar : Gtk.Box {
         settings.fill_tabs
       );
     }
+  }
+
+  static construct {
+    set_css_name ("headerbar");
   }
 
   construct {
@@ -94,10 +96,8 @@ public class Terminal.HeaderBar : Gtk.Box {
   }
 
   [GtkCallback]
-  private Gtk.Widget? get_title_widget (bool is_single_tab_mode) {
-    return is_single_tab_mode
-      ? this.hb_title_widget as Gtk.Widget
-      : this.inner_layout_box as Gtk.Widget;
+  private string get_visible_stack_name (bool is_single_tab_mode) {
+    return is_single_tab_mode ? "single-tab-page" : "multi-tab-page";
   }
 
   private void notify_single_tab_mode () {
