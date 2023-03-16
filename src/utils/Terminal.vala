@@ -20,6 +20,7 @@
 
 namespace Terminal {
   public bool is_flatpak() {
+    // FIXME: cache this, ffs!
     return FileUtils.test("/.flatpak-info", FileTest.EXISTS);
   }
 
@@ -134,11 +135,11 @@ namespace Terminal {
       kf.load_from_file ("/.flatpak-info", KeyFileFlags.NONE);
       string host_root = kf.get_string ("Instance", "app-path");
 
-      string[] argv = {
-        "%s/bin/terminal-toolbox".printf (host_root),
-        "tcgetpgrp",
-        terminal_fd.to_string ()
-      };
+      var argv = new Array<string> ();
+
+      argv.append_val ("%s/bin/terminal-toolbox".printf (host_root));
+      argv.append_val ("tcgetpgrp");
+      argv.append_val (terminal_fd.to_string ());
 
       int[] fds = new int[2];
 
@@ -158,7 +159,7 @@ namespace Terminal {
       };
 
       debug ("Send command");
-      yield send_host_command (null, argv, {}, pass_fds, null);
+      yield send_host_command (null, argv, new Array<string> (), pass_fds, null, null);
 
       string text = read_fs.read_line ();
       int response;
@@ -174,6 +175,8 @@ namespace Terminal {
     return -1;
   }
 
+  public delegate void HostCommandExitedCallback (uint pid, uint status);
+
   /**
    * The following function is derivative work of
    * https://github.com/gnunn1/tilix/blob/ddf5e5c069ab7d40f973cb2554eae5b13b23a87f/source/gx/tilix/terminal/terminal.d#L2967
@@ -183,9 +186,10 @@ namespace Terminal {
    */
   public static async bool send_host_command (
     string? cwd,
-    string[] argv,
-    string[] envv,
+    Array<string> argv,
+    Array<string> envv,
     int[] fds,
+    HostCommandExitedCallback? callback,
     out int pid
   ) throws GLib.Error {
     pid = -1;
@@ -200,12 +204,7 @@ namespace Terminal {
     GLib.UnixFDList in_fd_list = new GLib.UnixFDList ();
 
     foreach (var fd in fds) {
-      try {
-        handles += in_fd_list.append (fd);
-      }
-      catch (GLib.Error e) {
-        warning ("%s", e.message);
-      }
+      handles += in_fd_list.append (fd);
     }
 
     var connection = yield new DBusConnection.for_address (
@@ -216,6 +215,8 @@ namespace Terminal {
       null
     );
 
+    connection.exit_on_close = true;
+
     uint signal_id = 0;
 
     signal_id = connection.signal_subscribe (
@@ -225,25 +226,55 @@ namespace Terminal {
       "/org/freedesktop/Flatpak/Development",
       null,
       DBusSignalFlags.NONE,
+      // This callback is only called if the command is properly spawned. It is
+      // not called if spawning the command fails.
       (_connection, sender_name, object_path, interface_name, signal_name, parameters) => {
-        debug ("%s %s %s %s", signal_name, sender_name, object_path, interface_name);
         connection.signal_unsubscribe (signal_id);
+
+        // I'm not sure which pid this is (it might be from the process that
+        // just exited or from the dbus command call).
+        uint ppid = 0;
+        // This is the return status of the command that just exited. Any
+        // non-zero value means the shell/command exited with an error.
+        uint status = 0;
+
+        parameters.get ("(uu)", &ppid, &status);
+
+        debug ("Command exited %s %s %s %s pid: %u status %u", signal_name, sender_name, object_path, interface_name, ppid, status);
+
+        if (callback != null) {
+          callback (ppid, status);
+        }
       }
     );
 
-    Variant? reply = yield connection.call_with_unix_fd_list (
-      "org.freedesktop.Flatpak",
-      "/org/freedesktop/Flatpak/Development",
-      "org.freedesktop.Flatpak.Development",
-      "HostCommand",
-      build_host_command_variant (cwd, argv, envv, handles),
-      new VariantType ("(u)"),
-      GLib.DBusCallFlags.NONE,
-      -1,
-      in_fd_list,
-      null,
-      out out_fd_list
-    );
+    var parameters = build_host_command_variant (cwd, argv, envv, handles);
+
+    Variant? reply = null;
+
+    try {
+      reply = yield connection.call_with_unix_fd_list (
+        "org.freedesktop.Flatpak",
+        "/org/freedesktop/Flatpak/Development",
+        "org.freedesktop.Flatpak.Development",
+        "HostCommand",
+        parameters,
+        new VariantType ("(u)"),
+        GLib.DBusCallFlags.NONE,
+        -1,
+        in_fd_list,
+        null,
+        out out_fd_list
+      );
+    }
+    catch (GLib.Error e) {
+      // If we reach this catch block the command we tried to spawn very likely
+      // failed. In the context of opening new terminals, this means we failed
+      // to spawn the user's shell or the specific command given to a tab. Most
+      // users would expect to see an error banner/alert at this point.
+      connection.signal_unsubscribe (signal_id);
+      throw e;
+    }
 
     if (reply == null) {
       warning ("No reply from flatpak dbus service");
@@ -265,8 +296,8 @@ namespace Terminal {
   // https://github.com/flatpak/flatpak/blob/01910ad12fd840a8667879f9a479a66e441cccdd/data/org.freedesktop.Flatpak.xml#L110
   public static Variant build_host_command_variant (
     string? cwd,
-    string[] argv,
-    string[] envv,
+    Array<string> argv,
+    Array<string> envv,
     uint[] handles
   ) {
     if (cwd == null) {
@@ -279,19 +310,24 @@ namespace Terminal {
     }
 
     var envv_vb = new VariantBuilder (new VariantType ("a{ss}"));
-    foreach (unowned string env in envv) {
+    foreach (unowned string env in envv.data) {
+      if (env == null) break;
+
       string[] parts = env.split ("=");
       if (parts.length == 2) {
         envv_vb.add_value (new Variant ("{ss}", parts [0], parts [1]));
       }
     }
 
+    var he = handles_vb.end ();
+    var ee = envv_vb.end ();
+
     return new Variant (
       "(^ay^aay@a{uh}@a{ss}u)",
       cwd,
-      argv,
-      handles_vb.end (),
-      envv_vb.end (),
+      argv.data,
+      he,
+      ee,
       2
     );
   }
