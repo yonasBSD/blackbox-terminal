@@ -36,13 +36,25 @@ public class Terminal.SearchToolbar : Gtk.Widget {
     set_layout_manager_type (typeof (Gtk.BinLayout));
   }
 
-  public SearchToolbar (Terminal terminal) {
-    Object (terminal: terminal);
-
+  construct {
     this.search_entry.set_key_capture_widget (this);
 
-    this.bind_data ();
-    this.connect_signals ();
+    if (this.terminal != null) {
+      this.bind_data ();
+      this.connect_signals ();
+    }
+    else {
+      ulong handler;
+
+      handler = this.notify ["terminal"].connect (() => {
+        if (this.terminal == null) return;
+
+        this.disconnect (handler);
+
+        this.bind_data ();
+        this.connect_signals ();
+      });
+    }
   }
 
   public void open () {

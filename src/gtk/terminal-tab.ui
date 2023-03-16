@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.0" />
+  <template class="TerminalTerminalTab" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">0</property>
+
+    <child>
+      <object class="AdwBanner" id="banner">
+        <property name="revealed">false</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkScrolledWindow" id="scrolled">
+        <!-- <property name="child">
+          <lookup name="terminal">TerminalTerminalTab</lookup>
+        </property> -->
+      </object>
+    </child>
+
+    <child>
+      <object class="TerminalSearchToolbar" id="search_toolbar">
+        <!-- <binding name="terminal">
+          <lookup name="terminal">TerminalTerminalTab</lookup>
+        </binding> -->
+
+        <property name="terminal" bind-source="TerminalTerminalTab" bind-property="terminal" bind-flags="sync-create" />
+      </object>
+    </child>
+  </template>
+</interface>
