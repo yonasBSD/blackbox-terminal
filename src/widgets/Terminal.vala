@@ -47,6 +47,8 @@ public class Terminal.Terminal : Vte.Terminal {
    */
   public signal void exit ();
 
+  public signal void spawn_failed (string? error_message);
+
   // Properties
 
   public Scheme scheme  { get; set; }
@@ -344,8 +346,8 @@ public class Terminal.Terminal : Vte.Terminal {
   }
 
   private void spawn (string? command, string? cwd) throws Error {
-    string[] argv;
-    string[] envv;
+    Array<string> argv = new Array<string> ();
+    Array<string> envv = new Array<string> ();
     Vte.PtyFlags flags = Vte.PtyFlags.DEFAULT;
 
     var settings = Settings.get_default ();
@@ -366,98 +368,142 @@ public class Terminal.Terminal : Vte.Terminal {
 
       flags = Vte.PtyFlags.NO_CTTY;
 
-      argv = {
-        "/usr/bin/flatpak-spawn",
-        "--host",
-        "--watch-bus"
-      };
+      var tmp_envv = fp_get_env (null) ?? Environ.get ();
 
-      envv = fp_get_env () ?? Environ.get ();
-
-      foreach (unowned string env in Terminal.blackbox_envv) {
-        argv += @"--env=$(env)";
+      foreach (string env in tmp_envv) {
+        envv.append_val (env);
       }
 
-      foreach (unowned string env in envv) {
-        argv += @"--env=$(env)";
+      foreach (string env in Terminal.blackbox_envv) {
+        envv.append_val (env);
       }
     }
     else {
-      envv = Environ.get ();
+      var tmp_envv = Environ.get ();
 
-      foreach (unowned string env in Terminal.blackbox_envv) {
-        envv += env;
+      foreach (string env in tmp_envv) {
+        envv.append_val (env);
       }
 
-      shell = Environ.get_variable (envv, "SHELL");
+      foreach (unowned string env in Terminal.blackbox_envv) {
+        envv.append_val (env);
+      }
 
-      argv = {};
-
-      flags = Vte.PtyFlags.DEFAULT;
+      shell = Environ.get_variable (envv.data, "SHELL");
     }
 
     if (custom_shell_commandv != null) {
       foreach (unowned string s in custom_shell_commandv) {
-        argv += s;
+        argv.append_val (s);
       }
     }
     else {
-      argv += shell;
+      argv.append_val (shell);
       if (settings.command_as_login_shell && command == null) {
-        argv += "--login";
+        argv.append_val ("--login");
       }
     }
     if (command != null) {
-      argv += "-c";
-      argv += command;
+      argv.append_val ("-c");
+      argv.append_val (command);
     }
 
-    this.spawn_async (
-      flags,
+    if (is_flatpak ()) {
+      this.spawn_on_flatpak.begin (flags, cwd, argv, envv, (o, _) => {
+
+        try {
+          Pid ppid;
+          var res = this.spawn_on_flatpak.end (_, out ppid);
+          this.pid = ppid;
+
+          if (!res) {
+            this.spawn_failed ("An unexpected error occurred while spawning a new terminal.");
+          }
+        }
+        catch (GLib.Error e) {
+          this.pid = -1;
+          this.spawn_failed (e.message);
+        }
+      });
+    }
+    else {
+      this.spawn_async (
+        flags,
+        cwd,
+        argv.data,
+        envv.data,
+        0,
+        null,
+        -1,
+        null,
+        (_, pid, error) => {
+          if (error == null) {
+            this.pid = pid;
+          }
+          else {
+            this.spawn_failed (error.message);
+          }
+        }
+      );
+    }
+  }
+
+  private async bool spawn_on_flatpak (Vte.PtyFlags flags,
+                                       string? cwd,
+                                       Array<string> argv,
+                                       Array<string> envv,
+                                       out Pid p) throws GLib.Error
+  {
+    p = -1;
+    Vte.Pty _ppty;
+
+    try {
+      _ppty = new Vte.Pty.sync (flags, null);
+    }
+    catch (GLib.Error e) {
+      warning ("%s", e.message);
+      return false;
+    }
+
+    int pty_master = _ppty.get_fd ();
+
+    if (Posix.grantpt (pty_master) != 0) {
+      warning ("Failed granting access to slave pseudoterminal device");
+      return false;
+    }
+
+    if (Posix.unlockpt (pty_master) != 0) {
+      warning ("Failed unlocking slave pseudoterminal device");
+      return false;
+    }
+
+    int[] pty_slaves = {};
+
+    pty_slaves += Posix.open (Posix.ptsname (pty_master), Posix.O_RDWR | Posix.O_CLOEXEC);
+
+    if (pty_slaves [0] < 0) {
+      warning ("Failed opening slave pseudoterminal device");
+      return false;
+    }
+
+    pty_slaves += Posix.dup (pty_slaves [0]);
+    pty_slaves += Posix.dup (pty_slaves [0]);
+
+    var res = yield send_host_command (
       cwd,
       argv,
       envv,
-      0,
-      null,
-      -1,
-      null,
-      this.on_spawn_finished
-    );
+      pty_slaves,
+      this.on_host_command_exited,
+      out p);
+
+    this.pty = _ppty;
+
+    return res;
   }
 
-  private void on_spawn_finished (Vte.Terminal t, Pid _pid, GLib.Error? error) {
-    if (error != null) {
-      warning ("%s", error.message);
-    }
-    else {
-      if (is_flatpak ()) {
-        this.try_determining_flatpak_spawned_pid.begin (_pid);
-      }
-      else {
-        this.pid = _pid;
-      }
-    }
-  }
-
-  // For some reason, the first attempt to get the spawned process' pid returns
-  // something different on Flatpak 1 out of 10 times. Perhaps it returns a pid
-  // for bwrap or flatpak-spawn. This function is a dirty hack around that.
-  private async void try_determining_flatpak_spawned_pid (Pid _pid) {
-    for (int attempt = 0; attempt < 3; attempt++) {
-      int real_pid = yield get_foreground_process (this.pty.fd, null);
-      string? cmd = real_pid > -1 ? get_process_cmdline (real_pid) : null;
-
-      if (cmd != null && cmd != "") {
-        this.pid = real_pid;
-        return;
-      }
-    }
-    warning ("Failed to retrieve real pid for spawned process");
-    // Note: this will make it so that closing this tab triggers the "confirm
-    // closing" dialog no matter what. I find it better to have a false positive
-    // and confirm closing a tab that doesn't need confirmation than not
-    // confirming one that does.
-    this.pid = _pid;
+  void on_host_command_exited (uint _pid, uint status) {
+    this.child_exited ((int) status);
   }
 
   // Signal callbacks ==========================================================

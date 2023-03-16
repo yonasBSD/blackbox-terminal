@@ -130,7 +130,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.header_bar = new HeaderBar (this);
 
-
     this.tab_bar = this.header_bar.tab_bar;
     this.tab_bar.view = this.tab_view;
 
