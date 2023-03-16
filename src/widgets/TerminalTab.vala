@@ -16,37 +16,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+[GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/terminal-tab.ui")]
 public class Terminal.TerminalTab : Gtk.Box {
 
   public signal void close_request ();
 
+  [GtkChild] unowned Adw.Banner banner;
+  [GtkChild] unowned Gtk.ScrolledWindow scrolled;
+  [GtkChild] unowned SearchToolbar search_toolbar;
+
   public string             title     { get; protected set; }
   public Terminal           terminal  { get; protected set; }
-  public Gtk.ScrolledWindow scrolled  { get; protected set; }
 
-  private SearchToolbar     search_toolbar;
   public  Window            window;
 
-  public TerminalTab (Window window, string? command, string? cwd) {
+  static construct {
+    typeof (SearchToolbar).class_ref ();
+  }
+
+  public TerminalTab (Window _window, string? command, string? cwd) {
     Object (
       orientation: Gtk.Orientation.VERTICAL,
       spacing: 0
     );
 
-    this.window = window;
-    this.terminal = new Terminal (this.window, command, cwd);
-
-    // Hack to stop vala-language-server from complaining
-    var twig = this.terminal as Gtk.Widget;
-    //  this.set_child(twig);
-    this.scrolled = new Gtk.ScrolledWindow ();
-    this.scrolled.child = twig;
-
-    this.append (this.scrolled);
-    twig.grab_focus ();
-
-    this.search_toolbar = new SearchToolbar (this.terminal);
-    this.append (this.search_toolbar);
+    this.window = _window;
+    this.terminal = new Terminal (_window, command, cwd);
+    this.terminal.grab_focus ();
 
     var click = new Gtk.GestureClick () {
       button = Gdk.BUTTON_SECONDARY,
@@ -70,19 +66,26 @@ public class Terminal.TerminalTab : Gtk.Box {
       this.close_request ();
     });
 
-    settings.notify["show-scrollbars"].connect (() => {
+    this.terminal.spawn_failed.connect ((message) => {
+      this.title = _("Error");
+
+      this.banner.title = message;
+      this.banner.revealed = true;
+    });
+
+    settings.notify ["show-scrollbars"].connect (() => {
       var show_scrollbars = settings.show_scrollbars;
-      var is_scrollbar_being_used = this.scrolled.child == this.terminal;
+      var is_scrollbar_being_used = this.terminal.parent == this.scrolled;
+
+      this.scrolled.visible = show_scrollbars;
 
       if (show_scrollbars && !is_scrollbar_being_used) {
-        this.remove (this.terminal);
+        if (this.terminal.parent != null) this.remove (this.terminal);
         this.scrolled.child = this.terminal;
-        this.append (this.scrolled);
       }
       else if (!show_scrollbars && is_scrollbar_being_used) {
-        this.remove (this.scrolled);
         this.scrolled.child = null;
-        this.append (this.terminal);
+        this.insert_child_after (this.terminal, this.scrolled);
       }
     });
     settings.notify_property ("show-scrollbars");
@@ -123,11 +126,16 @@ public class Terminal.TerminalTab : Gtk.Box {
     bottom_section.append (_("About"), "app.about");
     menu.append_section (null, bottom_section);
 
-    var pop = new Gtk.PopoverMenu.from_model (menu);
+    var pop = new Gtk.PopoverMenu.from_model (menu) {
+      has_arrow = false,
+    };
+
+    double xx ,yy;
+    this.terminal.translate_coordinates (this, 0, 0, out xx, out yy);
 
     Gdk.Rectangle r = {0};
-    r.x = (int) (x + Settings.get_default ().get_padding ().left);
-    r.y = (int) (y + Settings.get_default ().get_padding ().top);
+    r.x = (int) (x + xx);
+    r.y = (int) (y + yy + 12);
 
     pop.closed.connect_after (() => {
       pop.destroy ();
@@ -135,6 +143,7 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     pop.set_parent (this);
     pop.set_pointing_to (r);
+    pop.set_position (Gtk.PositionType.BOTTOM);
     pop.popup ();
   }
 
