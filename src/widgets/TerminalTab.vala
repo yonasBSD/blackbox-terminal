@@ -79,13 +79,25 @@ public class Terminal.TerminalTab : Gtk.Box {
 
       this.scrolled.visible = show_scrollbars;
 
-      if (show_scrollbars && !is_scrollbar_being_used) {
-        if (this.terminal.parent != null) this.remove (this.terminal);
-        this.scrolled.child = this.terminal;
+      if (show_scrollbars != is_scrollbar_being_used) {
+        if (this == this.terminal.parent) {
+          this.remove (this.terminal);
+        }
+        else if (this.scrolled == this.terminal.parent) {
+          this.scrolled.child = null;
+        }
       }
-      else if (!show_scrollbars && is_scrollbar_being_used) {
-        this.scrolled.child = null;
-        this.insert_child_after (this.terminal, this.scrolled);
+
+      if (
+        show_scrollbars != is_scrollbar_being_used ||
+        this.terminal.parent == null
+      ) {
+        if (show_scrollbars) {
+          this.scrolled.child = this.terminal;
+        }
+        else {
+          this.insert_child_after (this.terminal, null);
+        }
       }
     });
     settings.notify_property ("show-scrollbars");
