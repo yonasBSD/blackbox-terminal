@@ -245,6 +245,13 @@ public class Terminal.Terminal : Vte.Terminal {
 
   private void bind_data () {
     this.settings.schema.bind (
+      "theme-bold-is-bright",
+      this,
+      "bold-is-bright",
+      SettingsBindFlags.DEFAULT
+    );
+
+    this.settings.schema.bind (
       "terminal-bell",
       this,
       "audible-bell",

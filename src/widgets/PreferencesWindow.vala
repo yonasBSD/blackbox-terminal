@@ -52,6 +52,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           floating_controls_switch;
   [GtkChild] unowned Gtk.Switch           use_sixel_switch;
   [GtkChild] unowned Gtk.Switch           pretty_switch;
+  [GtkChild] unowned Gtk.Switch           bold_is_bright_switch;
   [GtkChild] unowned Gtk.SpinButton       opacity_spin_button;
   [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
   [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
@@ -188,6 +189,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind(
       "pretty",
       this.pretty_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "theme-bold-is-bright",
+      this.bold_is_bright_switch,
       "active",
       SettingsBindFlags.DEFAULT
     );

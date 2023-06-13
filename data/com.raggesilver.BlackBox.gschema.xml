@@ -97,6 +97,10 @@
       <!-- 0 = Follow system, 1 = Light Style, 2 = Dark Style -->
       <summary>Style preference</summary>
     </key>
+    <key name="theme-bold-is-bright" type="b">
+      <default>false</default>
+      <summary>Show bold text in bright colors</summary>
+    </key>
     <key name="terminal-padding" type="(uuuu)">
       <default>(0,0,0,0)</default>
       <summary>Amount of padding around terminal widgets (top, right, bottom, left)</summary>

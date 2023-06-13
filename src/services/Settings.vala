@@ -39,6 +39,7 @@ public class Terminal.Settings : PQMarble.Settings {
   public bool    show_menu_button                     { get; set; }
   public bool    show_scrollbars                      { get; set; }
   public bool    terminal_bell                        { get; set; }
+  public bool    theme_bold_is_bright                 { get; set; }
   public bool    use_custom_command                   { get; set; }
   public bool    use_overlay_scrolling                { get; set; }
   public bool    use_sixel                            { get; set; }

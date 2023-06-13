@@ -38,6 +38,7 @@ namespace Terminal {
           <li>Closing a tab or a window that still has a running process will now prompt you for confirmation</li>
           <li>Black Box now uses the default Adwaita tab style. As consequence, some header bar options, including "Show Borders" have been removed from the preferences window</li>
           <li>Added the option to disable terminal bell</li>
+          <li>Added option to use bright colors for bold text</li>
         </ul>
         <p>Improvements</p>
         <ul>
