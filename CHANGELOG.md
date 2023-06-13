@@ -28,6 +28,9 @@ Bug fixes:
 - The window title is now centered when there's only one tab - #199
 - Improved keybinding validation, allowing more valid key combinations to be
   used - #245
+- Sixel is now disabled for VTE builds that don't support it. This primarily
+  affects non-Flatpak users, as all Flatpak builds ship VTE with Sixel
+  support - #273
 
 ## 0.13.2 - 2023-01-19
 

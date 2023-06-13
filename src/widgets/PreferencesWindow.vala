@@ -30,6 +30,7 @@ bool light_themes_filter_func (Gtk.FlowBoxChild child) {
 
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
+  [GtkChild] unowned Adw.ActionRow        use_sixel_action_row;
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
   [GtkChild] unowned Adw.ComboRow         cursor_blink_mode_combo_row;
   [GtkChild] unowned Adw.ComboRow         scrollback_mode_combo_row;
@@ -45,6 +46,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.CheckButton      filter_themes_check_button;
   [GtkChild] unowned Gtk.FlowBox          preview_flow_box;
   [GtkChild] unowned Gtk.Label            font_label;
+  [GtkChild] unowned Gtk.Label            no_sixel_support_label;
   [GtkChild] unowned Gtk.SpinButton       custom_scrollback_spin_button;
   [GtkChild] unowned Gtk.SpinButton       padding_spin_button;
   [GtkChild] unowned Gtk.Switch           easy_copy_paste_switch;
@@ -150,6 +152,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   private void bind_data () {
     var settings = Settings.get_default ();
+
+    bool is_sixel_supported =
+      (Vte.get_feature_flags () & Vte.FeatureFlags.FLAG_SIXEL) != 0;
+
+    // Only enable Sixel action row if VTE was built with Sixel support
+    this.use_sixel_action_row.sensitive = is_sixel_supported;
+    this.no_sixel_support_label.visible = !is_sixel_supported;
 
     settings.schema.bind (
       "font",

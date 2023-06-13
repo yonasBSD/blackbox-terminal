@@ -50,6 +50,7 @@ namespace Terminal {
         <ul>
           <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
           <li>The window title is now centered when there's only one tab</li>
+          <li>Sixel is now disabled for VTE builds that don't support it. This primarily affects non-Flatpak users, as all Flatpak builds ship VTE with Sixel support</li>
         </ul>
       """
     };
