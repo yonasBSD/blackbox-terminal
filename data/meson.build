@@ -29,9 +29,11 @@ appstream_file = i18n.merge_file(
 
 appstream_util = find_program('appstream-util', required: false)
 if appstream_util.found()
-  test('Validate appstream file', appstream_util,
-    args: ['validate', appstream_file]
-  )
+  validate_args = ['validate-relax', appstream_file]
+  if not get_option('network_tests')
+    validate_args += '--nonet'
+  endif
+  test('Validate appstream file', appstream_util, args: validate_args)
 endif
 
 install_data('com.raggesilver.BlackBox.gschema.xml',

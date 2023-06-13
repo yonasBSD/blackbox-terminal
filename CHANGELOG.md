@@ -15,6 +15,7 @@ Features:
   bar options, including "Show Borders" have been removed from the preferences
   window - #112, #253
 - Added the option to disable terminal bell - #106
+- Added the option to make bold text bright - #203
 
 Improvements:
 

@@ -1,1 +1,2 @@
 option('devel', type: 'boolean', value: false)
+option('network_tests', type: 'boolean', value: false)
