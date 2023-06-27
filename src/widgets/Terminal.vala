@@ -489,13 +489,28 @@ public class Terminal.Terminal : Vte.Terminal {
     };
 
     this.process.foreground_task_finished.connect ((_process) => {
-      if (!this.has_focus && _process.last_foreground_task_command != null) {
-        var n = new GLib.Notification (_("Command completed"));
+      var desktop_notifications_enabled =
+        Settings.get_default ().notify_process_completion;
 
+      if (
+        desktop_notifications_enabled &&
+        !this.has_focus &&
+        _process.last_foreground_task_command != null
+      ) {
+        var n = new GLib.Notification (_("Command completed"));
         n.set_body (_process.last_foreground_task_command);
+
+        // TODO: improve this notification system so that when a user clicks
+        // the notification, Black Box focuses the right terminal window and
+        // automatically focusses the tab that just completed.
+        //
+        // https://valadoc.org/gio-2.0/GLib.Notification.set_default_action.html
+        // https://valadoc.org/gio-2.0/GLib.Action.parse_detailed_name.html
 
         this.window.application.send_notification (null, n);
 
+        // GNOME seems to be showing the same notification twice. I am sure we
+        // are not calling this twice. This may be an upstream bug.
         GLib.Application.get_default ().send_notification (null, n);
       }
     });

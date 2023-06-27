@@ -65,6 +65,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
   [GtkChild] unowned Gtk.Switch           drag_area_switch;
   [GtkChild] unowned Gtk.Switch           terminal_bell_switch;
+  [GtkChild] unowned Gtk.Switch           notify_process_completion_switch;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
@@ -191,6 +192,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind (
       "use-custom-command",
       this.use_custom_shell_command_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind (
+      "notify-process-completion",
+      this.notify_process_completion_switch,
       "active",
       SettingsBindFlags.DEFAULT
     );
