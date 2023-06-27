@@ -324,7 +324,7 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">About</attribute>
+        <attribute name="label" translatable="yes">About Black Box</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>
