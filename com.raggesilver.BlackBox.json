@@ -1,9 +1,9 @@
 {
   "app-id": "com.raggesilver.BlackBox",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "master",
+  "runtime-version": "44",
   "sdk": "org.gnome.Sdk",
-  "command": "blackbox-link-system-fonts",
+  "command": "blackbox",
   "finish-args": [
     "--filesystem=home:ro",
     "--share=ipc",
@@ -63,7 +63,7 @@
       "name": "blackbox",
       "builddir": true,
       "buildsystem": "meson",
-      "config-opts": ["-Ddevel=true"],
+      "config-opts": ["-Ddevel=true", "-Dblackbox_debug_memory=true"],
       "sources": [
         {
           "type": "git",

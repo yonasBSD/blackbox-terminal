@@ -24,11 +24,16 @@ namespace Terminal {
     return FileUtils.test("/.flatpak-info", FileTest.EXISTS);
   }
 
-  internal string? host_or_flatpak_spawn (string[] argv) throws GLib.Error {
+  public string? host_or_flatpak_spawn (
+    string[] argv,
+    out int status = null
+  ) throws GLib.Error {
     GLib.Subprocess sp;
     GLib.SubprocessLauncher launcher;
     string[] real_argv = {};
     string? buf = null;
+
+    status = -1;
 
     if (is_flatpak ()) {
       real_argv += "flatpak-spawn";
@@ -49,6 +54,9 @@ namespace Terminal {
     if (sp == null) return null;
 
     if (!sp.communicate_utf8 (null, null, out buf, null)) return null;
+
+    int exit_status = sp.get_exit_status ();
+    status = exit_status;
 
     return buf;
   }
@@ -159,7 +167,7 @@ namespace Terminal {
       };
 
       debug ("Send command");
-      yield send_host_command (null, argv, new Array<string> (), pass_fds, null, null);
+      yield send_host_command (null, argv, new Array<string> (), pass_fds, null, null, null);
 
       string text = read_fs.read_line ();
       int response;
@@ -190,6 +198,7 @@ namespace Terminal {
     Array<string> envv,
     int[] fds,
     HostCommandExitedCallback? callback,
+    GLib.Cancellable? cancellable,
     out int pid
   ) throws GLib.Error {
     pid = -1;
@@ -243,7 +252,12 @@ namespace Terminal {
         debug ("Command exited %s %s %s %s pid: %u status %u", signal_name, sender_name, object_path, interface_name, ppid, status);
 
         if (callback != null) {
-          callback (ppid, status);
+          if (cancellable?.is_cancelled ()) {
+            //  callback = null;
+          }
+          else {
+            callback (ppid, status);
+          }
         }
       }
     );

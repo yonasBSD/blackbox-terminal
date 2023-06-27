@@ -1,2 +1,3 @@
 option('devel', type: 'boolean', value: false)
 option('network_tests', type: 'boolean', value: false)
+option('blackbox_debug_memory', type: 'boolean', value: false)
