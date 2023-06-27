@@ -33,7 +33,7 @@ namespace Terminal {
     public string[] get_labels () {
       switch (this) {
         case NO_YES: return { _("No"), _("Yes") };
-        case CANCEL_OK: return { _("Cancel"), _("Ok") };
+        case CANCEL_OK: return { _("Cancel"), _("OK") };
         case KEEP_REPLACE: return { _("Keep"), _("Replace") };
         case CANCEL_CLOSE: return { _("Cancel"), _("Close") };
       }
