@@ -57,6 +57,11 @@ public class Terminal.SearchToolbar : Gtk.Widget {
     }
   }
 
+  public override void dispose () {
+    this.revealer.unparent ();
+    base.dispose ();
+  }
+
   public void open () {
     this.revealer.reveal_child = true;
     this.search_entry.grab_focus ();

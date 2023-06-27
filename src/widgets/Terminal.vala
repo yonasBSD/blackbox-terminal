@@ -51,8 +51,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
   // Properties
 
-  public Scheme scheme  { get; set; }
-  public Pid    pid     { get; protected set; default = -1; }
+  public Scheme   scheme  { get; set; }
+  public Pid      pid     { get; protected set; default = -1; }
+  public Process? process { get; protected set; default = null; }
 
   public uint user_scrollback_lines {
     get {
@@ -70,10 +71,13 @@ public class Terminal.Terminal : Vte.Terminal {
 
   // Fields
 
-  public  Window  window;
-  private uint    original_scrollback_lines;
+  public  Window            window;
+  private uint              original_scrollback_lines;
+  private GLib.Cancellable? fp_spawn_host_command_callback_cancellable = null;
 
-  Settings settings;
+  // FIXME: either get rid of this field, or stop creating a local copy of
+  // settings every time we need to use it
+  private Settings settings;
 
   public Terminal (Window window, string? command = null, string? cwd = null) {
     Object (
@@ -113,6 +117,20 @@ public class Terminal.Terminal : Vte.Terminal {
     catch (Error e) {
       warning ("%s", e.message);
     }
+  }
+
+#if BLACKBOX_DEBUG_MEMORY
+  ~Terminal () {
+    message ("Terminal destroyed");
+  }
+#endif
+
+  public override void dispose() {
+#if BLACKBOX_DEBUG_MEMORY
+    message ("Terminal dispose");
+#endif
+    this.fp_spawn_host_command_callback_cancellable?.cancel ();
+    base.dispose ();
   }
 
   // Methods ===================================================================
@@ -326,7 +344,7 @@ public class Terminal.Terminal : Vte.Terminal {
       button = Gdk.BUTTON_PRIMARY,
     };
     left_click_controller.pressed.connect ((gesture, n_clicked, x, y) => {
-      var event = left_click_controller.get_current_event ();
+      var event = gesture.get_current_event ();
       var pattern = this.check_match_at (x, y, null);
 
       if (
@@ -417,14 +435,17 @@ public class Terminal.Terminal : Vte.Terminal {
 
     if (is_flatpak ()) {
       this.spawn_on_flatpak.begin (flags, cwd, argv, envv, (o, _) => {
-
         try {
           Pid ppid;
           var res = this.spawn_on_flatpak.end (_, out ppid);
           this.pid = ppid;
 
           if (!res) {
+            // FIXME: translate this
             this.spawn_failed ("An unexpected error occurred while spawning a new terminal.");
+          }
+          else {
+            this.on_spawn_finished ();
           }
         }
         catch (GLib.Error e) {
@@ -446,6 +467,7 @@ public class Terminal.Terminal : Vte.Terminal {
         (_, pid, error) => {
           if (error == null) {
             this.pid = pid;
+            this.on_spawn_finished ();
           }
           else {
             this.spawn_failed (error.message);
@@ -453,6 +475,32 @@ public class Terminal.Terminal : Vte.Terminal {
         }
       );
     }
+  }
+
+  private void on_spawn_finished () {
+    if (_pid < 0) {
+      return;
+    }
+
+    this.process = new Process () {
+      terminal_fd = this.pty.get_fd (),
+      pid = this.pid,
+      foreground_pid = -1,
+    };
+
+    this.process.foreground_task_finished.connect ((_process) => {
+      if (!this.has_focus && _process.last_foreground_task_command != null) {
+        var n = new GLib.Notification (_("Command completed"));
+
+        n.set_body (_process.last_foreground_task_command);
+
+        this.window.application.send_notification (null, n);
+
+        GLib.Application.get_default ().send_notification (null, n);
+      }
+    });
+
+    ProcessWatcher.get_instance ().watch (this.process);
   }
 
   private async bool spawn_on_flatpak (Vte.PtyFlags flags,
@@ -496,13 +544,17 @@ public class Terminal.Terminal : Vte.Terminal {
     pty_slaves += Posix.dup (pty_slaves [0]);
     pty_slaves += Posix.dup (pty_slaves [0]);
 
+    this.fp_spawn_host_command_callback_cancellable = new GLib.Cancellable ();
+
     var res = yield send_host_command (
       cwd,
       argv,
       envv,
       pty_slaves,
       this.on_host_command_exited,
-      out p);
+      this.fp_spawn_host_command_callback_cancellable,
+      out p
+    );
 
     this.pty = _ppty;
 
@@ -515,8 +567,13 @@ public class Terminal.Terminal : Vte.Terminal {
 
   // Signal callbacks ==========================================================
 
-  private void on_child_exited () {
+  private void on_child_exited (int status) {
+    debug ("Child exited with code %d", status);
     this.pid = -1;
+    //  This is not a good idea. Another thread might be modifying this field
+    //  as well.
+    //  this.process.ended = true;
+    this.process = null;
     this.exit ();
   }
 

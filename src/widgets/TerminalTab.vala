@@ -19,6 +19,7 @@
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/terminal-tab.ui")]
 public class Terminal.TerminalTab : Gtk.Box {
 
+  // This signal is emitted when the TerminalTab is asking to be closed.
   public signal void close_request ();
 
   [GtkChild] unowned Adw.Banner banner;
@@ -28,20 +29,18 @@ public class Terminal.TerminalTab : Gtk.Box {
   public string             title     { get; protected set; }
   public Terminal           terminal  { get; protected set; }
 
-  public  Window            window;
-
   static construct {
     typeof (SearchToolbar).class_ref ();
   }
 
-  public TerminalTab (Window _window, string? command, string? cwd) {
+  public TerminalTab (Window window, string? command, string? cwd) {
     Object (
       orientation: Gtk.Orientation.VERTICAL,
       spacing: 0
     );
 
-    this.window = _window;
-    this.terminal = new Terminal (_window, command, cwd);
+    this.terminal = new Terminal (window, command, cwd);
+    // TODO: Can't we use a property for this? Has default or something?
     this.terminal.grab_focus ();
 
     var click = new Gtk.GestureClick () {
@@ -55,12 +54,25 @@ public class Terminal.TerminalTab : Gtk.Box {
     this.connect_signals ();
   }
 
+#if BLACKBOX_DEBUG_MEMORY
+  ~TerminalTab () {
+    message ("TerminalTab destroyed");
+  }
+
+  public override void dispose () {
+    message ("TerminalTab dispose");
+    base.dispose ();
+  }
+#endif
+
   private void connect_signals () {
     var settings = Settings.get_default ();
 
-    this.terminal.notify["window-title"].connect (() => {
-      this.title = this.terminal.window_title;
-    });
+    this.terminal.bind_property ("window-title",
+                                 this,
+                                 "title",
+                                 GLib.BindingFlags.DEFAULT,
+                                 null, null);
 
     this.terminal.exit.connect (() => {
       this.close_request ();
@@ -68,38 +80,13 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     this.terminal.spawn_failed.connect ((message) => {
       this.title = _("Error");
-
       this.banner.title = message;
       this.banner.revealed = true;
     });
 
-    settings.notify ["show-scrollbars"].connect (() => {
-      var show_scrollbars = settings.show_scrollbars;
-      var is_scrollbar_being_used = this.terminal.parent == this.scrolled;
+    settings.notify ["show-scrollbars"]
+      .connect (this.on_show_scrollbars_updated);
 
-      this.scrolled.visible = show_scrollbars;
-
-      if (show_scrollbars != is_scrollbar_being_used) {
-        if (this == this.terminal.parent) {
-          this.remove (this.terminal);
-        }
-        else if (this.scrolled == this.terminal.parent) {
-          this.scrolled.child = null;
-        }
-      }
-
-      if (
-        show_scrollbars != is_scrollbar_being_used ||
-        this.terminal.parent == null
-      ) {
-        if (show_scrollbars) {
-          this.scrolled.child = this.terminal;
-        }
-        else {
-          this.insert_child_after (this.terminal, null);
-        }
-      }
-    });
     settings.notify_property ("show-scrollbars");
 
     settings.schema.bind (
@@ -111,10 +98,39 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     settings.bind_property (
       "use-sixel",
-      this.terminal as Object,
+      this.terminal,
       "enable-sixel",
       BindingFlags.SYNC_CREATE
     );
+  }
+
+  private void on_show_scrollbars_updated () {
+    var settings = Settings.get_default ();
+    var show_scrollbars = settings.show_scrollbars;
+    var is_scrollbar_being_used = this.terminal.parent == this.scrolled;
+
+    this.scrolled.visible = show_scrollbars;
+
+    if (show_scrollbars != is_scrollbar_being_used) {
+      if (this == this.terminal.parent) {
+        this.remove (this.terminal);
+      }
+      else if (this.scrolled == this.terminal.parent) {
+        this.scrolled.child = null;
+      }
+    }
+
+    if (
+      show_scrollbars != is_scrollbar_being_used ||
+      this.terminal.parent == null
+    ) {
+      if (show_scrollbars) {
+        this.scrolled.child = this.terminal;
+      }
+      else {
+        this.insert_child_after (this.terminal, null);
+      }
+    }
   }
 
   public void show_menu (int n_pressed, double x, double y) {
@@ -142,7 +158,7 @@ public class Terminal.TerminalTab : Gtk.Box {
       has_arrow = false,
     };
 
-    double xx ,yy;
+    double xx, yy;
     this.terminal.translate_coordinates (this, 0, 0, out xx, out yy);
 
     Gdk.Rectangle r = {0};

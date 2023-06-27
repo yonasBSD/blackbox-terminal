@@ -1,11 +1,11 @@
-include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+include: "https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml"
 
 variables:
   BUNDLE_NAME: "blackbox.flatpak"
 
 flatpak:
   extends: .flatpak
-  image: 'quay.io/gnome_infrastructure/gnome-runtime-images:gnome-master'
+  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44"
   timeout: 90m
   variables:
     GIT_SUBMODULE_STRATEGY: normal
@@ -48,13 +48,13 @@ release:
     - job: persist_artifacts
       artifacts: true
   release:
-    name: 'Release $CI_COMMIT_TAG'
-    description: 'Created using the release-cli'
-    tag_name: '$CI_COMMIT_TAG'
+    name: "Release $CI_COMMIT_TAG"
+    description: "Created using the release-cli"
+    tag_name: "$CI_COMMIT_TAG"
     assets:
       links:
-        - name: 'Flatpak bundle'
-          url: 'https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/${PA_JOB_ID}/artifacts/file/${BUNDLE_NAME}'
+        - name: "Flatpak bundle"
+          url: "https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/${PA_JOB_ID}/artifacts/file/${BUNDLE_NAME}"
   # Only run this for tag pipelines (releases)
   rules:
     - if: $CI_COMMIT_TAG

@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// FIXME: move this somewhere else
 public struct Terminal.Padding {
   uint top;
   uint right;
@@ -90,7 +91,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public ThemeProvider  theme_provider        { get; private set; }
   public Adw.TabView    tab_view              { get; private set; }
   public Adw.TabBar     tab_bar               { get; private set; }
-  public Terminal       active_terminal       { get; private set; }
+  public Terminal?      active_terminal       { get; private set; default = null; }
   public string         active_terminal_title { get; private set; default = ""; }
 
   // Fields
@@ -404,7 +405,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private async void try_closing_tab (Adw.TabPage page) {
-    var terminal = (page.get_child () as TerminalTab)?.terminal;
+    var terminal = (page.child as TerminalTab)?.terminal;
     bool can_close = true;
     string? command = null;
 
@@ -415,6 +416,9 @@ public class Terminal.Window : Adw.ApplicationWindow {
     }
 
     this.tab_view.close_page_finish (page, can_close);
+    if (can_close && terminal == this.active_terminal) {
+      this.active_terminal = null;
+    }
   }
 
   private async void try_closing_window () {
@@ -525,22 +529,19 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   public void zoom_in () {
-    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
-      .zoom_in ();
+    this.active_terminal?.zoom_in ();
   }
 
   public void zoom_out () {
-    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
-      .zoom_out ();
+    this.active_terminal?.zoom_out ();
   }
 
   public void zoom_default () {
-    (this.tab_view.selected_page?.child as TerminalTab)?.terminal
-      .zoom_default ();
+    this.active_terminal?.zoom_default ();
   }
 
   public void close_active_tab () {
-    (this.tab_view.selected_page?.child as TerminalTab)?.close_request ();
+    this.tab_view.close_page (this.tab_view.selected_page);
   }
 
   public void on_new_tab () {
@@ -554,13 +555,23 @@ public class Terminal.Window : Adw.ApplicationWindow {
     var tab = new TerminalTab (this, command, cwd);
     var page = this.tab_view.add_page (tab, null);
 
+    // FIXME: translate the fallback text
     page.title = command ?? @"tab $(this.tab_view.n_pages)";
-    tab.notify["title"].connect (() => {
-      page.title = tab.title;
+
+    tab.bind_property ("title",
+                       page,
+                       "title",
+                       GLib.BindingFlags.DEFAULT,
+                       null,
+                       null);
+
+    tab.close_request.connect ((_tab) => {
+      var _page = this.tab_view.get_page (_tab);
+      if (_page != null) {
+        this.tab_view.close_page (_page);
+      }
     });
-    tab.close_request.connect (() => {
-      this.tab_view.close_page (page);
-    });
+
     this.tab_view.set_selected_page (page);
   }
 
@@ -612,7 +623,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void on_active_terminal_title_changed () {
-    this.active_terminal_title = this.active_terminal.window_title;
+    this.active_terminal_title = this.active_terminal?.window_title;
   }
 
   private void on_active_terminal_selection_changed () {
