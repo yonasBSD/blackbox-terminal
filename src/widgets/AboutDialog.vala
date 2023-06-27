@@ -39,6 +39,7 @@ namespace Terminal {
           <li>Black Box now uses the default Adwaita tab style. As consequence, some header bar options, including "Show Borders" have been removed from the preferences window</li>
           <li>Added the option to disable terminal bell</li>
           <li>Added option to use bright colors for bold text</li>
+          <li>You can now get a desktop notification when a process completes on an unfocussed tab</li>
         </ul>
         <p>Improvements</p>
         <ul>

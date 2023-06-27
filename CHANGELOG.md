@@ -16,6 +16,8 @@ Features:
   window - #112, #253
 - Added the option to disable terminal bell - #106
 - Added the option to make bold text bright - #203
+- You can now get a desktop notification when a process completes on an
+  unfocussed tab - #146
 
 Improvements:
 

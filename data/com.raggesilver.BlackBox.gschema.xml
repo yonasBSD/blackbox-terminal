@@ -141,6 +141,10 @@
       <default>''</default>
       <summary>Custom command to use instead of the user's shell</summary>
     </key>
+    <key name="notify-process-completion" type="b">
+      <default>true</default>
+      <summary>Send a desktop notification when a process is completed on an unfocussed tab</summary>
+    </key>
     <key name="working-directory-mode" type="u">
       <default>0</default>
       <!-- 0 = Previous terminal CWD, 1 = Home Directory, 2 = Custom -->

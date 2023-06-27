@@ -45,6 +45,16 @@ public class Terminal.Application : Adw.Application {
   }
 
   public override void activate () {
+    // Avoid opening a new window if one is already open
+    foreach (var window in this.get_windows ()) {
+      if (window is Window) {
+        // This seems the right way to go about "reclaiming" focus for a window.
+        // However, it doesn't work on Xorg nor on Wayland - it does nothing.
+        window.present ();
+        return;
+      }
+    }
+
     new Window (this).show ();
   }
 

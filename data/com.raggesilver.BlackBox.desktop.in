@@ -7,3 +7,4 @@ Categories=GNOME;GTK;System;TerminalEmulator;
 StartupNotify=false
 Keywords=Terminal;terminal;shell;prompt;command;commandline;cmd;box;
 Icon=com.raggesilver.BlackBox
+X-GNOME-UsesNotifications=true

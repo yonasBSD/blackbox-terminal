@@ -419,6 +419,7 @@
 
           </object>
         </child>
+
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Command</property>
@@ -451,6 +452,27 @@
             </child>
           </object>
         </child>
+
+        <child>
+          <object class="AdwPreferencesGroup">
+            <!-- This is too repetitive. Keep commented for now. -->
+            <!-- <property name="title" translatable="yes">Desktop Integration</property> -->
+            <!-- <property name="description" translatable="yes">Integrate Black Box with your desktop environment.</property> -->
+            <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">notify_process_completion_switch</property>
+                <property name="title" translatable="yes">Notification on Completed Task</property>
+                <property name="subtitle" translatable="yes">Send a desktop notification when a command is completed on an unfocussed tab.</property>
+                <child>
+                  <object class="GtkSwitch" id="notify_process_completion_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Appearance</property>
