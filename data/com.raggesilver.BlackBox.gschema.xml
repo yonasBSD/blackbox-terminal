@@ -39,6 +39,10 @@
       <default>true</default>
       <summary>Whether the headerbar should be shown or not</summary>
     </key>
+    <key name="context-aware-header-bar" type="b">
+      <default>true</default>
+      <summary>If enabled, the header bar will be colored differently for root and ssh contexts</summary>
+    </key>
     <key name="show-menu-button" type="b">
       <default>true</default>
       <summary>Whether or not to display a menu button in the headerbar</summary>

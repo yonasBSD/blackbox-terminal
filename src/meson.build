@@ -71,6 +71,10 @@ if get_option('blackbox_debug_memory')
   add_project_arguments('-D', 'BLACKBOX_DEBUG_MEMORY', language: 'vala')
 endif
 
+if get_option('blackbox_is_flatpak')
+  add_project_arguments('-D', 'BLACKBOX_IS_FLATPAK', language: 'vala')
+endif
+
 executable('blackbox', blackbox_sources, config_header,
   vala_args: '--target-glib=2.50',  dependencies: blackbox_deps,
   install: true,
