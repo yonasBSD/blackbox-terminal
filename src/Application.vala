@@ -75,7 +75,11 @@ public class Terminal.Application : Adw.Application {
         "%s version %s%s\n",
         APP_NAME,
         VERSION,
-        is_flatpak () ? " (flatpak)" : ""
+#if BLACKBOX_IS_FLATPAK
+        " (flatpak)"
+#else
+        ""
+#endif
       );
     }
     else {
