@@ -1,0 +1,2 @@
+@define-color root_context_color  shade(@red_5, 0.7);
+@define-color ssh_context_color   shade(@purple_5, 0.7);

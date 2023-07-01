@@ -30,6 +30,7 @@ public enum Terminal.WorkingDirectoryMode {
 
 public class Terminal.Settings : PQMarble.Settings {
   public bool    command_as_login_shell               { get; set; }
+  public bool    context_aware_header_bar             { get; set; }
   public bool    easy_copy_paste                      { get; set; }
   public bool    fill_tabs                            { get; set; }
   public bool    headerbar_drag_area                  { get; set; }

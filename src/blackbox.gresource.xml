@@ -9,7 +9,8 @@
     <file>gtk/shortcut-row.ui</file>
     <file>gtk/header-bar.ui</file>
     <file>gtk/terminal-tab.ui</file>
-    <file>resources/style.css</file>
+    <file>style.css</file>
+    <file>style-dark.css</file>
     <file>resources/svg/color-scheme-thumbnail.svg</file>
   </gresource>
 </gresources>

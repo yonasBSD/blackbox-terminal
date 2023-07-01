@@ -288,6 +288,9 @@ public class Terminal.ThemeProvider : Object {
         @define-color destructive_color       %1$s;
         @define-color success_color           %2$s;
         @define-color warning_color           %4$s;
+
+        @define-color root_context_color    mix(@window_bg_color, %1$s, 0.4);
+        @define-color ssh_context_color     mix(@window_bg_color, %5$s, 0.6);
       """.printf(
         /** 1 */
         scheme.palette.index (SchemePaletteColorIndex.LIGHT_RED).to_string (),
@@ -296,7 +299,9 @@ public class Terminal.ThemeProvider : Object {
         /** 3 */
         scheme.palette.index (SchemePaletteColorIndex.LIGHT_BLUE).to_string (),
         /** 4 */
-        scheme.palette.index (SchemePaletteColorIndex.LIGHT_YELLOW).to_string ()
+        scheme.palette.index (SchemePaletteColorIndex.LIGHT_YELLOW).to_string (),
+        /** 5 */
+        scheme.palette.index (SchemePaletteColorIndex.LIGHT_PURPLE).to_string ()
       );
     }
     else {
@@ -312,6 +317,9 @@ public class Terminal.ThemeProvider : Object {
         @define-color destructive_color       %1$s;
         @define-color success_color           %2$s;
         @define-color warning_color           %4$s;
+
+        @define-color root_context_color    mix(@window_bg_color, %1$s, 0.4);
+        @define-color ssh_context_color     mix(@window_bg_color, %5$s, 0.6);
       """.printf(
         /** 1 */
         scheme.palette.index (SchemePaletteColorIndex.RED).to_string (),
@@ -320,7 +328,9 @@ public class Terminal.ThemeProvider : Object {
         /** 3 */
         scheme.palette.index (SchemePaletteColorIndex.BLUE).to_string (),
         /** 4 */
-        scheme.palette.index (SchemePaletteColorIndex.YELLOW).to_string ()
+        scheme.palette.index (SchemePaletteColorIndex.YELLOW).to_string (),
+        /** 5 */
+        scheme.palette.index (SchemePaletteColorIndex.PURPLE).to_string ()
       );
     }
 

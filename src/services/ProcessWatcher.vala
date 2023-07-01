@@ -18,6 +18,12 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+public enum Terminal.ProcessContext {
+  DEFAULT,
+  ROOT,
+  SSH
+}
+
 public class Terminal.Process : Object {
   /**
    * This signal is emitted when the foreground task of a shell finishes.
@@ -50,10 +56,12 @@ public class Terminal.Process : Object {
 
   // TODO: we might want to keep track of background PIDs as well (if that's
   // even possible). That will allow us to alert the user of potential
-  // background tasks thatProcessWatcher would be lost upon closing the tab.
+  // background tasks that would be lost upon closing the tab.
 
   /***/
   public bool ended { get; set; default = false; }
+
+  public ProcessContext context { get; set; default = ProcessContext.DEFAULT; }
 }
 
 namespace Terminal {
@@ -186,8 +194,6 @@ public class Terminal.ProcessWatcher : Object {
         }
       }
 
-      // TODO: check if there is a current running foreground process.
-
       {
         get_foreground_process.begin (process.terminal_fd, null, (_, res) => {
           int foreground_pid = get_foreground_process.end (res);
@@ -221,6 +227,34 @@ public class Terminal.ProcessWatcher : Object {
         process.ended = status != 0;
 
         // Should we emit an event for process finished?
+      }
+      {
+        if (!process.ended) {
+          try {
+            var source_pid = process.foreground_pid > -1
+              ? process.foreground_pid
+              : process.pid;
+
+            var euid = get_euid_from_pid (source_pid, null);
+
+            if (euid == 0) {
+              process.context = ProcessContext.ROOT;
+            }
+            else {
+              var command = get_process_cmdline (source_pid);
+
+              if (command != "" && command.has_prefix ("ssh")) {
+                process.context = ProcessContext.SSH;
+              }
+              else {
+                process.context = ProcessContext.DEFAULT;
+              }
+            }
+          }
+          catch (GLib.Error e) {
+            warning (e.message);
+          }
+        }
       }
     }
     catch (GLib.Error e) {

@@ -171,10 +171,6 @@ public class Terminal.Window : Adw.ApplicationWindow {
       maximized: sett.remember_window_size && sett.was_maximized
     );
 
-    PQMarble.add_css_provider_from_resource (
-      "/com/raggesilver/BlackBox/resources/style.css"
-    );
-
     this.theme_provider = ThemeProvider.get_default ();
 
     this.add_actions ();
@@ -199,6 +195,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       "reveal-child",
       SettingsBindFlags.GET
     );
+
+    this.settings.notify ["context-aware-header-bar"].connect (() => {
+      this.on_active_terminal_context_changed ();
+    });
 
     this.header_bar_revealer.notify ["reveal-child"]
       .connect (this.on_reveal_header_bar_changed);
@@ -620,6 +620,29 @@ public class Terminal.Window : Adw.ApplicationWindow {
       .connect (this.on_active_terminal_title_changed);
 
     this.active_terminal_signal_handlers.append_val (handler);
+
+    this.on_active_terminal_context_changed ();
+    handler = this.active_terminal
+      .context_changed
+      .connect (this.on_active_terminal_changed);
+  }
+
+  private void on_active_terminal_context_changed () {
+    var context = this.active_terminal?.process?.context;
+    var is_context_aware_enabled =
+      Settings.get_default ().context_aware_header_bar;
+
+    widget_set_css_class (
+      this,
+      "context-root",
+      context == ProcessContext.ROOT && is_context_aware_enabled
+    );
+
+    widget_set_css_class (
+      this,
+      "context-ssh",
+      context == ProcessContext.SSH && is_context_aware_enabled
+    );
   }
 
   private void on_active_terminal_title_changed () {

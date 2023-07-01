@@ -22,7 +22,7 @@ namespace Terminal {
   public Adw.AboutWindow create_about_dialog () {
     var window = new Adw.AboutWindow () {
       developer_name = "Paulo Queiroz",
-      copyright = "© 2022 Paulo Queiroz",
+      copyright = "© 2022-2023 Paulo Queiroz",
       license_type = Gtk.License.GPL_3_0,
       application_icon = APP_ID,
       application_name = APP_NAME,
@@ -40,6 +40,7 @@ namespace Terminal {
           <li>Added the option to disable terminal bell</li>
           <li>Added option to use bright colors for bold text</li>
           <li>You can now get a desktop notification when a process completes on an unfocussed tab</li>
+          <li>Context-aware header bar: the header bar can now have special colors when the active tab is running sudo or ssh</li>
         </ul>
         <p>Improvements</p>
         <ul>

@@ -1,6 +1,9 @@
 /* libadwaita does 0.85, but 0.8 looks better */
 @define-color fixed-borders mix(@window_fg_color, @window_bg_color, 0.8);
 
+@define-color root_context_color  shade(@red_1, 1.38);
+@define-color ssh_context_color   shade(@purple_1, 1.28);
+
 /* #blackbox-main-window.with-borders:not(.fullscreen):backdrop {
   border-color: alpha(@borders, 0.5);
 } */
@@ -11,8 +14,15 @@
 
 window:not(.about) headerbar,
 .custom-headerbar {
-  transition: background-color 0.5s;
   background-color: @window_bg_color;
+}
+
+#blackbox-main-window.context-root .custom-headerbar {
+  background-color: @root_context_color;
+}
+
+#blackbox-main-window.context-ssh .custom-headerbar {
+  background-color: @ssh_context_color;
 }
 
 .custom-headerbar windowhandle > box {
@@ -35,7 +45,9 @@ window:not(.about) headerbar,
 /**
  * Add space on the left when "Drag Area" is enabled.
  */
-.custom-headerbar.with-dragarea:not(.single-tab-mode) windowcontrols.start.empty ~ tabbar {
+.custom-headerbar.with-dragarea:not(.single-tab-mode)
+  windowcontrols.start.empty
+  ~ tabbar {
   margin-left: 34px;
 }
 

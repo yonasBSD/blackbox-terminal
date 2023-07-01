@@ -69,6 +69,18 @@
               </object>
             </child>
             <child>
+              <object class="AdwActionRow">
+                <property name="activatable-widget">context_aware_header_bar_switch</property>
+                <property name="title" translatable="yes">Context Aware</property>
+                <property name="subtitle" translatable="yes">If enabled, the header bar will be colored differently when the active tab is running ssh or sudo.</property>
+                <child>
+                  <object class="GtkSwitch" id="context_aware_header_bar_switch">
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="AdwActionRow" id="show_menu_button_action_row">
                 <property name="activatable-widget">show_menu_button_switch</property>
                 <property name="title" translatable="yes">Show Menu Button</property>

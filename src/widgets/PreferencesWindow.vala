@@ -59,6 +59,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
   [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
   [GtkChild] unowned Gtk.Switch           show_headerbar_switch;
+  [GtkChild] unowned Gtk.Switch           context_aware_header_bar_switch;
   [GtkChild] unowned Gtk.Switch           show_menu_button_switch;
   [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
   [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
@@ -259,6 +260,13 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
     settings.schema.bind(
       "show-headerbar",
       this.show_headerbar_switch,
+      "active",
+      SettingsBindFlags.DEFAULT
+    );
+
+    settings.schema.bind(
+      "context-aware-header-bar",
+      this.context_aware_header_bar_switch,
       "active",
       SettingsBindFlags.DEFAULT
     );

@@ -19,10 +19,28 @@
  */
 
 namespace Terminal {
+  // FIXME: replace calls for this funcion with preprocessor checks
   public bool is_flatpak() {
-    // FIXME: cache this, ffs!
-    return FileUtils.test("/.flatpak-info", FileTest.EXISTS);
+#if BLACKBOX_IS_FLATPAK
+    return true;
+#else
+    return false;
+#endif
   }
+
+#if BLACKBOX_IS_FLATPAK
+  internal string? flatpak_root = null;
+
+  public string get_flatpak_root () throws GLib.Error {
+    if (flatpak_root == null) {
+      KeyFile kf = new KeyFile ();
+
+      kf.load_from_file ("/.flatpak-info", KeyFileFlags.NONE);
+      flatpak_root = kf.get_string ("Instance", "app-path");
+    }
+    return flatpak_root;
+  }
+#endif
 
   public string? host_or_flatpak_spawn (
     string[] argv,
@@ -364,5 +382,34 @@ namespace Terminal {
       warning ("%s", e.message);
     }
     return null;
+  }
+
+  public int get_euid_from_pid (int pid,
+                                GLib.Cancellable? cancellable) throws GLib.Error
+  {
+    string proc_file = @"/proc/$pid";
+#if BLACKBOX_IS_FLATPAK
+    string[] argv = {
+      "%s/bin/terminal-toolbox".printf (get_flatpak_root ()),
+      "stat",
+      proc_file
+    };
+
+    int status;
+    var response = host_or_flatpak_spawn (argv, out status);
+    int euid = -1;
+
+    if (status == 0 && int.try_parse (response.strip (), out euid, null, 10)) {
+      return euid;
+    }
+    else {
+      return -1;
+    }
+#else
+    Posix.Stat? buf = null;
+    Posix.stat (proc_file, out buf);
+
+    return (int) buf.st_uid;
+#endif
   }
 }

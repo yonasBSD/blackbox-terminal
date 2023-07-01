@@ -18,6 +18,8 @@ Features:
 - Added the option to make bold text bright - #203
 - You can now get a desktop notification when a process completes on an
   unfocussed tab - #146
+- Context-aware header bar: the header bar can now have special colors when the
+  active tab is running sudo or ssh - #239 - co-authored by @foxedb
 
 Improvements:
 

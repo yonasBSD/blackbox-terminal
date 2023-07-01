@@ -49,11 +49,13 @@ public class Terminal.Terminal : Vte.Terminal {
 
   public signal void spawn_failed (string? error_message);
 
+  public signal void context_changed (ProcessContext context);
+
   // Properties
 
-  public Scheme   scheme  { get; set; }
-  public Pid      pid     { get; protected set; default = -1; }
-  public Process? process { get; protected set; default = null; }
+  public Scheme           scheme  { get; set; }
+  public Pid              pid     { get; protected set; default = -1; }
+  public Process?         process { get; protected set; default = null; }
 
   public uint user_scrollback_lines {
     get {
@@ -515,7 +517,22 @@ public class Terminal.Terminal : Vte.Terminal {
       }
     });
 
+    this.process.notify ["context"].connect ((__process, spec) => {
+      var context = (_process as Process)?.context ?? ProcessContext.DEFAULT;
+
+      this.context_changed.emit (context);
+      //  string context_str =
+      //    context == ProcessContext.SSH
+      //      ? "ssh"
+      //      : context == ProcessContext.ROOT
+      //        ? "root"
+      //        : "default";
+      //  message ("New context for process: %s", context_str);
+    });
+
     ProcessWatcher.get_instance ().watch (this.process);
+
+    this.context_changed.emit (this.process.context);
   }
 
   private async bool spawn_on_flatpak (Vte.PtyFlags flags,

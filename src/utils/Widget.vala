@@ -25,4 +25,18 @@ namespace Terminal {
     widget.set_margin_start (margin);
     widget.set_margin_end (margin);
   }
+
+  public void widget_set_css_class (Gtk.Widget widget,
+                                    string classname,
+                                    bool enabled)
+  {
+    var has_class = widget.has_css_class (classname);
+
+    if (has_class && !enabled) {
+      widget.remove_css_class (classname);
+    }
+    else if (!has_class && enabled) {
+      widget.add_css_class (classname);
+    }
+  }
 }
