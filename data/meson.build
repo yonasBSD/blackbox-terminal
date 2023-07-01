@@ -20,11 +20,11 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.raggesilver.BlackBox.appdata.xml.in',
-  output: 'com.raggesilver.BlackBox.appdata.xml',
+  input: 'com.raggesilver.BlackBox.metainfo.xml.in',
+  output: 'com.raggesilver.BlackBox.metainfo.xml',
   po_dir: '../po',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'appdata')
+  install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
 appstream_util = find_program('appstream-util', required: false)
