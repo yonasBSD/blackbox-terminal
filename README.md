@@ -1,39 +1,43 @@
 <div align="center">
   <h1><img src="./data/icons/hicolor/scalable/apps/com.raggesilver.BlackBox.svg" height="64"/>Black Box</h1>
-  <h4>A beautiful GTK 4 terminal.</h4>
+  <h4>An elegant and customizable terminal for GNOME</h4>
   <p>
     <a href="#features">Features</a> •
     <a href="#install">Install</a> •
-    <a href="./CHANGELOG.md">Changelog</a> •
+    <a href="#gallery">Gallery</a> •
+    <a href="./CHANGELOG.md">Changelog</a>
+    <br/>
+    <a href="https://gitlab.gnome.org/raggesilver/blackbox/-/wikis/home">Wiki</a> •
     <a href="./COPYING">License</a> •
     <a href="./CONTRIBUTING.md">Contributing</a>
+  </p>
+  <p>
   </p>
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/bBk8jKc.png" alt="Preview"/><br/>
+  <img src="https://i.imgur.com/38c2eX4.png" alt="Preview"/><br/>
   <small><i>
-    Black Box 0.12.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
+    Black Box 0.14.0 (theme <a href="https://github.com/storm119/Tilix-Themes/blob/master/Themes/japanesque.json" target="_blank">"Japanesque"</a>, fetch <a href="https://github.com/Rosettea/bunnyfetch">bunnyfetch</a>)
   </i></small>
   <br/><br/>
 </div>
 
-I created this project so that I could use a decent-looking terminal app on
-Linux. There are more featureful alternatives out there.
-
 ## Features
 
-- Theming ([Tilix](https://github.com/gnunn1/tilix) compatible color scheme support)
-- App theming based on terminal color scheme
-- Transparent background
-- Custom fonts and cell spacing
+- Color schemes - ([Tilix](https://github.com/gnunn1/tilix) compatible color scheme support)
+- Theming - your color scheme can be used to style the whole app
+- Background transparency
+- Custom fonts, padding, and cell spacing
 - Tabs
-- Toggleable header bar
-- Click to open links
-- Files drag-n-drop support
+- Support for drag and dropping files
 - Sixel (experimental)
+- Customizable keybindings
+- Toggle-able header bar
+- Search your backlog with text or regex
+- Context aware header bar - the header bar changes colors when running commands with sudo and in ssh sessions
+- Desktop notifications - get notified when a command is finished in the background
 - Customizable UI
-- Customizable shortcuts
 
 ## Install
 
@@ -45,12 +49,12 @@ Linux. There are more featureful alternatives out there.
 flatpak install flathub com.raggesilver.BlackBox
 ```
 
-**Download**
+**Flatpak Nightly**
+
+You can also download the most recent build. Note that these are _unstable_ and completely unavailable if the latest pipeline failed.
 
 - [Flatpak](https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/artifacts/main/raw/blackbox.flatpak?job=flatpak)
 - [Zip](https://gitlab.gnome.org/raggesilver/blackbox/-/jobs/artifacts/main/download?job=flatpak)
-
-*Note: these two links will not work if the latest pipeline failed/was skipped/is still running*
 
 **Looking for an older release?**
 
@@ -64,7 +68,9 @@ To build and run Black Box, use GNOME Builder or VS Code along with [Vala](https
 
 If you want to build Black Box manually, look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
 
-## Some other screenshots
+## Gallery
+
+> Some of these screenshot are from older versions of Black Box.
 
 <div align="center">
   <img src="https://i.imgur.com/O7Nblz8.png" alt="Black Box with 'Show Header bar' off"/><br/>
