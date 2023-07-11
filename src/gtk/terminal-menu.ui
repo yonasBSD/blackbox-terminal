@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="terminal-menu">
+    <!-- <section>
+      <attribute name="display-hint">horizontal-buttons</attribute>
+      <item>
+        <attribute name="verb-icon" type="s">'edit-copy-symbolic'</attribute>
+        <attribute name="label" translatable="yes">Copy</attribute>
+        <attribute name="action">win.copy</attribute>
+      </item>
+      <item>
+        <attribute name="verb-icon" type="s">'edit-paste-symbolic'</attribute>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
+      </item>
+    </section> -->
+
+    <section id="link-section">
+      <item>
+        <attribute name="label" translatable="yes">Open Link</attribute>
+        <attribute name="action">win.open-link</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+    </section>
+
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New Tab</attribute>
+        <attribute name="action">win.new_tab</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+
+    <!-- <section>
+      <attribute name="display-hint">inline-buttons</attribute>
+      <attribute name="label" translatable="yes">Zoom</attribute>
+      <item>
+        <attribute name="custom">zoom-out</attribute>
+      </item>
+      <item>
+        <attribute name="verb-icon" type="s">'zoom-original-symbolic'</attribute>
+        <attribute name="label" translatable="yes">Reset Zoom</attribute>
+        <attribute name="action">win.zoom-default</attribute>
+      </item>
+      <item>
+        <attribute name="custom">zoom-in</attribute>
+      </item>
+    </section> -->
+
+    <section id="copy-section">
+      <item>
+        <attribute name="label" translatable="yes">Copy</attribute>
+        <attribute name="action">win.copy</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Copy Link</attribute>
+        <attribute name="action">win.copy-link</attribute>
+        <attribute name="hidden-when">action-disabled</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Paste</attribute>
+        <attribute name="action">win.paste</attribute>
+      </item>
+    </section>
+
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">win.edit_preferences</attribute>
+      </item>
+    </section>
+
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">About Black Box</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+
+  <object class="GtkPopoverMenu" id="popover">
+    <property name="menu-model">terminal-menu</property>
+    <!-- <child type="zoom-out">
+      <object class="GtkButton">
+        <property name="icon-name">zoom-out-symbolic</property>
+        <property name="action-name">win.zoom-out</property>
+        <property name="tooltip-text" translatable="yes">Zoom out</property>
+        <style>
+          <class name="flat" />
+        </style>
+      </object>
+    </child>
+    <child type="zoom-in">
+      <object class="GtkButton">
+        <property name="icon-name">zoom-in-symbolic</property>
+        <property name="action-name">win.zoom-in</property>
+        <property name="tooltip-text" translatable="yes">Zoom in</property>
+        <style>
+          <class name="flat" />
+        </style>
+      </object>
+    </child> -->
+  </object>
+</interface>

@@ -20,6 +20,7 @@ Features:
   unfocussed tab - #146
 - Context-aware header bar: the header bar can now have special colors when the
   active tab is running sudo or ssh - #239 - co-authored by @foxedb
+- Added open and copy link options to the right-click menu - #141
 
 Improvements:
 

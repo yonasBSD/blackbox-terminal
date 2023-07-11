@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/com/raggesilver/BlackBox">
+    <file>gtk/header-bar.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>gtk/preferences-window.ui</file>
     <file>gtk/search-toolbar.ui</file>
     <file>gtk/shortcut-dialog.ui</file>
     <file>gtk/shortcut-editor.ui</file>
     <file>gtk/shortcut-row.ui</file>
-    <file>gtk/header-bar.ui</file>
+    <file>gtk/terminal-menu.ui</file>
     <file>gtk/terminal-tab.ui</file>
     <file>style.css</file>
     <file>style-dark.css</file>
