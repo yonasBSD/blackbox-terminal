@@ -94,6 +94,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Terminal?      active_terminal       { get; private set; default = null; }
   public string         active_terminal_title { get; private set; default = ""; }
 
+  // Terminal tabs set this to any link clicked by the user. The value is then
+  // consumed by the open-link and copy-link actions.
+  public string? link  { get; set; default = null; }
+
   // Fields
 
   Array<ulong>  active_terminal_signal_handlers = new Array<ulong> ();
@@ -103,6 +107,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   HeaderBar     header_bar;
   Settings      settings = Settings.get_default ();
   SimpleAction  copy_action;
+  SimpleAction  copy_link_action;
+  SimpleAction  open_link_action;
   uint          header_bar_waiting_floating_animation = 0;
   uint          header_bar_waiting_floating_delay = 0;
   Gtk.Box       layout_box;
@@ -257,6 +263,14 @@ public class Terminal.Window : Adw.ApplicationWindow {
     (this as Gtk.Widget)?.add_controller (motion_controller);
 
     this.close_request.connect (this.on_close_request);
+
+    this.notify ["link"].connect (() => {
+      var enabled = this.link != null;
+
+      message ("Setting link actions to %s", enabled.to_string ());
+      this.copy_link_action.set_enabled (this.link != null);
+      this.open_link_action.set_enabled (this.link != null);
+    });
   }
 
   private void on_mouse_motion (
@@ -522,6 +536,17 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.focus_nth_tab (-1);
     });
     this.add_action (sa);
+
+    this.copy_link_action = new SimpleAction ("copy-link", null);
+    this.copy_link_action.activate.connect (this.on_copy_link);
+    this.copy_link_action.set_enabled (false);
+
+    this.open_link_action = new SimpleAction ("open-link", null);
+    this.open_link_action.activate.connect (this.on_open_link);
+    this.open_link_action.set_enabled (false);
+
+    this.add_action (this.copy_link_action);
+    this.add_action (this.open_link_action);
   }
 
   public void search () {
@@ -542,6 +567,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
   public void close_active_tab () {
     this.tab_view.close_page (this.tab_view.selected_page);
+  }
+
+  private void on_open_link () {
+    if (this.link == null) return;
+
+    new Gtk.UriLauncher (this.link).launch.begin (this, null);
+  }
+
+  private void on_copy_link () {
+    if (this.link == null) return;
+
+    Gdk.Display.get_default ().get_clipboard ().set_text (this.link);
   }
 
   public void on_new_tab () {

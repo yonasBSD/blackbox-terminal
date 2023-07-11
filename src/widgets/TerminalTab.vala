@@ -134,29 +134,10 @@ public class Terminal.TerminalTab : Gtk.Box {
   }
 
   public void show_menu (int n_pressed, double x, double y) {
-    var menu = new Menu ();
-    var edit_section = new Menu ();
-    var preferences_section = new Menu ();
-    var bottom_section = new Menu ();
+    this.terminal.window.link = this.terminal.check_match_at (x, y, null);
 
-    menu.append (_("New Tab"), "win.new_tab");
-    menu.append (_("New Window"), "app.new-window");
-
-    edit_section.append (_("Copy"), "win.copy");
-    edit_section.append (_("Paste"), "win.paste");
-
-    menu.append_section (null, edit_section);
-
-    preferences_section.append (_("Preferences"), "win.edit_preferences");
-    menu.append_section (null, preferences_section);
-
-    bottom_section.append (_("Keyboard Shortcuts"), "win.show-help-overlay");
-    bottom_section.append (_("About Black Box"), "app.about");
-    menu.append_section (null, bottom_section);
-
-    var pop = new Gtk.PopoverMenu.from_model (menu) {
-      has_arrow = false,
-    };
+    var builder = new Gtk.Builder.from_resource ("/com/raggesilver/BlackBox/gtk/terminal-menu.ui");
+    var pop = builder.get_object ("popover") as Gtk.PopoverMenu;
 
     double xx, yy;
     this.terminal.translate_coordinates (this, 0, 0, out xx, out yy);

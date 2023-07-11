@@ -41,6 +41,7 @@ namespace Terminal {
           <li>Added option to use bright colors for bold text</li>
           <li>You can now get a desktop notification when a process completes on an unfocussed tab</li>
           <li>Context-aware header bar: the header bar can now have special colors when the active tab is running sudo or ssh</li>
+          <li>Added open and copy link options to the right-click menu</li>
         </ul>
         <p>Improvements</p>
         <ul>
