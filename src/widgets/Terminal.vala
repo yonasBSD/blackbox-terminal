@@ -390,34 +390,33 @@ public class Terminal.Terminal : Vte.Terminal {
     }
 
     // Spawning works differently on host vs flatpak
-    if (is_flatpak ()) {
-      shell = fp_guess_shell () ?? "/usr/bin/bash";
+#if BLACKBOX_IS_FLATPAK
+    shell = fp_guess_shell () ?? "/usr/bin/bash";
 
-      flags = Vte.PtyFlags.NO_CTTY;
+    flags = Vte.PtyFlags.NO_CTTY;
 
-      var tmp_envv = fp_get_env (null) ?? Environ.get ();
+    var tmp_envv = fp_get_env (null) ?? Environ.get ();
 
-      foreach (string env in tmp_envv) {
-        envv.append_val (env);
-      }
-
-      foreach (string env in Terminal.blackbox_envv) {
-        envv.append_val (env);
-      }
+    foreach (string env in tmp_envv) {
+      envv.append_val (env);
     }
-    else {
-      var tmp_envv = Environ.get ();
 
-      foreach (string env in tmp_envv) {
-        envv.append_val (env);
-      }
-
-      foreach (unowned string env in Terminal.blackbox_envv) {
-        envv.append_val (env);
-      }
-
-      shell = Environ.get_variable (envv.data, "SHELL");
+    foreach (string env in Terminal.blackbox_envv) {
+      envv.append_val (env);
     }
+#else /* BLACKBOX_IS_FLATPAK */
+    var tmp_envv = Environ.get ();
+
+    foreach (string env in tmp_envv) {
+      envv.append_val (env);
+    }
+
+    foreach (unowned string env in Terminal.blackbox_envv) {
+      envv.append_val (env);
+    }
+
+    shell = Environ.get_variable (envv.data, "SHELL");
+#endif /* BLACKBOX_IS_FLATPAK */
 
     if (custom_shell_commandv != null) {
       foreach (unowned string s in custom_shell_commandv) {
@@ -435,48 +434,47 @@ public class Terminal.Terminal : Vte.Terminal {
       argv.append_val (command);
     }
 
-    if (is_flatpak ()) {
-      this.spawn_on_flatpak.begin (flags, cwd, argv, envv, (o, _) => {
-        try {
-          Pid ppid;
-          var res = this.spawn_on_flatpak.end (_, out ppid);
-          this.pid = ppid;
+#if BLACKBOX_IS_FLATPAK
+    this.spawn_on_flatpak.begin (flags, cwd, argv, envv, (o, _) => {
+      try {
+        Pid ppid;
+        var res = this.spawn_on_flatpak.end (_, out ppid);
+        this.pid = ppid;
 
-          if (!res) {
-            // FIXME: translate this
-            this.spawn_failed ("An unexpected error occurred while spawning a new terminal.");
-          }
-          else {
-            this.on_spawn_finished ();
-          }
+        if (!res) {
+          // FIXME: translate this
+          this.spawn_failed ("An unexpected error occurred while spawning a new terminal.");
         }
-        catch (GLib.Error e) {
-          this.pid = -1;
-          this.spawn_failed (e.message);
+        else {
+          this.on_spawn_finished ();
         }
-      });
-    }
-    else {
-      this.spawn_async (
-        flags,
-        cwd,
-        argv.data,
-        envv.data,
-        0,
-        null,
-        -1,
-        null,
-        (_, pid, error) => {
-          if (error == null) {
-            this.pid = pid;
-            this.on_spawn_finished ();
-          }
-          else {
-            this.spawn_failed (error.message);
-          }
+      }
+      catch (GLib.Error e) {
+        this.pid = -1;
+        this.spawn_failed (e.message);
+      }
+    });
+#else /* BLACKBOX_IS_FLATPAK */
+    this.spawn_async (
+      flags,
+      cwd,
+      argv.data,
+      envv.data,
+      0,
+      null,
+      -1,
+      null,
+      (_, pid, error) => {
+        if (error == null) {
+          this.pid = pid;
+          this.on_spawn_finished ();
         }
-      );
-    }
+        else {
+          this.spawn_failed (error.message);
+        }
+      }
+    );
+#endif /* BLACKBOX_IS_FLATPAK */
   }
 
   private void on_spawn_finished () {

@@ -19,14 +19,6 @@
  */
 
 namespace Terminal {
-  // FIXME: replace calls for this funcion with preprocessor checks
-  public bool is_flatpak() {
-#if BLACKBOX_IS_FLATPAK
-    return true;
-#else
-    return false;
-#endif
-  }
 
 #if BLACKBOX_IS_FLATPAK
   internal string? flatpak_root = null;
@@ -53,10 +45,10 @@ namespace Terminal {
 
     status = -1;
 
-    if (is_flatpak ()) {
-      real_argv += "flatpak-spawn";
-      real_argv += "--host";
-    }
+#if BLACKBOX_IS_FLATPAK
+    real_argv += "flatpak-spawn";
+    real_argv += "--host";
+#endif
 
     foreach (unowned string arg in argv) {
       real_argv += arg;
@@ -92,8 +84,9 @@ namespace Terminal {
    * SPDX-License-Identifier: (MIT OR Apache-2.0)
    */
   public string? fp_guess_shell(Cancellable? cancellable = null) throws Error {
-    if (!is_flatpak())
-      return Vte.get_user_shell();
+#if !BLACKBOX_IS_FLATPAK
+    return Vte.get_user_shell();
+#endif
 
     string[] argv = { "flatpak-spawn", "--host", "getent", "passwd",
       Environment.get_user_name() };
@@ -122,8 +115,9 @@ namespace Terminal {
   }
 
   public string[]? fp_get_env(Cancellable? cancellable = null) throws Error {
-    if (!is_flatpak())
-      return Environ.get();
+#if !BLACKBOX_IS_FLATPAK
+    return Environ.get();
+#endif
 
     string[] argv = { "flatpak-spawn", "--host", "env" };
 
@@ -151,9 +145,9 @@ namespace Terminal {
     int terminal_fd,
     Cancellable? cancellable = null
   ) {
-    if (!is_flatpak ()) {
-      return Posix.tcgetpgrp (terminal_fd);
-    }
+#if !BLACKBOX_IS_FLATPAK
+    return Posix.tcgetpgrp (terminal_fd);
+#endif
 
     try {
       KeyFile kf = new KeyFile ();
@@ -221,9 +215,9 @@ namespace Terminal {
   ) throws GLib.Error {
     pid = -1;
 
-    if (!is_flatpak ()) {
-      return false;
-    }
+#if !BLACKBOX_IS_FLATPAK
+    return false;
+#endif
 
     uint[] handles = {};
 

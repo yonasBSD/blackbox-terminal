@@ -124,10 +124,7 @@ namespace Terminal {
   }
 
   private string get_flatpak_info () {
-    if (!is_flatpak ()) {
-      return "Flatpak: No\n";
-    }
-
+#if BLACKBOX_IS_FLATPAK
     string res = "Flatpak:\n";
 
     res += " - Runtime: %s\n".printf (get_flatpak_value ("Application", "runtime"));
@@ -137,6 +134,9 @@ namespace Terminal {
     res += " - Devel: %s\n".printf (get_flatpak_value ("Instance", "devel") != null ? "yes" : "no");
 
     return res;
+#else
+    return "Flatpak: No\n";
+#endif
   }
 
   private string get_libraries_info () {
