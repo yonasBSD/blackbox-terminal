@@ -91,7 +91,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public ThemeProvider  theme_provider        { get; private set; }
   public Adw.TabView    tab_view              { get; private set; }
   public Adw.TabBar     tab_bar               { get; private set; }
-  public Terminal?      active_terminal       { get; private set; default = null; }
+  public Terminal?      active_terminal       { get; private set; }
+  public TerminalTab?   active_terminal_tab   { get; private set; default = null; }
   public string         active_terminal_title { get; private set; default = ""; }
 
   // Terminal tabs set this to any link clicked by the user. The value is then
@@ -101,18 +102,29 @@ public class Terminal.Window : Adw.ApplicationWindow {
   // Fields
 
   Array<ulong>  active_terminal_signal_handlers = new Array<ulong> ();
+  Array<ulong>  active_terminal_tab_signal_handlers = new Array<ulong> ();
   bool          force_close = false;
   const uint    header_bar_revealer_duration_ms = 250;
   Gtk.Revealer  header_bar_revealer;
   HeaderBar     header_bar;
   Settings      settings = Settings.get_default ();
-  SimpleAction  copy_action;
-  SimpleAction  copy_link_action;
-  SimpleAction  open_link_action;
   uint          header_bar_waiting_floating_animation = 0;
   uint          header_bar_waiting_floating_delay = 0;
   Gtk.Box       layout_box;
   Gtk.Overlay   overlay;
+
+  weak Adw.TabPage? tab_menu_target = null;
+
+  // Actions
+
+  SimpleAction copy_action;
+  SimpleAction copy_link_action;
+  SimpleAction open_link_action;
+  SimpleAction move_tab_left_action;
+  SimpleAction move_tab_right_action;
+  SimpleAction close_specific_tab_action;
+  SimpleAction detatch_tab_action;
+  SimpleAction rename_tab_action;
 
   // TODO: bring all SimpleActions over here
   private const ActionEntry[] ACTION_ENTRIES = {
@@ -146,7 +158,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
       valign = Gtk.Align.START,
     };
 
-    // Floating controls bar  ===============
+    var builder = new Gtk.Builder.from_resource ("/com/raggesilver/BlackBox/gtk/tab-menu.ui");
+    this.tab_view.menu_model = builder.get_object ("tab-menu") as GLib.Menu;
 
     this.layout_box.append (this.header_bar_revealer);
     this.layout_box.append (this.tab_view);
@@ -247,6 +260,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.on_tab_selected ();
     });
 
+    this.tab_view.setup_menu.connect (this.on_setup_menu);
+
     this.notify["default-width"].connect (() => {
       this.settings.window_width = this.default_width;
     });
@@ -255,7 +270,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
       this.settings.window_height = this.default_height;
     });
 
-    this.notify["active-terminal"].connect (this.on_active_terminal_changed);
+    this.notify ["active-terminal"]
+      .connect (this.on_active_terminal_tab_changed);
 
     var motion_controller = new Gtk.EventControllerMotion ();
     motion_controller.motion.connect (this.on_mouse_motion);
@@ -318,6 +334,15 @@ public class Terminal.Window : Adw.ApplicationWindow {
       }
       this.header_bar_revealer.reveal_child = false;
     }
+  }
+
+  private void on_setup_menu (Adw.TabPage? page) {
+    this.tab_menu_target = page;
+
+    this.move_tab_left_action.set_enabled (page != null && this.tab_view.get_page_position (page) > 0);
+    this.move_tab_right_action.set_enabled (page != null && this.tab_view.get_page_position (page) < this.tab_view.n_pages - 1);
+    this.close_specific_tab_action.set_enabled (page != null);
+    this.detatch_tab_action.set_enabled (page != null && this.tab_view.n_pages > 1);
   }
 
   private void on_reveal_header_bar_changed () {
@@ -547,6 +572,121 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.add_action (this.copy_link_action);
     this.add_action (this.open_link_action);
+
+    this.move_tab_left_action = new SimpleAction ("move-tab-left", null);
+    this.move_tab_left_action.activate.connect (this.move_tab_left);
+    this.add_action (this.move_tab_left_action);
+
+    this.move_tab_right_action = new SimpleAction ("move-tab-right", null);
+    this.move_tab_right_action.activate.connect (this.move_tab_right);
+    this.add_action (this.move_tab_right_action);
+
+    this.close_specific_tab_action = new SimpleAction ("close-specific-tab", null);
+    this.close_specific_tab_action.activate.connect (this.close_specific_tab);
+    this.add_action (this.close_specific_tab_action);
+
+    this.detatch_tab_action = new SimpleAction ("detatch-tab", null);
+    this.detatch_tab_action.activate.connect (this.detatch_tab);
+    this.add_action (this.detatch_tab_action);
+
+    this.rename_tab_action = new SimpleAction ("rename-tab", null);
+    this.rename_tab_action.activate.connect (this.rename_tab);
+    this.add_action (this.rename_tab_action);
+  }
+
+  private void rename_tab () {
+    // If this was a strong ref, the dialog would keep the terminal alive after
+    // it exited until the user fired a response. We don't want that. Instead,
+    // we just need to check when we get the response if the page still exists.
+    weak Adw.TabPage? target =
+      this.tab_menu_target ?? this.tab_view.selected_page;
+
+    if (target == null) return;
+
+    var d = new Adw.MessageDialog (this,
+                                   _("Rename Tab"),
+                                   _("Set a custom title for this tab"));
+
+    var entry = new Gtk.Entry () {
+      placeholder_text = _("Enter a custom tab title"),
+      text = (target.child as TerminalTab)?.title_override ?? ""
+    };
+
+    d.extra_child = entry;
+
+    d.add_response ("cancel", _("Cancel"));
+    d.add_response ("reset", _("Reset Title"));
+    d.add_response ("override", _("Set Title"));
+
+    d.set_response_appearance ("cancel", Adw.ResponseAppearance.DEFAULT);
+    d.set_response_appearance ("reset", Adw.ResponseAppearance.DESTRUCTIVE);
+    d.set_response_appearance ("override", Adw.ResponseAppearance.SUGGESTED);
+
+    d.set_response_enabled ("override", entry.text.strip () != "");
+    d.set_default_response ("override");
+    d.set_close_response ("cancel");
+
+    entry.changed.connect ((_entry) => {
+      d.set_response_enabled ("override", _entry.text.strip () != "");
+    });
+
+    entry.activate.connect (() => {
+      if (d.get_response_enabled ("override")) {
+        d.response.emit ("override");
+      }
+    });
+
+    d.response.connect ((response) => {
+      if (target is Adw.TabPage) {
+        if (response == "reset") {
+          (target.child as TerminalTab)?.override_title (null);
+        }
+        else if (response == "override" && entry.text != "") {
+          (target.child as TerminalTab)?.override_title (entry.text);
+        }
+      }
+
+      d.destroy ();
+      entry = null;
+      target = null;
+      d = null;
+    });
+
+    d.present ();
+  }
+
+  private void move_tab_left () {
+    var target = this.tab_menu_target ?? this.tab_view.selected_page;
+    if (target == null) return;
+
+    var pos = this.tab_view.get_page_position (target);
+    if (pos == 0) return;
+    this.tab_view.reorder_page (target, pos - 1);
+  }
+
+  private void move_tab_right () {
+    var target = this.tab_menu_target ?? this.tab_view.selected_page;
+    if (target == null) return;
+
+    var pos = this.tab_view.get_page_position (target);
+    if (pos >= this.tab_view.n_pages - 1) return;
+    this.tab_view.reorder_page (target, pos + 1);
+  }
+
+  private void close_specific_tab () {
+    var target = this.tab_menu_target ?? this.tab_view.selected_page;
+    if (target == null) return;
+
+    this.tab_view.close_page (target);
+  }
+
+  private void detatch_tab () {
+    var target = this.tab_menu_target ?? this.tab_view.selected_page;
+    if (target == null) return;
+
+    var w = new Window (this.application, null, null, true);
+    this.tab_view.transfer_page (target, w.tab_view, 0);
+    w.present ();
   }
 
   public void search () {
@@ -589,16 +729,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   public void new_tab (string? command, string? cwd) {
-    var tab = new TerminalTab (this, command, cwd);
+    var tab = new TerminalTab (this, this.tab_view.n_pages + 1, command, cwd);
     var page = this.tab_view.add_page (tab, null);
-
-    // FIXME: translate the fallback text
-    page.title = command ?? @"tab $(this.tab_view.n_pages)";
 
     tab.bind_property ("title",
                        page,
                        "title",
-                       GLib.BindingFlags.DEFAULT,
+                       GLib.BindingFlags.SYNC_CREATE,
                        null,
                        null);
 
@@ -623,6 +760,15 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void on_tab_selected () {
+    if (this.active_terminal_tab != null) {
+      foreach (unowned ulong id in this.active_terminal_tab_signal_handlers) {
+        this.active_terminal_tab.disconnect (id);
+      }
+      this.active_terminal_tab_signal_handlers.remove_range (
+        0,
+        this.active_terminal_tab_signal_handlers.length
+      );
+    }
     if (this.active_terminal != null) {
       foreach (unowned ulong id in this.active_terminal_signal_handlers) {
         this.active_terminal.disconnect (id);
@@ -632,13 +778,15 @@ public class Terminal.Window : Adw.ApplicationWindow {
         this.active_terminal_signal_handlers.length
       );
     }
-    var terminal = (this.tab_view.selected_page?.child as TerminalTab)?.terminal;
-    this.active_terminal = terminal;
-    terminal?.grab_focus ();
+    this.freeze_notify ();
+    this.active_terminal_tab = this.tab_view.selected_page?.child as TerminalTab;
+    this.active_terminal = this.active_terminal_tab?.terminal;
+    this.active_terminal?.grab_focus ();
+    this.thaw_notify ();
   }
 
-  private void on_active_terminal_changed () {
-    if (this.active_terminal == null) {
+  private void on_active_terminal_tab_changed () {
+    if (this.active_terminal_tab == null) {
       return;
     }
 
@@ -651,17 +799,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     this.active_terminal_signal_handlers.append_val (handler);
 
+    // FIXME: this should be watching the TerminalTab's `title`
     this.on_active_terminal_title_changed ();
-    handler = this.active_terminal
-      .window_title_changed
+    handler = this.active_terminal_tab
+      .notify ["title"]
       .connect (this.on_active_terminal_title_changed);
 
-    this.active_terminal_signal_handlers.append_val (handler);
+    this.active_terminal_tab_signal_handlers.append_val (handler);
 
     this.on_active_terminal_context_changed ();
     handler = this.active_terminal
       .context_changed
-      .connect (this.on_active_terminal_changed);
+      .connect (this.on_active_terminal_tab_changed);
   }
 
   private void on_active_terminal_context_changed () {
@@ -683,7 +832,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void on_active_terminal_title_changed () {
-    this.active_terminal_title = this.active_terminal?.window_title;
+    this.active_terminal_title = this.tab_view.get_selected_page ().title;
   }
 
   private void on_active_terminal_selection_changed () {

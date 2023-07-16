@@ -21,6 +21,8 @@ Features:
 - Context-aware header bar: the header bar can now have special colors when the
   active tab is running sudo or ssh - #239 - co-authored by @foxedb
 - Added open and copy link options to the right-click menu - #141
+- You can now rename tabs with the new tab right-click menu, or with a new
+  shortcut `Shift + Control + R` - #242
 
 Improvements:
 
@@ -36,6 +38,8 @@ Bug fixes:
 - Sixel is now disabled for VTE builds that don't support it. This primarily
   affects non-Flatpak users, as all Flatpak builds ship VTE with Sixel
   support - #273
+- Fixed an issue that caused windows launched with custom commands to not have a
+  title - #237
 
 ## 0.13.2 - 2023-01-19
 

@@ -26,18 +26,35 @@ public class Terminal.TerminalTab : Gtk.Box {
   [GtkChild] unowned Gtk.ScrolledWindow scrolled;
   [GtkChild] unowned SearchToolbar search_toolbar;
 
-  public string             title     { get; protected set; }
-  public Terminal           terminal  { get; protected set; }
+  private string default_title;
+
+  public Terminal terminal       { get; protected set; }
+  public string?  title_override { get; private set; default = null; }
+
+  public string title {
+    get {
+      if (this.title_override != null) return this.title_override;
+      if (this.terminal.window_title != "") return this.terminal.window_title;
+
+      return this.default_title;
+    }
+  }
 
   static construct {
     typeof (SearchToolbar).class_ref ();
   }
 
-  public TerminalTab (Window window, string? command, string? cwd) {
+  public TerminalTab (Window  window,
+                      uint    tab_id,
+                      string? command,
+                      string? cwd)
+  {
     Object (
       orientation: Gtk.Orientation.VERTICAL,
       spacing: 0
     );
+
+    this.default_title = command ?? "%s %u".printf (_("tab"), tab_id);
 
     this.terminal = new Terminal (window, command, cwd);
     // TODO: Can't we use a property for this? Has default or something?
@@ -68,18 +85,26 @@ public class Terminal.TerminalTab : Gtk.Box {
   private void connect_signals () {
     var settings = Settings.get_default ();
 
-    this.terminal.bind_property ("window-title",
-                                 this,
-                                 "title",
-                                 GLib.BindingFlags.DEFAULT,
-                                 null, null);
+    //  this.terminal.bind_property ("window-title",
+    //                               this,
+    //                               "title",
+    //                               GLib.BindingFlags.DEFAULT,
+    //                               null, null);
+
+    this.terminal.notify ["window-title"].connect (() => {
+      this.notify_property ("title");
+    });
+
+    this.notify ["title-override"].connect (() => {
+      this.notify_property ("title");
+    });
 
     this.terminal.exit.connect (() => {
       this.close_request ();
     });
 
     this.terminal.spawn_failed.connect ((message) => {
-      this.title = _("Error");
+      this.override_title (_("Error"));
       this.banner.title = message;
       this.banner.revealed = true;
     });
@@ -158,5 +183,9 @@ public class Terminal.TerminalTab : Gtk.Box {
 
   public void search () {
     this.search_toolbar.open ();
+  }
+
+  public void override_title (string? _title) {
+    this.title_override = _title;
   }
 }

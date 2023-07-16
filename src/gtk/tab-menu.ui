@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <requires lib="libadwaita" version="1.0" />
+  <menu id="tab-menu">
+    <section>
+      <attribute name="hidden-when">action-disabled</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Move Tab Left</attribute>
+        <attribute name="action">win.move-tab-left</attribute>
+        <!-- <attribute name="hidden-when">action-disabled</attribute> -->
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Move Tab Right</attribute>
+        <attribute name="action">win.move-tab-right</attribute>
+        <!-- <attribute name="hidden-when">action-disabled</attribute> -->
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Rename Tab</attribute>
+        <attribute name="action">win.rename-tab</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Move Tab to New Window</attribute>
+        <attribute name="action">win.detatch-tab</attribute>
+        <!-- <attribute name="hidden-when">action-disabled</attribute> -->
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Close Tab</attribute>
+        <attribute name="action">win.close-specific-tab</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
