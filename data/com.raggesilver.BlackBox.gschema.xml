@@ -89,11 +89,11 @@
       <summary>Delay time before showing floating controls</summary>
     </key>
     <key name="theme-light" type="s">
-      <default>'Tomorrow'</default>
+      <default>'Adwaita'</default>
       <summary>The light color scheme for the terminal</summary>
     </key>
     <key name="theme-dark" type="s">
-      <default>'Tommorow Night'</default>
+      <default>'Adwaita Dark'</default>
       <summary>The dark color scheme for the terminal</summary>
     </key>
     <key name="style-preference" type="u">
@@ -160,7 +160,8 @@
     </key>
   </schema>
 
-  <schema id="com.raggesilver.BlackBox.terminal.search" path="/com/raggesilver/BlackBox/terminal/search/">
+  <schema id="com.raggesilver.BlackBox.terminal.search"
+    path="/com/raggesilver/BlackBox/terminal/search/">
     <key name="wrap-around" type="b">
       <default>true</default>
       <summary>Whether clicking next on the last search result should return to the first</summary>

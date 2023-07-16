@@ -34,6 +34,7 @@ namespace Terminal {
         <p>The Sandbox Conundrum.</p>
         <p>Features</p>
         <ul>
+          <li>Added new default Adwaita and Adwaita Dark color schemes</li>
           <li>You can now customize the working directory for new tabs. It can be set to persist the last tab's directory, the user's home directory, or an arbitrary location</li>
           <li>Closing a tab or a window that still has a running process will now prompt you for confirmation</li>
           <li>Black Box now uses the default Adwaita tab style. As consequence, some header bar options, including "Show Borders" have been removed from the preferences window</li>
