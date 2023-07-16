@@ -11,7 +11,10 @@ add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), la
 
 subdir('data')
 subdir('src')
-subdir('toolbox')
 subdir('po')
+
+if get_option('blackbox_is_flatpak')
+  subdir('toolbox')
+endif
 
 meson.add_install_script('build-aux/meson/postinstall.py')
