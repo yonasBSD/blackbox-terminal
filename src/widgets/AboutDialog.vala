@@ -42,6 +42,7 @@ namespace Terminal {
           <li>You can now get a desktop notification when a process completes on an unfocussed tab</li>
           <li>Context-aware header bar: the header bar can now have special colors when the active tab is running sudo or ssh</li>
           <li>Added open and copy link options to the right-click menu</li>
+          <li>You can now rename tabs with the new tab right-click menu, or with a new shortcut Shift + Control + R</li>
         </ul>
         <p>Improvements</p>
         <ul>
@@ -54,6 +55,7 @@ namespace Terminal {
           <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
           <li>The window title is now centered when there's only one tab</li>
           <li>Sixel is now disabled for VTE builds that don't support it. This primarily affects non-Flatpak users, as all Flatpak builds ship VTE with Sixel support</li>
+          <li>Fixed an issue that caused windows launched with custom commands to not have a title</li>
         </ul>
       """
     };

@@ -35,6 +35,7 @@ namespace Terminal {
   public const string ACTION_WIN_ZOOM_OUT               = "win.zoom-out";
   public const string ACTION_WIN_ZOOM_DEFAULT           = "win.zoom-default";
   public const string ACTION_WIN_CLOSE_TAB              = "win.close-tab";
+  public const string ACTION_WIN_RENAME_TAB             = "win.rename-tab";
 
   public const string ACTION_WIN_SWITCH_TAB_1           = "win.switch-tab-1";
   public const string ACTION_WIN_SWITCH_TAB_2           = "win.switch-tab-2";
@@ -86,6 +87,7 @@ public class Terminal.Keymap : Object, Json.Serializable {
     this.default_keymap.set (ACTION_WIN_ZOOM_OUT,                "<Control>minus");
     this.default_keymap.set (ACTION_WIN_ZOOM_DEFAULT,            "<Shift><Control>parenright");
     this.default_keymap.set (ACTION_WIN_CLOSE_TAB,               "<Shift><Control>w");
+    this.default_keymap.set (ACTION_WIN_RENAME_TAB,              "<Shift><Control>r");
 
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_1,            "<Alt>1");
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_2,            "<Alt>2");

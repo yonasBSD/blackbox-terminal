@@ -28,6 +28,12 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Rename tab</property>
+                <property name="action-name">win.rename-tab</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Switch headbar mode</property>
                 <property name="action-name">win.switch-headerbar-mode</property>
               </object>
@@ -71,6 +77,12 @@
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Zoom out</property>
                 <property name="action-name">win.zoom-out</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Reset zoom</property>
+                <property name="action-name">win.zoom-default</property>
               </object>
             </child>
           </object>
