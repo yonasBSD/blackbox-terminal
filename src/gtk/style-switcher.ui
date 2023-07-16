@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <template class="TerminalStyleSwitcher" parent="GtkWidget">
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="orientation">horizontal</property>
+        <property name="homogeneous">True</property>
+        <property name="spacing">18</property>
+        <child>
+          <object class="GtkOverlay">
+            <property name="visible" bind-source="TerminalStyleSwitcher" bind-property="show-system"
+              bind-flags="sync-create" />
+            <property name="halign">center</property>
+            <child>
+              <object class="GtkCheckButton" id="system_selector">
+                <property name="tooltip-text" translatable="yes">Use System Colors</property>
+                <property name="active">True</property>
+                <signal name="toggled" handler="theme_check_active_changed" />
+                <style>
+                  <class name="system" />
+                </style>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="system_selector" bind-property="active"
+                  bind-flags="sync-create" />
+                <property name="icon-name">checkmark-small-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkOverlay">
+            <property name="halign">center</property>
+            <child>
+              <object class="GtkCheckButton" id="light_selector">
+                <property name="group">system_selector</property>
+                <property name="tooltip-text" translatable="yes">Use Light Colors</property>
+                <signal name="toggled" handler="theme_check_active_changed" />
+                <style>
+                  <class name="light" />
+                </style>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="light_selector" bind-property="active"
+                  bind-flags="sync-create" />
+                <property name="icon-name">checkmark-small-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkOverlay">
+            <property name="halign">center</property>
+            <child>
+              <object class="GtkCheckButton" id="dark_selector">
+                <property name="group">system_selector</property>
+                <property name="tooltip-text" translatable="yes">Use Dark Colors</property>
+                <property name="halign">center</property>
+                <signal name="toggled" handler="theme_check_active_changed" />
+                <style>
+                  <class name="dark" />
+                </style>
+              </object>
+            </child>
+            <child type="overlay">
+              <object class="GtkImage">
+                <property name="visible" bind-source="dark_selector" bind-property="active"
+                  bind-flags="sync-create" />
+                <property name="icon-name">checkmark-small-symbolic</property>
+                <property name="pixel-size">13</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <style>
+                  <class name="check" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

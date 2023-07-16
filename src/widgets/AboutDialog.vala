@@ -43,6 +43,7 @@ namespace Terminal {
           <li>Context-aware header bar: the header bar can now have special colors when the active tab is running sudo or ssh</li>
           <li>Added open and copy link options to the right-click menu</li>
           <li>You can now rename tabs with the new tab right-click menu, or with a new shortcut Shift + Control + R</li>
+          <li>Added a quick application style switcher to the window menu</li>
         </ul>
         <p>Improvements</p>
         <ul>

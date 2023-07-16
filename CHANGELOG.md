@@ -23,6 +23,7 @@ Features:
 - Added open and copy link options to the right-click menu - #141
 - You can now rename tabs with the new tab right-click menu, or with a new
   shortcut `Shift + Control + R` - #242
+- Added a quick application style switcher to the window menu - #147
 
 Improvements:
 
