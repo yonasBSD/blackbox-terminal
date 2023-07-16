@@ -13,7 +13,16 @@
   <recommends>
     <control>pointing</control>
     <control>keyboard</control>
+    <display_length compare="ge">360</display_length>
   </recommends>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>tablet</control>
+    <control>touch</control>
+    <display_length compare="ge">xsmall</display_length>
+  </supports>
 
   <description>
     <p>
@@ -83,6 +92,7 @@
   <kudos>
     <kudo>ModernToolkit</kudo>
     <kudo>HiDpiIcon</kudo>
+    <kudo>Notifications</kudo>
   </kudos>
 
   <releases>
