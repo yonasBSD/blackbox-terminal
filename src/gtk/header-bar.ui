@@ -2,6 +2,89 @@
 <interface>
   <requires lib="gtk" version="4.0" />
   <requires lib="libadwaita" version="1.2" />
+
+
+  <menu id="new_tab_menu">
+    <!-- <section>
+      <attribute name="label" translatable="yes">Shell</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Bash</attribute>
+        <attribute name="action">win.new_tab_with_command</attribute>
+        <attribute name="target" type="s">'/bin/bash'</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Zsh</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Toolbox</attribute>
+      </item>
+    </section> -->
+    <section id="remote_access_section">
+      <attribute name="label" translatable="yes">Remote Access</attribute>
+      <submenu>
+        <attribute name="label" translatable="yes">SSH Connections</attribute>
+        <section>
+          <item>
+            <attribute name="label" translatable="no">Localhost</attribute>
+            <attribute name="icon">preferences-desktop-locale-symbolic</attribute>
+            <attribute name="action">win.new_localhost_ssh_session</attribute>
+          </item>
+        </section>
+        <section>
+          <item>
+            <attribute name="label" translatable="yes">New Connection</attribute>
+            <attribute name="action">app.new-ssh-profile</attribute>
+          </item>
+        </section>
+      </submenu>
+      <submenu>
+        <attribute name="label" translatable="yes">SFTP Servers</attribute>
+        <item>
+          <attribute name="label" translatable="yes">New Connection</attribute>
+        </item>
+      </submenu>
+    </section>
+  </menu>
+
+  <menu id="main-menu">
+    <section>
+      <item>
+        <attribute name="custom">style-switcher</attribute>
+      </item>
+    </section>
+
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New Tab</attribute>
+        <attribute name="action">win.new_tab</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Fullscreen</attribute>
+        <attribute name="action">win.fullscreen</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">win.edit_preferences</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">About Black Box</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+
   <template class="TerminalHeaderBar" parent="AdwBin">
     <property name="valign">start</property>
     <property name="vexpand">false</property>
@@ -108,8 +191,16 @@
                             <child>
                               <object class="GtkMenuButton">
                                 <property name="tooltip-text" translatable="yes">Menu</property>
-                                <property name="menu-model">main-menu</property>
                                 <property name="icon-name">open-menu-symbolic</property>
+
+                                <property name="popover">
+                                  <object class="GtkPopoverMenu">
+                                    <property name="menu-model">main-menu</property>
+                                    <child type="style-switcher">
+                                      <object class="TerminalStyleSwitcher" />
+                                    </child>
+                                  </object>
+                                </property>
 
                                 <binding name="visible">
                                   <lookup name="show-menu-button">
@@ -210,8 +301,16 @@
                             <child>
                               <object class="GtkMenuButton">
                                 <property name="tooltip-text" translatable="yes">Menu</property>
-                                <property name="menu-model">main-menu</property>
                                 <property name="icon-name">open-menu-symbolic</property>
+
+                                <property name="popover">
+                                  <object class="GtkPopoverMenu">
+                                    <property name="menu-model">main-menu</property>
+                                    <child type="style-switcher">
+                                      <object class="TerminalStyleSwitcher" />
+                                    </child>
+                                  </object>
+                                </property>
 
                                 <binding name="visible">
                                   <lookup name="show-menu-button">
@@ -254,79 +353,4 @@
       </object>
     </child>
   </template>
-
-  <menu id="new_tab_menu">
-    <!-- <section>
-      <attribute name="label" translatable="yes">Shell</attribute>
-      <item>
-        <attribute name="label" translatable="yes">Bash</attribute>
-        <attribute name="action">win.new_tab_with_command</attribute>
-        <attribute name="target" type="s">'/bin/bash'</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Zsh</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Toolbox</attribute>
-      </item>
-    </section> -->
-    <section id="remote_access_section">
-      <attribute name="label" translatable="yes">Remote Access</attribute>
-      <submenu>
-        <attribute name="label" translatable="yes">SSH Connections</attribute>
-        <section>
-          <item>
-            <attribute name="label" translatable="no">Localhost</attribute>
-            <attribute name="icon">preferences-desktop-locale-symbolic</attribute>
-            <attribute name="action">win.new_localhost_ssh_session</attribute>
-          </item>
-        </section>
-        <section>
-          <item>
-            <attribute name="label" translatable="yes">New Connection</attribute>
-            <attribute name="action">app.new-ssh-profile</attribute>
-          </item>
-        </section>
-      </submenu>
-      <submenu>
-        <attribute name="label" translatable="yes">SFTP Servers</attribute>
-        <item>
-          <attribute name="label" translatable="yes">New Connection</attribute>
-        </item>
-      </submenu>
-    </section>
-  </menu>
-
-  <menu id="main-menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">New Tab</attribute>
-        <attribute name="action">win.new_tab</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">New Window</attribute>
-        <attribute name="action">app.new-window</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Fullscreen</attribute>
-        <attribute name="action">win.fullscreen</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Preferences</attribute>
-        <attribute name="action">win.edit_preferences</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">About Black Box</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>

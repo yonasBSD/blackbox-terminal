@@ -6,6 +6,7 @@ blackbox_sources += files(
   'SearchToolbar.vala',
   'ShortcutDialog.vala',
   'ShortcutEditor.vala',
+  'StyleSwitcher.vala',
   'Terminal.vala',
   'TerminalTab.vala',
   'Window.vala',

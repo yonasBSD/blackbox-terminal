@@ -39,6 +39,7 @@ public class Terminal.HeaderBar : Adw.Bin {
 
   static construct {
     set_css_name ("headerbar");
+    typeof (StyleSwitcher).class_ref ();
   }
 
   construct {

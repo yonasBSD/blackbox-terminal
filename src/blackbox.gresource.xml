@@ -8,11 +8,14 @@
     <file>gtk/shortcut-dialog.ui</file>
     <file>gtk/shortcut-editor.ui</file>
     <file>gtk/shortcut-row.ui</file>
+    <file>gtk/style-switcher.ui</file>
     <file>gtk/terminal-menu.ui</file>
     <file>gtk/terminal-tab.ui</file>
     <file>gtk/tab-menu.ui</file>
     <file>style.css</file>
     <file>style-dark.css</file>
     <file>resources/svg/color-scheme-thumbnail.svg</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/actions/checkmark-small-symbolic.svg</file>
   </gresource>
 </gresources>

@@ -28,6 +28,12 @@ public enum Terminal.WorkingDirectoryMode {
   CUSTOM = 2,
 }
 
+public enum Terminal.ApplicationStyle {
+  SYSTEM = 0,
+  LIGHT = 1,
+  DARK = 2,
+}
+
 public class Terminal.Settings : PQMarble.Settings {
   public bool    command_as_login_shell               { get; set; }
   public bool    context_aware_header_bar             { get; set; }

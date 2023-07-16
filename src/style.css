@@ -78,3 +78,52 @@ window:not(.about) headerbar,
 .shortcut-row {
   padding: 12px;
 }
+
+themeswitcher {
+  padding: 6px;
+}
+
+themeswitcher .check {
+  background: @accent_bg_color;
+  color: @accent_fg_color;
+  padding: 2px;
+  border-radius: 17px;
+  margin: 3px;
+}
+
+/* Adapted from https://gitlab.gnome.org/GNOME/gnome-text-editor/-/blob/bf8c0c249f06a0be69e65aed3b786ba02a9f999e/src/TextEditor.css#L51 */
+
+themeswitcher checkbutton {
+  outline-offset: 1px;
+  transition: none;
+}
+
+themeswitcher checkbutton radio {
+  -gtk-icon-source: none;
+  background: none;
+  padding: 12px;
+  min-height: 24px;
+  min-width: 24px;
+  border: none;
+  outline-color: currentColor;
+  transition: none;
+  box-shadow: inset 0 0 0 1px @borders;
+}
+
+themeswitcher checkbutton radio:checked {
+  box-shadow: inset 0 0 0 2px @accent_bg_color;
+}
+
+themeswitcher checkbutton.system radio {
+  background: linear-gradient(-45deg, #1e1e1e 49.99%, white 50.01%);
+}
+
+themeswitcher checkbutton.light radio {
+  color: alpha(black, 0.8);
+  background-color: white;
+}
+
+themeswitcher checkbutton.dark radio {
+  color: white;
+  background-color: #1e1e1e;
+}
