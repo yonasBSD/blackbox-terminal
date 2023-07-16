@@ -9,6 +9,7 @@
     "--share=ipc",
     "--socket=fallback-x11",
     "--socket=wayland",
+    "--socket=session-bus",
     "--device=dri",
     "--talk-name=org.freedesktop.Flatpak"
   ],
