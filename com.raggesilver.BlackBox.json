@@ -5,12 +5,12 @@
   "sdk": "org.gnome.Sdk",
   "command": "blackbox",
   "finish-args": [
-    "--filesystem=home:ro",
+    "--filesystem=host",
     "--share=ipc",
     "--socket=fallback-x11",
     "--socket=wayland",
     "--socket=session-bus",
-    "--device=dri",
+    "--device=all",
     "--talk-name=org.freedesktop.Flatpak"
   ],
   "cleanup": [
