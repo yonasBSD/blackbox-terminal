@@ -51,13 +51,17 @@ namespace Terminal {
           <li>Some configuration options have been grouped together in the preferences
   window</li>
           <li>Application title is now bold when there's a single tab open</li>
+          <li>Performance and bundle size optimizations</li>
+          <li>Black Box now has more Flatpak permissions to overcome errors reported by users</li>
         </ul>
         <p>Bug fixes</p>
         <ul>
+          <li>Fixed an issue that caused terminals not to be destroyed when their tabs were closed</li>
           <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
           <li>The window title is now centered when there's only one tab</li>
           <li>Sixel is now disabled for VTE builds that don't support it. This primarily affects non-Flatpak users, as all Flatpak builds ship VTE with Sixel support</li>
           <li>Fixed an issue that caused windows launched with custom commands to not have a title</li>
+          <li>Black Box will now show an error banner if spawning a shell or custom command failed and will no longer close immediately</li>
         </ul>
       """
     };

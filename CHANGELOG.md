@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.14.0 - Unreleased
+## 0.14.0 - 2023-07-17
 
 The Sandbox Conundrum.
 
@@ -32,9 +32,14 @@ Improvements:
 - Some configuration options have been grouped together in the preferences
   window - #254
 - Application title is now bold when there's a single tab open - #235
+- Performance and bundle size optimizations - #283, #284
+- Black Box now has more Flatpak permissions to overcome errors reported by
+  users - #186, #215
 
 Bug fixes:
 
+- Fixed an issue that caused terminals not to be destroyed when their tabs were
+  closed - #261
 - The window title is now centered when there's only one tab - #199
 - Improved keybinding validation, allowing more valid key combinations to be
   used - #245
@@ -43,6 +48,8 @@ Bug fixes:
   support - #273
 - Fixed an issue that caused windows launched with custom commands to not have a
   title - #237
+- Black Box will now show an error banner if spawning a shell or custom
+  command failed and will no longer close immediately - #97, #121, #259
 
 ## 0.13.2 - 2023-01-19
 
