@@ -1,20 +1,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the blackbox package.
+# Vojtěch Perník <translations@pervoj.cz>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-13 20:34-0300\n"
-"PO-Revision-Date: 2022-08-20 00:05+0200\n"
-"Last-Translator: panmourovaty <dominikhejl@yahoo.com>\n"
-"Language-Team: Czech <>\n"
+"POT-Creation-Date: 2023-07-23 10:35+0200\n"
+"PO-Revision-Date: 2023-07-23 11:09+0200\n"
+"Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -35,199 +36,227 @@ msgid "Window height"
 msgstr "Výška okna"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:14
-msgid "Whether or not to display borders around the window and tabs"
-msgstr "Zobrazovat okraje okolo oken a karet"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:18
 msgid "Whether or not to remember window size"
 msgstr "Pamatovat si velikost okna"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:28
+#: data/com.raggesilver.BlackBox.gschema.xml:24
 msgid "Font family and size"
-msgstr "Rodina písem a velikost"
+msgstr "Font a velikost písma"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:32
+#: data/com.raggesilver.BlackBox.gschema.xml:28
 msgid "Whether the window should inherit terminal theme's colors"
 msgstr "Má okno použít motiv stejný jako terminál"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:36
+#: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Terminal window background opacity"
-msgstr ""
+msgstr "Průhlednost pozadí okna terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:40
+#: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether or not tabs should expand to fill tab bar"
 msgstr "Mají karty vyplnit celou šířku záhlaví"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:44
+#: data/com.raggesilver.BlackBox.gschema.xml:40
 msgid "Whether the headerbar should be shown or not"
 msgstr "Má být záhlaví zobrazeno"
 
+#: data/com.raggesilver.BlackBox.gschema.xml:44
+msgid ""
+"If enabled, the header bar will be colored differently for root and ssh "
+"contexts"
+msgstr ""
+"Pokud povoleno, panel záhlaví změní barvu pro pro kontexty pod uživatelem "
+"root a ssh"
+
 #: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether or not to display a menu button in the headerbar"
-msgstr "Zobrazovat tlačítko menu v záhlaví"
+msgstr "Zobrazovat tlačítko nabídky v záhlaví"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:52
-msgid ""
-"Whether or not to draw a 1px line under the header bar when there's a single "
-"tab open"
-msgstr "Zobrazovat 1px linku pod záhlavím když je otevřena pouze jedna karta"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to reserve an area for dragging the header bar"
 msgstr "Rezervovat místo pro přetahování okna"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:60
+#: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to show scrollbars"
 msgstr "Zobrazovat posuvníky"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:64
+#: data/com.raggesilver.BlackBox.gschema.xml:60
 msgid "Whether overlay scrolling should be enabled"
-msgstr "Použít posuvníky co překrývají obsah"
+msgstr "Použít posuvníky překrývající obsah"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:64
+msgid "If enabled, terminals will scroll by pixels instead of rows"
+msgstr "Pokud povoleno, terminál bude posouván na základě pixelů místo řádků"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
-msgid "If enabled, terminals will scroll by pixels instead of rows"
-msgstr "Pokud povoleno terminál bude skrolovat na základě pixelů místo řádků"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:72
-#, fuzzy
 msgid "If enabled, terminals will render sixel escape sequences"
-msgstr "Pokud povoleno terminál bude skrolovat na základě pixelů místo řádků"
+msgstr "Pokud povoleno, terminál bude vykreslovat escape sekvence sixel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:76
-msgid "Enable to limit terminal scrollback"
-msgstr "Povolte pro omezení skrolování terminálu"
+#. 0 = Fixed size, 1 = Unlimited, 2 = Disabled
+#: data/com.raggesilver.BlackBox.gschema.xml:73
+#: src/gtk/preferences-window.ui:404
+msgid "Scrollback mode"
+msgstr "Režim historie"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:80
+#: data/com.raggesilver.BlackBox.gschema.xml:77
 msgid "Number of lines stored in scrollback"
-msgstr "Počet linek uložených ke skrolování"
+msgstr "Počet řádků uložených k zpětnému posouvání"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:84
+#: data/com.raggesilver.BlackBox.gschema.xml:81
 msgid "If enabled, floating controls will be shown in headerless mode"
-msgstr "Pokud zapnuto, plovoucí ovládací panel bude zobrazen v bezešvém režimu"
+msgstr ""
+"Pokud povoleno, v režimu bez záhlaví bude zobrazen plovoucí ovládací panel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:88
+#: data/com.raggesilver.BlackBox.gschema.xml:85
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls"
 msgstr ""
-"Oblast (v pixelech) na vršku okna na kterou když najedete tak se zobrazí "
-"panel"
+"Oblast (v pixelech) v horní části okna po jejímž přejetí myší se zobrazí "
+"plovoucí ovládací panel"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:92
+#: data/com.raggesilver.BlackBox.gschema.xml:89
 msgid "Delay time before showing floating controls"
-msgstr "Prodleva než se zobrazí plovoucí panel"
+msgstr "Prodleva před zobrazením plovoucího ovládacího panelu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:96
+#: data/com.raggesilver.BlackBox.gschema.xml:93
 msgid "The light color scheme for the terminal"
 msgstr "Světlý motiv terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:100
+#: data/com.raggesilver.BlackBox.gschema.xml:97
 msgid "The dark color scheme for the terminal"
 msgstr "Tmavý motiv terminálu"
 
 #. 0 = Follow system, 1 = Light Style, 2 = Dark Style
-#: data/com.raggesilver.BlackBox.gschema.xml:105
+#: data/com.raggesilver.BlackBox.gschema.xml:102
 msgid "Style preference"
 msgstr "Preference motivu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:109
-msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
-msgstr "Odsazení okolo terminálu (nahoře, vpravo, dole, vlevo)"
+#: data/com.raggesilver.BlackBox.gschema.xml:106
+msgid "Show bold text in bright colors"
+msgstr "Zobrazit tučný text v jasných barvách"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:113
+#: data/com.raggesilver.BlackBox.gschema.xml:110
+msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
+msgstr "Velikost odsazení kolem terminálu (nahoře, vpravo, dole, vlevo)"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:114
 msgid "Terminal cell width"
 msgstr "Šířka buňky terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:117
+#: data/com.raggesilver.BlackBox.gschema.xml:118
 msgid "Terminal cell height"
 msgstr "Výška buňky terminálu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:121
+#: data/com.raggesilver.BlackBox.gschema.xml:122
+msgid "Terminal bell"
+msgstr "Terminálový zvonek"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:126
 msgid "Cursor shape"
 msgstr "Tvar kurzoru"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:125
-#, fuzzy
+#: data/com.raggesilver.BlackBox.gschema.xml:130
 msgid "Whether or not the cursor should blink"
-msgstr "Zobrazovat posuvníky"
+msgstr "Blikající kurzor"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:129
+#: data/com.raggesilver.BlackBox.gschema.xml:134
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
 msgstr ""
-"Pokud zapnuto, ctrl+c a ctrl+v bude možno použít pro kopírování/vkládání"
+"Pokud povoleno, ctrl+c a ctrl+v bude možno použít pro kopírování/vkládání"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:133
-msgid ""
-"If enabled, the tab bar will be replaced with a title label when there's a "
-"single open tab"
-msgstr ""
-"Pokud povoleno, lišta karet bude nahrazena titulkem, pokud je otevřená jedna "
-"karta"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:137
-msgid "If enabled, a single open tab will blend with the headerbar color"
-msgstr ""
-"Pokud zapnuto a je otevřená pouze jedna karta tak splyne s barvou záhlaví"
-
-#: data/com.raggesilver.BlackBox.gschema.xml:141
+#: data/com.raggesilver.BlackBox.gschema.xml:138
 msgid "Whether to spawn shell in login mode"
 msgstr "Spouštět shell v přihlašovacím režimu"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:145
+#: data/com.raggesilver.BlackBox.gschema.xml:142
 msgid "Whether to use a custom command instead of the user's shell"
-msgstr "Použít vlastní příkaz místo uživatelova shellu"
+msgstr "Použít vlastní příkaz místo shell uživatele"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:149
+#: data/com.raggesilver.BlackBox.gschema.xml:146
 msgid "Custom command to use instead of the user's shell"
-msgstr "Vlastní příkaz který bude použit místo uživatelského shellu"
+msgstr "Vlastní příkaz, který bude použit místo shell uživatele"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:156
+#: data/com.raggesilver.BlackBox.gschema.xml:150
+msgid ""
+"Send a desktop notification when a process is completed on an unfocussed tab"
+msgstr "Poslat oznámení když dojde k dokončení procesu na nezaměřené kartě"
+
+#. 0 = Previous terminal CWD, 1 = Home Directory, 2 = Custom
+#: data/com.raggesilver.BlackBox.gschema.xml:155
+msgid "Working directory mode"
+msgstr "Režim pracovního adresáře"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:159
+msgid "Custom working directory for new terminals"
+msgstr "Vlastní pracovní adresář pro nové terminály"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:167
 msgid ""
 "Whether clicking next on the last search result should return to the first"
 msgstr ""
-"Zda se má kliknutím na další na poslední výsledek vyhledávání vrátit na první"
+"Po dosažení posledního výsledku vyhledávání se kliknutím na následující "
+"vrátit na začátek"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:160
+#: data/com.raggesilver.BlackBox.gschema.xml:171
 msgid "Whether search should be case sensitive"
-msgstr "Má být hledání citlivé na velikost písmen (case sensitive)"
+msgstr "Má vyhledávání zohledňovat velikost písmen"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:164
+#: data/com.raggesilver.BlackBox.gschema.xml:175
 msgid "Whether search should only match entire words"
 msgstr "Má hledání odpovídat pouze celým slovům"
 
-#: data/com.raggesilver.BlackBox.gschema.xml:168
+#: data/com.raggesilver.BlackBox.gschema.xml:179
 msgid "Whether search should be performed using regular expressions"
 msgstr "Má hledání být prováděno regulárními výrazy"
 
-#: src/gtk/search-toolbar.ui:20
-msgid "Find"
-msgstr ""
+#: src/gtk/header-bar.ui:23
+msgid "Remote Access"
+msgstr "Vzdálený přístup"
 
-#: src/gtk/search-toolbar.ui:42
-msgid "Previous result"
-msgstr ""
+#: src/gtk/header-bar.ui:25
+msgid "SSH Connections"
+msgstr "Připojení SSH"
 
-#: src/gtk/search-toolbar.ui:48
-msgid "Next result"
-msgstr ""
+#: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
+msgid "New Connection"
+msgstr "Nové připojení"
 
-#: src/gtk/search-toolbar.ui:91
-msgid "Search wraps around"
-msgstr ""
+#: src/gtk/header-bar.ui:41
+msgid "SFTP Servers"
+msgstr "Servery SFTP"
 
-#: src/gtk/search-toolbar.ui:96
-#, fuzzy
-msgid "Match is case sensitive"
-msgstr "Má být hledání citlivé na velikost písmen (case sensitive)"
+#: src/gtk/header-bar.ui:58 src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
+#: src/widgets/ShortcutEditor.vala:136
+msgid "New Tab"
+msgstr "Nová karta"
 
-#: src/gtk/search-toolbar.ui:101
-msgid "Match entire words only"
-msgstr ""
+#: src/gtk/header-bar.ui:62 src/widgets/ShortcutEditor.vala:134
+msgid "New Window"
+msgstr "Nové okno"
 
-#: src/gtk/search-toolbar.ui:106
-#, fuzzy
-msgid "Match using regular expression"
-msgstr "Má hledání být prováděno regulárními výrazy"
+#: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:141
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+#: src/gtk/header-bar.ui:72 src/widgets/ShortcutEditor.vala:137
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: src/gtk/header-bar.ui:78 src/widgets/ShortcutEditor.vala:142
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové zkratky"
+
+#: src/gtk/header-bar.ui:82
+msgid "About Black Box"
+msgstr "O aplikaci Black Box"
+
+#: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
+msgid "Exit Fullscreen"
+msgstr "Ukončit zobrazení na celou obrazovku"
+
+#: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
+msgid "Menu"
+msgstr "Menu"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -251,504 +280,617 @@ msgstr "Zavřít kartu"
 
 #: src/gtk/help-overlay.ui:31
 msgctxt "shortcut window"
+msgid "Rename tab"
+msgstr "Odebrat kartu"
+
+#: src/gtk/help-overlay.ui:37
+msgctxt "shortcut window"
 msgid "Switch headbar mode"
 msgstr "Přepnout režim záhlaví"
 
-#: src/gtk/help-overlay.ui:37
+#: src/gtk/help-overlay.ui:43
 msgctxt "shortcut window"
 msgid "Toggle fullscreen"
 msgstr "Přepnout na celou obrazovku"
 
-#: src/gtk/help-overlay.ui:45
+#: src/gtk/help-overlay.ui:51
 msgctxt "shortcut window"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: src/gtk/help-overlay.ui:48
+#: src/gtk/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Search"
 msgstr "Hledat"
 
-#: src/gtk/help-overlay.ui:54
+#: src/gtk/help-overlay.ui:60
 msgctxt "shortcut window"
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: src/gtk/help-overlay.ui:60
+#: src/gtk/help-overlay.ui:66
 msgctxt "shortcut window"
 msgid "Paste"
 msgstr "Vložit"
 
-#: src/gtk/help-overlay.ui:66
+#: src/gtk/help-overlay.ui:72
 msgctxt "shortcut window"
 msgid "Zoom in"
 msgstr "Přiblížit"
 
-#: src/gtk/help-overlay.ui:72
+#: src/gtk/help-overlay.ui:78
 msgctxt "shortcut window"
 msgid "Zoom out"
 msgstr "Oddálit"
 
-#: src/gtk/help-overlay.ui:80
+#: src/gtk/help-overlay.ui:84
+msgctxt "shortcut window"
+msgid "Reset zoom"
+msgstr "Resetovat přiblížení"
+
+#: src/gtk/help-overlay.ui:92
 msgctxt "shortcut window"
 msgid "Navigation"
 msgstr "Navigace"
 
-#: src/gtk/help-overlay.ui:83
+#: src/gtk/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Focus next tab"
-msgstr "Zaměřit se na další Kartu"
-
-#: src/gtk/help-overlay.ui:89
-msgctxt "shortcut window"
-msgid "Focus previous tab"
-msgstr "Zaměřit se na předchozí Kartu"
-
-#: src/gtk/help-overlay.ui:95
-#, fuzzy
-msgctxt "shortcut window"
-msgid "Switch to Tab 1"
-msgstr "Přepnout na Kartu"
+msgstr "Zaměřit následující kartu"
 
 #: src/gtk/help-overlay.ui:101
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 2"
-msgstr "Přepnout na Kartu"
+msgid "Focus previous tab"
+msgstr "Zaměřit předchozí kartu"
 
 #: src/gtk/help-overlay.ui:107
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 3"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 1"
+msgstr "Přepnout na 1. kartu"
 
 #: src/gtk/help-overlay.ui:113
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 4"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 2"
+msgstr "Přepnout na 2. kartu"
 
 #: src/gtk/help-overlay.ui:119
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 5"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 3"
+msgstr "Přepnout na 3. kartu"
 
 #: src/gtk/help-overlay.ui:125
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 6"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 4"
+msgstr "Přepnout na 4. kartu"
 
 #: src/gtk/help-overlay.ui:131
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 7"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 5"
+msgstr "Přepnout na 5. kartu"
 
 #: src/gtk/help-overlay.ui:137
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 8"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 6"
+msgstr "Přepnout na 6. kartu"
 
 #: src/gtk/help-overlay.ui:143
-#, fuzzy
 msgctxt "shortcut window"
-msgid "Switch to Tab 9"
-msgstr "Přepnout na Kartu"
+msgid "Switch to Tab 7"
+msgstr "Přepnout na 7. kartu"
 
 #: src/gtk/help-overlay.ui:149
 msgctxt "shortcut window"
-msgid "Switch to last Tab"
-msgstr "Přepnout na poslední Kartu"
+msgid "Switch to Tab 8"
+msgstr "Přepnout na 8. kartu"
 
-#: src/gtk/help-overlay.ui:157
+#: src/gtk/help-overlay.ui:155
+msgctxt "shortcut window"
+msgid "Switch to Tab 9"
+msgstr "Přepnout na 9. kartu"
+
+#: src/gtk/help-overlay.ui:161
+msgctxt "shortcut window"
+msgid "Switch to last Tab"
+msgstr "Přepnout na poslední kartu"
+
+#: src/gtk/help-overlay.ui:169
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Obecné"
 
-#: src/gtk/help-overlay.ui:160
+#: src/gtk/help-overlay.ui:172
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Zobrazit Zkratky"
+msgstr "Zobrazit zkratky"
 
-#: src/gtk/shortcut-dialog.ui:6
-#, fuzzy
-msgid "Edit Shortcut"
-msgstr "Zobrazit Zkratky"
+#: src/gtk/help-overlay.ui:178
+msgctxt "shortcut window"
+msgid "Edit Preferences"
+msgstr "Upravit předvolby"
 
-#: src/gtk/shortcut-dialog.ui:21
-msgid "Cancel"
-msgstr ""
-
-#: src/gtk/shortcut-dialog.ui:28
-msgid "Apply"
-msgstr ""
-
-#: src/gtk/shortcut-dialog.ui:68
-msgid "This shortcut is already in use"
-msgstr ""
-
-#: src/gtk/shortcut-dialog.ui:81
-msgid "Press Escape to cancel or Backspace to disable shortcut"
-msgstr ""
-
-#: src/gtk/shortcut-editor.ui:6
-msgid "Keyboard"
-msgstr ""
-
-#: src/gtk/shortcut-editor.ui:10
-#, fuzzy
-msgid "Shortcuts"
-msgstr "Zobrazit Zkratky"
-
-#: src/gtk/preferences-window.ui:11
+#: src/gtk/preferences-window.ui:12
 msgid "General"
 msgstr "Obecné"
 
-#: src/gtk/preferences-window.ui:15
+#: src/gtk/preferences-window.ui:16
 msgid "Window"
 msgstr "Okno"
 
-#: src/gtk/preferences-window.ui:19
+#: src/gtk/preferences-window.ui:20
 msgid "Remember Window Size"
-msgstr "Pamatovat Velikost Okna"
+msgstr "Zapamatovat velikost okna"
 
 #: src/gtk/preferences-window.ui:30
-msgid "Show Borders"
-msgstr "Zobrazit okraje"
-
-#: src/gtk/preferences-window.ui:31
-msgid "Enable to draw a border around the window and the active tab."
-msgstr "Zvýraznit okraj kolem okna a aktivní karty."
-
-#: src/gtk/preferences-window.ui:42
-msgid "Theme Integration"
-msgstr "Integrace Motivu"
+msgid "Theme settings have been moved to Terminal > Appearance."
+msgstr "Nastavení motivu bylo přesunuto do Terminál → Vzhled."
 
 #: src/gtk/preferences-window.ui:43
-msgid "Style window with terminal theme colors."
-msgstr "Má okno použít motiv stejný jako terminál."
-
-#: src/gtk/preferences-window.ui:53
-msgid "Style Preference"
-msgstr "Nastavení stylu"
-
-#: src/gtk/preferences-window.ui:57 src/gtk/preferences-window.ui:300
-msgid "Follow System"
-msgstr "Podle systému"
-
-#: src/gtk/preferences-window.ui:58
-msgid "Light Style"
-msgstr "Světlý motiv"
-
-#: src/gtk/preferences-window.ui:59
-msgid "Dark Style"
-msgstr "Tmavý motiv"
-
-#: src/gtk/preferences-window.ui:69
 msgid "Tabs"
 msgstr "Karty"
 
-#: src/gtk/preferences-window.ui:73
+#: src/gtk/preferences-window.ui:47
 msgid "Expand Tabs"
-msgstr "Rozšířit karty"
+msgstr "Roztáhnout karty"
 
-#: src/gtk/preferences-window.ui:83
-msgid "Single Tab Mode"
-msgstr "Režim jedné karty"
-
-#: src/gtk/preferences-window.ui:88
-msgid "Hide Single Tab"
-msgstr "Skrýt jednu kartu"
-
-#: src/gtk/preferences-window.ui:89
-msgid ""
-"Replace tab bar with a title label when a single tab is open. Easier to drag "
-"the window."
-msgstr ""
-"Nahradit panel karet titulkem pokud je otevřená jedna karta. Jednoduší "
-"přesouvání okna."
-
-#: src/gtk/preferences-window.ui:101
-msgid "Stealth Single Tab"
-msgstr "Skrytá Jedna Karta"
-
-#: src/gtk/preferences-window.ui:102
-msgid "Blend single tab with header bar."
-msgstr "Pokud je otevřená jediná karta splynout ji se záhlavím."
-
-#: src/gtk/preferences-window.ui:117
+#: src/gtk/preferences-window.ui:59
 msgid "Header Bar"
-msgstr "Záhlaví"
+msgstr "Panel záhlaví"
 
-#: src/gtk/preferences-window.ui:121
+#: src/gtk/preferences-window.ui:63
 msgid "Show Header Bar"
-msgstr "Zobrazit záhlaví"
+msgstr "Zobrazit panel záhlaví"
 
-#: src/gtk/preferences-window.ui:132
-msgid "Show Menu Button"
-msgstr "Zobrazit tlačítko Menu"
+#: src/gtk/preferences-window.ui:74
+msgid "Context Aware"
+msgstr "Reagovat na kontext"
 
-#: src/gtk/preferences-window.ui:143
-msgid "Drag Area"
-msgstr "Oblast přetahování"
-
-#: src/gtk/preferences-window.ui:144
-msgid "Enable to reserve some space on the left side to drag the window."
-msgstr "Rezervovat místo na levé straně kvůli přetahování okna."
-
-#: src/gtk/preferences-window.ui:156
-msgid "Draw Line Under Header Bar"
-msgstr "Zobrazit linku pod záhlavím"
-
-#: src/gtk/preferences-window.ui:157
+#: src/gtk/preferences-window.ui:75
 msgid ""
-"Enable to draw a line under the header bar when a single tab is open. "
-"Requires \"Show Borders\"."
+"If enabled, the header bar will be colored differently when the active tab "
+"is running ssh or sudo."
 msgstr ""
-"Zobrazit linku pod záhlavím pokud je otevřena jedna karta. Vyžaduje "
-"\"Zobrazit okraje\"."
+"Pokud povoleno, panel záhlaví změní barvu, když na aktivní kartě běží ssh "
+"nebo sudo."
 
-#: src/gtk/preferences-window.ui:167
+#: src/gtk/preferences-window.ui:86
+msgid "Show Menu Button"
+msgstr "Zobrazit tlačítko nabídky"
+
+#: src/gtk/preferences-window.ui:97
+msgid "Drag Area"
+msgstr "Oblast pro přesunutí okna"
+
+#: src/gtk/preferences-window.ui:98
+msgid "Enable to reserve some space on the left side to drag the window."
+msgstr "Rezervovat místo na levé straně pro snazší přesouvání okna."
+
+#: src/gtk/preferences-window.ui:108
 msgid "Floating Controls"
 msgstr "Plovoucí ovládání"
 
-#: src/gtk/preferences-window.ui:170
+#: src/gtk/preferences-window.ui:111
 msgid "Show Floating Controls"
 msgstr "Zobrazit plovoucí ovládání"
 
-#: src/gtk/preferences-window.ui:171
+#: src/gtk/preferences-window.ui:112
 msgid "Show floating controls when header bar is hidden."
-msgstr "Zobrazit plovoucí ovládací panel když záhlaví je skryté."
+msgstr "Zobrazit plovoucí ovládací panel když je panel záhlaví skrytý."
 
-#: src/gtk/preferences-window.ui:183
+#: src/gtk/preferences-window.ui:124
 msgid "Floating Controls Hover Area"
 msgstr "Oblast pro zobrazení plovoucího ovládání"
 
-#: src/gtk/preferences-window.ui:184
+#: src/gtk/preferences-window.ui:125
 msgid ""
 "Hoverable area (in pixels) at the top of the window to trigger floating "
 "controls."
 msgstr ""
-"Oblast (v pixelech) na vršku okna na kterou když najedete tak se zobrazí "
-"panel."
+"Oblast (v pixelech) v horní části okna po jejímž přejetí myší se zobrazí "
+"plovoucí ovládací panel."
 
-#: src/gtk/preferences-window.ui:196
+#: src/gtk/preferences-window.ui:137
 msgid "Delay Before Show Floating Controls"
-msgstr "Prodleva před zobrazením plovoucího panelu"
+msgstr "Prodleva před zobrazením plovoucího ovládání"
 
-#: src/gtk/preferences-window.ui:197
+#: src/gtk/preferences-window.ui:138
 msgid "Delay time (ms) before show floating controls."
-msgstr "Prodleva (v ms) před zobrazením plovoucího ovládání."
+msgstr "Prodleva (v ms) před zobrazením plovoucího ovládacího panelu."
 
-#: src/gtk/preferences-window.ui:214 src/gtk/preferences-window.ui:278
+#: src/gtk/preferences-window.ui:156 src/gtk/preferences-window.ui:232
 msgid "Terminal"
 msgstr "Terminál"
 
-#: src/gtk/preferences-window.ui:219
+#: src/gtk/preferences-window.ui:161
 msgid "Text"
 msgstr "Text"
 
-#: src/gtk/preferences-window.ui:223
+#: src/gtk/preferences-window.ui:165
 msgid "Font"
 msgstr "Font"
 
-#: src/gtk/preferences-window.ui:235
+#: src/gtk/preferences-window.ui:177
 msgid "Cell Spacing"
 msgstr "Rozestup buněk"
 
-#: src/gtk/preferences-window.ui:238
+#: src/gtk/preferences-window.ui:180
 msgid "Width"
 msgstr "Šířka"
 
-#: src/gtk/preferences-window.ui:250
+#: src/gtk/preferences-window.ui:192
 msgid "Height"
 msgstr "Výška"
 
-#: src/gtk/preferences-window.ui:265
+#: src/gtk/preferences-window.ui:207
+msgid "Bright Bold Text"
+msgstr "Tučný text v jasných barvách"
+
+#: src/gtk/preferences-window.ui:208
+msgid "Use bright colors for bold text."
+msgstr "Používat jasné barvy pro tučný text."
+
+#: src/gtk/preferences-window.ui:219
 msgid "Easy Copy &amp; Paste"
-msgstr "Jednoduché Kopírování &amp; Vložení"
+msgstr "Jednoduché kopírování a vkládání"
 
-#: src/gtk/preferences-window.ui:266
+#: src/gtk/preferences-window.ui:220
 msgid "Use ctrl+c/ctrl+v for copy/paste."
-msgstr "Použít ctrl+c/ctrl+v pro kopírování/vložení."
+msgstr "Používat ctrl+c/ctrl+v pro kopírování/vložení."
 
-#: src/gtk/preferences-window.ui:281
-#, fuzzy
+#: src/gtk/preferences-window.ui:236
+msgid "Audible Bell"
+msgstr "Zvukový zvonek"
+
+#: src/gtk/preferences-window.ui:237
+msgid "If enabled, terminals might use an audible bell to indicate events."
+msgstr ""
+"Pokud povoleno, terminál může použít zvukový zvonek pro signalizaci událostí."
+
+#: src/gtk/preferences-window.ui:250
+msgid "Cursor"
+msgstr "Kurzor"
+
+#: src/gtk/preferences-window.ui:251
+msgid "Adjust cursor shape and behavior."
+msgstr "Přizpůsobit tvar a chování kurzoru."
+
+#: src/gtk/preferences-window.ui:254
 msgid "Cursor Shape"
 msgstr "Tvar kurzoru"
 
-#: src/gtk/preferences-window.ui:285
+#: src/gtk/preferences-window.ui:258
 msgid "Block"
 msgstr "Blok"
 
-#: src/gtk/preferences-window.ui:286
+#: src/gtk/preferences-window.ui:259
 msgid "IBeam"
-msgstr "IBeam"
+msgstr "Svislý"
 
-#: src/gtk/preferences-window.ui:287
+#: src/gtk/preferences-window.ui:260
 msgid "Underline"
 msgstr "Podtržení"
 
-#: src/gtk/preferences-window.ui:295
+#: src/gtk/preferences-window.ui:268
 msgid "Cursor Blinking"
-msgstr ""
+msgstr "Blikání kurzoru"
 
-#: src/gtk/preferences-window.ui:296
-#, fuzzy
+#: src/gtk/preferences-window.ui:269
 msgid "Whether or not the cursor should blink."
-msgstr "Zobrazovat posuvníky"
+msgstr "Jestli má kurzor blikat."
+
+#: src/gtk/preferences-window.ui:273 src/gtk/preferences-window.ui:497
+msgid "Follow System"
+msgstr "Podle systému"
+
+#: src/gtk/preferences-window.ui:274
+msgid "On"
+msgstr "Zapnuto"
+
+#: src/gtk/preferences-window.ui:275
+msgid "Off"
+msgstr "Vypnuto"
+
+#: src/gtk/preferences-window.ui:286
+msgid "Padding"
+msgstr "Velikost okraj"
+
+#: src/gtk/preferences-window.ui:300
+msgid "Opacity"
+msgstr "Průhlednost"
 
 #: src/gtk/preferences-window.ui:301
-msgid "On"
-msgstr ""
-
-#: src/gtk/preferences-window.ui:302
-msgid "Off"
-msgstr ""
-
-#: src/gtk/preferences-window.ui:310
-msgid "Padding"
-msgstr "Okraj"
-
-#: src/gtk/preferences-window.ui:324
-msgid "Opacity"
-msgstr ""
-
-#: src/gtk/preferences-window.ui:325
 msgid "Terminal background opacity."
-msgstr ""
+msgstr "Průhlednost pozadí terminálu."
 
-#: src/gtk/preferences-window.ui:341
+#: src/gtk/preferences-window.ui:323
+msgid "Working Directory"
+msgstr "Pracovní složka"
+
+#: src/gtk/preferences-window.ui:332
+msgid "Previous Session"
+msgstr "Podle posledního sezení"
+
+#: src/gtk/preferences-window.ui:333
+msgid "Home Directory"
+msgstr "Domovská složka"
+
+#: src/gtk/preferences-window.ui:334
+msgid "Custom"
+msgstr "Vlastní"
+
+#: src/gtk/preferences-window.ui:343
+msgid "Custom Working Directory"
+msgstr "Vlastní pracovní adresář"
+
+#: src/gtk/preferences-window.ui:360
+msgid "Set to user's home"
+msgstr "Natavit na domovskou složku uživatele"
+
+#: src/gtk/preferences-window.ui:372
 msgid "Scrolling"
-msgstr "Skrolování"
+msgstr "Posouvání"
 
-#: src/gtk/preferences-window.ui:344
+#: src/gtk/preferences-window.ui:375
 msgid "Scrollbars"
 msgstr "Posuvníky"
 
-#: src/gtk/preferences-window.ui:347
+#: src/gtk/preferences-window.ui:378
 msgid "Show Scrollbars"
-msgstr "Zobrazit Posuvníky"
+msgstr "Zobrazit posuvníky"
 
-#: src/gtk/preferences-window.ui:358
+#: src/gtk/preferences-window.ui:389
 msgid "Use Overlay Scrolling"
-msgstr "Použít překrývající Posuvníky"
+msgstr "Použít překrývající posuvníky"
 
-#: src/gtk/preferences-window.ui:372
-msgid "Set Scrollback Limit"
-msgstr "Nastavit limit skrolování"
+#: src/gtk/preferences-window.ui:408
+msgid "Fixed Size"
+msgstr "Fixní počet řádků"
 
-#: src/gtk/preferences-window.ui:383
+#: src/gtk/preferences-window.ui:409
+msgid "Unlimited"
+msgstr "Neomezená"
+
+#: src/gtk/preferences-window.ui:410 src/widgets/ShortcutEditor.vala:106
+msgid "Disabled"
+msgstr "Vypnuto"
+
+#: src/gtk/preferences-window.ui:419
 msgid "Scrollback Lines"
-msgstr "Skrolovací čáry"
+msgstr "Velikost historie"
 
-#: src/gtk/preferences-window.ui:399
+#: src/gtk/preferences-window.ui:437
 msgid "Command"
 msgstr "Příkaz"
 
-#: src/gtk/preferences-window.ui:403
+#: src/gtk/preferences-window.ui:441
 msgid "Run Command as Login Shell"
 msgstr "Spustit příkaz jako přihlašovací shell"
 
-#: src/gtk/preferences-window.ui:414
+#: src/gtk/preferences-window.ui:452
 msgid "Use Custom Command"
 msgstr "Použít vlastní příkaz"
 
-#: src/gtk/preferences-window.ui:424
+#: src/gtk/preferences-window.ui:462
 msgid "Custom Command"
 msgstr "Vlastní příkaz"
 
-#: src/gtk/preferences-window.ui:431
+#: src/gtk/preferences-window.ui:476
+msgid "Notification on Completed Task"
+msgstr "Upozornění na dokončený proces"
+
+#: src/gtk/preferences-window.ui:477
+msgid ""
+"Send a desktop notification when a command is completed on an unfocussed tab."
+msgstr "Odeslat upozornění když dojde k dokončení příkazu na nezaměřené kartě."
+
+#: src/gtk/preferences-window.ui:490
+msgid "Appearance"
+msgstr "Vzhled"
+
+#: src/gtk/preferences-window.ui:493
+msgid "Application Style"
+msgstr "Styl aplikace"
+
+#: src/gtk/preferences-window.ui:498
+msgid "Light"
+msgstr "Světlý"
+
+#: src/gtk/preferences-window.ui:499
+msgid "Dark"
+msgstr "Tmavý"
+
+#: src/gtk/preferences-window.ui:508
+msgid "Theme Integration"
+msgstr "Integrace motivu"
+
+#: src/gtk/preferences-window.ui:509
+msgid "Paint the whole app with colors from your colorscheme."
+msgstr "Vykreslit celou aplikaci s barvami ze zvoleného motivu."
+
+#: src/gtk/preferences-window.ui:523
 msgid "Theme"
 msgstr "Motiv"
 
-#: src/gtk/preferences-window.ui:442
-msgid "Open folder"
-msgstr "Otevřít složku"
+#: src/gtk/preferences-window.ui:524
+msgid "Set your preferred theme for light and dark styles."
+msgstr "Zvolte svůj preferovaný motiv světlý a tmavý režim."
 
-#: src/gtk/preferences-window.ui:450
+#: src/gtk/preferences-window.ui:536
+msgid "Open themes folder"
+msgstr "Otevřít složku s motivy"
+
+#: src/gtk/preferences-window.ui:544
 msgid "Get more themes online"
 msgstr "Získat více motivů online"
 
-#: src/gtk/preferences-window.ui:464
-msgid "Set your preferred theme for light and dark styles."
-msgstr "Zvolte svůj světlý a tmavý motiv."
-
-#: src/gtk/preferences-window.ui:479
+#: src/gtk/preferences-window.ui:565
 msgid "Light Theme"
-msgstr "Světlý Motiv"
+msgstr "Světlý motiv"
 
-#: src/gtk/preferences-window.ui:485
+#: src/gtk/preferences-window.ui:571
 msgid "Dark Theme"
-msgstr "Tmavý Motiv"
+msgstr "Tmavý motiv"
 
-#: src/gtk/preferences-window.ui:493
+#: src/gtk/preferences-window.ui:579
 msgid "Only display themes for the current style"
-msgstr "Zobrazovat motivy pouze pro současný styl"
+msgstr "Zobrazit motivy pouze pro současný styl"
 
-#: src/gtk/preferences-window.ui:501
+#: src/gtk/preferences-window.ui:587
 msgid ""
 "To ensure readability, \"Theme Integration\" will be disabled if you select "
 "a light color scheme while using the dark app style or a dark color scheme "
 "while using the light app style."
 msgstr ""
-"Aby byla zajištěna čitelnost, bude „Integrace Motivu“ deaktivována pokud "
-"vyberete světlé barevné schéma při použití tmavého stylu aplikace nebo tmavé "
-"barevné schéma při použití světlého stylu aplikace."
+"Aby byla zajištěna čitelnost, „Integrace motivu“ bude deaktivována pokud "
+"vyberete světlý motiv při použití tmavého stylu aplikace nebo tmavý motiv "
+"při použití světlého stylu aplikace."
 
-#: src/gtk/preferences-window.ui:533
+#: src/gtk/preferences-window.ui:621
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: src/gtk/preferences-window.ui:537
+#: src/gtk/preferences-window.ui:625
 msgid "Experimental"
 msgstr "Experimentální"
 
-#: src/gtk/preferences-window.ui:538
+#: src/gtk/preferences-window.ui:626
 msgid ""
-"Features in this section are known to be wonky. Please feel free to test and "
-"<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">report "
-"bugs</a>."
+"Features in this section are known to be unstable. Please feel free to test "
+"and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues"
+"\">report bugs</a>."
 msgstr ""
-"Funkce v této sekci jsou nestabilní. Prosím otestujte a nalezené chyby <a "
-"href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\">nahlaste "
-"zde</a>."
+"O funkcích v této sekci víme, že jsou nestabilní. Prosím otestujte a "
+"nalezené chyby <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">nahlaste</a>."
 
-#: src/gtk/preferences-window.ui:542
+#: src/gtk/preferences-window.ui:630
 msgid "Sixel Support"
-msgstr ""
+msgstr "Podpora formátu sixel"
 
-#: src/gtk/preferences-window.ui:543
+#: src/gtk/preferences-window.ui:631
 msgid "Render sixel escape sequences."
-msgstr ""
+msgstr "Vykreslit escape sekvence sixel."
 
-#: src/gtk/preferences-window.ui:555
+#: src/gtk/preferences-window.ui:645
+msgid ""
+"The VTE build you are using does not have support Sixel. Sixel is still an "
+"experimental feature in VTE. For this reason, most distros do not build VTE "
+"with Sixel support. Installing Black Box via Flatpak will enable this "
+"feature. <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues/273\">See discussion in issue tracker.</a>"
+msgstr ""
+"Sestavení VTE, které používáte, nepodporuje Sixel. Sixel je ve VTE "
+"experimentální funkcí. Z tohoto důvodu mnoho distribucí nesestavuje VTE s "
+"podporou Sixelu. Tuto funkci povolí instalace Black Boxu jako Flatpak. <a "
+"href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues/273\">Viz "
+"diskuzi v systému pro sledování problémů.</a>"
+
+#: src/gtk/preferences-window.ui:655
 msgid "Danger Zone"
 msgstr "Nebezpečná zóna"
 
-#: src/gtk/preferences-window.ui:558
+#: src/gtk/preferences-window.ui:658
 msgid "Reset Preferences"
-msgstr "Resetovat nastavení"
+msgstr "Resetovat předvolby"
 
-#: src/gtk/preferences-window.ui:559
+#: src/gtk/preferences-window.ui:659
 msgid ""
 "This will revert all settings back to default. Your extra themes will not be "
 "removed."
 msgstr ""
-"Toto vrátí všechna nastavení do výchozích hodnot. Vaše motivy nebudou "
-"odstraněny."
+"Tato možnost resetuje všechna nastavení na výchozí hodnoty. Vaše dodatečné "
+"motivy nebudou odstraněny."
 
-#: src/gtk/preferences-window.ui:564
+#: src/gtk/preferences-window.ui:664
 msgid "Reset preferences"
-msgstr "Resetovat nastavení"
+msgstr "Resetovat předvolby"
+
+#: src/gtk/search-toolbar.ui:20
+msgid "Find"
+msgstr "Najít"
+
+#: src/gtk/search-toolbar.ui:41
+msgid "Previous result"
+msgstr "Předchozí výsledek"
+
+#: src/gtk/search-toolbar.ui:47
+msgid "Next result"
+msgstr "Následující výsledek"
+
+#: src/gtk/search-toolbar.ui:89
+msgid "Search wraps around"
+msgstr "Zacyklovat seznam výsledků"
+
+#: src/gtk/search-toolbar.ui:94
+msgid "Match is case sensitive"
+msgstr "Zohledňovat velikost písmen"
+
+#: src/gtk/search-toolbar.ui:99
+msgid "Match entire words only"
+msgstr "Hledat pouze celá slova"
+
+#: src/gtk/search-toolbar.ui:104
+msgid "Match using regular expression"
+msgstr "Použít regulární výrazy"
+
+#: src/gtk/shortcut-dialog.ui:6
+msgid "Edit Shortcut"
+msgstr "Upravit zkratku"
+
+#: src/gtk/shortcut-dialog.ui:21 src/utils/Dialogs.vala:36
+#: src/utils/Dialogs.vala:38 src/widgets/Window.vala:617
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: src/gtk/shortcut-dialog.ui:28
+msgid "Apply"
+msgstr "Použít"
+
+#: src/gtk/shortcut-dialog.ui:68
+msgid "This shortcut is already in use"
+msgstr "Tato zkratka je již používána"
+
+#: src/gtk/shortcut-dialog.ui:81
+msgid "Press Escape to cancel or Backspace to disable shortcut"
+msgstr "Stiskněte Escape pro zrušení, nebo Backspace pro vypnutí zkratky"
+
+#: src/gtk/shortcut-editor.ui:6
+msgid "Keyboard"
+msgstr "Klávesnice"
+
+#: src/gtk/shortcut-editor.ui:10
+msgid "Shortcuts"
+msgstr "Zkratky"
+
+#: src/gtk/shortcut-editor.ui:29
+msgid "Reset All Shortcuts"
+msgstr "Resetovat všechny zkratky"
+
+#: src/gtk/shortcut-editor.ui:30
+msgid ""
+"This will reset all shortcuts to their default keybindings and overwrite "
+"your config file."
+msgstr ""
+"Tato možnost resetuje všechny zkratky do výchozího nastavení a přepíše váš "
+"konfigurační soubor."
+
+#: src/gtk/shortcut-editor.ui:34
+msgid "Reset All"
+msgstr "Resetovat vše"
+
+#: src/services/Shortcuts.vala:321
+msgid "Replace keybinding?"
+msgstr "Nahradit klávesovou zkratku?"
+
+#. FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
+#. with the user-friendly action name.
+#: src/services/Shortcuts.vala:324
+#, c-format
+msgid "%s is already assigned to %s"
+msgstr "%s je již nastavena na %s"
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
-msgstr ""
-"Menu můžete pořád otevřít pomocí kliknutí pravým tlačítkem v terminálu."
+msgstr "Nabídku můžete stále otevřít kliknutím pravým tlačítkem v terminálu."
 
 #: src/utils/Constants.vala:36
 #, c-format
@@ -757,125 +899,213 @@ msgid ""
 "progress has been made on this port, copying has yet to be implemented. This "
 "means there's currently no way to copy text in %s."
 msgstr ""
+"%s používá jako widget terminálu raný port VTE do Gtk 4. Ačkoli bylo na "
+"tomto portu dosaženo značného pokroku, kopírování ještě nebylo "
+"implementováno. To znamená, že v současné době neexistuje způsob, jak v %s "
+"kopírovat text."
 
-#: src/widgets/AboutDialog.vala:59
-msgid "Donate"
+#: src/utils/Constants.vala:38
+msgid ""
+"Warning: unlimited scrollback saves content to disk, which may cause your "
+"system to run out of storage."
 msgstr ""
+"Varování: neomezená historie ukládá obsah na disk, což může zapříčinit, že "
+"vašemu systému dojde místo."
 
-#: src/widgets/HeaderBar.vala:30 src/widgets/ShortcutEditor.vala:168
-#: src/widgets/Window.vala:142
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
+#: src/utils/Dialogs.vala:35
+msgid "No"
+msgstr "Ne"
 
-#: src/widgets/HeaderBar.vala:31 src/widgets/ShortcutEditor.vala:164
-#: src/widgets/TerminalTab.vala:119
-msgid "Preferences"
-msgstr "Nastavení"
+#: src/utils/Dialogs.vala:35
+msgid "Yes"
+msgstr "Ano"
 
-#: src/widgets/HeaderBar.vala:32 src/widgets/ShortcutEditor.vala:169
-#: src/widgets/TerminalTab.vala:122
-#, fuzzy
-msgid "Keyboard Shortcuts"
-msgstr "Zobrazit Zkratky"
+#: src/utils/Dialogs.vala:36
+msgid "OK"
+msgstr "OK"
 
-#: src/widgets/HeaderBar.vala:33 src/widgets/TerminalTab.vala:123
-msgid "About"
-msgstr "O Aplikaci"
+#: src/utils/Dialogs.vala:37
+msgid "Keep"
+msgstr "Ponechat"
 
-#: src/widgets/HeaderBar.vala:57 src/widgets/Window.vala:161
-msgid "Menu"
-msgstr "Menu"
+#: src/utils/Dialogs.vala:37
+msgid "Replace"
+msgstr "Nahradit"
 
-#: src/widgets/HeaderBar.vala:75 src/widgets/ShortcutEditor.vala:163
-#: src/widgets/TerminalTab.vala:111
-msgid "New Tab"
-msgstr "Nová Karta"
+#: src/utils/Dialogs.vala:38
+msgid "Close"
+msgstr "Zavřít"
+
+#: src/utils/Dialogs.vala:120
+msgid "Close Tab?"
+msgstr "Zavřít kartu?"
+
+#: src/utils/Dialogs.vala:121
+msgid "Close Window?"
+msgstr "Zavřít okno?"
+
+#: src/utils/Dialogs.vala:124
+msgid ""
+"Some commands are still running. Closing this tab will kill them and may "
+"lead to unexpected outcomes."
+msgstr ""
+"Některé příkazy stále běží. Zavření této karty je zabije a to může vést k "
+"neočekávaným výsledkům."
+
+#: src/utils/Dialogs.vala:125
+msgid ""
+"Some commands are still running. Closing this window will kill them and may "
+"lead to unexpected outcomes."
+msgstr ""
+"Některé příkazy stále běží. Zavření tohoto okna je zabije a to může vést k "
+"neočekávaným výsledkům."
+
+#: src/utils/Shortcuts.vala:32
+msgid "invalid keybinding"
+msgstr "neplatná klávesová zkratka"
+
+#: src/widgets/AboutDialog.vala:73
+msgid "Donate"
+msgstr "Přispět"
+
+#: src/widgets/AboutDialog.vala:74
+msgid "Full Changelog"
+msgstr "Kompletní seznam změn"
+
+#: src/widgets/PreferencesWindow.vala:571
+msgid "Terminal Font"
+msgstr "Font terminálu"
+
+#: src/widgets/PreferencesWindow.vala:647
+msgid "Reuse previous tab's directory."
+msgstr "Znovu použít složku předchozí karty."
+
+#: src/widgets/PreferencesWindow.vala:649
+msgid "Use the current user's home as working directory."
+msgstr "Použít domovskou složku uživatele jako pracovní složku."
+
+#: src/widgets/PreferencesWindow.vala:651
+msgid "Use a custom path as working directory."
+msgstr "Použít vlastní cestu jako pracovní složku."
 
 #: src/widgets/ShortcutDialog.vala:46
 msgid "Enter new shortcut"
-msgstr ""
+msgstr "Zadejte novou zkratku"
 
 #: src/widgets/ShortcutDialog.vala:47
 #, c-format
 msgid "Enter new shortcut for \"%s\""
-msgstr ""
+msgstr "Zadejte novou zkratku pro „%s“"
 
-#: src/widgets/ShortcutEditor.vala:131
-msgid "Disabled"
-msgstr ""
+#: src/widgets/ShortcutEditor.vala:59
+msgid "Add Keybinding"
+msgstr "Přidat nové provázání s klávesami"
 
-#: src/widgets/ShortcutEditor.vala:159
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:66
+msgid "Reset Keybindings"
+msgstr "Resetovat zkratku"
+
+#: src/widgets/ShortcutEditor.vala:81
+#, c-format
+msgid "Remove %s"
+msgstr "Odebrat %s"
+
+#: src/widgets/ShortcutEditor.vala:132
 msgid "Focus Next Tab"
-msgstr "Zaměřit se na další Kartu"
+msgstr "Zaměřit následující kartu"
 
-#: src/widgets/ShortcutEditor.vala:160
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:133
 msgid "Focus Previous Tab"
-msgstr "Zaměřit se na předchozí Kartu"
+msgstr "Zaměřit předchozí kartu"
 
-#: src/widgets/ShortcutEditor.vala:161 src/widgets/TerminalTab.vala:112
-msgid "New Window"
-msgstr "Nové Okno"
-
-#: src/widgets/ShortcutEditor.vala:162
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:135
 msgid "Toggle Header Bar"
-msgstr "Zobrazit záhlaví"
+msgstr "Přepnout zobrazení panelu záhlaví"
 
-#: src/widgets/ShortcutEditor.vala:165 src/widgets/TerminalTab.vala:114
+#: src/widgets/ShortcutEditor.vala:138
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: src/widgets/ShortcutEditor.vala:166 src/widgets/TerminalTab.vala:115
+#: src/widgets/ShortcutEditor.vala:139
 msgid "Paste"
 msgstr "Vložit"
 
-#: src/widgets/ShortcutEditor.vala:167
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:140
 msgid "Search"
 msgstr "Hledat"
 
-#: src/widgets/ShortcutEditor.vala:170
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:143
 msgid "Zoom In"
 msgstr "Přiblížit"
 
-#: src/widgets/ShortcutEditor.vala:171
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:144
 msgid "Zoom Out"
 msgstr "Oddálit"
 
-#: src/widgets/ShortcutEditor.vala:172
+#: src/widgets/ShortcutEditor.vala:145
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Resetovat přiblížení"
 
-#: src/widgets/ShortcutEditor.vala:173
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:146
 msgid "Close Tab"
 msgstr "Zavřít kartu"
 
-#: src/widgets/ShortcutEditor.vala:175 src/widgets/ShortcutEditor.vala:176
-#: src/widgets/ShortcutEditor.vala:177 src/widgets/ShortcutEditor.vala:178
-#: src/widgets/ShortcutEditor.vala:179 src/widgets/ShortcutEditor.vala:180
-#: src/widgets/ShortcutEditor.vala:181 src/widgets/ShortcutEditor.vala:182
-#: src/widgets/ShortcutEditor.vala:183
-#, fuzzy, c-format
+#: src/widgets/ShortcutEditor.vala:147 src/widgets/Window.vala:607
+msgid "Rename Tab"
+msgstr "Přejmenovat kartu"
+
+#: src/widgets/ShortcutEditor.vala:149 src/widgets/ShortcutEditor.vala:150
+#: src/widgets/ShortcutEditor.vala:151 src/widgets/ShortcutEditor.vala:152
+#: src/widgets/ShortcutEditor.vala:153 src/widgets/ShortcutEditor.vala:154
+#: src/widgets/ShortcutEditor.vala:155 src/widgets/ShortcutEditor.vala:156
+#: src/widgets/ShortcutEditor.vala:157
+#, c-format
 msgid "Switch to Tab %u"
-msgstr "Přepnout na Kartu"
+msgstr "Přepnout na %u. kartu"
 
-#: src/widgets/ShortcutEditor.vala:184
-#, fuzzy
+#: src/widgets/ShortcutEditor.vala:158
 msgid "Switch to Last Tab"
-msgstr "Přepnout na poslední Kartu"
+msgstr "Přepnout na poslední kartu"
 
-#: src/widgets/Window.vala:145
-msgid "Show headerbar"
-msgstr "Zobrazit záhlaví"
+#: src/widgets/ShortcutEditor.vala:242
+msgid "Reset all Shortcuts?"
+msgstr "Resetovat všechny zkratky?"
 
-#: src/widgets/PreferencesWindow.vala:496
-msgid "Terminal Font"
-msgstr "Font Terminálu"
+#: src/widgets/ShortcutEditor.vala:243
+msgid ""
+"This will reset all shortcuts to default and overwrite your config file. "
+"This action is irreversible."
+msgstr ""
+"Tato možnost resetuje všechny klávesové zkratky na výchozí hodnoty a přepíše "
+"váš konfigurační soubor. Tato akce je nevratná."
+
+#: src/widgets/Terminal.vala:500
+msgid "Command completed"
+msgstr "Běh příkazu dokončen"
+
+#: src/widgets/TerminalTab.vala:57
+msgid "tab"
+msgstr "karta"
+
+#: src/widgets/TerminalTab.vala:107
+msgid "Error"
+msgstr "Chyba"
+
+#: src/widgets/Window.vala:608
+msgid "Set a custom title for this tab"
+msgstr "Nastavit vlastní titulek této karty"
+
+#: src/widgets/Window.vala:611
+msgid "Enter a custom tab title"
+msgstr "Zadejte vlastní titulek karty"
+
+#: src/widgets/Window.vala:618
+msgid "Reset Title"
+msgstr "Resetovat titulek"
+
+#: src/widgets/Window.vala:619
+msgid "Set Title"
+msgstr "Nastavit titulek"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
@@ -896,10 +1126,79 @@ msgstr "Zobrazit nápovědu"
 #: src/CommandLine.vala:121
 #, c-format
 msgid "Run %s --help to get help\n"
-msgstr "Spusť %s --pro získání nápovědy\n"
+msgstr "Spusť „%s --help“ pro získání nápovědy\n"
 
-#~ msgid "Cursor"
-#~ msgstr "Kurzor"
+#~ msgid "About"
+#~ msgstr "O aplikaci"
+
+#~ msgid "Whether or not to display borders around the window and tabs"
+#~ msgstr "Zobrazovat okraje okolo oken a karet"
+
+#~ msgid ""
+#~ "Whether or not to draw a 1px line under the header bar when there's a "
+#~ "single tab open"
+#~ msgstr ""
+#~ "Zobrazovat 1px linku pod záhlavím když je otevřena pouze jedna karta"
+
+#~ msgid "Enable to limit terminal scrollback"
+#~ msgstr "Povolte pro omezení skrolování terminálu"
+
+#~ msgid "If enabled, a single open tab will blend with the headerbar color"
+#~ msgstr ""
+#~ "Pokud zapnuto a je otevřená pouze jedna karta tak splyne s barvou záhlaví"
+
+#~ msgid "Show Borders"
+#~ msgstr "Zobrazit okraje"
+
+#~ msgid "Enable to draw a border around the window and the active tab."
+#~ msgstr "Zvýraznit okraj kolem okna a aktivní karty."
+
+#~ msgid "Style window with terminal theme colors."
+#~ msgstr "Má okno použít motiv stejný jako terminál."
+
+#~ msgid "Style Preference"
+#~ msgstr "Nastavení stylu"
+
+#~ msgid "Light Style"
+#~ msgstr "Světlý motiv"
+
+#~ msgid "Dark Style"
+#~ msgstr "Tmavý motiv"
+
+#~ msgid "Single Tab Mode"
+#~ msgstr "Režim jedné karty"
+
+#~ msgid "Hide Single Tab"
+#~ msgstr "Skrýt jednu kartu"
+
+#~ msgid ""
+#~ "Replace tab bar with a title label when a single tab is open. Easier to "
+#~ "drag the window."
+#~ msgstr ""
+#~ "Nahradit panel karet titulkem pokud je otevřená jedna karta. Jednoduší "
+#~ "přesouvání okna."
+
+#~ msgid "Stealth Single Tab"
+#~ msgstr "Skrytá Jedna Karta"
+
+#~ msgid "Blend single tab with header bar."
+#~ msgstr "Pokud je otevřená jediná karta splynout ji se záhlavím."
+
+#~ msgid "Draw Line Under Header Bar"
+#~ msgstr "Zobrazit linku pod záhlavím"
+
+#~ msgid ""
+#~ "Enable to draw a line under the header bar when a single tab is open. "
+#~ "Requires \"Show Borders\"."
+#~ msgstr ""
+#~ "Zobrazit linku pod záhlavím pokud je otevřena jedna karta. Vyžaduje "
+#~ "\"Zobrazit okraje\"."
+
+#~ msgid "Set Scrollback Limit"
+#~ msgstr "Nastavit limit skrolování"
+
+#~ msgid "Show headerbar"
+#~ msgstr "Zobrazit záhlaví"
 
 #~ msgid "Pixel Scrolling"
 #~ msgstr "Pixelové skrolování"
@@ -919,8 +1218,8 @@ msgstr "Spusť %s --pro získání nápovědy\n"
 
 #, c-format
 #~ msgid ""
-#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
-#~ "href=\"%s\">online</a>."
+#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s"
+#~ "\">online</a>."
 #~ msgstr ""
 #~ "Otevřít <a href=\"file://%s\">složku s motivy</a>. Více motivů naleznete "
 #~ "<a href=\"%s\">online</a>."
