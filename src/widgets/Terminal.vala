@@ -464,18 +464,22 @@ public class Terminal.Terminal : Vte.Terminal {
       null,
       -1,
       null,
-      (_, pid, error) => {
-        if (error == null) {
-          this.pid = pid;
-          this.on_spawn_finished ();
-        }
-        else {
-          this.spawn_failed (error.message);
-        }
-      }
+      this._on_spawn_finished
     );
 #endif /* BLACKBOX_IS_FLATPAK */
   }
+
+#if !BLACKBOX_IS_FLATPAK
+  private void _on_spawn_finished (Vte.Terminal t, Pid pid, GLib.Error? error) {
+    if (error == null) {
+      this.pid = pid;
+      this.on_spawn_finished ();
+    }
+    else {
+      this.spawn_failed (error.message);
+    }
+  }
+#endif
 
   private void on_spawn_finished () {
     if (_pid < 0) {
