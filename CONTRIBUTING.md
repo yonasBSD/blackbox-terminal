@@ -27,18 +27,13 @@ Black Box has templates for bugs and feature requests. Please use them!
 
 ## Translating
 
-Steps to add a new translation:
+Black Box is accepting translations through Weblate! If you'd like to
+contribute with translations, visit the
+[Weblate project](https://hosted.weblate.org/projects/blackbox/).
 
-1. run `meson build`
-2. add the language code you wish to translate to `po/LINGUAS`
-3. run `ninja -C build blackbox-update-po`
-4. a new file `po/<language_code>.po` will have been created
-5. start translating
-
-Steps to update a translation:
-
-1. run `ninja -C build blackbox-update-po`
-2. update `po/<language_code>.po`
+<a href="https://hosted.weblate.org/projects/blackbox/blackbox/">
+  <img src="https://hosted.weblate.org/widgets/blackbox/-/blackbox/multi-auto.svg" alt="Translation status" />
+</a>
 
 ## Writing Code
 

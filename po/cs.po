@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-23 10:35+0200\n"
+"POT-Creation-Date: 2023-07-29 03:28-0300\n"
 "PO-Revision-Date: 2023-07-23 11:09+0200\n"
 "Last-Translator: Vojtěch Perník <translations@pervoj.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -209,204 +209,78 @@ msgstr "Má hledání odpovídat pouze celým slovům"
 msgid "Whether search should be performed using regular expressions"
 msgstr "Má hledání být prováděno regulárními výrazy"
 
-#: src/gtk/header-bar.ui:23
-msgid "Remote Access"
-msgstr "Vzdálený přístup"
+#: src/gtk/shortcut-dialog.ui:6
+msgid "Edit Shortcut"
+msgstr "Upravit zkratku"
 
-#: src/gtk/header-bar.ui:25
-msgid "SSH Connections"
-msgstr "Připojení SSH"
+#: src/gtk/shortcut-dialog.ui:21 src/utils/Dialogs.vala:36
+#: src/utils/Dialogs.vala:38 src/widgets/Window.vala:617
+msgid "Cancel"
+msgstr "Zrušit"
 
-#: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
-msgid "New Connection"
-msgstr "Nové připojení"
+#: src/gtk/shortcut-dialog.ui:28
+msgid "Apply"
+msgstr "Použít"
 
-#: src/gtk/header-bar.ui:41
-msgid "SFTP Servers"
-msgstr "Servery SFTP"
+#: src/gtk/shortcut-dialog.ui:68
+msgid "This shortcut is already in use"
+msgstr "Tato zkratka je již používána"
 
-#: src/gtk/header-bar.ui:58 src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
-#: src/widgets/ShortcutEditor.vala:136
-msgid "New Tab"
-msgstr "Nová karta"
+#: src/gtk/shortcut-dialog.ui:81
+msgid "Press Escape to cancel or Backspace to disable shortcut"
+msgstr "Stiskněte Escape pro zrušení, nebo Backspace pro vypnutí zkratky"
 
-#: src/gtk/header-bar.ui:62 src/widgets/ShortcutEditor.vala:134
-msgid "New Window"
-msgstr "Nové okno"
+#: src/gtk/shortcut-editor.ui:6
+msgid "Keyboard"
+msgstr "Klávesnice"
 
-#: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:141
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
+#: src/gtk/shortcut-editor.ui:10
+msgid "Shortcuts"
+msgstr "Zkratky"
 
-#: src/gtk/header-bar.ui:72 src/widgets/ShortcutEditor.vala:137
-msgid "Preferences"
-msgstr "Předvolby"
+#: src/gtk/shortcut-editor.ui:29
+msgid "Reset All Shortcuts"
+msgstr "Resetovat všechny zkratky"
 
-#: src/gtk/header-bar.ui:78 src/widgets/ShortcutEditor.vala:142
-msgid "Keyboard Shortcuts"
-msgstr "Klávesové zkratky"
+#: src/gtk/shortcut-editor.ui:30
+msgid ""
+"This will reset all shortcuts to their default keybindings and overwrite "
+"your config file."
+msgstr ""
+"Tato možnost resetuje všechny zkratky do výchozího nastavení a přepíše váš "
+"konfigurační soubor."
 
-#: src/gtk/header-bar.ui:82
-msgid "About Black Box"
-msgstr "O aplikaci Black Box"
+#: src/gtk/shortcut-editor.ui:34
+msgid "Reset All"
+msgstr "Resetovat vše"
 
-#: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
-msgid "Exit Fullscreen"
-msgstr "Ukončit zobrazení na celou obrazovku"
+#: src/gtk/search-toolbar.ui:20
+msgid "Find"
+msgstr "Najít"
 
-#: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
-msgid "Menu"
-msgstr "Menu"
+#: src/gtk/search-toolbar.ui:41
+msgid "Previous result"
+msgstr "Předchozí výsledek"
 
-#: src/gtk/help-overlay.ui:10
-msgctxt "shortcut window"
-msgid "Window"
-msgstr "Okno"
+#: src/gtk/search-toolbar.ui:47
+msgid "Next result"
+msgstr "Následující výsledek"
 
-#: src/gtk/help-overlay.ui:13
-msgctxt "shortcut window"
-msgid "New window"
-msgstr "Nové okno"
+#: src/gtk/search-toolbar.ui:89
+msgid "Search wraps around"
+msgstr "Zacyklovat seznam výsledků"
 
-#: src/gtk/help-overlay.ui:19
-msgctxt "shortcut window"
-msgid "New tab"
-msgstr "Nová karta"
+#: src/gtk/search-toolbar.ui:94
+msgid "Match is case sensitive"
+msgstr "Zohledňovat velikost písmen"
 
-#: src/gtk/help-overlay.ui:25
-msgctxt "shortcut window"
-msgid "Close tab"
-msgstr "Zavřít kartu"
+#: src/gtk/search-toolbar.ui:99
+msgid "Match entire words only"
+msgstr "Hledat pouze celá slova"
 
-#: src/gtk/help-overlay.ui:31
-msgctxt "shortcut window"
-msgid "Rename tab"
-msgstr "Odebrat kartu"
-
-#: src/gtk/help-overlay.ui:37
-msgctxt "shortcut window"
-msgid "Switch headbar mode"
-msgstr "Přepnout režim záhlaví"
-
-#: src/gtk/help-overlay.ui:43
-msgctxt "shortcut window"
-msgid "Toggle fullscreen"
-msgstr "Přepnout na celou obrazovku"
-
-#: src/gtk/help-overlay.ui:51
-msgctxt "shortcut window"
-msgid "Terminal"
-msgstr "Terminál"
-
-#: src/gtk/help-overlay.ui:54
-msgctxt "shortcut window"
-msgid "Search"
-msgstr "Hledat"
-
-#: src/gtk/help-overlay.ui:60
-msgctxt "shortcut window"
-msgid "Copy"
-msgstr "Kopírovat"
-
-#: src/gtk/help-overlay.ui:66
-msgctxt "shortcut window"
-msgid "Paste"
-msgstr "Vložit"
-
-#: src/gtk/help-overlay.ui:72
-msgctxt "shortcut window"
-msgid "Zoom in"
-msgstr "Přiblížit"
-
-#: src/gtk/help-overlay.ui:78
-msgctxt "shortcut window"
-msgid "Zoom out"
-msgstr "Oddálit"
-
-#: src/gtk/help-overlay.ui:84
-msgctxt "shortcut window"
-msgid "Reset zoom"
-msgstr "Resetovat přiblížení"
-
-#: src/gtk/help-overlay.ui:92
-msgctxt "shortcut window"
-msgid "Navigation"
-msgstr "Navigace"
-
-#: src/gtk/help-overlay.ui:95
-msgctxt "shortcut window"
-msgid "Focus next tab"
-msgstr "Zaměřit následující kartu"
-
-#: src/gtk/help-overlay.ui:101
-msgctxt "shortcut window"
-msgid "Focus previous tab"
-msgstr "Zaměřit předchozí kartu"
-
-#: src/gtk/help-overlay.ui:107
-msgctxt "shortcut window"
-msgid "Switch to Tab 1"
-msgstr "Přepnout na 1. kartu"
-
-#: src/gtk/help-overlay.ui:113
-msgctxt "shortcut window"
-msgid "Switch to Tab 2"
-msgstr "Přepnout na 2. kartu"
-
-#: src/gtk/help-overlay.ui:119
-msgctxt "shortcut window"
-msgid "Switch to Tab 3"
-msgstr "Přepnout na 3. kartu"
-
-#: src/gtk/help-overlay.ui:125
-msgctxt "shortcut window"
-msgid "Switch to Tab 4"
-msgstr "Přepnout na 4. kartu"
-
-#: src/gtk/help-overlay.ui:131
-msgctxt "shortcut window"
-msgid "Switch to Tab 5"
-msgstr "Přepnout na 5. kartu"
-
-#: src/gtk/help-overlay.ui:137
-msgctxt "shortcut window"
-msgid "Switch to Tab 6"
-msgstr "Přepnout na 6. kartu"
-
-#: src/gtk/help-overlay.ui:143
-msgctxt "shortcut window"
-msgid "Switch to Tab 7"
-msgstr "Přepnout na 7. kartu"
-
-#: src/gtk/help-overlay.ui:149
-msgctxt "shortcut window"
-msgid "Switch to Tab 8"
-msgstr "Přepnout na 8. kartu"
-
-#: src/gtk/help-overlay.ui:155
-msgctxt "shortcut window"
-msgid "Switch to Tab 9"
-msgstr "Přepnout na 9. kartu"
-
-#: src/gtk/help-overlay.ui:161
-msgctxt "shortcut window"
-msgid "Switch to last Tab"
-msgstr "Přepnout na poslední kartu"
-
-#: src/gtk/help-overlay.ui:169
-msgctxt "shortcut window"
-msgid "General"
-msgstr "Obecné"
-
-#: src/gtk/help-overlay.ui:172
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Zobrazit zkratky"
-
-#: src/gtk/help-overlay.ui:178
-msgctxt "shortcut window"
-msgid "Edit Preferences"
-msgstr "Upravit předvolby"
+#: src/gtk/search-toolbar.ui:104
+msgid "Match using regular expression"
+msgstr "Použít regulární výrazy"
 
 #: src/gtk/preferences-window.ui:12
 msgid "General"
@@ -755,8 +629,8 @@ msgstr "Experimentální"
 #: src/gtk/preferences-window.ui:626
 msgid ""
 "Features in this section are known to be unstable. Please feel free to test "
-"and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues"
-"\">report bugs</a>."
+"and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">report bugs</a>."
 msgstr ""
 "O funkcích v této sekci víme, že jsou nestabilní. Prosím otestujte a "
 "nalezené chyby <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
@@ -804,78 +678,259 @@ msgstr ""
 msgid "Reset preferences"
 msgstr "Resetovat předvolby"
 
-#: src/gtk/search-toolbar.ui:20
-msgid "Find"
-msgstr "Najít"
-
-#: src/gtk/search-toolbar.ui:41
-msgid "Previous result"
-msgstr "Předchozí výsledek"
-
-#: src/gtk/search-toolbar.ui:47
-msgid "Next result"
-msgstr "Následující výsledek"
-
-#: src/gtk/search-toolbar.ui:89
-msgid "Search wraps around"
-msgstr "Zacyklovat seznam výsledků"
-
-#: src/gtk/search-toolbar.ui:94
-msgid "Match is case sensitive"
-msgstr "Zohledňovat velikost písmen"
-
-#: src/gtk/search-toolbar.ui:99
-msgid "Match entire words only"
-msgstr "Hledat pouze celá slova"
-
-#: src/gtk/search-toolbar.ui:104
-msgid "Match using regular expression"
-msgstr "Použít regulární výrazy"
-
-#: src/gtk/shortcut-dialog.ui:6
-msgid "Edit Shortcut"
-msgstr "Upravit zkratku"
-
-#: src/gtk/shortcut-dialog.ui:21 src/utils/Dialogs.vala:36
-#: src/utils/Dialogs.vala:38 src/widgets/Window.vala:617
-msgid "Cancel"
-msgstr "Zrušit"
-
-#: src/gtk/shortcut-dialog.ui:28
-msgid "Apply"
-msgstr "Použít"
-
-#: src/gtk/shortcut-dialog.ui:68
-msgid "This shortcut is already in use"
-msgstr "Tato zkratka je již používána"
-
-#: src/gtk/shortcut-dialog.ui:81
-msgid "Press Escape to cancel or Backspace to disable shortcut"
-msgstr "Stiskněte Escape pro zrušení, nebo Backspace pro vypnutí zkratky"
-
-#: src/gtk/shortcut-editor.ui:6
-msgid "Keyboard"
-msgstr "Klávesnice"
-
-#: src/gtk/shortcut-editor.ui:10
-msgid "Shortcuts"
-msgstr "Zkratky"
-
-#: src/gtk/shortcut-editor.ui:29
-msgid "Reset All Shortcuts"
-msgstr "Resetovat všechny zkratky"
-
-#: src/gtk/shortcut-editor.ui:30
-msgid ""
-"This will reset all shortcuts to their default keybindings and overwrite "
-"your config file."
+#: src/gtk/terminal-menu.ui:20
+msgid "Open Link"
 msgstr ""
-"Tato možnost resetuje všechny zkratky do výchozího nastavení a přepíše váš "
-"konfigurační soubor."
 
-#: src/gtk/shortcut-editor.ui:34
-msgid "Reset All"
-msgstr "Resetovat vše"
+#: src/gtk/terminal-menu.ui:28 src/gtk/header-bar.ui:58
+#: src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
+#: src/widgets/ShortcutEditor.vala:136
+msgid "New Tab"
+msgstr "Nová karta"
+
+#: src/gtk/terminal-menu.ui:32 src/gtk/header-bar.ui:62
+#: src/widgets/ShortcutEditor.vala:134
+msgid "New Window"
+msgstr "Nové okno"
+
+#: src/gtk/terminal-menu.ui:55 src/widgets/ShortcutEditor.vala:138
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: src/gtk/terminal-menu.ui:59
+#, fuzzy
+msgid "Copy Link"
+msgstr "Kopírovat"
+
+#: src/gtk/terminal-menu.ui:64 src/widgets/ShortcutEditor.vala:139
+msgid "Paste"
+msgstr "Vložit"
+
+#: src/gtk/terminal-menu.ui:71 src/gtk/header-bar.ui:72
+#: src/widgets/ShortcutEditor.vala:137
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: src/gtk/terminal-menu.ui:78 src/gtk/header-bar.ui:78
+#: src/widgets/ShortcutEditor.vala:142
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové zkratky"
+
+#: src/gtk/terminal-menu.ui:82 src/gtk/header-bar.ui:82
+msgid "About Black Box"
+msgstr "O aplikaci Black Box"
+
+#: src/gtk/help-overlay.ui:10
+msgctxt "shortcut window"
+msgid "Window"
+msgstr "Okno"
+
+#: src/gtk/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Nové okno"
+
+#: src/gtk/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "New tab"
+msgstr "Nová karta"
+
+#: src/gtk/help-overlay.ui:25
+msgctxt "shortcut window"
+msgid "Close tab"
+msgstr "Zavřít kartu"
+
+#: src/gtk/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Rename tab"
+msgstr "Odebrat kartu"
+
+#: src/gtk/help-overlay.ui:37
+msgctxt "shortcut window"
+msgid "Switch headbar mode"
+msgstr "Přepnout režim záhlaví"
+
+#: src/gtk/help-overlay.ui:43
+msgctxt "shortcut window"
+msgid "Toggle fullscreen"
+msgstr "Přepnout na celou obrazovku"
+
+#: src/gtk/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Terminal"
+msgstr "Terminál"
+
+#: src/gtk/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Hledat"
+
+#: src/gtk/help-overlay.ui:60
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: src/gtk/help-overlay.ui:66
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "Vložit"
+
+#: src/gtk/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Přiblížit"
+
+#: src/gtk/help-overlay.ui:78
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Oddálit"
+
+#: src/gtk/help-overlay.ui:84
+msgctxt "shortcut window"
+msgid "Reset zoom"
+msgstr "Resetovat přiblížení"
+
+#: src/gtk/help-overlay.ui:92
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "Navigace"
+
+#: src/gtk/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Focus next tab"
+msgstr "Zaměřit následující kartu"
+
+#: src/gtk/help-overlay.ui:101
+msgctxt "shortcut window"
+msgid "Focus previous tab"
+msgstr "Zaměřit předchozí kartu"
+
+#: src/gtk/help-overlay.ui:107
+msgctxt "shortcut window"
+msgid "Switch to Tab 1"
+msgstr "Přepnout na 1. kartu"
+
+#: src/gtk/help-overlay.ui:113
+msgctxt "shortcut window"
+msgid "Switch to Tab 2"
+msgstr "Přepnout na 2. kartu"
+
+#: src/gtk/help-overlay.ui:119
+msgctxt "shortcut window"
+msgid "Switch to Tab 3"
+msgstr "Přepnout na 3. kartu"
+
+#: src/gtk/help-overlay.ui:125
+msgctxt "shortcut window"
+msgid "Switch to Tab 4"
+msgstr "Přepnout na 4. kartu"
+
+#: src/gtk/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Switch to Tab 5"
+msgstr "Přepnout na 5. kartu"
+
+#: src/gtk/help-overlay.ui:137
+msgctxt "shortcut window"
+msgid "Switch to Tab 6"
+msgstr "Přepnout na 6. kartu"
+
+#: src/gtk/help-overlay.ui:143
+msgctxt "shortcut window"
+msgid "Switch to Tab 7"
+msgstr "Přepnout na 7. kartu"
+
+#: src/gtk/help-overlay.ui:149
+msgctxt "shortcut window"
+msgid "Switch to Tab 8"
+msgstr "Přepnout na 8. kartu"
+
+#: src/gtk/help-overlay.ui:155
+msgctxt "shortcut window"
+msgid "Switch to Tab 9"
+msgstr "Přepnout na 9. kartu"
+
+#: src/gtk/help-overlay.ui:161
+msgctxt "shortcut window"
+msgid "Switch to last Tab"
+msgstr "Přepnout na poslední kartu"
+
+#: src/gtk/help-overlay.ui:169
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Obecné"
+
+#: src/gtk/help-overlay.ui:172
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Zobrazit zkratky"
+
+#: src/gtk/help-overlay.ui:178
+msgctxt "shortcut window"
+msgid "Edit Preferences"
+msgstr "Upravit předvolby"
+
+#: src/gtk/tab-menu.ui:9
+msgid "Move Tab Left"
+msgstr ""
+
+#: src/gtk/tab-menu.ui:14
+msgid "Move Tab Right"
+msgstr ""
+
+#: src/gtk/tab-menu.ui:21 src/widgets/ShortcutEditor.vala:147
+#: src/widgets/Window.vala:607
+msgid "Rename Tab"
+msgstr "Přejmenovat kartu"
+
+#: src/gtk/tab-menu.ui:25
+#, fuzzy
+msgid "Move Tab to New Window"
+msgstr "Nové okno"
+
+#: src/gtk/tab-menu.ui:32 src/widgets/ShortcutEditor.vala:146
+msgid "Close Tab"
+msgstr "Zavřít kartu"
+
+#: src/gtk/header-bar.ui:23
+msgid "Remote Access"
+msgstr "Vzdálený přístup"
+
+#: src/gtk/header-bar.ui:25
+msgid "SSH Connections"
+msgstr "Připojení SSH"
+
+#: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
+msgid "New Connection"
+msgstr "Nové připojení"
+
+#: src/gtk/header-bar.ui:41
+msgid "SFTP Servers"
+msgstr "Servery SFTP"
+
+#: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:141
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+#: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
+msgid "Exit Fullscreen"
+msgstr "Ukončit zobrazení na celou obrazovku"
+
+#: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
+msgid "Menu"
+msgstr "Menu"
+
+#: src/gtk/style-switcher.ui:17
+msgid "Use System Colors"
+msgstr ""
+
+#: src/gtk/style-switcher.ui:46
+msgid "Use Light Colors"
+msgstr ""
+
+#: src/gtk/style-switcher.ui:74
+msgid "Use Dark Colors"
+msgstr ""
 
 #: src/services/Shortcuts.vala:321
 msgid "Replace keybinding?"
@@ -1022,14 +1077,6 @@ msgstr "Zaměřit předchozí kartu"
 msgid "Toggle Header Bar"
 msgstr "Přepnout zobrazení panelu záhlaví"
 
-#: src/widgets/ShortcutEditor.vala:138
-msgid "Copy"
-msgstr "Kopírovat"
-
-#: src/widgets/ShortcutEditor.vala:139
-msgid "Paste"
-msgstr "Vložit"
-
 #: src/widgets/ShortcutEditor.vala:140
 msgid "Search"
 msgstr "Hledat"
@@ -1045,14 +1092,6 @@ msgstr "Oddálit"
 #: src/widgets/ShortcutEditor.vala:145
 msgid "Reset Zoom"
 msgstr "Resetovat přiblížení"
-
-#: src/widgets/ShortcutEditor.vala:146
-msgid "Close Tab"
-msgstr "Zavřít kartu"
-
-#: src/widgets/ShortcutEditor.vala:147 src/widgets/Window.vala:607
-msgid "Rename Tab"
-msgstr "Přejmenovat kartu"
 
 #: src/widgets/ShortcutEditor.vala:149 src/widgets/ShortcutEditor.vala:150
 #: src/widgets/ShortcutEditor.vala:151 src/widgets/ShortcutEditor.vala:152
@@ -1079,10 +1118,6 @@ msgstr ""
 "Tato možnost resetuje všechny klávesové zkratky na výchozí hodnoty a přepíše "
 "váš konfigurační soubor. Tato akce je nevratná."
 
-#: src/widgets/Terminal.vala:500
-msgid "Command completed"
-msgstr "Běh příkazu dokončen"
-
 #: src/widgets/TerminalTab.vala:57
 msgid "tab"
 msgstr "karta"
@@ -1106,6 +1141,10 @@ msgstr "Resetovat titulek"
 #: src/widgets/Window.vala:619
 msgid "Set Title"
 msgstr "Nastavit titulek"
+
+#: src/widgets/Terminal.vala:500
+msgid "Command completed"
+msgstr "Běh příkazu dokončen"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
@@ -1218,8 +1257,8 @@ msgstr "Spusť „%s --help“ pro získání nápovědy\n"
 
 #, c-format
 #~ msgid ""
-#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a href=\"%s"
-#~ "\">online</a>."
+#~ "Open <a href=\"file://%s\">themes folder</a>. Get more themes <a "
+#~ "href=\"%s\">online</a>."
 #~ msgstr ""
 #~ "Otevřít <a href=\"file://%s\">složku s motivy</a>. Více motivů naleznete "
 #~ "<a href=\"%s\">online</a>."

@@ -68,6 +68,16 @@ To build and run Black Box, use GNOME Builder or VS Code along with [Vala](https
 
 If you want to build Black Box manually, look at the build script in [.gitlab-ci.yml](./.gitlab-ci.yml).
 
+## Translations
+
+Black Box is accepting translations through Weblate! If you'd like to
+contribute with translations, visit the
+[Weblate project](https://hosted.weblate.org/projects/blackbox/).
+
+<a href="https://hosted.weblate.org/projects/blackbox/blackbox/">
+  <img src="https://hosted.weblate.org/widgets/blackbox/-/blackbox/multi-auto.svg" alt="Translation status" />
+</a>
+
 ## Gallery
 
 > Some of these screenshot are from older versions of Black Box.
