@@ -6,15 +6,16 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-29 03:28-0300\n"
-"PO-Revision-Date: 2023-01-14 11:11+0100\n"
-"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
-"Language-Team: French <gnomefr@traduc.org>\n"
+"PO-Revision-Date: 2023-08-07 14:11+0000\n"
+"Last-Translator: \"Mathieu B.\" <mathieu.bousquet2@gmail.com>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/blackbox/blackbox/"
+"fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.0-dev\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: po\n"
 "X-Poedit-SearchPath-1: .\n"
@@ -66,6 +67,8 @@ msgid ""
 "If enabled, the header bar will be colored differently for root and ssh "
 "contexts"
 msgstr ""
+"Si activé, la barre d'en-tête sera colorée différemment pour les contextes "
+"root et ssh"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether or not to display a menu button in the headerbar"
@@ -98,9 +101,8 @@ msgstr ""
 #. 0 = Fixed size, 1 = Unlimited, 2 = Disabled
 #: data/com.raggesilver.BlackBox.gschema.xml:73
 #: src/gtk/preferences-window.ui:404
-#, fuzzy
 msgid "Scrollback mode"
-msgstr "Lignes de défilement"
+msgstr "Mode de défilement"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:77
 msgid "Number of lines stored in scrollback"
@@ -139,11 +141,11 @@ msgstr "Préférence de style"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:106
 msgid "Show bold text in bright colors"
-msgstr ""
+msgstr "Afficher le texte en gras avec des couleurs vives"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:110
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
-msgstr "Padding autour des widgets du terminal (haut, droite, bas, gauche)"
+msgstr "Marges autour des widgets du terminal (haut, droite, bas, gauche)"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:114
 msgid "Terminal cell width"
@@ -154,9 +156,8 @@ msgid "Terminal cell height"
 msgstr "Hauteur de la cellule du terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:122
-#, fuzzy
 msgid "Terminal bell"
-msgstr "Terminal"
+msgstr "Cloche de terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:126
 msgid "Cursor shape"
@@ -187,16 +188,17 @@ msgstr "Commande personnalisée à utiliser à la place du shell utilisateur"
 msgid ""
 "Send a desktop notification when a process is completed on an unfocussed tab"
 msgstr ""
+"Envoyer une notification lorsqu'un processus est terminé dans un onglet "
+"autre que l'onglet actif"
 
 #. 0 = Previous terminal CWD, 1 = Home Directory, 2 = Custom
 #: data/com.raggesilver.BlackBox.gschema.xml:155
-#, fuzzy
 msgid "Working directory mode"
-msgstr "Définir le répertoire de travail actuel"
+msgstr "Mode de répertoire de travail"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:159
 msgid "Custom working directory for new terminals"
-msgstr ""
+msgstr "Répertoire de travail personnalisé pour les nouveaux terminaux"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:167
 msgid ""
@@ -239,7 +241,7 @@ msgstr "Ce raccourci est déjà utilisé"
 msgid "Press Escape to cancel or Backspace to disable shortcut"
 msgstr ""
 "Appuyer sur Échap pour annuler ou sur Retour arrière pour désactiver le "
-"raccourci clavier."
+"raccourci clavier"
 
 #: src/gtk/shortcut-editor.ui:6
 msgid "Keyboard"
@@ -250,20 +252,20 @@ msgid "Shortcuts"
 msgstr "Raccourcis"
 
 #: src/gtk/shortcut-editor.ui:29
-#, fuzzy
 msgid "Reset All Shortcuts"
-msgstr "Raccourcis"
+msgstr "Réinitialiser tous les raccourcis"
 
 #: src/gtk/shortcut-editor.ui:30
 msgid ""
 "This will reset all shortcuts to their default keybindings and overwrite "
 "your config file."
 msgstr ""
+"Cette opération réinitialisera tous les raccourcis à leur valeur par défaut "
+"et écrasera votre fichier de configuration."
 
 #: src/gtk/shortcut-editor.ui:34
-#, fuzzy
 msgid "Reset All"
-msgstr "Réinitialiser le zoom"
+msgstr "Tout réinitialiser"
 
 #: src/gtk/search-toolbar.ui:20
 msgid "Find"
@@ -307,7 +309,7 @@ msgstr "Se souvenir de la taille de la fenêtre"
 
 #: src/gtk/preferences-window.ui:30
 msgid "Theme settings have been moved to Terminal > Appearance."
-msgstr ""
+msgstr "Les paramètres des thèmes ont été déplacés vers Terminal > Apparence."
 
 #: src/gtk/preferences-window.ui:43
 msgid "Tabs"
@@ -327,16 +329,15 @@ msgstr "Afficher la barre d’en-tête"
 
 #: src/gtk/preferences-window.ui:74
 msgid "Context Aware"
-msgstr ""
+msgstr "Sensible au contexte"
 
 #: src/gtk/preferences-window.ui:75
-#, fuzzy
 msgid ""
 "If enabled, the header bar will be colored differently when the active tab "
 "is running ssh or sudo."
 msgstr ""
-"Si cette option est activée, la barre d’onglets sera remplacée par une "
-"étiquette de titre lorsqu'un seul onglet est ouvert"
+"Si activé, la barre d’en-tête sera colorée différemment lorsque l’onglet "
+"actif exécute ssh ou sudo."
 
 #: src/gtk/preferences-window.ui:86
 msgid "Show Menu Button"
@@ -409,11 +410,11 @@ msgstr "Hauteur"
 
 #: src/gtk/preferences-window.ui:207
 msgid "Bright Bold Text"
-msgstr ""
+msgstr "Illuminer le texte en gras"
 
 #: src/gtk/preferences-window.ui:208
 msgid "Use bright colors for bold text."
-msgstr ""
+msgstr "Utiliser des couleurs vives pour le texte en gras."
 
 #: src/gtk/preferences-window.ui:219
 msgid "Easy Copy &amp; Paste"
@@ -425,14 +426,13 @@ msgstr "Utiliser Ctrl+C et Ctrl+V pour copier / coller."
 
 #: src/gtk/preferences-window.ui:236
 msgid "Audible Bell"
-msgstr ""
+msgstr "Cloche audible"
 
 #: src/gtk/preferences-window.ui:237
-#, fuzzy
 msgid "If enabled, terminals might use an audible bell to indicate events."
 msgstr ""
-"Si cette option est activée, les terminaux rendront les séquences "
-"d’échappement sixel"
+"Si activé, les terminaux peuvent utiliser un son de cloche pour indiquer des "
+"événements."
 
 #: src/gtk/preferences-window.ui:250
 msgid "Cursor"
@@ -440,7 +440,7 @@ msgstr "Curseur"
 
 #: src/gtk/preferences-window.ui:251
 msgid "Adjust cursor shape and behavior."
-msgstr ""
+msgstr "Ajuster la forme et le comportement du curseur."
 
 #: src/gtk/preferences-window.ui:254
 msgid "Cursor Shape"
@@ -480,7 +480,7 @@ msgstr "Désactivé"
 
 #: src/gtk/preferences-window.ui:286
 msgid "Padding"
-msgstr "Padding"
+msgstr "Marges"
 
 #: src/gtk/preferences-window.ui:300
 msgid "Opacity"
@@ -491,32 +491,28 @@ msgid "Terminal background opacity."
 msgstr "Opacité de la fenêtre de terminal."
 
 #: src/gtk/preferences-window.ui:323
-#, fuzzy
 msgid "Working Directory"
-msgstr "Définir le répertoire de travail actuel"
+msgstr "Répertoire de travail"
 
 #: src/gtk/preferences-window.ui:332
-#, fuzzy
 msgid "Previous Session"
-msgstr "Résultat précédent"
+msgstr "Session précédente"
 
 #: src/gtk/preferences-window.ui:333
 msgid "Home Directory"
-msgstr ""
+msgstr "Dossier personnel"
 
 #: src/gtk/preferences-window.ui:334
-#, fuzzy
 msgid "Custom"
-msgstr "Commande personnalisée"
+msgstr "Personnalisé"
 
 #: src/gtk/preferences-window.ui:343
-#, fuzzy
 msgid "Custom Working Directory"
-msgstr "Définir le répertoire de travail actuel"
+msgstr "Répertoire de travail personnalisé"
 
 #: src/gtk/preferences-window.ui:360
 msgid "Set to user's home"
-msgstr ""
+msgstr "Définir sur le dossier personnel de l’utilisateur"
 
 #: src/gtk/preferences-window.ui:372
 msgid "Scrolling"
@@ -536,11 +532,11 @@ msgstr "Utiliser le défilement en superposition"
 
 #: src/gtk/preferences-window.ui:408
 msgid "Fixed Size"
-msgstr ""
+msgstr "Taille fixe"
 
 #: src/gtk/preferences-window.ui:409
 msgid "Unlimited"
-msgstr ""
+msgstr "Illimité"
 
 #: src/gtk/preferences-window.ui:410 src/widgets/ShortcutEditor.vala:106
 msgid "Disabled"
@@ -568,29 +564,30 @@ msgstr "Commande personnalisée"
 
 #: src/gtk/preferences-window.ui:476
 msgid "Notification on Completed Task"
-msgstr ""
+msgstr "Notifier une fois la tâche terminée"
 
 #: src/gtk/preferences-window.ui:477
 msgid ""
 "Send a desktop notification when a command is completed on an unfocussed tab."
 msgstr ""
+"Envoyer une notification lorsqu'une commande est terminée dans un onglet "
+"autre que l'onglet actif."
 
 #: src/gtk/preferences-window.ui:490
 msgid "Appearance"
-msgstr ""
+msgstr "Apparence"
 
 #: src/gtk/preferences-window.ui:493
 msgid "Application Style"
-msgstr ""
+msgstr "Style d’application"
 
 #: src/gtk/preferences-window.ui:498
-#, fuzzy
 msgid "Light"
-msgstr "Hauteur"
+msgstr "Clair"
 
 #: src/gtk/preferences-window.ui:499
 msgid "Dark"
-msgstr ""
+msgstr "Sombre"
 
 #: src/gtk/preferences-window.ui:508
 msgid "Theme Integration"
@@ -599,6 +596,8 @@ msgstr "Intégration du thème"
 #: src/gtk/preferences-window.ui:509
 msgid "Paint the whole app with colors from your colorscheme."
 msgstr ""
+"Colorer l’ensemble de l’application avec les couleurs de votre schéma de "
+"couleurs."
 
 #: src/gtk/preferences-window.ui:523
 msgid "Theme"
@@ -609,9 +608,8 @@ msgid "Set your preferred theme for light and dark styles."
 msgstr "Définissez votre thème préféré pour les styles clairs et sombres."
 
 #: src/gtk/preferences-window.ui:536
-#, fuzzy
 msgid "Open themes folder"
-msgstr "Ouvrir le dossier"
+msgstr "Ouvrir le dossier des thèmes"
 
 #: src/gtk/preferences-window.ui:544
 msgid "Get more themes online"
@@ -649,15 +647,14 @@ msgid "Experimental"
 msgstr "Expérimental"
 
 #: src/gtk/preferences-window.ui:626
-#, fuzzy
 msgid ""
 "Features in this section are known to be unstable. Please feel free to test "
 "and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
 "issues\">report bugs</a>."
 msgstr ""
-"Les fonctionnalités de cette section sont connues pour être bancales. "
-"N’hésitez pas à tester et à <a href=\"https://gitlab.gnome.org/raggesilver/"
-"blackbox/-/issues\">reporter les bogues</a>."
+"Les fonctionnalités de cette section sont connues pour être instables. N’"
+"hésitez pas à tester et à <a href=\"https://gitlab.gnome.org/raggesilver/"
+"blackbox/-/issues\">signaler des bogues</a>."
 
 #: src/gtk/preferences-window.ui:630
 msgid "Sixel Support"
@@ -675,6 +672,12 @@ msgid ""
 "feature. <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
 "issues/273\">See discussion in issue tracker.</a>"
 msgstr ""
+"La version de VTE que vous utilisez ne prend pas en charge Sixel. Sixel est "
+"toujours une fonctionnalité expérimentale dans VTE. Pour cette raison, la "
+"plupart des distributions ne construisent pas VTE avec le support Sixel. "
+"Installer Black Box via Flatpak activera cette fonctionnalité. <a href="
+"\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues/273\">Voir la "
+"discussion dans l’outil de suivi des problèmes. </a>"
 
 #: src/gtk/preferences-window.ui:655
 msgid "Danger Zone"
@@ -698,7 +701,7 @@ msgstr "Réinitialiser les préférences"
 
 #: src/gtk/terminal-menu.ui:20
 msgid "Open Link"
-msgstr ""
+msgstr "Ouvrir le lien"
 
 #: src/gtk/terminal-menu.ui:28 src/gtk/header-bar.ui:58
 #: src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
@@ -716,9 +719,8 @@ msgid "Copy"
 msgstr "Copier"
 
 #: src/gtk/terminal-menu.ui:59
-#, fuzzy
 msgid "Copy Link"
-msgstr "Copier"
+msgstr "Copier le lien"
 
 #: src/gtk/terminal-menu.ui:64 src/widgets/ShortcutEditor.vala:139
 msgid "Paste"
@@ -735,9 +737,8 @@ msgid "Keyboard Shortcuts"
 msgstr "Raccourcis clavier"
 
 #: src/gtk/terminal-menu.ui:82 src/gtk/header-bar.ui:82
-#, fuzzy
 msgid "About Black Box"
-msgstr "Boîte Noire"
+msgstr "À propos de Boîte Noir"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -762,7 +763,7 @@ msgstr "Fermer l’onglet"
 #: src/gtk/help-overlay.ui:31
 msgctxt "shortcut window"
 msgid "Rename tab"
-msgstr ""
+msgstr "Renommer l’onglet"
 
 #: src/gtk/help-overlay.ui:37
 msgctxt "shortcut window"
@@ -805,7 +806,6 @@ msgid "Zoom out"
 msgstr "Zoom arrière"
 
 #: src/gtk/help-overlay.ui:84
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Reset zoom"
 msgstr "Réinitialiser le zoom"
@@ -886,28 +886,26 @@ msgid "Show Shortcuts"
 msgstr "Afficher les raccourcis"
 
 #: src/gtk/help-overlay.ui:178
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Edit Preferences"
-msgstr "Préférences"
+msgstr "Modifier les préférences"
 
 #: src/gtk/tab-menu.ui:9
 msgid "Move Tab Left"
-msgstr ""
+msgstr "Déplacer vers la gauche"
 
 #: src/gtk/tab-menu.ui:14
 msgid "Move Tab Right"
-msgstr ""
+msgstr "Déplacer vers la droite"
 
 #: src/gtk/tab-menu.ui:21 src/widgets/ShortcutEditor.vala:147
 #: src/widgets/Window.vala:607
 msgid "Rename Tab"
-msgstr ""
+msgstr "Renommer l’onglet"
 
 #: src/gtk/tab-menu.ui:25
-#, fuzzy
 msgid "Move Tab to New Window"
-msgstr "Nouvelle fenêtre"
+msgstr "Déplacer vers une nouvelle fenêtre"
 
 #: src/gtk/tab-menu.ui:32 src/widgets/ShortcutEditor.vala:146
 msgid "Close Tab"
@@ -915,28 +913,27 @@ msgstr "Fermer l’onglet"
 
 #: src/gtk/header-bar.ui:23
 msgid "Remote Access"
-msgstr ""
+msgstr "Accès à distance"
 
 #: src/gtk/header-bar.ui:25
 msgid "SSH Connections"
-msgstr ""
+msgstr "Connexions SSH"
 
 #: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
 msgid "New Connection"
-msgstr ""
+msgstr "Nouvelle connexion"
 
 #: src/gtk/header-bar.ui:41
 msgid "SFTP Servers"
-msgstr ""
+msgstr "Serveurs SFTP"
 
 #: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:141
 msgid "Fullscreen"
 msgstr "Plein écran"
 
 #: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
-#, fuzzy
 msgid "Exit Fullscreen"
-msgstr "Plein écran"
+msgstr "Quitter le mode plein écran"
 
 #: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
 msgid "Menu"
@@ -944,26 +941,26 @@ msgstr "Menu"
 
 #: src/gtk/style-switcher.ui:17
 msgid "Use System Colors"
-msgstr ""
+msgstr "Utiliser les couleurs du système"
 
 #: src/gtk/style-switcher.ui:46
 msgid "Use Light Colors"
-msgstr ""
+msgstr "Utiliser des couleurs claires"
 
 #: src/gtk/style-switcher.ui:74
 msgid "Use Dark Colors"
-msgstr ""
+msgstr "Utiliser des couleurs sombres"
 
 #: src/services/Shortcuts.vala:321
 msgid "Replace keybinding?"
-msgstr ""
+msgstr "Remplacer le raccourci ?"
 
 #. FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
 #. with the user-friendly action name.
 #: src/services/Shortcuts.vala:324
 #, c-format
 msgid "%s is already assigned to %s"
-msgstr ""
+msgstr "%s est déjà affecté à %s"
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
@@ -988,57 +985,60 @@ msgid ""
 "Warning: unlimited scrollback saves content to disk, which may cause your "
 "system to run out of storage."
 msgstr ""
+"Avertissement : le défilement illimité enregistre le contenu sur le disque, "
+"ce qui peut saturer l'espace de stockage de votre système."
 
 #: src/utils/Dialogs.vala:35
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: src/utils/Dialogs.vala:35
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
 #: src/utils/Dialogs.vala:36
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/utils/Dialogs.vala:37
 msgid "Keep"
-msgstr ""
+msgstr "Conserver"
 
 #: src/utils/Dialogs.vala:37
 msgid "Replace"
-msgstr ""
+msgstr "Remplacer"
 
 #: src/utils/Dialogs.vala:38
-#, fuzzy
 msgid "Close"
-msgstr "Fermer l’onglet"
+msgstr "Fermer"
 
 #: src/utils/Dialogs.vala:120
-#, fuzzy
 msgid "Close Tab?"
-msgstr "Fermer l’onglet"
+msgstr "Fermer l’onglet ?"
 
 #: src/utils/Dialogs.vala:121
-#, fuzzy
 msgid "Close Window?"
-msgstr "Nouvelle fenêtre"
+msgstr "Fermer la fenêtre ?"
 
 #: src/utils/Dialogs.vala:124
 msgid ""
 "Some commands are still running. Closing this tab will kill them and may "
 "lead to unexpected outcomes."
 msgstr ""
+"Certaines commandes sont en cours d’exécution. Fermer cet onglet les "
+"terminera et pourrait entraîner des résultats inattendus."
 
 #: src/utils/Dialogs.vala:125
 msgid ""
 "Some commands are still running. Closing this window will kill them and may "
 "lead to unexpected outcomes."
 msgstr ""
+"Certaines commandes sont en cours d’exécution. Fermer cette fenêtre les "
+"terminera et pourrait entraîner des résultats inattendus."
 
 #: src/utils/Shortcuts.vala:32
 msgid "invalid keybinding"
-msgstr ""
+msgstr "Raccourci invalide"
 
 #: src/widgets/AboutDialog.vala:73
 msgid "Donate"
@@ -1046,26 +1046,23 @@ msgstr "Faire un don"
 
 #: src/widgets/AboutDialog.vala:74
 msgid "Full Changelog"
-msgstr ""
+msgstr "Journal des modifications"
 
 #: src/widgets/PreferencesWindow.vala:571
 msgid "Terminal Font"
 msgstr "Police du terminal"
 
 #: src/widgets/PreferencesWindow.vala:647
-#, fuzzy
 msgid "Reuse previous tab's directory."
-msgstr "Focus sur l’onglet précédent"
+msgstr "Réutiliser le répertoire de l'onglet précédent."
 
 #: src/widgets/PreferencesWindow.vala:649
-#, fuzzy
 msgid "Use the current user's home as working directory."
-msgstr "Définir le répertoire de travail actuel"
+msgstr "Utiliser le dossier personnel comme répertoire de travail."
 
 #: src/widgets/PreferencesWindow.vala:651
-#, fuzzy
 msgid "Use a custom path as working directory."
-msgstr "Définir le répertoire de travail actuel"
+msgstr "Utiliser un chemin personnalisé comme répertoire de travail."
 
 #: src/widgets/ShortcutDialog.vala:46
 msgid "Enter new shortcut"
@@ -1078,16 +1075,16 @@ msgstr "Entrez un nouveau raccourci pour « %s »"
 
 #: src/widgets/ShortcutEditor.vala:59
 msgid "Add Keybinding"
-msgstr ""
+msgstr "Ajouter un raccourci"
 
 #: src/widgets/ShortcutEditor.vala:66
 msgid "Reset Keybindings"
-msgstr ""
+msgstr "Réinitialiser les raccourcis"
 
 #: src/widgets/ShortcutEditor.vala:81
 #, c-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Supprimer %s"
 
 #: src/widgets/ShortcutEditor.vala:132
 msgid "Focus Next Tab"
@@ -1131,43 +1128,44 @@ msgid "Switch to Last Tab"
 msgstr "Basculer vers le dernier onglet"
 
 #: src/widgets/ShortcutEditor.vala:242
-#, fuzzy
 msgid "Reset all Shortcuts?"
-msgstr "Raccourcis clavier"
+msgstr "Réinitialiser tous les raccourcis ?"
 
 #: src/widgets/ShortcutEditor.vala:243
 msgid ""
 "This will reset all shortcuts to default and overwrite your config file. "
 "This action is irreversible."
 msgstr ""
+"Cette opération réinitialisera tous les raccourcis à leur valeur par défaut "
+"et écrasera votre fichier de configuration. Cette action est irréversible."
 
 #: src/widgets/TerminalTab.vala:57
 msgid "tab"
-msgstr ""
+msgstr "onglet"
 
 #: src/widgets/TerminalTab.vala:107
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #: src/widgets/Window.vala:608
 msgid "Set a custom title for this tab"
-msgstr ""
+msgstr "Définir un titre personnalisé"
 
 #: src/widgets/Window.vala:611
 msgid "Enter a custom tab title"
-msgstr ""
+msgstr "Saisissez un titre personnalisé"
 
 #: src/widgets/Window.vala:618
 msgid "Reset Title"
-msgstr ""
+msgstr "Réinitialiser le titre"
 
 #: src/widgets/Window.vala:619
 msgid "Set Title"
-msgstr ""
+msgstr "Définir le titre"
 
 #: src/widgets/Terminal.vala:500
 msgid "Command completed"
-msgstr ""
+msgstr "Commande terminée"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
