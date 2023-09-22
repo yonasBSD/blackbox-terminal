@@ -164,20 +164,22 @@ public class Terminal.TerminalTab : Gtk.Box {
     var builder = new Gtk.Builder.from_resource ("/com/raggesilver/BlackBox/gtk/terminal-menu.ui");
     var pop = builder.get_object ("popover") as Gtk.PopoverMenu;
 
-    double xx, yy;
-    this.terminal.translate_coordinates (this, 0, 0, out xx, out yy);
+    double x_in_view, y_in_view;
+    this.terminal.translate_coordinates (this, x, y, out x_in_view, out y_in_view);
 
-    Gdk.Rectangle r = {0};
-    r.x = (int) (x + xx);
-    r.y = (int) (y + yy + 12);
+    var r = Gdk.Rectangle () {
+      x = (int) x_in_view,
+      y = (int) y_in_view
+    };
 
     pop.closed.connect_after (() => {
       pop.destroy ();
     });
 
     pop.set_parent (this);
+    pop.set_has_arrow (false);
+    pop.set_halign (Gtk.Align.START);
     pop.set_pointing_to (r);
-    pop.set_position (Gtk.PositionType.BOTTOM);
     pop.popup ();
   }
 
