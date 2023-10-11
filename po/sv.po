@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: Black Box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-29 03:28-0300\n"
-"PO-Revision-Date: 2022-08-24 10:10+0200\n"
-"Last-Translator: Luna Jernberg <lunajernberg@gnome.org>\n"
-"Language-Team: Swedish <>\n"
+"PO-Revision-Date: 2023-10-09 11:01+0000\n"
+"Last-Translator: sköldpadda <weblate@turtle.garden>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/blackbox/"
+"blackbox/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -215,78 +216,80 @@ msgstr "Om sökning ska utföras med reguljära uttryck"
 #: src/gtk/shortcut-dialog.ui:6
 #, fuzzy
 msgid "Edit Shortcut"
-msgstr "Visa genvägar"
+msgstr "Redigera genväg"
 
 #: src/gtk/shortcut-dialog.ui:21 src/utils/Dialogs.vala:36
 #: src/utils/Dialogs.vala:38 src/widgets/Window.vala:617
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: src/gtk/shortcut-dialog.ui:28
 msgid "Apply"
-msgstr ""
+msgstr "Verkställ"
 
 #: src/gtk/shortcut-dialog.ui:68
+#, fuzzy
 msgid "This shortcut is already in use"
-msgstr ""
+msgstr "Denna genväg används redan"
 
 #: src/gtk/shortcut-dialog.ui:81
 msgid "Press Escape to cancel or Backspace to disable shortcut"
 msgstr ""
+"Tryck på Escape för att avbryta eller Backspace för att inaktivera genvägen"
 
 #: src/gtk/shortcut-editor.ui:6
 msgid "Keyboard"
-msgstr ""
+msgstr "Tangentbord"
 
 #: src/gtk/shortcut-editor.ui:10
-#, fuzzy
 msgid "Shortcuts"
-msgstr "Visa genvägar"
+msgstr "Genvägar"
 
 #: src/gtk/shortcut-editor.ui:29
 #, fuzzy
 msgid "Reset All Shortcuts"
-msgstr "Visa genvägar"
+msgstr "Återställ genvägar"
 
 #: src/gtk/shortcut-editor.ui:30
 msgid ""
 "This will reset all shortcuts to their default keybindings and overwrite "
 "your config file."
 msgstr ""
+"Detta ska återställa alla genvägar till sina standardgenvägar och skriva "
+"över din konfigurationsfil."
 
 #: src/gtk/shortcut-editor.ui:34
 msgid "Reset All"
-msgstr ""
+msgstr "Återställ"
 
 #: src/gtk/search-toolbar.ui:20
 msgid "Find"
-msgstr ""
+msgstr "Finna"
 
 #: src/gtk/search-toolbar.ui:41
 msgid "Previous result"
-msgstr ""
+msgstr "Tidigare resultat"
 
 #: src/gtk/search-toolbar.ui:47
 msgid "Next result"
-msgstr ""
+msgstr "Nästa resultat"
 
 #: src/gtk/search-toolbar.ui:89
 msgid "Search wraps around"
-msgstr ""
+msgstr "Sökning sträcker sig runt"
 
 #: src/gtk/search-toolbar.ui:94
 #, fuzzy
 msgid "Match is case sensitive"
-msgstr "Om sökning ska vara skiftlägeskänslig"
+msgstr "Matchning är skiftlägeskänslig"
 
 #: src/gtk/search-toolbar.ui:99
 msgid "Match entire words only"
-msgstr ""
+msgstr "Matcha endast fullständiga ord"
 
 #: src/gtk/search-toolbar.ui:104
-#, fuzzy
 msgid "Match using regular expression"
-msgstr "Om sökning ska utföras med reguljära uttryck"
+msgstr "Matcha med reguljära uttryck"
 
 #: src/gtk/preferences-window.ui:12
 msgid "General"
@@ -302,7 +305,7 @@ msgstr "Kom ihåg fönsterstorlek"
 
 #: src/gtk/preferences-window.ui:30
 msgid "Theme settings have been moved to Terminal > Appearance."
-msgstr ""
+msgstr "Temainställningar har flyttat till Terminal > Utseende."
 
 #: src/gtk/preferences-window.ui:43
 msgid "Tabs"
@@ -322,16 +325,15 @@ msgstr "Visa Fönsterlist"
 
 #: src/gtk/preferences-window.ui:74
 msgid "Context Aware"
-msgstr ""
+msgstr "Kontextmedveten"
 
 #: src/gtk/preferences-window.ui:75
-#, fuzzy
 msgid ""
 "If enabled, the header bar will be colored differently when the active tab "
 "is running ssh or sudo."
 msgstr ""
-"Om det är aktiverat kommer flikfältet att ersättas med en titeletikett när "
-"det finns en enda öppen flik"
+"Om aktiverat kommer rubriksfältet att ha en annan färg när fliken som "
+"används kör ssh eller sudo."
 
 #: src/gtk/preferences-window.ui:86
 msgid "Show Menu Button"
@@ -403,12 +405,14 @@ msgid "Height"
 msgstr "Höjd"
 
 #: src/gtk/preferences-window.ui:207
+#, fuzzy
 msgid "Bright Bold Text"
-msgstr ""
+msgstr "Ljus fet text"
 
 #: src/gtk/preferences-window.ui:208
+#, fuzzy
 msgid "Use bright colors for bold text."
-msgstr ""
+msgstr "Använda ljusa färg för fet text."
 
 #: src/gtk/preferences-window.ui:219
 msgid "Easy Copy &amp; Paste"
@@ -420,13 +424,14 @@ msgstr "Använd ctrl+c/ctrl+v för att kopiera/klistra in."
 
 #: src/gtk/preferences-window.ui:236
 msgid "Audible Bell"
-msgstr ""
+msgstr "Hörbar ljudsignal"
 
 #: src/gtk/preferences-window.ui:237
 #, fuzzy
 msgid "If enabled, terminals might use an audible bell to indicate events."
 msgstr ""
-"Om det är aktiverat rullar terminalerna efter pixlar istället för rader"
+"Om det är aktiverat kommer terminaler kanske att använda en hörbar "
+"ljudsignal för att indikera händelser."
 
 #: src/gtk/preferences-window.ui:250
 msgid "Cursor"
@@ -434,12 +439,11 @@ msgstr "Markör"
 
 #: src/gtk/preferences-window.ui:251
 msgid "Adjust cursor shape and behavior."
-msgstr ""
+msgstr "Redigera markörens form och beteende."
 
 #: src/gtk/preferences-window.ui:254
-#, fuzzy
 msgid "Cursor Shape"
-msgstr "Markör form"
+msgstr "Markörens form"
 
 #: src/gtk/preferences-window.ui:258
 msgid "Block"
@@ -455,12 +459,11 @@ msgstr "Understrykning"
 
 #: src/gtk/preferences-window.ui:268
 msgid "Cursor Blinking"
-msgstr ""
+msgstr "Markörens blinkning"
 
 #: src/gtk/preferences-window.ui:269
-#, fuzzy
 msgid "Whether or not the cursor should blink."
-msgstr "Om rullningslister ska visas eller inte"
+msgstr "Huruvida kommer markören att blinka."
 
 #: src/gtk/preferences-window.ui:273 src/gtk/preferences-window.ui:497
 msgid "Follow System"
@@ -468,50 +471,48 @@ msgstr "Följ System"
 
 #: src/gtk/preferences-window.ui:274
 msgid "On"
-msgstr ""
+msgstr "På"
 
 #: src/gtk/preferences-window.ui:275
 msgid "Off"
-msgstr ""
+msgstr "Av"
 
 #: src/gtk/preferences-window.ui:286
 msgid "Padding"
 msgstr "Platta"
 
 #: src/gtk/preferences-window.ui:300
+#, fuzzy
 msgid "Opacity"
-msgstr ""
+msgstr "Opacitet"
 
 #: src/gtk/preferences-window.ui:301
 msgid "Terminal background opacity."
-msgstr ""
+msgstr "Terminalens bakgrundopacitet."
 
 #: src/gtk/preferences-window.ui:323
-#, fuzzy
 msgid "Working Directory"
-msgstr "Ställ in aktuell arbetskatalog"
+msgstr "Aktuell arbetskatalog"
 
 #: src/gtk/preferences-window.ui:332
 msgid "Previous Session"
-msgstr ""
+msgstr "Tidigare session"
 
 #: src/gtk/preferences-window.ui:333
 msgid "Home Directory"
-msgstr ""
+msgstr "Hemkatalog"
 
 #: src/gtk/preferences-window.ui:334
-#, fuzzy
 msgid "Custom"
-msgstr "Anpassat kommando"
+msgstr "Anpassat"
 
 #: src/gtk/preferences-window.ui:343
-#, fuzzy
 msgid "Custom Working Directory"
-msgstr "Ställ in aktuell arbetskatalog"
+msgstr "Anpassat arbetskatalog"
 
 #: src/gtk/preferences-window.ui:360
 msgid "Set to user's home"
-msgstr ""
+msgstr "Ange som användarens hemkatalog"
 
 #: src/gtk/preferences-window.ui:372
 msgid "Scrolling"
@@ -531,15 +532,15 @@ msgstr "Använd överläggsrullning"
 
 #: src/gtk/preferences-window.ui:408
 msgid "Fixed Size"
-msgstr ""
+msgstr "Fast storlek"
 
 #: src/gtk/preferences-window.ui:409
 msgid "Unlimited"
-msgstr ""
+msgstr "Obegränsad"
 
 #: src/gtk/preferences-window.ui:410 src/widgets/ShortcutEditor.vala:106
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 #: src/gtk/preferences-window.ui:419
 msgid "Scrollback Lines"
@@ -563,37 +564,38 @@ msgstr "Anpassat kommando"
 
 #: src/gtk/preferences-window.ui:476
 msgid "Notification on Completed Task"
-msgstr ""
+msgstr "Meddela när uppgiften slutförs"
 
 #: src/gtk/preferences-window.ui:477
+#, fuzzy
 msgid ""
 "Send a desktop notification when a command is completed on an unfocussed tab."
-msgstr ""
+msgstr "Skicka en avisering när ett kommando slutförs på en ofokuserad flik."
 
 #: src/gtk/preferences-window.ui:490
 msgid "Appearance"
-msgstr ""
+msgstr "Utseende"
 
 #: src/gtk/preferences-window.ui:493
 msgid "Application Style"
-msgstr ""
+msgstr "Applikations utseende"
 
 #: src/gtk/preferences-window.ui:498
-#, fuzzy
 msgid "Light"
-msgstr "Höjd"
+msgstr "Ljust"
 
 #: src/gtk/preferences-window.ui:499
 msgid "Dark"
-msgstr ""
+msgstr "Mörkt"
 
 #: src/gtk/preferences-window.ui:508
 msgid "Theme Integration"
 msgstr "Temaintegration"
 
 #: src/gtk/preferences-window.ui:509
+#, fuzzy
 msgid "Paint the whole app with colors from your colorscheme."
-msgstr ""
+msgstr "Måla hela appen med färger från ditt färgschema."
 
 #: src/gtk/preferences-window.ui:523
 msgid "Theme"
@@ -604,9 +606,8 @@ msgid "Set your preferred theme for light and dark styles."
 msgstr "Ställ in ditt föredragna tema för ljusa och mörka stilar."
 
 #: src/gtk/preferences-window.ui:536
-#, fuzzy
 msgid "Open themes folder"
-msgstr "Öppna mapp"
+msgstr "Öppna temakatalog"
 
 #: src/gtk/preferences-window.ui:544
 msgid "Get more themes online"
@@ -643,23 +644,23 @@ msgid "Experimental"
 msgstr "Experimentell"
 
 #: src/gtk/preferences-window.ui:626
-#, fuzzy
 msgid ""
 "Features in this section are known to be unstable. Please feel free to test "
 "and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
 "issues\">report bugs</a>."
 msgstr ""
-"Funktioner i det här avsnittet är kända för att inte riktigt fungera som dom "
-"ska. Testa och <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
-"issues\">rapportera buggar</a>."
+"Funktioner i det här avsnittet är kända för att inte fungera som de ska. Du "
+"är välkommen att testa och <a href=\"https://gitlab.gnome.org/raggesilver/"
+"blackbox/-/issues\">rapportera buggar</a>."
 
 #: src/gtk/preferences-window.ui:630
+#, fuzzy
 msgid "Sixel Support"
-msgstr ""
+msgstr "Sixelstöd"
 
 #: src/gtk/preferences-window.ui:631
 msgid "Render sixel escape sequences."
-msgstr ""
+msgstr "Rendera sixel-flyktsekvenser."
 
 #: src/gtk/preferences-window.ui:645
 msgid ""
@@ -669,6 +670,11 @@ msgid ""
 "feature. <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
 "issues/273\">See discussion in issue tracker.</a>"
 msgstr ""
+"VTE-versionen som du använder stöder inte Sixel. Sixel är fortfarande en "
+"experimentell funktion i VTE. På grund av detta, de flesta distroer bygger "
+"inte VTE med Sixelstöd. För att fixa detta kan man installera Black Box "
+"genom Flatpak. <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues/273\">Visa diskussionen om detta på felspåraren.</a>"
 
 #: src/gtk/preferences-window.ui:655
 msgid "Danger Zone"
@@ -692,7 +698,7 @@ msgstr "Återställ inställningar"
 
 #: src/gtk/terminal-menu.ui:20
 msgid "Open Link"
-msgstr ""
+msgstr "Öppna länk"
 
 #: src/gtk/terminal-menu.ui:28 src/gtk/header-bar.ui:58
 #: src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
@@ -710,9 +716,8 @@ msgid "Copy"
 msgstr "Kopiera"
 
 #: src/gtk/terminal-menu.ui:59
-#, fuzzy
 msgid "Copy Link"
-msgstr "Kopiera"
+msgstr "Kopiera länk"
 
 #: src/gtk/terminal-menu.ui:64 src/widgets/ShortcutEditor.vala:139
 msgid "Paste"
@@ -725,14 +730,12 @@ msgstr "Inställningar"
 
 #: src/gtk/terminal-menu.ui:78 src/gtk/header-bar.ui:78
 #: src/widgets/ShortcutEditor.vala:142
-#, fuzzy
 msgid "Keyboard Shortcuts"
-msgstr "Visa genvägar"
+msgstr "Tangentbordsgenvägar"
 
 #: src/gtk/terminal-menu.ui:82 src/gtk/header-bar.ui:82
-#, fuzzy
 msgid "About Black Box"
-msgstr "Black Box"
+msgstr "Om Black Box"
 
 #: src/gtk/help-overlay.ui:10
 msgctxt "shortcut window"
@@ -757,7 +760,7 @@ msgstr "Stäng flik"
 #: src/gtk/help-overlay.ui:31
 msgctxt "shortcut window"
 msgid "Rename tab"
-msgstr ""
+msgstr "Byt flikens namn"
 
 #: src/gtk/help-overlay.ui:37
 msgctxt "shortcut window"
@@ -802,7 +805,7 @@ msgstr "Zooma ut"
 #: src/gtk/help-overlay.ui:84
 msgctxt "shortcut window"
 msgid "Reset zoom"
-msgstr ""
+msgstr "Återställa zoom"
 
 #: src/gtk/help-overlay.ui:92
 msgctxt "shortcut window"
@@ -820,58 +823,49 @@ msgid "Focus previous tab"
 msgstr "Fokusera på föregående flik"
 
 #: src/gtk/help-overlay.ui:107
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 1"
-msgstr "Byt till flik"
+msgstr "Byt till flik 1"
 
 #: src/gtk/help-overlay.ui:113
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 2"
-msgstr "Byt till flik"
+msgstr "Byt till flik 2"
 
 #: src/gtk/help-overlay.ui:119
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 3"
-msgstr "Byt till flik"
+msgstr "Byt till flik 3"
 
 #: src/gtk/help-overlay.ui:125
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 4"
-msgstr "Byt till flik"
+msgstr "Byt till flik 4"
 
 #: src/gtk/help-overlay.ui:131
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 5"
-msgstr "Byt till flik"
+msgstr "Byt till flik 5"
 
 #: src/gtk/help-overlay.ui:137
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 6"
-msgstr "Byt till flik"
+msgstr "Byt till flik 6"
 
 #: src/gtk/help-overlay.ui:143
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 7"
-msgstr "Byt till flik"
+msgstr "Byt till flik 7"
 
 #: src/gtk/help-overlay.ui:149
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 8"
-msgstr "Byt till flik"
+msgstr "Byt till flik 8"
 
 #: src/gtk/help-overlay.ui:155
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Switch to Tab 9"
-msgstr "Byt till flik"
+msgstr "Byt till flik 9"
 
 #: src/gtk/help-overlay.ui:161
 msgctxt "shortcut window"
@@ -889,28 +883,28 @@ msgid "Show Shortcuts"
 msgstr "Visa genvägar"
 
 #: src/gtk/help-overlay.ui:178
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Edit Preferences"
-msgstr "Inställningar"
+msgstr "Redigera inställningar"
 
 #: src/gtk/tab-menu.ui:9
+#, fuzzy
 msgid "Move Tab Left"
-msgstr ""
+msgstr "Flytta fliken till vänster"
 
 #: src/gtk/tab-menu.ui:14
+#, fuzzy
 msgid "Move Tab Right"
-msgstr ""
+msgstr "Flytta fliken till höger"
 
 #: src/gtk/tab-menu.ui:21 src/widgets/ShortcutEditor.vala:147
 #: src/widgets/Window.vala:607
 msgid "Rename Tab"
-msgstr ""
+msgstr "Byt flikens namn"
 
 #: src/gtk/tab-menu.ui:25
-#, fuzzy
 msgid "Move Tab to New Window"
-msgstr "Nytt fönster"
+msgstr "Flytta fliken till en ny fönster"
 
 #: src/gtk/tab-menu.ui:32 src/widgets/ShortcutEditor.vala:146
 #, fuzzy
@@ -919,55 +913,57 @@ msgstr "Stäng flik"
 
 #: src/gtk/header-bar.ui:23
 msgid "Remote Access"
-msgstr ""
+msgstr "Fjärråtkomst"
 
 #: src/gtk/header-bar.ui:25
 msgid "SSH Connections"
-msgstr ""
+msgstr "SSH-anslutningar"
 
 #: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
 msgid "New Connection"
-msgstr ""
+msgstr "Ny anslutning"
 
 #: src/gtk/header-bar.ui:41
 msgid "SFTP Servers"
-msgstr ""
+msgstr "SFTP-servrar"
 
 #: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:141
 msgid "Fullscreen"
 msgstr "Helskärmsläge"
 
 #: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
-#, fuzzy
 msgid "Exit Fullscreen"
-msgstr "Helskärmsläge"
+msgstr "Lämna helskärmsläge"
 
 #: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
 msgid "Menu"
 msgstr "Meny"
 
 #: src/gtk/style-switcher.ui:17
+#, fuzzy
 msgid "Use System Colors"
-msgstr ""
+msgstr "Använda systemsfärger"
 
 #: src/gtk/style-switcher.ui:46
+#, fuzzy
 msgid "Use Light Colors"
-msgstr ""
+msgstr "Använda ljusa färger"
 
 #: src/gtk/style-switcher.ui:74
+#, fuzzy
 msgid "Use Dark Colors"
-msgstr ""
+msgstr "Använda mörka färger"
 
 #: src/services/Shortcuts.vala:321
 msgid "Replace keybinding?"
-msgstr ""
+msgstr "Ersätta tangentbindning?"
 
 #. FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
 #. with the user-friendly action name.
 #: src/services/Shortcuts.vala:324
-#, c-format
+#, c-format, fuzzy
 msgid "%s is already assigned to %s"
-msgstr ""
+msgstr "%s är redan tilldelat till %s"
 
 #: src/utils/Constants.vala:34
 msgid "You can still access the menu by right-clicking any terminal."
@@ -994,118 +990,113 @@ msgstr ""
 
 #: src/utils/Dialogs.vala:35
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: src/utils/Dialogs.vala:35
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/utils/Dialogs.vala:36
 msgid "OK"
-msgstr ""
+msgstr "Okej"
 
 #: src/utils/Dialogs.vala:37
 msgid "Keep"
-msgstr ""
+msgstr "Behålla"
 
 #: src/utils/Dialogs.vala:37
 msgid "Replace"
-msgstr ""
+msgstr "Ersätta"
 
 #: src/utils/Dialogs.vala:38
-#, fuzzy
 msgid "Close"
-msgstr "Stäng flik"
+msgstr "Stäng"
 
 #: src/utils/Dialogs.vala:120
-#, fuzzy
 msgid "Close Tab?"
-msgstr "Stäng flik"
+msgstr "Stäng flik?"
 
 #: src/utils/Dialogs.vala:121
-#, fuzzy
 msgid "Close Window?"
-msgstr "Nytt fönster"
+msgstr "Stänga fönster?"
 
 #: src/utils/Dialogs.vala:124
 msgid ""
 "Some commands are still running. Closing this tab will kill them and may "
 "lead to unexpected outcomes."
 msgstr ""
+"Vissa kommandon körs fortfarande. Om du stänger den här fliken avbryts "
+"kommandona, vilket kan leda till oväntade resultat."
 
 #: src/utils/Dialogs.vala:125
 msgid ""
 "Some commands are still running. Closing this window will kill them and may "
 "lead to unexpected outcomes."
 msgstr ""
+"Vissa kommandon körs fortfarande. Om du stänger det här fönstret avbryts "
+"kommandona, vilket kan leda till oväntade resultat."
 
 #: src/utils/Shortcuts.vala:32
 msgid "invalid keybinding"
-msgstr ""
+msgstr "ogiltig tangentbindning"
 
 #: src/widgets/AboutDialog.vala:73
 msgid "Donate"
-msgstr ""
+msgstr "Donera"
 
 #: src/widgets/AboutDialog.vala:74
 msgid "Full Changelog"
-msgstr ""
+msgstr "Fullständig ändringslogg"
 
 #: src/widgets/PreferencesWindow.vala:571
 msgid "Terminal Font"
 msgstr "Terminal Teckensnitt"
 
 #: src/widgets/PreferencesWindow.vala:647
-#, fuzzy
 msgid "Reuse previous tab's directory."
-msgstr "Fokusera på föregående flik"
+msgstr "Använda tidigare fliks katalog."
 
 #: src/widgets/PreferencesWindow.vala:649
-#, fuzzy
 msgid "Use the current user's home as working directory."
-msgstr "Ställ in aktuell arbetskatalog"
+msgstr "Använda den aktuella användarens hemkatalog som arbetskatalog."
 
 #: src/widgets/PreferencesWindow.vala:651
-#, fuzzy
 msgid "Use a custom path as working directory."
-msgstr "Ställ in aktuell arbetskatalog"
+msgstr "Använda en anpassat katalog som arbetskatalog."
 
 #: src/widgets/ShortcutDialog.vala:46
 msgid "Enter new shortcut"
-msgstr ""
+msgstr "Ange ny genväg"
 
 #: src/widgets/ShortcutDialog.vala:47
 #, c-format
 msgid "Enter new shortcut for \"%s\""
-msgstr ""
+msgstr "Ange ny genväg för ”%s”"
 
 #: src/widgets/ShortcutEditor.vala:59
 msgid "Add Keybinding"
-msgstr ""
+msgstr "Lägg till tangentbindning"
 
 #: src/widgets/ShortcutEditor.vala:66
 msgid "Reset Keybindings"
-msgstr ""
+msgstr "Återställa tangentbindningar"
 
 #: src/widgets/ShortcutEditor.vala:81
 #, c-format
 msgid "Remove %s"
-msgstr ""
+msgstr "Radera %s"
 
 #: src/widgets/ShortcutEditor.vala:132
-#, fuzzy
 msgid "Focus Next Tab"
-msgstr "Fokusera på nästa flik"
+msgstr "Fokusera på den nästa fliken"
 
 #: src/widgets/ShortcutEditor.vala:133
-#, fuzzy
 msgid "Focus Previous Tab"
-msgstr "Fokusera på föregående flik"
+msgstr "Fokusera på den tidigare fliken"
 
 #: src/widgets/ShortcutEditor.vala:135
-#, fuzzy
 msgid "Toggle Header Bar"
-msgstr "Visa Fönsterlist"
+msgstr "Visa rubrikfältet"
 
 #: src/widgets/ShortcutEditor.vala:140
 #, fuzzy
@@ -1124,16 +1115,16 @@ msgstr "Zooma ut"
 
 #: src/widgets/ShortcutEditor.vala:145
 msgid "Reset Zoom"
-msgstr ""
+msgstr "Återställa zoom"
 
 #: src/widgets/ShortcutEditor.vala:149 src/widgets/ShortcutEditor.vala:150
 #: src/widgets/ShortcutEditor.vala:151 src/widgets/ShortcutEditor.vala:152
 #: src/widgets/ShortcutEditor.vala:153 src/widgets/ShortcutEditor.vala:154
 #: src/widgets/ShortcutEditor.vala:155 src/widgets/ShortcutEditor.vala:156
 #: src/widgets/ShortcutEditor.vala:157
-#, fuzzy, c-format
+#, c-format
 msgid "Switch to Tab %u"
-msgstr "Byt till flik"
+msgstr "Byt till flik %u"
 
 #: src/widgets/ShortcutEditor.vala:158
 #, fuzzy
@@ -1141,43 +1132,44 @@ msgid "Switch to Last Tab"
 msgstr "Byt till sista flik"
 
 #: src/widgets/ShortcutEditor.vala:242
-#, fuzzy
 msgid "Reset all Shortcuts?"
-msgstr "Visa genvägar"
+msgstr "Återställa alla genvägar?"
 
 #: src/widgets/ShortcutEditor.vala:243
 msgid ""
 "This will reset all shortcuts to default and overwrite your config file. "
 "This action is irreversible."
 msgstr ""
+"Detta kommer att återställa alla genvägar till deras standarder och skriva "
+"över din konfigurationsfil. Denna åtgärd kan inte ångras."
 
 #: src/widgets/TerminalTab.vala:57
 msgid "tab"
-msgstr ""
+msgstr "flik"
 
 #: src/widgets/TerminalTab.vala:107
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: src/widgets/Window.vala:608
 msgid "Set a custom title for this tab"
-msgstr ""
+msgstr "Ge ett anpassat namn till denna flik"
 
 #: src/widgets/Window.vala:611
 msgid "Enter a custom tab title"
-msgstr ""
+msgstr "Ange ett anpassat fliknamn"
 
 #: src/widgets/Window.vala:618
 msgid "Reset Title"
-msgstr ""
+msgstr "Återställa fliknamn"
 
 #: src/widgets/Window.vala:619
 msgid "Set Title"
-msgstr ""
+msgstr "Ange namn"
 
 #: src/widgets/Terminal.vala:500
 msgid "Command completed"
-msgstr ""
+msgstr "Kommandot slutfört"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
