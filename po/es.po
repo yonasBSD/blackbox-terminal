@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-29 03:28-0300\n"
-"PO-Revision-Date: 2022-08-09 11:31+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-11-10 11:35+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/blackbox/"
+"blackbox/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -50,7 +51,7 @@ msgstr "Si la ventana debe heredar los colores del tema del terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Terminal window background opacity"
-msgstr ""
+msgstr "Opacidad del fondo de la ventana del terminal"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether or not tabs should expand to fill tab bar"
@@ -65,15 +66,16 @@ msgid ""
 "If enabled, the header bar will be colored differently for root and ssh "
 "contexts"
 msgstr ""
+"Si se activa, la barra de encabezado se coloreará de forma diferente para "
+"los contextos root y ssh"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether or not to display a menu button in the headerbar"
 msgstr "Mostrar o no un botón de menú en la barra de encabezado"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:52
-#, fuzzy
 msgid "Whether or not to reserve an area for dragging the header bar"
-msgstr "Mostrar o no un botón de menú en la barra de encabezado"
+msgstr "Reservar o no un área para arrastrar la barra de la cabecera"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:56
 msgid "Whether or not to show scrollbars"
@@ -89,17 +91,14 @@ msgstr ""
 "Si se activa, los terminales se desplazarán por píxeles en lugar de por filas"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
-#, fuzzy
 msgid "If enabled, terminals will render sixel escape sequences"
-msgstr ""
-"Si se activa, los terminales se desplazarán por píxeles en lugar de por filas"
+msgstr "Si se activa, los terminales mostrarán las secuencias de escape sixel"
 
 #. 0 = Fixed size, 1 = Unlimited, 2 = Disabled
 #: data/com.raggesilver.BlackBox.gschema.xml:73
 #: src/gtk/preferences-window.ui:404
-#, fuzzy
 msgid "Scrollback mode"
-msgstr "Líneas de retroceso"
+msgstr "Modo de retroceso"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:77
 msgid "Number of lines stored in scrollback"
@@ -137,7 +136,7 @@ msgstr "Preferencia de estilo"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:106
 msgid "Show bold text in bright colors"
-msgstr ""
+msgstr "Mostrar el texto en negrita con colores vivos"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:110
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"

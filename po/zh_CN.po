@@ -9,13 +9,16 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-29 03:28-0300\n"
-"PO-Revision-Date: 2022-06-28 10:30+0800\n"
-"Last-Translator: Luo Yi <langisme@qq.com>\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-10-16 04:19+0000\n"
+"Last-Translator: LiYulin <liyulin.self@foxmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"blackbox/blackbox/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -47,7 +50,7 @@ msgstr "是否将终端主题的配色集成到应用窗口"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Terminal window background opacity"
-msgstr ""
+msgstr "终端窗口背景不透明度"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether or not tabs should expand to fill tab bar"
