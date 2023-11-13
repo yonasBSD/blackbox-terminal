@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Black Box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-29 03:28-0300\n"
-"PO-Revision-Date: 2023-10-09 11:01+0000\n"
-"Last-Translator: sköldpadda <weblate@turtle.garden>\n"
+"PO-Revision-Date: 2023-10-19 04:11+0000\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/blackbox/"
 "blackbox/sv/>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.1\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -48,7 +48,7 @@ msgstr "Om fönstret ska ärva terminaltemats färger"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:32
 msgid "Terminal window background opacity"
-msgstr ""
+msgstr "Terminalfönstrets bakgrundsopacitet"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:36
 msgid "Whether or not tabs should expand to fill tab bar"
@@ -63,6 +63,8 @@ msgid ""
 "If enabled, the header bar will be colored differently for root and ssh "
 "contexts"
 msgstr ""
+"Om det är aktiverat kommer rubrikfältet att färgas olika för root och ssh-"
+"kontext"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:48
 msgid "Whether or not to display a menu button in the headerbar"
@@ -86,17 +88,14 @@ msgstr ""
 "Om det är aktiverat rullar terminalerna efter pixlar istället för rader"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:68
-#, fuzzy
 msgid "If enabled, terminals will render sixel escape sequences"
-msgstr ""
-"Om det är aktiverat rullar terminalerna efter pixlar istället för rader"
+msgstr "Om aktiverat kommer terminaler att återge sexel escape-sekvenser"
 
 #. 0 = Fixed size, 1 = Unlimited, 2 = Disabled
 #: data/com.raggesilver.BlackBox.gschema.xml:73
 #: src/gtk/preferences-window.ui:404
-#, fuzzy
 msgid "Scrollback mode"
-msgstr "Rulla tillbaka rader"
+msgstr "Rulla tillbaka läge"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:77
 msgid "Number of lines stored in scrollback"
@@ -133,7 +132,7 @@ msgstr "Stil inställningar"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:106
 msgid "Show bold text in bright colors"
-msgstr ""
+msgstr "Visa fet text i ljusa färger"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:110
 msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
@@ -149,18 +148,16 @@ msgid "Terminal cell height"
 msgstr "Terminal cell höjd"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:122
-#, fuzzy
 msgid "Terminal bell"
-msgstr "Terminal"
+msgstr "Terminal bjällra"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:126
 msgid "Cursor shape"
 msgstr "Markör form"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:130
-#, fuzzy
 msgid "Whether or not the cursor should blink"
-msgstr "Om rullningslister ska visas eller inte"
+msgstr "Huruvida markören ska blinka eller inte"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:134
 msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
@@ -184,16 +181,16 @@ msgstr "Anpassat kommando att använda istället för användarens skal"
 msgid ""
 "Send a desktop notification when a process is completed on an unfocussed tab"
 msgstr ""
+"Skicka ett skrivbordsmeddelande när en process är klar på en ofokuserad flik"
 
 #. 0 = Previous terminal CWD, 1 = Home Directory, 2 = Custom
 #: data/com.raggesilver.BlackBox.gschema.xml:155
-#, fuzzy
 msgid "Working directory mode"
-msgstr "Ställ in aktuell arbetskatalog"
+msgstr "Arbetskatalog läge"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:159
 msgid "Custom working directory for new terminals"
-msgstr ""
+msgstr "Anpassad arbetskatalog för nya terminaler"
 
 #: data/com.raggesilver.BlackBox.gschema.xml:167
 msgid ""
@@ -214,7 +211,6 @@ msgid "Whether search should be performed using regular expressions"
 msgstr "Om sökning ska utföras med reguljära uttryck"
 
 #: src/gtk/shortcut-dialog.ui:6
-#, fuzzy
 msgid "Edit Shortcut"
 msgstr "Redigera genväg"
 
@@ -228,7 +224,6 @@ msgid "Apply"
 msgstr "Verkställ"
 
 #: src/gtk/shortcut-dialog.ui:68
-#, fuzzy
 msgid "This shortcut is already in use"
 msgstr "Denna genväg används redan"
 
@@ -246,9 +241,8 @@ msgid "Shortcuts"
 msgstr "Genvägar"
 
 #: src/gtk/shortcut-editor.ui:29
-#, fuzzy
 msgid "Reset All Shortcuts"
-msgstr "Återställ genvägar"
+msgstr "Återställ alla genvägar"
 
 #: src/gtk/shortcut-editor.ui:30
 msgid ""
@@ -279,7 +273,6 @@ msgid "Search wraps around"
 msgstr "Sökning sträcker sig runt"
 
 #: src/gtk/search-toolbar.ui:94
-#, fuzzy
 msgid "Match is case sensitive"
 msgstr "Matchning är skiftlägeskänslig"
 
@@ -405,12 +398,10 @@ msgid "Height"
 msgstr "Höjd"
 
 #: src/gtk/preferences-window.ui:207
-#, fuzzy
 msgid "Bright Bold Text"
 msgstr "Ljus fet text"
 
 #: src/gtk/preferences-window.ui:208
-#, fuzzy
 msgid "Use bright colors for bold text."
 msgstr "Använda ljusa färg för fet text."
 
@@ -427,11 +418,10 @@ msgid "Audible Bell"
 msgstr "Hörbar ljudsignal"
 
 #: src/gtk/preferences-window.ui:237
-#, fuzzy
 msgid "If enabled, terminals might use an audible bell to indicate events."
 msgstr ""
-"Om det är aktiverat kommer terminaler kanske att använda en hörbar "
-"ljudsignal för att indikera händelser."
+"Om det är aktiverat kommer terminaler kanske att använda en hörbar bjällra "
+"för att indikera händelser."
 
 #: src/gtk/preferences-window.ui:250
 msgid "Cursor"
@@ -482,7 +472,6 @@ msgid "Padding"
 msgstr "Platta"
 
 #: src/gtk/preferences-window.ui:300
-#, fuzzy
 msgid "Opacity"
 msgstr "Opacitet"
 
@@ -567,10 +556,11 @@ msgid "Notification on Completed Task"
 msgstr "Meddela när uppgiften slutförs"
 
 #: src/gtk/preferences-window.ui:477
-#, fuzzy
 msgid ""
 "Send a desktop notification when a command is completed on an unfocussed tab."
-msgstr "Skicka en avisering när ett kommando slutförs på en ofokuserad flik."
+msgstr ""
+"Skicka en skrivbordsavisering när ett kommando slutförs på en ofokuserad "
+"flik."
 
 #: src/gtk/preferences-window.ui:490
 msgid "Appearance"
@@ -593,9 +583,8 @@ msgid "Theme Integration"
 msgstr "Temaintegration"
 
 #: src/gtk/preferences-window.ui:509
-#, fuzzy
 msgid "Paint the whole app with colors from your colorscheme."
-msgstr "Måla hela appen med färger från ditt färgschema."
+msgstr "Måla hela programmet med färger från ditt färgschema."
 
 #: src/gtk/preferences-window.ui:523
 msgid "Theme"
@@ -654,7 +643,6 @@ msgstr ""
 "blackbox/-/issues\">rapportera buggar</a>."
 
 #: src/gtk/preferences-window.ui:630
-#, fuzzy
 msgid "Sixel Support"
 msgstr "Sixelstöd"
 
@@ -888,14 +876,12 @@ msgid "Edit Preferences"
 msgstr "Redigera inställningar"
 
 #: src/gtk/tab-menu.ui:9
-#, fuzzy
 msgid "Move Tab Left"
-msgstr "Flytta fliken till vänster"
+msgstr "Flytta flik till vänster"
 
 #: src/gtk/tab-menu.ui:14
-#, fuzzy
 msgid "Move Tab Right"
-msgstr "Flytta fliken till höger"
+msgstr "Flytta flik till höger"
 
 #: src/gtk/tab-menu.ui:21 src/widgets/ShortcutEditor.vala:147
 #: src/widgets/Window.vala:607
@@ -907,7 +893,6 @@ msgid "Move Tab to New Window"
 msgstr "Flytta fliken till en ny fönster"
 
 #: src/gtk/tab-menu.ui:32 src/widgets/ShortcutEditor.vala:146
-#, fuzzy
 msgid "Close Tab"
 msgstr "Stäng flik"
 
@@ -940,19 +925,16 @@ msgid "Menu"
 msgstr "Meny"
 
 #: src/gtk/style-switcher.ui:17
-#, fuzzy
 msgid "Use System Colors"
-msgstr "Använda systemsfärger"
+msgstr "Använd systemets färger"
 
 #: src/gtk/style-switcher.ui:46
-#, fuzzy
 msgid "Use Light Colors"
-msgstr "Använda ljusa färger"
+msgstr "Använd ljusa färger"
 
 #: src/gtk/style-switcher.ui:74
-#, fuzzy
 msgid "Use Dark Colors"
-msgstr "Använda mörka färger"
+msgstr "Använd mörka färger"
 
 #: src/services/Shortcuts.vala:321
 msgid "Replace keybinding?"
@@ -961,7 +943,7 @@ msgstr "Ersätta tangentbindning?"
 #. FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
 #. with the user-friendly action name.
 #: src/services/Shortcuts.vala:324
-#, c-format, fuzzy
+#, c-format
 msgid "%s is already assigned to %s"
 msgstr "%s är redan tilldelat till %s"
 
@@ -987,6 +969,8 @@ msgid ""
 "Warning: unlimited scrollback saves content to disk, which may cause your "
 "system to run out of storage."
 msgstr ""
+"Varning: obegränsad tillbaka rullning sparar innehåll på disken, vilket kan "
+"göra att ditt system får slut på lagringsutrymme."
 
 #: src/utils/Dialogs.vala:35
 msgid "No"
@@ -1099,17 +1083,14 @@ msgid "Toggle Header Bar"
 msgstr "Visa rubrikfältet"
 
 #: src/widgets/ShortcutEditor.vala:140
-#, fuzzy
 msgid "Search"
 msgstr "Sök"
 
 #: src/widgets/ShortcutEditor.vala:143
-#, fuzzy
 msgid "Zoom In"
 msgstr "Zooma in"
 
 #: src/widgets/ShortcutEditor.vala:144
-#, fuzzy
 msgid "Zoom Out"
 msgstr "Zooma ut"
 
@@ -1127,7 +1108,6 @@ msgid "Switch to Tab %u"
 msgstr "Byt till flik %u"
 
 #: src/widgets/ShortcutEditor.vala:158
-#, fuzzy
 msgid "Switch to Last Tab"
 msgstr "Byt till sista flik"
 
