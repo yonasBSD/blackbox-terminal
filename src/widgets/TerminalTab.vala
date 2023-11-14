@@ -159,7 +159,11 @@ public class Terminal.TerminalTab : Gtk.Box {
   }
 
   public void show_menu (int n_pressed, double x, double y) {
-    this.terminal.window.link = this.terminal.check_match_at (x, y, null);
+    if (this.terminal.hyperlink_hover_uri != null) {
+      this.terminal.window.link = this.terminal.hyperlink_hover_uri;
+    } else {
+      this.terminal.window.link = this.terminal.check_match_at (x, y, null);
+    }
 
     var builder = new Gtk.Builder.from_resource ("/com/raggesilver/BlackBox/gtk/terminal-menu.ui");
     var pop = builder.get_object ("popover") as Gtk.PopoverMenu;

@@ -347,7 +347,7 @@ public class Terminal.Terminal : Vte.Terminal {
     };
     left_click_controller.pressed.connect ((gesture, n_clicked, x, y) => {
       var event = gesture.get_current_event ();
-      var pattern = this.check_match_at (x, y, null);
+      var pattern = this.check_match_at (x, y, null) ?? this.hyperlink_hover_uri;
 
       if (
         (event.get_modifier_state () & Gdk.ModifierType.CONTROL_MASK) == 0 ||
@@ -356,8 +356,12 @@ public class Terminal.Terminal : Vte.Terminal {
         return;
       }
 
-
-      new Gtk.UriLauncher (pattern).launch.begin (this.window, null);
+      try {
+        GLib.AppInfo.launch_default_for_uri (pattern, null);
+      }
+      catch (Error e) {
+        warning ("Failed to open link %s", e.message);
+      }
     });
     this.add_controller (left_click_controller);
 
