@@ -10,7 +10,7 @@ namespace Terminal.Constants {
   const string PATHCHARS_CLASS = "[-[:alnum:]\\Q_$.+!*,;:@&=?/~#%\\E]";
   const string PATHTERM_CLASS = "[^\\Q]'.}>) \t\r\n,\"\\E]";
   const string SCHEME =
-    "(?:news:|telnet:|nntp:|file:\\/|https?:|ftps?:|sftp:|webcal:" +
+    "(?:news:|telnet:|nntp:|file:|https?:|ftps?:|sftp:|webcal:" +
     "|irc:|sftp:|ldaps?:|nfs:|smb:|rsync:|ssh:|rlogin:|telnet:|git:" +
     "|git\\+ssh:|bzr:|bzr\\+ssh:|svn:|svn\\+ssh:|hg:|mailto:|magnet:)";
 

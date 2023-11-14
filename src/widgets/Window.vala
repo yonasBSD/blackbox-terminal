@@ -712,7 +712,12 @@ public class Terminal.Window : Adw.ApplicationWindow {
   private void on_open_link () {
     if (this.link == null) return;
 
-    new Gtk.UriLauncher (this.link).launch.begin (this, null);
+    try {
+      GLib.AppInfo.launch_default_for_uri (this.link, null);
+    }
+    catch (Error e) {
+      warning ("Failed to open link %s", e.message);
+    }
   }
 
   private void on_copy_link () {
