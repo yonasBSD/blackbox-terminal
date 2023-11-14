@@ -178,6 +178,8 @@ public class Terminal.TerminalTab : Gtk.Box {
 
     pop.closed.connect_after (() => {
       pop.destroy ();
+      // refocus terminal after closing context menu, otherwise the focus will go on the header buttons
+      this.terminal.grab_focus ();
     });
 
     pop.set_parent (this);
