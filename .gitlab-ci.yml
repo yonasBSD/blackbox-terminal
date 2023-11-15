@@ -5,7 +5,7 @@ variables:
 
 flatpak:
   extends: .flatpak
-  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-44"
+  image: "quay.io/gnome_infrastructure/gnome-runtime-images:gnome-45"
   timeout: 90m
   variables:
     GIT_SUBMODULE_STRATEGY: normal

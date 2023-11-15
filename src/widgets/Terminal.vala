@@ -146,7 +146,7 @@ public class Terminal.Terminal : Vte.Terminal {
       typeof (string),
     });
 
-    target.on_drop.connect (this.on_drag_data_received);
+    target.drop.connect (this.on_drag_data_received);
 
     this.add_controller (target);
   }

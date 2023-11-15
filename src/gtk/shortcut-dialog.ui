@@ -8,10 +8,9 @@
     <property name="destroy-with-parent">true</property>
     <property name="resizable">false</property>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+      <object class="AdwToolbarView">
         <!-- Header Bar -->
-        <child>
+        <child type="top">
           <object class="AdwHeaderBar">
             <property name="show-start-title-buttons">false</property>
             <property name="show-end-title-buttons">false</property>
@@ -38,8 +37,9 @@
           </object>
         </child>
 
+        <property name="top-bar-style">raised</property>
         <!-- Body -->
-        <child>
+        <property name="content">
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <property name="margin-top">12</property>
@@ -89,7 +89,7 @@
               </object>
             </child>
           </object>
-        </child>
+        </property>
 
       </object>
     </child>
