@@ -39,8 +39,8 @@ config_header = configure_file(
 
 blackbox_deps = [
   dependency('gio-2.0', version: '>= 2.50'),
-  dependency('gtk4', version: '>= 4.10.0'),
-  dependency('libadwaita-1', version: '>= 1.3'),
+  dependency('gtk4', version: '>= 4.12.0'),
+  dependency('libadwaita-1', version: '>= 1.4'),
   dependency('pqmarble', version: '>= 2'),
   dependency('vte-2.91-gtk4', version: '>= 0.69.0'),
   dependency('json-glib-1.0', version: '>= 1.4.4'),

@@ -30,7 +30,6 @@ bool light_themes_filter_func (Gtk.FlowBoxChild child) {
 
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/preferences-window.ui")]
 public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
-  [GtkChild] unowned Adw.ActionRow        use_sixel_action_row;
   [GtkChild] unowned Adw.ComboRow         cursor_shape_combo_row;
   [GtkChild] unowned Adw.ComboRow         cursor_blink_mode_combo_row;
   [GtkChild] unowned Adw.ComboRow         scrollback_mode_combo_row;
@@ -47,26 +46,26 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
   [GtkChild] unowned Gtk.FlowBox          preview_flow_box;
   [GtkChild] unowned Gtk.Label            font_label;
   [GtkChild] unowned Gtk.Label            no_sixel_support_label;
-  [GtkChild] unowned Gtk.SpinButton       custom_scrollback_spin_button;
-  [GtkChild] unowned Gtk.SpinButton       padding_spin_button;
-  [GtkChild] unowned Gtk.Switch           easy_copy_paste_switch;
-  [GtkChild] unowned Gtk.Switch           fill_tabs_switch;
-  [GtkChild] unowned Gtk.Switch           floating_controls_switch;
-  [GtkChild] unowned Gtk.Switch           use_sixel_switch;
-  [GtkChild] unowned Gtk.Switch           pretty_switch;
-  [GtkChild] unowned Gtk.Switch           bold_is_bright_switch;
-  [GtkChild] unowned Gtk.SpinButton       opacity_spin_button;
-  [GtkChild] unowned Gtk.Switch           remember_window_size_switch;
-  [GtkChild] unowned Gtk.Switch           run_command_as_login_switch;
-  [GtkChild] unowned Gtk.Switch           show_headerbar_switch;
-  [GtkChild] unowned Gtk.Switch           context_aware_header_bar_switch;
-  [GtkChild] unowned Gtk.Switch           show_menu_button_switch;
-  [GtkChild] unowned Gtk.Switch           show_scrollbars_switch;
-  [GtkChild] unowned Gtk.Switch           use_custom_shell_command_switch;
-  [GtkChild] unowned Gtk.Switch           use_overlay_scrolling_switch;
-  [GtkChild] unowned Gtk.Switch           drag_area_switch;
-  [GtkChild] unowned Gtk.Switch           terminal_bell_switch;
-  [GtkChild] unowned Gtk.Switch           notify_process_completion_switch;
+  [GtkChild] unowned Adw.SpinRow          custom_scrollback_spin_row;
+  [GtkChild] unowned Adw.SpinRow          padding_spin_row;
+  [GtkChild] unowned Adw.SwitchRow        easy_copy_paste_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        fill_tabs_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        floating_controls_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        use_sixel_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        pretty_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        bold_is_bright_switch_row;
+  [GtkChild] unowned Adw.SpinRow          opacity_spin_row;
+  [GtkChild] unowned Adw.SwitchRow        remember_window_size_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        run_command_as_login_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        show_headerbar_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        context_aware_header_bar_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        show_menu_button_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        show_scrollbars_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        use_custom_shell_command_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        use_overlay_scrolling_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        drag_area_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        terminal_bell_switch_row;
+  [GtkChild] unowned Adw.SwitchRow        notify_process_completion_switch_row;
   [GtkChild] unowned Gtk.ToggleButton     dark_theme_toggle;
   [GtkChild] unowned Gtk.ToggleButton     light_theme_toggle;
 
@@ -159,7 +158,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
       (Vte.get_feature_flags () & Vte.FeatureFlags.FLAG_SIXEL) != 0;
 
     // Only enable Sixel action row if VTE was built with Sixel support
-    this.use_sixel_action_row.sensitive = is_sixel_supported;
+    this.use_sixel_switch_row.sensitive = is_sixel_supported;
     this.no_sixel_support_label.visible = !is_sixel_supported;
 
     settings.schema.bind (
@@ -171,7 +170,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind (
       "command-as-login-shell",
-      this.run_command_as_login_switch,
+      this.run_command_as_login_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
@@ -192,35 +191,35 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind (
       "use-custom-command",
-      this.use_custom_shell_command_switch,
+      this.use_custom_shell_command_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind (
       "notify-process-completion",
-      this.notify_process_completion_switch,
+      this.notify_process_completion_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "pretty",
-      this.pretty_switch,
+      this.pretty_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "theme-bold-is-bright",
-      this.bold_is_bright_switch,
+      this.bold_is_bright_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind_with_mapping(
       "opacity",
-      this.opacity_spin_button,
+      this.opacity_spin_row,
       "value",
       SettingsBindFlags.DEFAULT,
       // From settings to spin button
@@ -238,77 +237,77 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind(
       "terminal-bell",
-      this.terminal_bell_switch,
+      this.terminal_bell_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "fill-tabs",
-      this.fill_tabs_switch,
+      this.fill_tabs_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "show-menu-button",
-      this.show_menu_button_switch,
+      this.show_menu_button_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "show-headerbar",
-      this.show_headerbar_switch,
+      this.show_headerbar_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "context-aware-header-bar",
-      this.context_aware_header_bar_switch,
+      this.context_aware_header_bar_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "headerbar-drag-area",
-      this.drag_area_switch,
+      this.drag_area_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind(
       "easy-copy-paste",
-      this.easy_copy_paste_switch,
+      this.easy_copy_paste_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind (
       "show-scrollbars",
-      this.show_scrollbars_switch,
+      this.show_scrollbars_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind (
       "use-overlay-scrolling",
-      this.use_overlay_scrolling_switch,
+      this.use_overlay_scrolling_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind (
       "scrollback-lines",
-      this.custom_scrollback_spin_button,
+      this.custom_scrollback_spin_row,
       "value",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind_with_mapping (
       "scrollback-lines",
-      this.custom_scrollback_spin_button,
+      this.custom_scrollback_spin_row,
       "value",
       GLib.SettingsBindFlags.DEFAULT,
       (to_value, settings_vari) => {
@@ -324,21 +323,21 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind (
       "use-sixel",
-      this.use_sixel_switch,
+      this.use_sixel_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind (
       "remember-window-size",
-      this.remember_window_size_switch,
+      this.remember_window_size_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
 
     settings.schema.bind_with_mapping (
       "terminal-padding",
-      this.padding_spin_button,
+      this.padding_spin_row,
       "value",
       SettingsBindFlags.DEFAULT,
       // From settings to spin button
@@ -441,7 +440,7 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
     settings.schema.bind (
       "floating-controls",
-      this.floating_controls_switch,
+      this.floating_controls_switch_row,
       "active",
       SettingsBindFlags.DEFAULT
     );
@@ -591,24 +590,18 @@ public class Terminal.PreferencesWindow : Adw.PreferencesWindow {
 
   [GtkCallback]
   private void on_reset_request () {
-    var d = new Gtk.MessageDialog (
+    var d = new Adw.MessageDialog (
       this,
-      Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-      Gtk.MessageType.QUESTION,
-      Gtk.ButtonsType.YES_NO,
-      "Are you sure you want to reset all settings?"
+      _("Reset Preferences"),
+      _("Are you sure you want to reset all settings?")
     );
 
-    var yes_button = d.get_widget_for_response (Gtk.ResponseType.YES);
-    yes_button?.add_css_class ("destructive-action");
-
-    var no_button = d.get_widget_for_response (Gtk.ResponseType.NO);
-    no_button?.add_css_class ("suggested-action");
-
-    d.set_default_response (Gtk.ResponseType.NO);
+    d.add_responses ("cancel", _("Cancel"), "reset", _("Reset Preferences"));
+    d.set_default_response ("cancel");
+    d.set_response_appearance ("reset", Adw.ResponseAppearance.DESTRUCTIVE);
 
     d.response.connect ((response) => {
-      if (response == Gtk.ResponseType.YES) {
+      if (response == "reset") {
         this.do_reset_preferences ();
       }
       d.destroy ();
