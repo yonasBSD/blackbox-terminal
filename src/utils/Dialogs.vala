@@ -65,8 +65,7 @@ namespace Terminal {
     string[] labels = confirm_type.get_labels ();
     string[] values = confirm_type.get_values ();
 
-    var d = new Adw.MessageDialog (
-      (GLib.Application.get_default () as Gtk.Application)?.get_active_window (),
+    var d = new Adw.AlertDialog (
       title,
       body
     ) {
@@ -86,7 +85,7 @@ namespace Terminal {
       callback ();
     });
 
-    d.show ();
+    d.present ((GLib.Application.get_default () as Gtk.Application)?.get_active_window ());
 
     yield;
 

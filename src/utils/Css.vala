@@ -35,4 +35,12 @@ namespace Terminal {
   public bool is_dark_style_active () {
     return Adw.StyleManager.get_default ().dark;
   }
+
+  public Gtk.CssProvider? get_css_provider_for_data(string data) {
+    var provider = new Gtk.CssProvider();
+
+    provider.load_from_string (data);
+
+    return provider;
+  }
 }

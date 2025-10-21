@@ -38,10 +38,7 @@ public struct Terminal.Padding {
   }
 
   public static Padding from_variant (Variant vari) {
-    return_val_if_fail (
-      vari.check_format_string ("(uuuu)", false),
-      Padding.zero ()
-    );
+    if (!vari.check_format_string ("(uuuu)", false)) return Padding.zero ();
 
     var iter = vari.iterator ();
     uint top = 0, right = 0, bottom = 0, left = 0;
@@ -94,6 +91,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public Terminal?      active_terminal       { get; private set; }
   public TerminalTab?   active_terminal_tab   { get; private set; default = null; }
   public string         active_terminal_title { get; private set; default = ""; }
+  public uint           id                    { get; private set; }
 
   // Terminal tabs set this to any link clicked by the user. The value is then
   // consumed by the open-link and copy-link actions.
@@ -112,6 +110,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
   uint          header_bar_waiting_floating_delay = 0;
   Gtk.Box       layout_box;
   Gtk.Overlay   overlay;
+  private static uint next_id = 0;
 
   weak Adw.TabPage? tab_menu_target = null;
 
@@ -134,6 +133,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   static PreferencesWindow? preferences_window = null;
 
   construct {
+    this.id = next_id;
+    next_id++;
     if (DEVEL) {
       this.add_css_class ("devel");
     }
@@ -201,6 +202,15 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private void connect_signals () {
+    this.bind_property (
+      "active-terminal-title",
+      this,
+      "title",
+      GLib.BindingFlags.SYNC_CREATE,
+      null,
+      null
+    );
+
     this.settings.schema.bind (
       "fill-tabs",
       this.tab_bar,
@@ -413,6 +423,11 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     settings.was_fullscreened = this.fullscreened;
     settings.was_maximized = this.maximized;
+
+    for (int i = 0; i < this.tab_view.n_pages; i++) {
+      var page = this.tab_view.get_nth_page (i);
+      (page.get_child () as TerminalTab)?.on_before_close ();
+    }
   }
 
   // This method is called when this window emits a "close_request" event. It
@@ -444,7 +459,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
   }
 
   private async void try_closing_tab (Adw.TabPage page) {
-    var terminal = (page.child as TerminalTab)?.terminal;
+    var tab = page.child as TerminalTab;
+    var terminal = tab?.terminal;
     bool can_close = true;
     string? command = null;
 
@@ -452,6 +468,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
       if (!(yield terminal.get_can_close (out command))) {
         can_close = yield confirm_closing ({ command });
       }
+    }
+
+    if (can_close) {
+      tab?.on_before_close ();
     }
 
     this.tab_view.close_page_finish (page, can_close);
@@ -493,14 +513,10 @@ public class Terminal.Window : Adw.ApplicationWindow {
     var sa = new SimpleAction ("edit_preferences", null);
     sa.activate.connect (() => {
       if (preferences_window == null) {
-        preferences_window = new PreferencesWindow (this);
-        preferences_window.close_request.connect (() => {
-          preferences_window = null;
-          return false;
-        });
+        preferences_window = new PreferencesWindow (this, this.application);
       }
 
-      preferences_window.present ();
+      preferences_window.present (this);
     });
     this.add_action (sa);
 
@@ -603,9 +619,8 @@ public class Terminal.Window : Adw.ApplicationWindow {
 
     if (target == null) return;
 
-    var d = new Adw.MessageDialog (this,
-                                   _("Rename Tab"),
-                                   _("Set a custom title for this tab"));
+    var d = new Adw.AlertDialog (_("Rename Tab"),
+                                 _("Set a custom title for this tab"));
 
     var entry = new Gtk.Entry () {
       placeholder_text = _("Enter a custom tab title"),
@@ -633,6 +648,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
     entry.activate.connect (() => {
       if (d.get_response_enabled ("override")) {
         d.response.emit ("override");
+        d.close ();
       }
     });
 
@@ -652,7 +668,7 @@ public class Terminal.Window : Adw.ApplicationWindow {
       d = null;
     });
 
-    d.present ();
+    d.present (this);
   }
 
   private void move_tab_left () {
@@ -736,6 +752,13 @@ public class Terminal.Window : Adw.ApplicationWindow {
   public void new_tab (string? command, string? cwd) {
     var tab = new TerminalTab (this, this.tab_view.n_pages + 1, command, cwd);
     var page = this.tab_view.add_page (tab, null);
+
+    tab.terminal.bind_property ("needs-attention",
+                                page,
+                                "needs-attention",
+                                GLib.BindingFlags.SYNC_CREATE,
+                                null,
+                                null);
 
     tab.bind_property ("title",
                        page,
@@ -894,6 +917,18 @@ public class Terminal.Window : Adw.ApplicationWindow {
     else {
       this.tab_view.set_selected_page (this.tab_view.get_nth_page (index - 1));
       return;
+    }
+  }
+
+  public void focus_tab_with_id (uint tab_id) {
+    for (int i = 0; i != this.tab_view.get_n_pages (); i++) {
+      var page = this.tab_view.get_nth_page (i);
+      var tab = page.get_child () as TerminalTab;
+      if (tab != null && tab.get_id () == tab_id) {
+        this.tab_view.set_selected_page (page);
+        this.present ();
+        return;
+      }
     }
   }
 }

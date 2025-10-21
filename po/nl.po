@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: blackbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-29 03:28-0300\n"
-"PO-Revision-Date: 2023-10-13 04:05+0000\n"
-"Last-Translator: Gert-dev <Gert-dev@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2024-03-17 11:01+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/blackbox/blackbox/"
 "nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/com.raggesilver.BlackBox.desktop.in:3
 msgid "Black Box"
@@ -1159,7 +1159,7 @@ msgstr "Commando afgerond"
 
 #: src/CommandLine.vala:47
 msgid "Show app version"
-msgstr "Toepassingsversie tonen"
+msgstr "App-versie tonen"
 
 #: src/CommandLine.vala:56
 msgid "Set current working directory"

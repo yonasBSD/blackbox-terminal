@@ -360,6 +360,7 @@ namespace Terminal {
 
   public string? get_process_cmdline (int pid) {
     try {
+#if BLACKBOX_IS_FLATPAK
       //  ps -p PID -o args --no-headers
       string? response = host_or_flatpak_spawn ({
         "ps",
@@ -369,8 +370,13 @@ namespace Terminal {
         "args",
         "--no-headers"
       });
-
       return response.strip ();
+#else /* BLACKBOX_IS_FLATPAK */
+      string response;
+      bool success = FileUtils.get_contents (@"/proc/$pid/cmdline", out response);
+      if (success)
+        return response.strip ();
+#endif
     }
     catch (GLib.Error e) {
       warning ("%s", e.message);
@@ -405,5 +411,19 @@ namespace Terminal {
 
     return (int) buf.st_uid;
 #endif
+  }
+
+  public bool check_pid_running (int pid) {
+    int status;
+#if BLACKBOX_IS_FLATPAK
+    host_or_flatpak_spawn ({
+      "ps", 
+      "-p", pid.to_string () 
+    }, out status);
+#else /* BLACKBOX_IS_FLATPAK */
+    status = Posix.kill (pid, 0);
+#endif
+
+    return (status == 0);
   }
 }

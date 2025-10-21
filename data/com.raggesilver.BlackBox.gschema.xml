@@ -105,6 +105,10 @@
       <default>false</default>
       <summary>Show bold text in bright colors</summary>
     </key>
+    <key name="terminal-hide-cursor-while-typing" type="b">
+      <default>false</default>
+      <summary>Hide cursor while typing</summary>
+    </key>
     <key name="terminal-padding" type="(uuuu)">
       <default>(0,0,0,0)</default>
       <summary>Amount of padding around terminal widgets (top, right, bottom, left)</summary>

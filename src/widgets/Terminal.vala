@@ -56,6 +56,13 @@ public class Terminal.Terminal : Vte.Terminal {
   public Scheme           scheme  { get; set; }
   public Pid              pid     { get; protected set; default = -1; }
   public Process?         process { get; protected set; default = null; }
+  public uint             id      { get; private set; }
+
+  public bool needs_attention {
+    get;
+    protected set;
+    default = false;
+  }
 
   public uint user_scrollback_lines {
     get {
@@ -76,6 +83,8 @@ public class Terminal.Terminal : Vte.Terminal {
   public  Window            window;
   private uint              original_scrollback_lines;
   private GLib.Cancellable? fp_spawn_host_command_callback_cancellable = null;
+  private static uint       next_id = 0;
+  private uint              attention_timer = 0;
 
   // FIXME: either get rid of this field, or stop creating a local copy of
   // settings every time we need to use it
@@ -87,6 +96,8 @@ public class Terminal.Terminal : Vte.Terminal {
       receives_default: true,
       scroll_unit_is_pixels: true
     );
+    this.id = next_id;
+    next_id++;
 
     this.original_scrollback_lines = this.scrollback_lines;
 
@@ -248,7 +259,7 @@ public class Terminal.Terminal : Vte.Terminal {
       this.padding_provider = null;
     }
 
-    this.padding_provider = PQMarble.get_css_provider_for_data(
+    this.padding_provider = get_css_provider_for_data(
       "vte-terminal { padding: %upx %upx %upx %upx; }".printf(
         pad.top,
         pad.right,
@@ -268,6 +279,13 @@ public class Terminal.Terminal : Vte.Terminal {
       "theme-bold-is-bright",
       this,
       "bold-is-bright",
+      SettingsBindFlags.DEFAULT
+    );
+
+    this.settings.schema.bind(
+      "terminal-hide-cursor-while-typing",
+      this,
+      "pointer-autohide",
       SettingsBindFlags.DEFAULT
     );
 
@@ -337,6 +355,15 @@ public class Terminal.Terminal : Vte.Terminal {
     );
   }
 
+  private string process_completed_notification_id () {
+    return "process-completed-%u-%u".printf (window.id, this.id);
+  }
+
+  private void on_attention_received () {
+     this.needs_attention = false;
+     this.withdraw_command_completed_notification ();
+  }
+
   private void connect_signals () {
     var kpcontroller = new Gtk.EventControllerKey ();
     kpcontroller.key_pressed.connect (this.on_key_pressed);
@@ -374,6 +401,19 @@ public class Terminal.Terminal : Vte.Terminal {
       .connect (() => {
         this.notify_property ("user-scrollback-lines");
       });
+
+    this.notify ["has-focus"].connect (() => {
+      if (this.attention_timer > 0) {
+        GLib.Source.remove (this.attention_timer);
+        this.attention_timer = 0;
+      }
+      if (this.has_focus) {
+        this.attention_timer = GLib.Timeout.add_once (2 * 1000, () => {
+          this.on_attention_received ();
+          this.attention_timer = 0;
+        });
+      }
+    });
   }
 
   private void spawn (string? command, string? cwd) throws Error {
@@ -497,29 +537,9 @@ public class Terminal.Terminal : Vte.Terminal {
     };
 
     this.process.foreground_task_finished.connect ((_process) => {
-      var desktop_notifications_enabled =
-        Settings.get_default ().notify_process_completion;
-
-      if (
-        desktop_notifications_enabled &&
-        !this.has_focus &&
-        _process.last_foreground_task_command != null
-      ) {
-        var n = new GLib.Notification (_("Command completed"));
-        n.set_body (_process.last_foreground_task_command);
-
-        // TODO: improve this notification system so that when a user clicks
-        // the notification, Black Box focuses the right terminal window and
-        // automatically focusses the tab that just completed.
-        //
-        // https://valadoc.org/gio-2.0/GLib.Notification.set_default_action.html
-        // https://valadoc.org/gio-2.0/GLib.Action.parse_detailed_name.html
-
-        this.window.application.send_notification (null, n);
-
-        // GNOME seems to be showing the same notification twice. I am sure we
-        // are not calling this twice. This may be an upstream bug.
-        GLib.Application.get_default ().send_notification (null, n);
+      if (!this.has_focus && _process.last_foreground_task_command != null) {
+        this.needs_attention = true;
+        this.send_command_completed_notification ();
       }
     });
 
@@ -601,6 +621,30 @@ public class Terminal.Terminal : Vte.Terminal {
 
   void on_host_command_exited (uint _pid, uint status) {
     this.child_exited ((int) status);
+  }
+
+  private void send_command_completed_notification () {
+    var desktop_notifications_enabled =
+      Settings.get_default ().notify_process_completion;
+
+    if (desktop_notifications_enabled) {
+      var n = new GLib.Notification (_("Command completed"));
+      n.set_body (_process.last_foreground_task_command);
+      n.set_default_action_and_target ("app.focus-tab",
+                                       "(uu)",
+                                       window.id,
+                                       this.id);
+      this.window.application.send_notification (
+        process_completed_notification_id (),
+        n
+      );
+    }
+  }
+
+  private void withdraw_command_completed_notification () {
+    this.window.application.withdraw_notification (
+      process_completed_notification_id ()
+    );
   }
 
   // Signal callbacks ==========================================================
@@ -748,4 +792,9 @@ public class Terminal.Terminal : Vte.Terminal {
 
     return null;
   }
+
+  public void on_before_close () {
+    this.withdraw_command_completed_notification ();
+  }
 }
+

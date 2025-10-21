@@ -1,0 +1,1177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the blackbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: blackbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-26 23:47-0300\n"
+"PO-Revision-Date: 2025-08-27 13:32+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/blackbox/"
+"blackbox/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.13\n"
+
+#: data/com.raggesilver.BlackBox.desktop.in:2
+msgid "Black Box"
+msgstr "Black Box"
+
+#: data/com.raggesilver.BlackBox.desktop.in:8
+msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
+msgstr ""
+"Terminal;terminal;shell;prompt;command;commandline;cmd;box;ターミナル;端末;シ"
+"ェル;プロンプト;コマンド;コマンドライン;ボックス;"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:6
+msgid "Window width"
+msgstr "ウィンドウの幅"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:10
+msgid "Window height"
+msgstr "ウィンドウの高さ"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:14
+msgid "Whether or not to remember window size"
+msgstr "ウィンドウサイズを保持するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:24
+msgid "Font family and size"
+msgstr "フォントファミリーとサイズ"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:28
+msgid "Whether the window should inherit terminal theme's colors"
+msgstr "端末のテーマカラーをウィンドウにも設定するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:32
+msgid "Terminal window background opacity"
+msgstr "端末ウィンドウの背景の透明度"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:36
+msgid "Whether or not tabs should expand to fill tab bar"
+msgstr "タブバー全域にタブを広げるかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:40
+msgid "Whether the headerbar should be shown or not"
+msgstr "ヘッダーバーを表示するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:44
+msgid ""
+"If enabled, the header bar will be colored differently for root and ssh "
+"contexts"
+msgstr "有効にすると、root 権限や SSH "
+"接続でコマンド実行時にヘッダーバーの色が変わります"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:48
+msgid "Whether or not to display a menu button in the headerbar"
+msgstr "ヘッダーバーにメニューボタンを表示するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:52
+msgid "Whether or not to reserve an area for dragging the header bar"
+msgstr "ヘッダーバーにドラッグ用の領域を確保するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:56
+msgid "Whether or not to show scrollbars"
+msgstr "スクロールバーを表示するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:60
+msgid "Whether overlay scrolling should be enabled"
+msgstr "スクロールバーを端末に重ねて表示するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:64
+msgid "If enabled, terminals will scroll by pixels instead of rows"
+msgstr "有効にすると、行単位ではなくピクセル単位で端末がスクロールします"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:68
+msgid "If enabled, terminals will render sixel escape sequences"
+msgstr "有効にすると、端末で Sixel エスケープシーケンスを描画できます"
+
+#. 0 = Fixed size, 1 = Unlimited, 2 = Disabled
+#: data/com.raggesilver.BlackBox.gschema.xml:73
+#: src/gtk/preferences-window.ui:308
+msgid "Scrollback mode"
+msgstr "スクロールバックモード"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:77
+msgid "Number of lines stored in scrollback"
+msgstr "スクロールバックに保存する行数"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:81
+msgid "If enabled, floating controls will be shown in headerless mode"
+msgstr "有効にすると、ヘッダーバー非表示モードでフローティングコントロールを表示でき"
+"ます"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:85
+msgid ""
+"Hoverable area (in pixels) at the top of the window to trigger floating "
+"controls"
+msgstr "ホバーでフローティングコントロールを表示するウィンドウ上部の領域 "
+"(ピクセル単位)"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:89
+msgid "Delay time before showing floating controls"
+msgstr "フローティングコントロールを表示するまでの遅延時間"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:93
+msgid "The light color scheme for the terminal"
+msgstr "端末用の明るいカラースキーム"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:97
+msgid "The dark color scheme for the terminal"
+msgstr "端末用の暗いカラースキーム"
+
+#. 0 = Follow system, 1 = Light Style, 2 = Dark Style
+#: data/com.raggesilver.BlackBox.gschema.xml:102
+msgid "Style preference"
+msgstr "スタイルの設定"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:106
+msgid "Show bold text in bright colors"
+msgstr "太字のテキストを明るい色で表示する"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:110
+msgid "Hide cursor while typing"
+msgstr "入力中はカーソルを非表示にします"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:114
+msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
+msgstr "端末ウィジェット周囲のパディングサイズ (上、右、下、左)"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:118
+msgid "Terminal cell width"
+msgstr "端末のセル幅"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:122
+msgid "Terminal cell height"
+msgstr "端末のセル高さ"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:126
+msgid "Terminal bell"
+msgstr "端末ベル"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:130
+msgid "Cursor shape"
+msgstr "カーソルの形状"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:134
+msgid "Whether or not the cursor should blink"
+msgstr "カーソルを点滅させるかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:138
+msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
+msgstr "有効にすると、Ctrl+C と Ctrl+V でコピー/ペーストできます"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:142
+msgid "Whether to spawn shell in login mode"
+msgstr "ログインシェルとして実行するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:146
+msgid "Whether to use a custom command instead of the user's shell"
+msgstr "ユーザーのシェルの変わりにカスタムコマンドを使用するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:150
+msgid "Custom command to use instead of the user's shell"
+msgstr "ユーザーのシェルの変わりに使用するカスタムコマンド"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:154
+msgid ""
+"Send a desktop notification when a process is completed on an unfocussed tab"
+msgstr "非アクティブタブのプロセス終了時にデスクトップ通知を表示する"
+
+#. 0 = Previous terminal CWD, 1 = Home Directory, 2 = Custom
+#: data/com.raggesilver.BlackBox.gschema.xml:159
+msgid "Working directory mode"
+msgstr "カレントディレクトリモード"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:163
+msgid "Custom working directory for new terminals"
+msgstr "新しい端末を開いた際のカレントディレクトリの指定"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:171
+msgid ""
+"Whether clicking next on the last search result should return to the first"
+msgstr "検索結果の最後で次へをクリックした際に、最初に戻るかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:175
+msgid "Whether search should be case sensitive"
+msgstr "大文字小文字を区別して検索するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:179
+msgid "Whether search should only match entire words"
+msgstr "完全一致で検索するかどうか"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:183
+msgid "Whether search should be performed using regular expressions"
+msgstr "正規表現を使用して検索するかどうか"
+
+#: src/gtk/shortcut-dialog.ui:6
+msgid "Edit Shortcut"
+msgstr "ショートカットを編集する"
+
+#: src/gtk/shortcut-dialog.ui:17 src/utils/Dialogs.vala:36
+#: src/utils/Dialogs.vala:38 src/widgets/PreferencesWindow.vala:606
+#: src/widgets/ShortcutEditor.vala:246 src/widgets/Window.vala:632
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: src/gtk/shortcut-dialog.ui:24
+msgid "Apply"
+msgstr "適用"
+
+#: src/gtk/shortcut-dialog.ui:65
+msgid "This shortcut is already in use"
+msgstr "このショートカットはすでに使用されています"
+
+#: src/gtk/shortcut-dialog.ui:78
+msgid "Press Escape to cancel or Backspace to disable shortcut"
+msgstr "Esc でキャンセル、Backspace でショートカットを無効化"
+
+#: src/gtk/shortcut-editor.ui:6
+msgid "Keyboard"
+msgstr "キーボード"
+
+#: src/gtk/shortcut-editor.ui:10
+msgid "Shortcuts"
+msgstr "ショートカット"
+
+#: src/gtk/shortcut-editor.ui:29
+msgid "Reset All Shortcuts"
+msgstr "すべてのショートカットをリセット"
+
+#: src/gtk/shortcut-editor.ui:30
+msgid ""
+"This will reset all shortcuts to their default keybindings and overwrite "
+"your config file."
+msgstr "すべてのショートカットをデフォルトのキーバインディングにリセットし、ユーザー"
+"の設定ファイルを上書きします。"
+
+#: src/gtk/shortcut-editor.ui:34
+msgid "Reset All"
+msgstr "すべてリセット"
+
+#: src/gtk/search-toolbar.ui:20
+msgid "Find"
+msgstr "検索"
+
+#: src/gtk/search-toolbar.ui:41
+msgid "Previous result"
+msgstr "前の結果"
+
+#: src/gtk/search-toolbar.ui:47
+msgid "Next result"
+msgstr "次の結果"
+
+#: src/gtk/search-toolbar.ui:89
+msgid "Search wraps around"
+msgstr "循環検索"
+
+#: src/gtk/search-toolbar.ui:94
+msgid "Match is case sensitive"
+msgstr "大文字小文字を区別する"
+
+#: src/gtk/search-toolbar.ui:99
+msgid "Match entire words only"
+msgstr "完全一致"
+
+#: src/gtk/search-toolbar.ui:104
+msgid "Match using regular expression"
+msgstr "正規表現を使う"
+
+#: src/gtk/preferences-window.ui:11
+msgid "General"
+msgstr "一般"
+
+#: src/gtk/preferences-window.ui:15
+msgid "Window"
+msgstr "ウィンドウ"
+
+#: src/gtk/preferences-window.ui:18
+msgid "Remember Window Size"
+msgstr "ウィンドウサイズを保持する"
+
+#: src/gtk/preferences-window.ui:23
+msgid "Theme settings have been moved to Terminal > Appearance."
+msgstr "テーマの設定は 端末 > 外観 に移動しました。"
+
+#: src/gtk/preferences-window.ui:36
+msgid "Tabs"
+msgstr "タブ"
+
+#: src/gtk/preferences-window.ui:39
+msgid "Expand Tabs"
+msgstr "タブを広げる"
+
+#: src/gtk/preferences-window.ui:46
+msgid "Header Bar"
+msgstr "ヘッダーバー"
+
+#: src/gtk/preferences-window.ui:49
+msgid "Show Header Bar"
+msgstr "ヘッダーバーを表示する"
+
+#: src/gtk/preferences-window.ui:54
+msgid "Context Aware"
+msgstr "コンテキスト検知"
+
+#: src/gtk/preferences-window.ui:55
+msgid ""
+"If enabled, the header bar will be colored differently when the active tab "
+"is running ssh or sudo."
+msgstr "有効にすると、アクティブなタブで ssh や sudo "
+"を実行している場合にヘッダーバーの色が変わります。"
+
+#: src/gtk/preferences-window.ui:60
+msgid "Show Menu Button"
+msgstr "メニューボタンを表示する"
+
+#: src/gtk/preferences-window.ui:65
+msgid "Drag Area"
+msgstr "ドラッグ領域"
+
+#: src/gtk/preferences-window.ui:66
+msgid "Enable to reserve some space on the left side to drag the window."
+msgstr "有効にすると、ウィンドウをドラッグするための領域を左側に確保します。"
+
+#: src/gtk/preferences-window.ui:71
+msgid "Floating Controls"
+msgstr "フローティングコントロール"
+
+#: src/gtk/preferences-window.ui:74
+msgid "Show Floating Controls"
+msgstr "フローティングコントロールを表示する"
+
+#: src/gtk/preferences-window.ui:75
+msgid "Show floating controls when header bar is hidden."
+msgstr "ヘッダーバーが非表示のときに、フローティングコントロールを表示します。"
+
+#: src/gtk/preferences-window.ui:81
+msgid "Floating Controls Hover Area"
+msgstr "フローティングコントロールのホバー領域"
+
+#: src/gtk/preferences-window.ui:82
+msgid ""
+"Hoverable area (in pixels) at the top of the window to trigger floating "
+"controls."
+msgstr "ホバーでフローティングコントロールを表示するウィンドウ上部の領域 "
+"(ピクセル単位)。"
+
+#: src/gtk/preferences-window.ui:89
+msgid "Delay Before Show Floating Controls"
+msgstr "フローティングコントロール表示までの遅延"
+
+#: src/gtk/preferences-window.ui:90
+msgid "Delay time (ms) before show floating controls."
+msgstr "フローティングコントロールを表示するまでの遅延時間 (ミリ秒)。"
+
+#: src/gtk/preferences-window.ui:103 src/gtk/preferences-window.ui:157
+msgid "Terminal"
+msgstr "端末"
+
+#: src/gtk/preferences-window.ui:108
+msgid "Text"
+msgstr "テキスト"
+
+#: src/gtk/preferences-window.ui:112
+msgid "Font"
+msgstr "フォント"
+
+#: src/gtk/preferences-window.ui:124
+msgid "Cell Spacing"
+msgstr "セルの間隔"
+
+#: src/gtk/preferences-window.ui:127
+msgid "Width"
+msgstr "幅"
+
+#: src/gtk/preferences-window.ui:134
+msgid "Height"
+msgstr "高さ"
+
+#: src/gtk/preferences-window.ui:143
+msgid "Bright Bold Text"
+msgstr "太字を明るくする"
+
+#: src/gtk/preferences-window.ui:144
+msgid "Use bright colors for bold text."
+msgstr "太字のテキストを明るい色で表示します。"
+
+#: src/gtk/preferences-window.ui:149
+msgid "Easy Copy &amp; Paste"
+msgstr "簡易コピー &amp; ペースト"
+
+#: src/gtk/preferences-window.ui:150
+msgid "Use ctrl+c/ctrl+v for copy/paste."
+msgstr "Ctrl+C と Ctrl+V をコピー/ペーストに使います。"
+
+#: src/gtk/preferences-window.ui:161
+msgid "Audible Bell"
+msgstr "ベルを鳴らす"
+
+#: src/gtk/preferences-window.ui:162
+msgid "If enabled, terminals might use an audible bell to indicate events."
+msgstr "有効にすると、端末がイベントを通知するためにベルを鳴らすことがあります。"
+
+#: src/gtk/preferences-window.ui:169
+msgid "Cursor"
+msgstr "カーソル"
+
+#: src/gtk/preferences-window.ui:170
+msgid "Adjust cursor shape and behavior."
+msgstr "カーソルの形状と動作を調整します。"
+
+#: src/gtk/preferences-window.ui:173
+msgid "Cursor Shape"
+msgstr "カーソルの形状"
+
+#: src/gtk/preferences-window.ui:177
+msgid "Block"
+msgstr "矩形"
+
+#: src/gtk/preferences-window.ui:178
+msgid "IBeam"
+msgstr "縦線"
+
+#: src/gtk/preferences-window.ui:179
+msgid "Underline"
+msgstr "下線"
+
+#: src/gtk/preferences-window.ui:187
+msgid "Cursor Blinking"
+msgstr "カーソルの点滅"
+
+#: src/gtk/preferences-window.ui:188
+msgid "Whether or not the cursor should blink."
+msgstr "カーソルを点滅させるかどうか。"
+
+#: src/gtk/preferences-window.ui:192 src/gtk/preferences-window.ui:377
+msgid "Follow System"
+msgstr "システムと合わせる"
+
+#: src/gtk/preferences-window.ui:193
+msgid "On"
+msgstr "オン"
+
+#: src/gtk/preferences-window.ui:194
+msgid "Off"
+msgstr "オフ"
+
+#: src/gtk/preferences-window.ui:202
+msgid "Autohide"
+msgstr "自動非表示"
+
+#: src/gtk/preferences-window.ui:203
+msgid "Enable to hide the cursor while typing"
+msgstr "有効にすると、入力中はカーソルを非表示にします"
+
+#: src/gtk/preferences-window.ui:211
+msgid "Padding"
+msgstr "パディング"
+
+#: src/gtk/preferences-window.ui:220
+msgid "Opacity"
+msgstr "透明度"
+
+#: src/gtk/preferences-window.ui:221
+msgid "Terminal background opacity."
+msgstr "端末の背景の透明度です。"
+
+#: src/gtk/preferences-window.ui:239
+msgid "Working Directory"
+msgstr "カレントディレクトリ"
+
+#: src/gtk/preferences-window.ui:248
+msgid "Previous Session"
+msgstr "前のセッション"
+
+#: src/gtk/preferences-window.ui:249
+msgid "Home Directory"
+msgstr "ホームディレクトリ"
+
+#: src/gtk/preferences-window.ui:250
+msgid "Custom"
+msgstr "カスタム"
+
+#: src/gtk/preferences-window.ui:259
+msgid "Custom Working Directory"
+msgstr "カスタムカレントディレクトリ"
+
+#: src/gtk/preferences-window.ui:276
+msgid "Set to user's home"
+msgstr "ユーザーのホームディレクトリを設定する"
+
+#: src/gtk/preferences-window.ui:288
+msgid "Scrolling"
+msgstr "スクロール"
+
+#: src/gtk/preferences-window.ui:291
+msgid "Scrollbars"
+msgstr "スクロールバー"
+
+#: src/gtk/preferences-window.ui:294
+msgid "Show Scrollbars"
+msgstr "スクロールバーを表示する"
+
+#: src/gtk/preferences-window.ui:299
+msgid "Use Overlay Scrolling"
+msgstr "端末に重ねて表示する"
+
+#: src/gtk/preferences-window.ui:312
+msgid "Fixed Size"
+msgstr "固定サイズ"
+
+#: src/gtk/preferences-window.ui:313
+msgid "Unlimited"
+msgstr "無制限"
+
+#: src/gtk/preferences-window.ui:314 src/widgets/ShortcutEditor.vala:106
+msgid "Disabled"
+msgstr "無効"
+
+#: src/gtk/preferences-window.ui:323
+msgid "Scrollback Lines"
+msgstr "スクロールバック可能な行数"
+
+#: src/gtk/preferences-window.ui:335
+msgid "Command"
+msgstr "コマンド"
+
+#: src/gtk/preferences-window.ui:338
+msgid "Run Command as Login Shell"
+msgstr "ログインシェルとしてコマンドを実行する"
+
+#: src/gtk/preferences-window.ui:343
+msgid "Use Custom Command"
+msgstr "カスタムコマンドを使う"
+
+#: src/gtk/preferences-window.ui:348
+msgid "Custom Command"
+msgstr "カスタムコマンド"
+
+#: src/gtk/preferences-window.ui:361
+msgid "Notification on Completed Task"
+msgstr "タスク完了時に通知する"
+
+#: src/gtk/preferences-window.ui:362
+msgid ""
+"Send a desktop notification when a command is completed on an unfocussed tab."
+msgstr "非アクティブタブのコマンド終了時にデスクトップ通知を表示します。"
+
+#: src/gtk/preferences-window.ui:370
+msgid "Appearance"
+msgstr "外観"
+
+#: src/gtk/preferences-window.ui:373
+msgid "Application Style"
+msgstr "アプリケーションのスタイル"
+
+#: src/gtk/preferences-window.ui:378
+msgid "Light"
+msgstr "明るい"
+
+#: src/gtk/preferences-window.ui:379
+msgid "Dark"
+msgstr "暗い"
+
+#: src/gtk/preferences-window.ui:387
+msgid "Theme Integration"
+msgstr "テーマ統合"
+
+#: src/gtk/preferences-window.ui:388
+msgid "Paint the whole app with colors from your colorscheme."
+msgstr "選択したカラースキームの色をアプリ全体に適用します。"
+
+#: src/gtk/preferences-window.ui:397
+msgid "Theme"
+msgstr "テーマ"
+
+#: src/gtk/preferences-window.ui:398
+msgid "Set your preferred theme for light and dark styles."
+msgstr "明るいスタイルと暗いスタイルそれぞれでお好みのテーマを設定してください。"
+
+#: src/gtk/preferences-window.ui:410
+msgid "Open themes folder"
+msgstr "テーマフォルダーを開く"
+
+#: src/gtk/preferences-window.ui:418
+msgid "Get more themes online"
+msgstr "オンラインでほかのテーマを入手する"
+
+#: src/gtk/preferences-window.ui:439
+msgid "Light Theme"
+msgstr "明るいテーマ"
+
+#: src/gtk/preferences-window.ui:445
+msgid "Dark Theme"
+msgstr "暗いテーマ"
+
+#: src/gtk/preferences-window.ui:453
+msgid "Only display themes for the current style"
+msgstr "現在のスタイル用のテーマのみを表示する"
+
+#: src/gtk/preferences-window.ui:461
+msgid ""
+"To ensure readability, \"Theme Integration\" will be disabled if you select "
+"a light color scheme while using the dark app style or a dark color scheme "
+"while using the light app style."
+msgstr ""
+"暗いアプリスタイルの使用中に明るいカラースキームを選んだ場合、または明るいア"
+"プリスタイルの使用中に暗いカラースキームを選んだ場合、可読性確保のため "
+"\"テーマ統合\" は無効化されます。"
+
+#: src/gtk/preferences-window.ui:494
+msgid "Advanced"
+msgstr "高度"
+
+#: src/gtk/preferences-window.ui:498
+msgid "Experimental"
+msgstr "実験的な機能"
+
+#: src/gtk/preferences-window.ui:499
+msgid ""
+"Features in this section are known to be unstable. Please feel free to test "
+"and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">report bugs</a>."
+msgstr ""
+"このセクションの機能は不安定です。ご自由にテストして<a href="
+"\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues\""
+">バグを報告</a>してください。"
+
+#: src/gtk/preferences-window.ui:502
+msgid "Sixel Support"
+msgstr "Sixel 対応"
+
+#: src/gtk/preferences-window.ui:503
+msgid "Render sixel escape sequences."
+msgstr "Sixel エスケープシーケンスを描画します。"
+
+#: src/gtk/preferences-window.ui:512
+msgid ""
+"The VTE build you are using does not have support Sixel. Sixel is still an "
+"experimental feature in VTE. For this reason, most distros do not build VTE "
+"with Sixel support. Installing Black Box via Flatpak will enable this "
+"feature. <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues/"
+"273\">See discussion in issue tracker.</a>"
+msgstr ""
+"お使いの VTE のビルドは Sixel に対応していません。Sixel は現状 VTE "
+"の実験的な機能です。このため、多くのディストリビューションは Sixel "
+"対応なしで VTE をビルドしています。Black Box を Flatpak "
+"経由でインストールすると、この機能が有効になります。<a href="
+"\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues/273\""
+">イシュートラッカーでの議論をご確認ください。</a>"
+
+#: src/gtk/preferences-window.ui:522
+msgid "Danger Zone"
+msgstr "破壊的な設定項目"
+
+#: src/gtk/preferences-window.ui:525 src/widgets/PreferencesWindow.vala:602
+#: src/widgets/PreferencesWindow.vala:606
+msgid "Reset Preferences"
+msgstr "設定をリセット"
+
+#: src/gtk/preferences-window.ui:526
+msgid ""
+"This will revert all settings back to default. Your extra themes will not be "
+"removed."
+msgstr "すべての設定をデフォルトに戻します。追加したテーマは削除されません。"
+
+#: src/gtk/preferences-window.ui:531
+msgid "Reset preferences"
+msgstr "設定をリセット"
+
+#: src/gtk/terminal-menu.ui:20
+msgid "Open Link"
+msgstr "リンクを開く"
+
+#: src/gtk/terminal-menu.ui:28 src/gtk/header-bar.ui:58
+#: src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
+#: src/widgets/ShortcutEditor.vala:137
+msgid "New Tab"
+msgstr "新しいタブ"
+
+#: src/gtk/terminal-menu.ui:32 src/gtk/header-bar.ui:62
+#: src/widgets/ShortcutEditor.vala:135
+msgid "New Window"
+msgstr "新しいウィンドウ"
+
+#: src/gtk/terminal-menu.ui:55 src/widgets/ShortcutEditor.vala:139
+msgid "Copy"
+msgstr "コピー"
+
+#: src/gtk/terminal-menu.ui:59
+msgid "Copy Link"
+msgstr "リンクをコピー"
+
+#: src/gtk/terminal-menu.ui:64 src/widgets/ShortcutEditor.vala:140
+msgid "Paste"
+msgstr "貼り付け"
+
+#: src/gtk/terminal-menu.ui:71 src/gtk/header-bar.ui:72
+#: src/widgets/ShortcutEditor.vala:138
+msgid "Preferences"
+msgstr "設定"
+
+#: src/gtk/terminal-menu.ui:78 src/gtk/header-bar.ui:78
+#: src/widgets/ShortcutEditor.vala:143
+msgid "Keyboard Shortcuts"
+msgstr "キーボードショートカット"
+
+#: src/gtk/terminal-menu.ui:82 src/gtk/header-bar.ui:82
+msgid "About Black Box"
+msgstr "Black Box について"
+
+#: src/gtk/help-overlay.ui:10
+msgctxt "shortcut window"
+msgid "Window"
+msgstr "ウィンドウ"
+
+#: src/gtk/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "新しいウィンドウ"
+
+#: src/gtk/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "New tab"
+msgstr "新しいタブ"
+
+#: src/gtk/help-overlay.ui:25
+msgctxt "shortcut window"
+msgid "Close tab"
+msgstr "タブを閉じる"
+
+#: src/gtk/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Rename tab"
+msgstr "タブ名を変更する"
+
+#: src/gtk/help-overlay.ui:37
+msgctxt "shortcut window"
+msgid "Switch headbar mode"
+msgstr "ヘッダーバーモードを切り替える"
+
+#: src/gtk/help-overlay.ui:43
+msgctxt "shortcut window"
+msgid "Toggle fullscreen"
+msgstr "フルスクリーン表示/解除"
+
+#: src/gtk/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Terminal"
+msgstr "端末"
+
+#: src/gtk/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "検索"
+
+#: src/gtk/help-overlay.ui:60
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "コピー"
+
+#: src/gtk/help-overlay.ui:66
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "貼り付け"
+
+#: src/gtk/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "拡大"
+
+#: src/gtk/help-overlay.ui:78
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "縮小"
+
+#: src/gtk/help-overlay.ui:84
+msgctxt "shortcut window"
+msgid "Reset zoom"
+msgstr "拡大率をリセット"
+
+#: src/gtk/help-overlay.ui:92
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "表示"
+
+#: src/gtk/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Focus next tab"
+msgstr "次のタブに切り替える"
+
+#: src/gtk/help-overlay.ui:101
+msgctxt "shortcut window"
+msgid "Focus previous tab"
+msgstr "前のタブに切り替える"
+
+#: src/gtk/help-overlay.ui:107
+msgctxt "shortcut window"
+msgid "Switch to Tab 1"
+msgstr "タブ 1 に切り替える"
+
+#: src/gtk/help-overlay.ui:113
+msgctxt "shortcut window"
+msgid "Switch to Tab 2"
+msgstr "タブ 2 に切り替える"
+
+#: src/gtk/help-overlay.ui:119
+msgctxt "shortcut window"
+msgid "Switch to Tab 3"
+msgstr "タブ 3 に切り替える"
+
+#: src/gtk/help-overlay.ui:125
+msgctxt "shortcut window"
+msgid "Switch to Tab 4"
+msgstr "タブ 4 に切り替える"
+
+#: src/gtk/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Switch to Tab 5"
+msgstr "タブ 5 に切り替える"
+
+#: src/gtk/help-overlay.ui:137
+msgctxt "shortcut window"
+msgid "Switch to Tab 6"
+msgstr "タブ 6 に切り替える"
+
+#: src/gtk/help-overlay.ui:143
+msgctxt "shortcut window"
+msgid "Switch to Tab 7"
+msgstr "タブ 7 に切り替える"
+
+#: src/gtk/help-overlay.ui:149
+msgctxt "shortcut window"
+msgid "Switch to Tab 8"
+msgstr "タブ 8 に切り替える"
+
+#: src/gtk/help-overlay.ui:155
+msgctxt "shortcut window"
+msgid "Switch to Tab 9"
+msgstr "タブ 9 に切り替える"
+
+#: src/gtk/help-overlay.ui:161
+msgctxt "shortcut window"
+msgid "Switch to last Tab"
+msgstr "最後のタブに切り替える"
+
+#: src/gtk/help-overlay.ui:169
+msgctxt "shortcut window"
+msgid "General"
+msgstr "一般"
+
+#: src/gtk/help-overlay.ui:172
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "ショートカットを表示する"
+
+#: src/gtk/help-overlay.ui:178
+msgctxt "shortcut window"
+msgid "Edit Preferences"
+msgstr "設定を編集する"
+
+#: src/gtk/tab-menu.ui:9 src/widgets/ShortcutEditor.vala:149
+msgid "Move Tab Left"
+msgstr "タブを左へ移動"
+
+#: src/gtk/tab-menu.ui:14 src/widgets/ShortcutEditor.vala:150
+msgid "Move Tab Right"
+msgstr "タブを右へ移動"
+
+#: src/gtk/tab-menu.ui:21 src/widgets/ShortcutEditor.vala:148
+#: src/widgets/Window.vala:622
+msgid "Rename Tab"
+msgstr "タブ名を変更"
+
+#: src/gtk/tab-menu.ui:25
+msgid "Move Tab to New Window"
+msgstr "タブを新しいウィンドウに移動"
+
+#: src/gtk/tab-menu.ui:32 src/widgets/ShortcutEditor.vala:147
+msgid "Close Tab"
+msgstr "タブを閉じる"
+
+#: src/gtk/header-bar.ui:23
+msgid "Remote Access"
+msgstr "リモートアクセス"
+
+#: src/gtk/header-bar.ui:25
+msgid "SSH Connections"
+msgstr "SSH 接続"
+
+#: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
+msgid "New Connection"
+msgstr "新しい接続"
+
+#: src/gtk/header-bar.ui:41
+msgid "SFTP Servers"
+msgstr "SFTP サーバー"
+
+#: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:142
+msgid "Fullscreen"
+msgstr "フルスクリーン表示"
+
+#: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
+msgid "Exit Fullscreen"
+msgstr "フルスクリーン表示を解除"
+
+#: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
+msgid "Menu"
+msgstr "メニュー"
+
+#: src/gtk/style-switcher.ui:17
+msgid "Use System Colors"
+msgstr "システムの色を使う"
+
+#: src/gtk/style-switcher.ui:46
+msgid "Use Light Colors"
+msgstr "明るい色を使う"
+
+#: src/gtk/style-switcher.ui:74
+msgid "Use Dark Colors"
+msgstr "暗い色を使う"
+
+#: src/services/Shortcuts.vala:327
+msgid "Replace keybinding?"
+msgstr "キーバインディングを置き換えますか?"
+
+#. FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
+#. with the user-friendly action name.
+#: src/services/Shortcuts.vala:330
+#, c-format
+msgid "%s is already assigned to %s"
+msgstr "%s はすでに %s に割り当てられています"
+
+#: src/utils/Constants.vala:34
+msgid "You can still access the menu by right-clicking any terminal."
+msgstr "いずれかの端末を右クリックすることで、メニューにアクセス可能です。"
+
+#: src/utils/Constants.vala:36
+#, c-format
+msgid ""
+"%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of "
+"progress has been made on this port, copying has yet to be implemented. This "
+"means there's currently no way to copy text in %s."
+msgstr ""
+"%s は端末ウィジェットとして初期の Gtk 4 ポーティング版の VTE "
+"を使用しています。このポーティングでは多くの変更がされた一方で、コピー機能は"
+"未実装となっています。つまり、現状 %s "
+"でテキストをコピーする方法がありません。"
+
+#: src/utils/Constants.vala:38
+msgid ""
+"Warning: unlimited scrollback saves content to disk, which may cause your "
+"system to run out of storage."
+msgstr "警告: "
+"スクロールバックが無限の場合、ディスクに内容が保存されます。これにより、シス"
+"テムが容量不足になる可能性があります。"
+
+#: src/utils/Dialogs.vala:35
+msgid "No"
+msgstr "いいえ"
+
+#: src/utils/Dialogs.vala:35
+msgid "Yes"
+msgstr "はい"
+
+#: src/utils/Dialogs.vala:36
+msgid "OK"
+msgstr "OK"
+
+#: src/utils/Dialogs.vala:37
+msgid "Keep"
+msgstr "維持する"
+
+#: src/utils/Dialogs.vala:37
+msgid "Replace"
+msgstr "置き換える"
+
+#: src/utils/Dialogs.vala:38
+msgid "Close"
+msgstr "閉じる"
+
+#: src/utils/Dialogs.vala:119
+msgid "Close Tab?"
+msgstr "タブを閉じますか?"
+
+#: src/utils/Dialogs.vala:120
+msgid "Close Window?"
+msgstr "ウィンドウを閉じますか?"
+
+#: src/utils/Dialogs.vala:123
+msgid ""
+"Some commands are still running. Closing this tab will kill them and may "
+"lead to unexpected outcomes."
+msgstr "一部のコマンドが実行中です。このタブを閉じるとコマンドは強制終了されるため、"
+"予期しない結果が発生する可能性があります。"
+
+#: src/utils/Dialogs.vala:124
+msgid ""
+"Some commands are still running. Closing this window will kill them and may "
+"lead to unexpected outcomes."
+msgstr "一部のコマンドが実行中です。このウィンドウを閉じるとコマンドは強制終了される"
+"ため、予期しない結果が発生する可能性があります。"
+
+#: src/utils/Shortcuts.vala:32
+msgid "invalid keybinding"
+msgstr "無効なキーバインディング"
+
+#: src/widgets/AboutDialog.vala:53
+msgid "Donate"
+msgstr "寄付"
+
+#: src/widgets/AboutDialog.vala:54
+msgid "Full Changelog"
+msgstr "完全な更新履歴"
+
+#: src/widgets/PreferencesWindow.vala:577
+msgid "Terminal Font"
+msgstr "端末のフォント"
+
+#: src/widgets/PreferencesWindow.vala:603
+msgid "Are you sure you want to reset all settings?"
+msgstr "すべての設定をリセットしてもよろしいですか?"
+
+#: src/widgets/PreferencesWindow.vala:647
+msgid "Reuse previous tab's directory."
+msgstr "以前のタブのディレクトリを使います。"
+
+#: src/widgets/PreferencesWindow.vala:649
+msgid "Use the current user's home as working directory."
+msgstr "カレントユーザーのホームディレクトリをカレントディレクトリとして使います。"
+
+#: src/widgets/PreferencesWindow.vala:651
+msgid "Use a custom path as working directory."
+msgstr "カスタムパスをカレントディレクトリとして使います。"
+
+#: src/widgets/ShortcutDialog.vala:46
+msgid "Enter new shortcut"
+msgstr "新しいショートカットを入力"
+
+#: src/widgets/ShortcutDialog.vala:47
+#, c-format
+msgid "Enter new shortcut for \"%s\""
+msgstr "“%s”の新しいショートカットを入力"
+
+#: src/widgets/ShortcutEditor.vala:59
+msgid "Add Keybinding"
+msgstr "キーバインディングを追加"
+
+#: src/widgets/ShortcutEditor.vala:66
+msgid "Reset Keybindings"
+msgstr "キーバインディングをリセット"
+
+#: src/widgets/ShortcutEditor.vala:81
+#, c-format
+msgid "Remove %s"
+msgstr "%s を削除"
+
+#: src/widgets/ShortcutEditor.vala:133
+msgid "Focus Next Tab"
+msgstr "次のタブに切り替える"
+
+#: src/widgets/ShortcutEditor.vala:134
+msgid "Focus Previous Tab"
+msgstr "前のタブに切り替える"
+
+#: src/widgets/ShortcutEditor.vala:136
+msgid "Toggle Header Bar"
+msgstr "ヘッダーバーを表示/非表示"
+
+#: src/widgets/ShortcutEditor.vala:141
+msgid "Search"
+msgstr "検索"
+
+#: src/widgets/ShortcutEditor.vala:144
+msgid "Zoom In"
+msgstr "拡大"
+
+#: src/widgets/ShortcutEditor.vala:145
+msgid "Zoom Out"
+msgstr "縮小"
+
+#: src/widgets/ShortcutEditor.vala:146
+msgid "Reset Zoom"
+msgstr "拡大率をリセット"
+
+#: src/widgets/ShortcutEditor.vala:152 src/widgets/ShortcutEditor.vala:153
+#: src/widgets/ShortcutEditor.vala:154 src/widgets/ShortcutEditor.vala:155
+#: src/widgets/ShortcutEditor.vala:156 src/widgets/ShortcutEditor.vala:157
+#: src/widgets/ShortcutEditor.vala:158 src/widgets/ShortcutEditor.vala:159
+#: src/widgets/ShortcutEditor.vala:160
+#, c-format
+msgid "Switch to Tab %u"
+msgstr "タブ %u に切り替える"
+
+#: src/widgets/ShortcutEditor.vala:161
+msgid "Switch to Last Tab"
+msgstr "最後のタブに切り替える"
+
+#: src/widgets/ShortcutEditor.vala:243
+msgid "Reset All Shortcuts?"
+msgstr "すべてのショートカットをリセットしますか?"
+
+#: src/widgets/ShortcutEditor.vala:244
+msgid ""
+"This will reset all shortcuts to default and overwrite your config file. "
+"This action is irreversible."
+msgstr "すべてのショートカットをデフォルトにリセットし、ユーザーの設定ファイルを上書"
+"きします。この操作は元に戻せません。"
+
+#: src/widgets/ShortcutEditor.vala:247
+msgid "Reset"
+msgstr "リセット"
+
+#: src/widgets/TerminalTab.vala:58
+msgid "tab"
+msgstr "タブ"
+
+#: src/widgets/TerminalTab.vala:109
+msgid "Error"
+msgstr "エラー"
+
+#: src/widgets/Window.vala:623
+msgid "Set a custom title for this tab"
+msgstr "このタブにカスタムタイトルを設定します"
+
+#: src/widgets/Window.vala:626
+msgid "Enter a custom tab title"
+msgstr "カスタムタブタイトルを入力"
+
+#: src/widgets/Window.vala:633
+msgid "Reset Title"
+msgstr "タイトルをリセット"
+
+#: src/widgets/Window.vala:634
+msgid "Set Title"
+msgstr "タイトルを設定"
+
+#: src/widgets/Terminal.vala:631
+msgid "Command completed"
+msgstr "コマンドが終了しました"
+
+#: src/CommandLine.vala:47
+msgid "Show app version"
+msgstr "アプリのバージョンを表示する"
+
+#: src/CommandLine.vala:56
+msgid "Set current working directory"
+msgstr "カレントディレクトリを指定する"
+
+#: src/CommandLine.vala:65
+msgid "Execute command in a terminal"
+msgstr "端末でコマンドを実行する"
+
+#: src/CommandLine.vala:74
+msgid "Show help"
+msgstr "ヘルプを表示する"
+
+#: src/CommandLine.vala:121
+#, c-format
+msgid "Run %s --help to get help\n"
+msgstr "ヘルプを表示するには %s --help を実行してください\n"

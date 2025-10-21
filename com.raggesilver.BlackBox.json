@@ -1,7 +1,7 @@
 {
   "app-id": "com.raggesilver.BlackBox",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "45",
+  "runtime-version": "48",
   "sdk": "org.gnome.Sdk",
   "command": "blackbox",
   "finish-args": [
@@ -30,34 +30,12 @@
     {
       "name": "vte",
       "buildsystem": "meson",
-      "config-opts": ["-Dgtk4=true", "-Dgtk3=false", "-Dsixel=true"],
+      "config-opts": ["-Dgtk4=true", "-Dgtk3=false"],
       "sources": [
         {
           "type": "archive",
-          "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/3c8f66be867aca6656e4109ce880b6ea7431b895/vte-3c8f66be867aca6656e4109ce880b6ea7431b895.tar.gz",
-          "sha256": "320618260a29c99ab68d1e8674f6d4926bbf1e7e6541e8e04898fad85bb6e1b9"
-        }
-      ]
-    },
-    {
-      "name": "json-glib",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://gitlab.gnome.org/GNOME/json-glib/-/archive/23ae2f59bea7405d95218e82edb7f3c4c7c80a87/json-glib-23ae2f59bea7405d95218e82edb7f3c4c7c80a87.tar.gz",
-          "sha256": "9fa88f1b8fc926bfd7c4115354a06f79b7b30fa367450a3e7a36932e3b7022ba"
-        }
-      ]
-    },
-    {
-      "name": "marble",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://gitlab.gnome.org/raggesilver/marble/-/archive/f240b2ec7d5cdacb8fdcc553703420dc5101ffdb/marble-f240b2ec7d5cdacb8fdcc553703420dc5101ffdb.tar.gz",
-          "sha256": "46c1172a53cf974a73dc13a2142d022ec6a8dfa614133815df3aa5ede9af0cc1"
+          "url": "https://gitlab.gnome.org/GNOME/vte/-/archive/0.78.0/vte-0.78.0.tar.gz",
+          "sha256": "82e19d11780fed4b66400f000829ce5ca113efbbfb7975815f26ed93e4c05f2d"
         }
       ]
     },
@@ -69,7 +47,8 @@
       "sources": [
         {
           "type": "git",
-          "url": "https://gitlab.gnome.org/raggesilver/blackbox"
+          "url": "https://gitlab.gnome.org/raggesilver/blackbox",
+          "branch": "main"
         }
       ]
     }

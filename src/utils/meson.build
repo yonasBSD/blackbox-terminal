@@ -3,6 +3,7 @@ blackbox_sources += files(
   'Css.vala',
   'Dialogs.vala',
   'File.vala',
+  'SettingsBinder.vala',
   'Shortcuts.vala',
   'Terminal.vala',
   'Widget.vala',

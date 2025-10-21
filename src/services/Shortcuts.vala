@@ -36,6 +36,8 @@ namespace Terminal {
   public const string ACTION_WIN_ZOOM_DEFAULT           = "win.zoom-default";
   public const string ACTION_WIN_CLOSE_TAB              = "win.close-tab";
   public const string ACTION_WIN_RENAME_TAB             = "win.rename-tab";
+  public const string ACTION_WIN_MOVE_TAB_LEFT          = "win.move-tab-left";
+  public const string ACTION_WIN_MOVE_TAB_RIGHT         = "win.move-tab-right";
 
   public const string ACTION_WIN_SWITCH_TAB_1           = "win.switch-tab-1";
   public const string ACTION_WIN_SWITCH_TAB_2           = "win.switch-tab-2";
@@ -73,7 +75,9 @@ public class Terminal.Keymap : Object, Json.Serializable {
     this.default_keymap = new Gee.HashMultiMap<string, string> ();
 
     this.default_keymap.set (ACTION_FOCUS_NEXT_TAB,              "<Control>Tab");
+    this.default_keymap.set (ACTION_FOCUS_NEXT_TAB,              "<Control>Page_Down");
     this.default_keymap.set (ACTION_FOCUS_PREVIOUS_TAB,          "<Shift><Control>Tab");
+    this.default_keymap.set (ACTION_FOCUS_PREVIOUS_TAB,          "<Control>Page_Up");
     this.default_keymap.set (ACTION_NEW_WINDOW,                  "<Shift><Control>n");
     this.default_keymap.set (ACTION_WIN_SWITCH_HEADER_BAR_MODE,  "<Shift><Control>h");
     this.default_keymap.set (ACTION_WIN_NEW_TAB,                 "<Shift><Control>t");
@@ -88,6 +92,8 @@ public class Terminal.Keymap : Object, Json.Serializable {
     this.default_keymap.set (ACTION_WIN_ZOOM_DEFAULT,            "<Shift><Control>parenright");
     this.default_keymap.set (ACTION_WIN_CLOSE_TAB,               "<Shift><Control>w");
     this.default_keymap.set (ACTION_WIN_RENAME_TAB,              "<Shift><Control>r");
+    this.default_keymap.set (ACTION_WIN_MOVE_TAB_LEFT,           "<Shift><Control>Page_Up");
+    this.default_keymap.set (ACTION_WIN_MOVE_TAB_RIGHT,          "<Shift><Control>Page_Down");
 
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_1,            "<Alt>1");
     this.default_keymap.set (ACTION_WIN_SWITCH_TAB_2,            "<Alt>2");

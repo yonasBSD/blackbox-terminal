@@ -9,20 +9,15 @@
   <summary>A beautiful GTK 4 terminal</summary>
 
   <developer_name>Paulo Queiroz</developer_name>
+  <developer id="com.raggesilver">
+    <name>Paulo Queiroz</name>
+  </developer>
 
   <recommends>
     <control>pointing</control>
     <control>keyboard</control>
     <display_length compare="ge">360</display_length>
   </recommends>
-
-  <supports>
-    <control>pointing</control>
-    <control>keyboard</control>
-    <control>tablet</control>
-    <control>touch</control>
-    <display_length compare="ge">xsmall</display_length>
-  </supports>
 
   <description>
     <p>
@@ -59,35 +54,7 @@
     <category>Utility</category>
   </categories>
 
-  <content_rating type="oars-1.1">
-    <content_attribute id="violence-cartoon">none</content_attribute>
-    <content_attribute id="violence-fantasy">none</content_attribute>
-    <content_attribute id="violence-realistic">none</content_attribute>
-    <content_attribute id="violence-bloodshed">none</content_attribute>
-    <content_attribute id="violence-sexual">none</content_attribute>
-    <content_attribute id="violence-desecration">none</content_attribute>
-    <content_attribute id="violence-slavery">none</content_attribute>
-    <content_attribute id="violence-worship">none</content_attribute>
-    <content_attribute id="drugs-alcohol">none</content_attribute>
-    <content_attribute id="drugs-narcotics">none</content_attribute>
-    <content_attribute id="drugs-tobacco">none</content_attribute>
-    <content_attribute id="sex-nudity">none</content_attribute>
-    <content_attribute id="sex-themes">none</content_attribute>
-    <content_attribute id="sex-homosexuality">none</content_attribute>
-    <content_attribute id="sex-prostitution">none</content_attribute>
-    <content_attribute id="sex-adultery">none</content_attribute>
-    <content_attribute id="sex-appearance">none</content_attribute>
-    <content_attribute id="language-profanity">none</content_attribute>
-    <content_attribute id="language-humor">none</content_attribute>
-    <content_attribute id="language-discrimination">none</content_attribute>
-    <content_attribute id="social-chat">none</content_attribute>
-    <content_attribute id="social-info">none</content_attribute>
-    <content_attribute id="social-audio">none</content_attribute>
-    <content_attribute id="social-location">none</content_attribute>
-    <content_attribute id="social-contacts">none</content_attribute>
-    <content_attribute id="money-purchasing">none</content_attribute>
-    <content_attribute id="money-gambling">none</content_attribute>
-  </content_rating>
+  <content_rating type="oars-1.1" />
 
   <kudos>
     <kudo>ModernToolkit</kudo>
@@ -432,7 +399,8 @@
   <url type="bugtracker">https://gitlab.gnome.org/raggesilver/blackbox/issues</url>
   <url type="donation">https://www.patreon.com/raggesilver</url>
   <url type="help">https://gitlab.gnome.org/raggesilver/blackbox/issues</url>
-  <url type="translate">https://gitlab.gnome.org/raggesilver/blackbox/issues</url>
-
+  <url type="vcs-browser">https://gitlab.gnome.org/raggesilver/blackbox</url>
+  <url type="translate">https://hosted.weblate.org/projects/blackbox/</url>
+  <url type="contribute">https://gitlab.gnome.org/raggesilver/blackbox/-/blob/main/CONTRIBUTING.md</url>
   <update_contact>pvaqueiroz@gmail.com</update_contact>
 </component>

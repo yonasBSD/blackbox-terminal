@@ -2,11 +2,8 @@
 <interface>
   <requires lib="gtk" version="4.0" />
   <requires lib="libadwaita" version="1.0" />
-  <template class="TerminalShortcutDialog" parent="AdwWindow">
+  <template class="TerminalShortcutDialog" parent="AdwDialog">
     <property name="title" translatable="yes">Edit Shortcut</property>
-    <property name="modal">true</property>
-    <property name="destroy-with-parent">true</property>
-    <property name="resizable">false</property>
     <child>
       <object class="AdwToolbarView">
         <!-- Header Bar -->

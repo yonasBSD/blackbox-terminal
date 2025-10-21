@@ -19,8 +19,8 @@
  */
 
 namespace Terminal {
-  public Adw.AboutWindow create_about_dialog () {
-    var window = new Adw.AboutWindow () {
+  public Adw.AboutDialog create_about_dialog () {
+    var window = new Adw.AboutDialog () {
       developer_name = "Paulo Queiroz",
       copyright = "© 2022-2023 Paulo Queiroz",
       license_type = Gtk.License.GPL_3_0,
@@ -31,37 +31,17 @@ namespace Terminal {
       issue_url = "https://gitlab.gnome.org/raggesilver/blackbox/-/issues",
       debug_info = get_debug_information (),
       release_notes = """
-        <p>The Sandbox Conundrum.</p>
+        <p>The Sandbox Conundrum, patch 1.</p>
         <p>Features</p>
         <ul>
-          <li>Added new default Adwaita and Adwaita Dark color schemes</li>
-          <li>You can now customize the working directory for new tabs. It can be set to persist the last tab's directory, the user's home directory, or an arbitrary location</li>
-          <li>Closing a tab or a window that still has a running process will now prompt you for confirmation</li>
-          <li>Black Box now uses the default Adwaita tab style. As consequence, some header bar options, including "Show Borders" have been removed from the preferences window</li>
-          <li>Added the option to disable terminal bell</li>
-          <li>Added option to use bright colors for bold text</li>
-          <li>You can now get a desktop notification when a process completes on an unfocussed tab</li>
-          <li>Context-aware header bar: the header bar can now have special colors when the active tab is running sudo or ssh</li>
-          <li>Added open and copy link options to the right-click menu</li>
-          <li>You can now rename tabs with the new tab right-click menu, or with a new shortcut Shift + Control + R</li>
-          <li>Added a quick application style switcher to the window menu</li>
+          <li>Added shortcut for moving tabs Shift+Ctrl+PageDown/PageUp.</li>
+          <li>Ctrl+PageDown/PageUp have been added as default keybindins for switching tabs, alongside (Shift)+Ctrl+Tab (yes, there are two default keybindings). You may need to reset keybindings for these two actions to see the new defaults.</li>
+          <li>The window title is now set to the title of the active tab. This is noticeable when hovering Black Box in the GNOME Overview</li>
+          <li>Black Box will show a visual indicator on a tab when a command finishes in the background (similar to desktop notifications, but less noisy)</li>
         </ul>
         <p>Improvements</p>
         <ul>
-          <li>Some configuration options have been grouped together in the preferences
-  window</li>
-          <li>Application title is now bold when there's a single tab open</li>
-          <li>Performance and bundle size optimizations</li>
-          <li>Black Box now has more Flatpak permissions to overcome errors reported by users</li>
-        </ul>
-        <p>Bug fixes</p>
-        <ul>
-          <li>Fixed an issue that caused terminals not to be destroyed when their tabs were closed</li>
-          <li>Improved keybinding validation, allowing more valid key combinations to be used</li>
-          <li>The window title is now centered when there's only one tab</li>
-          <li>Sixel is now disabled for VTE builds that don't support it. This primarily affects non-Flatpak users, as all Flatpak builds ship VTE with Sixel support</li>
-          <li>Fixed an issue that caused windows launched with custom commands to not have a title</li>
-          <li>Black Box will now show an error banner if spawning a shell or custom command failed and will no longer close immediately</li>
+          <li>Command completion notifications have been improved. Clicking a notification will now focus the correct tab. Black Box will no longer emit two notifications for the same command.</li>
         </ul>
       """
     };

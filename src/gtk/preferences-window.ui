@@ -2,10 +2,9 @@
 <interface>
   <requires lib="gtk" version="4.0" />
   <requires lib="libadwaita" version="1.0" />
-  <template class="TerminalPreferencesWindow" parent="AdwPreferencesWindow">
-    <property name="default-width">640</property>
-    <property name="default-height">800</property>
-    <property name="modal">False</property>
+  <template class="TerminalPreferencesWindow" parent="AdwPreferencesDialog">
+    <property name="content-width">640</property>
+    <property name="content-height">800</property>
     <child>
       <object class="AdwPreferencesPage">
         <property name="name">general</property>
@@ -196,6 +195,12 @@
                         </items>
                       </object>
                     </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwSwitchRow" id="hide_cursor_while_typing_row">
+                    <property name="title" translatable="yes">Autohide</property>
+                    <property name="subtitle" translatable="yes">Enable to hide the cursor while typing</property>
                   </object>
                 </child>
               </object>
@@ -480,8 +485,7 @@
     </child>
 
     <child>
-      <object class="TerminalShortcutEditor">
-        <property name="app" bind-source="TerminalPreferencesWindow" bind-property="application" bind-flags="default" />
+      <object class="TerminalShortcutEditor" id="shortcut_editor">
       </object>
     </child>
     <child>
@@ -571,3 +575,4 @@
     <property name="step-increment">1</property>
   </object>
 </interface>
+

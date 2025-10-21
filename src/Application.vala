@@ -40,6 +40,14 @@ public class Terminal.Application : Adw.Application {
 
     this.add_action_entries (ACTIONS, this);
 
+    var focus_tab = new SimpleAction("focus-tab", new VariantType("(uu)"));
+    focus_tab.activate.connect ((action, variant) => {
+      var window_id = variant.get_child_value(0).get_uint32();
+      var tab_id = variant.get_child_value(1).get_uint32();
+      this.on_focus_tab(window_id, tab_id);
+    });
+    this.add_action(focus_tab);
+
     var keymap = Keymap.get_default ();
     keymap.apply (this);
   }
@@ -100,9 +108,8 @@ public class Terminal.Application : Adw.Application {
   //  }
 
   private void on_about () {
-    var win = create_about_dialog () as Gtk.Window;
-    win.set_transient_for (this.get_active_window ());
-    win.show ();
+    var win = create_about_dialog ();
+    win.present (this.get_active_window ());
   }
 
   private void on_new_window () {
@@ -125,5 +132,15 @@ public class Terminal.Application : Adw.Application {
 
   private void on_focus_previous_tab () {
     (this.get_active_window () as Window)?.focus_previous_tab ();
+  }
+
+  private void on_focus_tab (uint window_id, uint tab_id) {
+    foreach (var _window in this.get_windows()) {
+      var window = _window as Window;
+      if (window != null && window.id == window_id) {
+          window.focus_tab_with_id (tab_id);
+          return;
+      }
+    }
   }
 }

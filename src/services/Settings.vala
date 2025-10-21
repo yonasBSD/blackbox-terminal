@@ -34,7 +34,7 @@ public enum Terminal.ApplicationStyle {
   DARK = 2,
 }
 
-public class Terminal.Settings : PQMarble.Settings {
+public class Terminal.Settings : SettingsBinder {
   public bool    command_as_login_shell               { get; set; }
   public bool    context_aware_header_bar             { get; set; }
   public bool    easy_copy_paste                      { get; set; }
@@ -48,6 +48,7 @@ public class Terminal.Settings : PQMarble.Settings {
   public bool    show_scrollbars                      { get; set; }
   public bool    terminal_bell                        { get; set; }
   public bool    theme_bold_is_bright                 { get; set; }
+  public bool    terminal_hide_cursor_while_typing    { get; set; }
   public bool    use_custom_command                   { get; set; }
   public bool    use_overlay_scrolling                { get; set; }
   public bool    use_sixel                            { get; set; }
@@ -97,7 +98,7 @@ public class Terminal.Settings : PQMarble.Settings {
   }
 }
 
-public class Terminal.SearchSettings : PQMarble.Settings {
+public class Terminal.SearchSettings : SettingsBinder {
   public bool    match_case_sensitive     { get; set; }
   public bool    match_whole_words        { get; set; }
   public bool    match_regex              { get; set; }

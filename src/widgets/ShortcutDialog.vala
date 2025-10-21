@@ -19,7 +19,7 @@
  */
 
 [GtkTemplate (ui = "/com/raggesilver/BlackBox/gtk/shortcut-dialog.ui")]
-public class Terminal.ShortcutDialog : Adw.Window {
+public class Terminal.ShortcutDialog : Adw.Dialog {
 
   static Gtk.KeyvalTrigger JUST_ESCAPE = new Gtk.KeyvalTrigger (
     Gdk.Key.Escape,
@@ -55,7 +55,7 @@ public class Terminal.ShortcutDialog : Adw.Window {
       this.add_css_class ("devel");
     }
 
-    this.response.connect_after (this.close);
+    this.response.connect_after (() => this.close ());
 
     this.notify ["shortcut-name"].connect (() => {
       this.notify_property ("heading-text");
