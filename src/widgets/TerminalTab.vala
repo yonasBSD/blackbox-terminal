@@ -32,6 +32,13 @@ public class Terminal.TerminalTab : Gtk.Box {
   public Terminal terminal       { get; protected set; }
   public string?  title_override { get; private set; default = null; }
 
+  // Scroll handling state
+  private Gtk.EventControllerScroll? scroll_controller = null;
+  // Tuned constants for touchpad scrolling (keep minimal config)
+  private const double TOUCHPAD_SCROLL_SCALE = 0.1; // live finger motion scaling
+  private const double TOUCHPAD_KINETIC_SCALE = 2.0; // initial inertia multiplier
+  private const double TOUCHPAD_DAMPING = 12.0; // exponential damping
+
   public string title {
     get {
       if (this.title_override != null) return this.title_override;
@@ -130,36 +137,122 @@ public class Terminal.TerminalTab : Gtk.Box {
       BindingFlags.SYNC_CREATE
     );
 
+    // Ensure default kinetic scrolling is disabled; we'll implement our own gentle inertia
+    this.scrolled.kinetic_scrolling = false;
+
+    // Add scroll event controller to handle touchpad sensitivity and custom kinetic inertia
+    this.scroll_controller = new Gtk.EventControllerScroll (
+      Gtk.EventControllerScrollFlags.VERTICAL | Gtk.EventControllerScrollFlags.KINETIC
+    );
+    // Capture before GtkScrolledWindow/VTE handle it
+    this.scroll_controller.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
+    this.scroll_controller.scroll.connect (this.on_scroll_event);
+    this.scroll_controller.decelerate.connect (this.on_scroll_decelerate);
+    // Attach to the scrolled window to reliably get all scroll events (including inertia)
+    this.scrolled.add_controller (this.scroll_controller);
     // refocus terminal after closing context menu, otherwise the focus will go on the header buttons
     this.popover.closed.connect_after (pop_close);
   }
 
+  private bool on_scroll_event (double dx, double dy) {
+    // Detect touchpad vs mouse wheel using scroll unit
+    var unit = this.scroll_controller != null ? this.scroll_controller.get_unit () : Gdk.ScrollUnit.WHEEL;
+    bool is_touchpad = (unit != Gdk.ScrollUnit.WHEEL);
+    if (!is_touchpad) {
+      // Mouse wheel: let default handling take over
+      return false;
+    }
+
+    // Touchpad: scale delta using tuned constant to reduce speed
+    dy *= TOUCHPAD_SCROLL_SCALE;
+
+    var adjustment = this.scrolled.vadjustment;
+    // Scroll by the adjusted delta
+    adjustment.value += dy * adjustment.step_increment;
+
+    // Clamp to valid range
+    adjustment.value = Math.fmax (adjustment.lower,
+                                  Math.fmin (adjustment.upper - adjustment.page_size,
+                                             adjustment.value));
+
+    return true; // Event handled for touchpad
+  }
+
+  // --- Custom kinetic inertia for touchpad scrolling ---
+  private uint   kinetic_tick_id = 0;
+  private double kinetic_velocity_y = 0.0; // pixels per second (as provided by GTK)
+  private int64  kinetic_last_time_us = 0;
+
+  private void on_scroll_decelerate (double vx, double vy) {
+    // This signal is only emitted for smooth/gesture scrolling (i.e., touchpads)
+    // Scale down initial velocity to avoid too-fast inertia
+    // smaller -> slower inertia
+    this.kinetic_velocity_y = vy * TOUCHPAD_KINETIC_SCALE;
+    this.kinetic_last_time_us = 0; // reset for next tick
+
+    // Start/restart tick
+    if (this.kinetic_tick_id != 0) {
+      this.remove_tick_callback (this.kinetic_tick_id);
+      this.kinetic_tick_id = 0;
+    }
+
+    this.kinetic_tick_id = this.add_tick_callback ((w, clock) => {
+      // Compute delta time in seconds
+      int64 now_us = clock.get_frame_time (); // microseconds
+      if (this.kinetic_last_time_us == 0) {
+        this.kinetic_last_time_us = now_us;
+        return true; // wait for next frame to have dt
+      }
+      double dt = (now_us - this.kinetic_last_time_us) / 1000000.0;
+      this.kinetic_last_time_us = now_us;
+
+      var adj = this.scrolled.vadjustment;
+
+      // Advance by current velocity
+      double new_value = adj.value + this.kinetic_velocity_y * dt;
+
+      // Clamp within bounds
+      double min_v = adj.lower;
+      double max_v = adj.upper - adj.page_size;
+      if (new_value < min_v) new_value = min_v;
+      if (new_value > max_v) new_value = max_v;
+      adj.value = new_value;
+
+      // Apply stronger damping so inertia quickly but smoothly fades
+      // Exponential decay: v = v * exp(-k * dt)
+      // larger -> faster slowdown
+      this.kinetic_velocity_y *= Math.exp (-TOUCHPAD_DAMPING * dt);
+
+      // Stop when velocity is negligible or we've hit bounds
+      if (Math.fabs (this.kinetic_velocity_y) < 5.0 || new_value == min_v || new_value == max_v) {
+        if (this.kinetic_tick_id != 0) {
+          this.remove_tick_callback (this.kinetic_tick_id);
+          this.kinetic_tick_id = 0;
+        }
+        return false; // stop ticking
+      }
+
+      return true; // continue ticking
+    });
+  }
+
+  // no reload function: constants are compiled-in for minimal change set
+
   private void on_show_scrollbars_updated () {
     var settings = Settings.get_default ();
     var show_scrollbars = settings.show_scrollbars;
-    var is_scrollbar_being_used = this.terminal.parent == this.scrolled;
 
-    this.scrolled.visible = show_scrollbars;
-
-    if (show_scrollbars != is_scrollbar_being_used) {
-      if (this == this.terminal.parent) {
-        this.remove (this.terminal);
-      }
-      else if (this.scrolled == this.terminal.parent) {
-        this.scrolled.child = null;
-      }
+    // Always keep terminal inside the scrolled window so custom scrolling works
+    if (this.terminal.parent != this.scrolled) {
+      if (this == this.terminal.parent) this.remove (this.terminal);
+      this.scrolled.child = this.terminal;
     }
 
-    if (
-      show_scrollbars != is_scrollbar_being_used ||
-      this.terminal.parent == null
-    ) {
-      if (show_scrollbars) {
-        this.scrolled.child = this.terminal;
-      }
-      else {
-        this.insert_child_after (this.terminal, null);
-      }
+    // Never hide the scrolled window itself; instead toggle a CSS class to hide bars
+    if (show_scrollbars) {
+      this.scrolled.remove_css_class ("hide-scrollbars");
+    } else {
+      this.scrolled.add_css_class ("hide-scrollbars");
     }
   }
 

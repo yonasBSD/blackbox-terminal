@@ -1,2 +1,29 @@
 @define-color root_context_color  shade(@red_5, 0.7);
 @define-color ssh_context_color   shade(@purple_5, 0.7);
+
+/* Hide scrollbars when requested by adding `hide-scrollbars` to the
+ * GtkScrolledWindow. Matches the rules in `style.css` but scoped for
+ * dark theme variables or overrides if necessary. */
+scrolledwindow.hide-scrollbars scrollbar,
+scrolledwindow.hide-scrollbars scrollbar .slider,
+scrolledwindow.hide-scrollbars .overlay-scrollbar,
+scrolledwindow.hide-scrollbars .overlay-scrollbar .slider,
+scrolledwindow.hide-scrollbars .scrollbar {
+	min-width: 0px;
+	min-height: 0px;
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+	opacity: 0;
+	/* `pointer-events` is not supported by GTK theme CSS; scrollbars remain
+	 * visually hidden via opacity. We avoid relying on pointer-events here. */
+	transition: opacity 120ms linear, background-color 120ms linear;
+}
+
+scrolledwindow scrollbar,
+scrolledwindow .overlay-scrollbar,
+scrolledwindow .scrollbar {
+	min-width: 8px;
+	min-height: 8px;
+	transition: opacity 120ms linear, background-color 120ms linear;
+}

@@ -76,6 +76,7 @@ endif
 
 executable('blackbox', blackbox_sources, config_header,
   vala_args: '--target-glib=2.50',  dependencies: blackbox_deps,
+  link_args: ['-lm'],
   install: true,
 )
 

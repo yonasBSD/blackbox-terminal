@@ -131,3 +131,35 @@ themeswitcher checkbutton.dark radio {
   color: white;
   background-color: #1e1e1e;
 }
+
+/* When a scrolled window has the `hide-scrollbars` class we keep the
+ * scrolled content visible but visually hide and disable the scrollbars.
+ * This is toggled from `TerminalTab.vala` so the terminal area can
+ * present a cleaner look while preserving scrolling behaviour.
+ */
+scrolledwindow.hide-scrollbars scrollbar,
+scrolledwindow.hide-scrollbars scrollbar .slider,
+scrolledwindow.hide-scrollbars .overlay-scrollbar,
+scrolledwindow.hide-scrollbars .overlay-scrollbar .slider,
+scrolledwindow.hide-scrollbars .scrollbar {
+  /* Make scrollbars transparent and non-interactive */
+  min-width: 0px;
+  min-height: 0px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  opacity: 0;
+  /* `pointer-events` is not supported by GTK theme CSS; keep opacity at 0
+   * so scrollbars are visually hidden. Interaction will still work at the
+   * widget level (we avoid relying on pointer-events to disable them). */
+  transition: opacity 120ms linear, background-color 120ms linear;
+}
+
+/* Keep normal overlay scrollbar sizing when not hidden */
+scrolledwindow scrollbar,
+scrolledwindow .overlay-scrollbar,
+scrolledwindow .scrollbar {
+  min-width: 8px;
+  min-height: 8px;
+  transition: opacity 120ms linear, background-color 120ms linear;
+}
