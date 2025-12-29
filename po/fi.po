@@ -1,0 +1,1191 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the blackbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: blackbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-26 23:47-0300\n"
+"PO-Revision-Date: 2025-12-29 16:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: j.tiilikainen@yahoo.com\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: data/com.raggesilver.BlackBox.desktop.in:2
+msgid "Black Box"
+msgstr "Black Box"
+
+#: data/com.raggesilver.BlackBox.desktop.in:8
+msgid "Terminal;terminal;shell;prompt;command;commandline;cmd;box;"
+msgstr "Pääte;pääte;kuori;kehote;komento;komentorivi;cmd;laatikko;"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:6
+msgid "Window width"
+msgstr "Ikkunan leveys"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:10
+msgid "Window height"
+msgstr "Ikkunan korkeus"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:14
+msgid "Whether or not to remember window size"
+msgstr "Pitääkö ikkunan koko muistaa vai ei"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:24
+msgid "Font family and size"
+msgstr "Fonttiperhe ja -koko"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:28
+msgid "Whether the window should inherit terminal theme's colors"
+msgstr "Peritäänkö ikkunan pääteteeman värit"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:32
+msgid "Terminal window background opacity"
+msgstr "Pääteikkunan taustan läpinäkyvyys"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:36
+msgid "Whether or not tabs should expand to fill tab bar"
+msgstr "Pitääkö välilehdet laajentua täyttämään välilehtipalkki"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:40
+msgid "Whether the headerbar should be shown or not"
+msgstr "Näytetäänkö otsikkopalkki vai ei"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:44
+msgid ""
+"If enabled, the header bar will be colored differently for root and ssh "
+"contexts"
+msgstr "Jos käytössä, otsikkopalkki on eri värinen root- ja ssh-konteksteissa"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:48
+msgid "Whether or not to display a menu button in the headerbar"
+msgstr "Näytetäänkö valikkopainike otsikkopalkissa vai ei"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:52
+msgid "Whether or not to reserve an area for dragging the header bar"
+msgstr "Varataanko alue otsikkopalkin vetämistä varten vai ei"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:56
+msgid "Whether or not to show scrollbars"
+msgstr "Näytetäänkö vierityspalkit vai ei"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:60
+msgid "Whether overlay scrolling should be enabled"
+msgstr "Pitäisikö päällekkäisvieritys olla käytössä"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:64
+msgid "If enabled, terminals will scroll by pixels instead of rows"
+msgstr "Jos käytössä, päätteet vierittävät pikseleinä rivien sijaan"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:68
+msgid "If enabled, terminals will render sixel escape sequences"
+msgstr "Jos käytössä, päätelaitteet renderöivät sixel-koodinvaihtosekvenssit"
+
+#. 0 = Fixed size, 1 = Unlimited, 2 = Disabled
+#: data/com.raggesilver.BlackBox.gschema.xml:73
+#: src/gtk/preferences-window.ui:308
+msgid "Scrollback mode"
+msgstr "Takaisinrullaustila"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:77
+msgid "Number of lines stored in scrollback"
+msgstr "Scrollbackiin tallennettujen rivien määrä"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:81
+msgid "If enabled, floating controls will be shown in headerless mode"
+msgstr "Jos käytössä, kelluvat ohjausobjektit näytetään otsikottomassa tilassa"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:85
+msgid ""
+"Hoverable area (in pixels) at the top of the window to trigger floating "
+"controls"
+msgstr ""
+"Ikkunan yläreunassa oleva leijuva alue (pikseleinä), jolla kelluvat säätimet "
+"voidaan aktivoida"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:89
+msgid "Delay time before showing floating controls"
+msgstr "Viive ennen kelluvien säätimien näyttämistä"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:93
+msgid "The light color scheme for the terminal"
+msgstr "Päätelaitteen vaalea värimaailma"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:97
+msgid "The dark color scheme for the terminal"
+msgstr "Päätelaitteen tumma värimaailma"
+
+#. 0 = Follow system, 1 = Light Style, 2 = Dark Style
+#: data/com.raggesilver.BlackBox.gschema.xml:102
+msgid "Style preference"
+msgstr "Tyylin valinta"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:106
+msgid "Show bold text in bright colors"
+msgstr "Näytä lihavoitu teksti kirkkailla väreillä"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:110
+msgid "Hide cursor while typing"
+msgstr "Piilota kohdistin kirjoitettaessa"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:114
+msgid "Amount of padding around terminal widgets (top, right, bottom, left)"
+msgstr ""
+"Pääte-widgetien ympärillä olevan täyttömäärä (ylhäällä, oikealla, alhaalla, "
+"vasemmalla)"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:118
+msgid "Terminal cell width"
+msgstr "Päätesolun leveys"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:122
+msgid "Terminal cell height"
+msgstr "Päätesolun  korjeus"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:126
+msgid "Terminal bell"
+msgstr "Päätrlaitteen kello"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:130
+msgid "Cursor shape"
+msgstr "Kursorin varjo"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:134
+msgid "Whether or not the cursor should blink"
+msgstr "Pitäisikö kohdistimen vilkkua vai ei"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:138
+msgid "If enabled, ctrl+c and ctrl+v will work for copy/paste"
+msgstr "Jos käytössä, ctrl+c ja ctrl+v toimivat kopioinnissa/liitämisessä"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:142
+msgid "Whether to spawn shell in login mode"
+msgstr "Näytetäänkö komentotulkki kirjautumistilassa"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:146
+msgid "Whether to use a custom command instead of the user's shell"
+msgstr "Käytetäänkö mukautettua komentoa käyttäjän komentotulkin sijaan"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:150
+msgid "Custom command to use instead of the user's shell"
+msgstr "Mukautettu komento käyttäjän komentotulkin sijaan"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:154
+msgid ""
+"Send a desktop notification when a process is completed on an unfocussed tab"
+msgstr ""
+"Lähetä työpöytäilmoitus, kun prosessi on valmis välilehdellä, jossa ei ole "
+"aktiivista"
+
+#. 0 = Previous terminal CWD, 1 = Home Directory, 2 = Custom
+#: data/com.raggesilver.BlackBox.gschema.xml:159
+msgid "Working directory mode"
+msgstr "Työhakemistotila"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:163
+msgid "Custom working directory for new terminals"
+msgstr "Mukautettu työhakemisto uusille päätteille"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:171
+msgid ""
+"Whether clicking next on the last search result should return to the first"
+msgstr "Palaako seuraavaan napsauttamalla viimeisintä hakutulosta ensimmäiseen"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:175
+msgid "Whether search should be case sensitive"
+msgstr "Pitäisikö haun kirjainkokoerotella"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:179
+msgid "Whether search should only match entire words"
+msgstr "Pitäisikö haun löytää vain kokonaisia ​​sanoja"
+
+#: data/com.raggesilver.BlackBox.gschema.xml:183
+msgid "Whether search should be performed using regular expressions"
+msgstr "Pitäisikö haku suorittaa säännöllisten lausekkeiden avulla"
+
+#: src/gtk/shortcut-dialog.ui:6
+msgid "Edit Shortcut"
+msgstr "Muokkaa pikanäppäimiä"
+
+#: src/gtk/shortcut-dialog.ui:17 src/utils/Dialogs.vala:36
+#: src/utils/Dialogs.vala:38 src/widgets/PreferencesWindow.vala:606
+#: src/widgets/ShortcutEditor.vala:246 src/widgets/Window.vala:632
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: src/gtk/shortcut-dialog.ui:24
+msgid "Apply"
+msgstr "Hyväksy"
+
+#: src/gtk/shortcut-dialog.ui:65
+msgid "This shortcut is already in use"
+msgstr "Tämä pikanäppäin on jo käytössä"
+
+#: src/gtk/shortcut-dialog.ui:78
+msgid "Press Escape to cancel or Backspace to disable shortcut"
+msgstr ""
+"Paina Esc peruuttaaksesi tai Backspace poistaaksesi pikakuvakkeen käytöstä"
+
+#: src/gtk/shortcut-editor.ui:6
+msgid "Keyboard"
+msgstr "Näppäimistö"
+
+#: src/gtk/shortcut-editor.ui:10
+msgid "Shortcuts"
+msgstr "Pikanäppäimet"
+
+#: src/gtk/shortcut-editor.ui:29
+msgid "Reset All Shortcuts"
+msgstr "Palauta kaikki pikavalinnat"
+
+#: src/gtk/shortcut-editor.ui:30
+msgid ""
+"This will reset all shortcuts to their default keybindings and overwrite "
+"your config file."
+msgstr ""
+"Tämä palauttaa kaikki pikanäppäimet oletusarvoihinsa ja korvaa "
+"asetustiedostosi."
+
+#: src/gtk/shortcut-editor.ui:34
+msgid "Reset All"
+msgstr "Peruuta kaikki"
+
+#: src/gtk/search-toolbar.ui:20
+msgid "Find"
+msgstr "Etsi"
+
+#: src/gtk/search-toolbar.ui:41
+msgid "Previous result"
+msgstr "Edellinen tulos"
+
+#: src/gtk/search-toolbar.ui:47
+msgid "Next result"
+msgstr "Seuraava tulos"
+
+#: src/gtk/search-toolbar.ui:89
+msgid "Search wraps around"
+msgstr "Haku jatkuu"
+
+#: src/gtk/search-toolbar.ui:94
+msgid "Match is case sensitive"
+msgstr "Tulos on kirjainkokoriippuvainen"
+
+#: src/gtk/search-toolbar.ui:99
+msgid "Match entire words only"
+msgstr "Vain kokonaiset sanat"
+
+#: src/gtk/search-toolbar.ui:104
+msgid "Match using regular expression"
+msgstr "Tulos säännöllisen lausekkeen avulla"
+
+#: src/gtk/preferences-window.ui:11
+msgid "General"
+msgstr "Yleinen"
+
+#: src/gtk/preferences-window.ui:15
+msgid "Window"
+msgstr "Ikkuna"
+
+#: src/gtk/preferences-window.ui:18
+msgid "Remember Window Size"
+msgstr "Muista ikkunan koko"
+
+#: src/gtk/preferences-window.ui:23
+msgid "Theme settings have been moved to Terminal > Appearance."
+msgstr "Teeman asetukset on siirretty kohtaan Pääte > Ulkoasu."
+
+#: src/gtk/preferences-window.ui:36
+msgid "Tabs"
+msgstr "Välilehdet"
+
+#: src/gtk/preferences-window.ui:39
+msgid "Expand Tabs"
+msgstr "Laajenna välilehdet"
+
+#: src/gtk/preferences-window.ui:46
+msgid "Header Bar"
+msgstr "Yläpalkki"
+
+#: src/gtk/preferences-window.ui:49
+msgid "Show Header Bar"
+msgstr "Näytä yläpalkki"
+
+#: src/gtk/preferences-window.ui:54
+msgid "Context Aware"
+msgstr "Kontekstitietoinen"
+
+#: src/gtk/preferences-window.ui:55
+msgid ""
+"If enabled, the header bar will be colored differently when the active tab "
+"is running ssh or sudo."
+msgstr ""
+"Jos tämä on käytössä, otsikkopalkki värittyy eri tavalla, kun aktiivinen "
+"välilehti käyttää ssh:ta tai sudoa."
+
+#: src/gtk/preferences-window.ui:60
+msgid "Show Menu Button"
+msgstr "Näytä Menu-painike"
+
+#: src/gtk/preferences-window.ui:65
+msgid "Drag Area"
+msgstr "Pudotusalue"
+
+#: src/gtk/preferences-window.ui:66
+msgid "Enable to reserve some space on the left side to drag the window."
+msgstr ""
+"Ota käyttöön varataksesi tilaa vasemmalla puolella ikkunan vetämistä varten."
+
+#: src/gtk/preferences-window.ui:71
+msgid "Floating Controls"
+msgstr "Kelluvat ohjausobjektit"
+
+#: src/gtk/preferences-window.ui:74
+msgid "Show Floating Controls"
+msgstr "Näytä kelluvat ohjausobjektit"
+
+#: src/gtk/preferences-window.ui:75
+msgid "Show floating controls when header bar is hidden."
+msgstr "Näytä kelluvat ohjausobjektit, kun otsikkopalkki on piilotettu."
+
+#: src/gtk/preferences-window.ui:81
+msgid "Floating Controls Hover Area"
+msgstr "Kelluvat ohjaimet kelluva-alue"
+
+#: src/gtk/preferences-window.ui:82
+msgid ""
+"Hoverable area (in pixels) at the top of the window to trigger floating "
+"controls."
+msgstr ""
+"Ikkunan yläreunassa oleva leijuva alue (pikseleinä), jolla kelluvat säätimet "
+"voidaan aktivoida."
+
+#: src/gtk/preferences-window.ui:89
+msgid "Delay Before Show Floating Controls"
+msgstr "Viive ennen kelluvien säätimien näyttämistä"
+
+#: src/gtk/preferences-window.ui:90
+msgid "Delay time (ms) before show floating controls."
+msgstr "Viiveaika (ms) ennen kelluvien ohjausobjektien näyttämistä."
+
+#: src/gtk/preferences-window.ui:103 src/gtk/preferences-window.ui:157
+msgid "Terminal"
+msgstr "Terminaali"
+
+#: src/gtk/preferences-window.ui:108
+msgid "Text"
+msgstr "Teksti"
+
+#: src/gtk/preferences-window.ui:112
+msgid "Font"
+msgstr "Fontti"
+
+#: src/gtk/preferences-window.ui:124
+msgid "Cell Spacing"
+msgstr "Soluväli"
+
+#: src/gtk/preferences-window.ui:127
+msgid "Width"
+msgstr "Leveys"
+
+#: src/gtk/preferences-window.ui:134
+msgid "Height"
+msgstr "Korkeus"
+
+#: src/gtk/preferences-window.ui:143
+msgid "Bright Bold Text"
+msgstr "Kirkas lihavoitu teksti"
+
+#: src/gtk/preferences-window.ui:144
+msgid "Use bright colors for bold text."
+msgstr "Käytä lihavoidulle tekstille kirkkaita värejä."
+
+#: src/gtk/preferences-window.ui:149
+msgid "Easy Copy &amp; Paste"
+msgstr "Helppo kopioida ja liittää"
+
+#: src/gtk/preferences-window.ui:150
+msgid "Use ctrl+c/ctrl+v for copy/paste."
+msgstr "Kopioi/liitä painamalla ctrl+c/ctrl+v."
+
+#: src/gtk/preferences-window.ui:161
+msgid "Audible Bell"
+msgstr "Äänimerkki"
+
+#: src/gtk/preferences-window.ui:162
+msgid "If enabled, terminals might use an audible bell to indicate events."
+msgstr ""
+"Jos käytössä, päätelaitteet saattavat käyttää äänimerkkiä tapahtumien "
+"ilmaisemiseen."
+
+#: src/gtk/preferences-window.ui:169
+msgid "Cursor"
+msgstr "Kursori"
+
+#: src/gtk/preferences-window.ui:170
+msgid "Adjust cursor shape and behavior."
+msgstr "Säädä kohdistimen muotoa ja toimintaa."
+
+#: src/gtk/preferences-window.ui:173
+msgid "Cursor Shape"
+msgstr "Kohdistimen muoto"
+
+#: src/gtk/preferences-window.ui:177
+msgid "Block"
+msgstr "Esto"
+
+#: src/gtk/preferences-window.ui:178
+msgid "IBeam"
+msgstr "IBeam"
+
+#: src/gtk/preferences-window.ui:179
+msgid "Underline"
+msgstr "Alleviivaus"
+
+#: src/gtk/preferences-window.ui:187
+msgid "Cursor Blinking"
+msgstr "Kursorin vilkunta"
+
+#: src/gtk/preferences-window.ui:188
+msgid "Whether or not the cursor should blink."
+msgstr "Pitäisikö kohdistimen vilkkua vai ei."
+
+#: src/gtk/preferences-window.ui:192 src/gtk/preferences-window.ui:377
+msgid "Follow System"
+msgstr "Seuraa järjestelmää"
+
+#: src/gtk/preferences-window.ui:193
+msgid "On"
+msgstr "On"
+
+#: src/gtk/preferences-window.ui:194
+msgid "Off"
+msgstr "Pois päältä"
+
+#: src/gtk/preferences-window.ui:202
+msgid "Autohide"
+msgstr "Piilota automaattisesti"
+
+#: src/gtk/preferences-window.ui:203
+msgid "Enable to hide the cursor while typing"
+msgstr "Ota käyttöön kohdistimen piilottaminen kirjoitettaessa"
+
+#: src/gtk/preferences-window.ui:211
+msgid "Padding"
+msgstr "Väli"
+
+#: src/gtk/preferences-window.ui:220
+msgid "Opacity"
+msgstr "Läpinäkyvyys"
+
+#: src/gtk/preferences-window.ui:221
+msgid "Terminal background opacity."
+msgstr "Päätelaitteen taustan läpinäkyvyys."
+
+#: src/gtk/preferences-window.ui:239
+msgid "Working Directory"
+msgstr "Työhakemisto"
+
+#: src/gtk/preferences-window.ui:248
+msgid "Previous Session"
+msgstr "Edellinen istunto"
+
+#: src/gtk/preferences-window.ui:249
+msgid "Home Directory"
+msgstr "Kotihakemisto"
+
+#: src/gtk/preferences-window.ui:250
+msgid "Custom"
+msgstr "Mukautettu"
+
+#: src/gtk/preferences-window.ui:259
+msgid "Custom Working Directory"
+msgstr "Mukautettu työhakemisto"
+
+#: src/gtk/preferences-window.ui:276
+msgid "Set to user's home"
+msgstr "Aseta käyttäjän kotikansioksi"
+
+#: src/gtk/preferences-window.ui:288
+msgid "Scrolling"
+msgstr "Vieritä"
+
+#: src/gtk/preferences-window.ui:291
+msgid "Scrollbars"
+msgstr "Vierityspalkit"
+
+#: src/gtk/preferences-window.ui:294
+msgid "Show Scrollbars"
+msgstr "Näytä vierityspalkit"
+
+#: src/gtk/preferences-window.ui:299
+msgid "Use Overlay Scrolling"
+msgstr "Käytä päällekkäisvieritystä"
+
+#: src/gtk/preferences-window.ui:312
+msgid "Fixed Size"
+msgstr "Muokattu koko"
+
+#: src/gtk/preferences-window.ui:313
+msgid "Unlimited"
+msgstr "Rajoittamaton"
+
+#: src/gtk/preferences-window.ui:314 src/widgets/ShortcutEditor.vala:106
+msgid "Disabled"
+msgstr "Poissa käytöstä"
+
+#: src/gtk/preferences-window.ui:323
+msgid "Scrollback Lines"
+msgstr "Vieritysviivat"
+
+#: src/gtk/preferences-window.ui:335
+msgid "Command"
+msgstr "Komento"
+
+#: src/gtk/preferences-window.ui:338
+msgid "Run Command as Login Shell"
+msgstr "Suorita komento kirjautumiskomentoina"
+
+#: src/gtk/preferences-window.ui:343
+msgid "Use Custom Command"
+msgstr "Käytä mukautettua komentoa"
+
+#: src/gtk/preferences-window.ui:348
+msgid "Custom Command"
+msgstr "Muokattu komento"
+
+#: src/gtk/preferences-window.ui:361
+msgid "Notification on Completed Task"
+msgstr "Ilmoitus suoritetusta tehtävästä"
+
+#: src/gtk/preferences-window.ui:362
+msgid ""
+"Send a desktop notification when a command is completed on an unfocussed tab."
+msgstr ""
+"Lähetä työpöytäilmoitus, kun komento on suoritettu välilehdellä, jossa ei "
+"ole aktiivista."
+
+#: src/gtk/preferences-window.ui:370
+msgid "Appearance"
+msgstr "Ulkonäkö"
+
+#: src/gtk/preferences-window.ui:373
+msgid "Application Style"
+msgstr "Sovelluksen tyyli"
+
+#: src/gtk/preferences-window.ui:378
+msgid "Light"
+msgstr "Vaalea"
+
+#: src/gtk/preferences-window.ui:379
+msgid "Dark"
+msgstr "Tumma"
+
+#: src/gtk/preferences-window.ui:387
+msgid "Theme Integration"
+msgstr "Teeman integrointi"
+
+#: src/gtk/preferences-window.ui:388
+msgid "Paint the whole app with colors from your colorscheme."
+msgstr "Maalaa koko sovellus värimaailmasi väreillä."
+
+#: src/gtk/preferences-window.ui:397
+msgid "Theme"
+msgstr "Teema"
+
+#: src/gtk/preferences-window.ui:398
+msgid "Set your preferred theme for light and dark styles."
+msgstr "Aseta haluamasi teema vaaleille ja tummille tyyleille."
+
+#: src/gtk/preferences-window.ui:410
+msgid "Open themes folder"
+msgstr "Avaa teemojen kansio"
+
+#: src/gtk/preferences-window.ui:418
+msgid "Get more themes online"
+msgstr "Hanki lisää teemoja verkosta"
+
+#: src/gtk/preferences-window.ui:439
+msgid "Light Theme"
+msgstr "Vaalea teema"
+
+#: src/gtk/preferences-window.ui:445
+msgid "Dark Theme"
+msgstr "Tumma teema"
+
+#: src/gtk/preferences-window.ui:453
+msgid "Only display themes for the current style"
+msgstr "Näytä vain nykyisen tyylin teemat"
+
+#: src/gtk/preferences-window.ui:461
+msgid ""
+"To ensure readability, \"Theme Integration\" will be disabled if you select "
+"a light color scheme while using the dark app style or a dark color scheme "
+"while using the light app style."
+msgstr ""
+"Luettavuuden varmistamiseksi \"Teeman integrointi\" poistetaan käytöstä, jos "
+"valitset vaalean värimaailman tummaa sovellustyyliä käytettäessä tai tumman "
+"värimaailman vaaleaa sovellustyyliä käytettäessä."
+
+#: src/gtk/preferences-window.ui:494
+msgid "Advanced"
+msgstr "Edistynyt"
+
+#: src/gtk/preferences-window.ui:498
+msgid "Experimental"
+msgstr "Kokeellinen"
+
+#: src/gtk/preferences-window.ui:499
+msgid ""
+"Features in this section are known to be unstable. Please feel free to test "
+"and <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">report bugs</a>."
+msgstr ""
+"Tämän osion ominaisuuksien tiedetään olevan epävakaita. Voit vapaasti "
+"testata niitä ja <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/"
+"issues\">ilmoittaa virheistä</a>."
+
+#: src/gtk/preferences-window.ui:502
+msgid "Sixel Support"
+msgstr "Sixel-tuki"
+
+#: src/gtk/preferences-window.ui:503
+msgid "Render sixel escape sequences."
+msgstr "Renderöi sixel-koodinvaihtosekvenssit."
+
+#: src/gtk/preferences-window.ui:512
+msgid ""
+"The VTE build you are using does not have support Sixel. Sixel is still an "
+"experimental feature in VTE. For this reason, most distros do not build VTE "
+"with Sixel support. Installing Black Box via Flatpak will enable this "
+"feature. <a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues/"
+"273\">See discussion in issue tracker.</a>"
+msgstr ""
+"Käyttämäsi VTE-versio ei tue Sixeliä. Sixel on vielä kokeellinen ominaisuus "
+"VTE:ssä. Tästä syystä useimmat jakelut eivät käännä VTE:tä Sixel-tuella. "
+"Black Boxin asentaminen Flatpakin kautta ottaa tämän ominaisuuden käyttöön. "
+"<a href=\"https://gitlab.gnome.org/raggesilver/blackbox/-/issues/273\">Katso "
+"keskustelu ongelmanseurannassa.</a>"
+
+#: src/gtk/preferences-window.ui:522
+msgid "Danger Zone"
+msgstr "Vaarallinen alue"
+
+#: src/gtk/preferences-window.ui:525 src/widgets/PreferencesWindow.vala:602
+#: src/widgets/PreferencesWindow.vala:606
+msgid "Reset Preferences"
+msgstr "Palauta asetukset"
+
+#: src/gtk/preferences-window.ui:526
+msgid ""
+"This will revert all settings back to default. Your extra themes will not be "
+"removed."
+msgstr ""
+"Tämä palauttaa kaikki asetukset oletusasetuksiin. Ylimääräisiä teemojasi ei "
+"poisteta."
+
+#: src/gtk/preferences-window.ui:531
+msgid "Reset preferences"
+msgstr "Palauta asetukset"
+
+#: src/gtk/terminal-menu.ui:20
+msgid "Open Link"
+msgstr "Avaa linkki"
+
+#: src/gtk/terminal-menu.ui:28 src/gtk/header-bar.ui:58
+#: src/gtk/header-bar.ui:170 src/gtk/header-bar.ui:280
+#: src/widgets/ShortcutEditor.vala:137
+msgid "New Tab"
+msgstr "Uusi välilehti"
+
+#: src/gtk/terminal-menu.ui:32 src/gtk/header-bar.ui:62
+#: src/widgets/ShortcutEditor.vala:135
+msgid "New Window"
+msgstr "Uusi ikkuna"
+
+#: src/gtk/terminal-menu.ui:55 src/widgets/ShortcutEditor.vala:139
+msgid "Copy"
+msgstr "Kopioi"
+
+#: src/gtk/terminal-menu.ui:59
+msgid "Copy Link"
+msgstr "Kopioi linkki"
+
+#: src/gtk/terminal-menu.ui:64 src/widgets/ShortcutEditor.vala:140
+msgid "Paste"
+msgstr "Liitä"
+
+#: src/gtk/terminal-menu.ui:71 src/gtk/header-bar.ui:72
+#: src/widgets/ShortcutEditor.vala:138
+msgid "Preferences"
+msgstr "Asetukset"
+
+#: src/gtk/terminal-menu.ui:78 src/gtk/header-bar.ui:78
+#: src/widgets/ShortcutEditor.vala:143
+msgid "Keyboard Shortcuts"
+msgstr "Pikanäppäimet"
+
+#: src/gtk/terminal-menu.ui:82 src/gtk/header-bar.ui:82
+msgid "About Black Box"
+msgstr "Tietoja Black Box"
+
+#: src/gtk/help-overlay.ui:10
+msgctxt "shortcut window"
+msgid "Window"
+msgstr "Ikkuna"
+
+#: src/gtk/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New window"
+msgstr "Uusi ikkuna"
+
+#: src/gtk/help-overlay.ui:19
+msgctxt "shortcut window"
+msgid "New tab"
+msgstr "Uusi välilehti"
+
+#: src/gtk/help-overlay.ui:25
+msgctxt "shortcut window"
+msgid "Close tab"
+msgstr "Sulje välilehti"
+
+#: src/gtk/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Rename tab"
+msgstr "Uudelleen nimeä välilehti"
+
+#: src/gtk/help-overlay.ui:37
+msgctxt "shortcut window"
+msgid "Switch headbar mode"
+msgstr "Vaihda pääpalkin tilaa"
+
+#: src/gtk/help-overlay.ui:43
+msgctxt "shortcut window"
+msgid "Toggle fullscreen"
+msgstr "Koko näytön vaihto"
+
+#: src/gtk/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Terminal"
+msgstr "Terminaali"
+
+#: src/gtk/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Etsi"
+
+#: src/gtk/help-overlay.ui:60
+msgctxt "shortcut window"
+msgid "Copy"
+msgstr "Kopioi"
+
+#: src/gtk/help-overlay.ui:66
+msgctxt "shortcut window"
+msgid "Paste"
+msgstr "Liitä"
+
+#: src/gtk/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Zoom in"
+msgstr "Lähennä"
+
+#: src/gtk/help-overlay.ui:78
+msgctxt "shortcut window"
+msgid "Zoom out"
+msgstr "Loitonna"
+
+#: src/gtk/help-overlay.ui:84
+msgctxt "shortcut window"
+msgid "Reset zoom"
+msgstr "Palauta zoomi"
+
+#: src/gtk/help-overlay.ui:92
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "Navigointi"
+
+#: src/gtk/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Focus next tab"
+msgstr "Siirrä seuraava välilehti kohdistetuksi"
+
+#: src/gtk/help-overlay.ui:101
+msgctxt "shortcut window"
+msgid "Focus previous tab"
+msgstr "Siirrä edellinen välilehti kohdistetuksi"
+
+#: src/gtk/help-overlay.ui:107
+msgctxt "shortcut window"
+msgid "Switch to Tab 1"
+msgstr "Vaihda välilehdelle 1"
+
+#: src/gtk/help-overlay.ui:113
+msgctxt "shortcut window"
+msgid "Switch to Tab 2"
+msgstr "Vaihda välilehdelle 2"
+
+#: src/gtk/help-overlay.ui:119
+msgctxt "shortcut window"
+msgid "Switch to Tab 3"
+msgstr "Vaihda välilehdelle 3"
+
+#: src/gtk/help-overlay.ui:125
+msgctxt "shortcut window"
+msgid "Switch to Tab 4"
+msgstr "Vaihda välilehdelle 4"
+
+#: src/gtk/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Switch to Tab 5"
+msgstr "Vaihda välilehdelle 5"
+
+#: src/gtk/help-overlay.ui:137
+msgctxt "shortcut window"
+msgid "Switch to Tab 6"
+msgstr "Vaihda välilehdelle 6"
+
+#: src/gtk/help-overlay.ui:143
+msgctxt "shortcut window"
+msgid "Switch to Tab 7"
+msgstr "Vaihda välilehdelle 7"
+
+#: src/gtk/help-overlay.ui:149
+msgctxt "shortcut window"
+msgid "Switch to Tab 8"
+msgstr "Vaihda välilehdelle 8"
+
+#: src/gtk/help-overlay.ui:155
+msgctxt "shortcut window"
+msgid "Switch to Tab 9"
+msgstr "Vaihda välilehdelle 9"
+
+#: src/gtk/help-overlay.ui:161
+msgctxt "shortcut window"
+msgid "Switch to last Tab"
+msgstr "Vaihda viimeiseen välilehteen"
+
+#: src/gtk/help-overlay.ui:169
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Yleinen"
+
+#: src/gtk/help-overlay.ui:172
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Näytä pikanäppäimet"
+
+#: src/gtk/help-overlay.ui:178
+msgctxt "shortcut window"
+msgid "Edit Preferences"
+msgstr "Muokkaa asetuksia"
+
+#: src/gtk/tab-menu.ui:9 src/widgets/ShortcutEditor.vala:149
+msgid "Move Tab Left"
+msgstr "Siirrä välilehti vasemmalle"
+
+#: src/gtk/tab-menu.ui:14 src/widgets/ShortcutEditor.vala:150
+msgid "Move Tab Right"
+msgstr "Siirrä välilehti oikealle"
+
+#: src/gtk/tab-menu.ui:21 src/widgets/ShortcutEditor.vala:148
+#: src/widgets/Window.vala:622
+msgid "Rename Tab"
+msgstr "Uudelleen nimeä välilehti"
+
+#: src/gtk/tab-menu.ui:25
+msgid "Move Tab to New Window"
+msgstr "Siirrä välilehti uuteen ikkunaan"
+
+#: src/gtk/tab-menu.ui:32 src/widgets/ShortcutEditor.vala:147
+msgid "Close Tab"
+msgstr "Sulje välilehti"
+
+#: src/gtk/header-bar.ui:23
+msgid "Remote Access"
+msgstr "Etäkäyttö"
+
+#: src/gtk/header-bar.ui:25
+msgid "SSH Connections"
+msgstr "SSH-yhteydet"
+
+#: src/gtk/header-bar.ui:35 src/gtk/header-bar.ui:43
+msgid "New Connection"
+msgstr "Uusi yhteys"
+
+#: src/gtk/header-bar.ui:41
+msgid "SFTP Servers"
+msgstr "SFTP Serveriit"
+
+#: src/gtk/header-bar.ui:68 src/widgets/ShortcutEditor.vala:142
+msgid "Fullscreen"
+msgstr "Koko näyttö"
+
+#: src/gtk/header-bar.ui:178 src/gtk/header-bar.ui:288
+msgid "Exit Fullscreen"
+msgstr "Lopeta koko näyttö"
+
+#: src/gtk/header-bar.ui:193 src/gtk/header-bar.ui:303
+msgid "Menu"
+msgstr "Valikko"
+
+#: src/gtk/style-switcher.ui:17
+msgid "Use System Colors"
+msgstr "Käytä järjestelmän värejä"
+
+#: src/gtk/style-switcher.ui:46
+msgid "Use Light Colors"
+msgstr "Käytä vaaleita värejä"
+
+#: src/gtk/style-switcher.ui:74
+msgid "Use Dark Colors"
+msgstr "Käytä tummia värejä"
+
+#: src/services/Shortcuts.vala:327
+msgid "Replace keybinding?"
+msgstr "Korvataanko näppäinyhdistelmä?"
+
+#. FIXME: `to_action` is an action identifier (i.e. win.paste). Replace it
+#. with the user-friendly action name.
+#: src/services/Shortcuts.vala:330
+#, c-format
+msgid "%s is already assigned to %s"
+msgstr "%s on jo määritetty käyttäjälle %s"
+
+#: src/utils/Constants.vala:34
+msgid "You can still access the menu by right-clicking any terminal."
+msgstr ""
+"Voit edelleen käyttää valikkoa napsauttamalla hiiren kakkospainikkeella mitä "
+"tahansa päätettä."
+
+#: src/utils/Constants.vala:36
+#, c-format
+msgid ""
+"%s uses an early Gtk 4 port of VTE as a terminal widget. While a lot of "
+"progress has been made on this port, copying has yet to be implemented. This "
+"means there's currently no way to copy text in %s."
+msgstr ""
+"%s käyttää VTE:n varhaista Gtk 4 -porttia päätewidgetinä. Vaikka tässä "
+"portissa on edistytty paljon, kopiointia ei ole vielä toteutettu. Tämä "
+"tarkoittaa, että tekstiä ei tällä hetkellä voi kopioida %s:ssä."
+
+#: src/utils/Constants.vala:38
+msgid ""
+"Warning: unlimited scrollback saves content to disk, which may cause your "
+"system to run out of storage."
+msgstr ""
+"Varoitus: rajoittamaton vieritys taaksepäin tallentaa sisältöä levylle, mikä "
+"voi aiheuttaa järjestelmän tallennustilan loppumisen."
+
+#: src/utils/Dialogs.vala:35
+msgid "No"
+msgstr "Ei"
+
+#: src/utils/Dialogs.vala:35
+msgid "Yes"
+msgstr "Kyllä"
+
+#: src/utils/Dialogs.vala:36
+msgid "OK"
+msgstr "OK"
+
+#: src/utils/Dialogs.vala:37
+msgid "Keep"
+msgstr "Pidä"
+
+#: src/utils/Dialogs.vala:37
+msgid "Replace"
+msgstr "Korvaa"
+
+#: src/utils/Dialogs.vala:38
+msgid "Close"
+msgstr "Sulje"
+
+#: src/utils/Dialogs.vala:119
+msgid "Close Tab?"
+msgstr "Sulje välilehti?"
+
+#: src/utils/Dialogs.vala:120
+msgid "Close Window?"
+msgstr "Sulje ikkuna?"
+
+#: src/utils/Dialogs.vala:123
+msgid ""
+"Some commands are still running. Closing this tab will kill them and may "
+"lead to unexpected outcomes."
+msgstr ""
+"Jotkin komennot ovat edelleen käynnissä. Tämän välilehden sulkeminen "
+"lopettaa ne ja voi johtaa odottamattomiin tuloksiin."
+
+#: src/utils/Dialogs.vala:124
+msgid ""
+"Some commands are still running. Closing this window will kill them and may "
+"lead to unexpected outcomes."
+msgstr ""
+"Jotkin komennot ovat edelleen käynnissä. Tämän ikkunan sulkeminen lopettaa "
+"ne ja voi johtaa odottamattomiin tuloksiin."
+
+#: src/utils/Shortcuts.vala:32
+msgid "invalid keybinding"
+msgstr "virheellinen näppäinsidonta"
+
+#: src/widgets/AboutDialog.vala:53
+msgid "Donate"
+msgstr "Lahjoita"
+
+#: src/widgets/AboutDialog.vala:54
+msgid "Full Changelog"
+msgstr "Koko muutosloki"
+
+#: src/widgets/PreferencesWindow.vala:577
+msgid "Terminal Font"
+msgstr "Päätteen fontti"
+
+#: src/widgets/PreferencesWindow.vala:603
+msgid "Are you sure you want to reset all settings?"
+msgstr "Haluatko varmasti nollata kaikki asetukset?"
+
+#: src/widgets/PreferencesWindow.vala:647
+msgid "Reuse previous tab's directory."
+msgstr "Käytä uudelleen edellisen välilehden hakemistoa."
+
+#: src/widgets/PreferencesWindow.vala:649
+msgid "Use the current user's home as working directory."
+msgstr "Käytä nykyisen käyttäjän kotihakemistoa työhakemistona."
+
+#: src/widgets/PreferencesWindow.vala:651
+msgid "Use a custom path as working directory."
+msgstr "Käytä työhakemistona mukautettua polkua."
+
+#: src/widgets/ShortcutDialog.vala:46
+msgid "Enter new shortcut"
+msgstr "Syötä uusi pikanäppäin"
+
+#: src/widgets/ShortcutDialog.vala:47
+#, c-format
+msgid "Enter new shortcut for \"%s\""
+msgstr "Anna uusi pikanäppäin kohteelle \"%s\""
+
+#: src/widgets/ShortcutEditor.vala:59
+msgid "Add Keybinding"
+msgstr "Lisää näppäinyhdistelmä"
+
+#: src/widgets/ShortcutEditor.vala:66
+msgid "Reset Keybindings"
+msgstr "Palauta näppäinyhdistelmät"
+
+#: src/widgets/ShortcutEditor.vala:81
+#, c-format
+msgid "Remove %s"
+msgstr "Poista %s"
+
+#: src/widgets/ShortcutEditor.vala:133
+msgid "Focus Next Tab"
+msgstr "Kohdista uuteen välilehteen"
+
+#: src/widgets/ShortcutEditor.vala:134
+msgid "Focus Previous Tab"
+msgstr "Kohdista edelliseen välilehteen"
+
+#: src/widgets/ShortcutEditor.vala:136
+msgid "Toggle Header Bar"
+msgstr "Yläpalkki päälle/pois"
+
+#: src/widgets/ShortcutEditor.vala:141
+msgid "Search"
+msgstr "Etsi"
+
+#: src/widgets/ShortcutEditor.vala:144
+msgid "Zoom In"
+msgstr "Lähennä"
+
+#: src/widgets/ShortcutEditor.vala:145
+msgid "Zoom Out"
+msgstr "Loitonna"
+
+#: src/widgets/ShortcutEditor.vala:146
+msgid "Reset Zoom"
+msgstr "Palauta zoomi"
+
+#: src/widgets/ShortcutEditor.vala:152 src/widgets/ShortcutEditor.vala:153
+#: src/widgets/ShortcutEditor.vala:154 src/widgets/ShortcutEditor.vala:155
+#: src/widgets/ShortcutEditor.vala:156 src/widgets/ShortcutEditor.vala:157
+#: src/widgets/ShortcutEditor.vala:158 src/widgets/ShortcutEditor.vala:159
+#: src/widgets/ShortcutEditor.vala:160
+#, c-format
+msgid "Switch to Tab %u"
+msgstr "Vaihda välilehdelle %u"
+
+#: src/widgets/ShortcutEditor.vala:161
+msgid "Switch to Last Tab"
+msgstr "Vaihda viimeiseen välilehteen"
+
+#: src/widgets/ShortcutEditor.vala:243
+msgid "Reset All Shortcuts?"
+msgstr "Palauta kaikki pikavalinnat?"
+
+#: src/widgets/ShortcutEditor.vala:244
+msgid ""
+"This will reset all shortcuts to default and overwrite your config file. "
+"This action is irreversible."
+msgstr ""
+"Tämä palauttaa kaikki pikavalinnat oletusarvoihinsa ja korvaa "
+"asetustiedostosi. Tätä toimintoa ei voi peruuttaa."
+
+#: src/widgets/ShortcutEditor.vala:247
+msgid "Reset"
+msgstr "Palauta"
+
+#: src/widgets/TerminalTab.vala:58
+msgid "tab"
+msgstr "vVälilehti"
+
+#: src/widgets/TerminalTab.vala:109
+msgid "Error"
+msgstr "Virhe"
+
+#: src/widgets/Window.vala:623
+msgid "Set a custom title for this tab"
+msgstr "Aseta tälle välilehdelle mukautettu otsikko"
+
+#: src/widgets/Window.vala:626
+msgid "Enter a custom tab title"
+msgstr "Anna mukautettu välilehden otsikko"
+
+#: src/widgets/Window.vala:633
+msgid "Reset Title"
+msgstr "Palauta otsikko"
+
+#: src/widgets/Window.vala:634
+msgid "Set Title"
+msgstr "Aseta otsikko"
+
+#: src/widgets/Terminal.vala:631
+msgid "Command completed"
+msgstr "Komento suoritettu"
+
+#: src/CommandLine.vala:47
+msgid "Show app version"
+msgstr "Näytä sovellusversio"
+
+#: src/CommandLine.vala:56
+msgid "Set current working directory"
+msgstr "Aseta nykyinen työhakemisto"
+
+#: src/CommandLine.vala:65
+msgid "Execute command in a terminal"
+msgstr "Suorita komento terminaalissa"
+
+#: src/CommandLine.vala:74
+msgid "Show help"
+msgstr "Näytä ohjeet"
+
+#: src/CommandLine.vala:121
+#, c-format
+msgid "Run %s --help to get help\n"
+msgstr "Suorita %s --help saadaksesi apua\n"
